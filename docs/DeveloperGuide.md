@@ -315,7 +315,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+4.  The data should be stored locally in a human editable text file
+5.  Should not use a database management system to store data
+6.  Should follow OOP paradigm primarily
+7.  Should work without requiring an installer
+8.  Should not depend on a remote server
+9.  Project should simulate a brownfield project by evolving the code base with each iteration incrementally (breadth-first)
+10. Should be for a single user
+11. Third-party frameworks, libraries and services should be free, open-source, do not require any installation by the user, and do not violate other requirements.
+12. GUI should work well for
+    * Standard screen resolutions of 1920x1080 and higher
+    * Screen scales 100% and 125%
+13. GUI should be usable for
+    * Resolutions 1280x720 and higher
+    * Screen scales 150%
+14. Should package everything into a single JAR file
+15. Product should not exceed 100 MB and documents should not exceed 15 MB/file
+16. Developer Guide and User Guide should be PDF-friendly
 *{More to be added}*
 
 ### Glossary
