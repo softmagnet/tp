@@ -44,5 +44,5 @@ Personal email: ongzhenglin1999@gmail.com<br/>
 School email: e0559810@u.nus.edu
 
 Year 2 CS Student
-*Role: Documentation
+* Role: Documentation
 
