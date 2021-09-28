@@ -34,3 +34,15 @@ School email: zhiwei_lin@u.nus.edu
 Year 2 CS Student
 * Role: Code quality and testing
 
+### Ong Zheng Lin
+
+<img src="images/Ongzl.png" width="200px">
+
+[[github](https://github.com/Ongzl)]
+
+Personal email: ongzhenglin1999@gmail.com<br/>
+School email: e0559810@u.nus.edu
+
+Year 2 CS Student
+*Role: Documentation
+
