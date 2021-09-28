@@ -283,16 +283,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TimesTable` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  TimesTable shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  TimesTable deletes the person
 
     Use case ends.
 
@@ -304,21 +304,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TimesTable shows an error message.
 
       Use case resumes at step 2.
 
 **Use case: Add a person**
 
 **MSS**
-1. User adds details of new person to be added to AddressBook.
-2. AddressBook adds new person with relevant details.
+1. User adds details of new person to be added to TimesTable.
+2. TimesTable adds new person with relevant details.
 
     Use case ends.
 
 **Extension**
 * 1a. User keys in add command with invalid format.
-    *1a1. AddressBook shows an error message.
+    *1a1. TimesTable shows an error message.
   
     Use case resumes at step 1.
 
@@ -326,11 +326,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User adds detail of parent contact to existing contact.
-2. AddressBook updates the parent contact field with the added details.
+2. TimesTable updates the parent contact field with the added details.
 
 **Extension**
 * 1a. User keys in Add Parent command with invalid format.
-    *1a1. AddressBook shows an error message.
+    *1a1. TimesTable shows an error message.
 
   Use case resumes at step 1.
 
