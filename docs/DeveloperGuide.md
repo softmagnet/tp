@@ -308,7 +308,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add a person**
+
+**MSS**
+1. User adds details of new person to be added to AddressBook.
+2. AddressBook adds new person with relevant details.
+
+    Use case ends.
+
+**Extension**
+* 1a. User keys in add command with invalid format.
+    *1a1. AddressBook shows an error message.
+  
+    Use case resumes at step 1.
+
+**Use case: Add parent contact**
+
+**MSS**
+1. User adds detail of parent contact to existing contact.
+2. AddressBook updates the parent contact field with the added details.
+
+**Extension**
+* 1a. User keys in Add Parent command with invalid format.
+    *1a1. AddressBook shows an error message.
+
+  Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
