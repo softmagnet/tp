@@ -52,6 +52,10 @@ public class Person {
         return name;
     }
 
+    public Nok getNok() {
+        return nok;
+    }
+
     public Phone getPhone() {
         return phone;
     }

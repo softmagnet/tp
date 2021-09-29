@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.NokCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -10,7 +9,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.logic.commands.NokCommand.NokPersonDescriptor;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -47,6 +45,7 @@ public class NokCommandParser implements Parser<NokCommand> {
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NokCommand.MESSAGE_USAGE), pe);
         }
+
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
