@@ -58,3 +58,16 @@ School email: kevinchua@u.nus.edu
 Year 2 CS Student
 * Role: Integration
 * Subrole: Intellij and Git expert
+
+### Stuart Long Chay Boon
+
+<img src="images/s7u4rt99.png" width="200px">
+
+[[github](https://github.com/s7u4rt99)]
+
+Personal email: stuartlongchayboon@gmail.com<br/>
+School email: stuartlong@u.nus.edu
+
+Year 2 CS Student
+* Role: Team Lead
+* Subrole: Scheduling and Tracking
