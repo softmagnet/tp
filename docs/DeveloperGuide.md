@@ -257,11 +257,26 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Name: Kevin Bernard Long Zheng Wei
+* Age: 28
+* Gender: Male
+* Marital status: Single
+* Country: Singapore
+* Habits: Sleeping, Netflix, Gym, Gaming
+* Lifestyle: Code, eat, sleep, give part time tuition
+    * prefer desktop apps over other types
+    * can type fast
+    * prefers typing to mouse interactions
+    * is reasonably comfortable using CLI apps
+* Interest: Coding, building apps during his free time with friends and teaching people
+* Values: Work hard play hard
+* Salary: $12000/mth
+* Job: Full time A levels Mathematics tuition teacher (group and one on one) at his own new tuition company
+    * Has a need to manage a significant number of contacts
+* Car: Drives 2 Teslas 
+* Home Environment: Lives with parents, older brother and dog
+* Education: NIE grad
+* Household Description: Sentosa Cove landed property with rich parents
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 
