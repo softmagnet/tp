@@ -48,7 +48,7 @@ Year 2 CS Student
 
 ### Kevin Chua Kian Chun
 
-<img src="images/kevinchua.jpeg" width="200px">
+<img src="images/yourally2.png" width="200px">
 
 [[github](https://github.com/yourally2)]
 
