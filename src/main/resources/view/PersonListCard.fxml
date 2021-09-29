@@ -37,12 +37,12 @@
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
       <HBox spacing="5" alignment="CENTER_RIGHT">
-        <Label fx:id="nok_name" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="nok_name" text="\$nok_first" styleClass="cell_big_label" />
       </HBox>
       <FlowPane />
-      <Label fx:id="nok_phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="nok_address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="nok_email" styleClass="cell_small_label" text="\$email" />
+      <Label fx:id="nok_phone" styleClass="cell_small_label" text="\$nok_phone" />
+      <Label fx:id="nok_address" styleClass="cell_small_label" text="\$nok_address" />
+      <Label fx:id="nok_email" styleClass="cell_small_label" text="\$nok_email" />
     </VBox>
   </GridPane>
 </HBox>
