@@ -272,14 +272,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| `* *`    | User                                       | Check if student has paid                                    | Keep track of who I need to remind                         |
+| `* * `   | User                                       | Save class rates                                             | Keep track of how much to charge each class                |
+| `* * `   | User                                       | Edit my student details                                      | Keep track of changes of my students                       |
+| `* * *`  | Forgetful user                             | Save their contacts                                          | I can remember them                                        |
+| `* * *`  | User                                       | View my class timings for a specific contact (day and time)  |          Know which day will I be teaching this contact    |                          
+| `* * *`  | User                                       | Record parent contact of my students                         | Contact the student's parent in case of emergencies        |
+| `* * *`  | User                                       | Delete/archive my student's contacts and information         | I can declutter my contacts.                               |
+| `* * *`  | Experienced User                           | Add all contact details without any specifiers               | I can save time in creating new contacts                   |
+| `* * *`  | User                                       | Record locations of classes of each student                  | Knows where to go                                          |             
+| `* `     | Careless User                              | Be notified if there was a clash in timing                   | I can have peace of mind                                   |             
+| `* `     | User                                       | View schedule for a specific day                             | Can prepare for lesson and won't be absent                 |             
 
 ### Use cases
 
