@@ -278,7 +278,24 @@ _{Explain here how the data archiving feature will be implemented}_
 * Education: NIE grad
 * Household Description: Sentosa Cove landed property with rich parents
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: </br> 
+A busy tutor who has a large number of students can find it extremely difficult to 
+
+* manage and organize student information
+* schedule according to student class timing
+
+This is where Timestable comes in. It improves two main areas: 
+* querying
+  * student information
+  * parent information
+  * class timing
+* data manipulation
+  * add
+  * delete
+  * update
+
+By improving the data manipulation process, the tutor can organize student information more easily. </br>
+By improving the querying process, the tutor can make scheduling less painstaking and time-consuming.  
 
 
 ### User stories
