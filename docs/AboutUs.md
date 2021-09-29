@@ -46,3 +46,15 @@ School email: e0559810@u.nus.edu
 Year 2 CS Student
 * Role: Documentation
 
+### Kevin Chua Kian Chun
+
+<img src="images/kevinchua.jpeg" width="200px">
+
+[[github](https://github.com/yourally2)]
+
+Personal email: kevinchua6@gmail.com<br/>
+School email: kevinchua@u.nus.edu
+
+Year 2 CS Student
+* Role: Integration
+* Subrole: Intellij and Git expert
