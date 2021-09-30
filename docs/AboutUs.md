@@ -36,7 +36,7 @@ Year 2 CS Student
 
 ### Ong Zheng Lin
 
-<img src="images/Ongzl.png" width="200px">
+<img src="images/ongzl.png" width="200px">
 
 [[github](https://github.com/Ongzl)]
 
