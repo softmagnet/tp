@@ -110,6 +110,8 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 *  `edit 3 ct/Mon 1pm to 3pm r/$50` Edits the class timing and hourly rate of the 3rd person to be `Mon 1pm to 3pm` and `$50` respectively.
+*  `edit 4 n/John Walker l/4 Petir Road #16-04 Singapore 657891` Edits the name and location of the 4th person to be
+   `John Walker` and `4 Petir Road #16-04 Singapore 657891` respectively.
 
 ### Locating persons by name: `find`
 
