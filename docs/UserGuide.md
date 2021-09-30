@@ -111,6 +111,21 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 *  `edit 3 ct/Mon 1pm to 3pm r/$50` Edits the class timing and hourly rate of the 3rd person to be `Mon 1pm to 3pm` and `$50` respectively.
 
+### Editing a student's nok : `edit`
+
+Edits an existing nok of a student in the address book (similar to above).
+
+Format: `edit INDEX nok/ [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] …​`
+
+* Edits the student's nok at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+*  `edit 1 nok/ p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student's nok to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 3 nok/ ct/Mon 1pm to 3pm r/$50` Edits the class timing and hourly rate of the 3rd student's nok to be `Mon 1pm to 3pm` and `$50` respectively.
+
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
