@@ -166,6 +166,12 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
+### Showing the schedule for a specific day : 'schedule'
+
+Shows the contacts of students who have classes on a specific day.
+
+Format: 'schedule DAY'
+
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
@@ -190,3 +196,4 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Schedule** | 'schedule DAY'
