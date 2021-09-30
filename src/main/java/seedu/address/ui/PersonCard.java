@@ -44,13 +44,13 @@ public class PersonCard extends UiPart<Region> {
 
     // Nok
     @FXML
-    private Label nok_name;
+    private Label nokName;
     @FXML
-    private Label nok_phone;
+    private Label nokPhone;
     @FXML
-    private Label nok_address;
+    private Label nokAddress;
     @FXML
-    private Label nok_email;
+    private Label nokEmail;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -68,10 +68,10 @@ public class PersonCard extends UiPart<Region> {
 
         // Nok
         if (person.getNok() != null) {
-            nok_name.setText(person.getNok().getName().fullName);
-            nok_phone.setText(person.getNok().getPhone().value);
-            nok_address.setText(person.getNok().getAddress().value);
-            nok_email.setText(person.getNok().getEmail().value);
+            nokName.setText(person.getNok().getName().fullName);
+            nokPhone.setText(person.getNok().getPhone().value);
+            nokAddress.setText(person.getNok().getAddress().value);
+            nokEmail.setText(person.getNok().getEmail().value);
         }
 
         person.getTags().stream()
