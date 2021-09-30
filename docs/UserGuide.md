@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+TimesTable is a **desktop app for managing your tuition students and classes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TimesTable can get your class management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,7 +14,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `timestable.jar` from [here](https://github.com/AY2122S1-CS2103T-F11-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -97,7 +97,7 @@ Format: `list`
 
 Edits an existing student in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ct/CLASS_TIMING] [r/HOURLY_RATE] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ct/CLASS_TIMING] [r/HOURLY_RATE] [t/TAG] [l/LOCATION]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -112,6 +112,9 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 *  `edit 3 ct/Mon 1pm to 3pm r/$50` Edits the class timing and hourly rate of the 3rd student to be `Mon 1pm to 3pm` and `$50` respectively.
 *  `edit 1 n/kevin p/12345678 nok/ n/Stuart p/ 87654321` Edits the name and phone number of student 1 to become kevin and 12345678 and set his next-of-kin's name to Stuart and number of next-of-kin to be 87654321.
+*  `edit 4 n/John Walker l/4 Petir Road #16-04 Singapore 657891` Edits the name and location of the 4th person to be
+   `John Walker` and `4 Petir Road #16-04 Singapore 657891` respectively.
+
 
 ### Locating students by name: `find`
 
@@ -169,6 +172,15 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
+### Showing the schedule for a specific day : 'schedule'
+
+Shows the contacts of students who have classes on a specific day.
+
+Format: 'schedule DAY'
+
+Examples: 
+* 'schedule Monday' will show all contacts with classes on monday.
+
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
@@ -189,7 +201,8 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ct/CLASS_TIMING] [r/HOURLY_RATE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ct/CLASS_TIMING] [r/HOURLY_RATE] [t/TAG] [l/LOCATION]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Schedule** | 'schedule DAY'
