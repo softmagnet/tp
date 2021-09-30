@@ -172,6 +172,9 @@ Shows the contacts of students who have classes on a specific day.
 
 Format: 'schedule DAY'
 
+Examples: 
+* 'schedule Monday' will show all contacts with classes on monday.
+
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
