@@ -130,7 +130,7 @@ Edits an existing student in the address book.
 
 Format: 
 ```
-edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ct/CLASS_TIMING] [r/HOURLY_RATE] [t/TAG] [l/LOCATION]…​
+edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ct/CLASS_TIMING] [l/LOCATION] [r/HOURLY_RATE] [t/TAG]…​
 [nok/] [p/NOK_NAME] [p/NOK_PHONE_NUMBER] [e/NOK_EMAIL]
     
 ```
