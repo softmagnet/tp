@@ -36,7 +36,7 @@ Year 2 CS Student
 
 ### Ong Zheng Lin
 
-<img src="images/Ongzl.png" width="200px">
+<img src="images/ongzl.png" width="200px">
 
 [[github](https://github.com/Ongzl)]
 
@@ -48,7 +48,7 @@ Year 2 CS Student
 
 ### Kevin Chua Kian Chun
 
-<img src="images/kevinchua.jpeg" width="200px">
+<img src="images/yourally2.png" width="200px">
 
 [[github](https://github.com/yourally2)]
 
@@ -58,3 +58,16 @@ School email: kevinchua@u.nus.edu
 Year 2 CS Student
 * Role: Integration
 * Subrole: Intellij and Git expert
+
+### Stuart Long Chay Boon
+
+<img src="images/s7u4rt99.png" width="200px">
+
+[[github](https://github.com/s7u4rt99)]
+
+Personal email: stuartlongchayboon@gmail.com<br/>
+School email: stuartlong@u.nus.edu
+
+Year 2 CS Student
+* Role: Team Lead
+* Subrole: Scheduling and Tracking

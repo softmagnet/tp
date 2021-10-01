@@ -257,13 +257,45 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Name: Kevin Bernard Long Zheng Wei
+* Age: 28
+* Gender: Male
+* Marital status: Single
+* Country: Singapore
+* Habits: Sleeping, Netflix, Gym, Gaming
+* Lifestyle: Code, eat, sleep, gives freelance tuition.
+    * prefer desktop apps over other types
+    * can type fast
+    * prefers typing to mouse interactions
+    * is reasonably comfortable using CLI apps
+* Interest: Loves coding and building apps during his free time with friends. Loves teaching people.
+* Values: Work hard play hard.
+* Salary: $12000/mth
+* Job: Full time freelance A-levels Mathematics tuition teacher (Size of class: group and one-to-one) 
+    * Has a need to manage a significant number of contacts
+* Car: Owns 2 Teslas. 
+* Home Environment: Lives with parents, older brother and dog.
+* Education: NIE graduate.
+* Household Description: Sentosa Cove landed property with rich parents.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: </br> 
+A busy tutor who has a large number of students can find it extremely difficult to 
+
+* manage and organize student information
+* schedule according to student class timing
+
+This is where Timestable comes in. It improves two main areas: 
+* querying
+  * student information
+  * parent information
+  * class timing
+* data manipulation
+  * add
+  * delete
+  * update
+
+By improving the data manipulation process, the tutor can organize student information more easily. </br>
+By improving the querying process, the tutor can make scheduling less painstaking and time-consuming.  
 
 
 ### User stories
