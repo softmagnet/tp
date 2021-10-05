@@ -31,34 +31,66 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+
+        // Tokenize twice, once for everything before nok and everything after it
+        String argsBeforeNok = args;
+        String argsAfterNok = "";
+
+        if (args.contains("nok/")) {
+            String[] splitArgs = args.split("nok/");
+            argsBeforeNok = splitArgs[0];
+            argsAfterNok = splitArgs[1];
+        }
+
+        ArgumentMultimap argMultimapBeforeNok =
+                ArgumentTokenizer
+                        .tokenize(argsBeforeNok, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+
+        ArgumentMultimap argMultimapAfterNok =
+                ArgumentTokenizer.tokenize(argsAfterNok, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
         Index index;
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
-        }
-
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+
+        // For before nok
+        if (argMultimapBeforeNok.getValue(PREFIX_NAME).isPresent()) {
+            editPersonDescriptor.setName(ParserUtil.parseName(argMultimapBeforeNok.getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        if (argMultimapBeforeNok.getValue(PREFIX_PHONE).isPresent()) {
+            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimapBeforeNok.getValue(PREFIX_PHONE).get()));
         }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        if (argMultimapBeforeNok.getValue(PREFIX_EMAIL).isPresent()) {
+            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimapBeforeNok.getValue(PREFIX_EMAIL).get()));
         }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        if (argMultimapBeforeNok.getValue(PREFIX_ADDRESS).isPresent()) {
+            editPersonDescriptor
+                    .setAddress(ParserUtil.parseAddress(argMultimapBeforeNok.getValue(PREFIX_ADDRESS).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseTagsForEdit(argMultimapBeforeNok.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+
+        // For after nok
+        if (argMultimapAfterNok.getValue(PREFIX_NAME).isPresent()) {
+            editPersonDescriptor.setNokName(ParserUtil.parseName(argMultimapAfterNok.getValue(PREFIX_NAME).get()));
+        }
+        if (argMultimapAfterNok.getValue(PREFIX_PHONE).isPresent()) {
+            editPersonDescriptor.setNokPhone(ParserUtil.parsePhone(argMultimapAfterNok.getValue(PREFIX_PHONE).get()));
+        }
+        if (argMultimapAfterNok.getValue(PREFIX_EMAIL).isPresent()) {
+            editPersonDescriptor.setNokEmail(ParserUtil.parseEmail(argMultimapAfterNok.getValue(PREFIX_EMAIL).get()));
+        }
+        if (argMultimapAfterNok.getValue(PREFIX_ADDRESS).isPresent()) {
+            editPersonDescriptor
+                    .setNokAddress(ParserUtil.parseAddress(argMultimapAfterNok.getValue(PREFIX_ADDRESS).get()));
+        }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+        try {
+            index = ParserUtil.parseIndex(argMultimapBeforeNok.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
         return new EditCommand(index, editPersonDescriptor);

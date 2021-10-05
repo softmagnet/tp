@@ -22,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
@@ -99,7 +100,14 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        // Nok
+        Name nokName = editPersonDescriptor.getNokName().orElse(studentToEdit.getName());
+        Phone nokPhone = editPersonDescriptor.getNokPhone().orElse(studentToEdit.getPhone());
+        Email nokEmail = editPersonDescriptor.getNokEmail().orElse(studentToEdit.getEmail());
+        Address nokAddress = editPersonDescriptor.getNokAddress().orElse(studentToEdit.getAddress());
+        Nok nok = new Nok(nokName, nokPhone, nokEmail, nokAddress);
+
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, nok, updatedTags);
     }
 
     @Override
@@ -131,6 +139,11 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
+        private Name nokName;
+        private Phone nokPhone;
+        private Email nokEmail;
+        private Address nokAddress;
+
         public EditPersonDescriptor() {}
 
         /**
@@ -142,6 +155,12 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+
+            setNokName(toCopy.nokName);
+            setNokPhone(toCopy.nokPhone);
+            setNokEmail(toCopy.nokEmail);
+            setNokAddress(toCopy.nokAddress);
+
             setTags(toCopy.tags);
         }
 
@@ -182,6 +201,39 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        // TODO: Find some way to reduce duplicate code fragments
+
+        public void setNokName(Name nokName) {
+            this.nokName = nokName;
+        }
+
+        public Optional<Name> getNokName() {
+            return Optional.ofNullable(nokName);
+        }
+        public void setNokPhone(Phone nokPhone) {
+            this.nokPhone = nokPhone;
+        }
+
+        public Optional<Phone> getNokPhone() {
+            return Optional.ofNullable(nokPhone);
+        }
+
+        public void setNokEmail(Email nokEmail) {
+            this.nokEmail = nokEmail;
+        }
+
+        public Optional<Email> getNokEmail() {
+            return Optional.ofNullable(nokEmail);
+        }
+
+        public void setNokAddress(Address nokAddress) {
+            this.nokAddress = nokAddress;
+        }
+
+        public Optional<Address> getNokAddress() {
+            return Optional.ofNullable(nokAddress);
         }
 
         /**
