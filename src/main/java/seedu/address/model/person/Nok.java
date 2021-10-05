@@ -2,27 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
-import seedu.address.model.tag.Tag;
-
-/**
- * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
- */
-public class Person {
-
-    /* Each Person has 0..1 Noks */
-    /**
-     * TODO: To prevent repeat of information, rename Person to Student such that
-     *     _both_ Nok and Student inherits from Person (to share common fields)
-     *     For now, Nok and Person has duplicate fields.
-     */
-    private Nok nok;
-
+public class Nok {
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -30,30 +10,20 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Nok(Name name, Phone phone, Email email, Address address) {
+        requireAllNonNull(name, phone, email, address);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
-    }
-
-    public void setNok(Nok nok) {
-        this.nok = nok;
     }
 
     public Name getName() {
         return name;
-    }
-
-    public Nok getNok() {
-        return nok;
     }
 
     public Phone getPhone() {
@@ -69,18 +39,10 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
-    }
-
-    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
+    public boolean isSamePerson(Nok otherPerson) {
         if (otherPerson == this) {
             return true;
         }
@@ -107,14 +69,7 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
-    }
-
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+                && otherPerson.getAddress().equals(getAddress());
     }
 
     @Override
@@ -128,12 +83,6 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
         return builder.toString();
     }
-
 }

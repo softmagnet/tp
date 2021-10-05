@@ -32,5 +32,17 @@
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
     </VBox>
+    <VBox alignment="CENTER_RIGHT" minHeight="105" GridPane.columnIndex="0">
+      <padding>
+        <Insets top="5" right="5" bottom="5" left="15" />
+      </padding>
+      <HBox spacing="5" alignment="CENTER_RIGHT">
+        <Label fx:id="nokName" text="\$nok_first" styleClass="cell_big_label" />
+      </HBox>
+      <FlowPane />
+      <Label fx:id="nokPhone" styleClass="cell_small_label" text="\$nok_phone" />
+      <Label fx:id="nokAddress" styleClass="cell_small_label" text="\$nok_address" />
+      <Label fx:id="nokEmail" styleClass="cell_small_label" text="\$nok_email" />
+    </VBox>
   </GridPane>
 </HBox>
