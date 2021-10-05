@@ -72,6 +72,11 @@ public class PersonCard extends UiPart<Region> {
             nokPhone.setText(person.getNok().getPhone().value);
             nokAddress.setText(person.getNok().getAddress().value);
             nokEmail.setText(person.getNok().getEmail().value);
+        } else {
+            nokName.setText("");
+            nokPhone.setText("");
+            nokAddress.setText("");
+            nokEmail.setText("");
         }
 
         person.getTags().stream()
