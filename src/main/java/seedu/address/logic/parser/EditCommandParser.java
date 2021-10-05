@@ -51,6 +51,11 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         Index index;
 
+        try {
+            index = ParserUtil.parseIndex(argMultimapBeforeNok.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        }
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
         // For before nok
@@ -86,11 +91,6 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
-        try {
-            index = ParserUtil.parseIndex(argMultimapBeforeNok.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
         return new EditCommand(index, editPersonDescriptor);
