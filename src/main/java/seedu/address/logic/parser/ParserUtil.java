@@ -81,6 +81,20 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String nok} into an {@code Nok}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code nok} is invalid.
+     */
+    public static Address parseNok(String nok) throws ParseException {
+        requireNonNull(nok);
+        String trimmedAddress = nok.trim();
+        if (!Address.isValidAddress(trimmedAddress)) {
+            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        }
+        return new Address(trimmedAddress);
+    }
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *

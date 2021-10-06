@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Student;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -24,7 +24,7 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    public final Student student;
 
     // Student
     @FXML
@@ -55,23 +55,23 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Student student, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.student = student;
 
         // Student
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        name.setText(student.getName().fullName);
+        phone.setText(student.getPhone().value);
+        address.setText(student.getAddress().value);
+        email.setText(student.getEmail().value);
 
         // Nok
-        if (person.getNok() != null) {
-            nokName.setText(person.getNok().getName().fullName);
-            nokPhone.setText(person.getNok().getPhone().value);
-            nokAddress.setText(person.getNok().getAddress().value);
-            nokEmail.setText(person.getNok().getEmail().value);
+        if (student.getNok() != null) {
+            nokName.setText(student.getNok().getName().fullName);
+            nokPhone.setText(student.getNok().getPhone().value);
+            nokAddress.setText(student.getNok().getAddress().value);
+            nokEmail.setText(student.getNok().getEmail().value);
         } else {
             nokName.setText("");
             nokPhone.setText("");
@@ -79,7 +79,7 @@ public class PersonCard extends UiPart<Region> {
             nokEmail.setText("");
         }
 
-        person.getTags().stream()
+        student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -99,6 +99,6 @@ public class PersonCard extends UiPart<Region> {
         // state check
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && student.equals(card.student);
     }
 }
