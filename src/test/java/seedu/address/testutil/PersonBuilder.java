@@ -21,10 +21,10 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_NOK_NAME = "Amy Bee";
-    public static final String DEFAULT_NOK_PHONE = "85355255";
-    public static final String DEFAULT_NOK_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_NOK_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_NOK_NAME = "Zhenglin Ong";
+    public static final String DEFAULT_NOK_PHONE = "97762839";
+    public static final String DEFAULT_NOK_EMAIL = "zhenglin@gmail.com";
+    public static final String DEFAULT_NOK_ADDRESS = "345, Clementi Ave 6, #02-141";
 
     private Name name;
     private Phone phone;
