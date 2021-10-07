@@ -30,8 +30,11 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Nok nok;
     private Set<Tag> tags;
+    private Name nokName;
+    private Phone nokPhone;
+    private Email nokEmail;
+    private Address nokAddress;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -41,13 +44,13 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        nok = new Nok(
-                new Name(DEFAULT_NOK_NAME),
-                new Phone(DEFAULT_NOK_PHONE),
-                new Email(DEFAULT_NOK_EMAIL),
-                new Address(DEFAULT_NOK_ADDRESS)
-        );
+
         tags = new HashSet<>();
+
+        nokName = new Name(DEFAULT_NOK_NAME);
+        nokPhone = new Phone(DEFAULT_NOK_PHONE);
+        nokEmail = new Email(DEFAULT_NOK_EMAIL);
+        nokAddress = new Address(DEFAULT_NOK_ADDRESS);
     }
 
     /**
@@ -59,6 +62,10 @@ public class PersonBuilder {
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
         tags = new HashSet<>(studentToCopy.getTags());
+        nokName = studentToCopy.getNok().getName();
+        nokPhone = studentToCopy.getNok().getPhone();
+        nokEmail = studentToCopy.getNok().getEmail();
+        nokAddress = studentToCopy.getNok().getAddress();
     }
 
     /**
@@ -101,7 +108,45 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code NokName} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public PersonBuilder withNokName(String name) {
+        this.nokName = new Name(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code NokPhone} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public PersonBuilder withNokPhone(String phone) {
+        this.nokPhone = new Phone(phone);
+        return this;
+    }
+
+    /**
+     * Sets the {@code NokEmail} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public PersonBuilder withNokEmail(String email) {
+        this.nokEmail = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code NokAddress} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public PersonBuilder withNokAddress(String address) {
+        this.nokAddress = new Address(address);
+        return this;
+    }
+
+    /**
+     * Builds student with all details included in the builder.
+     *
+     * @return Student with all the deatils included in the builder.
+     */
     public Student build() {
+        Nok nok = new Nok(nokName, nokPhone, nokEmail, nokAddress);
         return new Student(name, phone, email, address, nok, tags);
     }
 

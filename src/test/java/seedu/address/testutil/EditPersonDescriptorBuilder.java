@@ -37,6 +37,10 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(student.getEmail());
         descriptor.setAddress(student.getAddress());
         descriptor.setTags(student.getTags());
+        descriptor.setNokName(student.getNok().getName());
+        descriptor.setNokPhone(student.getNok().getPhone());
+        descriptor.setNokEmail(student.getNok().getEmail());
+        descriptor.setNokAddress(student.getNok().getAddress());
     }
 
     /**
@@ -78,6 +82,38 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code NokName} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withNokName(String name) {
+        descriptor.setName(new Name(name));
+        return this;
+    }
+
+    /**
+     * Sets the {@code NokPhone} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withNokPhone(String phone) {
+        descriptor.setPhone(new Phone(phone));
+        return this;
+    }
+
+    /**
+     * Sets the {@code NokEmail} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withNokEmail(String email) {
+        descriptor.setEmail(new Email(email));
+        return this;
+    }
+
+    /**
+     * Sets the {@code NokAddress} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withNokAddress(String address) {
+        descriptor.setAddress(new Address(address));
         return this;
     }
 
