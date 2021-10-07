@@ -1,10 +1,10 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -32,31 +32,53 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer
-                    .tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_NOK, PREFIX_TAG);
+        requireNonNull(args);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
-                || !argMultimap.getPreamble().isEmpty()) {
+        // Tokenize twice, once for everything before nok and everything after it
+        String argsBeforeNok = args;
+        String argsAfterNok = "";
+
+        if (args.contains("nok/")) {
+            String[] splitArgs = args.split("nok/");
+            argsBeforeNok = splitArgs[0];
+            argsAfterNok = splitArgs[1];
+        }
+
+        ArgumentMultimap argMultimapBeforeNok =
+                ArgumentTokenizer
+                        .tokenize(argsBeforeNok, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+
+        ArgumentMultimap argMultimapAfterNok =
+                ArgumentTokenizer.tokenize(argsAfterNok, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+
+
+
+        if (!arePrefixesPresent(argMultimapBeforeNok, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+                || !argMultimapBeforeNok.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Name name = ParserUtil.parseName(argMultimapBeforeNok.getValue(PREFIX_NAME).get());
+        Phone phone = ParserUtil.parsePhone(argMultimapBeforeNok.getValue(PREFIX_PHONE).get());
+        Email email = ParserUtil.parseEmail(argMultimapBeforeNok.getValue(PREFIX_EMAIL).get());
+        Address address = ParserUtil.parseAddress(argMultimapBeforeNok.getValue(PREFIX_ADDRESS).get());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimapBeforeNok.getAllValues(PREFIX_TAG));
 
         // TODO: do add functionality of nok
-        Nok placeholderNok =
-                new Nok(
-                    new Name("Bernice Yu"),
-                    new Phone("99272758"),
-                    new Email("berniceyu@example.com"),
-                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18")
-                );
+        Nok nok = null;
 
-        Student student = new Student(name, phone, email, address, placeholderNok, tagList);
+        if (!argsAfterNok.equals("")) {
+            nok = new Nok(
+                    ParserUtil.parseName(argMultimapAfterNok.getValue(PREFIX_NAME).get()),
+                    ParserUtil.parsePhone(argMultimapAfterNok.getValue(PREFIX_PHONE).get()),
+                    ParserUtil.parseEmail(argMultimapAfterNok.getValue(PREFIX_EMAIL).get()),
+                    ParserUtil.parseAddress(argMultimapAfterNok.getValue(PREFIX_ADDRESS).get())
+            );
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+
+        Student student = new Student(name, phone, email, address, nok, tagList);
 
         return new AddCommand(student);
     }
