@@ -140,6 +140,11 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds student with all details included in the builder.
+     *
+     * @return Student with all the deatils included in the builder.
+     */
     public Student build() {
         Nok nok = new Nok(nokName, nokPhone, nokEmail, nokAddress);
         return new Student(name, phone, email, address, nok, tags);
