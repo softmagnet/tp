@@ -11,8 +11,14 @@ public class ClassTiming {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Class Timing should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Class Timing can take any values, and it should not be blank";
+
+    /*
+     * The first character of the address must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+
     public final String value;
 
     /**
@@ -30,8 +36,7 @@ public class ClassTiming {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidClassTiming(String test) {
-//        return test.matches(VALIDATION_REGEX);
-        return true;
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
