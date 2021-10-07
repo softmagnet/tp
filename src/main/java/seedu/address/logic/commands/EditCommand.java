@@ -24,6 +24,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rate;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 
@@ -107,7 +108,7 @@ public class EditCommand extends Command {
         Address nokAddress = editPersonDescriptor.getNokAddress().orElse(studentToEdit.getAddress());
         Nok nok = new Nok(nokName, nokPhone, nokEmail, nokAddress);
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, nok, updatedTags);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, new Rate("50"), updatedTags, nok);
     }
 
     @Override

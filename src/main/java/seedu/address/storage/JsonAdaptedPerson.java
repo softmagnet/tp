@@ -15,6 +15,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rate;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 
@@ -110,7 +111,7 @@ class JsonAdaptedPerson {
                 new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18")
         );
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, placeholderNok, modelTags);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, new Rate("50"), modelTags, placeholderNok);
     }
 
 }

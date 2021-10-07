@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Rate {
 
-    private static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "Rate should not be negative and can "
                     + "at most be up to 2 decimal places. You also cannot enter a decimal point without"
                     + "following it up with at least one digit.";

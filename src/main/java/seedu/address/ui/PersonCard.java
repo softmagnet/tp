@@ -15,6 +15,8 @@ import seedu.address.model.person.Student;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final Character DOLLAR_SIGN = '$';
+    private static final String PER_HOUR = "/hr";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -39,6 +41,8 @@ public class PersonCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label email;
+    @FXML
+    private Label rate;
     @FXML
     private FlowPane tags;
 
@@ -65,6 +69,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(student.getPhone().value);
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
+        rate.setText(DOLLAR_SIGN + student.getRate().value + PER_HOUR);
 
         // Nok
         if (student.getNok() != null) {

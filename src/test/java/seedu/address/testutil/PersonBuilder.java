@@ -8,6 +8,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rate;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -147,7 +148,7 @@ public class PersonBuilder {
      */
     public Student build() {
         Nok nok = new Nok(nokName, nokPhone, nokEmail, nokAddress);
-        return new Student(name, phone, email, address, nok, tags);
+        return new Student(name, phone, email, address, new Rate("50"), tags, nok);
     }
 
 }

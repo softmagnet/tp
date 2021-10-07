@@ -22,21 +22,22 @@ public class Student extends Person {
      *     For now, Nok and Person has duplicate fields.
      */
     private Nok nok;
-
+    private final Rate rate;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Students have a tag as well as well as all the specifiers.
+     * Students have a tag as well as all the specifiers.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Nok nok, Set<Tag> tags) {
+    public Student(Name name, Phone phone, Email email, Address address, Rate rate, Set<Tag> tags, Nok nok) {
         super(name, phone, email, address);
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(rate);
+        this.rate = rate;
         this.nok = nok;
         this.tags.addAll(tags);
     }
 
     public void setNok(Nok nok) {
-        this.nok = nok;
+            this.nok = nok;
     }
 
     public Nok getNok() {
@@ -51,6 +52,13 @@ public class Student extends Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Returns tuition {@code Rate} of this student
+     */
+    public Rate getRate() {
+        return rate;
+    }
+
 
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -59,9 +67,11 @@ public class Student extends Person {
      */
     @Override
     public boolean equals(Object other) {
-        return super.equals(other)
-                && other instanceof Student
-                && ((Student) other).getTags().equals(getTags());
+        return other == this ||
+                (other instanceof Student
+                && super.equals(other)
+                && ((Student) other).rate.equals(this.rate)
+                && ((Student) other).getTags().equals(getTags()));
     }
 
     @Override
