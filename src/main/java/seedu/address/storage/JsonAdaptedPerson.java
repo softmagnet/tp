@@ -30,7 +30,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-//    private final String classTiming;
+    private final String classTiming;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -39,12 +39,13 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("classTiming") String classTiming,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-//        this.classTiming = classTiming;
+        this.classTiming = classTiming;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -58,7 +59,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-//        classTiming = source.getClassTiming().value;
+        classTiming = source.getClassTiming().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -107,13 +108,13 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-//        if (classTiming == null) {
-//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ClassTiming.class.getSimpleName()));
-//        }
-//        if (!ClassTiming.isValidClassTiming(classTiming)) {
-//            throw new IllegalValueException(ClassTiming.MESSAGE_CONSTRAINTS);
-//        }
-//        final ClassTiming modelClassTiming = new ClassTiming(classTiming);
+        if (classTiming == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ClassTiming.class.getSimpleName()));
+        }
+        if (!ClassTiming.isValidClassTiming(classTiming)) {
+            throw new IllegalValueException(ClassTiming.MESSAGE_CONSTRAINTS);
+        }
+        final ClassTiming modelClassTiming = new ClassTiming(classTiming);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
@@ -124,7 +125,7 @@ class JsonAdaptedPerson {
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18")
         );
 
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, new ClassTiming("23:59"), placeholderNok, modelTags);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelClassTiming, placeholderNok, modelTags);
     }
 
 }

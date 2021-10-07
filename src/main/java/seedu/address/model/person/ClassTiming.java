@@ -23,7 +23,7 @@ public class ClassTiming {
     public ClassTiming(String classTiming) {
         requireNonNull(classTiming);
         checkArgument(isValidClassTiming(classTiming), MESSAGE_CONSTRAINTS);
-        value = "Class Timing: " + classTiming;
+        value = classTiming;
     }
 
     /**
