@@ -109,7 +109,8 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         if (classTiming == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ClassTiming.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ClassTiming.class.getSimpleName()));
         }
         if (!ClassTiming.isValidClassTiming(classTiming)) {
             throw new IllegalValueException(ClassTiming.MESSAGE_CONSTRAINTS);
@@ -125,7 +126,8 @@ class JsonAdaptedPerson {
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18")
         );
 
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelClassTiming, placeholderNok, modelTags);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelClassTiming,
+                placeholderNok, modelTags);
     }
 
 }

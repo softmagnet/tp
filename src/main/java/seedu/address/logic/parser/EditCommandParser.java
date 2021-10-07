@@ -76,7 +76,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimapBeforeNok.getValue(PREFIX_CLASSTIMING).isPresent()) {
             editPersonDescriptor
-                    .setClassTiming(ParserUtil.parseClassTiming(argMultimapBeforeNok.getValue(PREFIX_CLASSTIMING).get()));
+                    .setClassTiming(ParserUtil.parseClassTiming(argMultimapBeforeNok
+                            .getValue(PREFIX_CLASSTIMING).get()));
         }
         parseTagsForEdit(argMultimapBeforeNok.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
