@@ -36,7 +36,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_CLASSTIMING = "23:59";
+    public static final String VALID_CLASSTIMING_AMY = "23:59";
+    public static final String VALID_CLASSTIMING_BOB = "11:59";
     public static final String VALID_NAME_NOK = "Papa";
     public static final String VALID_PHONE_NOK = "33333333";
     public static final String VALID_EMAIL_NOK = "papa@example.com";
@@ -52,7 +53,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String CLASSTIMING_DESC = " " + PREFIX_CLASSTIMING + VALID_CLASSTIMING;
+    public static final String CLASSTIMING_DESC_AMY = " " + PREFIX_CLASSTIMING + VALID_CLASSTIMING_AMY;
+    public static final String CLASSTIMING_DESC_BOB = " " + PREFIX_CLASSTIMING + VALID_CLASSTIMING_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -67,6 +69,9 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_CLASSTIMING_DESC = " "
+            + PREFIX_CLASSTIMING; // empty string not allowed for classTiming
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

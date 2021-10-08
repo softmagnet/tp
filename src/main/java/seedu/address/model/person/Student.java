@@ -23,7 +23,7 @@ public class Student extends Person {
      */
     private Nok nok;
 
-    private ClassTiming classTiming;
+    private final ClassTiming classTiming;
 
     private final Set<Tag> tags = new HashSet<>();
 
@@ -44,7 +44,7 @@ public class Student extends Person {
      */
     public Student(Name name, Phone phone, Email email, Address address, Nok nok, Set<Tag> tags) {
         super(name, phone, email, address);
-        requireAllNonNull(name, phone, email, address, classTiming, tags);
+        requireAllNonNull(name, phone, email, address, tags);
         this.classTiming = new ClassTiming("23:59");
         this.nok = nok;
         this.tags.addAll(tags);
@@ -80,6 +80,7 @@ public class Student extends Person {
     public boolean equals(Object other) {
         return super.equals(other)
                 && other instanceof Student
+                && ((Student) other).getClassTiming().equals(getClassTiming())
                 && ((Student) other).getTags().equals(getTags());
     }
 
@@ -92,7 +93,7 @@ public class Student extends Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder(super.toString());
-        builder.append("; ").append(getClassTiming());
+        builder.append("; Class Timing: ").append(getClassTiming());
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
