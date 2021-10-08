@@ -30,15 +30,15 @@ public class Student extends Person {
     /**
      * Students have a tag as well as well as all the specifiers.
      */
-    public Student(Name name, Phone phone, Email email, Address address, ClassTiming classTiming,
-                   Nok nok, Set<Tag> tags) {
+    public Student(
+            Name name, Phone phone, Email email, Address address, ClassTiming classTiming, Nok nok, Set<Tag> tags) {
         super(name, phone, email, address);
         requireAllNonNull(name, phone, email, address, classTiming, tags);
         this.classTiming = classTiming;
         this.nok = nok;
         this.tags.addAll(tags);
     }
-    
+
     public void setNok(Nok nok) {
         this.nok = nok;
     }
