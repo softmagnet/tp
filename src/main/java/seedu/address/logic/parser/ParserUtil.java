@@ -91,7 +91,7 @@ public class ParserUtil {
         requireNonNull(classTiming);
         String trimmedAddress = classTiming.trim();
         if (!ClassTiming.isValidClassTiming(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+            throw new ParseException(ClassTiming.MESSAGE_CONSTRAINTS);
         }
         return new ClassTiming(trimmedAddress);
     }
