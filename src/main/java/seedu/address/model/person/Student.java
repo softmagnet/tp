@@ -15,7 +15,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Student extends Person {
 
-    /* Each Student has 0..1 Noks */
+    /* Each Student has 0..1 Nok */
     /**
      * TODO: To prevent repeat of information, rename Person to Student such that
      *     _both_ Nok and Student inherits from Person (to share common fields)
@@ -23,14 +23,18 @@ public class Student extends Person {
      */
     private Nok nok;
 
+    private final ClassTiming classTiming;
+
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Students have a tag as well as well as all the specifiers.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Nok nok, Set<Tag> tags) {
+    public Student(
+            Name name, Phone phone, Email email, Address address, ClassTiming classTiming, Nok nok, Set<Tag> tags) {
         super(name, phone, email, address);
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, address, classTiming, tags);
+        this.classTiming = classTiming;
         this.nok = nok;
         this.tags.addAll(tags);
     }
@@ -41,6 +45,10 @@ public class Student extends Person {
 
     public Nok getNok() {
         return nok;
+    }
+
+    public ClassTiming getClassTiming() {
+        return classTiming;
     }
 
     /**
@@ -61,6 +69,7 @@ public class Student extends Person {
     public boolean equals(Object other) {
         return super.equals(other)
                 && other instanceof Student
+                && ((Student) other).getClassTiming().equals(getClassTiming())
                 && ((Student) other).getTags().equals(getTags());
     }
 
@@ -73,7 +82,7 @@ public class Student extends Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder(super.toString());
-
+        builder.append("; Class Timing: ").append(getClassTiming());
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
