@@ -22,6 +22,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_RATE = "70";
     public static final String DEFAULT_NOK_NAME = "Zhenglin Ong";
     public static final String DEFAULT_NOK_PHONE = "97762839";
     public static final String DEFAULT_NOK_EMAIL = "zhenglin@gmail.com";
@@ -31,6 +32,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private Rate rate;
     private Set<Tag> tags;
     private Name nokName;
     private Phone nokPhone;
@@ -45,7 +47,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-
+        rate = new Rate(DEFAULT_RATE);
         tags = new HashSet<>();
 
         nokName = new Name(DEFAULT_NOK_NAME);
@@ -62,6 +64,7 @@ public class PersonBuilder {
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
+        rate = studentToCopy.getRate();
         tags = new HashSet<>(studentToCopy.getTags());
         nokName = studentToCopy.getNok().getName();
         nokPhone = studentToCopy.getNok().getPhone();
@@ -110,6 +113,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Rate} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRate(String rate) {
+        this.rate = new Rate(rate);
+        return this;
+    }
+
+    /**
      * Sets the {@code NokName} of the {@code EditPersonDescriptor} that we are building.
      */
     public PersonBuilder withNokName(String name) {
@@ -148,7 +159,7 @@ public class PersonBuilder {
      */
     public Student build() {
         Nok nok = new Nok(nokName, nokPhone, nokEmail, nokAddress);
-        return new Student(name, phone, email, address, new Rate("50"), tags, nok);
+        return new Student(name, phone, email, address, rate, tags, nok);
     }
 
 }

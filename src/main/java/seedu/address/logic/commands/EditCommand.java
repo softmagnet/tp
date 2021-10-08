@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -43,6 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_RATE + "RATE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -99,6 +101,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(studentToEdit.getAddress());
+        Rate updatedRate = editPersonDescriptor.getRate().orElse(studentToEdit.getRate());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
 
         // Nok
@@ -108,7 +111,7 @@ public class EditCommand extends Command {
         Address nokAddress = editPersonDescriptor.getNokAddress().orElse(studentToEdit.getAddress());
         Nok nok = new Nok(nokName, nokPhone, nokEmail, nokAddress);
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, new Rate("50"), updatedTags, nok);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRate, updatedTags, nok);
     }
 
     @Override
@@ -138,6 +141,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Rate rate;
         private Set<Tag> tags;
 
         private Name nokName;
@@ -156,6 +160,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setRate(toCopy.rate);
 
             setNokName(toCopy.nokName);
             setNokPhone(toCopy.nokPhone);
@@ -169,7 +174,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, rate, tags);
         }
 
         public void setName(Name name) {
@@ -202,6 +207,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setRate(Rate rate) {
+            this.rate = rate;
+        }
+
+        public Optional<Rate> getRate() {
+            return Optional.ofNullable(rate);
         }
 
         // TODO: Find some way to reduce duplicate code fragments
@@ -273,7 +286,10 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getRate().equals(e.getRate())
                     && getTags().equals(e.getTags());
         }
+
+
     }
 }

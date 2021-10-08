@@ -30,6 +30,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String rate;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -38,11 +39,13 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("rate") String rate,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.rate = rate;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -56,6 +59,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        rate = source.getRate().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -104,6 +108,14 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (rate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rate.class.getSimpleName()));
+        }
+        if (!Rate.isValidRate(rate)) {
+            throw new IllegalValueException(Rate.MESSAGE_CONSTRAINTS);
+        }
+        final Rate modelRate = new Rate(rate);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         Nok placeholderNok = new Nok(
                 new Name("Bernice Yu"),
@@ -111,7 +123,7 @@ class JsonAdaptedPerson {
                 new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18")
         );
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, new Rate("50"), modelTags, placeholderNok);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRate, modelTags, placeholderNok);
     }
 
 }

@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -44,7 +45,8 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         ArgumentMultimap argMultimapBeforeNok =
                 ArgumentTokenizer
-                        .tokenize(argsBeforeNok, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                        .tokenize(argsBeforeNok, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                                PREFIX_RATE, PREFIX_TAG);
 
         ArgumentMultimap argMultimapAfterNok =
                 ArgumentTokenizer.tokenize(argsAfterNok, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
@@ -71,6 +73,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimapBeforeNok.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor
                     .setAddress(ParserUtil.parseAddress(argMultimapBeforeNok.getValue(PREFIX_ADDRESS).get()));
+        }
+        if (argMultimapBeforeNok.getValue(PREFIX_RATE).isPresent()) {
+            editPersonDescriptor
+                    .setRate(ParserUtil.parseRate(argMultimapBeforeNok.getValue(PREFIX_RATE).get()));
         }
         parseTagsForEdit(argMultimapBeforeNok.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
