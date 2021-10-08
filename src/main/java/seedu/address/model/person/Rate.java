@@ -12,8 +12,9 @@ public class Rate {
             "Rate should not be negative and can "
                     + "at most be up to 2 decimal places. You also cannot enter a decimal point without"
                     + "following it up with at least one digit.";
-    public final String value;
     public static final String VALIDATION_REGEX = "\\d+(\\.\\d{1,2})?";
+
+    public final String value;
 
     /**
      * Constructs a {@code Rate}

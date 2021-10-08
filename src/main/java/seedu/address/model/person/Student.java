@@ -43,7 +43,7 @@ public class Student extends Person {
     }
 
     public void setNok(Nok nok) {
-            this.nok = nok;
+        this.nok = nok;
     }
 
     public Nok getNok() {
