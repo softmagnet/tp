@@ -73,6 +73,7 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_RATE_DESC = " " + PREFIX_RATE + "-32"; // negative rate not allowed for rate
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_CLASSTIMING_DESC = " "
             + PREFIX_CLASSTIMING; // empty string not allowed for classTiming
@@ -87,10 +88,12 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withRate(VALID_RATE_AMY).withClassTiming(VALID_CLASSTIMING_AMY)
                 .withTags(VALID_TAG_FRIEND).withNokName(VALID_NAME_NOK).withNokPhone(VALID_PHONE_NOK)
                 .withNokAddress(VALID_ADDRESS_NOK).withNokEmail(VALID_EMAIL_NOK).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withRate(VALID_RATE_BOB).withClassTiming(VALID_CLASSTIMING_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withNokName(VALID_NAME_NOK)
                 .withNokPhone(VALID_PHONE_NOK).withNokAddress(VALID_ADDRESS_NOK)
                 .withNokEmail(VALID_EMAIL_NOK).build();

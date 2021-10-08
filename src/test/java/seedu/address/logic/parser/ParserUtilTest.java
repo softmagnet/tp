@@ -19,6 +19,7 @@ import seedu.address.model.person.ClassTiming;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rate;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -26,6 +27,7 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_CLASSTIMIMG = " ";
+    private static final String INVALID_RATE = "-32";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
@@ -33,6 +35,7 @@ public class ParserUtilTest {
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_CLASSTIMING = "23:59";
+    private static final String VALID_RATE = "70";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -149,6 +152,29 @@ public class ParserUtilTest {
         String classTimingWithWhitespace = WHITESPACE + VALID_CLASSTIMING + WHITESPACE;
         ClassTiming expectedAddress = new ClassTiming(VALID_CLASSTIMING);
         assertEquals(expectedAddress, ParserUtil.parseClassTiming(classTimingWithWhitespace));
+    }
+
+    @Test
+    public void parseRate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRate((String) null));
+    }
+
+    @Test
+    public void parseRate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRate(INVALID_RATE));
+    }
+
+    @Test
+    public void parseRate_validValueWithoutWhitespace_returnsRate() throws Exception {
+        Rate expectedRate = new Rate(VALID_RATE);
+        assertEquals(expectedRate, ParserUtil.parseRate(VALID_RATE));
+    }
+
+    @Test
+    public void parseRate_validValueWithWhitespace_returnsTrimmedRate() throws Exception {
+        String rateWithWhitespace = WHITESPACE + VALID_RATE + WHITESPACE;
+        Rate expectedRate = new Rate(VALID_RATE);
+        assertEquals(expectedRate, ParserUtil.parseRate(rateWithWhitespace));
     }
 
     @Test

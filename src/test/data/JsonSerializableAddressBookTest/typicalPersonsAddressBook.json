@@ -5,7 +5,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "rate": "70",
+    "rate": "60",
     "classTiming" : "00:00",
     "tagged" : [ "friends" ]
   }, {
@@ -21,7 +21,7 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "rate": "70",
+    "rate": "80",
     "classTiming" : "02:00",
     "tagged" : [ ]
   }, {
@@ -29,7 +29,7 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "rate": "70",
+    "rate": "75",
     "classTiming" : "03:00",
     "tagged" : [ "friends" ]
   }, {
@@ -37,7 +37,7 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "rate": "70",
+    "rate": "85",
     "classTiming" : "04:00",
     "tagged" : [ ]
   }, {
@@ -45,7 +45,7 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "rate": "70",
+    "rate": "90",
     "classTiming" : "05:00",
     "tagged" : [ ]
   }, {
