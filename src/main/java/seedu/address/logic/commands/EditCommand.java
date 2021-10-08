@@ -105,10 +105,10 @@ public class EditCommand extends Command {
         ClassTiming classTiming = editPersonDescriptor.getClassTiming().orElse(studentToEdit.getClassTiming());
 
         // Nok
-        Name nokName = editPersonDescriptor.getNokName().orElse(studentToEdit.getName());
-        Phone nokPhone = editPersonDescriptor.getNokPhone().orElse(studentToEdit.getPhone());
-        Email nokEmail = editPersonDescriptor.getNokEmail().orElse(studentToEdit.getEmail());
-        Address nokAddress = editPersonDescriptor.getNokAddress().orElse(studentToEdit.getAddress());
+        Name nokName = editPersonDescriptor.getNokName().orElse(studentToEdit.getNok().getName());
+        Phone nokPhone = editPersonDescriptor.getNokPhone().orElse(studentToEdit.getNok().getPhone());
+        Email nokEmail = editPersonDescriptor.getNokEmail().orElse(studentToEdit.getNok().getEmail());
+        Address nokAddress = editPersonDescriptor.getNokAddress().orElse(studentToEdit.getNok().getAddress());
         Nok nok = new Nok(nokName, nokPhone, nokEmail, nokAddress);
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, classTiming, nok, updatedTags);
