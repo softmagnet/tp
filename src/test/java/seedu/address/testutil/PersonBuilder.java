@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ClassTiming;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nok;
@@ -23,6 +24,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_RATE = "70";
+    public static final String DEFAULT_CLASSTIMING = "23:59";
     public static final String DEFAULT_NOK_NAME = "Zhenglin Ong";
     public static final String DEFAULT_NOK_PHONE = "97762839";
     public static final String DEFAULT_NOK_EMAIL = "zhenglin@gmail.com";
@@ -38,6 +40,7 @@ public class PersonBuilder {
     private Phone nokPhone;
     private Email nokEmail;
     private Address nokAddress;
+    private ClassTiming classTiming;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -48,6 +51,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         rate = new Rate(DEFAULT_RATE);
+        classTiming = new ClassTiming(DEFAULT_CLASSTIMING);
         tags = new HashSet<>();
 
         nokName = new Name(DEFAULT_NOK_NAME);
@@ -65,6 +69,7 @@ public class PersonBuilder {
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
         rate = studentToCopy.getRate();
+        classTiming = studentToCopy.getClassTiming();
         tags = new HashSet<>(studentToCopy.getTags());
         nokName = studentToCopy.getNok().getName();
         nokPhone = studentToCopy.getNok().getPhone();
@@ -121,6 +126,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code ClassTiming} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withClassTiming(String classTiming) {
+        this.classTiming = new ClassTiming(classTiming);
+        return this;
+    }
+
+    /**
      * Sets the {@code NokName} of the {@code EditPersonDescriptor} that we are building.
      */
     public PersonBuilder withNokName(String name) {
@@ -159,7 +172,7 @@ public class PersonBuilder {
      */
     public Student build() {
         Nok nok = new Nok(nokName, nokPhone, nokEmail, nokAddress);
-        return new Student(name, phone, email, address, rate, tags, nok);
+        return new Student(name, phone, email, address, rate, classTiming, nok, tags);
     }
 
 }

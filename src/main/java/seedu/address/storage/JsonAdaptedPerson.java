@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ClassTiming;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nok;
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String rate;
+    private final String classTiming;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -38,14 +40,15 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("rate") String rate,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("rate") String rate, @JsonProperty("classTiming") String classTiming,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.rate = rate;
+        this.classTiming = classTiming;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -60,6 +63,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         rate = source.getRate().value;
+        classTiming = source.getClassTiming().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -116,14 +120,26 @@ class JsonAdaptedPerson {
         }
         final Rate modelRate = new Rate(rate);
 
+        if (classTiming == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ClassTiming.class.getSimpleName()));
+        }
+        if (!ClassTiming.isValidClassTiming(classTiming)) {
+            throw new IllegalValueException(ClassTiming.MESSAGE_CONSTRAINTS);
+        }
+        final ClassTiming modelClassTiming = new ClassTiming(classTiming);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
         Nok placeholderNok = new Nok(
                 new Name("Bernice Yu"),
                 new Phone("99272758"),
                 new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18")
         );
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRate, modelTags, placeholderNok);
+
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRate,
+                modelClassTiming, placeholderNok, modelTags);
     }
 
 }

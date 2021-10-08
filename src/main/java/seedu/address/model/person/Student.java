@@ -15,7 +15,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Student extends Person {
 
-    /* Each Student has 0..1 Noks */
+    /* Each Student has 0..1 Nok */
     /**
      * TODO: To prevent repeat of information, rename Person to Student such that
      *     _both_ Nok and Student inherits from Person (to share common fields)
@@ -23,15 +23,21 @@ public class Student extends Person {
      */
     private Nok nok;
     private final Rate rate;
+    private final ClassTiming classTiming;
+
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Students have a tag as well as all the specifiers.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Rate rate, Set<Tag> tags, Nok nok) {
+
+    public Student(
+            Name name, Phone phone, Email email, Address address, Rate rate, ClassTiming classTiming,
+            Nok nok, Set<Tag> tags) {
         super(name, phone, email, address);
-        requireAllNonNull(rate);
+        requireAllNonNull(rate, classTiming);
         this.rate = rate;
+        this.classTiming = classTiming;
         this.nok = nok;
         this.tags.addAll(tags);
     }
@@ -42,6 +48,10 @@ public class Student extends Person {
 
     public Nok getNok() {
         return nok;
+    }
+
+    public ClassTiming getClassTiming() {
+        return classTiming;
     }
 
     /**
@@ -67,11 +77,19 @@ public class Student extends Person {
      */
     @Override
     public boolean equals(Object other) {
-        return other == this ||
-                (other instanceof Student
-                && super.equals(other)
-                && ((Student) other).rate.equals(this.rate)
-                && ((Student) other).getTags().equals(getTags()));
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Student)) {
+            return false;
+        }
+
+        Student o = (Student) other;
+        return super.equals(other)
+                && o.rate.equals(getRate())
+                && o.classTiming.equals(getClassTiming())
+                && o.getTags().equals(getTags());
     }
 
     @Override
@@ -84,7 +102,9 @@ public class Student extends Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder(super.toString());
         builder.append("; Rate: ")
-                .append(getAddress());
+                .append(getRate())
+                .append("; Class Timing: ")
+                .append(getClassTiming());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
