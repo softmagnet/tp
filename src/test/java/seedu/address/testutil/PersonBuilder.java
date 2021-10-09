@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.ClassTiming;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
@@ -25,6 +26,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_RATE = "70";
     public static final String DEFAULT_CLASSTIMING = "23:59";
+    public static final String DEFAULT_LOCATION = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_NOK_NAME = "Zhenglin Ong";
     public static final String DEFAULT_NOK_PHONE = "97762839";
     public static final String DEFAULT_NOK_EMAIL = "zhenglin@gmail.com";
@@ -41,6 +43,7 @@ public class PersonBuilder {
     private Email nokEmail;
     private Address nokAddress;
     private ClassTiming classTiming;
+    private Location location;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -52,6 +55,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         rate = new Rate(DEFAULT_RATE);
         classTiming = new ClassTiming(DEFAULT_CLASSTIMING);
+        location = new Location(DEFAULT_LOCATION);
         tags = new HashSet<>();
 
         nokName = new Name(DEFAULT_NOK_NAME);
@@ -70,6 +74,7 @@ public class PersonBuilder {
         address = studentToCopy.getAddress();
         rate = studentToCopy.getRate();
         classTiming = studentToCopy.getClassTiming();
+        location = studentToCopy.getLocation();
         tags = new HashSet<>(studentToCopy.getTags());
         nokName = studentToCopy.getNok().getName();
         nokPhone = studentToCopy.getNok().getPhone();
@@ -134,6 +139,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Location} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withLocation(String location) {
+        this.location = new Location(location);
+        return this;
+    }
+
+    /**
      * Sets the {@code NokName} of the {@code EditPersonDescriptor} that we are building.
      */
     public PersonBuilder withNokName(String name) {
@@ -172,7 +185,7 @@ public class PersonBuilder {
      */
     public Student build() {
         Nok nok = new Nok(nokName, nokPhone, nokEmail, nokAddress);
-        return new Student(name, phone, email, address, rate, classTiming, nok, tags);
+        return new Student(name, phone, email, address, rate, classTiming, location, nok, tags);
     }
 
 }

@@ -24,6 +24,7 @@ public class Student extends Person {
     private Nok nok;
     private final Rate rate;
     private final ClassTiming classTiming;
+    private final Location location;
 
     private final Set<Tag> tags = new HashSet<>();
 
@@ -33,11 +34,12 @@ public class Student extends Person {
 
     public Student(
             Name name, Phone phone, Email email, Address address, Rate rate, ClassTiming classTiming,
-            Nok nok, Set<Tag> tags) {
+            Location location, Nok nok, Set<Tag> tags) {
         super(name, phone, email, address);
-        requireAllNonNull(rate, classTiming);
+        requireAllNonNull(rate, classTiming, location);
         this.rate = rate;
         this.classTiming = classTiming;
+        this.location = location;
         this.nok = nok;
         this.tags.addAll(tags);
     }
@@ -52,6 +54,10 @@ public class Student extends Person {
 
     public ClassTiming getClassTiming() {
         return classTiming;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 
     /**
@@ -89,6 +95,7 @@ public class Student extends Person {
         return super.equals(other)
                 && o.rate.equals(getRate())
                 && o.classTiming.equals(getClassTiming())
+                && o.location.equals(getLocation())
                 && o.getTags().equals(getTags());
     }
 
@@ -104,7 +111,9 @@ public class Student extends Person {
         builder.append("; Rate: ")
                 .append(getRate())
                 .append("; Class Timing: ")
-                .append(getClassTiming());
+                .append(getClassTiming())
+                .append("; Location: ")
+                .append(getLocation());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

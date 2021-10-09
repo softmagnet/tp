@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
@@ -24,6 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.ClassTiming;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
@@ -48,6 +50,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_RATE + "RATE] "
             + "[" + PREFIX_CLASSTIMING + "CLASS TIMING] "
+            + "[" + PREFIX_LOCATION + "LOCATION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -107,6 +110,7 @@ public class EditCommand extends Command {
         Rate updatedRate = editPersonDescriptor.getRate().orElse(studentToEdit.getRate());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
         ClassTiming classTiming = editPersonDescriptor.getClassTiming().orElse(studentToEdit.getClassTiming());
+        Location updatedLocation = editPersonDescriptor.getLocation().orElse(studentToEdit.getLocation());
 
         // Nok
         Name nokName = editPersonDescriptor.getNokName().orElse(studentToEdit.getNok().getName());
@@ -116,7 +120,7 @@ public class EditCommand extends Command {
         Nok nok = new Nok(nokName, nokPhone, nokEmail, nokAddress);
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedRate, classTiming, nok, updatedTags);
+                updatedRate, classTiming, updatedLocation, nok, updatedTags);
     }
 
     @Override
@@ -149,6 +153,7 @@ public class EditCommand extends Command {
         private Rate rate;
         private Set<Tag> tags;
         private ClassTiming classTiming;
+        private Location location;
 
         private Name nokName;
         private Phone nokPhone;
@@ -168,6 +173,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setRate(toCopy.rate);
             setClassTiming(toCopy.classTiming);
+            setLocation(toCopy.location);
 
             setNokName(toCopy.nokName);
             setNokPhone(toCopy.nokPhone);
@@ -181,7 +187,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, rate, classTiming, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, rate, classTiming, location, tags);
         }
 
         public void setName(Name name) {
@@ -218,6 +224,14 @@ public class EditCommand extends Command {
 
         public void setClassTiming(ClassTiming classTiming) {
             this.classTiming = classTiming;
+        }
+
+        public Optional<Location> getLocation() {
+            return Optional.ofNullable(location);
+        }
+
+        public void setLocation(Location location) {
+            this.location = location;
         }
 
         public Optional<Address> getAddress() {

@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
@@ -18,6 +19,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.ClassTiming;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
@@ -51,7 +53,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimapBeforeNok =
                 ArgumentTokenizer
                         .tokenize(argsBeforeNok, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                                PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_TAG);
+                                PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION, PREFIX_TAG);
 
         ArgumentMultimap argMultimapAfterNok =
                 ArgumentTokenizer.tokenize(argsAfterNok, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
@@ -59,7 +61,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
 
         if (!arePrefixesPresent(argMultimapBeforeNok, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
-                PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_EMAIL)
+                PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION, PREFIX_EMAIL)
                 || !argMultimapBeforeNok.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -70,6 +72,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimapBeforeNok.getValue(PREFIX_ADDRESS).get());
         Rate rate = ParserUtil.parseRate(argMultimapBeforeNok.getValue(PREFIX_RATE).get());
         ClassTiming classTiming = ParserUtil.parseClassTiming(argMultimapBeforeNok.getValue(PREFIX_CLASSTIMING).get());
+        Location location = ParserUtil.parseLocation(argMultimapBeforeNok.getValue(PREFIX_LOCATION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimapBeforeNok.getAllValues(PREFIX_TAG));
 
         // TODO: do add functionality of nok
@@ -86,7 +89,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Student student = new Student(name, phone, email, address, rate, classTiming, nok, tagList);
+        Student student = new Student(name, phone, email, address, rate, classTiming, location, nok, tagList);
 
         return new AddCommand(student);
     }

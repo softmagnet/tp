@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASSTIMING_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RATE_BOB;
@@ -36,7 +37,7 @@ public class StudentTest {
         // same name, all other attributes different -> returns true
         Student editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withRate(VALID_RATE_BOB).withClassTiming(VALID_CLASSTIMING_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -93,6 +94,10 @@ public class StudentTest {
 
         // different classTiming -> returns false
         editedAlice = new PersonBuilder(ALICE).withClassTiming(VALID_RATE_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different location -> returns false
+        editedAlice = new PersonBuilder(ALICE).withLocation(VALID_LOCATION_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

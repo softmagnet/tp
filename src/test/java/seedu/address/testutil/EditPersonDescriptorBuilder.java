@@ -8,6 +8,7 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.ClassTiming;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Rate;
@@ -40,6 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(student.getAddress());
         descriptor.setRate(student.getRate());
         descriptor.setClassTiming(student.getClassTiming());
+        descriptor.setLocation(student.getLocation());
         descriptor.setTags(student.getTags());
         descriptor.setNokName(student.getNok().getName());
         descriptor.setNokPhone(student.getNok().getPhone());
@@ -92,6 +94,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withClassTiming(String classTiming) {
         descriptor.setClassTiming(new ClassTiming(classTiming));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Location} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withLocation(String location) {
+        descriptor.setLocation(new Location(location));
         return this;
     }
 
