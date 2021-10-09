@@ -305,7 +305,5 @@ public class EditCommand extends Command {
                     && getClassTiming().equals(e.getClassTiming())
                     && getTags().equals(e.getTags());
         }
-
-
     }
 }
