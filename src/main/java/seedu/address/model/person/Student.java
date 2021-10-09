@@ -22,18 +22,21 @@ public class Student extends Person {
      *     For now, Nok and Person has duplicate fields.
      */
     private Nok nok;
-
+    private final Rate rate;
     private final ClassTiming classTiming;
 
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Students have a tag as well as well as all the specifiers.
+     * Students have a tag as well as all the specifiers.
      */
+
     public Student(
-            Name name, Phone phone, Email email, Address address, ClassTiming classTiming, Nok nok, Set<Tag> tags) {
+            Name name, Phone phone, Email email, Address address, Rate rate, ClassTiming classTiming,
+            Nok nok, Set<Tag> tags) {
         super(name, phone, email, address);
-        requireAllNonNull(name, phone, email, address, classTiming, tags);
+        requireAllNonNull(rate, classTiming);
+        this.rate = rate;
         this.classTiming = classTiming;
         this.nok = nok;
         this.tags.addAll(tags);
@@ -59,6 +62,13 @@ public class Student extends Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Returns tuition {@code Rate} of this student
+     */
+    public Rate getRate() {
+        return rate;
+    }
+
 
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -67,10 +77,19 @@ public class Student extends Person {
      */
     @Override
     public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Student)) {
+            return false;
+        }
+
+        Student o = (Student) other;
         return super.equals(other)
-                && other instanceof Student
-                && ((Student) other).getClassTiming().equals(getClassTiming())
-                && ((Student) other).getTags().equals(getTags());
+                && o.rate.equals(getRate())
+                && o.classTiming.equals(getClassTiming())
+                && o.getTags().equals(getTags());
     }
 
     @Override
@@ -82,7 +101,11 @@ public class Student extends Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder(super.toString());
-        builder.append("; Class Timing: ").append(getClassTiming());
+        builder.append("; Rate: ")
+                .append(getRate())
+                .append("; Class Timing: ")
+                .append(getClassTiming());
+
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");

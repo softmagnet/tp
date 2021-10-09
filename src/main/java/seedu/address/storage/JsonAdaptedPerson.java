@@ -16,6 +16,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rate;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String rate;
     private final String classTiming;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -39,12 +41,13 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("classTiming") String classTiming,
+                             @JsonProperty("rate") String rate, @JsonProperty("classTiming") String classTiming,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.rate = rate;
         this.classTiming = classTiming;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -59,6 +62,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        rate = source.getRate().value;
         classTiming = source.getClassTiming().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -108,6 +112,14 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (rate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rate.class.getSimpleName()));
+        }
+        if (!Rate.isValidRate(rate)) {
+            throw new IllegalValueException(Rate.MESSAGE_CONSTRAINTS);
+        }
+        final Rate modelRate = new Rate(rate);
+
         if (classTiming == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ClassTiming.class.getSimpleName()));
@@ -126,8 +138,8 @@ class JsonAdaptedPerson {
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18")
         );
 
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelClassTiming,
-                placeholderNok, modelTags);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRate,
+                modelClassTiming, placeholderNok, modelTags);
     }
 
 }

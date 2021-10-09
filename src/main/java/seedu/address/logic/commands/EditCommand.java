@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -26,6 +27,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rate;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 
@@ -44,6 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_RATE + "RATE] "
             + "[" + PREFIX_CLASSTIMING + "CLASS TIMING] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -101,6 +104,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(studentToEdit.getAddress());
+        Rate updatedRate = editPersonDescriptor.getRate().orElse(studentToEdit.getRate());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
         ClassTiming classTiming = editPersonDescriptor.getClassTiming().orElse(studentToEdit.getClassTiming());
 
@@ -111,7 +115,8 @@ public class EditCommand extends Command {
         Address nokAddress = editPersonDescriptor.getNokAddress().orElse(studentToEdit.getNok().getAddress());
         Nok nok = new Nok(nokName, nokPhone, nokEmail, nokAddress);
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, classTiming, nok, updatedTags);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedRate, classTiming, nok, updatedTags);
     }
 
     @Override
@@ -141,6 +146,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Rate rate;
         private Set<Tag> tags;
         private ClassTiming classTiming;
 
@@ -160,6 +166,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setRate(toCopy.rate);
             setClassTiming(toCopy.classTiming);
 
             setNokName(toCopy.nokName);
@@ -174,7 +181,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, classTiming, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, rate, classTiming, tags);
         }
 
         public void setName(Name name) {
@@ -215,6 +222,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setRate(Rate rate) {
+            this.rate = rate;
+        }
+
+        public Optional<Rate> getRate() {
+            return Optional.ofNullable(rate);
         }
 
         // TODO: Find some way to reduce duplicate code fragments
@@ -286,6 +301,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getRate().equals(e.getRate())
                     && getClassTiming().equals(e.getClassTiming())
                     && getTags().equals(e.getTags());
         }

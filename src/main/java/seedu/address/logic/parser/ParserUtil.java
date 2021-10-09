@@ -14,6 +14,7 @@ import seedu.address.model.person.ClassTiming;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rate;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -138,6 +139,21 @@ public class ParserUtil {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses a {@code String rate} into a {@code Rate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code rate} is invalid.
+     */
+    public static Rate parseRate(String rate) throws ParseException {
+        requireNonNull(rate);
+        String trimmedRate = rate.trim();
+        if (!Rate.isValidRate(trimmedRate)) {
+            throw new ParseException(Rate.MESSAGE_CONSTRAINTS);
+        }
+        return new Rate(trimmedRate);
     }
 
     /**

@@ -12,6 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_NOK;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_NOK;
+import static seedu.address.logic.commands.CommandTestUtil.RATE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFIX_NOK;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -86,7 +87,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + CLASSTIMING_DESC_AMY + VALID_PREFIX_NOK + NAME_DESC_NOK
+                + ADDRESS_DESC_AMY + RATE_DESC_AMY + CLASSTIMING_DESC_AMY + VALID_PREFIX_NOK + NAME_DESC_NOK
                 + PHONE_DESC_NOK + EMAIL_DESC_NOK + ADDRESS_DESC_NOK;
         Student expectedStudent = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
