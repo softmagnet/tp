@@ -40,7 +40,7 @@ public class PersonUtil {
         sb.append(PREFIX_ADDRESS + student.getAddress().value + " ");
         sb.append(PREFIX_CLASSTIMING + student.getClassTiming().value + " ");
         sb.append(PREFIX_RATE + student.getRate().value + " ");
-        sb.append(PREFIX_LOCATION +student.getLocation().value + " ");
+        sb.append(PREFIX_LOCATION + student.getLocation().value + " ");
         student.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
