@@ -62,10 +62,6 @@ public class EditStudentDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withClassTiming(VALID_CLASSTIMING_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different location -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withLocation(VALID_LOCATION_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
-
         // different tags -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
