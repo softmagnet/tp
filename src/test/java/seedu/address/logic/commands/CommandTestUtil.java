@@ -63,8 +63,8 @@ public class CommandTestUtil {
     public static final String RATE_DESC_BOB = " " + PREFIX_RATE + VALID_RATE_BOB;
     public static final String CLASSTIMING_DESC_AMY = " " + PREFIX_CLASSTIMING + VALID_CLASSTIMING_AMY;
     public static final String CLASSTIMING_DESC_BOB = " " + PREFIX_CLASSTIMING + VALID_CLASSTIMING_BOB;
-    public static final String LOCATION_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
-    public static final String LOCATION_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String LOCATION_DESC_AMY = " " + PREFIX_LOCATION + VALID_ADDRESS_AMY;
+    public static final String LOCATION_DESC_BOB = " " + PREFIX_LOCATION + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -95,11 +95,13 @@ public class CommandTestUtil {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withRate(VALID_RATE_AMY).withClassTiming(VALID_CLASSTIMING_AMY)
+                .withLocation(VALID_LOCATION_AMY)
                 .withTags(VALID_TAG_FRIEND).withNokName(VALID_NAME_NOK).withNokPhone(VALID_PHONE_NOK)
                 .withNokAddress(VALID_ADDRESS_NOK).withNokEmail(VALID_EMAIL_NOK).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withRate(VALID_RATE_BOB).withClassTiming(VALID_CLASSTIMING_BOB)
+                .withLocation(VALID_LOCATION_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withNokName(VALID_NAME_NOK)
                 .withNokPhone(VALID_PHONE_NOK).withNokAddress(VALID_ADDRESS_NOK)
                 .withNokEmail(VALID_EMAIL_NOK).build();
