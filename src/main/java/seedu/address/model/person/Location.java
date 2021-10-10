@@ -53,5 +53,4 @@ public class Location {
     public int hashCode() {
         return value.hashCode();
     }
-
 }
