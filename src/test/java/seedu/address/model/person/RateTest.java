@@ -10,13 +10,13 @@ public class RateTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Name(null));
+        assertThrows(NullPointerException.class, () -> new Rate(null));
     }
 
     @Test
     public void constructor_negativeRate_throwsIllegalArgumentException() {
         String negativeRate = "-32";
-        assertThrows(IllegalArgumentException.class, () -> new Name(negativeRate));
+        assertThrows(IllegalArgumentException.class, () -> new Rate(negativeRate));
     }
 
     @Test
