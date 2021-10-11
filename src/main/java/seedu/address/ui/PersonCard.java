@@ -46,7 +46,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label classTiming;
     @FXML
-    private Label location0;
+    private Label classLocation;
     @FXML
     private FlowPane tags;
 
@@ -75,7 +75,7 @@ public class PersonCard extends UiPart<Region> {
         email.setText(student.getEmail().value);
         rate.setText(DOLLAR_SIGN + student.getRate().value + PER_HOUR);
         classTiming.setText(student.getClassTiming().value);
-        location0.setText("Location: " + student.getLocation().value);
+        classLocation.setText("Location: " + student.getLocation().value);
 
         // Nok
         if (student.getNok() != null) {
