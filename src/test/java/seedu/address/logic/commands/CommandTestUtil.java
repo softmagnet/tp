@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -41,6 +42,8 @@ public class CommandTestUtil {
     public static final String VALID_RATE_BOB = "80";
     public static final String VALID_CLASSTIMING_AMY = "23:59";
     public static final String VALID_CLASSTIMING_BOB = "11:59";
+    public static final String VALID_LOCATION_AMY = "Block 312, Amy Street 1";
+    public static final String VALID_LOCATION_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_NAME_NOK = "Papa";
     public static final String VALID_PHONE_NOK = "33333333";
     public static final String VALID_EMAIL_NOK = "papa@example.com";
@@ -60,6 +63,8 @@ public class CommandTestUtil {
     public static final String RATE_DESC_BOB = " " + PREFIX_RATE + VALID_RATE_BOB;
     public static final String CLASSTIMING_DESC_AMY = " " + PREFIX_CLASSTIMING + VALID_CLASSTIMING_AMY;
     public static final String CLASSTIMING_DESC_BOB = " " + PREFIX_CLASSTIMING + VALID_CLASSTIMING_BOB;
+    public static final String LOCATION_DESC_AMY = " " + PREFIX_LOCATION + VALID_ADDRESS_AMY;
+    public static final String LOCATION_DESC_BOB = " " + PREFIX_LOCATION + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -77,6 +82,7 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_CLASSTIMING_DESC = " "
             + PREFIX_CLASSTIMING; // empty string not allowed for classTiming
+    public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION; // empty string not allowed for locations
 
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -89,11 +95,13 @@ public class CommandTestUtil {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withRate(VALID_RATE_AMY).withClassTiming(VALID_CLASSTIMING_AMY)
+                .withLocation(VALID_LOCATION_AMY)
                 .withTags(VALID_TAG_FRIEND).withNokName(VALID_NAME_NOK).withNokPhone(VALID_PHONE_NOK)
                 .withNokAddress(VALID_ADDRESS_NOK).withNokEmail(VALID_EMAIL_NOK).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withRate(VALID_RATE_BOB).withClassTiming(VALID_CLASSTIMING_BOB)
+                .withLocation(VALID_LOCATION_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withNokName(VALID_NAME_NOK)
                 .withNokPhone(VALID_PHONE_NOK).withNokAddress(VALID_ADDRESS_NOK)
                 .withNokEmail(VALID_EMAIL_NOK).build();

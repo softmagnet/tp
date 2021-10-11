@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.ClassTiming;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
@@ -33,6 +34,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String rate;
     private final String classTiming;
+    private final String location;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -42,6 +44,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("rate") String rate, @JsonProperty("classTiming") String classTiming,
+                             @JsonProperty("location") String location,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -49,6 +52,7 @@ class JsonAdaptedPerson {
         this.address = address;
         this.rate = rate;
         this.classTiming = classTiming;
+        this.location = location;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -64,6 +68,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         rate = source.getRate().value;
         classTiming = source.getClassTiming().value;
+        location = source.getLocation().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -129,6 +134,15 @@ class JsonAdaptedPerson {
         }
         final ClassTiming modelClassTiming = new ClassTiming(classTiming);
 
+        if (location == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Location.class.getSimpleName()));
+        }
+        if (!Location.isValidLocation(location)) {
+            throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
+        }
+        final Location modelLocation = new Location(location);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         Nok placeholderNok = new Nok(
@@ -139,7 +153,7 @@ class JsonAdaptedPerson {
         );
 
         return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRate,
-                modelClassTiming, placeholderNok, modelTags);
+                modelClassTiming, modelLocation, placeholderNok, modelTags);
     }
 
 }
