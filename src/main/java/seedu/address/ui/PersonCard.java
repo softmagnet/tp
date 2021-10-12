@@ -17,6 +17,7 @@ public class PersonCard extends UiPart<Region> {
     private static final String FXML = "PersonListCard.fxml";
     private static final Character DOLLAR_SIGN = '$';
     private static final String PER_HOUR = "/hr";
+    private static final String CLASS_TIMING_FIELD = "Class Timing: ";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -74,7 +75,7 @@ public class PersonCard extends UiPart<Region> {
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
         rate.setText(DOLLAR_SIGN + student.getRate().value + PER_HOUR);
-        classTiming.setText(student.getClassTiming().value);
+        classTiming.setText(CLASS_TIMING_FIELD + student.getClassTiming().value);
         classLocation.setText("Location: " + student.getLocation().value);
 
         // Nok

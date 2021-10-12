@@ -93,7 +93,7 @@ public class StudentTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different classTiming -> returns false
-        editedAlice = new PersonBuilder(ALICE).withClassTiming(VALID_RATE_BOB).build();
+        editedAlice = new PersonBuilder(ALICE).withClassTiming(VALID_CLASSTIMING_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different location -> returns false

@@ -40,8 +40,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_RATE_AMY = "70";
     public static final String VALID_RATE_BOB = "80";
-    public static final String VALID_CLASSTIMING_AMY = "23:59";
-    public static final String VALID_CLASSTIMING_BOB = "11:59";
+    public static final String VALID_CLASSTIMING_AMY = "tue 13:00-14:00";
+    public static final String VALID_CLASSTIMING_BOB = "mon 10:00-11:00";
     public static final String VALID_LOCATION_AMY = "Block 312, Amy Street 1";
     public static final String VALID_LOCATION_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_NAME_NOK = "Papa";

@@ -35,37 +35,37 @@ public class TypicalPersons {
 
     public static final Student ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withRate("60").withClassTiming("00:00")
+            .withPhone("94351253").withRate("60").withClassTiming("Mon 00:00-01:00")
             .withLocation("132, Jurong East Ave 4, #03-10")
             .withTags("friends").build();
     public static final Student BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432").withRate("70").withClassTiming("01:00")
+            .withEmail("johnd@example.com").withPhone("98765432").withRate("70").withClassTiming("mon 01:00-02:00")
             .withLocation("132, Jurong East Ave 4, #03-10")
             .withTags("owesMoney", "friends").build();
     public static final Student CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withRate("80")
-            .withClassTiming("02:00").withLocation("132, Jurong East Ave 4, #03-10").build();
+            .withClassTiming("tuE 02:00-03:00").withLocation("132, Jurong East Ave 4, #03-10").build();
     public static final Student DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withRate("75")
-            .withClassTiming("03:00").withLocation("132, Jurong East Ave 4, #03-10").withTags("friends").build();
+            .withClassTiming("wed 03:00-04:00").withLocation("132, Jurong East Ave 4, #03-10").withTags("friends").build();
     public static final Student ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").withRate("85")
-            .withClassTiming("04:00").withLocation("132, Jurong East Ave 4, #03-10").build();
+            .withClassTiming("thu 04:00-05:00").withLocation("132, Jurong East Ave 4, #03-10").build();
     public static final Student FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").withRate("90")
-            .withClassTiming("05:00").withLocation("132, Jurong East Ave 4, #03-10").build();
+            .withClassTiming("sat 05:00-06:00").withLocation("132, Jurong East Ave 4, #03-10").build();
     public static final Student GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").withRate("70")
-            .withClassTiming("06:00").withLocation("132, Jurong East Ave 4, #03-10").build();
+            .withClassTiming("sun 06:00-07:00").withLocation("132, Jurong East Ave 4, #03-10").build();
 
     // Manually added
     public static final Student HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india")
-            .withRate("60").withClassTiming("06:00").withLocation("132, Jurong East Ave 4, #03-10").build();
+            .withRate("60").withClassTiming("thu 06:00-08:00").withLocation("132, Jurong East Ave 4, #03-10").build();
     public static final Student IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").withRate("60")
-            .withClassTiming("07:00").withLocation("132, Jurong East Ave 4, #03-10").build();
+            .withClassTiming("Mon 07:00-09:00").withLocation("132, Jurong East Ave 4, #03-10").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Student AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
