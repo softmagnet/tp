@@ -6,7 +6,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "rate": "60",
-    "classTiming" : "00:00",
+    "classTiming" : "monday 00:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "tagged" : [ "friends" ]
   }, {
@@ -15,7 +15,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "rate": "70",
-    "classTiming" : "01:00",
+    "classTiming" : "tuesday 01:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
@@ -24,7 +24,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "rate": "80",
-    "classTiming" : "02:00",
+    "classTiming" : "wednesday 02:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "tagged" : [ ]
   }, {
@@ -33,7 +33,7 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "rate": "75",
-    "classTiming" : "03:00",
+    "classTiming" : "thursday 03:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "tagged" : [ "friends" ]
   }, {
@@ -42,7 +42,7 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "rate": "85",
-    "classTiming" : "04:00",
+    "classTiming" : "friday 04:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "tagged" : [ ]
   }, {
@@ -51,7 +51,7 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "rate": "90",
-    "classTiming" : "05:00",
+    "classTiming" : "saturday 05:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "tagged" : [ ]
   }, {
@@ -60,7 +60,7 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "rate": "70",
-    "classTiming" : "06:00",
+    "classTiming" : "sunday 06:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "tagged" : [ ]
   } ]
