@@ -48,7 +48,8 @@ public class TypicalPersons {
             .withClassTiming("tuE 02:00-03:00").withLocation("132, Jurong East Ave 4, #03-10").build();
     public static final Student DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withRate("75")
-            .withClassTiming("wed 03:00-04:00").withLocation("132, Jurong East Ave 4, #03-10").withTags("friends").build();
+            .withClassTiming("wed 03:00-04:00").withLocation("132, Jurong East Ave 4, #03-10").withTags("friends")
+            .build();
     public static final Student ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").withRate("85")
             .withClassTiming("thu 04:00-05:00").withLocation("132, Jurong East Ave 4, #03-10").build();
