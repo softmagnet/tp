@@ -5,7 +5,7 @@
     "email" : "alexyeoh@example.com",
     "address" : "Blk 30 Geylang Street 29, #06-40",
     "rate" : "60",
-    "classTiming" : "monday 13:00",
+    "classTiming" : "MON 13:00-15:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "tagged" : [ "friends" ]
   }, {
@@ -14,7 +14,7 @@
     "email" : "berniceyu@example.com",
     "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
     "rate" : "70",
-    "classTiming" : "tuesday 13:00",
+    "classTiming" : "TUE 13:00-14:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "tagged" : [ "colleagues", "friends" ]
   }, {
@@ -23,7 +23,7 @@
     "email" : "charlotte@example.com",
     "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
     "rate" : "80",
-    "classTiming" : "wednesday 14:00",
+    "classTiming" : "WED 14:00-16:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "tagged" : [ "neighbours" ]
   }, {
@@ -32,7 +32,7 @@
     "email" : "lidavid@example.com",
     "address" : "Blk 436 Serangoon Gardens Street 26, #16-43",
     "rate" : "90",
-    "classTiming" : "thursday 16:00",
+    "classTiming" : "THU 16:00-18:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "tagged" : [ "family" ]
   }, {
@@ -41,7 +41,7 @@
     "email" : "irfan@example.com",
     "address" : "Blk 47 Tampines Street 20, #17-35",
     "rate" : "50",
-    "classTiming" : "friday 08:00",
+    "classTiming" : "FRI 08:00-10:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "tagged" : [ "classmates" ]
   }, {
@@ -50,7 +50,7 @@
     "email" : "royb@example.com",
     "address" : "Blk 45 Aljunied Street 85, #11-31",
     "rate" : "55",
-    "classTiming" : "friday 12:00",
+    "classTiming" : "FRI 12:00-14:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "tagged" : [ "colleagues" ]
   }, {
@@ -59,7 +59,7 @@
     "email" : "gg@ss.com",
     "address" : "his house",
     "rate" : "41",
-    "classTiming" : "monday 08:00",
+    "classTiming" : "MON 08:00-10:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "tagged" : [ ]
   }, {
@@ -68,7 +68,7 @@
     "email" : "jacy@gmail.com",
     "address" : "tampines 256 australia",
     "rate" : "41",
-    "classTiming" : "monday 12:00",
+    "classTiming" : "MON 12:00-13:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "tagged" : [ ]
   }, {
@@ -77,7 +77,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "rate" : "69",
-    "classTiming" : "saturday 12:00",
+    "classTiming" : "SAT 12:00-13:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
@@ -86,7 +86,7 @@
     "email" : "jonnyboi@6969.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "rate" : "69",
-    "classTiming" : "sunday 14:00",
+    "classTiming" : "SUN 14:00-16:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
@@ -95,7 +95,7 @@
     "email" : "jr@gmail.com",
     "address" : "NYC",
     "rate" : "69",
-    "classTiming" : "tuesday 12:00",
+    "classTiming" : "TUE 12:00-14:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "tagged" : [ ]
   } ]
