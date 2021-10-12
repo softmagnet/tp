@@ -15,7 +15,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "rate": "70",
-    "classTiming" : "mon 01:00-02:00",
+    "classTiming" : "tue 01:00-02:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
