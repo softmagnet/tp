@@ -1,0 +1,28 @@
+package seedu.address.model.person;
+
+import java.util.List;
+import java.util.function.Predicate;
+
+/**
+ * Tests if a {@code Person}'s list of {@code Tag} matches any of the keywords given.
+ */
+public class TaglistContainsKeywordsPredicate implements Predicate<Student> {
+    private final List<String> keywords;
+
+    public TaglistContainsKeywordsPredicate(List<String> keywords) {
+        this.keywords = keywords;
+    }
+
+    @Override
+    public boolean test(Student student) {
+        return keywords.stream()
+                .anyMatch(keyword -> student.isAnyTagsMatching(keyword));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof TaglistContainsKeywordsPredicate
+                && keywords.equals(((TaglistContainsKeywordsPredicate) other).keywords));
+    }
+}

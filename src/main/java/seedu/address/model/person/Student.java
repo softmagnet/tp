@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -7,6 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -73,6 +75,15 @@ public class Student extends Person {
      */
     public Rate getRate() {
         return rate;
+    }
+
+    /**
+     * Returns true if any {@code Tag} belonging to this student matches {@code keyword} in name ignoring case.
+     */
+    public boolean isAnyTagsMatching(String keyword) {
+        requireNonNull(keyword);
+        return tags.stream().
+                anyMatch(tag -> tag.isNameMatchingIgnoreCase(keyword));
     }
 
 

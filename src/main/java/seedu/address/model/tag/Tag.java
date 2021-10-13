@@ -1,5 +1,7 @@
 package seedu.address.model.tag;
 
+import seedu.address.commons.util.StringUtil;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -30,6 +32,13 @@ public class Tag {
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if {@code tagName} of this {@code Tag} matches exactly with {@code keyword} ignoring case.
+     */
+    public boolean isNameMatchingIgnoreCase(String keyword) {
+        return tagName.equalsIgnoreCase(keyword);
     }
 
     @Override
