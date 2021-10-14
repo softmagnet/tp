@@ -115,6 +115,10 @@ public class Student extends Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        builder.append("\nNext-of-Kin: ");
+        builder.append(nok.toString());
+
         return builder.toString();
     }
 

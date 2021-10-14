@@ -60,8 +60,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (!arePrefixesPresent(argMultimapBeforeNok, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
                 PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION, PREFIX_EMAIL)
-                || !arePrefixesPresent(argMultimapAfterNok, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
-                PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION, PREFIX_EMAIL)
+                || !arePrefixesPresent(argMultimapAfterNok, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimapBeforeNok.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
