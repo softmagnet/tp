@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_NOK;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_LOCATION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_RATE_DESC;
@@ -46,6 +47,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Rate;
@@ -148,43 +150,58 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + RATE_DESC_BOB + CLASSTIMING_DESC_BOB + LOCATION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + RATE_DESC_BOB + CLASSTIMING_DESC_BOB + LOCATION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND
+                + VALID_PREFIX_NOK + NAME_DESC_NOK + PHONE_DESC_NOK + EMAIL_DESC_NOK + ADDRESS_DESC_NOK,
                 Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + RATE_DESC_BOB + CLASSTIMING_DESC_BOB + LOCATION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + RATE_DESC_BOB + CLASSTIMING_DESC_BOB + LOCATION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND
+                + VALID_PREFIX_NOK + NAME_DESC_NOK + PHONE_DESC_NOK + EMAIL_DESC_NOK + ADDRESS_DESC_NOK,
                 Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + RATE_DESC_BOB + CLASSTIMING_DESC_BOB + LOCATION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + RATE_DESC_BOB + CLASSTIMING_DESC_BOB + LOCATION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND
+                + VALID_PREFIX_NOK + NAME_DESC_NOK + PHONE_DESC_NOK + EMAIL_DESC_NOK + ADDRESS_DESC_NOK,
                 Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + RATE_DESC_BOB + CLASSTIMING_DESC_BOB + LOCATION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + RATE_DESC_BOB + CLASSTIMING_DESC_BOB + LOCATION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND
+                + VALID_PREFIX_NOK + NAME_DESC_NOK + PHONE_DESC_NOK + EMAIL_DESC_NOK + ADDRESS_DESC_NOK,
                 Address.MESSAGE_CONSTRAINTS);
 
         //invalid rate
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + INVALID_RATE_DESC + CLASSTIMING_DESC_BOB + LOCATION_DESC_BOB + TAG_DESC_HUSBAND
-                        + TAG_DESC_FRIEND,
+                        + TAG_DESC_FRIEND
+                        + VALID_PREFIX_NOK + NAME_DESC_NOK + PHONE_DESC_NOK + EMAIL_DESC_NOK + ADDRESS_DESC_NOK,
                 Rate.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + RATE_DESC_BOB + CLASSTIMING_DESC_BOB + LOCATION_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND,
+                + RATE_DESC_BOB + CLASSTIMING_DESC_BOB + LOCATION_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND
+                + VALID_PREFIX_NOK + NAME_DESC_NOK + PHONE_DESC_NOK + EMAIL_DESC_NOK + ADDRESS_DESC_NOK,
                 Tag.MESSAGE_CONSTRAINTS);
+
+        //invalid location
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                        + RATE_DESC_BOB + CLASSTIMING_DESC_BOB + INVALID_LOCATION_DESC + TAG_DESC_HUSBAND
+                        + TAG_DESC_FRIEND
+                        + VALID_PREFIX_NOK + NAME_DESC_NOK + PHONE_DESC_NOK + EMAIL_DESC_NOK + ADDRESS_DESC_NOK,
+                Location.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + INVALID_ADDRESS_DESC + RATE_DESC_BOB + CLASSTIMING_DESC_BOB + LOCATION_DESC_BOB,
+                        + INVALID_ADDRESS_DESC + RATE_DESC_BOB + CLASSTIMING_DESC_BOB + LOCATION_DESC_BOB
+                        + VALID_PREFIX_NOK + NAME_DESC_NOK + PHONE_DESC_NOK + EMAIL_DESC_NOK + ADDRESS_DESC_NOK,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + RATE_DESC_BOB + CLASSTIMING_DESC_BOB + LOCATION_DESC_BOB
+                        + VALID_PREFIX_NOK + NAME_DESC_NOK + PHONE_DESC_NOK + EMAIL_DESC_NOK + ADDRESS_DESC_NOK
                         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
