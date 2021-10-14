@@ -20,7 +20,7 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "rate": "70",
+    "rate": "12",
     "classTiming" : "tue 01:00-02:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "nok" : {
@@ -35,7 +35,7 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "rate": "80",
+    "rate": "9999",
     "classTiming" : "tuE 02:00-03:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "nok" : {
@@ -50,7 +50,7 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "rate": "75",
+    "rate": "22",
     "classTiming" : "wed 03:00-04:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "nok" : {
@@ -65,7 +65,7 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "rate": "85",
+    "rate": "95",
     "classTiming" : "thu 04:00-05:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "nok" : {
@@ -80,7 +80,7 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "rate": "90",
+    "rate": "1",
     "classTiming" : "sat 05:00-06:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "nok" : {
@@ -95,7 +95,7 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "rate": "70",
+    "rate": "3",
     "classTiming" : "sun 06:00-07:00",
     "location" : "132, Jurong East Ave 4, #03-10",
     "nok" : {
