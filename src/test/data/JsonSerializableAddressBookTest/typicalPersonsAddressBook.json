@@ -8,6 +8,12 @@
     "rate": "60",
     "classTiming" : "Mon 00:00-01:00",
     "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "Long Chai Boon",
+      "phone" : "67785914",
+      "email" : "longchatbooon@gmail.com",
+      "address" : "325, Clementi State 3, #40-32"
+    },
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -17,6 +23,12 @@
     "rate": "70",
     "classTiming" : "tue 01:00-02:00",
     "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "Short Chai Boon",
+      "phone" : "87759868",
+      "email" : "hahiihi@gmail.com",
+      "address" : "325, West State 3, #60-12"
+    },
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -26,6 +38,12 @@
     "rate": "80",
     "classTiming" : "tuE 02:00-03:00",
     "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "Mr Batman",
+      "phone" : "62212222",
+      "email" : "dontcallmeillcome@gmail.com",
+      "address" : "325, Bat Cave 3, #10-23"
+    },
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -35,6 +53,12 @@
     "rate": "75",
     "classTiming" : "wed 03:00-04:00",
     "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "Bad Chai Boon",
+      "phone" : "88888888",
+      "email" : "happyorsadyouchoose@gmail.com",
+      "address" : "1, Happy Sad 3, #10-12"
+    },
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -44,6 +68,12 @@
     "rate": "85",
     "classTiming" : "thu 04:00-05:00",
     "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "Bernard Wan",
+      "phone" : "67785314",
+      "email" : "bernard@gmail.com",
+      "address" : "222, Berkeys State 4, #11-32"
+    },
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -53,6 +83,12 @@
     "rate": "90",
     "classTiming" : "sat 05:00-06:00",
     "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "Ong Lin Zhen",
+      "phone" : "67382344",
+      "email" : "zhenngggii@gmail.com",
+      "address" : "323, Lin Estate 3, #44-31"
+    },
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -62,6 +98,12 @@
     "rate": "70",
     "classTiming" : "sun 06:00-07:00",
     "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "Hehe Chai Red",
+      "phone" : "67111111",
+      "email" : "salmon@gmail.com",
+      "address" : "999, Estate State 4, #10-32"
+    },
     "tagged" : [ ]
   } ]
 }

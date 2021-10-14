@@ -50,10 +50,6 @@ public class TypicalPersons {
             .withNokEmail("hahiihi@gmail.com").withNokPhone("87759868").withRate("12")
             .withClassTiming("TUE 01:00-02:00")
             .withTags("owesMoney", "friends").build();
-    public static final Student NO_NOK_BENSON = new PersonBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432")
-            .withLocation("132, Jurong East Ave 4, #03-10").build();
     public static final Student CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withNokName("Mr Batman")
