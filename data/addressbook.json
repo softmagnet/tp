@@ -5,7 +5,7 @@
     "email" : "alexyeoh@example.com",
     "address" : "Blk 30 Geylang Street 29, #06-40",
     "rate" : "60",
-    "classTiming" : "MON 13:00-15:00",
+    "classTiming" : "WED 10:00-11:30",
     "location" : "132, Jurong East Ave 4, #03-10",
     "nok" : {
       "name" : "oifjasodifj",
@@ -196,6 +196,21 @@
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Johdddn Doe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "rate" : "70",
+    "classTiming" : "MON 23:59-11:59",
+    "location" : "311, Clementi Ave 2, #02-25",
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "s Doe",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",

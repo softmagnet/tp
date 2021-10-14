@@ -35,9 +35,9 @@
       <Label fx:id="classTiming" styleClass="cell_small_label" text="\$classTiming" />
       <Label fx:id="classLocation" styleClass="cell_small_label" text="\$location" />
     </VBox>
-    <VBox alignment="CENTER_RIGHT" minHeight="105" GridPane.columnIndex="0">
+    <VBox alignment="TOP_RIGHT" minHeight="105" GridPane.columnIndex="0">
       <padding>
-        <Insets top="5" right="5" bottom="5" left="15" />
+        <Insets top="21.5" right="5" bottom="5" left="15" />
       </padding>
       <HBox spacing="5" alignment="CENTER_RIGHT">
         <Label fx:id="nokName" text="\$nok_first" styleClass="cell_big_label" />
