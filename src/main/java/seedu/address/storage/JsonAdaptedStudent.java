@@ -61,7 +61,7 @@ class JsonAdaptedStudent {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Student} into this class for Jackson use.
      */
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
@@ -71,7 +71,7 @@ class JsonAdaptedStudent {
         rate = source.getRate().value;
         classTiming = source.getClassTiming().value;
         location = source.getLocation().value;
-        nok = new JsonAdaptedNok(source.getNok());
+        nok = source.getNok() != null ? new JsonAdaptedNok(source.getNok()) : null;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -146,17 +146,12 @@ class JsonAdaptedStudent {
         }
         final Location modelLocation = new Location(location);
 
+        final Nok modelNok = nok == null ? null : nok.toModelType();
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        Nok placeholderNok = new Nok(
-                new Name("Bernice Yu"),
-                new Phone("99272758"),
-                new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18")
-        );
-
         return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRate,
-                modelClassTiming, modelLocation, placeholderNok, modelTags);
+                modelClassTiming, modelLocation, modelNok, modelTags);
     }
 
 }
