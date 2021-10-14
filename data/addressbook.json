@@ -1,12 +1,18 @@
 {
   "persons" : [ {
-    "name" : "alice chen",
+    "name" : "hi",
     "phone" : "87438807",
     "email" : "alexyeoh@example.com",
     "address" : "Blk 30 Geylang Street 29, #06-40",
     "rate" : "60",
     "classTiming" : "MON 13:00-15:00",
     "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "oifjasodifj",
+      "phone" : "99272758",
+      "email" : "h@gmail.com",
+      "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18"
+    },
     "tagged" : [ "friends" ]
   }, {
     "name" : "Bernice Yu",
@@ -16,6 +22,12 @@
     "rate" : "70",
     "classTiming" : "TUE 13:00-14:00",
     "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "Bernice Yu",
+      "phone" : "99272758",
+      "email" : "berniceyu@example.com",
+      "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18"
+    },
     "tagged" : [ "colleagues", "friends" ]
   }, {
     "name" : "charlie olive",
@@ -25,6 +37,12 @@
     "rate" : "80",
     "classTiming" : "WED 14:00-16:00",
     "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "Bernice Yu",
+      "phone" : "99272758",
+      "email" : "berniceyu@example.com",
+      "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18"
+    },
     "tagged" : [ "neighbours" ]
   }, {
     "name" : "David Li",
@@ -34,6 +52,12 @@
     "rate" : "90",
     "classTiming" : "THU 16:00-18:00",
     "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "Bernice Yu",
+      "phone" : "99272758",
+      "email" : "berniceyu@example.com",
+      "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18"
+    },
     "tagged" : [ "family" ]
   }, {
     "name" : "Irfan Ibrahim",
@@ -43,6 +67,12 @@
     "rate" : "50",
     "classTiming" : "FRI 08:00-10:00",
     "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "Bernice Yu",
+      "phone" : "99272758",
+      "email" : "berniceyu@example.com",
+      "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18"
+    },
     "tagged" : [ "classmates" ]
   }, {
     "name" : "Roy Balakrishnan",
@@ -52,6 +82,12 @@
     "rate" : "55",
     "classTiming" : "FRI 12:00-14:00",
     "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "Bernice Yu",
+      "phone" : "99272758",
+      "email" : "berniceyu@example.com",
+      "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18"
+    },
     "tagged" : [ "colleagues" ]
   }, {
     "name" : "JS",
@@ -61,6 +97,12 @@
     "rate" : "41",
     "classTiming" : "MON 08:00-10:00",
     "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "Bernice Yu",
+      "phone" : "99272758",
+      "email" : "berniceyu@example.com",
+      "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18"
+    },
     "tagged" : [ ]
   }, {
     "name" : "jack",
@@ -70,6 +112,12 @@
     "rate" : "41",
     "classTiming" : "MON 12:00-13:00",
     "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "Bernice Yu",
+      "phone" : "99272758",
+      "email" : "berniceyu@example.com",
+      "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18"
+    },
     "tagged" : [ ]
   }, {
     "name" : "John Doe",
@@ -79,6 +127,12 @@
     "rate" : "69",
     "classTiming" : "SAT 12:00-13:00",
     "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "Bernice Yu",
+      "phone" : "99272758",
+      "email" : "berniceyu@example.com",
+      "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18"
+    },
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Johnny Doe",
@@ -88,6 +142,12 @@
     "rate" : "69",
     "classTiming" : "SUN 14:00-16:00",
     "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "Bernice Yu",
+      "phone" : "99272758",
+      "email" : "berniceyu@example.com",
+      "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18"
+    },
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "john reese",
@@ -97,6 +157,12 @@
     "rate" : "69",
     "classTiming" : "TUE 12:00-14:00",
     "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "Bernice Yu",
+      "phone" : "99272758",
+      "email" : "berniceyu@example.com",
+      "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18"
+    },
     "tagged" : [ ]
   } ]
 }

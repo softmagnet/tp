@@ -35,6 +35,7 @@ class JsonAdaptedStudent {
     private final String rate;
     private final String classTiming;
     private final String location;
+    private final JsonAdaptedNok nok;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -44,7 +45,7 @@ class JsonAdaptedStudent {
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("rate") String rate, @JsonProperty("classTiming") String classTiming,
-                              @JsonProperty("location") String location,
+                              @JsonProperty("location") String location, @JsonProperty("nok") JsonAdaptedNok nok,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -53,6 +54,7 @@ class JsonAdaptedStudent {
         this.rate = rate;
         this.classTiming = classTiming;
         this.location = location;
+        this.nok = nok;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -69,6 +71,7 @@ class JsonAdaptedStudent {
         rate = source.getRate().value;
         classTiming = source.getClassTiming().value;
         location = source.getLocation().value;
+        nok = new JsonAdaptedNok(source.getNok());
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
