@@ -24,7 +24,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Student}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedStudent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
@@ -35,17 +35,18 @@ class JsonAdaptedPerson {
     private final String rate;
     private final String classTiming;
     private final String location;
+    private final JsonAdaptedNok nok;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("rate") String rate, @JsonProperty("classTiming") String classTiming,
-                             @JsonProperty("location") String location,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                              @JsonProperty("rate") String rate, @JsonProperty("classTiming") String classTiming,
+                              @JsonProperty("location") String location, @JsonProperty("nok") JsonAdaptedNok nok,
+                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -53,15 +54,16 @@ class JsonAdaptedPerson {
         this.rate = rate;
         this.classTiming = classTiming;
         this.location = location;
+        this.nok = nok;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Student} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Student source) {
+    public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -69,6 +71,7 @@ class JsonAdaptedPerson {
         rate = source.getRate().value;
         classTiming = source.getClassTiming().value;
         location = source.getLocation().value;
+        nok = source.getNok() != null ? new JsonAdaptedNok(source.getNok()) : null;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -143,17 +146,12 @@ class JsonAdaptedPerson {
         }
         final Location modelLocation = new Location(location);
 
+        final Nok modelNok = nok == null ? null : nok.toModelType();
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        Nok placeholderNok = new Nok(
-                new Name("Bernice Yu"),
-                new Phone("99272758"),
-                new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18")
-        );
-
         return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRate,
-                modelClassTiming, modelLocation, placeholderNok, modelTags);
+                modelClassTiming, modelLocation, modelNok, modelTags);
     }
 
 }
