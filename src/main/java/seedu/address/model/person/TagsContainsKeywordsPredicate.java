@@ -6,10 +6,10 @@ import java.util.function.Predicate;
 /**
  * Tests if a {@code Person}'s list of {@code Tag} matches any of the keywords given.
  */
-public class TaglistContainsKeywordsPredicate implements Predicate<Student> {
+public class TagsContainsKeywordsPredicate implements Predicate<Student> {
     private final List<String> keywords;
 
-    public TaglistContainsKeywordsPredicate(List<String> keywords) {
+    public TagsContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -22,7 +22,7 @@ public class TaglistContainsKeywordsPredicate implements Predicate<Student> {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof TaglistContainsKeywordsPredicate
-                && keywords.equals(((TaglistContainsKeywordsPredicate) other).keywords));
+                || (other instanceof TagsContainsKeywordsPredicate
+                && keywords.equals(((TagsContainsKeywordsPredicate) other).keywords));
     }
 }

@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -82,10 +81,9 @@ public class Student extends Person {
      */
     public boolean isAnyTagsMatching(String keyword) {
         requireNonNull(keyword);
-        return tags.stream().
-                anyMatch(tag -> tag.isNameMatchingIgnoreCase(keyword));
+        return tags.stream()
+                .anyMatch(tag -> tag.isNameMatchingIgnoreCase(keyword));
     }
-
 
     /**
      * Returns true if both persons have the same identity and data fields.

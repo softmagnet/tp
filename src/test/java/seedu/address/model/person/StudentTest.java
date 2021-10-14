@@ -104,4 +104,13 @@ public class StudentTest {
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
+
+    @Test
+    public void isAnyTagsMatching() {
+        // matches keyword -> returns true
+        assertTrue(ALICE.isAnyTagsMatching("Maths"));
+
+        // no match -> returns false
+        assertFalse(ALICE.isAnyTagsMatching("Physics"));
+    }
 }

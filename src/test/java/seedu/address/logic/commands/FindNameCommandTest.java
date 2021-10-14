@@ -50,7 +50,7 @@ public class FindNameCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different predicate with different list of keywords -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 

@@ -37,18 +37,18 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withRate("60").withClassTiming("00:00")
             .withLocation("132, Jurong East Ave 4, #03-10")
-            .withTags("friends").build();
+            .withTags("Maths").build();
     public static final Student BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withRate("70").withClassTiming("01:00")
             .withLocation("132, Jurong East Ave 4, #03-10")
-            .withTags("owesMoney", "friends").build();
+            .withTags("Physics").build();
     public static final Student CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withRate("80")
             .withClassTiming("02:00").withLocation("132, Jurong East Ave 4, #03-10").build();
     public static final Student DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withRate("75")
-            .withClassTiming("03:00").withLocation("132, Jurong East Ave 4, #03-10").withTags("friends").build();
+            .withClassTiming("03:00").withLocation("132, Jurong East Ave 4, #03-10").withTags("Maths").build();
     public static final Student ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").withRate("85")
             .withClassTiming("04:00").withLocation("132, Jurong East Ave 4, #03-10").build();
