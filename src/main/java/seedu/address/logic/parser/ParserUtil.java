@@ -91,11 +91,11 @@ public class ParserUtil {
      */
     public static ClassTiming parseClassTiming(String classTiming) throws ParseException {
         requireNonNull(classTiming);
-        String trimmedAddress = classTiming.trim();
-        if (!ClassTiming.isValidClassTiming(trimmedAddress)) {
+        String trimmedClassTiming = classTiming.trim();
+        if (!ClassTiming.isValidClassTiming(trimmedClassTiming)) {
             throw new ParseException(ClassTiming.MESSAGE_CONSTRAINTS);
         }
-        return new ClassTiming(trimmedAddress);
+        return new ClassTiming(trimmedClassTiming);
     }
 
     /**

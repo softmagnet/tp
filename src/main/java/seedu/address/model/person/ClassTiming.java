@@ -11,13 +11,13 @@ public class ClassTiming {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Class Timing can take any values, and it should not be blank";
+            "Class Timing must be in the form DAY HH:MM-HH:MM";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * The string has to be in the form DAY HH:SS-HH:SS eg MON 23:59-01:00
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX =
+            "^(?i)(MON |TUE |WED |THU |FRI |SAT |SUN )+([01][0-9]|2[0-3]):[0-5][0-9]-([01][0-9]|2[0-3]):[0-5][0-9]";
 
     public final String value;
 
@@ -29,7 +29,19 @@ public class ClassTiming {
     public ClassTiming(String classTiming) {
         requireNonNull(classTiming);
         checkArgument(isValidClassTiming(classTiming), MESSAGE_CONSTRAINTS);
-        value = classTiming;
+        value = formatClassTiming(classTiming);
+    }
+
+    /**
+     * Formats the classTiming day into caps.
+     *
+     * @param classTiming classTiming where day is going to be changed to caps.
+     * @return classTiming with the day in caps.
+     */
+    public String formatClassTiming(String classTiming) {
+        String day = classTiming.split(" ")[0].toUpperCase();
+        String timing = classTiming.split(" ")[1];
+        return day + " " + timing;
     }
 
     /**

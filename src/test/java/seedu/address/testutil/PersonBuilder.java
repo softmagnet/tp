@@ -25,7 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_RATE = "70";
-    public static final String DEFAULT_CLASSTIMING = "23:59";
+    public static final String DEFAULT_CLASSTIMING = "Wed 16:00-17:00";
     public static final String DEFAULT_LOCATION = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_NOK_NAME = "Zhenglin Ong";
     public static final String DEFAULT_NOK_PHONE = "97762839";

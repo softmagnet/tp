@@ -17,11 +17,6 @@ import seedu.address.model.tag.Tag;
 public class Student extends Person {
 
     /* Each Student has 0..1 Nok */
-    /**
-     * TODO: To prevent repeat of information, rename Person to Student such that
-     *     _both_ Nok and Student inherits from Person (to share common fields)
-     *     For now, Nok and Person has duplicate fields.
-     */
     private Nok nok;
     private final Rate rate;
     private final ClassTiming classTiming;
@@ -129,6 +124,10 @@ public class Student extends Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        builder.append("\nNext-of-Kin: ");
+        builder.append(nok.toString());
+
         return builder.toString();
     }
 

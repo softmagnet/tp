@@ -31,13 +31,13 @@ public class ParserUtilTest {
     private static final String INVALID_CLASSTIMIMG = " ";
     private static final String INVALID_RATE = "-32";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TAG = "friend*";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_LOCATION = "123 Main Street #0505";
-    private static final String VALID_CLASSTIMING = "23:59";
+    private static final String VALID_CLASSTIMING = "Mon 13:00-14:00";
     private static final String VALID_RATE = "70";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
