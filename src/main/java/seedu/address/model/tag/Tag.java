@@ -32,6 +32,13 @@ public class Tag {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if {@code tagName} of this {@code Tag} matches exactly with {@code keyword} ignoring case.
+     */
+    public boolean isNameMatchingIgnoreCase(String keyword) {
+        return tagName.equalsIgnoreCase(keyword);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

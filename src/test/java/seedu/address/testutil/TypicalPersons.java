@@ -40,7 +40,7 @@ public class TypicalPersons {
             .withNokName("Long Chai Boon")
             .withNokAddress("325, Clementi State 3, #40-32")
             .withNokEmail("longchatbooon@gmail.com").withNokPhone("67785914")
-            .withTags("friends").build();
+            .withTags("Maths").build();
     public static final Student BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
@@ -49,7 +49,7 @@ public class TypicalPersons {
             .withNokAddress("325, West State 3, #60-12")
             .withNokEmail("hahiihi@gmail.com").withNokPhone("87759868").withRate("12")
             .withClassTiming("TUE 01:00-02:00")
-            .withTags("owesMoney", "friends").build();
+            .withTags("Physics").build();
     public static final Student NO_NOK_BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
@@ -65,7 +65,7 @@ public class TypicalPersons {
             .withNokName("Bad Chai Boon")
             .withNokAddress("1, Happy Sad 3, #10-12")
             .withNokEmail("happyorsadyouchoose@gmail.com").withNokPhone("88888888").withRate("22")
-            .withClassTiming("WED 03:00-04:00").withLocation("132, Jurong East Ave 4, #03-10").withTags("friends")
+            .withClassTiming("WED 03:00-04:00").withLocation("132, Jurong East Ave 4, #03-10").withTags("Maths")
             .build();
     public static final Student ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")

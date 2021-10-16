@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -70,6 +71,14 @@ public class Student extends Person {
         return rate;
     }
 
+    /**
+     * Returns true if any {@code Tag} belonging to this student matches {@code keyword} in name ignoring case.
+     */
+    public boolean isAnyTagsMatching(String keyword) {
+        requireNonNull(keyword);
+        return tags.stream()
+                .anyMatch(tag -> tag.isNameMatchingIgnoreCase(keyword));
+    }
 
     /**
      * Returns true if both persons have the same identity and data fields.

@@ -1,5 +1,7 @@
 package seedu.address.model.tag;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -24,5 +26,19 @@ public class TagTest {
         // null tag name
         assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
     }
+
+    @Test
+    public void isNameMatchingIgnoreCase() {
+        Tag mathsTag = new Tag("Maths");
+        //same name, same letter case -> returns true
+        assertTrue(mathsTag.isNameMatchingIgnoreCase("Maths"));
+
+        //same name, different letter case -> returns true
+        assertTrue(mathsTag.isNameMatchingIgnoreCase("mAtHS"));
+
+        //different name -> returns false
+        assertFalse(mathsTag.isNameMatchingIgnoreCase("Physics"));
+    }
+
 
 }
