@@ -141,6 +141,7 @@ public class MainWindow extends UiPart<Stage> {
 
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
+
     }
 
     /**

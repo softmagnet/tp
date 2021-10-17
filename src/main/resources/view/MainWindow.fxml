@@ -50,19 +50,17 @@
           </padding>
         </StackPane>
 
-        <VBox VBox.vgrow="ALWAYS">
-          <TabPane fx:id="tabPane" styleClass="pane-with-border" minWidth="340">
-            <Tab fx:id="studentsTab" text="Students">
-              <VBox fx:id="studentList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
-                    VBox.vgrow="ALWAYS">
-                <padding>
-                  <Insets top="10" right="10" bottom="10" left="10"/>
-                </padding>
-                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-              </VBox>
-            </Tab>
-          </TabPane>
-        </VBox>
+        <TabPane fx:id="tabPane" styleClass="pane-with-border" minWidth="340" VBox.vgrow="ALWAYS">
+          <Tab fx:id="studentsTab" text="Students">
+            <VBox fx:id="studentList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
+                  VBox.vgrow="ALWAYS">
+              <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+              </padding>
+              <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            </VBox>
+          </Tab>
+        </TabPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
