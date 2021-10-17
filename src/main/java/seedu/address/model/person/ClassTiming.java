@@ -82,17 +82,14 @@ public class ClassTiming {
      * start time, otherwise false.
      */
     public boolean isEarlier(ClassTiming otherClassTiming) {
-        String[] thisClassTimingPart = this.value.split(" ");
-        String thisDay = thisClassTimingPart[0];
+        String thisDay = getDay(this.value);
         int thisDayInt = replaceDayWithInt(thisDay);
         LocalTime thisStartTime = getStartTime(this.value);
         LocalTime thisEndTime = getEndTime(this.value);
 
-        String[] otherClassTimingPart = otherClassTiming.value.split(" ");
-        String otherDay = otherClassTimingPart[0];
+        String otherDay = getDay(otherClassTiming.value);
         int otherDayInt = replaceDayWithInt(otherDay);
         LocalTime otherStartTime = getStartTime(otherClassTiming.value);
-
 
         if (thisDayInt < otherDayInt || otherStartTime.isAfter(thisEndTime)
                 || thisStartTime.isBefore(otherStartTime)) {
@@ -102,21 +99,32 @@ public class ClassTiming {
         }
     }
 
-    public static LocalTime getStartTime(String ct) {
-        String[] ctPart = ct.split(" ");
-        String startEndTime = ctPart[1];
+    public static String getDay(String ct) {
+        String[] classTimingPart = ct.split(" ");
+        String day = classTimingPart[0];
+        return day;
+    }
+
+    public static String[] getTiming(String ct) {
+        String[] ctSplit = ct.split(" ");
+        String startEndTime = ctSplit[1];
         String[] timePart = startEndTime.split("-");
+        return timePart;
+    }
+
+    public static LocalTime getStartTime(String ct) {
+        String[] timePart = getTiming(ct);
         String startTime = timePart[0];
         return LocalTime.parse(startTime, DateTimeFormatter.ofPattern("HH:mm"));
     }
 
     public static LocalTime getEndTime(String ct) {
-        String[] ctPart = ct.split(" ");
-        String startEndTime = ctPart[1];
-        String[] timePart = startEndTime.split("-");
+        String[] timePart = getTiming(ct);
         String endTime = timePart[1];
         return LocalTime.parse(endTime, DateTimeFormatter.ofPattern("HH:mm"));
     }
+
+
 
     /**
      * Returns true if a given string is a valid class timing.
