@@ -46,7 +46,19 @@ public class UniquePersonList implements Iterable<Student> {
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
         }
-        internalList.add(toAdd);
+        int listSize = internalList.size();
+        for (int i = 0; i < listSize; i++) {
+            if (internalList.get(i).getClassTiming().isEarlier(toAdd.getClassTiming())) {
+                continue;
+            } else {
+                internalList.add(i, toAdd);
+                break;
+            }
+        }
+        if (listSize == 0 || internalList.size() == listSize) {
+            internalList.add(toAdd);
+        }
+
     }
 
     /**
