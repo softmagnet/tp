@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
@@ -133,8 +132,8 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         studentsTab = new Tab("Students", personListPanelPlaceholder);
-        Tab timetableTab = new Tab("Timetable"  , new Label("Timetable"));
-        Tab classTab = new Tab("Class" , new Label("Classes"));
+        Tab timetableTab = new Tab("Timetable", new Label("Timetable"));
+        Tab classTab = new Tab("Class", new Label("Classes"));
 
         tabPane.getTabs().add(timetableTab);
         tabPane.getTabs().add(classTab);
