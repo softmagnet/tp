@@ -4,8 +4,8 @@
     "phone" : "87438807",
     "email" : "alexyeoh@example.com",
     "address" : "Blk 30 Geylang Street 29, #06-40",
-    "rate" : "60",
-    "classTiming" : "WED 10:00-11:30",
+    "rate" : "59",
+    "classTiming" : "WED 11:30-12:30",
     "location" : "132, Jurong East Ave 4, #03-10",
     "nok" : {
       "name" : "oifjasodifj",
@@ -224,6 +224,50 @@
       "address" : "311, Clementi Ave 2, #02-25"
     },
     "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "John dd",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "rate" : "70",
+    "classTiming" : "MON 23:59-11:59",
+    "location" : "311, Clementi Ave 2, #02-25",
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "John De",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "rate" : "70",
+    "classTiming" : "MON 23:59-11:59",
+    "location" : "311, Clementi Ave 2, #02-25",
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "test Doe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "rate" : "70",
+    "classTiming" : "MON 23:59-11:59",
+    "location" : "311, Clementi Ave 2, #02-25",
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
   } ]
-
 }
