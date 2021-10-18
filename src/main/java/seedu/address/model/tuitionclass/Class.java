@@ -68,4 +68,11 @@ public class Class {
     }
 
 
+    /**
+     * Returns true if the class timing of the class to be checked overlaps with this class.
+     */
+    public boolean isOverlapping(Class toCheck) {
+        //TODO implement conflict checking
+        return true;
+    }
 }
