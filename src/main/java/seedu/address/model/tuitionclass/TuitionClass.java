@@ -1,11 +1,11 @@
 package seedu.address.model.tuitionclass;
 
-import seedu.address.model.person.Name;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.List;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.person.Name;
 
 /**
  * Represents a tuition TuitionClass in the address book.
@@ -20,7 +20,18 @@ public class TuitionClass {
 
     private final StudentList studentList;
 
-    public TuitionClass(ClassName className, ClassTiming classTiming, Location location, Rate rate, Name... studentNames) {
+    /**
+     * Represents a tuition class for Students to join. A {@code TuitionClass} can have multiple {@code Student}s.
+     * A {@code Student} can have multiple {@code TuitionClass}es as well.
+     *
+     * @param className The name of the class to be created.
+     * @param classTiming The timing of the class specified. This is the unique identifier (id) of the class.
+     * @param location The location of the class.
+     * @param rate How much it costs per hour to attend the class.
+     * @param studentNames A list of student names to add to the class upon creation.
+     */
+    public TuitionClass(ClassName className, ClassTiming classTiming, Location location, Rate rate,
+                        Name... studentNames) {
         requireAllNonNull(className, classTiming, location, rate);
         this.className = className;
         this.classTiming = classTiming;

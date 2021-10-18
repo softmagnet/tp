@@ -91,12 +91,8 @@ public class ClassTiming {
         int otherDayInt = replaceDayWithInt(otherDay);
         LocalTime otherStartTime = getStartTime(otherClassTiming.value);
 
-        if (thisDayInt < otherDayInt || otherStartTime.isAfter(thisEndTime)
-                || thisStartTime.isBefore(otherStartTime)) {
-            return true;
-        } else {
-            return false;
-        }
+        return thisDayInt < otherDayInt || otherStartTime.isAfter(thisEndTime)
+                || thisStartTime.isBefore(otherStartTime);
     }
 
     public static String getDay(String ct) {
@@ -123,8 +119,6 @@ public class ClassTiming {
         String endTime = timePart[1];
         return LocalTime.parse(endTime, DateTimeFormatter.ofPattern("HH:mm"));
     }
-
-
 
     /**
      * Returns true if a given string is a valid class timing.

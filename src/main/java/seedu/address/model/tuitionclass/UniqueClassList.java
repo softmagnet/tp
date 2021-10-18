@@ -20,15 +20,14 @@ public class UniqueClassList implements Iterable<TuitionClass> {
 
     /**
      * Adds a class to the list. TuitionClass must not overlap in timing with existing classes.
-     * @param toAdd
+     *
+     * @param toAdd The tuition class to add.
      */
     public void add(TuitionClass toAdd) {
         requireNonNull(toAdd);
         if (!isValidTiming(toAdd)) {
             throw new InvalidClassException();
         }
-
-
     }
 
     /**
