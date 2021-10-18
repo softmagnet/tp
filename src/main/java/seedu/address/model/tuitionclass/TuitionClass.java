@@ -8,10 +8,10 @@ import java.util.List;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
- * Represents a tuition Class in the address book.
+ * Represents a tuition TuitionClass in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Class {
+public class TuitionClass {
 
     private final ClassName className;
     private final ClassTiming classTiming;
@@ -20,7 +20,7 @@ public class Class {
 
     private final StudentList studentList;
 
-    public Class(ClassName className, ClassTiming classTiming, Location location, Rate rate, Name... studentNames) {
+    public TuitionClass(ClassName className, ClassTiming classTiming, Location location, Rate rate, Name... studentNames) {
         requireAllNonNull(className, classTiming, location, rate);
         this.className = className;
         this.classTiming = classTiming;
@@ -56,11 +56,11 @@ public class Class {
             return true;
         }
 
-        if (!(other instanceof Class)) {
+        if (!(other instanceof TuitionClass)) {
             return false;
         }
 
-        Class o = (Class) other;
+        TuitionClass o = (TuitionClass) other;
         return o.className.equals(getClassName())
                 && o.rate.equals(getRate())
                 && o.classTiming.equals(getClassTiming())
@@ -71,7 +71,7 @@ public class Class {
     /**
      * Returns true if the class timing of the class to be checked overlaps with this class.
      */
-    public boolean isOverlapping(Class toCheck) {
+    public boolean isOverlapping(TuitionClass toCheck) {
         //TODO implement conflict checking
         return true;
     }

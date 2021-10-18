@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Represents the list of students that a tuition {@code Class} has.
+ * Represents the list of students that a tuition {@code TuitionClass} has.
  */
 public class StudentList extends ArrayList<Name> {
 

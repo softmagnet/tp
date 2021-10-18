@@ -7,25 +7,22 @@ import java.util.Iterator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.tuitionclass.exceptions.InvalidClassException;
 
 /**
  * A list of classes that makes sure there is no overlap between class timings.
  */
-public class UniqueClassList implements Iterable<Class> {
+public class UniqueClassList implements Iterable<TuitionClass> {
 
-    private final ObservableList<Class> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Class> internalUnmodifiableList =
+    private final ObservableList<TuitionClass> internalList = FXCollections.observableArrayList();
+    private final ObservableList<TuitionClass> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Adds a class to the list. Class must not overlap in timing with existing classes.
+     * Adds a class to the list. TuitionClass must not overlap in timing with existing classes.
      * @param toAdd
      */
-    public void add(Class toAdd) {
+    public void add(TuitionClass toAdd) {
         requireNonNull(toAdd);
         if (!isValidTiming(toAdd)) {
             throw new InvalidClassException();
@@ -38,7 +35,7 @@ public class UniqueClassList implements Iterable<Class> {
      * Checks if the class timing is valid (no overlaps with current classes).
      *
      */
-    public boolean isValidTiming(Class toCheck) {
+    public boolean isValidTiming(TuitionClass toCheck) {
         requireNonNull(toCheck);
         return !internalList.stream().anyMatch(toCheck::isOverlapping);
     }
@@ -46,12 +43,12 @@ public class UniqueClassList implements Iterable<Class> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Class> asUnmodifiableObservableList() {
+    public ObservableList<TuitionClass> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Class> iterator() {
+    public Iterator<TuitionClass> iterator() {
         return internalList.iterator();
     }
 
