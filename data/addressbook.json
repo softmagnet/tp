@@ -15,6 +15,21 @@
     },
     "tagged" : [ "owesMoney", "friends" ]
   }, {
+    "name" : "Jo ee",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "rate" : "70",
+    "classTiming" : "MON 10:00-11:00",
+    "location" : "311, Clementi Ave 2, #02-25",
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
     "name" : "John De",
     "phone" : "98765432",
     "email" : "johnd@example.com",
@@ -149,5 +164,21 @@
       "address" : "311, Clementi Ave 2, #02-25"
     },
     "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "JohDoe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "rate" : "70",
+    "classTiming" : "SAT 11:30-13:30",
+    "location" : "311, Clementi Ave 2, #02-25",
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
   } ]
+
 }

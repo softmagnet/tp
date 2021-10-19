@@ -11,7 +11,7 @@
 <!--        <HBox alignment="CENTER_LEFT" spacing="5">-->
 <!--            <Label fx:id="id" styleClass="calendar_small_label" />-->
 <!--        </HBox>-->
-        <Label fx:id="time" styleClass="timetable_label" text="\$time" />
-        <Label fx:id="className" styleClass="timetable_label" text="\$className" />
+        <Label fx:id="className" styleClass="timetable-label" text="\$className" />
+        <Label fx:id="time" styleClass="timetable-label" text="\$time" />
     </VBox>
 </HBox>

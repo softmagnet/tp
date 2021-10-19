@@ -1,17 +1,21 @@
 package seedu.address.ui.timetable;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Paint;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.ClassTiming;
 import seedu.address.model.person.Student;
 import seedu.address.ui.UiPart;
 
+import java.awt.*;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +38,14 @@ public class TimetablePanel extends UiPart<Region> {
     public TimetablePanel(ObservableList<Student> studentList) {
         super(FXML);
         build(studentList);
+        studentList.addListener(new ListChangeListener<Student>() {
+            @Override
+            public void onChanged(Change<? extends Student> change) {
+                while (change.next()) {
+                    build(studentList);
+                }
+            }
+        });
     }
 
     public void build(ObservableList<Student> studentList) {
@@ -49,6 +61,7 @@ public class TimetablePanel extends UiPart<Region> {
 
     public void buildClasses(ObservableList<Student> studentList) {
         LocalTime earliestTime = getEarliestTime(studentList);
+
         //earliest time is after the date
         ArrayList<Student> sortedList = new ArrayList<Student>(studentList);
         sortedList.sort((student1, student2) -> student1.getClassTiming().compareTo(student2.getClassTiming()));

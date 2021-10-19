@@ -17,6 +17,7 @@
     -fx-fit-to-height: true;
     -fx-fit-to-width: false;
     -fx-background-radius: 5;
+    -fx-max-width: 3750;
 }
 
 .timetable-scroll .thumb {
@@ -26,13 +27,18 @@
 }
 
 .timetable-grid {
-    /*-fx-background-color: #383838;*/
-    /*-fx-border-color: #383838;*/
+    -fx-background-color: #383838;
+    -fx-border-color: #383838;
+    /*-fx-max-width: 5000;*/
 }
 
 .timetable-grid-cell {
-    -fx-background-color: #ff7f69;
+    -fx-background-color: #3e7b91;
     -fx-background-insets: 5 0 5 0;
     -fx-background-radius: 10;
     -fx-padding: 10;
+}
+
+.timetable-label {
+    -fx-text-fill: white;
 }

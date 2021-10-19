@@ -64,7 +64,7 @@
 
           <Tab fx:id="timetableTab" text="Timetable">
             <VBox fx:id="timetableList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
-                  VBox.vgrow="ALWAYS">
+                  VBox.vgrow="ALWAYS" style="-fx-background-color: transparent">
               <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
               </padding>
