@@ -16,7 +16,7 @@ public class ClassTiming {
             "Class Timing must be in the form DAY HH:MM-HH:MM, start time must be earlier than end time";
 
     /*
-     * The string has to be in the form DAY HH:SS-HH:SS eg MON 23:59-01:00
+     * The string has to be in the form DAY HH:MM-HH:MM eg MON 23:59-01:00
      */
     public static final String VALIDATION_REGEX =
             "^(?i)(MON |TUE |WED |THU |FRI |SAT |SUN )+([01][0-9]|2[0-3]):[0-5][0-9]-([01][0-9]|2[0-3]):[0-5][0-9]";
@@ -77,8 +77,8 @@ public class ClassTiming {
      * Compares two ClassTiming objects.
      *
      * @param otherClassTiming ClassTiming being compared to.
-     * @return true if this ClassTiming is on an earlier day or has end time earlier than otherClassTiming
-     * start time, otherwise false.
+     * @return true if this ClassTiming is on an earlier day or has end time earlier or equal to
+     * than otherClassTiming start time, otherwise false.
      */
     public boolean isEarlier(ClassTiming otherClassTiming) {
         String thisDay = getDay(this.value);
