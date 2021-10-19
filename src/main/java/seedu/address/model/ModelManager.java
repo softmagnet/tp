@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Student;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -128,6 +129,11 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean isPersonInClass(Student student, TuitionClass tuitionClass) {
+        return addressBook.isPersonInClass(student, tuitionClass);
     }
 
     @Override

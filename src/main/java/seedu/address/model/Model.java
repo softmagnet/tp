@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Student;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * The API of the Model component.
@@ -84,4 +85,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Student> predicate);
+
+    /**
+     * Returns true if the {@code Student} is already in the {@code TuitionClass}
+     */
+    boolean isPersonInClass(Student student, TuitionClass tuitionClass);
 }
