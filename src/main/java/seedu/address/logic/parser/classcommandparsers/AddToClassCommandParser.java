@@ -1,20 +1,17 @@
 package seedu.address.logic.parser.classcommandparsers;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.classcommands.AddToClassCommand;
-import seedu.address.logic.commands.classcommands.AddToClassCommand.AddToClassDescriptor;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Name;
-import seedu.address.model.tuitionclass.ClassName;
+
+import java.util.ArrayList;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
+
 
 /**
  * Parses input arguments and creates a new AddToClassCommand object
@@ -25,22 +22,23 @@ public class AddToClassCommandParser implements Parser<AddToClassCommand> {
     public AddToClassCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer
-                        .tokenize(args, PREFIX_NAME, PREFIX_CLASS_NAME);
+        String[] argsArray = args.split("\\s+");
+        ArrayList<Index> indexArray = mapToIndex(argsArray);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CLASS_NAME)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddToClassCommand.MESSAGE_USAGE));
+        return new AddToClassCommand(indexArray);
+    }
+
+    private ArrayList<Index> mapToIndex(String[] str) throws ParseException {
+        ArrayList<Index> indexArray = new ArrayList<>();
+        for (int i = 0; i < str.length; i++) {
+            try {
+                indexArray.add(ParserUtil.parseIndex(str[i]));
+            } catch (ParseException pe) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        EditCommand.MESSAGE_USAGE), pe);
+            }
         }
-
-
-        Name name;
-        ClassName className;
-        name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS_NAME).get());
-
-        return new AddToClassCommand(new AddToClassDescriptor(className, name));
+        return indexArray;
     }
 
 

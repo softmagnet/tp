@@ -14,4 +14,5 @@ public class StudentList extends ArrayList<Name> {
         super();
         Arrays.stream(names).forEach(name -> this.add(name));
     }
+
 }

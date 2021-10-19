@@ -5,8 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.tuitionclass.ClassName;
+import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.model.tuitionclass.UniqueClassList;
 
 /**
@@ -110,6 +113,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<TuitionClass> getClassList() {
+        return classes.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
@@ -120,4 +128,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
+    public void addToClass(ClassName className, Name studentName) {
+//        TuitionClass tuitionClass =
+    }
+
+
 }

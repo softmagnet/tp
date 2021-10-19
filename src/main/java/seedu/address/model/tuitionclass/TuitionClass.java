@@ -18,6 +18,13 @@ public class TuitionClass {
     private final Location location;
     private final Rate rate;
 
+    /**
+     * ArrayList of {@code Name}
+     * Rationale for choosing Name as identifier:
+     * If the {@code Student} objects are stored, any changes to a student would cause a cascade of updates in classes
+     * the student is in.
+     */
+
     private final StudentList studentList;
 
     public TuitionClass(ClassName className, ClassTiming classTiming, Location location, Rate rate, Name... studentNames) {
@@ -48,6 +55,7 @@ public class TuitionClass {
     public List<Name> getStudentList() {
         return Collections.unmodifiableList(studentList);
     }
+
 
 
     @Override

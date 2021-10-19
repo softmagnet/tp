@@ -5,7 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
+import seedu.address.model.tuitionclass.ClassName;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
@@ -86,8 +88,4 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Student> predicate);
 
-    /**
-     * Returns true if the {@code Student} is already in the {@code TuitionClass}
-     */
-    boolean isPersonInClass(Student student, TuitionClass tuitionClass);
 }

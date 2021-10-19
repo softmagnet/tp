@@ -11,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
+import seedu.address.model.tuitionclass.ClassName;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
@@ -23,7 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
-    //private final FilteredList<TuitionClass> filteredClass;
+    private final FilteredList<TuitionClass> filteredClasses;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +39,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.addressBook.getPersonList());
+        filteredClasses = new FilteredList<>(this.addressBook.getClassList());
     }
 
     public ModelManager() {
@@ -129,11 +132,6 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
-    }
-
-    @Override
-    public boolean isPersonInClass(Student student, TuitionClass tuitionClass) {
-        return addressBook.isPersonInClass(student, tuitionClass);
     }
 
     @Override
