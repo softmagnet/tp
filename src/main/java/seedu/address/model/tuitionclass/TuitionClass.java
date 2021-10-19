@@ -102,7 +102,7 @@ public class TuitionClass {
      * Returns true if the class timing of the class to be checked overlaps with this class.
      */
     public boolean isOverlapping(TuitionClass toCheck) {
-        //TODO implement conflict checking
-        return true;
+        return !(this.getClassTiming().isEarlier(toCheck.getClassTiming())
+                || toCheck.getClassTiming().isEarlier(this.getClassTiming()));
     }
 }

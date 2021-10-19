@@ -90,7 +90,7 @@ public class ClassTiming {
         int otherDayInt = replaceDayWithInt(otherDay);
         LocalTime otherStartTime = getStartTime(otherClassTiming.value);
 
-        return thisDayInt < otherDayInt || otherStartTime.isAfter(thisEndTime)
+        return thisDayInt < otherDayInt || otherStartTime.isAfter(thisEndTime) || otherStartTime.equals(thisEndTime)
                 || thisStartTime.isBefore(otherStartTime);
     }
 
