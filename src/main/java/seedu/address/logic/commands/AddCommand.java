@@ -14,6 +14,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Student;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * Adds a person to the address book.
@@ -56,32 +57,45 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New Student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
-    private final Student toAdd;
+    private final Student studentToAdd;
+    private final TuitionClass classToAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Person}.
+     * We always pass in a new {@code TuitionClass}, and check if it alr exists
      */
-    public AddCommand(Student student) {
+    public AddCommand(Student student, TuitionClass tuitionClass) {
         requireNonNull(student);
-        toAdd = student;
+        studentToAdd = student;
+        classToAdd = tuitionClass;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasPerson(studentToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        if (!model.hasTuitionClass(classToAdd)) {
+            // Create the required class (add it to the address book)
+            model.addTuitionClass(classToAdd);
+        }
+
+        // Add student to the existing class
+        classToAdd.addStudents(studentToAdd);
+        // Add class to the student
+        studentToAdd.addClass(classToAdd);
+
+        model.addPerson(studentToAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                && studentToAdd.equals(((AddCommand) other).studentToAdd));
     }
 }

@@ -107,10 +107,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(studentToEdit.getAddress());
-        Rate updatedRate = editPersonDescriptor.getRate().orElse(studentToEdit.getRate());
+        // Rate updatedRate = editPersonDescriptor.getRate().orElse(studentToEdit.getRate());
+        // ClassTiming classTiming = editPersonDescriptor.getClassTiming().orElse(studentToEdit.getClassTiming());
+        // Location updatedLocation = editPersonDescriptor.getLocation().orElse(studentToEdit.getLocation());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
-        ClassTiming classTiming = editPersonDescriptor.getClassTiming().orElse(studentToEdit.getClassTiming());
-        Location updatedLocation = editPersonDescriptor.getLocation().orElse(studentToEdit.getLocation());
 
         // Nok
         Name nokName = editPersonDescriptor.getNokName().orElse(studentToEdit.getNok().getName());
@@ -120,7 +120,7 @@ public class EditCommand extends Command {
         Nok nok = new Nok(nokName, nokPhone, nokEmail, nokAddress);
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedRate, classTiming, updatedLocation, nok, updatedTags);
+                nok, updatedTags);
     }
 
     @Override

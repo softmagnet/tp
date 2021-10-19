@@ -17,9 +17,6 @@ import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tuitionclass.ClassTiming;
-import seedu.address.model.tuitionclass.Location;
-import seedu.address.model.tuitionclass.Rate;
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -32,9 +29,9 @@ class JsonAdaptedStudent {
     private final String phone;
     private final String email;
     private final String address;
-    private final String rate;
-    private final String classTiming;
-    private final String location;
+    //    private final String rate;
+    //    private final String classTiming;
+    //    private final String location;
     private final JsonAdaptedNok nok;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -51,9 +48,9 @@ class JsonAdaptedStudent {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.rate = rate;
-        this.classTiming = classTiming;
-        this.location = location;
+        //        this.rate = rate;
+        //        this.classTiming = classTiming;
+        //        this.location = location;
         this.nok = nok;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -68,9 +65,10 @@ class JsonAdaptedStudent {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        rate = source.getRate().value;
-        classTiming = source.getClassTiming().value;
-        location = source.getLocation().value;
+        // TODO: add back when these fields are coupled with the class
+        //        rate = source.getRate().value;
+        //        classTiming = source.getClassTiming().value;
+        //        location = source.getLocation().value;
         nok = source.getNok() != null ? new JsonAdaptedNok(source.getNok()) : null;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -120,38 +118,37 @@ class JsonAdaptedStudent {
         }
         final Address modelAddress = new Address(address);
 
-        if (rate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rate.class.getSimpleName()));
-        }
-        if (!Rate.isValidRate(rate)) {
-            throw new IllegalValueException(Rate.MESSAGE_CONSTRAINTS);
-        }
-        final Rate modelRate = new Rate(rate);
-
-        if (classTiming == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ClassTiming.class.getSimpleName()));
-        }
-        if (!ClassTiming.isValidClassTiming(classTiming)) {
-            throw new IllegalValueException(ClassTiming.MESSAGE_CONSTRAINTS);
-        }
-        final ClassTiming modelClassTiming = new ClassTiming(classTiming);
-
-        if (location == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Location.class.getSimpleName()));
-        }
-        if (!Location.isValidLocation(location)) {
-            throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
-        }
-        final Location modelLocation = new Location(location);
+        //        if (rate == null) {
+        //            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rate.class.getSimpleName()));
+        //        }
+        //        if (!Rate.isValidRate(rate)) {
+        //            throw new IllegalValueException(Rate.MESSAGE_CONSTRAINTS);
+        //        }
+        //        final Rate modelRate = new Rate(rate);
+        //
+        //        if (classTiming == null) {
+        //            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+        //                    ClassTiming.class.getSimpleName()));
+        //        }
+        //        if (!ClassTiming.isValidClassTiming(classTiming)) {
+        //            throw new IllegalValueException(ClassTiming.MESSAGE_CONSTRAINTS);
+        //        }
+        //        final ClassTiming modelClassTiming = new ClassTiming(classTiming);
+        //
+        //        if (location == null) {
+        //            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+        //                    Location.class.getSimpleName()));
+        //        }
+        //        if (!Location.isValidLocation(location)) {
+        //            throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
+        //        }
+        //        final Location modelLocation = new Location(location);
 
         final Nok modelNok = nok == null ? null : nok.toModelType();
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRate,
-                modelClassTiming, modelLocation, modelNok, modelTags);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelNok, modelTags);
     }
 
 }

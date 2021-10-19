@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Student;
 
 /**
  * Represents a tuition TuitionClass in the address book.
@@ -13,31 +14,37 @@ import seedu.address.model.person.Name;
  */
 public class TuitionClass {
 
-    private final ClassName className;
     private final ClassTiming classTiming;
+
+    private final ClassName className;
     private final Location location;
     private final Rate rate;
 
-    private final StudentList studentList;
+    private final UniqueStudentList uniqueStudentList;
 
     /**
      * Represents a tuition class for Students to join. A {@code TuitionClass} can have multiple {@code Student}s.
+     * A class is uniquely identified by its timing; a single timing can only have _one_ class.
+     *
      * A {@code Student} can have multiple {@code TuitionClass}es as well.
      *
      * @param className The name of the class to be created.
      * @param classTiming The timing of the class specified. This is the unique identifier (id) of the class.
      * @param location The location of the class.
      * @param rate How much it costs per hour to attend the class.
-     * @param studentNames A list of student names to add to the class upon creation.
      */
-    public TuitionClass(ClassName className, ClassTiming classTiming, Location location, Rate rate,
-                        Name... studentNames) {
+    public TuitionClass(ClassName className, ClassTiming classTiming, Location location, Rate rate) {
         requireAllNonNull(className, classTiming, location, rate);
         this.className = className;
         this.classTiming = classTiming;
         this.location = location;
         this.rate = rate;
-        studentList = new StudentList(studentNames);
+        // Students are added to the class in separate instances because a class without students make sense
+        uniqueStudentList = new UniqueStudentList();
+    }
+
+    public void addStudents(Student ...students) {
+        uniqueStudentList.add(students);
     }
 
     public ClassName getClassName() {
@@ -56,10 +63,17 @@ public class TuitionClass {
         return rate;
     }
 
-    public List<Name> getStudentList() {
-        return Collections.unmodifiableList(studentList);
-    }
+    // TODO: fix this
+    //    public List<Name> getStudentList() {
+    //        return Collections.unmodifiableList(uniqueStudentList);
+    //    }
 
+    /**
+     * Checks if the TuitionClass is at this timing.
+     */
+    public boolean isAtTiming(ClassTiming otherClassTiming) {
+        return classTiming.equals(otherClassTiming);
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -72,10 +86,9 @@ public class TuitionClass {
         }
 
         TuitionClass o = (TuitionClass) other;
+        /* A class is uniquely identified by its timing; a single timing can only have _one_ class */
         return o.className.equals(getClassName())
-                && o.rate.equals(getRate())
-                && o.classTiming.equals(getClassTiming())
-                && o.location.equals(getLocation());
+                && o.classTiming.equals(getClassTiming());
     }
 
 

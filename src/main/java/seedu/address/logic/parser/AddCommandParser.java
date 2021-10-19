@@ -23,9 +23,11 @@ import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tuitionclass.ClassName;
 import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.tuitionclass.Rate;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -40,7 +42,6 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        // Tokenize twice, once for everything before nok and everything after it
         String argsBeforeNok = args;
         String argsAfterNok = "";
 
@@ -51,10 +52,29 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Student student = parseStudent(argsBeforeNok);
+        TuitionClass tuitionClass = parseClass(argsBeforeNok);
         Nok nok = parseNok(argsAfterNok);
         student.setNok(nok);
 
-        return new AddCommand(student);
+        return new AddCommand(student, tuitionClass);
+    }
+
+    private TuitionClass parseClass(String args) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer
+                        .tokenize(args, PREFIX_NAME, PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+
+        Rate rate = ParserUtil.parseRate(argMultimap.getValue(PREFIX_RATE).get());
+        ClassTiming classTiming = ParserUtil.parseClassTiming(argMultimap.getValue(PREFIX_CLASSTIMING).get());
+        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
+        // TODO: Add a token for adding class name when doing the add command
+
+        return new TuitionClass(new ClassName("Placeholder"), classTiming, location, rate);
     }
 
     private Student parseStudent(String args) throws ParseException {
@@ -78,7 +98,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        return new Student(name, phone, email, address, rate, classTiming, location, null, tagList);
+        return new Student(name, phone, email, address, null, tagList);
     }
 
     private Nok parseNok(String args) throws ParseException {

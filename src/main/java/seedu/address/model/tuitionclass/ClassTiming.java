@@ -12,7 +12,6 @@ import java.time.format.DateTimeFormatter;
  */
 public class ClassTiming {
 
-
     public static final String MESSAGE_CONSTRAINTS =
             "Class Timing must be in the form DAY HH:MM-HH:MM, start time must be earlier than end time";
 
