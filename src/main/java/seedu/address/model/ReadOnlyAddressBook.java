@@ -17,5 +17,11 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Student> getPersonList();
 
+    /**
+     * Returns an unmodifiable view of the class list.
+     * This list will not contain any duplicate classes.
+     * @return
+     */
     ObservableMap<ClassTiming, TuitionClass> getTuitionClassList();
+
 }

@@ -20,7 +20,13 @@ public class TuitionClass {
     private final Location location;
     private final Rate rate;
 
-    private final UniqueStudentList uniqueStudentList;
+    /**
+     * ArrayList of {@code Name}
+     * Rationale for choosing Name as identifier:
+     * If the {@code Student} objects are stored, any changes to a student would cause a cascade of updates in classes
+     * the student is in.
+     */
+    private final StudentList studentList;
 
     /**
      * Represents a tuition class for Students to join. A {@code TuitionClass} can have multiple {@code Student}s.
@@ -33,18 +39,17 @@ public class TuitionClass {
      * @param location The location of the class.
      * @param rate How much it costs per hour to attend the class.
      */
-    public TuitionClass(ClassName className, ClassTiming classTiming, Location location, Rate rate) {
+    public TuitionClass(ClassName className, ClassTiming classTiming, Location location, Rate rate, Name... names) {
         requireAllNonNull(className, classTiming, location, rate);
         this.className = className;
         this.classTiming = classTiming;
         this.location = location;
         this.rate = rate;
-        // Students are added to the class in separate instances because a class without students make sense
-        uniqueStudentList = new UniqueStudentList();
+        this.studentList = new StudentList(names);
     }
 
-    public void addStudents(Student ...students) {
-        uniqueStudentList.add(students);
+    public void addStudents(Name... names) {
+        studentList.addAll(names);
     }
 
     public ClassName getClassName() {
@@ -75,6 +80,7 @@ public class TuitionClass {
         return classTiming.equals(otherClassTiming);
     }
 
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -96,7 +102,7 @@ public class TuitionClass {
      * Returns true if the class timing of the class to be checked overlaps with this class.
      */
     public boolean isOverlapping(TuitionClass toCheck) {
-        //TODO implement conflict checking
-        return true;
+        return !(this.getClassTiming().isEarlier(toCheck.getClassTiming())
+                || toCheck.getClassTiming().isEarlier(this.getClassTiming()));
     }
 }
