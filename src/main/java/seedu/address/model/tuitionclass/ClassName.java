@@ -38,6 +38,11 @@ public class ClassName {
     }
 
     @Override
+    public String toString() {
+        return className;
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ClassName // instanceof handles nulls

@@ -37,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private TuitionClassListPanel tuitionClassListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -54,10 +55,16 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
+    private StackPane tuitionClassListPanelPlaceholder;
+
+    @FXML
     private TabPane tabPane;
 
     @FXML
     private Tab studentsTab;
+
+    @FXML
+    private Tab tuitionClassTab;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -122,6 +129,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        tuitionClassListPanel = new TuitionClassListPanel(logic.getFilteredTuitionClassList());
+        tuitionClassListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -133,10 +143,10 @@ public class MainWindow extends UiPart<Stage> {
 
         studentsTab = new Tab("Students", personListPanelPlaceholder);
         Tab timetableTab = new Tab("Timetable", new Label("Timetable"));
-        Tab classTab = new Tab("Class", new Label("Classes"));
+        tuitionClassTab = new Tab("Class", tuitionClassListPanelPlaceholder);
 
         tabPane.getTabs().add(timetableTab);
-        tabPane.getTabs().add(classTab);
+        //tabPane.getTabs().add(classTab);
 
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
