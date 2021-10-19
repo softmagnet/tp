@@ -30,6 +30,7 @@ public class UniqueClassList implements Iterable<TuitionClass> {
         if (!isValidTiming(toAdd)) {
             throw new InvalidClassException();
         }
+        internalMap.put(toAdd.getClassTiming(), toAdd);
     }
 
     /**
