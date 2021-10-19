@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a Student's class timing in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidClassTiming(String)}
  */
-public class ClassTiming {
+public class ClassTiming implements Comparable<ClassTiming> {
 
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -24,6 +24,12 @@ public class ClassTiming {
 
     public final String value;
 
+    private final LocalTime startTime;
+
+    private final LocalTime endTime;
+
+    private final String day;
+
     /**
      * Constructs a {@code ClassTiming}.
      *
@@ -33,6 +39,9 @@ public class ClassTiming {
         requireNonNull(classTiming);
         checkArgument(isValidClassTiming(classTiming), MESSAGE_CONSTRAINTS);
         value = formatClassTiming(classTiming);
+        startTime = parseStartTime(value);
+        endTime = parseEndTime(value);
+        day = parseDay(value);
     }
 
     /**
@@ -51,10 +60,10 @@ public class ClassTiming {
      * Converts the day into the int representation of the day.
      *
      * @param day String value of the day in class timing.
-     * @return int representatin of the days of the week.
+     * @return int representation of the days of the week.
      */
-    public int replaceDayWithInt(String day) {
-        switch (day) {
+    public int getDayToInt() {
+        switch (day.toUpperCase()) {
         case "MON":
             return 1;
         case "TUE":
@@ -82,57 +91,59 @@ public class ClassTiming {
      * start time, otherwise false.
      */
     public boolean isEarlier(ClassTiming otherClassTiming) {
-        String thisDay = getDay(this.value);
-        int thisDayInt = replaceDayWithInt(thisDay);
-        LocalTime thisStartTime = getStartTime(this.value);
-        LocalTime thisEndTime = getEndTime(this.value);
-
-        String otherDay = getDay(otherClassTiming.value);
-        int otherDayInt = replaceDayWithInt(otherDay);
-        LocalTime otherStartTime = getStartTime(otherClassTiming.value);
-
-        if (thisDayInt < otherDayInt || otherStartTime.isAfter(thisEndTime)
-                || thisStartTime.isBefore(otherStartTime)) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.compareTo(otherClassTiming) == -1;
     }
 
-    public static String getDay(String ct) {
+    public boolean isAfter(LocalTime time) {
+        return this.getStartTime().isAfter(time);
+    }
+
+    public String parseDay(String ct) {
         String[] classTimingPart = ct.split(" ");
-        String day = classTimingPart[0];
-        return day;
+        return classTimingPart[0];
     }
 
-    public static String[] getTiming(String ct) {
+    public static String[] splitTiming(String ct) {
         String[] ctSplit = ct.split(" ");
         String startEndTime = ctSplit[1];
-        String[] timePart = startEndTime.split("-");
-        return timePart;
+        return startEndTime.split("-");
     }
 
-    public static LocalTime getStartTime(String ct) {
-        String[] timePart = getTiming(ct);
+    public static LocalTime parseStartTime(String ct) {
+        String[] timePart = splitTiming(ct);
         String startTime = timePart[0];
         return LocalTime.parse(startTime, DateTimeFormatter.ofPattern("HH:mm"));
     }
 
-    public static LocalTime getEndTime(String ct) {
-        String[] timePart = getTiming(ct);
+    public static LocalTime parseEndTime(String ct) {
+        String[] timePart = splitTiming(ct);
         String endTime = timePart[1];
         return LocalTime.parse(endTime, DateTimeFormatter.ofPattern("HH:mm"));
     }
 
+    public LocalTime getStartTime() {
+        return this.startTime;
+    }
 
+    public LocalTime getEndTime() {
+        return this.endTime;
+    }
+
+    public String getDay() {
+        return this.day;
+    }
+
+    public String getClassTiming() {
+        return this.value.split(" ")[1];
+    }
 
     /**
      * Returns true if a given string is a valid class timing.
      */
     public static boolean isValidClassTiming(String test) {
         if (test.matches(VALIDATION_REGEX)) {
-            LocalTime startTime = getStartTime(test);
-            LocalTime endTime = getEndTime(test);
+            LocalTime startTime = parseStartTime(test);
+            LocalTime endTime = parseEndTime(test);
             return startTime.isBefore(endTime);
         } else {
             return false;
@@ -156,4 +167,23 @@ public class ClassTiming {
         return value.hashCode();
     }
 
+
+    @Override
+    public int compareTo(ClassTiming o) {
+        int thisDayInt = getDayToInt();
+
+        String otherDay = o.getDay();
+        int otherDayInt = o.getDayToInt();
+        LocalTime otherStartTime = o.getStartTime();
+
+        if (thisDayInt < otherDayInt) {
+            return -1;
+        } else if (otherDayInt < thisDayInt) {
+            return 1;
+        } else if (this.getStartTime().equals(otherStartTime)){
+            return 0;
+        } else {
+            return otherStartTime.isAfter(this.getEndTime()) || this.getStartTime().isBefore(otherStartTime) ? -1 : 1;
+        }
+    }
 }

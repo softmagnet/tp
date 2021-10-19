@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox id="slotPane" fx:id="slotPane" styleClass="timetable-grid-cell" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox alignment="TOP_LEFT" prefHeight="50" GridPane.columnIndex="0">
+<!--        <HBox alignment="CENTER_LEFT" spacing="5">-->
+<!--            <Label fx:id="id" styleClass="calendar_small_label" />-->
+<!--        </HBox>-->
+        <Label fx:id="time" styleClass="timetable_label" text="\$time" />
+        <Label fx:id="className" styleClass="timetable_label" text="\$className" />
+    </VBox>
+</HBox>

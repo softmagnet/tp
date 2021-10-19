@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="day" fx:id="slotPane" alignment="BOTTOM_RIGHT" styleClass="timetable-grid-day" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox alignment="CENTER" >
+        <Label fx:id="day" styleClass="timetableDay" text="\$day" />
+    </VBox>
+</HBox>
