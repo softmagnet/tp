@@ -5,9 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
-import seedu.address.model.tuitionclass.ClassName;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
@@ -61,6 +59,11 @@ public interface Model {
     boolean hasPerson(Student student);
 
     /**
+     * Returns true if a class with the same identity as {@code TuitionClass} exists in the address book.
+     */
+    boolean hasTuitionClass(TuitionClass tuitionClass);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -71,6 +74,12 @@ public interface Model {
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Student student);
+
+    /**
+     * Adds the given tuition class.
+     * {@code TuitionClass} must not already exist in the address book.
+     */
+    void addTuitionClass(TuitionClass tuitionClass);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

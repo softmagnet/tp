@@ -6,14 +6,14 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
-import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.person.Email;
-import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tuitionclass.Rate;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tuitionclass.ClassTiming;
+import seedu.address.model.tuitionclass.Location;
+import seedu.address.model.tuitionclass.Rate;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.

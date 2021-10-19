@@ -15,4 +15,10 @@ public class StudentList extends ArrayList<Name> {
         Arrays.stream(names).forEach(name -> this.add(name));
     }
 
+    public void addAll(Name[] names) {
+        for (int i = 0; i < names.length; i++) {
+            this.add(names[i]);
+        }
+    }
+
 }

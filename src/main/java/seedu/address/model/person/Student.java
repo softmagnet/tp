@@ -1,7 +1,6 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -12,6 +11,8 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.tuitionclass.Rate;
+import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.model.tuitionclass.UniqueClassList;
 
 /**
  * Represents a Student in the address book.
@@ -21,26 +22,25 @@ public class Student extends Person {
 
     /* Each Student has 0..1 Nok */
     private Nok nok;
-    private final Rate rate;
-    private final ClassTiming classTiming;
-    private final Location location;
+    private final UniqueClassList classList;
 
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Students have a tag as well as all the specifiers.
+     * When a student is created, we create a TuitionClass with that ClassTiming and Location.
      */
-
     public Student(
-            Name name, Phone phone, Email email, Address address, Rate rate, ClassTiming classTiming,
-            Location location, Nok nok, Set<Tag> tags) {
+            Name name, Phone phone, Email email, Address address, Nok nok, Set<Tag> tags) {
         super(name, phone, email, address);
-        requireAllNonNull(rate, classTiming, location);
-        this.rate = rate;
-        this.classTiming = classTiming;
-        this.location = location;
+
+        classList = new UniqueClassList();
         this.nok = nok;
         this.tags.addAll(tags);
+    }
+
+    public void addClass(TuitionClass tuitionClass) {
+        classList.add(tuitionClass);
     }
 
     public void setNok(Nok nok) {
@@ -52,11 +52,21 @@ public class Student extends Person {
     }
 
     public ClassTiming getClassTiming() {
-        return classTiming;
+        // TODO: Placeholder
+        return null;
     }
 
     public Location getLocation() {
-        return location;
+        // TODO: Placeholder
+        return null;
+    }
+
+    /**
+     * Returns tuition {@code Rate} of this student
+     */
+    public Rate getRate() {
+        // Placeholder
+        return null;
     }
 
     /**
@@ -65,13 +75,6 @@ public class Student extends Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
-    }
-
-    /**
-     * Returns tuition {@code Rate} of this student
-     */
-    public Rate getRate() {
-        return rate;
     }
 
     /**
@@ -100,9 +103,6 @@ public class Student extends Person {
 
         Student o = (Student) other;
         return super.equals(other)
-                && o.rate.equals(getRate())
-                && o.classTiming.equals(getClassTiming())
-                && o.location.equals(getLocation())
                 && o.getTags().equals(getTags());
     }
 

@@ -79,9 +79,10 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(MOBILE_FIELD + student.getPhone().value);
         address.setText(ADDRESS_FIELD + student.getAddress().value);
         email.setText(EMAIL_FIELD + student.getEmail().value);
-        rate.setText(RATE_FIELD + DOLLAR_SIGN + student.getRate().value + PER_HOUR);
-        classTiming.setText(CLASS_TIMING_FIELD + student.getClassTiming().value);
-        classLocation.setText(LOCATION_FIELD + student.getLocation().value);
+        // TODO: Class timing and location is commented out for now because they are no longer coupled with the student.
+        //        rate.setText(RATE_FIELD + DOLLAR_SIGN + student.getRate().value + PER_HOUR);
+        //        classTiming.setText(CLASS_TIMING_FIELD + student.getClassTiming().value);
+        //        classLocation.setText(LOCATION_FIELD + student.getLocation().value);
 
         // Nok
         if (student.getNok() != null) {
