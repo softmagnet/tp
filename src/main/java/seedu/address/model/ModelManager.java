@@ -155,6 +155,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setClass(TuitionClass target, TuitionClass editedClass) {
+        requireAllNonNull(target, editedClass);
+        addressBook.setClass(target, editedClass);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {

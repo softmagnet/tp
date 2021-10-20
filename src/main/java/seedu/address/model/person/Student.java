@@ -53,6 +53,10 @@ public class Student extends Person {
         classList.add(tuitionClass);
     }
 
+    public void deleteClass(TuitionClass tuitionClass) {
+        classList.delete(tuitionClass);
+    }
+
     public  ArrayList<TuitionClass> getClassList() {
         return classList;
     }

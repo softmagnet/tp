@@ -155,4 +155,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
 
+    public void setClass(TuitionClass target, TuitionClass editedClass) {
+        requireNonNull(editedClass);
+        classes.setClass(target, editedClass);
+    }
 }

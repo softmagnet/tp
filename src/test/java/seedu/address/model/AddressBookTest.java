@@ -106,6 +106,8 @@ public class AddressBookTest {
         public ObservableList<TuitionClass> getTuitionClassList() {
             return null;
         }
+
+
     }
 
 }
