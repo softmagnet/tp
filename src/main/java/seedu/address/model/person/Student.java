@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -22,7 +23,7 @@ public class Student extends Person {
 
     /* Each Student has 0..1 Nok */
     private Nok nok;
-    private final UniqueClassList classList;
+    private final ArrayList<TuitionClass> classList = new ArrayList<>();
 
     private final Set<Tag> tags = new HashSet<>();
 
@@ -31,16 +32,29 @@ public class Student extends Person {
      * When a student is created, we create a TuitionClass with that ClassTiming and Location.
      */
     public Student(
+            Name name, Phone phone, Email email, Address address, ArrayList<TuitionClass> tuitionClass, Nok nok,
+            Set<Tag> tags) {
+        super(name, phone, email, address);
+
+        this.classList.addAll(tuitionClass);
+        this.nok = nok;
+        this.tags.addAll(tags);
+    }
+
+    public Student(
             Name name, Phone phone, Email email, Address address, Nok nok, Set<Tag> tags) {
         super(name, phone, email, address);
 
-        classList = new UniqueClassList();
         this.nok = nok;
         this.tags.addAll(tags);
     }
 
     public void addClass(TuitionClass tuitionClass) {
         classList.add(tuitionClass);
+    }
+
+    public  ArrayList<TuitionClass> getClassList() {
+        return classList;
     }
 
     public void setNok(Nok nok) {

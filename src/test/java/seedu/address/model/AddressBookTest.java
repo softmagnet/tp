@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableMap;
 import org.junit.jupiter.api.Test;
@@ -102,7 +103,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableMap<ClassTiming, TuitionClass> getClassList() {
+        public ObservableList<TuitionClass> getTuitionClassList() {
             return null;
         }
     }

@@ -34,15 +34,15 @@ public class JsonAdaptedTuitionClass {
     public JsonAdaptedTuitionClass(@JsonProperty("classTiming") String classTiming,
                               @JsonProperty("className") String className,
                               @JsonProperty("rate") String rate,
-                              @JsonProperty("location") String location,
-                              @JsonProperty("students") List<Name> students) {
+                              @JsonProperty("location") String location/*,
+                              @JsonProperty("students") List<Name> students*/) {
         this.classTiming = classTiming;
         this.className = className;
         this.location = location;
         this.rate = rate;
-        if (students != null) {
-            this.students.addAll(students);
-        }
+//        if (students != null) {
+//            this.students.addAll(students);
+//        }
     }
 
     /**

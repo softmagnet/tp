@@ -17,6 +17,7 @@ import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -32,6 +33,7 @@ class JsonAdaptedStudent {
     //    private final String rate;
     //    private final String classTiming;
     //    private final String location;
+    private final List<JsonAdaptedTuitionClass> tuitionClasses = new ArrayList<>();
     private final JsonAdaptedNok nok;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -41,8 +43,8 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
-                              @JsonProperty("rate") String rate, @JsonProperty("classTiming") String classTiming,
-                              @JsonProperty("location") String location, @JsonProperty("nok") JsonAdaptedNok nok,
+                              @JsonProperty("tuitionClasses") List<JsonAdaptedTuitionClass> tuitionClasses,
+                              @JsonProperty("nok") JsonAdaptedNok nok,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -51,6 +53,9 @@ class JsonAdaptedStudent {
         //        this.rate = rate;
         //        this.classTiming = classTiming;
         //        this.location = location;
+        if (tuitionClasses != null) {
+            this.tuitionClasses.addAll(tuitionClasses);
+        }
         this.nok = nok;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -69,6 +74,9 @@ class JsonAdaptedStudent {
         //        rate = source.getRate().value;
         //        classTiming = source.getClassTiming().value;
         //        location = source.getLocation().value;
+        tuitionClasses.addAll(source.getClassList().stream()
+                .map(JsonAdaptedTuitionClass::new)
+                .collect(Collectors.toList()));
         nok = source.getNok() != null ? new JsonAdaptedNok(source.getNok()) : null;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -118,6 +126,11 @@ class JsonAdaptedStudent {
         }
         final Address modelAddress = new Address(address);
 
+        final List<TuitionClass> personTuitionClasses = new ArrayList<>();
+        for (JsonAdaptedTuitionClass tuitionClass : tuitionClasses) {
+            personTuitionClasses.add(tuitionClass.toModelType());
+        }
+
         //        if (rate == null) {
         //            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rate.class.getSimpleName()));
         //        }
@@ -148,7 +161,9 @@ class JsonAdaptedStudent {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelNok, modelTags);
+        final ArrayList<TuitionClass> modelTuitionClasses = new ArrayList<>(personTuitionClasses);
+
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTuitionClasses, modelNok, modelTags);
     }
 
 }

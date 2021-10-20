@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,6 +32,12 @@ public class UniqueClassList implements Iterable<TuitionClass> {
             throw new InvalidClassException();
         }
         internalList.add(toAdd);
+    }
+
+    public void setClasses(List<TuitionClass> classes) {
+        requireNonNull(classes);
+        //todo check that classes are unique
+        internalList.setAll(classes);
     }
 
     /**
