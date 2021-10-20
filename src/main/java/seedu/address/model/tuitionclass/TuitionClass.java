@@ -49,6 +49,15 @@ public class TuitionClass {
         this.uniqueNameList = uniqueNameList;
     }
 
+    public TuitionClass(ClassName className, ClassTiming classTiming, Location location, Rate rate) {
+        requireAllNonNull(className, classTiming, location, rate);
+        this.className = className;
+        this.classTiming = classTiming;
+        this.location = location;
+        this.rate = rate;
+        this.uniqueNameList = new UniqueNameList();
+    }
+
     public ClassName getClassName() {
         return className;
     }
@@ -69,10 +78,14 @@ public class TuitionClass {
         return uniqueNameList;
     }
 
-    // TODO: fix this
-    //    public List<Name> getStudentList() {
-    //        return Collections.unmodifiableList(uniqueStudentList);
-    //    }
+//    todo fix this
+//    public List<Name> getStudentList() {
+//            return Collections.unmodifiableList(uniqueStudentList);
+//    }
+
+    public void addStudent(Name name) {
+        uniqueNameList.add(name);
+    }
 
     /**
      * Checks if the TuitionClass is at this timing.

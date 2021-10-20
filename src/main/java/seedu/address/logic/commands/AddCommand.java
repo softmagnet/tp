@@ -84,7 +84,7 @@ public class AddCommand extends Command {
         }
 
         // Add student to the existing class
-        classToAdd.addStudents(studentToAdd.getName());
+        classToAdd.addStudent(studentToAdd.getName());
         // Add class to the student
         studentToAdd.addClass(classToAdd);
 

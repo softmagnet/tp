@@ -96,6 +96,6 @@ public class JsonAdaptedTuitionClass {
         final Rate modelRate = new Rate(rate);
 
 
-        return new TuitionClass(modelName, modelTiming, modelLocation, modelRate, students.toArray(new Name[] {}));
+        return new TuitionClass(modelName, modelTiming, modelLocation, modelRate/*, students.toArray(new Name[] {})*/);
     }
 }

@@ -13,7 +13,6 @@ import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.tuitionclass.Rate;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.model.tuitionclass.UniqueClassList;
 
 /**
  * Represents a Student in the address book.
@@ -54,7 +53,7 @@ public class Student extends Person {
     }
 
     public void deleteClass(TuitionClass tuitionClass) {
-        classList.delete(tuitionClass);
+        classList.remove(tuitionClass);
     }
 
     public  ArrayList<TuitionClass> getClassList() {
