@@ -13,6 +13,7 @@ import jdk.dynalink.linker.support.TypeUtilities;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tuitionclass.exceptions.InvalidClassException;
+import seedu.address.model.tuitionclass.exceptions.TuitionClassNotFoundException;
 
 /**
  * A list of classes that makes sure there is no overlap between class timings.
@@ -34,6 +35,13 @@ public class UniqueClassList implements Iterable<TuitionClass> {
             throw new InvalidClassException();
         }
         internalList.add(toAdd);
+    }
+
+    public void delete(TuitionClass toDelete) {
+        requireNonNull(toDelete);
+        if(!internalList.remove(toDelete)) {
+            throw new TuitionClassNotFoundException();
+        }
     }
 
     /**

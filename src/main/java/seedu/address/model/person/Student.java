@@ -43,6 +43,10 @@ public class Student extends Person {
         classList.add(tuitionClass);
     }
 
+    public void deleteClass(TuitionClass tuitionClass) {
+        classList.delete(tuitionClass);
+    }
+
     public void setNok(Nok nok) {
         this.nok = nok;
     }

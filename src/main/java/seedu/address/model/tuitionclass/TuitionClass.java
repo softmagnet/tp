@@ -3,8 +3,10 @@ package seedu.address.model.tuitionclass;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.model.person.Name;
+import seedu.address.model.tag.Tag;
 
 import java.util.Arrays;
+import java.util.Set;
 
 /**
  * Represents a tuition TuitionClass in the address book.
@@ -112,5 +114,18 @@ public class TuitionClass {
 
         return otherClass != null
                 && otherClass.getClassTiming().equals(getClassTiming());
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Class Timing: ")
+                .append(getClassTiming());
+        if (!getClassTiming().equals(getClassName())) {
+            builder.append("Class Name: ")
+                    .append(getClassName());
+        }
+
+        return builder.toString();
     }
 }
