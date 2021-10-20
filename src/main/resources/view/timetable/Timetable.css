@@ -1,5 +1,5 @@
 .timetableDay {
-    -fx-font-family: "Ink Free";
+    -fx-font-family: "Open Sans Semibold";
     -fx-font-size: 16px;
     -fx-text-fill: white;
     -fx-padding: 25;
@@ -7,7 +7,7 @@
 }
 
 .timetable-grid-day {
-    -fx-font-family: "Segoe UI";
+    -fx-font-family: "Open Sans Semibold";
     -fx-background-color: #383838;
     -fx-border-color: #3e7b91;
 }
