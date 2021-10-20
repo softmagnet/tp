@@ -2,11 +2,9 @@ package seedu.address.model.tuitionclass;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.List;
-
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Student;
+
+import java.util.Arrays;
 
 /**
  * Represents a tuition TuitionClass in the address book.
@@ -26,7 +24,7 @@ public class TuitionClass {
      * If the {@code Student} objects are stored, any changes to a student would cause a cascade of updates in classes
      * the student is in.
      */
-    private final StudentList studentList;
+    private final UniqueNameList uniqueNameList;
 
     /**
      * Represents a tuition class for Students to join. A {@code TuitionClass} can have multiple {@code Student}s.
@@ -39,13 +37,14 @@ public class TuitionClass {
      * @param location The location of the class.
      * @param rate How much it costs per hour to attend the class.
      */
-    public TuitionClass(ClassName className, ClassTiming classTiming, Location location, Rate rate, Name... names) {
+    public TuitionClass(ClassName className, ClassTiming classTiming, Location location, Rate rate,
+                        UniqueNameList uniqueNameList) {
         requireAllNonNull(className, classTiming, location, rate);
         this.className = className;
         this.classTiming = classTiming;
         this.location = location;
         this.rate = rate;
-        this.studentList = new StudentList(names);
+        this.uniqueNameList = uniqueNameList;
     }
 
     public ClassName getClassName() {
@@ -64,8 +63,8 @@ public class TuitionClass {
         return rate;
     }
 
-    public StudentList getStudentList() {
-        return studentList;
+    public UniqueNameList getStudentList() {
+        return uniqueNameList;
     }
 
     // TODO: fix this
@@ -104,5 +103,14 @@ public class TuitionClass {
     public boolean isOverlapping(TuitionClass toCheck) {
         return !(this.getClassTiming().isEarlier(toCheck.getClassTiming())
                 || toCheck.getClassTiming().isEarlier(this.getClassTiming()));
+    }
+
+    public boolean isSameClass(TuitionClass otherClass) {
+        if (otherClass == this) {
+            return true;
+        }
+
+        return otherClass != null
+                && otherClass.getClassTiming().equals(getClassTiming());
     }
 }

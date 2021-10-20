@@ -102,9 +102,11 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableMap<ClassTiming, TuitionClass> getClassList() {
+        public ObservableList<TuitionClass> getTuitionClassList() {
             return null;
         }
+
+
     }
 
 }

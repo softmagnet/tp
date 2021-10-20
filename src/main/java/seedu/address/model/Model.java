@@ -98,4 +98,12 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Student> predicate);
 
     ObservableList<TuitionClass> getFilteredTuitionClassList();
+
+    /**
+     * Replaces the given class {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The Class identity of {@code editedClass} must not be the same as another existing class in the address book.
+     */
+    void setClass(TuitionClass target, TuitionClass editedClass);
+
 }

@@ -1,6 +1,7 @@
 package seedu.address.model.tuitionclass;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -9,6 +10,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import jdk.dynalink.linker.support.TypeUtilities;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tuitionclass.exceptions.InvalidClassException;
 
 /**
@@ -60,9 +63,7 @@ public class UniqueClassList implements Iterable<TuitionClass> {
      * Checks if there is an identical class in the internalMap.
      */
     public boolean contains(TuitionClass tuitionClass) {
-        return internalList.stream().anyMatch(c -> {
-            return tuitionClass.equals(c);
-        });
+        return internalList.stream().anyMatch(tuitionClass::isSameClass);
     }
 
     /**
@@ -102,6 +103,21 @@ public class UniqueClassList implements Iterable<TuitionClass> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    public void setClass(TuitionClass target, TuitionClass editedClass) {
+        requireAllNonNull(target, editedClass);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+
+        if (!target.isSameClass(editedClass) && contains(editedClass)) {
+            throw new DuplicatePersonException();
+        }
+
+        internalList.set(index, editedClass);
     }
 
     //TODO: need a personsAreUnique method probably

@@ -17,7 +17,7 @@ import seedu.address.model.tuitionclass.ClassName;
 import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.tuitionclass.Rate;
-import seedu.address.model.tuitionclass.StudentList;
+import seedu.address.model.tuitionclass.UniqueNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class AddToClassCommand extends Command {
             + PREFIX_CLASS_NAME + "401"
             + PREFIX_NAME + "John Doe";
 
-    public static final String MESSAGE_ADD_SUCCESS = "New Student added: %1$s";
+    public static final String MESSAGE_ADD_SUCCESS = "New Class added: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student is already in this class";
 
     private final Index toEditClassIndex;
@@ -66,24 +66,33 @@ public class AddToClassCommand extends Command {
         TuitionClass classToAddTo = lastShownClassList.get(toEditClassIndex.getZeroBased());
 
         //get updated student list
-        StudentList currentStudentNames = classToAddTo.getStudentList();
-        StudentList updatedStudentList = new StudentList();
-        updatedStudentList.addAll(currentStudentNames);
-        updatedStudentList.addAll(namesToAdd);
+        UniqueNameList currentStudentNameList = classToAddTo.getStudentList();
+        UniqueNameList updatedStudentNameList = new UniqueNameList();
+        updatedStudentNameList.addAll(currentStudentNameList);
+        updatedStudentNameList.addAll(namesToAdd);
 
         //create edit class descriptor
         EditClassDescriptor editClassDescriptor = new EditClassDescriptor();
-        editClassDescriptor.setStudentList(updatedStudentList);
+        editClassDescriptor.setStudentList(updatedStudentNameList);
 
         //swap out old tuition class with new tuition class
         TuitionClass editedClass = createEditedClass(classToAddTo, editClassDescriptor);
-//        model.setClass(classToAddTo, editedClass);
+        model.setClass(classToAddTo, editedClass);
 
-        return null;
+        return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, editedClass));
     }
 
     private TuitionClass createEditedClass(TuitionClass classToAddTo, EditClassDescriptor editClassDescriptor) {
-        return null;
+        assert classToAddTo != null;
+
+        ClassName className = editClassDescriptor.getClassName().orElse(classToAddTo.getClassName());
+        ClassTiming classTiming = editClassDescriptor.getClassTiming().orElse(classToAddTo.getClassTiming());
+        Location location = editClassDescriptor.getLocation().orElse(classToAddTo.getLocation());
+        Rate rate = editClassDescriptor.getRate().orElse(classToAddTo.getRate());
+        UniqueNameList uniqueNameList = editClassDescriptor.getStudentList().orElse(classToAddTo.getStudentList());
+
+        return new TuitionClass(className, classTiming, location, rate, uniqueNameList);
+
     }
 
     private ArrayList<Name> createNameList(List<Index> studentIndices, List<Student> lastShownStudentList) {
@@ -114,7 +123,7 @@ public class AddToClassCommand extends Command {
         private ClassTiming classTiming;
         private Location location;
         private Rate rate;
-        private StudentList studentList;
+        private UniqueNameList uniqueNameList;
 
         public EditClassDescriptor() {}
 
@@ -150,12 +159,12 @@ public class AddToClassCommand extends Command {
             return Optional.ofNullable(rate);
         }
 
-        public void setStudentList(StudentList studentList) {
-            this.studentList = studentList;
+        public void setStudentList(UniqueNameList uniqueNameList) {
+            this.uniqueNameList = uniqueNameList;
         }
 
-        public Optional<StudentList> getStudentList() {
-            return Optional.ofNullable(studentList);
+        public Optional<UniqueNameList> getStudentList() {
+            return Optional.ofNullable(uniqueNameList);
         }
     }
 }
