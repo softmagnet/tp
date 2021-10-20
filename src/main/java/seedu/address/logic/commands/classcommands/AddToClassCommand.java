@@ -37,7 +37,6 @@ public class AddToClassCommand extends Command {
             + PREFIX_NAME + "John Doe";
 
     public static final String MESSAGE_ADD_SUCCESS = "New Class added: %1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student is already in this class";
 
     private final Index toEditClassIndex;
     private final List<Index> studentIndices;
