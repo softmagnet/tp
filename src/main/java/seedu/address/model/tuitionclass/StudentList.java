@@ -4,6 +4,7 @@ import seedu.address.model.person.Name;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Represents the list of students that a tuition {@code TuitionClass} has.
@@ -15,10 +16,9 @@ public class StudentList extends ArrayList<Name> {
         Arrays.stream(names).forEach(name -> this.add(name));
     }
 
-    public void addAll(Name[] names) {
-        for (int i = 0; i < names.length; i++) {
-            this.add(names[i]);
+    public void addAll(List<Name> names) {
+        for (int i = 0; i < names.size(); i++) {
+            this.add(names.get(i));
         }
     }
-
 }

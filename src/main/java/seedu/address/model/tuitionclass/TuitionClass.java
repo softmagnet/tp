@@ -48,10 +48,6 @@ public class TuitionClass {
         this.studentList = new StudentList(names);
     }
 
-    public void addStudents(Name... names) {
-        studentList.addAll(names);
-    }
-
     public ClassName getClassName() {
         return className;
     }
@@ -66,6 +62,10 @@ public class TuitionClass {
 
     public Rate getRate() {
         return rate;
+    }
+
+    public StudentList getStudentList() {
+        return studentList;
     }
 
     // TODO: fix this
