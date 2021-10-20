@@ -1,6 +1,6 @@
 {
   "persons" : [ {
-    "name" : "Jo ee",
+    "name" : "test Doe",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
@@ -15,7 +15,7 @@
     },
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "name" : "test Doe",
+    "name" : "Jo ee",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
@@ -120,6 +120,21 @@
     },
     "tagged" : [ "neighbours" ]
   }, {
+    "name" : "wed Doe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "rate" : "70",
+    "classTiming" : "WED 11:30-12:00",
+    "location" : "311, Clementi Ave 2, #02-25",
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
     "name" : "John wick",
     "phone" : "98765432",
     "email" : "johnd@example.com",
@@ -155,7 +170,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "rate" : "70",
-    "classTiming" : "FRI 08:00-12:00",
+    "classTiming" : "FRI 10:30-12:30",
     "location" : "311, Clementi Ave 2, #02-25",
     "nok" : {
       "name" : "Jack Doe",
@@ -171,6 +186,21 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "rate" : "70",
     "classTiming" : "SAT 11:30-13:30",
+    "location" : "311, Clementi Ave 2, #02-25",
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "sun Doe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "rate" : "70",
+    "classTiming" : "SUN 00:00-23:59",
     "location" : "311, Clementi Ave 2, #02-25",
     "nok" : {
       "name" : "Jack Doe",

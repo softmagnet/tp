@@ -7,6 +7,7 @@ import seedu.address.model.person.ClassTiming;
 import java.time.temporal.ChronoUnit;
 
 public class TimetableTuitionClassSlot extends TimetableRegion {
+
     private static final String FXML = "timetable/TimetableTuitionClassSlot.fxml";
 
     @FXML

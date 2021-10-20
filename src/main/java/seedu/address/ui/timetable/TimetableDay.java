@@ -18,6 +18,6 @@ public class TimetableDay extends TimetableRegion {
     }
 
     public static int getWidth() {
-        return WIDTH * SCALE_FACTOR;
+        return WIDTH;
     }
 }
