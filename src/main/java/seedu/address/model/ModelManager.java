@@ -42,7 +42,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.addressBook.getPersonList());
         filteredTuitionClass =
-                new FilteredList<>(FXCollections.observableArrayList(this.addressBook.getTuitionClassList().values()));
+                new FilteredList<>(this.addressBook.getTuitionClassList());
     }
 
     public ModelManager() {

@@ -5,12 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tuitionclass.ClassName;
-import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.model.tuitionclass.UniqueClassList;
 
@@ -131,8 +129,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableMap<ClassTiming, TuitionClass> getTuitionClassList() {
-        return classes.asUnmodifiableObservableMap();
+    public ObservableList<TuitionClass> getTuitionClassList() {
+        return classes.asUnmodifiableObservableList();
     }
 
     @Override

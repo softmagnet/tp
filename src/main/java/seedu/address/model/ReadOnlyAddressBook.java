@@ -1,9 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 import seedu.address.model.person.Student;
-import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
@@ -22,6 +20,6 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate classes.
      * @return
      */
-    ObservableMap<ClassTiming, TuitionClass> getTuitionClassList();
+    ObservableList<TuitionClass> getTuitionClassList();
 
 }

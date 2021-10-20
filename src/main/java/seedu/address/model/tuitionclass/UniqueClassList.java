@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import jdk.dynalink.linker.support.TypeUtilities;
 import seedu.address.model.tuitionclass.exceptions.InvalidClassException;
@@ -15,10 +16,9 @@ import seedu.address.model.tuitionclass.exceptions.InvalidClassException;
  */
 public class UniqueClassList implements Iterable<TuitionClass> {
 
-    private final ObservableMap<ClassTiming, TuitionClass> internalMap = FXCollections.observableMap(new HashMap<>());
-
-    private final ObservableMap<ClassTiming, TuitionClass> internalUnmodifiableMap =
-            FXCollections.unmodifiableObservableMap(internalMap);
+    private final ObservableList<TuitionClass> internalList = FXCollections.observableArrayList();
+    private final ObservableList<TuitionClass> internalUnmodifiableList
+            = FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Adds a class to the list. TuitionClass must not overlap in timing with existing classes.
@@ -30,7 +30,7 @@ public class UniqueClassList implements Iterable<TuitionClass> {
         if (!isValidTiming(toAdd)) {
             throw new InvalidClassException();
         }
-        internalMap.put(toAdd.getClassTiming(), toAdd);
+        internalList.add(toAdd);
     }
 
     /**
@@ -38,7 +38,7 @@ public class UniqueClassList implements Iterable<TuitionClass> {
      */
     public boolean isValidTiming(TuitionClass otherClass) {
         requireNonNull(otherClass);
-        for (TuitionClass tuitionClass : internalMap.values()) {
+        for (TuitionClass tuitionClass : internalList) {
             if (tuitionClass.isOverlapping(otherClass)) {
                 return false;
             }
@@ -50,14 +50,19 @@ public class UniqueClassList implements Iterable<TuitionClass> {
      * Checks if there is a class with the timing specified.
      */
     public boolean classExistAt(ClassTiming timing) {
-        return internalMap.containsKey(timing);
+        //TODO: probably need to modify cos need to consider overlap
+        return internalList.stream().anyMatch(c -> {
+            return c.getClassTiming().equals(timing);
+        });
     }
 
     /**
      * Checks if there is an identical class in the internalMap.
      */
     public boolean contains(TuitionClass tuitionClass) {
-        return internalMap.containsKey(tuitionClass.getClassTiming());
+        return internalList.stream().anyMatch(c -> {
+            return tuitionClass.equals(c);
+        });
     }
 
     /**
@@ -66,31 +71,38 @@ public class UniqueClassList implements Iterable<TuitionClass> {
      */
     public TuitionClass getClassAt(ClassTiming timing) {
         requireNonNull(timing);
-        return internalMap.get(timing);
+        for (TuitionClass tuitionClass : internalList) {
+            if (tuitionClass.getClassTiming().equals(timing)) {
+                return tuitionClass;
+            }
+        }
+        //if no class at specified timing returns null
+        return null;
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableMap<ClassTiming, TuitionClass> asUnmodifiableObservableMap() {
-        return internalUnmodifiableMap;
+    public ObservableList<TuitionClass> asUnmodifiableObservableList() {
+        return internalUnmodifiableList;
     }
 
     @Override
     public Iterator<TuitionClass> iterator() {
-        // Iterates through the values in the internalMap
-        return internalMap.values().iterator();
+        return internalList.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueClassList // instanceof handles nulls
-                && internalMap.equals(((UniqueClassList) other).internalMap));
+                && internalList.equals(((UniqueClassList) other).internalList));
     }
 
     @Override
     public int hashCode() {
-        return internalMap.hashCode();
+        return internalList.hashCode();
     }
+
+    //TODO: need a personsAreUnique method probably
 }
