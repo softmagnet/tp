@@ -50,7 +50,7 @@ public class ClassTiming implements Comparable<ClassTiming> {
      * @param classTiming classTiming where day is going to be changed to caps.
      * @return classTiming with the day in caps.
      */
-    public String formatClassTiming(String classTiming) {
+    private String formatClassTiming(String classTiming) {
         String day = classTiming.split(" ")[0].toUpperCase();
         String timing = classTiming.split(" ")[1];
         return day + " " + timing;
@@ -94,11 +94,10 @@ public class ClassTiming implements Comparable<ClassTiming> {
     }
 
     /**
-     * Compares two ClassTiming objects.
+     * Sees if the classTiming object is after the LocalTime given.
      *
-     * @param time ClassTiming being compared to.
-     * @return true if ClassTiming is on a later day or has a start time later than time's end time,
-     * otherwise false.
+     * @param time LocalTime being compared to.
+     * @return true if ClassTiming is on a later day or has a start time later than time otherwise false.
      */
     public boolean isAfter(LocalTime time) {
         return this.getStartTime().isAfter(time);
@@ -110,7 +109,7 @@ public class ClassTiming implements Comparable<ClassTiming> {
      * @param ct ClassTiming string to be parsed.
      * @return The Day of the ClassTiming string.
      */
-    public String parseDay(String ct) {
+    private String parseDay(String ct) {
         String[] classTimingPart = ct.split(" ");
         return classTimingPart[0];
     }
@@ -121,7 +120,7 @@ public class ClassTiming implements Comparable<ClassTiming> {
      * @param ct ClassTiming string to be split.
      * @return A String array consisting of the start time at index 0 and end time at index 1.
      */
-    public static String[] splitTiming(String ct) {
+    private static String[] splitTiming(String ct) {
         String[] ctSplit = ct.split(" ");
         String startEndTime = ctSplit[1];
         return startEndTime.split("-");
@@ -133,7 +132,7 @@ public class ClassTiming implements Comparable<ClassTiming> {
      * @param ct ClassTiming string to be parsed.
      * @return The start time of the input string.
      */
-    public static LocalTime parseStartTime(String ct) {
+    private static LocalTime parseStartTime(String ct) {
         String[] timePart = splitTiming(ct);
         String startTime = timePart[0];
         return LocalTime.parse(startTime, DateTimeFormatter.ofPattern("HH:mm"));
@@ -145,7 +144,7 @@ public class ClassTiming implements Comparable<ClassTiming> {
      * @param ct ClassTiming string to be parsed.
      * @return The end time of the input string.
      */
-    public static LocalTime parseEndTime(String ct) {
+    private static LocalTime parseEndTime(String ct) {
         String[] timePart = splitTiming(ct);
         String endTime = timePart[1];
         return LocalTime.parse(endTime, DateTimeFormatter.ofPattern("HH:mm"));
@@ -174,7 +173,7 @@ public class ClassTiming implements Comparable<ClassTiming> {
      *
      * @return Day of ClassTiming.
      */
-    public String getDay() {
+    private String getDay() {
         return this.day;
     }
 

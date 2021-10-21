@@ -40,14 +40,16 @@ public class TimetablePanel extends UiPart<Region> {
         super(FXML);
         build(studentList);
         timetable.maxWidth(1539);
-        studentList.addListener(new ListChangeListener<Student>() {
-            @Override
-            public void onChanged(Change<? extends Student> change) {
-                while (change.next()) {
-                    build(studentList);
+        if (studentList != null) {
+            studentList.addListener(new ListChangeListener<Student>() {
+                @Override
+                public void onChanged(Change<? extends Student> change) {
+                    while (change.next()) {
+                        build(studentList);
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     /**
@@ -57,7 +59,7 @@ public class TimetablePanel extends UiPart<Region> {
      */
     public void build(ObservableList<Student> studentList) {
         clearAll();
-        if (studentList.isEmpty()) {
+        if (studentList == null || studentList.isEmpty()) {
             Label label = new Label("You have no classes.");
             timetable.add(label, 0, 0);
         } else {
@@ -73,6 +75,7 @@ public class TimetablePanel extends UiPart<Region> {
      * @param studentList List of students to retrieve the earliest tuition class start timing and latest end timing.
      */
     public void buildHeader(ObservableList<Student> studentList) {
+        assert studentList != null;
 
         LocalTime earliestHour = getEarliestHour(studentList);
         LocalTime latestHour = getLatestHour(studentList);
@@ -103,6 +106,8 @@ public class TimetablePanel extends UiPart<Region> {
      * @param studentList List of students to retrieve the tuition class timings.
      */
     public void buildClasses(ObservableList<Student> studentList) {
+        assert studentList != null;
+
         LocalTime earliestHour = getEarliestHour(studentList);
 
         //earliest time is after the date
@@ -142,6 +147,8 @@ public class TimetablePanel extends UiPart<Region> {
      * @param earliestTime Earliest class start time of the timetable.
      */
     private void addTuitionClassSlot(ClassTiming classTiming, LocalTime earliestTime) {
+        assert !classTiming.getStartTime().isBefore(earliestTime);
+
         TimetableTuitionClassSlot timetableTuitionClassSlot =
                 new TimetableTuitionClassSlot("test", classTiming);
         int duration = getTimeDifference(classTiming.getStartTime(), classTiming.getEndTime());
@@ -170,6 +177,8 @@ public class TimetablePanel extends UiPart<Region> {
      * @param column Column to add the empty slot to.
      */
     private void addEmptySlot(LocalTime startTime, LocalTime endTime, int row, int column) {
+        assert startTime.isBefore(endTime);
+
         TimetableEmptySlot emptySlot = new TimetableEmptySlot(startTime, endTime);
         int duration = getTimeDifference(startTime, endTime);
         timetable.add(emptySlot.getRoot(), column , row, duration, 1);
@@ -182,7 +191,9 @@ public class TimetablePanel extends UiPart<Region> {
      * @param endTime End time of the two timings.
      * @return Time difference between the start time and the end time.
      */
-    private int getTimeDifference(LocalTime startTime, LocalTime endTime) {
+    public int getTimeDifference(LocalTime startTime, LocalTime endTime) {
+        assert startTime.isBefore(endTime) || startTime.equals(endTime);
+
         return (int) startTime.until(endTime, ChronoUnit.MINUTES);
     }
 
@@ -192,7 +203,9 @@ public class TimetablePanel extends UiPart<Region> {
      * @param classTimings List of class timings which duplicates are to be removed from.
      * @return ArrayList of classTimings which have duplicates removed.
      */
-    private ArrayList<ClassTiming> removeDuplicateClassTimings(List<ClassTiming> classTimings) {
+    public ArrayList<ClassTiming> removeDuplicateClassTimings(List<ClassTiming> classTimings) {
+        assert classTimings != null;
+
         ArrayList<ClassTiming> uniqueClassTimings = new ArrayList<>();
 
         for (int i = 0; i < classTimings.size(); i++) {
@@ -212,7 +225,9 @@ public class TimetablePanel extends UiPart<Region> {
      * @param studentList List of students to get the earliest hour from.
      * @return Earliest hour of the earliest class timing.
      */
-    private LocalTime getEarliestHour(ObservableList<Student> studentList) {
+    public LocalTime getEarliestHour(ObservableList<Student> studentList) {
+        assert studentList != null && studentList.size() > 0;
+
         LocalTime earliestTime = getEarliestTime(studentList);
         String earliestTimeStr = earliestTime.toString();
         String earliestHourWithoutMinutes = earliestTimeStr.split(":")[0];
@@ -226,8 +241,9 @@ public class TimetablePanel extends UiPart<Region> {
      * @param studentList List of students to get the earliest class timing from.
      * @return Earliest class timing from studentList.
      */
-    private LocalTime getEarliestTime(ObservableList<Student> studentList) {
-        assert studentList.size() > 0;
+    public LocalTime getEarliestTime(ObservableList<Student> studentList) {
+        assert studentList != null && studentList.size() > 0;
+
         return studentList.stream()
                 .map(student -> student.getClassTiming().getStartTime())
                 .reduce((classTime1, classTime2) -> classTime1.isBefore(classTime2) ? classTime1 : classTime2)
@@ -240,7 +256,9 @@ public class TimetablePanel extends UiPart<Region> {
      * @param studentList List of students to get the latest hour from.
      * @return Latest hour which all the classes has ended.
      */
-    private LocalTime getLatestHour(ObservableList<Student> studentList) {
+    public LocalTime getLatestHour(ObservableList<Student> studentList) {
+        assert studentList != null && studentList.size() > 0;
+
         LocalTime latestTime = getLatestTime(studentList);
         String latestTimeStr = latestTime.toString();
         String latestHourMinutes = latestTimeStr.split(":")[1];
@@ -262,8 +280,9 @@ public class TimetablePanel extends UiPart<Region> {
      * @param studentList List of students to get the latest class end time from.
      * @return Latest class end time.
      */
-    private LocalTime getLatestTime(ObservableList<Student> studentList) {
-        assert studentList.size() > 0;
+    public LocalTime getLatestTime(ObservableList<Student> studentList) {
+        assert studentList != null && studentList.size() > 0;
+
         return studentList.stream()
                 .map(student -> student.getClassTiming().getEndTime())
                 .reduce((classTime1, classTime2) -> classTime1.isAfter(classTime2) ? classTime1 : classTime2)
