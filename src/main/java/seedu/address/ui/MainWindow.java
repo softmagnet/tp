@@ -133,7 +133,7 @@ public class MainWindow extends UiPart<Stage> {
 
         studentsTab = new Tab("Students", personListPanelPlaceholder);
         Tab timetableTab = new Tab("Timetable", new Label("Timetable"));
-        Tab classTab = new Tab("Class", new Label("Classes"));
+        Tab classTab = new Tab("Classes", new Label("Classes"));
 
         tabPane.getTabs().add(timetableTab);
         tabPane.getTabs().add(classTab);
@@ -183,6 +183,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    public void setView(Integer tabToView) {
+        if (tabToView != null) {
+            tabPane.getSelectionModel().select(tabToView);
+        }
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -206,6 +212,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            setView(commandResult.getIndexOfTabToView());
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
