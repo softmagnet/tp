@@ -57,10 +57,9 @@ public class ClassTiming implements Comparable<ClassTiming> {
     }
 
     /**
-     * Converts the day into the int representation of the day.
+     * Converts Day from the ClassTiming object into the int representation of the day.
      *
-     * @param day String value of the day in class timing.
-     * @return int representation of the days of the week.
+     * @return int representation of the Day of the ClassTiming object
      */
     public int getDayToInt() {
         switch (day.toUpperCase()) {
@@ -86,53 +85,104 @@ public class ClassTiming implements Comparable<ClassTiming> {
     /**
      * Compares two ClassTiming objects.
      *
-     * @param otherClassTiming ClassTiming being compared to.
-     * @return true if this ClassTiming is on an earlier day or has end time earlier than otherClassTiming
+     * @param time ClassTiming being compared to.
+     * @return true if this ClassTiming is on an earlier day or has end time earlier than time's
      * start time, otherwise false.
      */
-    public boolean isEarlier(ClassTiming otherClassTiming) {
-        return this.compareTo(otherClassTiming) == -1;
+    public boolean isEarlier(ClassTiming time) {
+        return this.compareTo(time) == -1;
     }
 
+    /**
+     * Compares two ClassTiming objects.
+     *
+     * @param time ClassTiming being compared to.
+     * @return true if ClassTiming is on a later day or has a start time later than time's end time,
+     * otherwise false.
+     */
     public boolean isAfter(LocalTime time) {
         return this.getStartTime().isAfter(time);
     }
 
+    /**
+     * Parses the class timing string to retrieve the day.
+     *
+     * @param ct ClassTiming string to be parsed.
+     * @return The Day of the ClassTiming string.
+     */
     public String parseDay(String ct) {
         String[] classTimingPart = ct.split(" ");
         return classTimingPart[0];
     }
 
+    /**
+     * Splits the class timing string to retrieve the start and end time in String form.
+     *
+     * @param ct ClassTiming string to be split.
+     * @return A String array consisting of the start time at index 0 and end time at index 1.
+     */
     public static String[] splitTiming(String ct) {
         String[] ctSplit = ct.split(" ");
         String startEndTime = ctSplit[1];
         return startEndTime.split("-");
     }
 
+    /**
+     * Parses the input class timing string to retrieve the Start Time.
+     *
+     * @param ct ClassTiming string to be parsed.
+     * @return The start time of the input string.
+     */
     public static LocalTime parseStartTime(String ct) {
         String[] timePart = splitTiming(ct);
         String startTime = timePart[0];
         return LocalTime.parse(startTime, DateTimeFormatter.ofPattern("HH:mm"));
     }
 
+    /**
+     * Parses the input class timing string to retrieve the End Time.
+     *
+     * @param ct ClassTiming string to be parsed.
+     * @return The end time of the input string.
+     */
     public static LocalTime parseEndTime(String ct) {
         String[] timePart = splitTiming(ct);
         String endTime = timePart[1];
         return LocalTime.parse(endTime, DateTimeFormatter.ofPattern("HH:mm"));
     }
 
+    /**
+     * Gets the start time of the class timing.
+     *
+     * @return Start Time of ClassTiming.
+     */
     public LocalTime getStartTime() {
         return this.startTime;
     }
 
+    /**
+     * Gets the end time of the class timing.
+     *
+     * @return End Time of ClassTiming.
+     */
     public LocalTime getEndTime() {
         return this.endTime;
     }
 
+    /**
+     * Gets the day of the class timing.
+     *
+     * @return Day of ClassTiming.
+     */
     public String getDay() {
         return this.day;
     }
 
+    /**
+     * Gets the timing string without the day of the ClassTiming.
+     *
+     * @return Timing of the ClassTiming without the Day.
+     */
     public String getClassTiming() {
         return this.value.split(" ")[1];
     }
@@ -180,7 +230,7 @@ public class ClassTiming implements Comparable<ClassTiming> {
             return -1;
         } else if (otherDayInt < thisDayInt) {
             return 1;
-        } else if (this.getStartTime().equals(otherStartTime)){
+        } else if (this.getStartTime().equals(otherStartTime)) {
             return 0;
         } else {
             return otherStartTime.isAfter(this.getEndTime()) || this.getStartTime().isBefore(otherStartTime) ? -1 : 1;

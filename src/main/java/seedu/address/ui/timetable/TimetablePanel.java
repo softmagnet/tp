@@ -1,5 +1,13 @@
 package seedu.address.ui.timetable;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,14 +20,9 @@ import seedu.address.model.person.ClassTiming;
 import seedu.address.model.person.Student;
 import seedu.address.ui.UiPart;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
-
+/**
+ * A UI for the Timetable Panel Tab.
+ */
 public class TimetablePanel extends UiPart<Region> {
     private static final String FXML = "timetable/TimetablePanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TimetablePanel.class);
@@ -47,19 +50,29 @@ public class TimetablePanel extends UiPart<Region> {
         });
     }
 
+    /**
+     * Builds the UI of the timetable panel.
+     *
+     * @param studentList List of students to retrieve the tuition class timings from for the timetable.
+     */
     public void build(ObservableList<Student> studentList) {
         clearAll();
         if (studentList.isEmpty()) {
             Label label = new Label("You have no classes.");
             timetable.add(label, 0, 0);
         } else {
-            buildPanel(studentList);
+            buildHeader(studentList);
             buildDays();
             buildClasses(studentList);
         }
     }
 
-    public void buildPanel(ObservableList<Student> studentList) {
+    /**
+     * Builds the header panel for the timetable panel ui.
+     *
+     * @param studentList List of students to retrieve the earliest tuition class start timing and latest end timing.
+     */
+    public void buildHeader(ObservableList<Student> studentList) {
 
         LocalTime earliestHour = getEarliestHour(studentList);
         LocalTime latestHour = getLatestHour(studentList);
@@ -84,6 +97,11 @@ public class TimetablePanel extends UiPart<Region> {
 
     }
 
+    /**
+     * Builds the tuition class slot UI for the timetable.
+     *
+     * @param studentList List of students to retrieve the tuition class timings.
+     */
     public void buildClasses(ObservableList<Student> studentList) {
         LocalTime earliestHour = getEarliestHour(studentList);
 
@@ -108,8 +126,8 @@ public class TimetablePanel extends UiPart<Region> {
 
             addTuitionClassSlot(currentClassTiming, earliestHour);
 
-            if (i != uniqueClassTiming.size() - 1 &&
-                    currentClassTiming.getDayToInt() < uniqueClassTiming.get(i + 1).getDayToInt()) {
+            if (i != uniqueClassTiming.size() - 1
+                    && currentClassTiming.getDayToInt() < uniqueClassTiming.get(i + 1).getDayToInt()) {
                 previousTime = earliestHour;
             } else {
                 previousTime = currentClassTiming.getEndTime();
@@ -117,7 +135,13 @@ public class TimetablePanel extends UiPart<Region> {
         }
     }
 
-    public void addTuitionClassSlot(ClassTiming classTiming, LocalTime earliestTime) {
+    /**
+     * Creates a tuition class slot to be displayed on the timetable.
+     *
+     * @param classTiming ClassTiming of tuition class slot.
+     * @param earliestTime Earliest class start time of the timetable.
+     */
+    private void addTuitionClassSlot(ClassTiming classTiming, LocalTime earliestTime) {
         TimetableTuitionClassSlot timetableTuitionClassSlot =
                 new TimetableTuitionClassSlot("test", classTiming);
         int duration = getTimeDifference(classTiming.getStartTime(), classTiming.getEndTime());
@@ -126,20 +150,48 @@ public class TimetablePanel extends UiPart<Region> {
                 duration, 1);
     }
 
-    public int getColumnIndex(LocalTime earliestTime, LocalTime timeToIndex) {
+    /**
+     * Gets the column index which the tuition class timing starts from on the timetable.
+     *
+     * @param earliestTime Earliest class start time of the timetable.
+     * @param timeToIndex Time which we want to find the column index of.
+     * @return Column index of the timeToIndex.
+     */
+    private int getColumnIndex(LocalTime earliestTime, LocalTime timeToIndex) {
         return TimetableDay.getWidth() + getTimeDifference(earliestTime, timeToIndex);
     }
 
+    /**
+     * Creates an empty slot to be displayed on the timetable.
+     *
+     * @param startTime Start Time of the empty slot.
+     * @param endTime End Time of the empty slot.
+     * @param row Row to add the empty slot to.
+     * @param column Column to add the empty slot to.
+     */
     private void addEmptySlot(LocalTime startTime, LocalTime endTime, int row, int column) {
         TimetableEmptySlot emptySlot = new TimetableEmptySlot(startTime, endTime);
         int duration = getTimeDifference(startTime, endTime);
         timetable.add(emptySlot.getRoot(), column , row, duration, 1);
     }
 
+    /**
+     * Gets the time difference from two timings.
+     *
+     * @param startTime Start time of the two timings.
+     * @param endTime End time of the two timings.
+     * @return Time difference between the start time and the end time.
+     */
     private int getTimeDifference(LocalTime startTime, LocalTime endTime) {
         return (int) startTime.until(endTime, ChronoUnit.MINUTES);
     }
 
+    /**
+     * Removes duplicate class timings from a list of class timings.
+     *
+     * @param classTimings List of class timings which duplicates are to be removed from.
+     * @return ArrayList of classTimings which have duplicates removed.
+     */
     private ArrayList<ClassTiming> removeDuplicateClassTimings(List<ClassTiming> classTimings) {
         ArrayList<ClassTiming> uniqueClassTimings = new ArrayList<>();
 
@@ -154,6 +206,12 @@ public class TimetablePanel extends UiPart<Region> {
         return uniqueClassTimings;
     }
 
+    /**
+     * Gets the earliest hour of the earliest class timing from the list of students.
+     *
+     * @param studentList List of students to get the earliest hour from.
+     * @return Earliest hour of the earliest class timing.
+     */
     private LocalTime getEarliestHour(ObservableList<Student> studentList) {
         LocalTime earliestTime = getEarliestTime(studentList);
         String earliestTimeStr = earliestTime.toString();
@@ -162,6 +220,12 @@ public class TimetablePanel extends UiPart<Region> {
         return LocalTime.parse(earliestHourStr, DateTimeFormatter.ofPattern("HH:mm"));
     }
 
+    /**
+     * Gets the earliest class timing of the list of students.
+     *
+     * @param studentList List of students to get the earliest class timing from.
+     * @return Earliest class timing from studentList.
+     */
     private LocalTime getEarliestTime(ObservableList<Student> studentList) {
         assert studentList.size() > 0;
         return studentList.stream()
@@ -170,6 +234,12 @@ public class TimetablePanel extends UiPart<Region> {
                 .get();
     }
 
+    /**
+     * Gets the latest hour which all classes has ended.
+     *
+     * @param studentList List of students to get the latest hour from.
+     * @return Latest hour which all the classes has ended.
+     */
     private LocalTime getLatestHour(ObservableList<Student> studentList) {
         LocalTime latestTime = getLatestTime(studentList);
         String latestTimeStr = latestTime.toString();
@@ -186,6 +256,12 @@ public class TimetablePanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Gets the latest class end time from the list of students.
+     *
+     * @param studentList List of students to get the latest class end time from.
+     * @return Latest class end time.
+     */
     private LocalTime getLatestTime(ObservableList<Student> studentList) {
         assert studentList.size() > 0;
         return studentList.stream()
@@ -194,6 +270,9 @@ public class TimetablePanel extends UiPart<Region> {
                 .get();
     }
 
+    /**
+     * Builds the days side panel of the timetable panel ui.
+     */
     public void buildDays() {
         timetable.add(new TimetableDay("Mon").getRoot(), 0, 1, 50, 1);
         timetable.add(new TimetableDay("Tue").getRoot(), 0, 2, 50, 1);

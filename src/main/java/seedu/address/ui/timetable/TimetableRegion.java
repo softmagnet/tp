@@ -5,17 +5,25 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.ui.UiPart;
 
+/**
+ * A UI for the timetable region.
+ */
 public class TimetableRegion extends UiPart<Region> {
 
     @FXML
     private HBox slotPane;
 
-    public static int SCALE_FACTOR = 2;
-
+    /**
+     * Creates the timetable region UI.
+     *
+     * @param fxml Specified file path of the fxml to construct the timetable region.
+     * @param scale Amount to scale the Ui by.
+     */
     public TimetableRegion(String fxml, long scale) {
         super(fxml);
-        slotPane.setPrefWidth(scale * SCALE_FACTOR);
-        slotPane.setMinWidth(scale * SCALE_FACTOR);
+        int scaleFactor = 2;
+        slotPane.setPrefWidth(scale * scaleFactor);
+        slotPane.setMinWidth(scale * scaleFactor);
     }
 
 }

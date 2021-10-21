@@ -1,6 +1,6 @@
 {
   "persons" : [ {
-    "name" : "test Doe",
+    "name" : "Jo ee",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
@@ -15,7 +15,7 @@
     },
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "name" : "Jo ee",
+    "name" : "test Doe",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
@@ -89,6 +89,21 @@
       "address" : "311, Clementi Ave 2, #02-25"
     },
     "tagged" : [ ]
+  }, {
+    "name" : "weirdDoe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "rate" : "70",
+    "classTiming" : "TUE 11:25-12:46",
+    "location" : "311, Clementi Ave 2, #02-25",
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "hi",
     "phone" : "87438807",
