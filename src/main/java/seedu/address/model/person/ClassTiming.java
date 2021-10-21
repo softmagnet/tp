@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a Student's class timing in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidClassTiming(String)}
  */
-public class ClassTiming {
+public class ClassTiming implements Comparable<ClassTiming> {
 
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -24,6 +24,12 @@ public class ClassTiming {
 
     public final String value;
 
+    private final LocalTime startTime;
+
+    private final LocalTime endTime;
+
+    private final String day;
+
     /**
      * Constructs a {@code ClassTiming}.
      *
@@ -33,6 +39,9 @@ public class ClassTiming {
         requireNonNull(classTiming);
         checkArgument(isValidClassTiming(classTiming), MESSAGE_CONSTRAINTS);
         value = formatClassTiming(classTiming);
+        startTime = parseStartTime(value);
+        endTime = parseEndTime(value);
+        day = parseDay(value);
     }
 
     /**
@@ -41,20 +50,19 @@ public class ClassTiming {
      * @param classTiming classTiming where day is going to be changed to caps.
      * @return classTiming with the day in caps.
      */
-    public String formatClassTiming(String classTiming) {
+    private String formatClassTiming(String classTiming) {
         String day = classTiming.split(" ")[0].toUpperCase();
         String timing = classTiming.split(" ")[1];
         return day + " " + timing;
     }
 
     /**
-     * Converts the day into the int representation of the day.
+     * Converts Day from the ClassTiming object into the int representation of the day.
      *
-     * @param day String value of the day in class timing.
-     * @return int representatin of the days of the week.
+     * @return int representation of the Day of the ClassTiming object
      */
-    public int replaceDayWithInt(String day) {
-        switch (day) {
+    public int getDayToInt() {
+        switch (day.toUpperCase()) {
         case "MON":
             return 1;
         case "TUE":
@@ -77,62 +85,114 @@ public class ClassTiming {
     /**
      * Compares two ClassTiming objects.
      *
-     * @param otherClassTiming ClassTiming being compared to.
-     * @return true if this ClassTiming is on an earlier day or has end time earlier than otherClassTiming
+     * @param time ClassTiming being compared to.
+     * @return true if this ClassTiming is on an earlier day or has end time earlier than time's
      * start time, otherwise false.
      */
-    public boolean isEarlier(ClassTiming otherClassTiming) {
-        String thisDay = getDay(this.value);
-        int thisDayInt = replaceDayWithInt(thisDay);
-        LocalTime thisStartTime = getStartTime(this.value);
-        LocalTime thisEndTime = getEndTime(this.value);
-
-        String otherDay = getDay(otherClassTiming.value);
-        int otherDayInt = replaceDayWithInt(otherDay);
-        LocalTime otherStartTime = getStartTime(otherClassTiming.value);
-
-        if (thisDayInt < otherDayInt || otherStartTime.isAfter(thisEndTime)
-                || thisStartTime.isBefore(otherStartTime)) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean isEarlier(ClassTiming time) {
+        return this.compareTo(time) == -1;
     }
 
-    public static String getDay(String ct) {
+    /**
+     * Sees if the classTiming object is after the LocalTime given.
+     *
+     * @param time LocalTime being compared to.
+     * @return true if ClassTiming is on a later day or has a start time later than time otherwise false.
+     */
+    public boolean isAfter(LocalTime time) {
+        return this.getStartTime().isAfter(time);
+    }
+
+    /**
+     * Parses the class timing string to retrieve the day.
+     *
+     * @param ct ClassTiming string to be parsed.
+     * @return The Day of the ClassTiming string.
+     */
+    private String parseDay(String ct) {
         String[] classTimingPart = ct.split(" ");
-        String day = classTimingPart[0];
-        return day;
+        return classTimingPart[0];
     }
 
-    public static String[] getTiming(String ct) {
+    /**
+     * Splits the class timing string to retrieve the start and end time in String form.
+     *
+     * @param ct ClassTiming string to be split.
+     * @return A String array consisting of the start time at index 0 and end time at index 1.
+     */
+    private static String[] splitTiming(String ct) {
         String[] ctSplit = ct.split(" ");
         String startEndTime = ctSplit[1];
-        String[] timePart = startEndTime.split("-");
-        return timePart;
+        return startEndTime.split("-");
     }
 
-    public static LocalTime getStartTime(String ct) {
-        String[] timePart = getTiming(ct);
+    /**
+     * Parses the input class timing string to retrieve the Start Time.
+     *
+     * @param ct ClassTiming string to be parsed.
+     * @return The start time of the input string.
+     */
+    private static LocalTime parseStartTime(String ct) {
+        String[] timePart = splitTiming(ct);
         String startTime = timePart[0];
         return LocalTime.parse(startTime, DateTimeFormatter.ofPattern("HH:mm"));
     }
 
-    public static LocalTime getEndTime(String ct) {
-        String[] timePart = getTiming(ct);
+    /**
+     * Parses the input class timing string to retrieve the End Time.
+     *
+     * @param ct ClassTiming string to be parsed.
+     * @return The end time of the input string.
+     */
+    private static LocalTime parseEndTime(String ct) {
+        String[] timePart = splitTiming(ct);
         String endTime = timePart[1];
         return LocalTime.parse(endTime, DateTimeFormatter.ofPattern("HH:mm"));
     }
 
+    /**
+     * Gets the start time of the class timing.
+     *
+     * @return Start Time of ClassTiming.
+     */
+    public LocalTime getStartTime() {
+        return this.startTime;
+    }
 
+    /**
+     * Gets the end time of the class timing.
+     *
+     * @return End Time of ClassTiming.
+     */
+    public LocalTime getEndTime() {
+        return this.endTime;
+    }
+
+    /**
+     * Gets the day of the class timing.
+     *
+     * @return Day of ClassTiming.
+     */
+    private String getDay() {
+        return this.day;
+    }
+
+    /**
+     * Gets the timing string without the day of the ClassTiming.
+     *
+     * @return Timing of the ClassTiming without the Day.
+     */
+    public String getClassTiming() {
+        return this.value.split(" ")[1];
+    }
 
     /**
      * Returns true if a given string is a valid class timing.
      */
     public static boolean isValidClassTiming(String test) {
         if (test.matches(VALIDATION_REGEX)) {
-            LocalTime startTime = getStartTime(test);
-            LocalTime endTime = getEndTime(test);
+            LocalTime startTime = parseStartTime(test);
+            LocalTime endTime = parseEndTime(test);
             return startTime.isBefore(endTime);
         } else {
             return false;
@@ -156,4 +216,23 @@ public class ClassTiming {
         return value.hashCode();
     }
 
+
+    @Override
+    public int compareTo(ClassTiming o) {
+        int thisDayInt = getDayToInt();
+
+        String otherDay = o.getDay();
+        int otherDayInt = o.getDayToInt();
+        LocalTime otherStartTime = o.getStartTime();
+
+        if (thisDayInt < otherDayInt) {
+            return -1;
+        } else if (otherDayInt < thisDayInt) {
+            return 1;
+        } else if (this.getStartTime().equals(otherStartTime)) {
+            return 0;
+        } else {
+            return otherStartTime.isAfter(this.getEndTime()) || this.getStartTime().isBefore(otherStartTime) ? -1 : 1;
+        }
+    }
 }

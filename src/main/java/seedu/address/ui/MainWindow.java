@@ -19,6 +19,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.timetable.TimetablePanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -37,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private TimetablePanel timetablePanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -58,6 +60,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private Tab studentsTab;
+
+    @FXML
+    private StackPane timetablePanelPlaceholder;
+
+    @FXML
+    private Tab timetableTab;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -122,6 +130,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        timetablePanel = new TimetablePanel(logic.getFilteredPersonList());
+        timetablePanelPlaceholder.getChildren().add(timetablePanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -132,10 +143,9 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         studentsTab = new Tab("Students", personListPanelPlaceholder);
-        Tab timetableTab = new Tab("Timetable", new Label("Timetable"));
+        timetableTab = new Tab("Timetable", timetablePanelPlaceholder);
         Tab classTab = new Tab("Classes", new Label("Classes"));
 
-        tabPane.getTabs().add(timetableTab);
         tabPane.getTabs().add(classTab);
 
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);

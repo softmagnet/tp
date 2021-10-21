@@ -25,6 +25,7 @@
         <URL value="@Fonts.css"/>
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
+        <URL value="@timetable/Timetable.css" />
       </stylesheets>
 
       <VBox>
@@ -60,6 +61,17 @@
               <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
           </Tab>
+
+          <Tab fx:id="timetableTab" text="Timetable">
+            <VBox fx:id="timetableList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
+                  VBox.vgrow="ALWAYS" style="-fx-background-color: #383838">
+              <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+              </padding>
+              <StackPane fx:id="timetablePanelPlaceholder" VBox.vgrow="ALWAYS" style="-fx-background-color: #383838"/>
+            </VBox>
+          </Tab>
+
         </TabPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
