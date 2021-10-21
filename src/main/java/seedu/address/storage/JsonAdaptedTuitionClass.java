@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -13,6 +14,7 @@ import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.tuitionclass.Rate;
 import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.model.tuitionclass.UniqueNameList;
 
 /**
  * Jackson-friendly version of {@link TuitionClass}.
@@ -25,7 +27,7 @@ public class JsonAdaptedTuitionClass {
     private final String className;
     private final String location;
     private final String rate;
-    private final List<Name> students = new ArrayList<>();
+    private final List<String> students = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -34,15 +36,15 @@ public class JsonAdaptedTuitionClass {
     public JsonAdaptedTuitionClass(@JsonProperty("classTiming") String classTiming,
                               @JsonProperty("className") String className,
                               @JsonProperty("rate") String rate,
-                              @JsonProperty("location") String location/*,
-                              @JsonProperty("students") List<Name> students*/) {
+                              @JsonProperty("location") String location,
+                              @JsonProperty("students") List<String> students) {
         this.classTiming = classTiming;
         this.className = className;
         this.location = location;
         this.rate = rate;
-//        if (students != null) {
-//            this.students.addAll(students);
-//        }
+        if (students != null) {
+            this.students.addAll(students);
+        }
     }
 
     /**
@@ -53,7 +55,12 @@ public class JsonAdaptedTuitionClass {
         className = source.getClassName().className;
         location = source.getLocation().value;
         rate = source.getRate().value;
-        //TODO add students
+
+        Iterator iterator = source.getStudentList().iterator();
+        while(iterator.hasNext()) {
+            students.add(iterator.next().toString());
+        }
+
     }
 
     /**
@@ -95,7 +102,11 @@ public class JsonAdaptedTuitionClass {
         }
         final Rate modelRate = new Rate(rate);
 
+        final UniqueNameList tuitionClassNameList = new UniqueNameList();
+        for (String name : students) {
+            tuitionClassNameList.add(new Name(name));
+        }
 
-        return new TuitionClass(modelName, modelTiming, modelLocation, modelRate/*, students.toArray(new Name[] {})*/);
+        return new TuitionClass(modelName, modelTiming, modelLocation, modelRate, tuitionClassNameList);
     }
 }

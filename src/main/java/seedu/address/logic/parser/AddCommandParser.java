@@ -63,7 +63,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     private TuitionClass parseClass(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer
-                        .tokenize(args, PREFIX_NAME, PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION);
+                        .tokenize(args, PREFIX_NAME, PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION)
                 || !argMultimap.getPreamble().isEmpty()) {

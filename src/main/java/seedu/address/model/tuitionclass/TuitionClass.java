@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 
@@ -107,8 +108,8 @@ public class TuitionClass {
 
         TuitionClass o = (TuitionClass) other;
         /* A class is uniquely identified by its timing; a single timing can only have _one_ class */
-        return o.className.equals(getClassName())
-                && o.classTiming.equals(getClassTiming());
+        return /*o.className.equals(getClassName())
+                &&*/ o.classTiming.equals(getClassTiming());
     }
 
 

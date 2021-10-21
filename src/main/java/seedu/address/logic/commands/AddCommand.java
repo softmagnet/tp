@@ -78,13 +78,14 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        // Add student to the existing class
+        classToAdd.addStudent(studentToAdd.getName());
+
         if (!model.hasTuitionClass(classToAdd)) {
             // Create the required class (add it to the address book)
             model.addTuitionClass(classToAdd);
         }
 
-        // Add student to the existing class
-        classToAdd.addStudent(studentToAdd.getName());
         // Add class to the student
         studentToAdd.addClass(classToAdd);
 

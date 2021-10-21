@@ -3,14 +3,18 @@ package seedu.address.model.tuitionclass;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import jdk.dynalink.linker.support.TypeUtilities;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tuitionclass.exceptions.DuplicateClassException;
@@ -33,10 +37,22 @@ public class UniqueClassList implements Iterable<TuitionClass> {
      */
     public void add(TuitionClass toAdd) {
         requireNonNull(toAdd);
-        if (!isValidTiming(toAdd)) {
-            throw new InvalidClassException();
+        //throw new InvalidClassException();
+        if (isValidTiming(toAdd)) {
+            internalList.add(toAdd);
+        } else {
+            for (TuitionClass tuitionClass : internalList) {
+                if (tuitionClass.isOverlapping(toAdd)) {
+                    int index = internalList.indexOf(tuitionClass);
+                    internalList.set(index, toAdd);
+                } else {
+                    continue;
+                }
+            }
         }
-        internalList.add(toAdd);
+
+
+
     }
 
     public void delete(TuitionClass toDelete) {
@@ -49,7 +65,17 @@ public class UniqueClassList implements Iterable<TuitionClass> {
     public void setClasses(List<TuitionClass> classes) {
         requireNonNull(classes);
         //todo check that classes are unique
-        internalList.setAll(classes);
+        List<TuitionClass> editedClasses = new ArrayList<>(classes);
+        for(int i = 0; i < editedClasses.size(); i++) {
+            for (int j = i + 1; j < editedClasses.size(); j++) {
+              if (editedClasses.get(i).equals(editedClasses.get(j))) {
+                  editedClasses.remove(j);
+
+              }
+            }
+        }
+        internalList.setAll(editedClasses);
+        //internalList.setAll(classes);
     }
 
     /**
