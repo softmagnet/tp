@@ -26,7 +26,7 @@ public class UniqueNameList implements Iterable<Name> {
     public void add(Name toAdd) throws DuplicateStudentInClassException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateStudentInClassException();
+            throw new DuplicateStudentInClassException(toAdd);
         }
         internalList.add(toAdd);
     }

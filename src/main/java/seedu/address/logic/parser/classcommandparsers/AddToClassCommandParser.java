@@ -22,7 +22,7 @@ public class AddToClassCommandParser implements Parser<AddToClassCommand> {
     public AddToClassCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        String[] argsArray = args.split("\\s+");
+        String[] argsArray = args.trim().split("\\s+");
         ArrayList<Index> indexArray = mapToIndex(argsArray);
 
         return new AddToClassCommand(indexArray);

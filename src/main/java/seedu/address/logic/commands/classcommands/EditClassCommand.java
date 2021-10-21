@@ -29,7 +29,7 @@ public class EditClassCommand extends Command {
 
     public static final String MESSAGE_EDIT_CLASS_SUCCESS = "Edited class: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This class already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in this class:\n";
 
     private final Index index;
     private final EditClassDescriptor editClassDescriptor;

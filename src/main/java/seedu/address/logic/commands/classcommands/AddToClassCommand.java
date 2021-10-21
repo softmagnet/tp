@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.classcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.classcommands.EditClassCommand.MESSAGE_DUPLICATE_PERSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.commands.classcommands.EditClassCommand.EditClassDescriptor;
@@ -16,6 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.UniqueNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.model.tuitionclass.exceptions.DuplicateStudentInClassException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,7 @@ public class AddToClassCommand extends Command {
             + PREFIX_CLASS_NAME + "401"
             + PREFIX_NAME + "John Doe";
 
-    public static final String MESSAGE_ADD_SUCCESS = "New Class added: %1$s";
+    public static final String MESSAGE_ADD_SUCCESS = "successfully added student to class ";
 
     private final Index toEditClassIndex;
     private final List<Index> studentIndices;
@@ -63,8 +65,14 @@ public class AddToClassCommand extends Command {
         //get updated student list
         UniqueNameList currentStudentNameList = classToAddTo.getStudentList();
         UniqueNameList updatedStudentNameList = new UniqueNameList();
-        updatedStudentNameList.addAll(currentStudentNameList);
-        updatedStudentNameList.addAll(namesToAdd);
+
+        try {
+            updatedStudentNameList.addAll(currentStudentNameList);
+            updatedStudentNameList.addAll(namesToAdd);
+        } catch (DuplicateStudentInClassException e) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON + e.getMessage());
+        }
+
 
         //create edit class descriptor
         EditClassDescriptor editClassDescriptor = new EditClassDescriptor();

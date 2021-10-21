@@ -1,7 +1,9 @@
 package seedu.address.model.tuitionclass.exceptions;
 
+import seedu.address.model.person.Name;
+
 public class DuplicateStudentInClassException extends RuntimeException {
-    public DuplicateStudentInClassException() {
-        super("Operation would result in duplicate student in class");
+    public DuplicateStudentInClassException(Name duplicatedName) {
+        super(duplicatedName.toString());
     }
 }
