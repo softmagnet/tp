@@ -237,6 +237,20 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+ 
+
+### \[Proposed\] \[Unfinished\] Deleting Tuition Class
+To delete a tuition class, the 'deleteclass' command is used.
+The DeleteCommandParser parses the user input to obtain the parameters, which is the class timing of the class to be
+deleted.
+Then, a DeleteCommand is created with the parsed class timing. When the DeleteCommand#execute() is run, the AddressBook
+is searched to find the tuition class to be deleted. If no classes matches the ClassTiming, an exception is thrown.
+Otherwise, the TuitionClass is obtained. The TuitionClass object stores a list of students in the class in the form
+of a list of names. From each name, the respective student is found and the TuitionClass is deleted from the student's
+internal class list. 
+Finally, the TuitionClass itself can be removed from the AddressBook's class list.
+
+A diagram of the procedure is shown below:
 
 
 --------------------------------------------------------------------------------------------------------------------
