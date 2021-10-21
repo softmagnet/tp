@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import jdk.dynalink.linker.support.TypeUtilities;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tuitionclass.exceptions.DuplicateClassException;
@@ -135,6 +136,10 @@ public class UniqueClassList implements Iterable<TuitionClass> {
          */
         if (!target.isSameClass(editedClass) && contains(editedClass)) {
             throw new DuplicateClassException();
+        }
+
+        for (Name name : editedClass.getStudentList()) {
+            System.out.println(name);
         }
 
         internalList.set(index, editedClass);
