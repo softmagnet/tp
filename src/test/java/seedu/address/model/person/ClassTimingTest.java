@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import org.junit.jupiter.api.Test;
-
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+
+import org.junit.jupiter.api.Test;
 
 public class ClassTimingTest {
 
