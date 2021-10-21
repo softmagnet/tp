@@ -16,7 +16,7 @@ public class AddClassCommand extends Command {
     public static final String MESSAGE_DUPLICATE_CLASS = "This class already exists in the address book";
 
 
-    public static final Object MESSAGE_USAGE = "to be written";
+    public static final Object MESSAGE_USAGE = "addclass cn/J2O2 r/50 l/Serangoon Tuition Center ct/MON 13:00-14:00";
 
     private final TuitionClass tuitionClass;
 

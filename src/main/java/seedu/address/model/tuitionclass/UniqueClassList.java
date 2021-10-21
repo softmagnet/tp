@@ -13,6 +13,7 @@ import javafx.collections.ObservableMap;
 import jdk.dynalink.linker.support.TypeUtilities;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.tuitionclass.exceptions.DuplicateClassException;
 import seedu.address.model.tuitionclass.exceptions.InvalidClassException;
 import seedu.address.model.tuitionclass.exceptions.TuitionClassNotFoundException;
 
@@ -128,8 +129,12 @@ public class UniqueClassList implements Iterable<TuitionClass> {
             throw new PersonNotFoundException();
         }
 
+        /*
+          if editedClass does not have same timing as target class and there's already another class with same timing
+          as editedClass, then edit
+         */
         if (!target.isSameClass(editedClass) && contains(editedClass)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateClassException();
         }
 
         internalList.set(index, editedClass);

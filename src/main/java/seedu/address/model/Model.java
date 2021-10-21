@@ -15,6 +15,11 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<TuitionClass> PREDICATE_SHOW_ALL_CLASS = unused -> true;
+
+
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -97,6 +102,8 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Student> predicate);
 
+    void updateFilteredClassList(Predicate<TuitionClass> predicateShowAllClass);
+
     ObservableList<TuitionClass> getFilteredTuitionClassList();
 
     /**
@@ -105,5 +112,6 @@ public interface Model {
      * The Class identity of {@code editedClass} must not be the same as another existing class in the address book.
      */
     void setClass(TuitionClass target, TuitionClass editedClass);
+
 
 }

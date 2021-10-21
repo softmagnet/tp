@@ -3,6 +3,7 @@ package seedu.address.logic.commands.classcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.commands.classcommands.EditClassCommand.EditClassDescriptor;
 
 
 import seedu.address.commons.core.Messages;
@@ -13,16 +14,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
-import seedu.address.model.tuitionclass.ClassName;
-import seedu.address.model.tuitionclass.ClassTiming;
-import seedu.address.model.tuitionclass.Location;
-import seedu.address.model.tuitionclass.Rate;
 import seedu.address.model.tuitionclass.UniqueNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class AddToClassCommand extends Command {
 
@@ -75,23 +71,10 @@ public class AddToClassCommand extends Command {
         editClassDescriptor.setStudentList(updatedStudentNameList);
 
         //swap out old tuition class with new tuition class
-        TuitionClass editedClass = createEditedClass(classToAddTo, editClassDescriptor);
+        TuitionClass editedClass = EditClassCommand.createEditedClass(classToAddTo, editClassDescriptor);
         model.setClass(classToAddTo, editedClass);
 
         return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, editedClass));
-    }
-
-    private TuitionClass createEditedClass(TuitionClass classToAddTo, EditClassDescriptor editClassDescriptor) {
-        assert classToAddTo != null;
-
-        ClassName className = editClassDescriptor.getClassName().orElse(classToAddTo.getClassName());
-        ClassTiming classTiming = editClassDescriptor.getClassTiming().orElse(classToAddTo.getClassTiming());
-        Location location = editClassDescriptor.getLocation().orElse(classToAddTo.getLocation());
-        Rate rate = editClassDescriptor.getRate().orElse(classToAddTo.getRate());
-        UniqueNameList uniqueNameList = editClassDescriptor.getStudentList().orElse(classToAddTo.getStudentList());
-
-        return new TuitionClass(className, classTiming, location, rate, uniqueNameList);
-
     }
 
     private ArrayList<Name> createNameList(List<Index> studentIndices, List<Student> lastShownStudentList) {
@@ -114,56 +97,4 @@ public class AddToClassCommand extends Command {
     }
 
 
-    /**
-     * Stores the names of the student and the class involved in an addToClassCommand.
-     */
-    public static class EditClassDescriptor {
-        private ClassName className;
-        private ClassTiming classTiming;
-        private Location location;
-        private Rate rate;
-        private UniqueNameList uniqueNameList;
-
-        public EditClassDescriptor() {}
-
-        public void setClassName(ClassName className) {
-            this.className = className;
-        }
-
-        public Optional<ClassName> getClassName() {
-            return Optional.ofNullable(className);
-        }
-
-        public void setClassTiming(ClassTiming classTiming) {
-            this.classTiming = classTiming;
-        }
-
-        public Optional<ClassTiming> getClassTiming() {
-            return Optional.ofNullable(classTiming);
-        }
-
-        public void setLocation(Location location) {
-            this.location = location;
-        }
-
-        public Optional<Location> getLocation() {
-            return Optional.ofNullable(location);
-        }
-
-        public void setRate(Rate rate) {
-            this.rate = rate;
-        }
-
-        public Optional<Rate> getRate() {
-            return Optional.ofNullable(rate);
-        }
-
-        public void setStudentList(UniqueNameList uniqueNameList) {
-            this.uniqueNameList = uniqueNameList;
-        }
-
-        public Optional<UniqueNameList> getStudentList() {
-            return Optional.ofNullable(uniqueNameList);
-        }
-    }
 }

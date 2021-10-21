@@ -150,6 +150,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredClassList(Predicate<TuitionClass> predicate) {
+        requireNonNull(predicate);
+        filteredTuitionClass.setPredicate(predicate);
+    }
+
+    @Override
     public ObservableList<TuitionClass> getFilteredTuitionClassList() {
         return filteredTuitionClass;
     }
