@@ -29,6 +29,7 @@
             <Label fx:id="classTiming" styleClass="cell_small_label" text="\$classTiming" />
             <Label fx:id="classLocation" styleClass="cell_small_label" text="\$location" />
             <Label fx:id="rate" styleClass="cell_small_label" text="\$rate" />
+            <Label fx:id="classSize" styleClass="cell_small_label" text="\$classSize" />
         </VBox>
     </GridPane>
 </HBox>

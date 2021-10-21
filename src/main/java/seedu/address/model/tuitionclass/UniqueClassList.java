@@ -43,8 +43,9 @@ public class UniqueClassList implements Iterable<TuitionClass> {
         } else {
             for (TuitionClass tuitionClass : internalList) {
                 if (tuitionClass.isOverlapping(toAdd)) {
-                    int index = internalList.indexOf(tuitionClass);
-                    internalList.set(index, toAdd);
+                   // int index = internalList.indexOf(tuitionClass);
+                   // internalList.set(index, toAdd);
+                    tuitionClass.addStudentList(toAdd.getStudentList());
                 } else {
                     continue;
                 }

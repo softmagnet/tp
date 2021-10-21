@@ -33,7 +33,9 @@ public class UniqueNameList implements Iterable<Name> {
 
     public void addAll(UniqueNameList names) {
         for (Name name : names) {
-            this.add(name);
+            if (!this.contains(name)) {
+                this.add(name);
+            }
         }
     }
 
@@ -41,6 +43,10 @@ public class UniqueNameList implements Iterable<Name> {
         for (int i = 0; i < names.size(); i++) {
             this.add(names.get(i));
         }
+    }
+
+    public String size() {
+        return String.valueOf(internalList.size());
     }
 
     @Override

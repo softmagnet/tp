@@ -9,7 +9,7 @@
       "className" : "monday math class",
       "rate" : "50",
       "location" : "169 clementi ave 69",
-      "students" : [ ]
+      "students" : ["Johns Doe" ]
     } ],
     "nok" : {
       "name" : "Jack Doe",
@@ -28,7 +28,7 @@
       "className" : "monday math class",
       "rate" : "50",
       "location" : "169 clementi ave 69",
-      "students" : [ ]
+      "students" : ["John Doe" ]
     } ],
     "nok" : {
       "name" : "Jack Doe",
@@ -73,7 +73,7 @@
       "className" : "Placeholder",
       "rate" : "70",
       "location" : "311, Clementi Ave 2, #02-25",
-      "students" : [ ]
+      "students" : [ "John Van Whye"]
     } ],
     "nok" : {
       "name" : "Jack Doe",
@@ -92,7 +92,7 @@
       "className" : "Placeholder",
       "rate" : "70",
       "location" : "311, Clementi Ave 2, #02-25",
-      "students" : [ ]
+      "students" : ["alice" ]
     } ],
     "nok" : {
       "name" : "Jack Doe",
@@ -111,7 +111,7 @@
       "className" : "Placeholder",
       "rate" : "70",
       "location" : "311, Clementi Ave 2, #02-25",
-      "students" : [ ]
+      "students" : ["John smith" ]
     } ],
     "nok" : {
       "name" : "Jack Doe",

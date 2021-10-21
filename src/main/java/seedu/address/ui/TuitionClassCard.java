@@ -15,6 +15,7 @@ public class TuitionClassCard extends UiPart<Region> {
     private static final String CLASS_TIMING_FIELD = "Class Timing: ";
     private static final String LOCATION_FIELD = "Class Location: ";
     private static final String RATE_FIELD = "Rate: ";
+    private static final String CLASS_SIZE_FIELD = "Class Size: ";
 
     public final TuitionClass tuitionClass;
 
@@ -31,6 +32,8 @@ public class TuitionClassCard extends UiPart<Region> {
     private Label classLocation;
     @FXML
     private Label rate;
+    @FXML
+    private Label classSize;
 
     public TuitionClassCard(TuitionClass tuitionClass, int displayedIndex) {
         super(FXML);
@@ -42,6 +45,7 @@ public class TuitionClassCard extends UiPart<Region> {
         classTiming.setText(CLASS_TIMING_FIELD + tuitionClass.getClassTiming().value);
         classLocation.setText(LOCATION_FIELD + tuitionClass.getLocation().value);
         rate.setText(RATE_FIELD + DOLLAR_SIGN + tuitionClass.getRate().value + PER_HOUR);
+        classSize.setText(CLASS_SIZE_FIELD + tuitionClass.getStudentList().size());
     }
 
     @Override

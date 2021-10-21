@@ -88,6 +88,10 @@ public class TuitionClass {
         uniqueNameList.add(name);
     }
 
+    public void addStudentList(UniqueNameList uniqueNameList) {
+        this.uniqueNameList.addAll(uniqueNameList);
+    }
+
     /**
      * Checks if the TuitionClass is at this timing.
      */
