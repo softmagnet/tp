@@ -5,9 +5,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -28,6 +30,7 @@ public class UniquePersonList implements Iterable<Student> {
     private final ObservableList<Student> internalList = FXCollections.observableArrayList();
     private final ObservableList<Student> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private final Logger logger = LogsCenter.getLogger(UniquePersonList.class);
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -95,6 +98,7 @@ public class UniquePersonList implements Iterable<Student> {
     public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        logger.info("List of Students set from replace UniquePersonList.");
     }
 
     /**
@@ -108,6 +112,7 @@ public class UniquePersonList implements Iterable<Student> {
         }
 
         internalList.setAll(students);
+        logger.info("List of Students set from List<Student>.");
     }
 
     /**
