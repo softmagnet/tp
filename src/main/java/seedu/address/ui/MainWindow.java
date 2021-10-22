@@ -20,8 +20,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Student;
 import seedu.address.ui.classTab.ClassPanel;
+import seedu.address.ui.timetable.TimetablePanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -41,6 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private ClassPanel classPanel;
+    private TimetablePanel timetablePanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -69,8 +70,14 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Tab tuitionClassTab;
 
+    //    @FXML
+    //    private ListView<Student> studentListView;
+
     @FXML
-    private ListView<Student> studentListView;
+    private StackPane timetablePanelPlaceholder;
+
+    @FXML
+    private Tab timetableTab;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -138,6 +145,9 @@ public class MainWindow extends UiPart<Stage> {
         classPanel = new ClassPanel(logic.getFilteredPersonList(), logic.getFilteredTuitionClassList());
         classListPanelPlaceholder.getChildren().add(classPanel.getRoot());
 
+        timetablePanel = new TimetablePanel(logic.getFilteredTuitionClassList());
+        timetablePanelPlaceholder.getChildren().add(timetablePanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -148,15 +158,10 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         studentsTab = new Tab("Students", studentListPanelPlaceholder);
-        Tab timetableTab = new Tab("Timetable", new Label("Timetable"));
+        timetableTab = new Tab("Timetable", timetablePanelPlaceholder);
         tuitionClassTab = new Tab("Class", classListPanelPlaceholder);
 
-        tabPane.getTabs().add(timetableTab);
-        //tabPane.getTabs().add(classTab);
-
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
-
-
     }
 
     /**
