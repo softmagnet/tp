@@ -154,6 +154,27 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find commands
+
+The implementation of all search-related commands such as `findtag` and `findname` uses a common approach of setting a
+predicate inside the `FilteredList` class. As mentioned above in `Model` section, this filtered list contains an
+`ObservableList<Person>` that is bound to the UI such that UI is responsive to any changes in the list and these changes
+can be brought forward by setting a new predicate. One should also note that the default predicate always returns a
+boolean `true` which means no `Person` is filtered out at the start.
+
+The sequence diagram when a `findXYZ` (XYZ is placeholder for searchable attributes) command is executed is as follows:
+
+![Sequence of execution when a find command is executed](images/FindSequenceDiagram.png)
+
+Furthermore, to fully understand the find command, we also have to understand how predicate is works. The predicates used
+that filters out students are typical java `Predicate`. It is important to know that for each find command, multiple
+keywords are allowed so we have to design predicates such that every keyword is checked against each student.
+To add a searchable attributes, one has to design and add a new predicate.
+
+
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -240,8 +261,8 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### \[Proposed\] \[Unfinished\] Adding a Student to a class
 When adding a student, a Class is automatically created if a class at the same timing doesn't already exist.
-The AddCommandParse parses the user input to obtain the classTiming (denoted by parameter `/ct`), and 
-uniquely identifies the class. Afterwards, an AddCommand is created with the `Class` and `Student`, after which 
+The AddCommandParse parses the user input to obtain the classTiming (denoted by parameter `/ct`), and
+uniquely identifies the class. Afterwards, an AddCommand is created with the `Class` and `Student`, after which
 it checks whether an existing class with the same timing exists and adds the student to the `Class`'s classList
 and if not, adds the student to the new class created.
 
@@ -253,7 +274,7 @@ Then, a DeleteCommand is created with the parsed class timing. When the DeleteCo
 is searched to find the tuition class to be deleted. If no classes matches the ClassTiming, an exception is thrown.
 Otherwise, the TuitionClass is obtained. The TuitionClass object stores a list of students in the class in the form
 of a list of names. From each name, the respective student is found and the TuitionClass is deleted from the student's
-internal class list. 
+internal class list.
 Finally, the TuitionClass itself can be removed from the AddressBook's class list.
 
 A diagram of the procedure is shown below:
@@ -291,20 +312,20 @@ A diagram of the procedure is shown below:
 * Interest: Loves coding and building apps during his free time with friends. Loves teaching people.
 * Values: Work hard play hard.
 * Salary: $12000/mth
-* Job: Full time freelance A-levels Mathematics tuition teacher (Size of class: group and one-to-one) 
+* Job: Full time freelance A-levels Mathematics tuition teacher (Size of class: group and one-to-one)
     * Has a need to manage a significant number of contacts
-* Car: Owns 2 Teslas. 
+* Car: Owns 2 Teslas.
 * Home Environment: Lives with parents, older brother and dog.
 * Education: NIE graduate.
 * Household Description: Sentosa Cove landed property with rich parents.
 
-**Value proposition**: </br> 
-A busy tutor who has a large number of students can find it extremely difficult to 
+**Value proposition**: </br>
+A busy tutor who has a large number of students can find it extremely difficult to
 
 * manage and organize student information
 * schedule according to student class timing
 
-This is where Timestable comes in. It improves two main areas: 
+This is where Timestable comes in. It improves two main areas:
 * querying
   * student information
   * parent information
@@ -315,7 +336,7 @@ This is where Timestable comes in. It improves two main areas:
   * update
 
 By improving the data manipulation process, the tutor can organize student information more easily. </br>
-By improving the querying process, the tutor can make scheduling less painstaking and time-consuming.  
+By improving the querying process, the tutor can make scheduling less painstaking and time-consuming.
 
 
 ### User stories
@@ -328,13 +349,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | User                                       | Save class rates                                             | Keep track of how much to charge each class                |
 | `* * `   | User                                       | Edit my student details                                      | Keep track of changes of my students                       |
 | `* * *`  | Forgetful user                             | Save their contacts                                          | I can remember them                                        |
-| `* * *`  | User                                       | View my class timings for a specific contact (day and time)  |          Know which day will I be teaching this contact    |                          
+| `* * *`  | User                                       | View my class timings for a specific contact (day and time)  |          Know which day will I be teaching this contact    |
 | `* * *`  | User                                       | Record parent contact of my students                         | Contact the student's parent in case of emergencies        |
 | `* * *`  | User                                       | Delete/archive my student's contacts and information         | I can declutter my contacts.                               |
 | `* * *`  | Experienced User                           | Add all contact details without any specifiers               | I can save time in creating new contacts                   |
-| `* * *`  | User                                       | Record locations of classes of each student                  | Knows where to go                                          |             
-| `* `     | Careless User                              | Be notified if there was a clash in timing                   | I can have peace of mind                                   |             
-| `* `     | User                                       | View schedule for a specific day                             | Can prepare for lesson and won't be absent                 |             
+| `* * *`  | User                                       | Record locations of classes of each student                  | Knows where to go                                          |
+| `* `     | Careless User                              | Be notified if there was a clash in timing                   | I can have peace of mind                                   |
+| `* `     | User                                       | View schedule for a specific day                             | Can prepare for lesson and won't be absent                 |
 
 ### Use cases
 
@@ -374,7 +395,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extension**
 * 1a. User keys in add command with invalid format.
     *1a1. TimesTable shows an error message.
-  
+
     Use case resumes at step 1.
 
 **Use case: Add parent contact**
@@ -449,15 +470,15 @@ testers are expected to do more *exploratory* testing.
 ### Adding a Student to a class
 1. Adding a student to a class that doesn't currently exist
     1. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/70 ct/Mon 11:30-13:30 l/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
-       nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25 `  
-       Expected: A class is created at 11:30-13:30 on Monday.  
-       Details of the created `Student` and `Class` is shown in the status message.   
+       nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25 `
+       Expected: A class is created at 11:30-13:30 on Monday.
+       Details of the created `Student` and `Class` is shown in the status message.
    List is updated to include the student in the `studentTab` and class is added to the `classTab`
 
 2. Adding a student to a class that currently exists
     1. Test case: `add n/Johnny p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/70 ct/Mon 11:30-13:30 l/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
-       nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25 `  
-       Expected: The student is added to the class that exists at 11:30-13:30 on Monday. No new class is created.  
+       nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25 `
+       Expected: The student is added to the class that exists at 11:30-13:30 on Monday. No new class is created.
        Details of the created `Student` and the `Class` he is added to is shown in the status message.
 
 ### Deleting a person
@@ -474,7 +495,7 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-   
+
 3. _{ more test cases …​ }_
 
 ### Saving data
