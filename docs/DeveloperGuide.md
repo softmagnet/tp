@@ -237,7 +237,13 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
- 
+
+### \[Proposed\] \[Unfinished\] Adding a Student to a class
+When adding a student, a Class is automatically created if a class at the same timing doesn't already exist.
+The AddCommandParse parses the user input to obtain the classTiming (denoted by parameter `/ct`), and 
+uniquely identifies the class. Afterwards, an AddCommand is created with the `Class` and `Student`, after which 
+it checks whether an existing class with the same timing exists and adds the student to the `Class`'s classList
+and if not, adds the student to the new class created.
 
 ### \[Proposed\] \[Unfinished\] Deleting Tuition Class
 To delete a tuition class, the 'deleteclass' command is used.
@@ -440,22 +446,36 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a Student to a class
+1. Adding a student to a class that doesn't currently exist
+    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/70 ct/Mon 11:30-13:30 l/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+       nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25 `  
+       Expected: A class is created at 11:30-13:30 on Monday.  
+       Details of the created `Student` and `Class` is shown in the status message.   
+   List is updated to include the student in the `studentTab` and class is added to the `classTab`
+
+2. Adding a student to a class that currently exists
+    1. Test case: `add n/Johnny p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/70 ct/Mon 11:30-13:30 l/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+       nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25 `  
+       Expected: The student is added to the class that exists at 11:30-13:30 on Monday. No new class is created.  
+       Details of the created `Student` and the `Class` he is added to is shown in the status message.
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
+   
+3. _{ more test cases …​ }_
 
 ### Saving data
 
