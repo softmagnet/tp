@@ -1,4 +1,4 @@
-package seedu.address.ui.timetable;
+package seedu.address.ui.timetableTab;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;

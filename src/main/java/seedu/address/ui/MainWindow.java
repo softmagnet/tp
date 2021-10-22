@@ -4,8 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -21,7 +19,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.classTab.ClassPanel;
-import seedu.address.ui.timetable.TimetablePanel;
+import seedu.address.ui.studentTab.StudentListPanel;
+import seedu.address.ui.timetableTab.TimetablePanel;
 
 /**
  * The Main Window. Provides the basic application layout containing

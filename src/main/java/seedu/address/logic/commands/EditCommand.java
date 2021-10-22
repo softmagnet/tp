@@ -246,8 +246,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(rate);
         }
 
-        // TODO: Find some way to reduce duplicate code fragments
-
         public void setNokName(Name nokName) {
             this.nokName = nokName;
         }

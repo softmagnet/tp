@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.studentTab;
 
 import java.util.Comparator;
 
@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Student;
+import seedu.address.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -47,12 +48,6 @@ public class StudentCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label email;
-    @FXML
-    private Label rate;
-    @FXML
-    private Label classTiming;
-    @FXML
-    private Label classLocation;
     @FXML
     private FlowPane tags;
 
