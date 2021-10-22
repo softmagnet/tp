@@ -279,6 +279,15 @@ Finally, the TuitionClass itself can be removed from the AddressBook's class lis
 
 A diagram of the procedure is shown below:
 
+### \[Proposed\] \[Unfinished\] A UniqueTuitionClassList in Model and by extension a "Classes" tab
+A student can attend multiple TuitionClass, so a List<JSONAdaptedTuitionClass> is used to store the classes this student
+attends, while each TuitionClass contains a List<Name> of all student who attends it.
+When a new Student is added to the AddressBook, the TuitionClass of the new Student created will be checked through
+the UniqueTuitionClassList for equality and overlapping, if the TuitionClasses are equal, the new student name will be
+added to the TuitionClass name list and the TuitionClass of the new student will be replaced by the TuitionClass with
+the updated name list, if they are overlapping but not equal, an exception will be thrown.
+This UniqueTuitionClassList consists of an ObservableArrayList which will then be used to display all unique 
+TuitionClasses that the user will be teaching in the GUI.
 
 --------------------------------------------------------------------------------------------------------------------
 
