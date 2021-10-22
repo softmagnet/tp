@@ -262,7 +262,7 @@ _{Explain here how the data archiving feature will be implemented}_
 ### \[Proposed\] \[Unfinished\] Adding a Student to a class
 When adding a student, a Class is automatically created if a class at the same timing doesn't already exist.
 The AddCommandParse parses the user input to obtain the classTiming (denoted by parameter `/ct`), and
-uniquely identifies the class. Afterwards, an AddCommand is created with the `Class` and `Student`, after which 
+uniquely identifies the class. Afterwards, an AddCommand is created with the `Class` and `Student`, after which
 it checks whether an existing class with the same timing exists and adds the student to the `Class`'s classList
 and if not, adds the student to the new class created.
 

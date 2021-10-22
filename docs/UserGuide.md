@@ -88,7 +88,7 @@ Adds a student to the address book.
 
 Format:
 ```
-add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ct/CLASS_TIMING l/LOCATION r/HOURLY_RATE [t/TAG]… nok/ n/NOK_NAME 
+add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ct/CLASS_TIMING l/LOCATION r/HOURLY_RATE [t/TAG]… nok/ n/NOK_NAME
     p/NOK_PHONE_NUMBER e/NOK_EMAIL
 ```
 
