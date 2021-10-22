@@ -1,6 +1,6 @@
 {
   "persons" : [ {
-    "name" : "Jo ee",
+    "name" : "test Doe",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
@@ -15,7 +15,7 @@
     },
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "name" : "test Doe",
+    "name" : "Jo ee",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
