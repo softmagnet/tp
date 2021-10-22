@@ -1,14 +1,15 @@
-package seedu.address.ui;
+package seedu.address.ui.classTab;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.ui.UiPart;
 
 public class TuitionClassCard extends UiPart<Region> {
 
-    private static final String FXML = "TuitionCLassListCard.fxml";
+    private static final String FXML = "TuitionClassListCard.fxml";
     private static final Character DOLLAR_SIGN = '$';
     private static final String PER_HOUR = "/hr";
     private static final String CLASS_NAME_FIELD = "Class Name: ";

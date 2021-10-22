@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -19,6 +20,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Student;
+import seedu.address.ui.classTab.ClassPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,10 +37,10 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private TuitionClassListPanel tuitionClassListPanel;
+    private ClassPanel classPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -46,7 +49,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane studentListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -55,7 +58,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private StackPane tuitionClassListPanelPlaceholder;
+    private StackPane classListPanelPlaceholder;
 
     @FXML
     private TabPane tabPane;
@@ -65,6 +68,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private Tab tuitionClassTab;
+
+    @FXML
+    private ListView<Student> studentListView;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -126,11 +132,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        studentListPanel = new StudentListPanel(logic.getFilteredPersonList());
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
-        tuitionClassListPanel = new TuitionClassListPanel(logic.getFilteredTuitionClassList());
-        tuitionClassListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
+        classPanel = new ClassPanel(logic.getFilteredPersonList(), logic.getFilteredTuitionClassList());
+        classListPanelPlaceholder.getChildren().add(classPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -141,9 +147,9 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        studentsTab = new Tab("Students", personListPanelPlaceholder);
+        studentsTab = new Tab("Students", studentListPanelPlaceholder);
         Tab timetableTab = new Tab("Timetable", new Label("Timetable"));
-        tuitionClassTab = new Tab("Class", tuitionClassListPanelPlaceholder);
+        tuitionClassTab = new Tab("Class", classListPanelPlaceholder);
 
         tabPane.getTabs().add(timetableTab);
         //tabPane.getTabs().add(classTab);
@@ -193,8 +199,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public StudentListPanel getStudentListPanel() {
+        return studentListPanel;
     }
 
     /**

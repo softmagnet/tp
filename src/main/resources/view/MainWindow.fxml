@@ -25,6 +25,7 @@
         <URL value="@Fonts.css"/>
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
+        <URL value="@timetableTab/Timetable.css" />
       </stylesheets>
 
       <VBox>
@@ -57,7 +58,7 @@
               <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
               </padding>
-              <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              <StackPane fx:id="studentListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
           </Tab>
           <Tab fx:id="tuitionClassTab" text="Classes">
@@ -66,7 +67,7 @@
               <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
               </padding>
-              <StackPane fx:id="tuitionClassListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              <StackPane fx:id="classListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
           </Tab>
         </TabPane>
