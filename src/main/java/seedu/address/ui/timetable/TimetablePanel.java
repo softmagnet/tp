@@ -45,6 +45,7 @@ public class TimetablePanel extends UiPart<Region> {
                 @Override
                 public void onChanged(Change<? extends Student> change) {
                     while (change.next()) {
+                        logger.info("Change to uniqueClassList, rebuilding timetable.");
                         build(studentList);
                     }
                 }
@@ -60,9 +61,11 @@ public class TimetablePanel extends UiPart<Region> {
     public void build(ObservableList<Student> studentList) {
         clearAll();
         if (studentList == null || studentList.isEmpty()) {
+            logger.info("No class in uniqueClassList.");
             Label label = new Label("You have no classes.");
             timetable.add(label, 0, 0);
         } else {
+            logger.info("Building timetable from uniqueClassList.");
             buildHeader(studentList);
             buildDays();
             buildClasses(studentList);
