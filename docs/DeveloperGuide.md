@@ -259,6 +259,19 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Timetable feature
+The timetable feature is a feature which displays the user's classes in a visual timetable format.
+
+#### Implementation
+When the TimesTable starts, it uses the uniqueClassList to build the timetable UI in the timetable tab. It sorts the
+classes in order of class timing (earliest class first) and builds them iteratively. There is also a listener attached
+to the uniqueClassList which causes the timetable to rebuild itself whenever there are changes to the uniqueClassList, 
+such as when a new class is added or an existing class is deleted from the uniqueClassList.
+
+Additionally, due to the limited size of the app window, the timetable would adjust itself and starts everyday with the
+earliest class timing so that the timetable would not look cluttered. There is a time panel at the top to indicate what
+time are the slots at.
+
 ### \[Proposed\] \[Unfinished\] Adding a Student to a class
 When adding a student, a Class is automatically created if a class at the same timing doesn't already exist.
 The AddCommandParse parses the user input to obtain the classTiming (denoted by parameter `/ct`), and
