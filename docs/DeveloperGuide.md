@@ -154,6 +154,27 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find commands
+
+The implementation of all search-related commands such as `findtag` and `findname` uses a common approach of setting a
+predicate inside the `FilteredList` class. As mentioned above in `Model` section, this filtered list contains an
+`ObservableList<Person>` that is bound to the UI such that UI is responsive to any changes in the list and these changes
+can be brought forward by setting a new predicate. One should also note that the default predicate always returns a
+boolean `true` which means no `Person` is filtered out at the start.
+
+The sequence diagram when a `findXYZ` (XYZ is placeholder for searchable attributes) command is executed is as follows:
+
+![Sequence of execution when a find command is executed](images/FindSequenceDiagram.png)
+
+Furthermore, to fully understand the find command, we also have to understand how predicate is works. The predicates used
+that filters out students are typical java `Predicate`. It is important to know that for each find command, multiple
+keywords are allowed so we have to design predicates such that every keyword is checked against each student.
+To add a searchable attributes, one has to design and add a new predicate.
+
+
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
