@@ -61,7 +61,7 @@ public class ScheduleCommandTest {
         ScheduleCommand command = new ScheduleCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredStudentList());
     }
 
     @Test
@@ -71,7 +71,7 @@ public class ScheduleCommandTest {
         ScheduleCommand command = new ScheduleCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, CARL), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL), model.getFilteredStudentList());
     }
 
     /**

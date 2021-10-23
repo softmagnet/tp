@@ -23,7 +23,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  *
  * @see Person#isSamePerson(Person)
  */
-public class UniquePersonList implements Iterable<Student> {
+public class UniqueStudentList implements Iterable<Student> {
 
     private final ObservableList<Student> internalList = FXCollections.observableArrayList();
     private final ObservableList<Student> internalUnmodifiableList =
@@ -100,7 +100,7 @@ public class UniquePersonList implements Iterable<Student> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setPersons(UniqueStudentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -133,8 +133,8 @@ public class UniquePersonList implements Iterable<Student> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueStudentList // instanceof handles nulls
+                        && internalList.equals(((UniqueStudentList) other).internalList));
     }
 
     @Override

@@ -54,7 +54,7 @@ public class AddToClassCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
 
         //get names to be added
-        List<Student> lastShownStudentList = model.getFilteredPersonList();
+        List<Student> lastShownStudentList = model.getFilteredStudentList();
         checkIndicesAreValid(studentIndices, lastShownStudentList);
         ArrayList<Name> namesToAdd = createNameList(studentIndices, lastShownStudentList);
 

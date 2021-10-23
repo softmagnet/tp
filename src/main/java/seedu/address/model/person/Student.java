@@ -56,7 +56,7 @@ public class Student extends Person {
         classList.remove(tuitionClass);
     }
 
-    public  ArrayList<TuitionClass> getClassList() {
+    public ArrayList<TuitionClass> getClassList() {
         return classList;
     }
 

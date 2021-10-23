@@ -138,10 +138,10 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        studentListPanel = new StudentListPanel(logic.getFilteredPersonList());
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
-        classPanel = new ClassPanel(logic.getFilteredPersonList(), logic.getFilteredTuitionClassList());
+        classPanel = new ClassPanel(logic.getFilteredStudentList(), logic.getFilteredTuitionClassList());
         classListPanelPlaceholder.getChildren().add(classPanel.getRoot());
 
         timetablePanel = new TimetablePanel(logic.getFilteredTuitionClassList());

@@ -12,11 +12,10 @@ public class TuitionClassCard extends UiPart<Region> {
     private static final String FXML = "TuitionClassListCard.fxml";
     private static final Character DOLLAR_SIGN = '$';
     private static final String PER_HOUR = "/hr";
-    private static final String CLASS_NAME_FIELD = "Class Name: ";
-    private static final String CLASS_TIMING_FIELD = "Class Timing: ";
-    private static final String LOCATION_FIELD = "Class Location: ";
+    private static final String CLASS_TIMING_FIELD = "Timing: ";
+    private static final String LOCATION_FIELD = "Location: ";
     private static final String RATE_FIELD = "Rate: ";
-    private static final String CLASS_SIZE_FIELD = "Class Size: ";
+    private static final String CLASS_SIZE_FIELD = "Size: ";
 
     public final TuitionClass tuitionClass;
 
@@ -36,13 +35,19 @@ public class TuitionClassCard extends UiPart<Region> {
     @FXML
     private Label classSize;
 
+    /**
+     * Represents a Tuition Card to be shown in the GUI.
+     *
+     * @param tuitionClass The class to display.
+     * @param displayedIndex The index to display.
+     */
     public TuitionClassCard(TuitionClass tuitionClass, int displayedIndex) {
         super(FXML);
         this.tuitionClass = tuitionClass;
 
         // TuitionClass
         id.setText(displayedIndex + ". ");
-        className.setText(CLASS_NAME_FIELD + tuitionClass.getClassName().className);
+        className.setText(tuitionClass.getClassName().className);
         classTiming.setText(CLASS_TIMING_FIELD + tuitionClass.getClassTiming().value);
         classLocation.setText(LOCATION_FIELD + tuitionClass.getLocation().value);
         rate.setText(RATE_FIELD + DOLLAR_SIGN + tuitionClass.getRate().value + PER_HOUR);
