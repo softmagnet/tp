@@ -126,6 +126,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteTuitionClass(TuitionClass tuitionClass) {
+        addressBook.deleteTuitionClass(tuitionClass);
+    }
+
+    @Override
     public void setPerson(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
 

@@ -87,6 +87,12 @@ public interface Model {
     void addTuitionClass(TuitionClass tuitionClass);
 
     /**
+     * Deletes the given tuition class.
+     * The class must exist in the address book.
+     */
+    void deleteTuitionClass(TuitionClass target);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
