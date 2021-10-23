@@ -4,8 +4,10 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.util.Callback;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
@@ -39,4 +41,13 @@ public class ClassPanel extends UiPart<Region> {
                 new TuitionClassListViewCell(studentList, studentListViewClassTab));
         logger.info("ClassPanel tab opened");
     }
+
+    public void setItems(ObservableList<Student> studentObservableList) {
+        studentListViewClassTab.setItems(studentObservableList);
+    }
+
+    public void setCellFactory(Callback<ListView<Student>, ListCell<Student>> studentObservableList) {
+        studentListViewClassTab.setCellFactory(studentObservableList);
+    }
+
 }

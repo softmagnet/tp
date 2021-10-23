@@ -35,14 +35,14 @@ public class SelectClassCommand extends Command {
         }
 
         TuitionClass tuitionClass = lastShownList.get(targetIndex.getZeroBased());
-        ObservableList<Student> observableList = FXCollections.observableArrayList();
+//        ObservableList<Student> observableList = FXCollections.observableArrayList();
+//
+//        tuitionClass.getStudentList().forEach(student -> observableList.add(model.getFilteredStudentList().get(student)));
+//        ObservableList<Student> studentObservableList = FXCollections.observableArrayList(tuitionClass.getStudentList());
+//
+//        // Handle click here
+//        model.updateFilteredPersonList(student -> tuitionClass.containsStudent(student.getName()));
 
-        tuitionClass.getStudentList().forEach(student -> observableList.add(model..get(student)));
-        ObservableList<Student> studentObservableList = FXCollections.observableArrayList(tuitionClass.getStudentList());
-
-        // Handle click here
-        model.updateFilteredPersonList(student -> tuitionClass.containsStudent(student.getName()));
-
-        return new CommandResult("Viewing class " + tuitionClass.toString());
+        return new CommandResult(targetIndex.getZeroBased(), "Viewing class " + tuitionClass.toString(), false, false);
     }
 }
