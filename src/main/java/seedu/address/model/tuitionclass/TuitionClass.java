@@ -126,8 +126,21 @@ public class TuitionClass {
      * Returns true if the class timing of the class to be checked overlaps with this class.
      */
     public boolean isOverlapping(TuitionClass toCheck) {
-        return !(this.getClassTiming().isEarlier(toCheck.getClassTiming())
-                || toCheck.getClassTiming().isEarlier(this.getClassTiming()));
+//        return !(this.getClassTiming().isEarlier(toCheck.getClassTiming())
+//                || toCheck.getClassTiming().isEarlier(this.getClassTiming()));
+        if (this.equals(toCheck)) {
+            return true;
+        } else if ( this.getClassTiming().isSameDay(toCheck.getClassTiming()) //on the same day
+            && ((toCheck.getStartTiming().compareTo(this.getEndTiming()) < 0
+            && toCheck.getStartTiming().compareTo(this.getStartTiming()) > 0)  //toCheck start time overlap with this
+            || (toCheck.getEndTiming().compareTo(this.getEndTiming()) < 0
+            && toCheck.getEndTiming().compareTo(this.getStartTiming()) > 0)  //toCheck end time overlap with this
+            || (toCheck.getStartTiming().compareTo(this.getStartTiming()) < 0  //toCheck starts earlier than this
+            && toCheck.getEndTiming().compareTo(this.getEndTiming()) > 0))) { //toCheck ends later than this
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean isSameClass(TuitionClass otherClass) {
