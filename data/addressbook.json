@@ -1,16 +1,177 @@
 {
   "persons" : [ {
-    "name" : "Johns Doe",
+    "name" : "Jo ee",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tuitionClasses" : [ {
-      "classTiming" : "MON 12:00-13:00",
-      "className" : "monday math class",
-      "rate" : "50",
-      "location" : "169 clementi ave 69",
-      "students" : ["Johns Doe" ]
-    } ],
+    "rate" : "70",
+    "classTiming" : "MON 10:00-11:00",
+    "location" : "311, Clementi Ave 2, #02-25",
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "test Doe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "rate" : "70",
+    "classTiming" : "MON 10:00-11:00",
+    "location" : "311, Clementi Ave 2, #02-25",
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "John De",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "rate" : "70",
+    "classTiming" : "MON 12:00-13:00",
+    "location" : "311, Clementi Ave 2, #02-25",
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "John dd",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "rate" : "70",
+    "classTiming" : "MON 14:00-15:00",
+    "location" : "311, Clementi Ave 2, #02-25",
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "s Doe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "rate" : "70",
+    "classTiming" : "MON 18:00-19:00",
+    "location" : "311, Clementi Ave 2, #02-25",
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "joe mama",
+    "phone" : "00112200",
+    "email" : "joe@gg.com",
+    "address" : "his house @ 69",
+    "rate" : "54",
+    "classTiming" : "MON 20:00-21:00",
+    "location" : "tuition center",
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ ]
+  }, {
+    "name" : "weirdDoe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "rate" : "70",
+    "classTiming" : "TUE 11:25-12:46",
+    "location" : "311, Clementi Ave 2, #02-25",
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "hi",
+    "phone" : "87438807",
+    "email" : "alexyeoh@example.com",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "rate" : "59",
+    "classTiming" : "TUE 13:00-14:00",
+    "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "oifjasodifj",
+      "phone" : "99272758",
+      "email" : "h@gmail.com",
+      "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18"
+    },
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "charlie olive",
+    "phone" : "93210283",
+    "email" : "charlotte@example.com",
+    "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
+    "rate" : "80",
+    "classTiming" : "TUE 15:00-16:00",
+    "location" : "132, Jurong East Ave 4, #03-10",
+    "nok" : {
+      "name" : "Happy Yu",
+      "phone" : "99272758",
+      "email" : "berniceyu@example.com",
+      "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18"
+    },
+    "tagged" : [ "neighbours" ]
+  }, {
+    "name" : "wed Doe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "rate" : "70",
+    "classTiming" : "WED 11:30-12:00",
+    "location" : "311, Clementi Ave 2, #02-25",
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "John wick",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "rate" : "70",
+    "classTiming" : "WED 14:00-15:00",
+    "location" : "311, Clementi Ave 2, #02-25",
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "Jn Doe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "rate" : "70",
+    "classTiming" : "THU 11:30-13:30",
+    "location" : "311, Clementi Ave 2, #02-25",
     "nok" : {
       "name" : "Jack Doe",
       "phone" : "10987654",
@@ -23,13 +184,9 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tuitionClasses" : [ {
-      "classTiming" : "MON 12:00-13:00",
-      "className" : "monday math class",
-      "rate" : "50",
-      "location" : "169 clementi ave 69",
-      "students" : ["John Doe" ]
-    } ],
+    "rate" : "70",
+    "classTiming" : "FRI 10:30-12:30",
+    "location" : "311, Clementi Ave 2, #02-25",
     "nok" : {
       "name" : "Jack Doe",
       "phone" : "10987654",
@@ -38,11 +195,13 @@
     },
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "name" : "John sDoe",
+    "name" : "JohDoe",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tuitionClasses" : [ ],
+    "rate" : "70",
+    "classTiming" : "SAT 11:30-13:30",
+    "location" : "311, Clementi Ave 2, #02-25",
     "nok" : {
       "name" : "Jack Doe",
       "phone" : "10987654",
@@ -51,106 +210,13 @@
     },
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "name" : "John cena",
+    "name" : "sun Doe",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tuitionClasses" : [ ],
-    "nok" : {
-      "name" : "Jack Doe",
-      "phone" : "10987654",
-      "email" : "jackd@example.com",
-      "address" : "311, Clementi Ave 2, #02-25"
-    },
-    "tagged" : [ "owesMoney", "friends" ]
-  }, {
-    "name" : "John Van Whye",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tuitionClasses" : [ {
-      "classTiming" : "FRI 11:30-13:30",
-      "className" : "Placeholder",
-      "rate" : "70",
-      "location" : "311, Clementi Ave 2, #02-25",
-      "students" : [ "John Van Whye"]
-    } ],
-    "nok" : {
-      "name" : "Jack Doe",
-      "phone" : "10987654",
-      "email" : "jackd@example.com",
-      "address" : "311, Clementi Ave 2, #02-25"
-    },
-    "tagged" : [ "owesMoney", "friends" ]
-  }, {
-    "name" : "alice",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tuitionClasses" : [ {
-      "classTiming" : "TUE 11:30-13:30",
-      "className" : "Placeholder",
-      "rate" : "70",
-      "location" : "311, Clementi Ave 2, #02-25",
-      "students" : ["alice" ]
-    } ],
-    "nok" : {
-      "name" : "Jack Doe",
-      "phone" : "10987654",
-      "email" : "jackd@example.com",
-      "address" : "311, Clementi Ave 2, #02-25"
-    },
-    "tagged" : [ "owesMoney", "friends" ]
-  }, {
-    "name" : "John smith",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tuitionClasses" : [ {
-      "classTiming" : "FRI 11:30-13:30",
-      "className" : "Placeholder",
-      "rate" : "70",
-      "location" : "311, Clementi Ave 2, #02-25",
-      "students" : ["John smith" ]
-    } ],
-    "nok" : {
-      "name" : "Jack Doe",
-      "phone" : "10987654",
-      "email" : "jackd@example.com",
-      "address" : "311, Clementi Ave 2, #02-25"
-    },
-    "tagged" : [ "owesMoney", "friends" ]
-  }, {
-    "name" : "Reagan",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tuitionClasses" : [ {
-      "classTiming" : "MON 11:30-13:30",
-      "className" : "Placeholder",
-      "rate" : "70",
-      "location" : "311, Clementi Ave 2, #02-25",
-      "students" : [ "Reagan" ]
-    } ],
-    "nok" : {
-      "name" : "Jack Doe",
-      "phone" : "10987654",
-      "email" : "jackd@example.com",
-      "address" : "311, Clementi Ave 2, #02-25"
-    },
-    "tagged" : [ "owesMoney", "friends" ]
-  }, {
-    "name" : "Kent",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tuitionClasses" : [ {
-      "classTiming" : "MON 11:30-13:30",
-      "className" : "Placeholder",
-      "rate" : "70",
-      "location" : "311, Clementi Ave 2, #02-25",
-      "students" : [ "Kent" ]
-    } ],
+    "rate" : "70",
+    "classTiming" : "SUN 00:00-23:59",
+    "location" : "311, Clementi Ave 2, #02-25",
     "nok" : {
       "name" : "Jack Doe",
       "phone" : "10987654",

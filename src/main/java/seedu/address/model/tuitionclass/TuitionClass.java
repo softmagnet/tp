@@ -80,6 +80,15 @@ public class TuitionClass {
         return rate;
     }
 
+    /**
+     * Returns whether the tuition class contains the Student.
+     *
+     * @return whether the tuition class contains the Student or not.
+     */
+    public boolean containsStudent(Name name) {
+        return uniqueNameList.contains(name);
+    }
+
     public UniqueNameList getStudentList() {
         return uniqueNameList;
     }
