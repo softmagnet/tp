@@ -39,7 +39,7 @@ public class TuitionClassCard extends UiPart<Region> {
     @FXML
     private Label classSize;
 
-    private ListView<Student> tuitionClassListView;
+    private final ListView<Student> tuitionClassListView;
 
     private final ObservableList<Student> studentList;
 
@@ -67,6 +67,13 @@ public class TuitionClassCard extends UiPart<Region> {
 
     @FXML
     private void onMouseClick() {
+        selectTuitionClass();
+    }
+
+    /**
+     * Visually selects the tuition class and shows the Student List associated to it.
+     */
+    public void selectTuitionClass() {
         ObservableList<Student> newStudentList =
                 studentList.filtered(student -> tuitionClass.containsStudent(student.getName()));
 

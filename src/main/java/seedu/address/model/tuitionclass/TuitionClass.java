@@ -154,7 +154,7 @@ public class TuitionClass {
         builder.append("Class Timing: ")
                 .append(getClassTiming());
         if (!getClassTiming().equals(getClassName())) {
-            builder.append("Class Name: ")
+            builder.append(" Class Name: ")
                     .append(getClassName());
         }
 
