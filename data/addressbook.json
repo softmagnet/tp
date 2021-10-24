@@ -1,6 +1,6 @@
 {
   "persons" : [ {
-    "name" : "Johns Doe",
+    "name" : "Jo ee",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
@@ -19,7 +19,7 @@
     },
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "name" : "John Doe",
+    "name" : "test Doe",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
@@ -38,7 +38,7 @@
     },
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "name" : "John sDoe",
+    "name" : "John De",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
@@ -51,7 +51,7 @@
     },
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "name" : "John cena",
+    "name" : "John dd",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
@@ -64,7 +64,7 @@
     },
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "name" : "John Van Whye",
+    "name" : "s Doe",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
@@ -83,7 +83,20 @@
     },
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "name" : "alice",
+    "name" : "joe mama",
+    "phone" : "00112200",
+    "email" : "joe@gg.com",
+    "address" : "his house @ 69",
+    "tuitionClasses" : [ ],
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ ]
+  }, {
+    "name" : "weirdDoe",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
@@ -102,12 +115,116 @@
     },
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "name" : "John smith",
+    "name" : "hi",
+    "phone" : "87438807",
+    "email" : "alexyeoh@example.com",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "tuitionClasses" : [ ],
+    "nok" : {
+      "name" : "oifjasodifj",
+      "phone" : "99272758",
+      "email" : "h@gmail.com",
+      "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18"
+    },
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "charlie olive",
+    "phone" : "93210283",
+    "email" : "charlotte@example.com",
+    "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
+    "tuitionClasses" : [ ],
+    "nok" : {
+      "name" : "Happy Yu",
+      "phone" : "99272758",
+      "email" : "berniceyu@example.com",
+      "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18"
+    },
+    "tagged" : [ "neighbours" ]
+  }, {
+    "name" : "wed Doe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "tuitionClasses" : [ ],
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "John wick",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "tuitionClasses" : [ ],
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "Jn Doe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "tuitionClasses" : [ ],
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "John Doe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "tuitionClasses" : [ ],
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "JohDoe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "tuitionClasses" : [ ],
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "sun Doe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "tuitionClasses" : [ ],
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    },
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "John eDoe",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "tuitionClasses" : [ {
-      "classTiming" : "FRI 11:30-13:30",
+      "classTiming" : "MON 11:30-13:30",
       "className" : "Placeholder",
       "rate" : "70",
       "location" : "311, Clementi Ave 2, #02-25",
@@ -121,7 +238,7 @@
     },
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "name" : "Reagan",
+    "name" : "Johssn Doe",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
@@ -140,16 +257,17 @@
     },
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "name" : "Kent",
+    "name" : "John Do333e",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "tuitionClasses" : [ {
-      "classTiming" : "MON 13:30-14:30",
+      "classTiming" : "MON 10:30-13:30",
+
       "className" : "Placeholder",
       "rate" : "70",
       "location" : "311, Clementi Ave 2, #02-25",
-      "students" : [ "Kent" ]
+      "students" : [ "John Do333e" ]
     } ],
     "nok" : {
       "name" : "Jack Doe",

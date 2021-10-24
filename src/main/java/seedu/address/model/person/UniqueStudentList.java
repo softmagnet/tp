@@ -69,6 +69,16 @@ public class UniqueStudentList implements Iterable<Student> {
 
     }
 
+    public Student getStudent(Name name) {
+        requireAllNonNull(name);
+        for (Student student : internalList) {
+            if (student.getName() == name) {
+                return student;
+            }
+        }
+        return null;
+    }
+
     /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.

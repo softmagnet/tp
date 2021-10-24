@@ -1,7 +1,9 @@
 package seedu.address.ui;
 
+import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -14,10 +16,13 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Student;
+import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.ui.classTab.ClassPanel;
 import seedu.address.ui.studentTab.StudentListPanel;
 import seedu.address.ui.timetableTab.TimetablePanel;
@@ -207,6 +212,20 @@ public class MainWindow extends UiPart<Stage> {
         return studentListPanel;
     }
 
+    private void selectClass(Integer indexOfClassToSelect) {
+        if (indexOfClassToSelect != null) {
+            List<TuitionClass> lastShownList = logic.getFilteredTuitionClassList();
+
+            TuitionClass tuitionClass = lastShownList.get(indexOfClassToSelect);
+
+            ObservableList<Student> newStudentList =
+                    logic.getFilteredStudentList().filtered(student -> tuitionClass.containsStudent(student.getName()));
+
+            classPanel.setItems(newStudentList);
+            classPanel.setCellFactory(listView -> new StudentListViewCell());
+        }
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -225,6 +244,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            selectClass(commandResult.getIndexOfClassToSelect());
 
             return commandResult;
         } catch (CommandException | ParseException e) {
