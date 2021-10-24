@@ -5,18 +5,20 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.ClassTiming;
+import seedu.address.model.tuitionclass.ClassName;
+import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Rate;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tuitionclass.Location;
+import seedu.address.model.tuitionclass.Rate;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -182,5 +184,28 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Parses a {@code String className} into a {@code ClassName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code className} is invalid.
+     */
+    public static ClassName parseClassName(String className) throws ParseException {
+        requireNonNull(className);
+        String trimmedClassName = className.trim();
+        if (!ClassName.isValidClassName(trimmedClassName)) {
+            throw new ParseException(ClassName.MESSAGE_CONSTRAINTS);
+        }
+        return new ClassName(trimmedClassName);
     }
 }

@@ -1,17 +1,17 @@
-package seedu.address.ui.timetable;
+package seedu.address.ui.timetableTab;
 
 import java.time.temporal.ChronoUnit;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import seedu.address.model.person.ClassTiming;
+import seedu.address.model.tuitionclass.ClassTiming;
 
 /**
  * Ui for the timetable tuition class slot.
  */
 public class TimetableTuitionClassSlot extends TimetableRegion {
 
-    private static final String FXML = "timetable/TimetableTuitionClassSlot.fxml";
+    private static final String FXML = "timetableTab/TimetableTuitionClassSlot.fxml";
 
     @FXML
     private Label time;

@@ -23,15 +23,15 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.ClassTiming;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Rate;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tuitionclass.ClassTiming;
+import seedu.address.model.tuitionclass.Location;
+import seedu.address.model.tuitionclass.Rate;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -78,7 +78,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -107,10 +107,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(studentToEdit.getAddress());
-        Rate updatedRate = editPersonDescriptor.getRate().orElse(studentToEdit.getRate());
+        // Rate updatedRate = editPersonDescriptor.getRate().orElse(studentToEdit.getRate());
+        // ClassTiming classTiming = editPersonDescriptor.getClassTiming().orElse(studentToEdit.getClassTiming());
+        // Location updatedLocation = editPersonDescriptor.getLocation().orElse(studentToEdit.getLocation());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
-        ClassTiming classTiming = editPersonDescriptor.getClassTiming().orElse(studentToEdit.getClassTiming());
-        Location updatedLocation = editPersonDescriptor.getLocation().orElse(studentToEdit.getLocation());
 
         // Nok
         Name nokName = editPersonDescriptor.getNokName().orElse(studentToEdit.getNok().getName());
@@ -120,7 +120,7 @@ public class EditCommand extends Command {
         Nok nok = new Nok(nokName, nokPhone, nokEmail, nokAddress);
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedRate, classTiming, updatedLocation, nok, updatedTags);
+                nok, updatedTags);
     }
 
     @Override
@@ -245,8 +245,6 @@ public class EditCommand extends Command {
         public Optional<Rate> getRate() {
             return Optional.ofNullable(rate);
         }
-
-        // TODO: Find some way to reduce duplicate code fragments
 
         public void setNokName(Name nokName) {
             this.nokName = nokName;

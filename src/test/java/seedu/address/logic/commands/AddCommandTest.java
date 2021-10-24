@@ -139,7 +139,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Student> getFilteredPersonList() {
+        public ObservableList<Student> getFilteredStudentList() {
             throw new AssertionError("This method should not be called.");
         }
 

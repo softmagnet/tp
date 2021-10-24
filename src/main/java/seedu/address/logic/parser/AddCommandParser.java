@@ -10,22 +10,24 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.Set;
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.ClassTiming;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Rate;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tuitionclass.ClassName;
+import seedu.address.model.tuitionclass.ClassTiming;
+import seedu.address.model.tuitionclass.Location;
+import seedu.address.model.tuitionclass.Rate;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -40,7 +42,6 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        // Tokenize twice, once for everything before nok and everything after it
         String argsBeforeNok = args;
         String argsAfterNok = "";
 
@@ -50,54 +51,70 @@ public class AddCommandParser implements Parser<AddCommand> {
             argsAfterNok = splitArgs[1];
         }
 
-        ArgumentMultimap argMultimapBeforeNok =
+        Student student = parseStudent(argsBeforeNok);
+        TuitionClass tuitionClass = parseClass(argsBeforeNok);
+        Nok nok = parseNok(argsAfterNok);
+        student.setNok(nok);
+
+        return new AddCommand(student, tuitionClass);
+    }
+
+    private TuitionClass parseClass(String args) throws ParseException {
+        ArgumentMultimap argMultimap =
                 ArgumentTokenizer
-                        .tokenize(argsBeforeNok, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                        .tokenize(args, PREFIX_NAME, PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION, PREFIX_TAG);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+
+        Rate rate = ParserUtil.parseRate(argMultimap.getValue(PREFIX_RATE).get());
+        ClassTiming classTiming = ParserUtil.parseClassTiming(argMultimap.getValue(PREFIX_CLASSTIMING).get());
+        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
+        // TODO: Add a token for adding class name when doing the add command
+
+        return new TuitionClass(new ClassName("Placeholder"), classTiming, location, rate);
+    }
+
+    private Student parseStudent(String args) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer
+                        .tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                                 PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION, PREFIX_TAG);
 
-        ArgumentMultimap argMultimapAfterNok =
-                ArgumentTokenizer.tokenize(argsAfterNok, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
-
-        if (!arePrefixesPresent(argMultimapBeforeNok, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
                 PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION, PREFIX_EMAIL)
-                || !arePrefixesPresent(argMultimapAfterNok, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
-                || !argMultimapBeforeNok.getPreamble().isEmpty()) {
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimapBeforeNok.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimapBeforeNok.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimapBeforeNok.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimapBeforeNok.getValue(PREFIX_ADDRESS).get());
-        Rate rate = ParserUtil.parseRate(argMultimapBeforeNok.getValue(PREFIX_RATE).get());
-        ClassTiming classTiming = ParserUtil.parseClassTiming(argMultimapBeforeNok.getValue(PREFIX_CLASSTIMING).get());
-        Location location = ParserUtil.parseLocation(argMultimapBeforeNok.getValue(PREFIX_LOCATION).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimapBeforeNok.getAllValues(PREFIX_TAG));
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Rate rate = ParserUtil.parseRate(argMultimap.getValue(PREFIX_RATE).get());
+        ClassTiming classTiming = ParserUtil.parseClassTiming(argMultimap.getValue(PREFIX_CLASSTIMING).get());
+        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Nok nok = null;
+        return new Student(name, phone, email, address,null , tagList);
+    }
 
-        if (!argsAfterNok.equals("")) {
-            nok = new Nok(
-                    ParserUtil.parseName(argMultimapAfterNok.getValue(PREFIX_NAME).get()),
-                    ParserUtil.parsePhone(argMultimapAfterNok.getValue(PREFIX_PHONE).get()),
-                    ParserUtil.parseEmail(argMultimapAfterNok.getValue(PREFIX_EMAIL).get()),
-                    ParserUtil.parseAddress(argMultimapAfterNok.getValue(PREFIX_ADDRESS).get())
-            );
-        } else {
+    private Nok parseNok(String args) throws ParseException {
+        requireNonNull(args);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Student student = new Student(name, phone, email, address, rate, classTiming, location, nok, tagList);
-
-        return new AddCommand(student);
+        return new Nok(
+                ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()),
+                ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()),
+                ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()),
+                ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get())
+        );
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }

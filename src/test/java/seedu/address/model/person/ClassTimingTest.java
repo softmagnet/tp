@@ -11,6 +11,8 @@ import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.tuitionclass.ClassTiming;
+
 public class ClassTimingTest {
 
     @Test

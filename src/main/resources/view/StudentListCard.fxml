@@ -31,9 +31,6 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="rate" styleClass="cell_small_label" text="\$rate" />
-      <Label fx:id="classTiming" styleClass="cell_small_label" text="\$classTiming" />
-      <Label fx:id="classLocation" styleClass="cell_small_label" text="\$location" />
     </VBox>
     <VBox alignment="TOP_RIGHT" minHeight="105" GridPane.columnIndex="0">
       <padding>

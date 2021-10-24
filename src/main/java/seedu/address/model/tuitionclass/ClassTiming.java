@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.tuitionclass;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -12,12 +12,11 @@ import java.time.format.DateTimeFormatter;
  */
 public class ClassTiming implements Comparable<ClassTiming> {
 
-
     public static final String MESSAGE_CONSTRAINTS =
             "Class Timing must be in the form DAY HH:MM-HH:MM, start time must be earlier than end time";
 
     /*
-     * The string has to be in the form DAY HH:SS-HH:SS eg MON 23:59-01:00
+     * The string has to be in the form DAY HH:MM-HH:MM eg MON 23:59-01:00
      */
     public static final String VALIDATION_REGEX =
             "^(?i)(MON |TUE |WED |THU |FRI |SAT |SUN )+([01][0-9]|2[0-3]):[0-5][0-9]-([01][0-9]|2[0-3]):[0-5][0-9]";
@@ -62,6 +61,7 @@ public class ClassTiming implements Comparable<ClassTiming> {
      * @return int representation of the Day of the ClassTiming object
      */
     public int getDayToInt() {
+        // TODO: change day to enum
         switch (day.toUpperCase()) {
         case "MON":
             return 1;
@@ -90,7 +90,7 @@ public class ClassTiming implements Comparable<ClassTiming> {
      * start time, otherwise false.
      */
     public boolean isEarlier(ClassTiming time) {
-        return this.compareTo(time) == -1;
+        return this.compareTo(time) < 0;
     }
 
     /**
@@ -178,6 +178,20 @@ public class ClassTiming implements Comparable<ClassTiming> {
     }
 
     /**
+     * Returns boolean true if other is on the same day as this, false otherwise.
+     *
+     * @param other Classtiming to compare to this.
+     * @return Boolean on whether this and other is on the same day.
+     */
+    public Boolean isSameDay(ClassTiming other) {
+        if(this.getDayToInt() == other.getDayToInt()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * Gets the timing string without the day of the ClassTiming.
      *
      * @return Timing of the ClassTiming without the Day.
@@ -215,7 +229,6 @@ public class ClassTiming implements Comparable<ClassTiming> {
     public int hashCode() {
         return value.hashCode();
     }
-
 
     @Override
     public int compareTo(ClassTiming o) {

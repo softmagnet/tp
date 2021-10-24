@@ -25,12 +25,12 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  *
  * @see Person#isSamePerson(Person)
  */
-public class UniquePersonList implements Iterable<Student> {
+public class UniqueStudentList implements Iterable<Student> {
 
     private final ObservableList<Student> internalList = FXCollections.observableArrayList();
     private final ObservableList<Student> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    private final Logger logger = LogsCenter.getLogger(UniquePersonList.class);
+    private final Logger logger = LogsCenter.getLogger(UniqueStudentList.class);
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -50,18 +50,36 @@ public class UniquePersonList implements Iterable<Student> {
             throw new DuplicatePersonException();
         }
         int listSize = internalList.size();
-        for (int i = 0; i < listSize; i++) {
-            if (internalList.get(i).getClassTiming().isEarlier(toAdd.getClassTiming())) {
-                continue;
-            } else {
-                internalList.add(i, toAdd);
-                break;
-            }
-        }
+
+        /*
+         * TODO:
+         * As of the new implementation there is a possibility a Student has multiple classes, so this is commented out
+         * for now
+         *        for (int i = 0; i < listSize; i++) {
+         *
+         *             if (internalList.get(i).getClassTiming().isEarlier(toAdd.getClassTiming())) {
+         *                 continue;
+         *             } else {
+         *                 internalList.add(i, toAdd);
+         *                 break;
+         *             }
+         *         }
+         */
+
         if (listSize == 0 || internalList.size() == listSize) {
             internalList.add(toAdd);
         }
 
+    }
+
+    public Student getStudent(Name name) {
+        requireAllNonNull(name);
+        for (Student student : internalList) {
+            if (student.getName() == name) {
+                return student;
+            }
+        }
+        return null;
     }
 
     /**
@@ -95,7 +113,7 @@ public class UniquePersonList implements Iterable<Student> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setPersons(UniqueStudentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
         logger.info("List of Students set from replace UniquePersonList.");
@@ -130,8 +148,8 @@ public class UniquePersonList implements Iterable<Student> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueStudentList // instanceof handles nulls
+                        && internalList.equals(((UniqueStudentList) other).internalList));
     }
 
     @Override

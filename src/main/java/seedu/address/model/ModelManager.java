@@ -7,11 +7,16 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
+import seedu.address.model.tuitionclass.ClassTiming;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +27,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final FilteredList<TuitionClass> filteredTuitionClass;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +41,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTuitionClass =
+                new FilteredList<>(this.addressBook.getTuitionClassList());
     }
 
     public ModelManager() {
@@ -95,6 +103,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasTuitionClass(TuitionClass tuitionClass) {
+        requireNonNull(tuitionClass);
+        return addressBook.hasTuitionClass(tuitionClass);
+    }
+
+    @Override
     public void deletePerson(Student target) {
         addressBook.removePerson(target);
     }
@@ -103,6 +117,17 @@ public class ModelManager implements Model {
     public void addPerson(Student student) {
         addressBook.addPerson(student);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addTuitionClass(TuitionClass tuitionClass) {
+        addressBook.addTuitionClass(tuitionClass);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void deleteTuitionClass(TuitionClass tuitionClass) {
+        addressBook.deleteTuitionClass(tuitionClass);
     }
 
     @Override
@@ -119,7 +144,7 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Student> getFilteredPersonList() {
+    public ObservableList<Student> getFilteredStudentList() {
         return filteredStudents;
     }
 
@@ -127,6 +152,23 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredClassList(Predicate<TuitionClass> predicate) {
+        requireNonNull(predicate);
+        filteredTuitionClass.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<TuitionClass> getFilteredTuitionClassList() {
+        return filteredTuitionClass;
+    }
+
+    @Override
+    public void setClass(TuitionClass target, TuitionClass editedClass) {
+        requireAllNonNull(target, editedClass);
+        addressBook.setClass(target, editedClass);
     }
 
     @Override

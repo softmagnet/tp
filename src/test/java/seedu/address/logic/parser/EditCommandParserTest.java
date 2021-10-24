@@ -52,13 +52,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.ClassTiming;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Rate;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tuitionclass.ClassTiming;
+import seedu.address.model.tuitionclass.Location;
+import seedu.address.model.tuitionclass.Rate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {

@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.studentTab;
 
 import java.util.Comparator;
 
@@ -8,13 +8,14 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Student;
+import seedu.address.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class PersonCard extends UiPart<Region> {
+public class StudentCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "StudentListCard.fxml";
     private static final Character DOLLAR_SIGN = '$';
     private static final String PER_HOUR = "/hr";
     private static final String CLASS_TIMING_FIELD = "Class Timing: ";
@@ -48,12 +49,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label rate;
-    @FXML
-    private Label classTiming;
-    @FXML
-    private Label classLocation;
-    @FXML
     private FlowPane tags;
 
     // Nok
@@ -69,7 +64,7 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Student student, int displayedIndex) {
+    public StudentCard(Student student, int displayedIndex) {
         super(FXML);
         this.student = student;
 
@@ -79,9 +74,10 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(MOBILE_FIELD + student.getPhone().value);
         address.setText(ADDRESS_FIELD + student.getAddress().value);
         email.setText(EMAIL_FIELD + student.getEmail().value);
-        rate.setText(RATE_FIELD + DOLLAR_SIGN + student.getRate().value + PER_HOUR);
-        classTiming.setText(CLASS_TIMING_FIELD + student.getClassTiming().value);
-        classLocation.setText(LOCATION_FIELD + student.getLocation().value);
+        // TODO: Class timing and location is commented out for now because they are no longer coupled with the student.
+        //        rate.setText(RATE_FIELD + DOLLAR_SIGN + student.getRate().value + PER_HOUR);
+        //        classTiming.setText(CLASS_TIMING_FIELD + student.getClassTiming().value);
+        //        classLocation.setText(LOCATION_FIELD + student.getLocation().value);
 
         // Nok
         if (student.getNok() != null) {
@@ -109,12 +105,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof StudentCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        StudentCard card = (StudentCard) other;
         return id.getText().equals(card.id.getText())
                 && student.equals(card.student);
     }

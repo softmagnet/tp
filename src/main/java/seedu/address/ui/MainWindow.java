@@ -1,10 +1,11 @@
 package seedu.address.ui;
 
+import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -15,11 +16,16 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.timetable.TimetablePanel;
+import seedu.address.model.person.Student;
+import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.ui.classTab.ClassPanel;
+import seedu.address.ui.studentTab.StudentListPanel;
+import seedu.address.ui.timetableTab.TimetablePanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -35,9 +41,10 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ClassPanel classPanel;
     private TimetablePanel timetablePanel;
 
     @FXML
@@ -47,7 +54,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane studentListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -56,10 +63,19 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
+    private StackPane classListPanelPlaceholder;
+
+    @FXML
     private TabPane tabPane;
 
     @FXML
     private Tab studentsTab;
+
+    @FXML
+    private Tab tuitionClassTab;
+
+    //    @FXML
+    //    private ListView<Student> studentListView;
 
     @FXML
     private StackPane timetablePanelPlaceholder;
@@ -127,10 +143,13 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
-        timetablePanel = new TimetablePanel(logic.getFilteredPersonList());
+        classPanel = new ClassPanel(logic.getFilteredStudentList(), logic.getFilteredTuitionClassList());
+        classListPanelPlaceholder.getChildren().add(classPanel.getRoot());
+
+        timetablePanel = new TimetablePanel(logic.getFilteredTuitionClassList());
         timetablePanelPlaceholder.getChildren().add(timetablePanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -142,15 +161,11 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        studentsTab = new Tab("Students", personListPanelPlaceholder);
+        studentsTab = new Tab("Students", studentListPanelPlaceholder);
         timetableTab = new Tab("Timetable", timetablePanelPlaceholder);
-        Tab classTab = new Tab("Classes", new Label("Classes"));
-
-        tabPane.getTabs().add(classTab);
+        tuitionClassTab = new Tab("Class", classListPanelPlaceholder);
 
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
-
-
     }
 
     /**
@@ -193,14 +208,28 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    public StudentListPanel getStudentListPanel() {
+        return studentListPanel;
+    }
+
+    private void selectClass(Integer indexOfClassToSelect) {
+        if (indexOfClassToSelect != null) {
+            List<TuitionClass> lastShownList = logic.getFilteredTuitionClassList();
+
+            TuitionClass tuitionClass = lastShownList.get(indexOfClassToSelect);
+
+            ObservableList<Student> newStudentList =
+                    logic.getFilteredStudentList().filtered(student -> tuitionClass.containsStudent(student.getName()));
+
+            classPanel.setItems(newStudentList);
+            classPanel.setCellFactory(listView -> new StudentListViewCell());
+        }
+    }
+
     public void setView(Integer tabToView) {
         if (tabToView != null) {
             tabPane.getSelectionModel().select(tabToView);
         }
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**
@@ -222,7 +251,9 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            selectClass(commandResult.getIndexOfClassToSelect());
             setView(commandResult.getIndexOfTabToView());
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
