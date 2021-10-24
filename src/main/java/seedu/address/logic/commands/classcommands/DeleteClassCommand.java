@@ -2,12 +2,17 @@ package seedu.address.logic.commands.classcommands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Iterator;
+import java.util.List;
+
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Student;
-import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.model.tuitionclass.UniqueNameList;
 
@@ -19,33 +24,38 @@ public class DeleteClassCommand extends Command {
 
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the class identified by the class timing.\n"
-            + "Parameters: CLASS TIMING (must be in the form DAY HH:MM-HH:MM eg MON 13:00-15:00)\n"
-            + "Example: " + COMMAND_WORD + " MON 16:00-18:00";
+            + ": Deletes the class identified by the index in class list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
-    private final ClassTiming classTiming;
+    private final Index index;
 
-    public DeleteClassCommand(ClassTiming classTiming) {
-        this.classTiming = classTiming;
+    public DeleteClassCommand(Index index) {
+        this.index = index;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        //TODO get tuitionClass from classTiming / index?
-        TuitionClass tuitionClass = null;
-        //search if in list
+
+        List<TuitionClass> lastShownClassList = model.getFilteredTuitionClassList();
+        TuitionClass tuitionClass = lastShownClassList.get(index.getZeroBased());
+
         if(!model.hasTuitionClass(tuitionClass)) {
             throw new CommandException(MESSAGE_MISSING_CLASS);
         }
+        ReadOnlyAddressBook addressBook = model.getAddressBook();
+        ObservableList<Student> students = addressBook.getPersonList();
+        Iterator<Student> studentIterator = students.iterator();
+
         UniqueNameList uniqueNameList = tuitionClass.getStudentList();
-        uniqueNameList.iterator().forEachRemaining(name -> {
-            //TODO get student from name
-            Student student = null;
-            student.deleteClass(tuitionClass);
+        studentIterator.forEachRemaining(student -> {
+            if(uniqueNameList.contains(student.getName())) {
+                student.deleteClass(tuitionClass);
+            }
         });
 
-
+        model.deleteTuitionClass(tuitionClass);
         return new CommandResult(String.format(MESSAGE_SUCCESS, tuitionClass));
     }
 
@@ -53,6 +63,6 @@ public class DeleteClassCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteClassCommand // instanceof handles nulls
-                && classTiming.equals(((DeleteClassCommand) other).classTiming)); // state check
+                && index.equals(((DeleteClassCommand) other).index)); // state check
     }
 }

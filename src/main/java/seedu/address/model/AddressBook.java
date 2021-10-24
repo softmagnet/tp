@@ -120,6 +120,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         students.remove(key);
     }
 
+    public void deleteTuitionClass(TuitionClass toDelete) {
+        classes.delete(toDelete);
+    }
+
     //// util methods
 
     @Override

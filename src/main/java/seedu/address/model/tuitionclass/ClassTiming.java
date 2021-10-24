@@ -178,6 +178,20 @@ public class ClassTiming implements Comparable<ClassTiming> {
     }
 
     /**
+     * Returns boolean true if other is on the same day as this, false otherwise.
+     *
+     * @param other Classtiming to compare to this.
+     * @return Boolean on whether this and other is on the same day.
+     */
+    public Boolean isSameDay(ClassTiming other) {
+        if(this.getDayToInt() == other.getDayToInt()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * Gets the timing string without the day of the ClassTiming.
      *
      * @return Timing of the ClassTiming without the Day.

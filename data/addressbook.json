@@ -219,7 +219,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "tuitionClasses" : [ {
-      "classTiming" : "MON 11:30-13:30",
+      "classTiming" : "MON 13:30-14:30",
       "className" : "Placeholder",
       "rate" : "70",
       "location" : "311, Clementi Ave 2, #02-25",
@@ -239,6 +239,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "tuitionClasses" : [ {
       "classTiming" : "MON 10:30-13:30",
+
       "className" : "Placeholder",
       "rate" : "70",
       "location" : "311, Clementi Ave 2, #02-25",
