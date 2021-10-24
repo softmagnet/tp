@@ -62,7 +62,7 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* For commands that require next-ok-kin (NOK) information, all inputs regarding NOK should be after `nok/` and all 
+* For commands that require next-ok-kin (NOK) information, all inputs regarding NOK should be after `nok/` and all
   inputs regarding the student should be before `nok/`. Timestable does not allow order swap!<br>
   e.g. `n/John p/97833242 … /nok n/Harry p/87738383 …` John and 97833242 are information belonging to the student
   and John's NOK's name is Harry whose phone number is 87738383.
@@ -86,32 +86,32 @@ Format: `help`
 
 Adds a student to the address book.
 
-Format: 
+Format:
 ```
-add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ct/CLASS_TIMING l/LOCATION r/HOURLY_RATE [t/TAG]… nok/ n/NOK_NAME 
-    p/NOK_PHONE_NUMBER e/NOK_EMAIL   
+add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ct/CLASS_TIMING l/LOCATION r/HOURLY_RATE [t/TAG]… nok/ n/NOK_NAME
+    p/NOK_PHONE_NUMBER e/NOK_EMAIL
 ```
 
 * This is a command that requires next-of-kin (NOK) information.
 * This command is split into two segments (excluding command keyword). The first segment are the inputs before
-`nok/` and the second segment are the inputs after `nok/`. 
-  * The segments are not fixed in order and inputs in the 
+`nok/` and the second segment are the inputs after `nok/`.
+  * The segments are not fixed in order and inputs in the
   first segment are about student information whereas inputs in the second segment are about NOK's information.
-* The order of input within its own segment is swappable. 
+* The order of input within its own segment is swappable.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
 </div>
 
 Examples:
- 
+
 ```
-add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 ct/Mon 2-4pm 
+add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 ct/Mon 2-4pm
     l/Hougang ave 5 Block 614 #11-419 r/$50 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com
 ```
 
 ```
-add n/Betsy Crowe ct/Mon 5-7pm l/Serangoon Nex  t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 
+add n/Betsy Crowe ct/Mon 5-7pm l/Serangoon Nex  t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567
     t/slow learner r/$70 nok/ n/Karen e/karenSUper@gmail.com p/99994444
 ```
 
@@ -128,19 +128,19 @@ Format: `list`
 
 Edits an existing student in the address book.
 
-Format: 
+Format:
 ```
 edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ct/CLASS_TIMING] [l/LOCATION] [r/HOURLY_RATE] [t/TAG]…​
 [nok/] [p/NOK_NAME] [p/NOK_PHONE_NUMBER] [e/NOK_EMAIL]
-    
+
 ```
 
-* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student 
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student
 list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* An optional `nok/` field can be provided to edit the student's next-of-kin. All fields that come after `nok/` 
+* An optional `nok/` field can be provided to edit the student's next-of-kin. All fields that come after `nok/`
 will be for the student's next-of-kin. (same rule from `add` command applies)
-  * if `nok/` is provided, at least one of the optional fields belonging to NOK must be provided. 
+  * if `nok/` is provided, at least one of the optional fields belonging to NOK must be provided.
 * When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
   * You can remove all the student's tags by typing `t/` without
       specifying any tags after it.
@@ -225,7 +225,7 @@ Shows the contacts of students who have classes on a specific day.
 
 Format: `schedule DAY`
 
-Examples: 
+Examples:
 * `schedule Monday` will show all contacts with classes on monday.
 
 ### Archiving data files `[coming in v2.0]`

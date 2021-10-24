@@ -19,6 +19,7 @@ public class CommandResult {
 
     /** The application should exit. */
     private final Integer indexOfClassToSelect;
+    private final Integer indexOfTabToView;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -27,6 +28,18 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.indexOfClassToSelect = null;
+        this.indexOfTabToView = null;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, int indexOfTabToView) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.indexOfTabToView = indexOfTabToView;
         this.indexOfClassToSelect = null;
     }
 
@@ -47,6 +60,7 @@ public class CommandResult {
         this.indexOfClassToSelect = targetIndex;
         this.showHelp = showHelp;
         this.exit = exit;
+        this.indexOfTabToView = null;
     }
 
     public String getFeedbackToUser() {
@@ -63,6 +77,10 @@ public class CommandResult {
 
     public Integer getIndexOfClassToSelect() {
         return this.indexOfClassToSelect;
+    }
+
+    public Integer getIndexOfTabToView() {
+        return indexOfTabToView;
     }
 
     @Override

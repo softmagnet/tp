@@ -47,6 +47,7 @@ public class TimetablePanel extends UiPart<Region> {
                 public void onChanged(Change<? extends TuitionClass> change) {
                     while (change.next()) {
                         build(tuitionClasses);
+                        logger.info("Change to uniqueClassList, rebuilding timetable.");
                     }
                 }
             });
@@ -61,9 +62,11 @@ public class TimetablePanel extends UiPart<Region> {
     public void build(ObservableList<TuitionClass> tuitionClasses) {
         clearAll();
         if (tuitionClasses == null || tuitionClasses.isEmpty()) {
+            logger.info("No class in uniqueClassList.");
             Label label = new Label("You have no classes.");
             timetable.add(label, 0, 0);
         } else {
+            logger.info("Building timetable from uniqueClassList.");
             buildHeader(tuitionClasses);
             buildDays();
             buildClasses(tuitionClasses);
@@ -73,7 +76,7 @@ public class TimetablePanel extends UiPart<Region> {
     /**
      * Builds the header panel for the timetable panel ui.
      *
-     * @param studentList List of students to retrieve the earliest tuition class start timing and latest end timing.
+     * @param tuitionClasses List of students to retrieve the earliest tuition class start timing and latest end timing.
      */
     public void buildHeader(ObservableList<TuitionClass> tuitionClasses) {
         assert tuitionClasses != null;
@@ -254,7 +257,7 @@ public class TimetablePanel extends UiPart<Region> {
     /**
      * Gets the latest hour which all classes has ended.
      *
-     * @param studentList List of students to get the latest hour from.
+     * @param tuitionClasses List of students to get the latest hour from.
      * @return Latest hour which all the classes has ended.
      */
     public LocalTime getLatestHour(ObservableList<TuitionClass> tuitionClasses) {
@@ -278,7 +281,7 @@ public class TimetablePanel extends UiPart<Region> {
     /**
      * Gets the latest class end time from the list of students.
      *
-     * @param studentList List of students to get the latest class end time from.
+     * @param tuitionClasses List of students to get the latest class end time from.
      * @return Latest class end time.
      */
     public LocalTime getLatestTime(ObservableList<TuitionClass> tuitionClasses) {

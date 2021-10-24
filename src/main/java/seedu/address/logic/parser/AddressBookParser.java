@@ -28,6 +28,7 @@ import seedu.address.logic.parser.classcommandparsers.AddToClassCommandParser;
 import seedu.address.logic.parser.classcommandparsers.DeleteClassCommandParser;
 import seedu.address.logic.parser.classcommandparsers.EditClassCommandParser;
 import seedu.address.logic.parser.classcommandparsers.SelectClassCommandParser;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -105,6 +106,9 @@ public class AddressBookParser {
 
         case DeleteClassCommand.COMMAND_WORD:
             return new DeleteClassCommandParser().parse(arguments);
+
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

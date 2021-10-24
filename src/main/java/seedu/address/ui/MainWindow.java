@@ -226,6 +226,12 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    public void setView(Integer tabToView) {
+        if (tabToView != null) {
+            tabPane.getSelectionModel().select(tabToView);
+        }
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -246,6 +252,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             selectClass(commandResult.getIndexOfClassToSelect());
+            setView(commandResult.getIndexOfTabToView());
 
             return commandResult;
         } catch (CommandException | ParseException e) {
