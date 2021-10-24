@@ -156,7 +156,8 @@ public class TuitionClass {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Class Timing: ")
-                .append(getClassTiming());
+                .append(getClassTiming())
+                .append(" ");
         if (!getClassTiming().equals(getClassName())) {
             builder.append("Class Name: ")
                     .append(getClassName());

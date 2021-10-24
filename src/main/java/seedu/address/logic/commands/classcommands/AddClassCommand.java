@@ -8,15 +8,28 @@ import seedu.address.model.Model;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.model.tuitionclass.exceptions.InvalidClassException;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
+
 public class AddClassCommand extends Command {
 
     public static final String COMMAND_WORD = "addclass";
 
     public static final String MESSAGE_SUCCESS = "New class added: %1$s";
     public static final String MESSAGE_DUPLICATE_CLASS = "This class already exists in the address book";
-
-
-    public static final Object MESSAGE_USAGE = "addclass cn/J2O2 r/50 l/Serangoon Tuition Center ct/MON 13:00-14:00";
+    public static final Object MESSAGE_USAGE = COMMAND_WORD + ": Adds a class to the address book.\n"
+            + "Parameters: "
+            + PREFIX_CLASS_NAME + "CLASS NAME "
+            + PREFIX_CLASSTIMING + "CLASS TIMING "
+            + PREFIX_RATE + "RATE "
+            + PREFIX_LOCATION + "LOCATION\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_CLASS_NAME + "Sec 4 A-Maths "
+            + PREFIX_CLASSTIMING + "MON 11:30-13:30 "
+            + PREFIX_RATE + "70 "
+            + PREFIX_LOCATION + "Nex Tuition Center";
 
     private final TuitionClass tuitionClass;
 

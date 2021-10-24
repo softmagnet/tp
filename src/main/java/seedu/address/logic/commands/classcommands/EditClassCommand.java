@@ -19,17 +19,32 @@ import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 
 
 public class EditClassCommand extends Command {
 
     public static final String COMMAND_WORD = "editclass";
 
-    public static final String MESSAGE_USAGE = "{message usage for edit class}";
-
     public static final String MESSAGE_EDIT_CLASS_SUCCESS = "Edited class: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to editclass must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in this class:\n";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the class identified "
+            + "by the index number used in the displayed person list "
+            + "(adding or removing students is done with separate commands!)\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_CLASS_NAME + "CLASS NAME] "
+            + "[" + PREFIX_CLASSTIMING + "CLASS TIMING] "
+            + "[" + PREFIX_RATE + "RATE] "
+            + "[" + PREFIX_LOCATION + "LOCATION]\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_CLASSTIMING + "MON 13:30-15:30 "
+            + PREFIX_RATE + "100";
+
 
     private final Index index;
     private final EditClassDescriptor editClassDescriptor;
