@@ -102,6 +102,13 @@ public class TuitionClass {
         uniqueNameList.add(name);
     }
 
+    public TuitionClass removeStudent(Name name) {
+        if(uniqueNameList.contains(name)) {
+            uniqueNameList.remove(name);
+        }
+        return this;
+    }
+
     public void addStudentList(UniqueNameList uniqueNameList) {
         this.uniqueNameList.addAll(uniqueNameList);
     }

@@ -23,6 +23,10 @@ public class UniqueNameList implements Iterable<Name> {
         return internalList.stream().anyMatch(toCheck::equals);
     }
 
+    public void remove(Name name) {
+        internalList.remove(name);
+    }
+
     public void add(Name toAdd) throws DuplicateStudentInClassException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {

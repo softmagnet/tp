@@ -118,6 +118,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Student key) {
         students.remove(key);
+        classes.removeStudent(key.getName());
     }
 
     public void deleteTuitionClass(TuitionClass toDelete) {

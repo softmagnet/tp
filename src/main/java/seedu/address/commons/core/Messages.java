@@ -10,7 +10,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_INVALID_CLASS_DISPLAYED_INDEX = "The class index provided is invalid";
     public static final String MESSAGE_CLASHING_CLASS_TIMING = "The operation aborted because it will introduce a clash"
-            + "in class timing.";
+            + " in class timing.";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
 
 

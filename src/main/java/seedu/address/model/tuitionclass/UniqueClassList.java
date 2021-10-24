@@ -46,6 +46,7 @@ public class UniqueClassList implements Iterable<TuitionClass> {
                    // int index = internalList.indexOf(tuitionClass);
                    // internalList.set(index, toAdd);
                     tuitionClass.addStudentList(toAdd.getStudentList());
+                    this.setClass(tuitionClass, tuitionClass);
                 } else {
                     if (tuitionClass.isOverlapping(toAdd)){
                         throw new InvalidClassException();
@@ -62,6 +63,17 @@ public class UniqueClassList implements Iterable<TuitionClass> {
         requireNonNull(toDelete);
         if(!internalList.remove(toDelete)) {
             throw new TuitionClassNotFoundException();
+        }
+    }
+
+    public void removeStudent(Name name) {
+        for(int i = 0; i < internalList.size(); i++) {
+            TuitionClass tuitionClass = internalList.get(i);
+            UniqueNameList nameList = tuitionClass.getStudentList();
+            if (nameList.contains(name)) {
+                TuitionClass editedTuitionClass = tuitionClass.removeStudent(name);
+                this.setClass(tuitionClass, editedTuitionClass);
+            }
         }
     }
 

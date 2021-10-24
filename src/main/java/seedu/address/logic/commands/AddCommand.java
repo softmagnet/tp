@@ -10,11 +10,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLASS;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.model.tuitionclass.exceptions.InvalidClassException;
 
 /**
  * Adds a person to the address book.
@@ -78,19 +81,22 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        // Add student to the existing class
-        classToAdd.addStudent(studentToAdd.getName());
+        try {
+            // Add student to the existing class
+            classToAdd.addStudent(studentToAdd.getName());
 
-        if (!model.hasTuitionClass(classToAdd)) {
-            // Create the required class (add it to the address book)
             model.addTuitionClass(classToAdd);
+
+
+            // Add class to the student
+            studentToAdd.addClass(classToAdd);
+
+            model.addPerson(studentToAdd);
+            model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, studentToAdd));
+        } catch (InvalidClassException e) {
+            throw new CommandException(Messages.MESSAGE_CLASHING_CLASS_TIMING);
         }
-
-        // Add class to the student
-        studentToAdd.addClass(classToAdd);
-
-        model.addPerson(studentToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToAdd));
     }
 
     @Override
