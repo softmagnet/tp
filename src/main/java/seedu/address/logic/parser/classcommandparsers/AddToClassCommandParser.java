@@ -1,7 +1,6 @@
 package seedu.address.logic.parser.classcommandparsers;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.classcommands.AddToClassCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
@@ -35,7 +34,7 @@ public class AddToClassCommandParser implements Parser<AddToClassCommand> {
                 indexArray.add(ParserUtil.parseIndex(str[i]));
             } catch (ParseException pe) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        EditCommand.MESSAGE_USAGE), pe);
+                        AddToClassCommand.MESSAGE_USAGE), pe);
             }
         }
         return indexArray;

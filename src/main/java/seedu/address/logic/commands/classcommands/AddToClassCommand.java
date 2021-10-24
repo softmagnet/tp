@@ -26,15 +26,16 @@ public class AddToClassCommand extends Command {
 
     public static final String COMMAND_WORD = "addtoclass";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to a class.\n"
-            + "Parameters: "
-            + PREFIX_CLASS_NAME + "CLASS NAME "
-            + PREFIX_NAME + "STUDENT NAME \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds students to a class by the index number used "
+            + "in the displayed class and person list.\n"
+            + "Parameters: ClASS_INDEX "
+            + "STUDENT_INDEX\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_CLASS_NAME + "401"
-            + PREFIX_NAME + "John Doe";
+            + "1"
+            + "2 3 5 "
+            + "(adds students indexed 2, 3 and 5 to class indexed 1)";
 
-    public static final String MESSAGE_ADD_SUCCESS = "successfully added student to class ";
+    public static final String MESSAGE_ADD_SUCCESS = "successfully added students to class ";
 
     private final Index toEditClassIndex;
     private final List<Index> studentIndices;

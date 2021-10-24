@@ -4,7 +4,13 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tuitionClasses" : [ ],
+    "tuitionClasses" : [ {
+      "classTiming" : "MON 12:00-13:00",
+      "className" : "monday math class",
+      "rate" : "50",
+      "location" : "169 clementi ave 69",
+      "students" : [ "Johns Doe", "John Doe" ]
+    } ],
     "nok" : {
       "name" : "Jack Doe",
       "phone" : "10987654",
@@ -17,7 +23,13 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tuitionClasses" : [ ],
+    "tuitionClasses" : [ {
+      "classTiming" : "MON 12:00-13:00",
+      "className" : "monday math class",
+      "rate" : "50",
+      "location" : "169 clementi ave 69",
+      "students" : [ "John Doe" ]
+    } ],
     "nok" : {
       "name" : "Jack Doe",
       "phone" : "10987654",
@@ -56,7 +68,13 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tuitionClasses" : [ ],
+    "tuitionClasses" : [ {
+      "classTiming" : "FRI 11:30-13:30",
+      "className" : "Placeholder",
+      "rate" : "70",
+      "location" : "311, Clementi Ave 2, #02-25",
+      "students" : [ "John Van Whye", "John smith" ]
+    } ],
     "nok" : {
       "name" : "Jack Doe",
       "phone" : "10987654",
@@ -82,7 +100,13 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tuitionClasses" : [ ],
+    "tuitionClasses" : [ {
+      "classTiming" : "TUE 11:30-13:30",
+      "className" : "Placeholder",
+      "rate" : "70",
+      "location" : "311, Clementi Ave 2, #02-25",
+      "students" : [ "alice" ]
+    } ],
     "nok" : {
       "name" : "Jack Doe",
       "phone" : "10987654",
@@ -204,7 +228,7 @@
       "className" : "Placeholder",
       "rate" : "70",
       "location" : "311, Clementi Ave 2, #02-25",
-      "students" : [ "John eDoe", "Johssn Doe" ]
+      "students" : [ "John smith" ]
     } ],
     "nok" : {
       "name" : "Jack Doe",
@@ -223,7 +247,7 @@
       "className" : "Placeholder",
       "rate" : "70",
       "location" : "311, Clementi Ave 2, #02-25",
-      "students" : [ "Johssn Doe" ]
+      "students" : [ "Reagan", "Kent" ]
     } ],
     "nok" : {
       "name" : "Jack Doe",
