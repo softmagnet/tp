@@ -28,11 +28,13 @@ public class UniqueNameList implements Iterable<Name> {
     }
 
     public void removeAll(UniqueNameList names) {
-        removeAll(names);
+        for(Name name : names) {
+            remove(name);
+        }
     }
 
     public void removeAll(List<Name> names) {
-        removeAll(names);
+        internalList.removeAll(names);
     }
 
     public void add(Name toAdd) throws DuplicateStudentInClassException {

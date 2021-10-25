@@ -21,10 +21,10 @@ public class RemoveFromClassCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes students from a class by the index number used "
             + "in the displayed class and person list.\n"
-            + "Parameters: ClASS_INDEX "
+            + "Parameters: CLASS_INDEX "
             + "STUDENT_INDEX\n"
             + "Example: " + COMMAND_WORD + " "
-            + "2"
+            + "2 "
             + "3 4 5 "
             + "(removes students indexed 3, 4 and 5 from class indexed 2)";
 
