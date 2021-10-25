@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.ClassTimingContainsKeywordsPredicate;
+import seedu.address.model.tuitionclass.predicates.ClassTimingContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code ScheduleCommand}.

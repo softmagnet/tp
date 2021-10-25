@@ -38,25 +38,11 @@ public class UniqueClassList implements Iterable<TuitionClass> {
     public void add(TuitionClass toAdd) {
         requireNonNull(toAdd);
         //throw new InvalidClassException();
-        if (isValidTiming(toAdd)) {
-            internalList.add(toAdd);
-        } else {
-            for (TuitionClass tuitionClass : internalList) {
-                if (tuitionClass.equals(toAdd)) {
-                   // int index = internalList.indexOf(tuitionClass);
-                   // internalList.set(index, toAdd);
-                    tuitionClass.addStudentList(toAdd.getStudentList());
-                    this.setClass(tuitionClass, tuitionClass);
-                } else {
-                    if (tuitionClass.isOverlapping(toAdd)){
-                        throw new InvalidClassException();
-                    }
-                }
-            }
+        if (!isValidTiming(toAdd)) {
+            throw new InvalidClassException();
         }
 
-
-
+        internalList.add(toAdd);
     }
 
     public void delete(TuitionClass toDelete) {
