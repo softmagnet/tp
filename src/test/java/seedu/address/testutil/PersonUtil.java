@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -16,6 +17,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * A utility class for Person.
@@ -33,17 +35,16 @@ public class PersonUtil {
      * Returns the part of command string for the given {@code person}'s details.
      */
     public static String getPersonDetails(Student student) {
+        TuitionClass firstTuitionClass = student.getClassList().get(0);
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + student.getName().fullName + " ");
         sb.append(PREFIX_PHONE + student.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + student.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + student.getAddress().value + " ");
-        sb.append(PREFIX_CLASSTIMING + student.getClassTiming().value + " ");
-        sb.append(PREFIX_RATE + student.getRate().value + " ");
-        sb.append(PREFIX_LOCATION + student.getLocation().value + " ");
-        student.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
-        );
+        sb.append(PREFIX_CLASSTIMING + firstTuitionClass.getClassTiming().value + " ");
+        sb.append(PREFIX_RATE + firstTuitionClass.getRate().value + " ");
+        sb.append(PREFIX_LOCATION + firstTuitionClass.getLocation().value + " ");
+        student.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         sb.append(PREFIX_NOK + " ");
         sb.append(PREFIX_NAME + student.getNok().getName().fullName + " ");
         sb.append(PREFIX_PHONE + student.getNok().getPhone().value + " ");
@@ -65,6 +66,13 @@ public class PersonUtil {
         descriptor.getClassTiming().ifPresent(classTiming -> sb.append(PREFIX_CLASSTIMING)
                 .append(classTiming.value).append(" "));
         descriptor.getLocation().ifPresent(location -> sb.append(PREFIX_LOCATION).append(location.value).append(" "));
+        descriptor.getClassName().ifPresent(name -> sb.append(PREFIX_CLASS_NAME).append(name.className).append(" "));
+        //if (descriptor.getTuitionClasses().isPresent()) {
+        //    List<TuitionClass> tuitionClasses = descriptor.getTuitionClasses().get();
+        //    if(tuitionClasses.isEmpty()) {
+        //       sb.append()
+        //    }
+        //}
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
@@ -73,6 +81,15 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
+        if (descriptor.getNokName().isPresent() || descriptor.getNokAddress().isPresent()
+                || descriptor.getNokEmail().isPresent() || descriptor.getNokPhone().isPresent()) {
+            sb.append(PREFIX_NOK).append(" ");
+        }
+        descriptor.getNokName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
+        descriptor.getNokPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
+        descriptor.getNokEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
+        descriptor.getNokAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+
         return sb.toString();
     }
 }

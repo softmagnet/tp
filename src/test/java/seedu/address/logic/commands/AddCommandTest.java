@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Student;
+import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -35,7 +36,8 @@ public class AddCommandTest {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Student validStudent = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validStudent).execute(modelStub);
+        CommandResult commandResult =
+                new AddCommand(validStudent).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStudent), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validStudent), modelStub.personsAdded);
@@ -134,6 +136,21 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasTuitionClass(TuitionClass tuitionClass) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTuitionClass(TuitionClass tuitionClass) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTuitionClass(TuitionClass target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPerson(Student target, Student editedStudent) {
             throw new AssertionError("This method should not be called.");
         }
@@ -145,6 +162,21 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredClassList(Predicate<TuitionClass> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<TuitionClass> getFilteredTuitionClassList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setClass(TuitionClass target, TuitionClass editedClass) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -172,6 +204,7 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Student> personsAdded = new ArrayList<>();
+        final ArrayList<TuitionClass> tuitionClassesAdded = new ArrayList<>();
 
         @Override
         public boolean hasPerson(Student student) {
@@ -183,6 +216,12 @@ public class AddCommandTest {
         public void addPerson(Student student) {
             requireNonNull(student);
             personsAdded.add(student);
+        }
+
+        @Override
+        public void addTuitionClass(TuitionClass tuitionClass) {
+            requireNonNull(tuitionClass);
+            tuitionClassesAdded.add(tuitionClass);
         }
 
         @Override

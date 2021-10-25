@@ -5,7 +5,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.ui.classTab.TuitionClassCard;
+import seedu.address.ui.classtab.TuitionClassCard;
 
 /**
  * Custom {@code ListCell} that displays the graphics of a {@code TuitionClass} using a {@code TuitionClassCard}.

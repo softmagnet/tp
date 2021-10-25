@@ -1,15 +1,12 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
-
-import java.util.List;
 
 public class SelectClassCommand extends Command {
     public static final String COMMAND_WORD = "class";
@@ -35,14 +32,17 @@ public class SelectClassCommand extends Command {
         }
 
         TuitionClass tuitionClass = lastShownList.get(targetIndex.getZeroBased());
-//        ObservableList<Student> observableList = FXCollections.observableArrayList();
-//
-//        tuitionClass.getStudentList().forEach(student -> observableList.add(model.getFilteredStudentList().get(student)));
-//        ObservableList<Student> studentObservableList = FXCollections.observableArrayList(tuitionClass.getStudentList());
-//
-//        // Handle click here
-//        model.updateFilteredPersonList(student -> tuitionClass.containsStudent(student.getName()));
+        //ObservableList<Student> observableList = FXCollections.observableArrayList();
 
-        return new CommandResult(targetIndex.getZeroBased(), "Viewing class " + tuitionClass.toString(), false, false);
+        //tuitionClass.getStudentList().forEach(student -> observableList.add(model.getFilteredStudentList().get
+        //(student)));
+        //ObservableList<Student> studentObservableList = FXCollections.observableArrayList(tuitionClass
+        //.getStudentList());
+
+        // Handle click here
+        //model.updateFilteredPersonList(student -> tuitionClass.containsStudent(student.getName()));
+
+        return new CommandResult(targetIndex.getZeroBased(), "Viewing class " + tuitionClass.toString(),
+                false, false);
     }
 }

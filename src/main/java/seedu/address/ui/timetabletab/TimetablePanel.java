@@ -1,4 +1,4 @@
-package seedu.address.ui.timetableTab;
+package seedu.address.ui.timetabletab;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -17,10 +16,10 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-
 import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.ui.UiPart;
+
 
 /**
  * A UI for the Timetable Panel Tab.
@@ -120,6 +119,7 @@ public class TimetablePanel extends UiPart<Region> {
         ArrayList<TuitionClass> sortedList = new ArrayList<TuitionClass>(tuitionClasses);
         sortedList.sort(Comparator.comparing(TuitionClass::getClassTiming));
 
+
         // build the timetable
         LocalTime previousTime = earliestHour;
         for (int i = 0; i < sortedList.size(); i++) {
@@ -151,8 +151,8 @@ public class TimetablePanel extends UiPart<Region> {
         assert !tuitionClass.getStartTime().isBefore(earliestTime);
 
         TimetableTuitionClassSlot timetableTuitionClassSlot =
-                new TimetableTuitionClassSlot(tuitionClass.getClassNameString()
-                        , tuitionClass.getClassTiming());
+                new TimetableTuitionClassSlot(tuitionClass.getClassNameString(),
+                        tuitionClass.getClassTiming());
         int duration = getTimeDifference(tuitionClass.getStartTime(), tuitionClass.getEndTime());
         int columnIndex = getColumnIndex(earliestTime, tuitionClass.getStartTime());
         timetable.add(timetableTuitionClassSlot.getRoot(), columnIndex, tuitionClass.getDayToInt(),
@@ -183,7 +183,7 @@ public class TimetablePanel extends UiPart<Region> {
 
         TimetableEmptySlot emptySlot = new TimetableEmptySlot(startTime, endTime);
         int duration = getTimeDifference(startTime, endTime);
-        timetable.add(emptySlot.getRoot(), column , row, duration, 1);
+        timetable.add(emptySlot.getRoot(), column, row, duration, 1);
     }
 
     /**
