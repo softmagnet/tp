@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.ClassTimingContainsKeywordsPredicate;
+import seedu.address.model.tuitionclass.predicates.ClassTimingContainsKeywordsPredicate;
 
 public class ScheduleCommand extends Command {
 
@@ -23,10 +23,11 @@ public class ScheduleCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
+//        requireNonNull(model);
+//        model.updateFilteredPersonList(predicate);
+//        return new CommandResult(
+//                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
+        return null;
     }
 
     @Override
