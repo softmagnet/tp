@@ -27,6 +27,14 @@ public class UniqueNameList implements Iterable<Name> {
         internalList.remove(name);
     }
 
+    public void removeAll(UniqueNameList names) {
+        removeAll(names);
+    }
+
+    public void removeAll(List<Name> names) {
+        removeAll(names);
+    }
+
     public void add(Name toAdd) throws DuplicateStudentInClassException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
