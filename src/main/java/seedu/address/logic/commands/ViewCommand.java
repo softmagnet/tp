@@ -32,12 +32,12 @@ public class ViewCommand extends Command {
         if (indexToView == 0) {
             tabToView = "students";
         } else if (indexToView == 1) {
-            tabToView = "timetable";
-        } else if (indexToView == 2) {
             tabToView = "classes";
+        } else if (indexToView == 2) {
+            tabToView = "timetable";
         }
 
-        return new CommandResult("Successfully switched to " + tabToView + " tab.",
+        return new CommandResult("Successfully switched to " + tabToView + " tab",
                 false, false, indexToView);
     }
 

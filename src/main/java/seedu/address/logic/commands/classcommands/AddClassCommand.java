@@ -26,7 +26,7 @@ public class AddClassCommand extends Command {
             + PREFIX_RATE + "RATE "
             + PREFIX_LOCATION + "LOCATION\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_CLASS_NAME + "Sec 4 AMaths "
+            + PREFIX_CLASS_NAME + "Sec 4 A Maths "
             + PREFIX_CLASSTIMING + "MON 11:30-13:30 "
             + PREFIX_RATE + "70 "
             + PREFIX_LOCATION + "Nex Tuition Center";

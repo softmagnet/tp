@@ -4,9 +4,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -19,6 +19,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.ui.UiPart;
+
 
 /**
  * A UI for the Timetable Panel Tab.
@@ -56,7 +57,7 @@ public class TimetablePanel extends UiPart<Region> {
     /**
      * Builds the UI of the timetable panel.
      *
-     * @param tuitionClasses List of students to retrieve the tuition class timings from for the timetable.
+     * @param tuitionClasses List of tuitionClass to retrieve the tuition class timings from for the timetable.
      */
     public void build(ObservableList<TuitionClass> tuitionClasses) {
         clearAll();
@@ -75,7 +76,8 @@ public class TimetablePanel extends UiPart<Region> {
     /**
      * Builds the header panel for the timetable panel ui.
      *
-     * @param tuitionClasses List of students to retrieve the earliest tuition class start timing and latest end timing.
+     * @param tuitionClasses List of tuitionClasses to retrieve the earliest tuition class start timing and
+     *                       latest end timing.
      */
     public void buildHeader(ObservableList<TuitionClass> tuitionClasses) {
         assert tuitionClasses != null;
@@ -115,31 +117,26 @@ public class TimetablePanel extends UiPart<Region> {
 
         //earliest time is after the date
         ArrayList<TuitionClass> sortedList = new ArrayList<TuitionClass>(tuitionClasses);
-        sortedList.sort((tuitionClass1, tuitionClass2) -> tuitionClass1.getClassTiming()
-                .compareTo(tuitionClass2.getClassTiming()));
-        List<ClassTiming> sortedClassTimings = sortedList
-                .stream()
-                .map(TuitionClass::getClassTiming)
-                .collect(Collectors.toList());
-        ArrayList<ClassTiming> uniqueClassTiming = removeDuplicateClassTimings(sortedClassTimings);
+        sortedList.sort(Comparator.comparing(TuitionClass::getClassTiming));
+
 
         // build the timetable
         LocalTime previousTime = earliestHour;
-        for (int i = 0; i < uniqueClassTiming.size(); i++) {
-            ClassTiming currentClassTiming = uniqueClassTiming.get(i);
-            if (currentClassTiming.isAfter(previousTime)) {
-                addEmptySlot(previousTime, currentClassTiming.getStartTime(),
-                        currentClassTiming.getDayToInt(),
+        for (int i = 0; i < sortedList.size(); i++) {
+            TuitionClass currentTuitionClass = sortedList.get(i);
+            if (currentTuitionClass.isAfter(previousTime)) {
+                addEmptySlot(previousTime, currentTuitionClass.getStartTime(),
+                        currentTuitionClass.getDayToInt(),
                         getColumnIndex(earliestHour, previousTime));
             }
 
-            addTuitionClassSlot(currentClassTiming, earliestHour);
+            addTuitionClassSlot(currentTuitionClass, earliestHour);
 
-            if (i != uniqueClassTiming.size() - 1
-                    && currentClassTiming.getDayToInt() < uniqueClassTiming.get(i + 1).getDayToInt()) {
+            if (i != sortedList.size() - 1
+                    && currentTuitionClass.getDayToInt() < sortedList.get(i + 1).getDayToInt()) {
                 previousTime = earliestHour;
             } else {
-                previousTime = currentClassTiming.getEndTime();
+                previousTime = currentTuitionClass.getEndTime();
             }
         }
     }
@@ -147,17 +144,18 @@ public class TimetablePanel extends UiPart<Region> {
     /**
      * Creates a tuition class slot to be displayed on the timetable.
      *
-     * @param classTiming ClassTiming of tuition class slot.
+     * @param tuitionClass TuitionClass to add
      * @param earliestTime Earliest class start time of the timetable.
      */
-    private void addTuitionClassSlot(ClassTiming classTiming, LocalTime earliestTime) {
-        assert !classTiming.getStartTime().isBefore(earliestTime);
+    private void addTuitionClassSlot(TuitionClass tuitionClass, LocalTime earliestTime) {
+        assert !tuitionClass.getStartTime().isBefore(earliestTime);
 
         TimetableTuitionClassSlot timetableTuitionClassSlot =
-                new TimetableTuitionClassSlot("test", classTiming);
-        int duration = getTimeDifference(classTiming.getStartTime(), classTiming.getEndTime());
-        int columnIndex = getColumnIndex(earliestTime, classTiming.getStartTime());
-        timetable.add(timetableTuitionClassSlot.getRoot(), columnIndex, classTiming.getDayToInt(),
+                new TimetableTuitionClassSlot(tuitionClass.getClassNameString(),
+                        tuitionClass.getClassTiming());
+        int duration = getTimeDifference(tuitionClass.getStartTime(), tuitionClass.getEndTime());
+        int columnIndex = getColumnIndex(earliestTime, tuitionClass.getStartTime());
+        timetable.add(timetableTuitionClassSlot.getRoot(), columnIndex, tuitionClass.getDayToInt(),
                 duration, 1);
     }
 

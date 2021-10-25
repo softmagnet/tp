@@ -28,11 +28,11 @@ public class AddToClassCommand extends Command {
             + "Parameters: ClASS_INDEX "
             + "STUDENT_INDEX\n"
             + "Example: " + COMMAND_WORD + " "
-            + "1"
+            + "1 "
             + "2 3 5 "
             + "(adds students indexed 2, 3 and 5 to class indexed 1)";
 
-    public static final String MESSAGE_ADD_SUCCESS = "successfully added students to class ";
+    public static final String MESSAGE_ADD_SUCCESS = "Successfully added students to class ";
 
     private final Index toEditClassIndex;
     private final List<Index> studentIndices;
