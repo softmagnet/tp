@@ -38,14 +38,15 @@ import seedu.address.model.tuitionclass.TuitionClass;
  */
 public class TypicalPersons {
 
-    public static final TuitionClass defaultTuitionClass = new TuitionClass(new ClassName("Class 1"),
+    public static final TuitionClass DEAFULT_TUITION_CLASS = new TuitionClass(new ClassName("Class 1"),
             new ClassTiming("MON 11:30-13:30"), new Location("132, Jurong East Ave 4, #03-10"), new Rate("69"));
 
-    public static final ArrayList<TuitionClass> defaultClassList = new ArrayList<>(Arrays.asList(defaultTuitionClass));
+    public static final ArrayList<TuitionClass> DEFAULT_CLASS_LIST =
+            new ArrayList<>(Arrays.asList(DEAFULT_TUITION_CLASS));
 
     public static final Student ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withTuitionClasses(defaultClassList)
+            .withPhone("94351253").withTuitionClasses(DEFAULT_CLASS_LIST)
             .withNokName("Long Chai Boon")
             .withNokAddress("325, Clementi State 3, #40-32")
             .withNokEmail("longchatbooon@gmail.com").withNokPhone("67785914")
@@ -53,7 +54,7 @@ public class TypicalPersons {
     public static final Student BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTuitionClasses(defaultClassList)
+            .withTuitionClasses(DEFAULT_CLASS_LIST)
             .withNokName("Short Chai Boon")
             .withNokAddress("325, West State 3, #60-12")
             .withNokEmail("hahiihi@gmail.com").withNokPhone("87759868")
@@ -61,43 +62,43 @@ public class TypicalPersons {
     public static final Student NO_NOK_BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTuitionClasses(defaultClassList).build();
+            .withTuitionClasses(DEFAULT_CLASS_LIST).build();
     public static final Student CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withNokName("Mr Batman")
             .withNokAddress("325, Bat Cave 3, #10-23")
             .withNokEmail("dontcallmeillcome@gmail.com").withNokPhone("62212222")
-            .withTuitionClasses(defaultClassList).build();
+            .withTuitionClasses(DEFAULT_CLASS_LIST).build();
     public static final Student DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
             .withNokName("Bad Chai Boon")
             .withNokAddress("1, Happy Sad 3, #10-12")
             .withNokEmail("happyorsadyouchoose@gmail.com").withNokPhone("88888888")
-            .withTuitionClasses(defaultClassList).withTags("Maths").build();
+            .withTuitionClasses(DEFAULT_CLASS_LIST).withTags("Maths").build();
     public static final Student ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
             .withNokName("Bernard Wan")
             .withNokAddress("222, Berkeys State 4, #11-32")
-            .withNokEmail("bernard@gmail.com").withNokPhone("67785314").withTuitionClasses(defaultClassList).build();
+            .withNokEmail("bernard@gmail.com").withNokPhone("67785314").withTuitionClasses(DEFAULT_CLASS_LIST).build();
     public static final Student FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
             .withNokName("Ong Lin Zhen")
             .withNokAddress("323, Lin Estate 3, #44-31")
             .withNokEmail("zhenngggii@gmail.com").withNokPhone("67382344")
-            .withTuitionClasses(defaultClassList).build();
+            .withTuitionClasses(DEFAULT_CLASS_LIST).build();
     public static final Student GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
             .withNokName("Hehe Chai Red")
             .withNokAddress("999, Estate State 4, #10-32")
             .withNokEmail("salmon@gmail.com").withNokPhone("67111111")
-            .withTuitionClasses(defaultClassList).build();
+            .withTuitionClasses(DEFAULT_CLASS_LIST).build();
 
     // Manually added
     public static final Student HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india")
-            .withTuitionClasses(defaultClassList).build();
+            .withTuitionClasses(DEFAULT_CLASS_LIST).build();
     public static final Student IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").withTuitionClasses(defaultClassList).build();
+            .withEmail("hans@example.com").withAddress("chicago ave").withTuitionClasses(DEFAULT_CLASS_LIST).build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Student AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)

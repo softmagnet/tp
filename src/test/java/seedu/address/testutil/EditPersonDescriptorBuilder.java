@@ -1,7 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -13,7 +11,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tuitionclass.ClassName;
 import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.tuitionclass.Rate;
@@ -156,13 +153,13 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-//    public EditPersonDescriptorBuilder withTuitionClasses(String className, String classTiming, String location,
-//                                                          String rate) {
-//        TuitionClass tuitionClass = new TuitionClass(new ClassName(className), new ClassTiming(classTiming)
-//                , new Location(location), new Rate(rate));
-//        descriptor.setTuitionClasses(new ArrayList<>(Arrays.asList(tuitionClass)));
-//        return this;
-//    }
+    //public EditPersonDescriptorBuilder withTuitionClasses(String className, String classTiming, String location,
+    //                                                      String rate) {
+    //    TuitionClass tuitionClass = new TuitionClass(new ClassName(className), new ClassTiming(classTiming)
+    //            , new Location(location), new Rate(rate));
+    //    descriptor.setTuitionClasses(new ArrayList<>(Arrays.asList(tuitionClass)));
+    //    return this;
+    //}
 
     public EditPersonDescriptor build() {
         return descriptor;

@@ -17,9 +17,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tuitionclass.ClassTiming;
-import seedu.address.model.tuitionclass.Location;
-import seedu.address.model.tuitionclass.Rate;
 
 public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";
@@ -52,7 +49,7 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_nullNok_success() throws Exception {
         assertDoesNotThrow(() -> new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-               VALID_CLASSES, null, VALID_TAGS));
+                VALID_CLASSES, null, VALID_TAGS));
     }
 
     @Test
@@ -133,55 +130,55 @@ public class JsonAdaptedStudentTest {
         assertThrows(IllegalValueException.class, student::toModelType);
     }
 
-//    @Test
-//    public void toModelType_invalidClassTiming_throwsIllegalValueException() {
-//        JsonAdaptedStudent student =
-//                new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-//                        VALID_RATE, INVALID_CLASSTIMING, VALID_LOCATION, VALID_NOK, VALID_TAGS);
-//        String expectedMessage = ClassTiming.MESSAGE_CONSTRAINTS;
-//        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
-//    }
-//
-//    @Test
-//    public void toModelType_nullClassTiming_throwsIllegalValueException() {
-//        JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-//                VALID_RATE, null, VALID_LOCATION, VALID_NOK, VALID_TAGS);
-//        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ClassTiming.class.getSimpleName());
-//        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
-//    }
-//
-//    @Test
-//    public void toModelType_invalidRate_throwsIllegalValueException() {
-//        JsonAdaptedStudent student =
-//                new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-//                        INVALID_RATE, VALID_CLASSTIMING, VALID_LOCATION, VALID_NOK, VALID_TAGS);
-//        String expectedMessage = Rate.MESSAGE_CONSTRAINTS;
-//        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
-//    }
-//
-//    @Test
-//    public void toModelType_nullRate_throwsIllegalValueException() {
-//        JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-//                null, VALID_CLASSTIMING, VALID_LOCATION, VALID_NOK, VALID_TAGS);
-//        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Rate.class.getSimpleName());
-//        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
-//    }
-//
-//    @Test
-//    public void toModelType_invalidLocation_throwsIllegalValueException() {
-//        JsonAdaptedStudent student =
-//                new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-//                        VALID_RATE, VALID_CLASSTIMING, INVALID_LOCATION, VALID_NOK, VALID_TAGS);
-//        String expectedMessage = Location.MESSAGE_CONSTRAINTS;
-//        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
-//    }
-//
-//    @Test
-//    public void toModelType_nullLocation_throwsIllegalValueException() {
-//        JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-//                VALID_RATE, VALID_CLASSTIMING, null, VALID_NOK, VALID_TAGS);
-//        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName());
-//        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
-//    }
+    //@Test
+    //public void toModelType_invalidClassTiming_throwsIllegalValueException() {
+    //    JsonAdaptedStudent student =
+    //            new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+    //                    VALID_RATE, INVALID_CLASSTIMING, VALID_LOCATION, VALID_NOK, VALID_TAGS);
+    //    String expectedMessage = ClassTiming.MESSAGE_CONSTRAINTS;
+    //    assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
+    //}
+
+    //@Test
+    //public void toModelType_nullClassTiming_throwsIllegalValueException() {
+    //    JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+    //            VALID_RATE, null, VALID_LOCATION, VALID_NOK, VALID_TAGS);
+    //    String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ClassTiming.class.getSimpleName());
+    //    assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
+    //}
+
+    //@Test
+    //public void toModelType_invalidRate_throwsIllegalValueException() {
+    //    JsonAdaptedStudent student =
+    //            new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+    //                    INVALID_RATE, VALID_CLASSTIMING, VALID_LOCATION, VALID_NOK, VALID_TAGS);
+    //    String expectedMessage = Rate.MESSAGE_CONSTRAINTS;
+    //    assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
+    //}
+
+    //@Test
+    //public void toModelType_nullRate_throwsIllegalValueException() {
+    //    JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+    //            null, VALID_CLASSTIMING, VALID_LOCATION, VALID_NOK, VALID_TAGS);
+    //    String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Rate.class.getSimpleName());
+    //    assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
+    //}
+
+    //@Test
+    //public void toModelType_invalidLocation_throwsIllegalValueException() {
+    //    JsonAdaptedStudent student =
+    //            new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+    //                    VALID_RATE, VALID_CLASSTIMING, INVALID_LOCATION, VALID_NOK, VALID_TAGS);
+    //    String expectedMessage = Location.MESSAGE_CONSTRAINTS;
+    //    assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
+    //}
+
+    //@Test
+    //public void toModelType_nullLocation_throwsIllegalValueException() {
+    //    JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+    //            VALID_RATE, VALID_CLASSTIMING, null, VALID_NOK, VALID_TAGS);
+    //    String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName());
+    //    assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
+    //}
 
 }

@@ -91,9 +91,9 @@ public class PersonBuilder {
         nokAddress = studentToCopy.getNok().getAddress();
         classList = studentToCopy.getClassList();
         //className = studentToCopy.
-//        classTiming = studentToCopy.getClassTiming();
-//        location = studentToCopy.getLocation();
-//        rate = studentToCopy.getRate();
+        //classTiming = studentToCopy.getClassTiming();
+        //location = studentToCopy.getLocation();
+        //rate = studentToCopy.getRate();
     }
 
     /**
@@ -141,9 +141,9 @@ public class PersonBuilder {
      */
     public PersonBuilder withRate(String rate) {
         TuitionClass defaultTuitionClass = classList.get(0);
-        TuitionClass editedTuitionClass = new TuitionClass(defaultTuitionClass.getClassName()
-                , defaultTuitionClass.getClassTiming(), defaultTuitionClass.getLocation(), new Rate(rate));
-        ArrayList<TuitionClass> editedClassList= new ArrayList<>(Arrays.asList(editedTuitionClass));
+        TuitionClass editedTuitionClass = new TuitionClass(defaultTuitionClass.getClassName(),
+                defaultTuitionClass.getClassTiming(), defaultTuitionClass.getLocation(), new Rate(rate));
+        ArrayList<TuitionClass> editedClassList = new ArrayList<>(Arrays.asList(editedTuitionClass));
         this.classList = editedClassList;
         return this;
     }
@@ -153,9 +153,9 @@ public class PersonBuilder {
      */
     public PersonBuilder withClassTiming(String classTiming) {
         TuitionClass defaultTuitionClass = classList.get(0);
-        TuitionClass editedTuitionClass = new TuitionClass(defaultTuitionClass.getClassName()
-                , new ClassTiming(classTiming), defaultTuitionClass.getLocation(), defaultTuitionClass.getRate());
-        ArrayList<TuitionClass> editedClassList= new ArrayList<>(Arrays.asList(editedTuitionClass));
+        TuitionClass editedTuitionClass = new TuitionClass(defaultTuitionClass.getClassName(),
+                new ClassTiming(classTiming), defaultTuitionClass.getLocation(), defaultTuitionClass.getRate());
+        ArrayList<TuitionClass> editedClassList = new ArrayList<>(Arrays.asList(editedTuitionClass));
         this.classList = editedClassList;
         return this;
     }
@@ -165,9 +165,9 @@ public class PersonBuilder {
      */
     public PersonBuilder withLocation(String location) {
         TuitionClass defaultTuitionClass = classList.get(0);
-        TuitionClass editedTuitionClass = new TuitionClass(defaultTuitionClass.getClassName()
-                , defaultTuitionClass.getClassTiming(), new Location(location), defaultTuitionClass.getRate());
-        ArrayList<TuitionClass> editedClassList= new ArrayList<>(Arrays.asList(editedTuitionClass));
+        TuitionClass editedTuitionClass = new TuitionClass(defaultTuitionClass.getClassName(),
+                defaultTuitionClass.getClassTiming(), new Location(location), defaultTuitionClass.getRate());
+        ArrayList<TuitionClass> editedClassList = new ArrayList<>(Arrays.asList(editedTuitionClass));
         this.classList = editedClassList;
         return this;
     }
@@ -204,6 +204,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code TuitionClasses} of the {@code EditPersonDescriptor} that we are building.
+     */
     public PersonBuilder withTuitionClasses(ArrayList<TuitionClass> tuitionClasses) {
         this.classList = tuitionClasses;
         return this;

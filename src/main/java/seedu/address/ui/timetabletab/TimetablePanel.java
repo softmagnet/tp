@@ -1,4 +1,4 @@
-package seedu.address.ui.timetableTab;
+package seedu.address.ui.timetabletab;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +16,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-
 import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.ui.UiPart;
@@ -116,7 +115,8 @@ public class TimetablePanel extends UiPart<Region> {
 
         //earliest time is after the date
         ArrayList<TuitionClass> sortedList = new ArrayList<TuitionClass>(tuitionClasses);
-        sortedList.sort((tuitionClass1, tuitionClass2) -> tuitionClass1.getClassTiming().compareTo(tuitionClass2.getClassTiming()));
+        sortedList.sort((tuitionClass1, tuitionClass2) -> tuitionClass1.getClassTiming()
+                .compareTo(tuitionClass2.getClassTiming()));
         List<ClassTiming> sortedClassTimings = sortedList
                 .stream()
                 .map(TuitionClass::getClassTiming)
@@ -185,7 +185,7 @@ public class TimetablePanel extends UiPart<Region> {
 
         TimetableEmptySlot emptySlot = new TimetableEmptySlot(startTime, endTime);
         int duration = getTimeDifference(startTime, endTime);
-        timetable.add(emptySlot.getRoot(), column , row, duration, 1);
+        timetable.add(emptySlot.getRoot(), column, row, duration, 1);
     }
 
     /**

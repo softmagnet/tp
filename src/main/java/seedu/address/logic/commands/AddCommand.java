@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLASS;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -71,7 +70,7 @@ public class AddCommand extends Command {
         requireNonNull(student);
         studentToAdd = student;
         int largestIndex = student.getClassList().size() - 1;
-        classToAdd =student.getClassList().get(largestIndex);
+        classToAdd = student.getClassList().get(largestIndex);
     }
 
     @Override

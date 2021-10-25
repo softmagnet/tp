@@ -2,9 +2,9 @@ package seedu.address.model.tuitionclass;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import seedu.address.model.person.Name;
-
 import java.time.LocalTime;
+
+import seedu.address.model.person.Name;
 
 /**
  * Represents a tuition TuitionClass in the address book.
@@ -29,7 +29,7 @@ public class TuitionClass {
     /**
      * Represents a tuition class for Students to join. A {@code TuitionClass} can have multiple {@code Student}s.
      * A class is uniquely identified by its timing; a single timing can only have _one_ class.
-     *
+     * <p>
      * A {@code Student} can have multiple {@code TuitionClass}es as well.
      *
      * @param className The name of the class to be created.
@@ -47,6 +47,18 @@ public class TuitionClass {
         this.uniqueNameList = uniqueNameList;
     }
 
+    /**
+     *  Represents a tuition class for Students to join. A {@code TuitionClass} can have multiple {@code Student}s.
+     * A class is uniquely identified by its timing; a single timing can only have _one_ class. Without the
+     * UniqueNameList.
+     * <p>
+     * A {@code Student} can have multiple {@code TuitionClass}es as well.
+     *
+     * @param className The name of the class to be created.
+     * @param classTiming The timing of the class specified. This is the unique identifier (id) of the class.
+     * @param location The location of the class.
+     * @param rate How much it costs per hour to attend the class.
+     */
     public TuitionClass(ClassName className, ClassTiming classTiming, Location location, Rate rate) {
         requireAllNonNull(className, classTiming, location, rate);
         this.className = className;
@@ -63,6 +75,7 @@ public class TuitionClass {
     public ClassTiming getClassTiming() {
         return classTiming;
     }
+
 
     public LocalTime getStartTiming() {
         return classTiming.getStartTime();
@@ -93,17 +106,23 @@ public class TuitionClass {
         return uniqueNameList;
     }
 
-//    todo fix this
-//    public List<Name> getStudentList() {
-//            return Collections.unmodifiableList(uniqueStudentList);
-//    }
+    //todo fix this
+    //public List<Name> getStudentList() {
+    //        return Collections.unmodifiableList(uniqueStudentList);
+    //}
 
     public void addStudent(Name name) {
         uniqueNameList.add(name);
     }
 
+    /**
+     * Removes student name from the name list.
+     *
+     * @param name to be removed.
+     * @return this after name has been removed.
+     */
     public TuitionClass removeStudent(Name name) {
-        if(uniqueNameList.contains(name)) {
+        if (uniqueNameList.contains(name)) {
             uniqueNameList.remove(name);
         }
         return this;
@@ -142,23 +161,30 @@ public class TuitionClass {
      * Returns true if the class timing of the class to be checked overlaps with this class.
      */
     public boolean isOverlapping(TuitionClass toCheck) {
-//        return !(this.getClassTiming().isEarlier(toCheck.getClassTiming())
-//                || toCheck.getClassTiming().isEarlier(this.getClassTiming()));
+        //return !(this.getClassTiming().isEarlier(toCheck.getClassTiming())
+        //        || toCheck.getClassTiming().isEarlier(this.getClassTiming()));
         if (this.equals(toCheck)) {
             return true;
-        } else if ( this.getClassTiming().isSameDay(toCheck.getClassTiming()) //on the same day
-            && ((toCheck.getStartTiming().compareTo(this.getEndTiming()) < 0
-            && toCheck.getStartTiming().compareTo(this.getStartTiming()) >= 0)// && toCheck start time overlap with this
-            || (toCheck.getEndTiming().compareTo(this.getEndTiming()) <= 0
-            && toCheck.getEndTiming().compareTo(this.getStartTiming()) > 0)  //toCheck end time overlap with this
-            || (toCheck.getStartTiming().compareTo(this.getStartTiming()) <= 0  //toCheck starts earlier than this
-            && toCheck.getEndTiming().compareTo(this.getEndTiming()) >= 0))) { //toCheck ends later than this
+        } else if (this.getClassTiming().isSameDay(toCheck.getClassTiming()) //on the same day
+                && ((toCheck.getStartTiming().compareTo(this.getEndTiming()) < 0
+                && toCheck.getStartTiming().compareTo(this.getStartTiming()) >= 0) // && toCheck start time overlap
+                // with this
+                || (toCheck.getEndTiming().compareTo(this.getEndTiming()) <= 0
+                && toCheck.getEndTiming().compareTo(this.getStartTiming()) > 0) //toCheck end time overlap with this
+                || (toCheck.getStartTiming().compareTo(this.getStartTiming()) <= 0 //toCheck starts earlier than this
+                && toCheck.getEndTiming().compareTo(this.getEndTiming()) >= 0))) { //toCheck ends later than this
             return true;
         } else {
             return false;
         }
     }
 
+    /**
+     * Checks if 2 TuitionClass are the same using ClassTiming.
+     *
+     * @param otherClass to be checked with this.
+     * @return boolean.
+     */
     public boolean isSameClass(TuitionClass otherClass) {
         if (otherClass == this) {
             return true;

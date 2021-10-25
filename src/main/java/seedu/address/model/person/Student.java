@@ -41,6 +41,10 @@ public class Student extends Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Students constructed with an empty list of TuitionClasses.
+     *
+     */
     public Student(
             Name name, Phone phone, Email email, Address address, Nok nok, Set<Tag> tags) {
         super(name, phone, email, address);
@@ -49,8 +53,13 @@ public class Student extends Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Adds TuitionClass to the student.
+     *
+     * @param tuitionClass to be added.
+     */
     public void addClass(TuitionClass tuitionClass) {
-        if(!classList.contains(tuitionClass)) {
+        if (!classList.contains(tuitionClass)) {
             classList.add(tuitionClass);
         }
     }
@@ -151,7 +160,7 @@ public class Student extends Person {
         builder.append("\nNext-of-Kin: ");
         builder.append(nok.toString());
 
-        if(classList.size() != 0) {
+        if (classList.size() != 0) {
             builder.append("\nClass List: ");
             builder.append(classList.stream().map(TuitionClass::toString).collect(Collectors.joining(", ")));
         }

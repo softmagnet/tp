@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
@@ -45,9 +44,7 @@ public class PersonUtil {
         sb.append(PREFIX_CLASSTIMING + firstTuitionClass.getClassTiming().value + " ");
         sb.append(PREFIX_RATE + firstTuitionClass.getRate().value + " ");
         sb.append(PREFIX_LOCATION + firstTuitionClass.getLocation().value + " ");
-        student.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
-        );
+        student.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         sb.append(PREFIX_NOK + " ");
         sb.append(PREFIX_NAME + student.getNok().getName().fullName + " ");
         sb.append(PREFIX_PHONE + student.getNok().getPhone().value + " ");
@@ -70,12 +67,12 @@ public class PersonUtil {
                 .append(classTiming.value).append(" "));
         descriptor.getLocation().ifPresent(location -> sb.append(PREFIX_LOCATION).append(location.value).append(" "));
         descriptor.getClassName().ifPresent(name -> sb.append(PREFIX_CLASS_NAME).append(name.className).append(" "));
-//        if (descriptor.getTuitionClasses().isPresent()) {
-//            List<TuitionClass> tuitionClasses = descriptor.getTuitionClasses().get();
-//            if(tuitionClasses.isEmpty()) {
-//                sb.append()
-//            }
-//        }
+        //if (descriptor.getTuitionClasses().isPresent()) {
+        //    List<TuitionClass> tuitionClasses = descriptor.getTuitionClasses().get();
+        //    if(tuitionClasses.isEmpty()) {
+        //       sb.append()
+        //    }
+        //}
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

@@ -2,7 +2,7 @@ package seedu.address.ui;
 
 import javafx.scene.control.ListCell;
 import seedu.address.model.person.Student;
-import seedu.address.ui.studentTab.StudentCard;
+import seedu.address.ui.studenttab.StudentCard;
 
 /**
  * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.

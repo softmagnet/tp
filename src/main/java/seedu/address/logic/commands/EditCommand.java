@@ -115,14 +115,15 @@ public class EditCommand extends Command {
         TuitionClass originalTuitionClass = studentToEdit.getClassList().get(0);
         ClassName updatedClassName = editPersonDescriptor.getClassName().orElse(originalTuitionClass.getClassName());
         Rate updatedRate = editPersonDescriptor.getRate().orElse(originalTuitionClass.getRate());
-        ClassTiming updatedClassTiming = editPersonDescriptor.getClassTiming().orElse(originalTuitionClass.getClassTiming());
+        ClassTiming updatedClassTiming = editPersonDescriptor.getClassTiming()
+                .orElse(originalTuitionClass.getClassTiming());
         Location updatedLocation = editPersonDescriptor.getLocation().orElse(originalTuitionClass.getLocation());
         ArrayList<TuitionClass> updatedTuitionClasses =
-                new ArrayList<>(Arrays.asList(new TuitionClass(updatedClassName
-                , updatedClassTiming, updatedLocation, updatedRate)));
+                new ArrayList<>(Arrays.asList(new TuitionClass(updatedClassName,
+                        updatedClassTiming, updatedLocation, updatedRate)));
 
-//        ArrayList<TuitionClass> updatedTuitionClasses = editPersonDescriptor.getTuitionClasses()
-//                .orElse(studentToEdit.getClassList());
+        //ArrayList<TuitionClass> updatedTuitionClasses = editPersonDescriptor.getTuitionClasses()
+        //        .orElse(studentToEdit.getClassList());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
 
         // Nok
@@ -206,8 +207,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, location, rate, className, classTiming
-                    , tuitionClasses, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, location, rate, className, classTiming,
+                    tuitionClasses, tags);
         }
 
         public void setName(Name name) {
@@ -249,8 +250,8 @@ public class EditCommand extends Command {
         public void setRate(Rate rate) {
             if (tuitionClasses != null) {
                 TuitionClass tuitionClass = this.tuitionClasses.get(0);
-                TuitionClass editedTuitionClass = new TuitionClass(tuitionClass.getClassName()
-                        , tuitionClass.getClassTiming(), tuitionClass.getLocation(), rate);
+                TuitionClass editedTuitionClass = new TuitionClass(tuitionClass.getClassName(),
+                        tuitionClass.getClassTiming(), tuitionClass.getLocation(), rate);
                 this.tuitionClasses = new ArrayList<>(Arrays.asList(editedTuitionClass));
             }
             this.rate = rate;
@@ -263,8 +264,8 @@ public class EditCommand extends Command {
         public void setLocation(Location location) {
             if (tuitionClasses != null) {
                 TuitionClass tuitionClass = this.tuitionClasses.get(0);
-                TuitionClass editedTuitionClass = new TuitionClass(tuitionClass.getClassName()
-                        , tuitionClass.getClassTiming(), location, tuitionClass.getRate());
+                TuitionClass editedTuitionClass = new TuitionClass(tuitionClass.getClassName(),
+                        tuitionClass.getClassTiming(), location, tuitionClass.getRate());
                 this.tuitionClasses = new ArrayList<>(Arrays.asList(editedTuitionClass));
             }
             this.location = location;
@@ -274,11 +275,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(location);
         }
 
-        public  void setClassTiming(ClassTiming classTiming) {
+        public void setClassTiming(ClassTiming classTiming) {
             if (tuitionClasses != null) {
                 TuitionClass tuitionClass = this.tuitionClasses.get(0);
-                TuitionClass editedTuitionClass = new TuitionClass(tuitionClass.getClassName()
-                        , classTiming, tuitionClass.getLocation(), tuitionClass.getRate());
+                TuitionClass editedTuitionClass = new TuitionClass(tuitionClass.getClassName(),
+                        classTiming, tuitionClass.getLocation(), tuitionClass.getRate());
                 this.tuitionClasses = new ArrayList<>(Arrays.asList(editedTuitionClass));
 
             }
@@ -293,13 +294,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-//        public Optional<ArrayList<TuitionClass>> getTuitionClasses() {
-//            return (tuitionClasses != null) ? Optional.of(tuitionClasses)
-//                    : Optional.empty();
-//        }
-//        public void setTuitionClasses(ArrayList<TuitionClass> tuitionClasses) {
-//            this.tuitionClasses = tuitionClasses;
-//        }
+        //public Optional<ArrayList<TuitionClass>> getTuitionClasses() {
+        //    return (tuitionClasses != null) ? Optional.of(tuitionClasses)
+        //            : Optional.empty();
+        //}
+        //public void setTuitionClasses(ArrayList<TuitionClass> tuitionClasses) {
+        //    this.tuitionClasses = tuitionClasses;
+        //}
 
         public void setNokName(Name nokName) {
             this.nokName = nokName;

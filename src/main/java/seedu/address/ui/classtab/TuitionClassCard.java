@@ -1,4 +1,4 @@
-package seedu.address.ui.classTab;
+package seedu.address.ui.classtab;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

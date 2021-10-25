@@ -184,7 +184,7 @@ public class ClassTiming implements Comparable<ClassTiming> {
      * @return Boolean on whether this and other is on the same day.
      */
     public Boolean isSameDay(ClassTiming other) {
-        if(this.getDayToInt() == other.getDayToInt()) {
+        if (this.getDayToInt() == other.getDayToInt()) {
             return true;
         } else {
             return false;
