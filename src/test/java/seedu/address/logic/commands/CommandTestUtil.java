@@ -21,8 +21,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -42,6 +42,7 @@ public class CommandTestUtil {
     public static final String VALID_RATE_BOB = "80";
     public static final String VALID_CLASSTIMING_AMY = "tue 13:00-14:00";
     public static final String VALID_CLASSTIMING_BOB = "mon 10:00-11:00";
+    public static final String VALID_TUITION_CLASS_NAME = "Class 1";
     public static final String VALID_LOCATION_AMY = "Block 312, Amy Street 1";
     public static final String VALID_LOCATION_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_NAME_NOK = "Papa";
@@ -50,6 +51,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_NOK = "Block 456, Squid Street 69";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -92,16 +94,19 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
     static {
+
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withRate(VALID_RATE_AMY).withClassTiming(VALID_CLASSTIMING_AMY)
-                .withLocation(VALID_LOCATION_AMY)
+                .withLocation(VALID_LOCATION_AMY)/*.withTuitionClasses(VALID_TUITION_CLASS_NAME, VALID_CLASSTIMING_AMY,
+                        VALID_LOCATION_AMY, VALID_RATE_AMY)*/
                 .withTags(VALID_TAG_FRIEND).withNokName(VALID_NAME_NOK).withNokPhone(VALID_PHONE_NOK)
                 .withNokAddress(VALID_ADDRESS_NOK).withNokEmail(VALID_EMAIL_NOK).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withRate(VALID_RATE_BOB).withClassTiming(VALID_CLASSTIMING_BOB)
-                .withLocation(VALID_LOCATION_BOB)
+                .withLocation(VALID_LOCATION_BOB)/*.withTuitionClasses(VALID_TUITION_CLASS_NAME, VALID_CLASSTIMING_BOB,
+                        VALID_LOCATION_BOB, VALID_RATE_BOB)*/
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withNokName(VALID_NAME_NOK)
                 .withNokPhone(VALID_PHONE_NOK).withNokAddress(VALID_ADDRESS_NOK)
                 .withNokEmail(VALID_EMAIL_NOK).build();

@@ -1,11 +1,11 @@
 package seedu.address.logic.commands.classcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.classcommands.EditClassCommand.MESSAGE_DUPLICATE_PERSON;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.commands.classcommands.EditClassCommand.EditClassDescriptor;
+import static seedu.address.logic.commands.classcommands.EditClassCommand.MESSAGE_DUPLICATE_PERSON;
 
+import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -15,12 +15,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
-import seedu.address.model.tuitionclass.UniqueNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.model.tuitionclass.UniqueNameList;
 import seedu.address.model.tuitionclass.exceptions.DuplicateStudentInClassException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddToClassCommand extends Command {
 
@@ -31,15 +28,20 @@ public class AddToClassCommand extends Command {
             + "Parameters: ClASS_INDEX "
             + "STUDENT_INDEX\n"
             + "Example: " + COMMAND_WORD + " "
-            + "1"
+            + "1 "
             + "2 3 5 "
             + "(adds students indexed 2, 3 and 5 to class indexed 1)";
 
-    public static final String MESSAGE_ADD_SUCCESS = "successfully added students to class ";
+    public static final String MESSAGE_ADD_SUCCESS = "Successfully added students to class ";
 
     private final Index toEditClassIndex;
     private final List<Index> studentIndices;
 
+    /**
+     * Constructs AddToClassCommand.
+     *
+     * @param indexArray ArrayList of index.
+     */
     public AddToClassCommand(ArrayList<Index> indexArray) {
         requireNonNull(indexArray);
 

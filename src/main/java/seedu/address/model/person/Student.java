@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tuitionclass.ClassTiming;
@@ -40,6 +41,10 @@ public class Student extends Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Students constructed with an empty list of TuitionClasses.
+     *
+     */
     public Student(
             Name name, Phone phone, Email email, Address address, Nok nok, Set<Tag> tags) {
         super(name, phone, email, address);
@@ -48,8 +53,15 @@ public class Student extends Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Adds TuitionClass to the student.
+     *
+     * @param tuitionClass to be added.
+     */
     public void addClass(TuitionClass tuitionClass) {
-        classList.add(tuitionClass);
+        if (!classList.contains(tuitionClass)) {
+            classList.add(tuitionClass);
+        }
     }
 
     public void deleteClass(TuitionClass tuitionClass) {
@@ -124,7 +136,7 @@ public class Student extends Person {
 
         Student o = (Student) other;
         return super.equals(other)
-                && o.getTags().equals(getTags());
+                && o.getTags().equals(getTags()) && o.getClassList().equals(getClassList());
     }
 
     @Override
@@ -151,6 +163,11 @@ public class Student extends Person {
 
         builder.append("\nNext-of-Kin: ");
         builder.append(nok.toString());
+
+        if (classList.size() != 0) {
+            builder.append("\nClass List: ");
+            builder.append(classList.stream().map(TuitionClass::toString).collect(Collectors.joining(", ")));
+        }
 
         return builder.toString();
     }

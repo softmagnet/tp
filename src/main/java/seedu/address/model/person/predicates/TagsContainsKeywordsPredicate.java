@@ -1,7 +1,9 @@
-package seedu.address.model.person;
+package seedu.address.model.person.predicates;
 
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.model.person.Student;
 
 /**
  * Tests if a {@code Person}'s list of {@code Tag} matches any of the keywords given.

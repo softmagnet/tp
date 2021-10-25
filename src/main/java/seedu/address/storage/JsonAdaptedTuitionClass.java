@@ -57,7 +57,7 @@ public class JsonAdaptedTuitionClass {
         rate = source.getRate().value;
 
         Iterator iterator = source.getStudentList().iterator();
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             students.add(iterator.next().toString());
         }
 
@@ -71,7 +71,8 @@ public class JsonAdaptedTuitionClass {
     public TuitionClass toModelType() throws IllegalValueException {
 
         if (classTiming == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ClassTiming.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ClassTiming.class.getSimpleName()));
         }
         if (!ClassTiming.isValidClassTiming(classTiming)) {
             throw new IllegalValueException(ClassTiming.MESSAGE_CONSTRAINTS);
@@ -79,7 +80,8 @@ public class JsonAdaptedTuitionClass {
         final ClassTiming modelTiming = new ClassTiming(classTiming);
 
         if (className == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ClassName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ClassName.class.getSimpleName()));
         }
         if (!ClassName.isValidClassName(className)) {
             throw new IllegalValueException(ClassName.MESSAGE_CONSTRAINTS);
@@ -87,7 +89,8 @@ public class JsonAdaptedTuitionClass {
         final ClassName modelName = new ClassName(className);
 
         if (location == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Location.class.getSimpleName()));
         }
         if (!Location.isValidLocation(location)) {
             throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
@@ -95,7 +98,8 @@ public class JsonAdaptedTuitionClass {
         final Location modelLocation = new Location(location);
 
         if (rate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rate.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Rate.class.getSimpleName()));
         }
         if (!Rate.isValidRate(rate)) {
             throw new IllegalValueException(Rate.MESSAGE_CONSTRAINTS);

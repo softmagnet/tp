@@ -1,5 +1,15 @@
 package seedu.address.logic.commands.classcommands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
+
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -13,16 +23,6 @@ import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.tuitionclass.Rate;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.model.tuitionclass.UniqueNameList;
-
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 
 
 public class EditClassCommand extends Command {
@@ -49,12 +49,37 @@ public class EditClassCommand extends Command {
     private final Index index;
     private final EditClassDescriptor editClassDescriptor;
 
+    /**
+     * Constructs a new EditClassCommand.
+     *
+     * @param index of class to be edited.
+     * @param editClassDescriptor descriptor of new class.
+     */
     public EditClassCommand(Index index, EditClassDescriptor editClassDescriptor) {
         requireAllNonNull(index, editClassDescriptor);
         this.index = index;
         this.editClassDescriptor = editClassDescriptor;
     }
 
+    /**
+     * Creates EditedClass.
+     *
+     * @param classToEdit to be editted.
+     * @param editClassDescriptor to replace.
+     * @return edited TuitionClass.
+     */
+    public static TuitionClass createEditedClass(TuitionClass classToEdit, EditClassDescriptor editClassDescriptor) {
+        assert classToEdit != null;
+
+        ClassName className = editClassDescriptor.getClassName().orElse(classToEdit.getClassName());
+        ClassTiming classTiming = editClassDescriptor.getClassTiming().orElse(classToEdit.getClassTiming());
+        Location location = editClassDescriptor.getLocation().orElse(classToEdit.getLocation());
+        Rate rate = editClassDescriptor.getRate().orElse(classToEdit.getRate());
+        UniqueNameList uniqueNameList = editClassDescriptor.getStudentList().orElse(classToEdit.getStudentList());
+
+        return new TuitionClass(className, classTiming, location, rate, uniqueNameList);
+
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -83,63 +108,51 @@ public class EditClassCommand extends Command {
         private Rate rate;
         private UniqueNameList uniqueNameList;
 
-        public EditClassDescriptor() {}
-
-        public void setClassName(ClassName className) {
-            this.className = className;
+        public EditClassDescriptor() {
         }
 
         public Optional<ClassName> getClassName() {
             return Optional.ofNullable(className);
         }
 
-        public void setClassTiming(ClassTiming classTiming) {
-            this.classTiming = classTiming;
+        public void setClassName(ClassName className) {
+            this.className = className;
         }
 
         public Optional<ClassTiming> getClassTiming() {
             return Optional.ofNullable(classTiming);
         }
 
-        public void setLocation(Location location) {
-            this.location = location;
+        public void setClassTiming(ClassTiming classTiming) {
+            this.classTiming = classTiming;
         }
 
         public Optional<Location> getLocation() {
             return Optional.ofNullable(location);
         }
 
-        public void setRate(Rate rate) {
-            this.rate = rate;
+        public void setLocation(Location location) {
+            this.location = location;
         }
 
         public Optional<Rate> getRate() {
             return Optional.ofNullable(rate);
         }
 
-        public void setStudentList(UniqueNameList uniqueNameList) {
-            this.uniqueNameList = uniqueNameList;
+        public void setRate(Rate rate) {
+            this.rate = rate;
         }
 
         public Optional<UniqueNameList> getStudentList() {
             return Optional.ofNullable(uniqueNameList);
         }
 
+        public void setStudentList(UniqueNameList uniqueNameList) {
+            this.uniqueNameList = uniqueNameList;
+        }
+
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(className, classTiming, rate, location, uniqueNameList);
         }
-    }
-
-    public static TuitionClass createEditedClass(TuitionClass classToEdit, EditClassDescriptor editClassDescriptor) {
-        assert classToEdit != null;
-
-        ClassName className = editClassDescriptor.getClassName().orElse(classToEdit.getClassName());
-        ClassTiming classTiming = editClassDescriptor.getClassTiming().orElse(classToEdit.getClassTiming());
-        Location location = editClassDescriptor.getLocation().orElse(classToEdit.getLocation());
-        Rate rate = editClassDescriptor.getRate().orElse(classToEdit.getRate());
-        UniqueNameList uniqueNameList = editClassDescriptor.getStudentList().orElse(classToEdit.getStudentList());
-
-        return new TuitionClass(className, classTiming, location, rate, uniqueNameList);
-
     }
 }

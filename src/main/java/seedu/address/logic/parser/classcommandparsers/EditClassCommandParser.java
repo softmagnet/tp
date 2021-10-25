@@ -1,5 +1,12 @@
 package seedu.address.logic.parser.classcommandparsers;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.classcommands.EditClassCommand;
 import seedu.address.logic.commands.classcommands.EditClassCommand.EditClassDescriptor;
@@ -8,13 +15,6 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 
 public class EditClassCommandParser implements Parser<EditClassCommand> {
     @Override

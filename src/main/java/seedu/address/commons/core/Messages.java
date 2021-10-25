@@ -12,6 +12,7 @@ public class Messages {
     public static final String MESSAGE_CLASHING_CLASS_TIMING = "The operation aborted because it will introduce a clash"
             + " in class timing.";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_CLASSES_LISTED_OVERVIEW = "%1$d classes listed!";
 
 
 

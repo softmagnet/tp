@@ -16,16 +16,15 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.ui.classTab.ClassPanel;
-import seedu.address.ui.studentTab.StudentListPanel;
-import seedu.address.ui.timetableTab.TimetablePanel;
+import seedu.address.ui.classtab.ClassPanel;
+import seedu.address.ui.studenttab.StudentListPanel;
+import seedu.address.ui.timetabletab.TimetablePanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -111,6 +110,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {

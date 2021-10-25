@@ -1,11 +1,12 @@
-package seedu.address.model.person;
+package seedu.address.model.tuitionclass.predicates;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.tuitionclass.TuitionClass;
 
-public class ClassTimingContainsKeywordsPredicate implements Predicate<Student> {
+public class ClassTimingContainsKeywordsPredicate implements Predicate<TuitionClass> {
 
     private final List<String> keywords;
 
@@ -14,9 +15,9 @@ public class ClassTimingContainsKeywordsPredicate implements Predicate<Student> 
     }
 
     @Override
-    public boolean test(Student student) {
+    public boolean test(TuitionClass tuitionClass) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(student.getClassTiming().value, keyword));
+                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(tuitionClass.getClassTiming().value, keyword));
     }
 
     @Override

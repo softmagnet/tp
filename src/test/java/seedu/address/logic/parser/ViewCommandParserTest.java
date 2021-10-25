@@ -13,8 +13,8 @@ class ViewCommandParserTest {
     private ViewCommandParser parser = new ViewCommandParser();
 
     private int studentsIndex = 0;
-    private int timetableIndex = 1;
-    private int classesIndex = 2;
+    private int classesIndex = 1;
+    private int timetableIndex = 2;
 
     @Test
     public void parse_emptyArg_throwParseException() {

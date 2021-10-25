@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLASS;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -67,10 +66,11 @@ public class AddCommand extends Command {
      * Creates an AddCommand to add the specified {@code Person}.
      * We always pass in a new {@code TuitionClass}, and check if it alr exists
      */
-    public AddCommand(Student student, TuitionClass tuitionClass) {
+    public AddCommand(Student student) {
         requireNonNull(student);
         studentToAdd = student;
-        classToAdd = tuitionClass;
+        int largestIndex = student.getClassList().size() - 1;
+        classToAdd = student.getClassList().get(largestIndex);
     }
 
     @Override
@@ -92,7 +92,7 @@ public class AddCommand extends Command {
             studentToAdd.addClass(classToAdd);
 
             model.addPerson(studentToAdd);
-            model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
+            //model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
             return new CommandResult(String.format(MESSAGE_SUCCESS, studentToAdd));
         } catch (InvalidClassException e) {
             throw new CommandException(Messages.MESSAGE_CLASHING_CLASS_TIMING);

@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.TagsContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.TagsContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new {@code FindTagCommand} object

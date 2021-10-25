@@ -14,6 +14,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.tuitionclass.Rate;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -39,9 +40,14 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(student.getPhone());
         descriptor.setEmail(student.getEmail());
         descriptor.setAddress(student.getAddress());
-        descriptor.setRate(student.getRate());
-        descriptor.setClassTiming(student.getClassTiming());
-        descriptor.setLocation(student.getLocation());
+
+        TuitionClass tuitionClass = student.getClassList().get(0);
+        descriptor.setClassName(tuitionClass.getClassName());
+        descriptor.setClassTiming(tuitionClass.getClassTiming());
+        descriptor.setRate(tuitionClass.getRate());
+        descriptor.setLocation(tuitionClass.getLocation());
+        //descriptor.setTuitionClasses(student.getClassList());
+
         descriptor.setTags(student.getTags());
         descriptor.setNokName(student.getNok().getName());
         descriptor.setNokPhone(student.getNok().getPhone());
@@ -119,7 +125,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code NokName} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withNokName(String name) {
-        descriptor.setName(new Name(name));
+        descriptor.setNokName(new Name(name));
         return this;
     }
 
@@ -127,7 +133,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code NokPhone} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withNokPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+        descriptor.setNokPhone(new Phone(phone));
         return this;
     }
 
@@ -135,7 +141,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code NokEmail} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withNokEmail(String email) {
-        descriptor.setEmail(new Email(email));
+        descriptor.setNokEmail(new Email(email));
         return this;
     }
 
@@ -143,9 +149,17 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code NokAddress} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withNokAddress(String address) {
-        descriptor.setAddress(new Address(address));
+        descriptor.setNokAddress(new Address(address));
         return this;
     }
+
+    //public EditPersonDescriptorBuilder withTuitionClasses(String className, String classTiming, String location,
+    //                                                      String rate) {
+    //    TuitionClass tuitionClass = new TuitionClass(new ClassName(className), new ClassTiming(classTiming)
+    //            , new Location(location), new Rate(rate));
+    //    descriptor.setTuitionClasses(new ArrayList<>(Arrays.asList(tuitionClass)));
+    //    return this;
+    //}
 
     public EditPersonDescriptor build() {
         return descriptor;
