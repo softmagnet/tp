@@ -18,6 +18,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.NokCommand;
 import seedu.address.logic.commands.SelectClassCommand;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.classcommands.AddClassCommand;
 import seedu.address.logic.commands.classcommands.AddToClassCommand;
 import seedu.address.logic.commands.classcommands.DeleteClassCommand;
@@ -32,7 +33,6 @@ import seedu.address.logic.parser.classcommandparsers.EditClassCommandParser;
 import seedu.address.logic.parser.classcommandparsers.FindClassCommandParser;
 import seedu.address.logic.parser.classcommandparsers.FindClassNameCommandParser;
 import seedu.address.logic.parser.classcommandparsers.SelectClassCommandParser;
-import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

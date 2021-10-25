@@ -1,10 +1,10 @@
 package seedu.address.model.tuitionclass.predicates;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.tuitionclass.TuitionClass;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.commons.util.StringUtil;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 public class ClassNameContainsKeywordsPredicate implements Predicate<TuitionClass> {
 

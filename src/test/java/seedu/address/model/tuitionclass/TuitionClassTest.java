@@ -1,16 +1,14 @@
 package seedu.address.model.tuitionclass;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 public class TuitionClassTest {
-    ClassName className = new ClassName("test");
-    Location location = new Location("test");
-    Rate rate = new Rate("50");
+    private ClassName className = new ClassName("test");
+    private Location location = new Location("test");
+    private Rate rate = new Rate("50");
 
     @Test
     public void isOverlapping_overlappingTiming_returnsTrue() {

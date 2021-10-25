@@ -4,18 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
-import jdk.dynalink.linker.support.TypeUtilities;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tuitionclass.exceptions.DuplicateClassException;
 import seedu.address.model.tuitionclass.exceptions.InvalidClassException;
@@ -27,8 +21,8 @@ import seedu.address.model.tuitionclass.exceptions.TuitionClassNotFoundException
 public class UniqueClassList implements Iterable<TuitionClass> {
 
     private final ObservableList<TuitionClass> internalList = FXCollections.observableArrayList();
-    private final ObservableList<TuitionClass> internalUnmodifiableList
-            = FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<TuitionClass> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Adds a class to the list. TuitionClass must not overlap in timing with existing classes.
@@ -38,22 +32,44 @@ public class UniqueClassList implements Iterable<TuitionClass> {
     public void add(TuitionClass toAdd) {
         requireNonNull(toAdd);
         //throw new InvalidClassException();
-        if (!isValidTiming(toAdd)) {
-            throw new InvalidClassException();
+        if (isValidTiming(toAdd)) {
+            internalList.add(toAdd);
+        } else {
+            for (TuitionClass tuitionClass : internalList) {
+                if (tuitionClass.getClassTiming().equals(toAdd.getClassTiming())
+                        && tuitionClass.getLocation().equals(toAdd.getLocation())) {
+                    // int index = internalList.indexOf(tuitionClass);
+                    // internalList.set(index, toAdd);
+                    tuitionClass.addStudentList(toAdd.getStudentList());
+                    this.setClass(tuitionClass, tuitionClass);
+                } else {
+                    if (tuitionClass.isOverlapping(toAdd)) {
+                        throw new InvalidClassException();
+                    }
+                }
+            }
         }
-
-        internalList.add(toAdd);
     }
 
+    /**
+     * Deletes a TuitionClass from the list.
+     *
+     * @param toDelete TuitionClass to be deleted.
+     */
     public void delete(TuitionClass toDelete) {
         requireNonNull(toDelete);
-        if(!internalList.remove(toDelete)) {
+        if (!internalList.remove(toDelete)) {
             throw new TuitionClassNotFoundException();
         }
     }
 
+    /**
+     * Removes a name from all the classes in the list.
+     *
+     * @param name to be removed.
+     */
     public void removeStudent(Name name) {
-        for(int i = 0; i < internalList.size(); i++) {
+        for (int i = 0; i < internalList.size(); i++) {
             TuitionClass tuitionClass = internalList.get(i);
             UniqueNameList nameList = tuitionClass.getStudentList();
             if (nameList.contains(name)) {
@@ -67,12 +83,11 @@ public class UniqueClassList implements Iterable<TuitionClass> {
         requireNonNull(classes);
         //todo check that classes are unique
         List<TuitionClass> editedClasses = new ArrayList<>(classes);
-        for(int i = 0; i < editedClasses.size(); i++) {
+        for (int i = 0; i < editedClasses.size(); i++) {
             for (int j = i + 1; j < editedClasses.size(); j++) {
-              if (editedClasses.get(i).equals(editedClasses.get(j))) {
-                  editedClasses.remove(j);
-
-              }
+                if (editedClasses.get(i).equals(editedClasses.get(j))) {
+                    editedClasses.remove(j);
+                }
             }
         }
         internalList.setAll(editedClasses);

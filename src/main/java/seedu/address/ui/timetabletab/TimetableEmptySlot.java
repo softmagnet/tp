@@ -1,4 +1,4 @@
-package seedu.address.ui.timetableTab;
+package seedu.address.ui.timetabletab;
 
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
