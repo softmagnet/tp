@@ -37,10 +37,10 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         case "students":
             indexOfTabToView = 0;
             break;
-        case "timetable":
+        case "classes":
             indexOfTabToView = 1;
             break;
-        case "classes":
+        case "timetable":
             indexOfTabToView = 2;
             break;
         default:

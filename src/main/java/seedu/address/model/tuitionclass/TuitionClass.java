@@ -60,6 +60,10 @@ public class TuitionClass {
         return className;
     }
 
+    public String getClassNameString() {
+        return className.toString();
+    }
+
     public ClassTiming getClassTiming() {
         return classTiming;
     }
@@ -167,6 +171,23 @@ public class TuitionClass {
         return otherClass != null
                 && otherClass.getClassTiming().equals(getClassTiming());
     }
+
+    public boolean isAfter(LocalTime time) {
+        return this.classTiming.isAfter(time);
+    }
+
+    public LocalTime getStartTime() {
+        return this.classTiming.getStartTime();
+    }
+
+    public LocalTime getEndTime() {
+        return this.classTiming.getEndTime();
+    }
+
+    public int getDayToInt() {
+        return this.classTiming.getDayToInt();
+    }
+
 
     @Override
     public String toString() {
