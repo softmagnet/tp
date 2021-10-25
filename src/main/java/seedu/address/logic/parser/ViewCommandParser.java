@@ -24,13 +24,13 @@ public class ViewCommandParser implements Parser<ViewCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
-        String[] splitArgs = args.split(" ");
-        if (splitArgs.length > 2) {
+        String[] splitArgs = trimmedArgs.split(" ");
+        if (splitArgs.length > 1) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
-        String tabToView = splitArgs[1];
+        String tabToView = splitArgs[0];
         int indexOfTabToView;
 
         switch (tabToView) {

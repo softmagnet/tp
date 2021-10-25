@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
+import java.util.logging.Filter;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -26,7 +28,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Student> filteredStudents;
+    private FilteredList<Student> filteredStudents;
     private final FilteredList<TuitionClass> filteredTuitionClass;
 
     /**
@@ -152,6 +154,13 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
+    public void replaceFilteredStudentList(List<Student> studentList) {
+        ObservableList<Student> newList = FXCollections.observableArrayList();
+        newList.addAll(studentList);
+        this.filteredStudents = new FilteredList<>(newList);
     }
 
     @Override

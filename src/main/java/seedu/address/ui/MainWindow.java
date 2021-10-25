@@ -254,6 +254,13 @@ public class MainWindow extends UiPart<Stage> {
             selectClass(commandResult.getIndexOfClassToSelect());
             setView(commandResult.getIndexOfTabToView());
 
+            // This is very buggy
+            studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+            studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
+            classPanel = new ClassPanel(logic.getFilteredStudentList(), logic.getFilteredTuitionClassList());
+            classListPanelPlaceholder.getChildren().add(classPanel.getRoot());
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

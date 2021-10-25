@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -119,5 +120,6 @@ public interface Model {
      */
     void setClass(TuitionClass target, TuitionClass editedClass);
 
+    void replaceFilteredStudentList(List<Student> studentList);
 
 }
