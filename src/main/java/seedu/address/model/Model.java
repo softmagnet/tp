@@ -64,11 +64,6 @@ public interface Model {
     boolean hasPerson(Student student);
 
     /**
-     * Returns true if a class with the same identity as {@code TuitionClass} exists in the address book.
-     */
-    boolean hasTuitionClass(TuitionClass tuitionClass);
-
-    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -79,6 +74,11 @@ public interface Model {
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Student student);
+
+    /**
+     * Returns true if a class with the same identity as {@code TuitionClass} exists in the address book.
+     */
+    boolean hasTuitionClass(TuitionClass tuitionClass);
 
     /**
      * Adds the given tuition class.

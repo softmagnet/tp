@@ -55,8 +55,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         TuitionClass tuitionClass = parseClass(argsBeforeNok);
         Nok nok = parseNok(argsAfterNok);
         student.setNok(nok);
-
-        return new AddCommand(student, tuitionClass);
+        student.addClass(tuitionClass);
+        return new AddCommand(student);
     }
 
     private TuitionClass parseClass(String args) throws ParseException {

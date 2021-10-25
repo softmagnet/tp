@@ -46,6 +46,7 @@ class JsonAdaptedStudent {
                               @JsonProperty("tuitionClasses") List<JsonAdaptedTuitionClass> tuitionClasses,
                               @JsonProperty("nok") JsonAdaptedNok nok,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;

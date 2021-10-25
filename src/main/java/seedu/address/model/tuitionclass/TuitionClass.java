@@ -133,8 +133,8 @@ public class TuitionClass {
 
         TuitionClass o = (TuitionClass) other;
         /* A class is uniquely identified by its timing; a single timing can only have _one_ class */
-        return /*o.className.equals(getClassName())
-                &&*/ o.classTiming.equals(getClassTiming());
+        return /*o.className.equals(getClassName()) &&*/ o.classTiming.equals(getClassTiming())
+                && o.rate.equals(getRate()) && o.location.equals(getLocation());
     }
 
 
@@ -148,11 +148,11 @@ public class TuitionClass {
             return true;
         } else if ( this.getClassTiming().isSameDay(toCheck.getClassTiming()) //on the same day
             && ((toCheck.getStartTiming().compareTo(this.getEndTiming()) < 0
-            && toCheck.getStartTiming().compareTo(this.getStartTiming()) > 0)  //toCheck start time overlap with this
-            || (toCheck.getEndTiming().compareTo(this.getEndTiming()) < 0
+            && toCheck.getStartTiming().compareTo(this.getStartTiming()) >= 0)// && toCheck start time overlap with this
+            || (toCheck.getEndTiming().compareTo(this.getEndTiming()) <= 0
             && toCheck.getEndTiming().compareTo(this.getStartTiming()) > 0)  //toCheck end time overlap with this
-            || (toCheck.getStartTiming().compareTo(this.getStartTiming()) < 0  //toCheck starts earlier than this
-            && toCheck.getEndTiming().compareTo(this.getEndTiming()) > 0))) { //toCheck ends later than this
+            || (toCheck.getStartTiming().compareTo(this.getStartTiming()) <= 0  //toCheck starts earlier than this
+            && toCheck.getEndTiming().compareTo(this.getEndTiming()) >= 0))) { //toCheck ends later than this
             return true;
         } else {
             return false;
@@ -176,8 +176,16 @@ public class TuitionClass {
                 .append(" ");
         if (!getClassTiming().equals(getClassName())) {
             builder.append(" Class Name: ")
-                    .append(getClassName());
+                    .append(getClassName())
+                    .append(" ");
+
         }
+        builder.append("Location: ")
+                .append(getLocation())
+                .append(" ");
+        builder.append("Rate: ")
+                .append(getRate())
+                .append(" ");
 
         return builder.toString();
     }

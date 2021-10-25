@@ -42,7 +42,8 @@ public class UniqueClassList implements Iterable<TuitionClass> {
             internalList.add(toAdd);
         } else {
             for (TuitionClass tuitionClass : internalList) {
-                if (tuitionClass.equals(toAdd)) {
+                if (tuitionClass.getClassTiming().equals(toAdd.getClassTiming())
+                        && tuitionClass.getLocation().equals(toAdd.getLocation())) {
                    // int index = internalList.indexOf(tuitionClass);
                    // internalList.set(index, toAdd);
                     tuitionClass.addStudentList(toAdd.getStudentList());
