@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.ClassTimingContainsKeywordsPredicate;
+import seedu.address.model.tuitionclass.predicates.ClassTimingContainsKeywordsPredicate;
 
 public class ScheduleCommandParser implements Parser<ScheduleCommand> {
 

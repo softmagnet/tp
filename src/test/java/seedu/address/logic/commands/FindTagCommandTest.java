@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.TagsContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.TagsContainsKeywordsPredicate;
 
 public class FindTagCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
