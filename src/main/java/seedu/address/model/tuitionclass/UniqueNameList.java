@@ -23,20 +23,38 @@ public class UniqueNameList implements Iterable<Name> {
         return internalList.stream().anyMatch(toCheck::equals);
     }
 
+    /**
+     * Removes a name from the list.
+     * @param name name to be removed.
+     */
     public void remove(Name name) {
         internalList.remove(name);
     }
 
+    /**
+     * Removes all names provided from the list.
+     * @param names The UniqueNameList of names to be removed.
+     */
     public void removeAll(UniqueNameList names) {
         for(Name name : names) {
             remove(name);
         }
     }
 
+    /**
+     * Removes all names provided from the list.
+     * @param names The list of names to be removed.
+     */
     public void removeAll(List<Name> names) {
         internalList.removeAll(names);
     }
 
+    /**
+     * Adds a name to the list.
+     *
+     * @param toAdd name to be added.
+     * @throws DuplicateStudentInClassException if name is already in the list.
+     */
     public void add(Name toAdd) throws DuplicateStudentInClassException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
