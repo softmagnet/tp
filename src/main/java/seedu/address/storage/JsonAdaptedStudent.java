@@ -46,6 +46,7 @@ class JsonAdaptedStudent {
                               @JsonProperty("tuitionClasses") List<JsonAdaptedTuitionClass> tuitionClasses,
                               @JsonProperty("nok") JsonAdaptedNok nok,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -132,7 +133,8 @@ class JsonAdaptedStudent {
         }
 
         //        if (rate == null) {
-        //            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rate.class.getSimpleName()));
+        //            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+        //            Rate.class.getSimpleName()));
         //        }
         //        if (!Rate.isValidRate(rate)) {
         //            throw new IllegalValueException(Rate.MESSAGE_CONSTRAINTS);

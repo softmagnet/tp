@@ -55,8 +55,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         TuitionClass tuitionClass = parseClass(argsBeforeNok);
         Nok nok = parseNok(argsAfterNok);
         student.setNok(nok);
-
-        return new AddCommand(student, tuitionClass);
+        student.addClass(tuitionClass);
+        return new AddCommand(student);
     }
 
     private TuitionClass parseClass(String args) throws ParseException {
@@ -98,7 +98,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        return new Student(name, phone, email, address,null , tagList);
+        return new Student(name, phone, email, address, null , tagList);
     }
 
     private Nok parseNok(String args) throws ParseException {

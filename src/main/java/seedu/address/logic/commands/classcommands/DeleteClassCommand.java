@@ -41,7 +41,7 @@ public class DeleteClassCommand extends Command {
         List<TuitionClass> lastShownClassList = model.getFilteredTuitionClassList();
         TuitionClass tuitionClass = lastShownClassList.get(index.getZeroBased());
 
-        if(!model.hasTuitionClass(tuitionClass)) {
+        if (!model.hasTuitionClass(tuitionClass)) {
             throw new CommandException(MESSAGE_MISSING_CLASS);
         }
         ReadOnlyAddressBook addressBook = model.getAddressBook();
@@ -50,7 +50,7 @@ public class DeleteClassCommand extends Command {
 
         UniqueNameList uniqueNameList = tuitionClass.getStudentList();
         studentIterator.forEachRemaining(student -> {
-            if(uniqueNameList.contains(student.getName())) {
+            if (uniqueNameList.contains(student.getName())) {
                 student.deleteClass(tuitionClass);
             }
         });

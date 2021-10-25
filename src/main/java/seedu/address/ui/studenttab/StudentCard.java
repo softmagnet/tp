@@ -1,4 +1,4 @@
-package seedu.address.ui.studentTab;
+package seedu.address.ui.studenttab;
 
 import java.util.Comparator;
 

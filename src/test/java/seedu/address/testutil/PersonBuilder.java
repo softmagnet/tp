@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,9 +12,11 @@ import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tuitionclass.ClassName;
 import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.tuitionclass.Rate;
+import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -31,20 +35,24 @@ public class PersonBuilder {
     public static final String DEFAULT_NOK_PHONE = "97762839";
     public static final String DEFAULT_NOK_EMAIL = "zhenglin@gmail.com";
     public static final String DEFAULT_NOK_ADDRESS = "345, Clementi Ave 6, #02-141";
+    public static final String DEFAULT_CLASS_NAME = "Math wed class";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
-    private Rate rate;
     private Set<Tag> tags;
+
     private Name nokName;
     private Phone nokPhone;
     private Email nokEmail;
     private Address nokAddress;
+
+    private ArrayList<TuitionClass> classList;
+    private ClassName className;
     private ClassTiming classTiming;
     private Location location;
-
+    private Rate rate;
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -53,15 +61,19 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        rate = new Rate(DEFAULT_RATE);
-        classTiming = new ClassTiming(DEFAULT_CLASSTIMING);
-        location = new Location(DEFAULT_LOCATION);
         tags = new HashSet<>();
 
         nokName = new Name(DEFAULT_NOK_NAME);
         nokPhone = new Phone(DEFAULT_NOK_PHONE);
         nokEmail = new Email(DEFAULT_NOK_EMAIL);
         nokAddress = new Address(DEFAULT_NOK_ADDRESS);
+
+        classList = new ArrayList<>();
+        className = new ClassName(DEFAULT_CLASS_NAME);
+        classTiming = new ClassTiming(DEFAULT_CLASSTIMING);
+        location = new Location(DEFAULT_LOCATION);
+        rate = new Rate(DEFAULT_RATE);
+        classList.add(new TuitionClass(className, classTiming, location, rate));
     }
 
     /**
@@ -72,14 +84,16 @@ public class PersonBuilder {
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
-        rate = studentToCopy.getRate();
-        classTiming = studentToCopy.getClassTiming();
-        location = studentToCopy.getLocation();
         tags = new HashSet<>(studentToCopy.getTags());
         nokName = studentToCopy.getNok().getName();
         nokPhone = studentToCopy.getNok().getPhone();
         nokEmail = studentToCopy.getNok().getEmail();
         nokAddress = studentToCopy.getNok().getAddress();
+        classList = studentToCopy.getClassList();
+        //className = studentToCopy.
+        //classTiming = studentToCopy.getClassTiming();
+        //location = studentToCopy.getLocation();
+        //rate = studentToCopy.getRate();
     }
 
     /**
@@ -126,7 +140,11 @@ public class PersonBuilder {
      * Sets the {@code Rate} of the {@code Person} that we are building.
      */
     public PersonBuilder withRate(String rate) {
-        this.rate = new Rate(rate);
+        TuitionClass defaultTuitionClass = classList.get(0);
+        TuitionClass editedTuitionClass = new TuitionClass(defaultTuitionClass.getClassName(),
+                defaultTuitionClass.getClassTiming(), defaultTuitionClass.getLocation(), new Rate(rate));
+        ArrayList<TuitionClass> editedClassList = new ArrayList<>(Arrays.asList(editedTuitionClass));
+        this.classList = editedClassList;
         return this;
     }
 
@@ -134,7 +152,11 @@ public class PersonBuilder {
      * Sets the {@code ClassTiming} of the {@code Person} that we are building.
      */
     public PersonBuilder withClassTiming(String classTiming) {
-        this.classTiming = new ClassTiming(classTiming);
+        TuitionClass defaultTuitionClass = classList.get(0);
+        TuitionClass editedTuitionClass = new TuitionClass(defaultTuitionClass.getClassName(),
+                new ClassTiming(classTiming), defaultTuitionClass.getLocation(), defaultTuitionClass.getRate());
+        ArrayList<TuitionClass> editedClassList = new ArrayList<>(Arrays.asList(editedTuitionClass));
+        this.classList = editedClassList;
         return this;
     }
 
@@ -142,7 +164,11 @@ public class PersonBuilder {
      * Sets the {@code Location} of the {@code Person} that we are building.
      */
     public PersonBuilder withLocation(String location) {
-        this.location = new Location(location);
+        TuitionClass defaultTuitionClass = classList.get(0);
+        TuitionClass editedTuitionClass = new TuitionClass(defaultTuitionClass.getClassName(),
+                defaultTuitionClass.getClassTiming(), new Location(location), defaultTuitionClass.getRate());
+        ArrayList<TuitionClass> editedClassList = new ArrayList<>(Arrays.asList(editedTuitionClass));
+        this.classList = editedClassList;
         return this;
     }
 
@@ -179,13 +205,22 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code TuitionClasses} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public PersonBuilder withTuitionClasses(ArrayList<TuitionClass> tuitionClasses) {
+        this.classList = tuitionClasses;
+        return this;
+    }
+
+    /**
      * Builds student with all details included in the builder.
      *
      * @return Student with all the deatils included in the builder.
      */
     public Student build() {
         Nok nok = new Nok(nokName, nokPhone, nokEmail, nokAddress);
-        return new Student(name, phone, email, address, rate, classTiming, location, nok, tags);
+        //TuitionClass tuitionClass = new TuitionClass(className,)
+        return new Student(name, phone, email, address, classList, nok, tags);
     }
 
 }
