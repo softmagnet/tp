@@ -17,16 +17,20 @@ import seedu.address.logic.commands.FindTagCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.NokCommand;
-import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.commands.SelectClassCommand;
 import seedu.address.logic.commands.classcommands.AddClassCommand;
 import seedu.address.logic.commands.classcommands.AddToClassCommand;
 import seedu.address.logic.commands.classcommands.DeleteClassCommand;
 import seedu.address.logic.commands.classcommands.EditClassCommand;
+import seedu.address.logic.commands.classcommands.FindClassCommand;
+import seedu.address.logic.commands.classcommands.FindClassNameCommand;
+import seedu.address.logic.commands.classcommands.ListClassCommand;
 import seedu.address.logic.parser.classcommandparsers.AddClassCommandParser;
 import seedu.address.logic.parser.classcommandparsers.AddToClassCommandParser;
 import seedu.address.logic.parser.classcommandparsers.DeleteClassCommandParser;
 import seedu.address.logic.parser.classcommandparsers.EditClassCommandParser;
+import seedu.address.logic.parser.classcommandparsers.FindClassCommandParser;
+import seedu.address.logic.parser.classcommandparsers.FindClassNameCommandParser;
 import seedu.address.logic.parser.classcommandparsers.SelectClassCommandParser;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -58,6 +62,8 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+        //// student commands
+
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
@@ -66,9 +72,6 @@ public class AddressBookParser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
 
         case FindNameCommand.COMMAND_WORD:
             return new FindNameCommandParser().parse(arguments);
@@ -79,19 +82,14 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-
         case NokCommand.COMMAND_WORD:
             return new NokCommandParser().parse(arguments);
 
-        case ScheduleCommand.COMMAND_WORD:
-            return new ScheduleCommandParser().parse(arguments);
+        //// tuition class commands
 
-        ////tuition class commands
+        case ListClassCommand.COMMAND_WORD:
+            return new ListClassCommand();
+
         case AddClassCommand.COMMAND_WORD:
             return new AddClassCommandParser().parse(arguments);
 
@@ -107,8 +105,25 @@ public class AddressBookParser {
         case DeleteClassCommand.COMMAND_WORD:
             return new DeleteClassCommandParser().parse(arguments);
 
+        case FindClassCommand.COMMAND_WORD:
+            return new FindClassCommandParser().parse(arguments);
+
+        case FindClassNameCommand.COMMAND_WORD:
+            return new FindClassNameCommandParser().parse(arguments);
+
+        //// general application command
+
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
+
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

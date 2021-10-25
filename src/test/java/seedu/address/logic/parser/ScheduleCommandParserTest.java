@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ScheduleCommand;
-import seedu.address.model.person.ClassTimingContainsKeywordsPredicate;
+import seedu.address.model.tuitionclass.predicates.ClassTimingContainsKeywordsPredicate;
 
 
 public class ScheduleCommandParserTest {

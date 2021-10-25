@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindTagCommand;
-import seedu.address.model.person.TagsContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.TagsContainsKeywordsPredicate;
 
 public class FindTagCommandParserTest {
     private FindTagCommandParser parser = new FindTagCommandParser();

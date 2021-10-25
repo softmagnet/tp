@@ -26,7 +26,7 @@ public class AddClassCommand extends Command {
             + PREFIX_RATE + "RATE "
             + PREFIX_LOCATION + "LOCATION\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_CLASS_NAME + "Sec 4 A-Maths "
+            + PREFIX_CLASS_NAME + "Sec 4 AMaths "
             + PREFIX_CLASSTIMING + "MON 11:30-13:30 "
             + PREFIX_RATE + "70 "
             + PREFIX_LOCATION + "Nex Tuition Center";
@@ -39,9 +39,9 @@ public class AddClassCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (model.hasTuitionClass(tuitionClass)) {
-            throw new CommandException(MESSAGE_DUPLICATE_CLASS);
-        }
+//        if (model.hasTuitionClass(tuitionClass)) {
+//            throw new CommandException(MESSAGE_DUPLICATE_CLASS);
+//        }
 
         try {
             model.addTuitionClass(tuitionClass);

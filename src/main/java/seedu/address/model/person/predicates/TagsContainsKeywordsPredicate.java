@@ -1,4 +1,6 @@
-package seedu.address.model.person;
+package seedu.address.model.person.predicates;
+
+import seedu.address.model.person.Student;
 
 import java.util.List;
 import java.util.function.Predicate;
