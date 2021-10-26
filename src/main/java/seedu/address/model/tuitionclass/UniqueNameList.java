@@ -42,7 +42,7 @@ public class UniqueNameList implements Iterable<Name> {
      * @param names The UniqueNameList of names to be removed.
      */
     public void removeAll(UniqueNameList names) {
-        for(Name name : names) {
+        for (Name name : names) {
             remove(name);
         }
     }
