@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.logic.commands.SortCommand;
@@ -47,13 +48,14 @@ public class SortCommandParser implements Parser<SortCommand> {
      * @throws ParseException If it is not a valid sortBy keyword.
      */
     public void checkSortBy(String sortBy) throws ParseException {
+        requireNonNull(sortBy);
         for (String validSortByKeyword : validSortByKeywords) {
             if (sortBy.equals(validSortByKeyword)) {
                 return;
             }
         }
 
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.INVALID_SORTBY));
     }
 
     /**
@@ -63,12 +65,13 @@ public class SortCommandParser implements Parser<SortCommand> {
      * @throws ParseException If it is not a valid directionOfSort keyword.
      */
     public void checkDirectionOfSort(String directionOfSort) throws ParseException {
+        requireNonNull(directionOfSort);
         for (String validDirectionOfSortKeyword : validDirectionOfSortKeywords) {
             if (directionOfSort.equals(validDirectionOfSortKeyword)) {
                 return;
             }
         }
 
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.INVALID_DIRECTIONOFSORT));
     }
 }

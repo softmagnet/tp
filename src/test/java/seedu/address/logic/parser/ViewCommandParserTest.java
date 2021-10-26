@@ -10,7 +10,7 @@ import seedu.address.logic.commands.ViewCommand;
 
 class ViewCommandParserTest {
 
-    private ViewCommandParser parser = new ViewCommandParser();
+    private final ViewCommandParser parser = new ViewCommandParser();
 
     private int studentsIndex = 0;
     private int classesIndex = 1;

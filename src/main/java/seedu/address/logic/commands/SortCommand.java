@@ -10,7 +10,9 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": sorts students by specified parameter and order\n"
             + "Parameters: PARAMETER_TO_SORT_BY DIRECTION_OF_SORT\n"
-            + "Example: " + COMMAND_WORD + " name asc";;
+            + "Example: " + COMMAND_WORD + " name asc";
+    public static final String INVALID_SORTBY = "The parameter to sort by can only be: name or timing";
+    public static final String INVALID_DIRECTIONOFSORT = "The direction of sort can only be asc or desc";
 
     private final String sortBy;
 
@@ -59,5 +61,19 @@ public class SortCommand extends Command {
 
         return new CommandResult("Sorted students based on " + sortBy
                 + " in " + directionOfSort + " direction");
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        } else if (this == obj) {
+            return true;
+        } else if (obj instanceof SortCommand) {
+            SortCommand sortCommand = (SortCommand) obj;
+            return this.directionOfSort.equals(sortCommand.directionOfSort) && this.sortBy.equals(sortCommand.sortBy);
+        } else {
+            return false;
+        }
     }
 }
