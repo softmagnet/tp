@@ -18,6 +18,11 @@ public class TuitionClass {
     private final Location location;
     private final Rate rate;
 
+    // TODO: Make this incremental (static variable)
+    private final ClassName placeholderClassName = new ClassName("Placeholder");
+    private final Location placeholderLocation = new Location("Placeholder");
+    private final Rate placeholderRate = new Rate("0");
+
     /**
      * ArrayList of {@code Name}
      * Rationale for choosing Name as identifier:
@@ -45,6 +50,22 @@ public class TuitionClass {
         this.location = location;
         this.rate = rate;
         this.uniqueNameList = uniqueNameList;
+    }
+
+    /**
+     * Represents a way to create a TuitionClass with only it's classTiming.
+     * <p>
+     * A {@code Student} can have multiple {@code TuitionClass}es as well.
+     *
+     * @param classTiming The timing of the class specified. This is the unique identifier (id) of the class.
+     */
+    public TuitionClass(ClassTiming classTiming) {
+        requireAllNonNull(classTiming);
+        this.classTiming = classTiming;
+        this.className = placeholderClassName;
+        this.location = placeholderLocation;
+        this.rate = placeholderRate;
+        this.uniqueNameList = new UniqueNameList();
     }
 
     /**
@@ -156,10 +177,9 @@ public class TuitionClass {
 
         TuitionClass o = (TuitionClass) other;
         /* A class is uniquely identified by its timing; a single timing can only have _one_ class */
-        return /*o.className.equals(getClassName()) &&*/ o.classTiming.equals(getClassTiming())
-                && o.rate.equals(getRate()) && o.location.equals(getLocation());
+        // TuitionClasses can now have null rates and location
+        return o.classTiming.equals(getClassTiming());
     }
-
 
     /**
      * Returns true if the class timing of the class to be checked overlaps with this class.
