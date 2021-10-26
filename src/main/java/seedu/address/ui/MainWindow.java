@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -26,8 +28,6 @@ import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.ui.classtab.ClassPanel;
 import seedu.address.ui.studenttab.StudentListPanel;
 import seedu.address.ui.timetabletab.TimetablePanel;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * The Main Window. Provides the basic application layout containing
