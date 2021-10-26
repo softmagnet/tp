@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -21,6 +22,7 @@ import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tuitionclass.ClassName;
 import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.TuitionClass;
 
@@ -57,16 +59,16 @@ public class AddCommandParser implements Parser<AddCommand> {
     private TuitionClass parseClass(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer
-                        .tokenize(args, PREFIX_CLASSTIMING, PREFIX_TAG);
+                        .tokenize(args, PREFIX_CLASS_NAME, PREFIX_CLASSTIMING, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CLASSTIMING)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_CLASS_NAME, PREFIX_CLASSTIMING)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+        ClassName className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS_NAME).get());
         ClassTiming classTiming = ParserUtil.parseClassTiming(argMultimap.getValue(PREFIX_CLASSTIMING).get());
 
-        return new TuitionClass(classTiming);
+        return new TuitionClass(className, classTiming);
     }
 
     private Student parseStudent(String args) throws ParseException {

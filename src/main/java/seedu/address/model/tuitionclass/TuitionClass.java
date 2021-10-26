@@ -18,11 +18,6 @@ public class TuitionClass {
     private final Location location;
     private final Rate rate;
 
-    // TODO: Make this incremental (static variable)
-    private final ClassName placeholderClassName = new ClassName("Placeholder");
-    private final Location placeholderLocation = new Location("Placeholder");
-    private final Rate placeholderRate = new Rate("0");
-
     /**
      * ArrayList of {@code Name}
      * Rationale for choosing Name as identifier:
@@ -59,12 +54,12 @@ public class TuitionClass {
      *
      * @param classTiming The timing of the class specified. This is the unique identifier (id) of the class.
      */
-    public TuitionClass(ClassTiming classTiming) {
-        requireAllNonNull(classTiming);
+    public TuitionClass(ClassName className, ClassTiming classTiming) {
+        requireAllNonNull(className, classTiming);
         this.classTiming = classTiming;
-        this.className = placeholderClassName;
-        this.location = placeholderLocation;
-        this.rate = placeholderRate;
+        this.className = className;
+        this.location = new Location("Placeholder");
+        this.rate = new Rate("0");
         this.uniqueNameList = new UniqueNameList();
     }
 
