@@ -185,6 +185,21 @@ public class AddCommandTest {
         public void replaceFilteredStudentList(List<Student> studentList) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void replaceFilteredTuitionClassList(List<TuitionClass> tuitionClassList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setClasses(List<TuitionClass> classes) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setStudents(List<Student> students) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

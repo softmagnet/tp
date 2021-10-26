@@ -100,17 +100,18 @@ public interface Model {
      */
     void setPerson(Student target, Student editedStudent);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Student> predicate);
 
     void updateFilteredClassList(Predicate<TuitionClass> predicateShowAllClass);
 
+    /** Returns an unmodifiable view of the filtered tuition class list */
     ObservableList<TuitionClass> getFilteredTuitionClassList();
 
     /**
@@ -120,6 +121,20 @@ public interface Model {
      */
     void setClass(TuitionClass target, TuitionClass editedClass);
 
+    /**
+     * Replaces the filteredTuitionClass with the classes.
+     */
+    void setClasses(List<TuitionClass> classes);
+
+    /**
+     * Replaces the filtered student list with the classes.
+     */
+    void setStudents(List<Student> students);
+
+    /** Replaces the filtered student list */
     void replaceFilteredStudentList(List<Student> studentList);
+
+    /** Replaces the filtered tuition class list */
+    void replaceFilteredTuitionClassList(List<TuitionClass> tuitionClasses);
 
 }

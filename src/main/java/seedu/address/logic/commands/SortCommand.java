@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Student;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts students by specified parameter and order\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts students/classes by specified"
+            + " parameter and order\n"
             + "Parameters: PARAMETER_TO_SORT_BY DIRECTION_OF_SORT\n"
             + "Example: " + COMMAND_WORD + " name asc";
     public static final String INVALID_SORTBY = "The parameter to sort by can only be: name or timing";
@@ -31,10 +33,11 @@ public class SortCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        ArrayList<Student> toSort = new ArrayList<Student>(model.getFilteredStudentList());
 
         // sort the studentList;
         if (sortBy.equals("name")) {
+            ArrayList<Student> toSort = new ArrayList<Student>(model.getFilteredStudentList());
+
             if (directionOfSort.equals("asc")) {
                 toSort.sort((student1, student2) ->
                         student1.getName().toString().compareTo(student2.getName().toString()));
@@ -42,14 +45,27 @@ public class SortCommand extends Command {
                 toSort.sort((student1, student2) ->
                         student2.getName().toString().compareTo(student1.getName().toString()));
             }
+
+            model.setStudents(toSort);
+        } else if (sortBy.equals("timing")) {
+            ArrayList<TuitionClass> toSort = new ArrayList<TuitionClass>(model.getFilteredTuitionClassList());
+
+            if (directionOfSort.equals("asc")) {
+                toSort.sort((class1, class2) ->
+                        class1.getClassTiming().compareTo(class2.getClassTiming()));
+            } else {
+                toSort.sort((class1, class2) ->
+                        class2.getClassTiming().compareTo(class1.getClassTiming()));
+            }
+
+            model.setClasses(toSort);
+
         } else {
             return new CommandResult("sort by" + sortBy
                     + " has not been implemented by the developers");
         }
 
-        model.replaceFilteredStudentList(toSort);
 
-        updateStudentList();
 
         return new CommandResult("Sorted students based on " + sortBy
                 + " in " + directionOfSort + " direction");

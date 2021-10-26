@@ -19,8 +19,4 @@ public interface CommandObserver {
      */
     public void updateClass(Integer indexOfClassToSelect);
 
-    /**
-     * Updates the studentList of the observer.
-     */
-    public void updateStudentList();
 }
