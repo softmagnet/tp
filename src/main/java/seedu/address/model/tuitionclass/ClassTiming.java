@@ -1,12 +1,12 @@
 package seedu.address.model.tuitionclass;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a Student's class timing in the address book.
