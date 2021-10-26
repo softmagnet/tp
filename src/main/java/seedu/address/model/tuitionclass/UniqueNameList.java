@@ -38,6 +38,24 @@ public class UniqueNameList implements Iterable<Name> {
     }
 
     /**
+     * Removes all names provided from the list.
+     * @param names The UniqueNameList of names to be removed.
+     */
+    public void removeAll(UniqueNameList names) {
+        for(Name name : names) {
+            remove(name);
+        }
+    }
+
+    /**
+     * Removes all names provided from the list.
+     * @param names The list of names to be removed.
+     */
+    public void removeAll(List<Name> names) {
+        internalList.removeAll(names);
+    }
+
+    /**
      * Adds a name to the list.
      *
      * @param toAdd name to be added.

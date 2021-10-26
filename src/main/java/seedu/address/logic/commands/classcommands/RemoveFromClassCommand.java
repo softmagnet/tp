@@ -1,8 +1,6 @@
 package seedu.address.logic.commands.classcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.classcommands.EditClassCommand.EditClassDescriptor;
-import static seedu.address.logic.commands.classcommands.EditClassCommand.MESSAGE_DUPLICATE_PERSON;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,75 +15,61 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.model.tuitionclass.UniqueNameList;
-import seedu.address.model.tuitionclass.exceptions.DuplicateStudentInClassException;
 
-public class AddToClassCommand extends Command {
+public class RemoveFromClassCommand extends Command {
+    public static final String COMMAND_WORD = "removefromclass";
 
-    public static final String COMMAND_WORD = "addtoclass";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds students to a class by the index number used "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes students from a class by the index number used "
             + "in the displayed class and person list.\n"
             + "Parameters: CLASS_INDEX "
             + "STUDENT_INDEX\n"
             + "Example: " + COMMAND_WORD + " "
-            + "1 "
-            + "2 3 5 "
-            + "(adds students indexed 2, 3 and 5 to class indexed 1)";
+            + "2 "
+            + "3 4 5 "
+            + "(removes students indexed 3, 4 and 5 from class indexed 2)";
 
-    public static final String MESSAGE_ADD_SUCCESS = "Successfully added students to class ";
+    public static final String MESSAGE_REMOVE_SUCCESS = "successfully removed students from class ";
 
     private final Index toEditClassIndex;
     private final List<Index> studentIndices;
 
-    /**
-     * Constructs AddToClassCommand.
-     *
-     * @param indexArray ArrayList of index.
-     */
-    public AddToClassCommand(ArrayList<Index> indexArray) {
+    public RemoveFromClassCommand(ArrayList<Index> indexArray) {
         requireNonNull(indexArray);
 
-        //the first index is the index of class in filtered class list that students would be added to
+        //the first index is the index of class in filtered class list that students would be removed from
         toEditClassIndex = indexArray.get(0);
 
         //the remaining indices are those of the students in filtered student list
         studentIndices = indexArray.subList(1, indexArray.size());
     }
 
-    //TODO: need consider if class alr has that name
     @Override
     public CommandResult execute(Model model) throws CommandException {
 
         //get names to be added
         List<Student> lastShownStudentList = model.getFilteredStudentList();
         checkIndicesAreValid(studentIndices, lastShownStudentList);
-        ArrayList<Name> namesToAdd = createNameList(studentIndices, lastShownStudentList);
+        ArrayList<Name> namesToRemove = createNameList(studentIndices, lastShownStudentList);
 
-        //get class to add to
+        //get class to remove from
         List<TuitionClass> lastShownClassList = model.getFilteredTuitionClassList();
-        TuitionClass classToAddTo = lastShownClassList.get(toEditClassIndex.getZeroBased());
+        TuitionClass classToRemoveFrom = lastShownClassList.get(toEditClassIndex.getZeroBased());
 
         //get updated student list
-        UniqueNameList currentStudentNameList = classToAddTo.getStudentList();
+        UniqueNameList currentStudentNameList = classToRemoveFrom.getStudentList();
         UniqueNameList updatedStudentNameList = new UniqueNameList();
-
-        try {
-            updatedStudentNameList.addAll(currentStudentNameList);
-            updatedStudentNameList.addAll(namesToAdd);
-        } catch (DuplicateStudentInClassException e) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON + e.getMessage());
-        }
-
+        updatedStudentNameList.addAll(currentStudentNameList);
+        updatedStudentNameList.removeAll(namesToRemove);
 
         //create edit class descriptor
-        EditClassDescriptor editClassDescriptor = new EditClassDescriptor();
+        EditClassCommand.EditClassDescriptor editClassDescriptor = new EditClassCommand.EditClassDescriptor();
         editClassDescriptor.setStudentList(updatedStudentNameList);
 
         //swap out old tuition class with new tuition class
-        TuitionClass editedClass = EditClassCommand.createEditedClass(classToAddTo, editClassDescriptor);
-        model.setClass(classToAddTo, editedClass);
+        TuitionClass editedClass = EditClassCommand.createEditedClass(classToRemoveFrom, editClassDescriptor);
+        model.setClass(classToRemoveFrom, editedClass);
 
-        return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, editedClass));
+        return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, editedClass));
     }
 
     private ArrayList<Name> createNameList(List<Index> studentIndices, List<Student> lastShownStudentList) {
@@ -106,6 +90,4 @@ public class AddToClassCommand extends Command {
             }
         }
     }
-
-
 }
