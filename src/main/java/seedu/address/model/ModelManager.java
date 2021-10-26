@@ -25,7 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private FilteredList<Student> filteredStudents;
-    private final FilteredList<TuitionClass> filteredTuitionClass;
+    private FilteredList<TuitionClass> filteredTuitionClass;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -164,6 +164,13 @@ public class ModelManager implements Model {
     public void updateFilteredClassList(Predicate<TuitionClass> predicate) {
         requireNonNull(predicate);
         filteredTuitionClass.setPredicate(predicate);
+    }
+
+    @Override
+    public void replaceFilteredTuitionClassList(List<TuitionClass> tuitionClassList) {
+        ObservableList<TuitionClass> newList = FXCollections.observableArrayList();
+        newList.addAll(tuitionClassList);
+        this.filteredTuitionClass = new FilteredList<>(newList);
     }
 
     @Override

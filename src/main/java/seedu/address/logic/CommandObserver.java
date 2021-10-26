@@ -23,4 +23,9 @@ public interface CommandObserver {
      * Updates the studentList of the observer.
      */
     public void updateStudentList();
+
+    /**
+     * Updates the tuitionClassList of the observer.
+     */
+    public void updateTuitionClassList();
 }

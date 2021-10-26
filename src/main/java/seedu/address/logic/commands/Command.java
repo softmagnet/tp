@@ -47,6 +47,16 @@ public abstract class Command {
             commandObserver.updateStudentList();
         }
     }
+
+    /**
+     * Updates the tuitionClassList of the CommandObservers.
+     */
+    public void updateTuitionClassList() {
+        for (CommandObserver commandObserver : commandObservers) {
+            commandObserver.updateTuitionClassList();
+        }
+    }
+
     /**
      * Executes the command and returns the result message.
      *
