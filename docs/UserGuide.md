@@ -260,7 +260,7 @@ editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]
 Examples:
 * `editclass 1 ct/wed 15:00-17:00` Edits the 1st class in the class list class timing to be WED 15:00-17:00
 
-## Locating students by name: `find`
+## Locating students by name: `findname`
 <hr>
 
 Finds students whose names contain any of the given keywords.
