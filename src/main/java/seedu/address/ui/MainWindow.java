@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -215,39 +217,23 @@ public class MainWindow extends UiPart<Stage> implements CommandObserver {
 
     @Override
     public void updateClass(Integer indexOfClassToSelect) {
-        if (indexOfClassToSelect != null) {
-            List<TuitionClass> lastShownList = logic.getFilteredTuitionClassList();
+        requireNonNull(indexOfClassToSelect);
+        List<TuitionClass> lastShownList = logic.getFilteredTuitionClassList();
 
-            TuitionClass tuitionClass = lastShownList.get(indexOfClassToSelect);
+        TuitionClass tuitionClass = lastShownList.get(indexOfClassToSelect);
 
-            ObservableList<Student> newStudentList =
-                    logic.getFilteredStudentList().filtered(student -> tuitionClass.containsStudent(student.getName()));
+        ObservableList<Student> newStudentList =
+                logic.getFilteredStudentList().filtered(student -> tuitionClass.containsStudent(student.getName()));
 
-            classPanel.setItems(newStudentList);
-            classPanel.setCellFactory(listView -> new StudentListViewCell());
-        }
+        classPanel.setItems(newStudentList);
+        classPanel.setCellFactory(listView -> new StudentListViewCell());
+
     }
 
     @Override
     public void updateView(Integer tabToView) {
-        if (tabToView != null) {
-            tabPane.getSelectionModel().select(tabToView);
-        }
-    }
-
-    @Override
-    public void updateStudentList() {
-        // This is very buggy
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
-        updateTuitionClassList();
-    }
-
-    @Override
-    public void updateTuitionClassList() {
-        // This is very buggy
-        classPanel = new ClassPanel(logic.getFilteredStudentList(), logic.getFilteredTuitionClassList());
-        classListPanelPlaceholder.getChildren().add(classPanel.getRoot());
+        requireNonNull(tabToView);
+        tabPane.getSelectionModel().select(tabToView);
     }
 
     /**
