@@ -121,6 +121,16 @@ public interface Model {
      */
     void setClass(TuitionClass target, TuitionClass editedClass);
 
+    /**
+     * Replaces the filteredTuitionClass with the classes.
+     */
+    void setClasses(List<TuitionClass> classes);
+
+    /**
+     * Replaces the filtered student list with the classes.
+     */
+    void setStudents(List<Student> students);
+
     /** Replaces the filtered student list */
     void replaceFilteredStudentList(List<Student> studentList);
 

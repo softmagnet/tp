@@ -19,7 +19,8 @@ import seedu.address.model.tuitionclass.UniqueNameList;
 public class RemoveFromClassCommand extends Command {
     public static final String COMMAND_WORD = "removefromclass";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes students from a class by the index number used "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes students from a class by the index"
+            + " number used "
             + "in the displayed class and person list.\n"
             + "Parameters: CLASS_INDEX "
             + "STUDENT_INDEX\n"
@@ -33,6 +34,11 @@ public class RemoveFromClassCommand extends Command {
     private final Index toEditClassIndex;
     private final List<Index> studentIndices;
 
+    /**
+     * Constructs a remove from class command.
+     *
+     * @param indexArray Array with index of class to remove from and index of students.
+     */
     public RemoveFromClassCommand(ArrayList<Index> indexArray) {
         requireNonNull(indexArray);
 
