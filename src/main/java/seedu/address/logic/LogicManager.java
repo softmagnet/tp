@@ -56,6 +56,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public void setCommandObserver(CommandObserver commandObserver) {
+        Command.setCommandObserver(commandObserver);
+    }
+
+    @Override
     public ReadOnlyAddressBook getAddressBook() {
         return model.getAddressBook();
     }

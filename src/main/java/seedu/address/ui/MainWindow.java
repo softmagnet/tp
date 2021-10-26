@@ -16,6 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.CommandObserver;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -30,7 +31,7 @@ import seedu.address.ui.timetabletab.TimetablePanel;
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
-public class MainWindow extends UiPart<Stage> {
+public class MainWindow extends UiPart<Stage> implements CommandObserver {
 
     private static final String FXML = "MainWindow.fxml";
 
@@ -212,7 +213,8 @@ public class MainWindow extends UiPart<Stage> {
         return studentListPanel;
     }
 
-    private void selectClass(Integer indexOfClassToSelect) {
+    @Override
+    public void updateClass(Integer indexOfClassToSelect) {
         if (indexOfClassToSelect != null) {
             List<TuitionClass> lastShownList = logic.getFilteredTuitionClassList();
 
@@ -226,10 +228,21 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    public void setView(Integer tabToView) {
+    @Override
+    public void updateView(Integer tabToView) {
         if (tabToView != null) {
             tabPane.getSelectionModel().select(tabToView);
         }
+    }
+
+    @Override
+    public void updateStudentList() {
+        // This is very buggy
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
+        classPanel = new ClassPanel(logic.getFilteredStudentList(), logic.getFilteredTuitionClassList());
+        classListPanelPlaceholder.getChildren().add(classPanel.getRoot());
     }
 
     /**
@@ -250,16 +263,6 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-
-            selectClass(commandResult.getIndexOfClassToSelect());
-            setView(commandResult.getIndexOfTabToView());
-
-            // This is very buggy
-            studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-            studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
-
-            classPanel = new ClassPanel(logic.getFilteredStudentList(), logic.getFilteredTuitionClassList());
-            classListPanelPlaceholder.getChildren().add(classPanel.getRoot());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

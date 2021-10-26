@@ -51,6 +51,8 @@ public class SortCommand extends Command {
 
         model.replaceFilteredStudentList(toSort);
 
+        updateStudentList();
+
         return new CommandResult("Sorted students based on " + sortBy
                 + " in " + directionOfSort + " direction");
     }
