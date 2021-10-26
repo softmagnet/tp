@@ -15,7 +15,7 @@ public class ViewCommand extends Command {
     public static final String INVALID_TAB = "This tab doesn't exists.\n"
             + "You can only switch to students, timetable or classes.";
 
-    private int indexToView;
+    private final int indexToView;
 
     /**
      * Creates an ViewCommand to view the specified tab index.
@@ -37,8 +37,10 @@ public class ViewCommand extends Command {
             tabToView = "timetable";
         }
 
+        updateView(indexToView);
+
         return new CommandResult("Successfully switched to " + tabToView + " tab",
-                false, false, indexToView);
+                false, false);
     }
 
     @Override

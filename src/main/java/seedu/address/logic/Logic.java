@@ -51,4 +51,6 @@ public interface Logic {
 
 
     ObservableList<TuitionClass> getFilteredTuitionClassList();
+
+    void setCommandObserver(CommandObserver commandObserver);
 }

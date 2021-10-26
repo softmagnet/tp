@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import java.util.ArrayList;
+
+import seedu.address.logic.CommandObserver;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
@@ -8,6 +11,42 @@ import seedu.address.model.Model;
  */
 public abstract class Command {
 
+    private static final ArrayList<CommandObserver> commandObservers = new ArrayList<>();
+
+    public static void setCommandObserver(CommandObserver commandObserver) {
+        commandObservers.add(commandObserver);
+    }
+
+    /**
+     * Updates the CommandObservers by calling the updateView method for each of them.
+     *
+     * @param indexOfTabToView index of tab to be viewed.
+     */
+    public void updateView(Integer indexOfTabToView) {
+        for (CommandObserver commandObserver : commandObservers) {
+            commandObserver.updateView(indexOfTabToView);
+        }
+    }
+
+    /**
+     * Updates the CommandObservers by calling the updateClass command.
+     *
+     * @param indexOfClassToSelect index of class to be selected.
+     */
+    public void updateClass(Integer indexOfClassToSelect) {
+        for (CommandObserver commandObserver : commandObservers) {
+            commandObserver.updateClass(indexOfClassToSelect);
+        }
+    }
+
+    /**
+     * Updates the studentList of the CommandObservers.
+     */
+    public void updateStudentList() {
+        for (CommandObserver commandObserver : commandObservers) {
+            commandObserver.updateStudentList();
+        }
+    }
     /**
      * Executes the command and returns the result message.
      *

@@ -85,6 +85,10 @@ public class Student extends Person {
         return null;
     }
 
+    public ClassTiming getFirstClassTiming() {
+        return classList.get(0).getClassTiming();
+    }
+
     public Location getLocation() {
         // TODO: Placeholder
         return null;

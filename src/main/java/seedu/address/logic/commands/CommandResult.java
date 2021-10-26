@@ -17,10 +17,6 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** The application should exit. */
-    private final Integer indexOfClassToSelect;
-    private final Integer indexOfTabToView;
-
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -28,19 +24,6 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.indexOfClassToSelect = null;
-        this.indexOfTabToView = null;
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified fields.
-     */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, int indexOfTabToView) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.indexOfTabToView = indexOfTabToView;
-        this.indexOfClassToSelect = null;
     }
 
     /**
@@ -49,18 +32,6 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false);
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
-     */
-    public CommandResult(Integer targetIndex, String feedbackToUser, boolean showHelp, boolean exit) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.indexOfClassToSelect = targetIndex;
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.indexOfTabToView = null;
     }
 
     public String getFeedbackToUser() {
@@ -73,14 +44,6 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
-    }
-
-    public Integer getIndexOfClassToSelect() {
-        return this.indexOfClassToSelect;
-    }
-
-    public Integer getIndexOfTabToView() {
-        return indexOfTabToView;
     }
 
     @Override
