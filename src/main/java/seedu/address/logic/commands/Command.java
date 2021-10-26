@@ -1,34 +1,47 @@
 package seedu.address.logic.commands;
 
+import java.util.ArrayList;
+
 import seedu.address.logic.CommandObserver;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-
-import java.util.ArrayList;
 
 /**
  * Represents a command with hidden internal logic and the ability to be executed.
  */
 public abstract class Command {
 
-    public static final ArrayList<CommandObserver> commandObservers = new ArrayList<>();
+    private static final ArrayList<CommandObserver> commandObservers = new ArrayList<>();
 
     public static void setCommandObserver(CommandObserver commandObserver) {
         commandObservers.add(commandObserver);
     }
 
-    public void updateView(Integer indexToView) {
+    /**
+     * Updates the CommandObservers by calling the updateView method for each of them.
+     *
+     * @param indexOfTabToView index of tab to be viewed.
+     */
+    public void updateView(Integer indexOfTabToView) {
         for (CommandObserver commandObserver : commandObservers) {
-            commandObserver.updateView(indexToView);
+            commandObserver.updateView(indexOfTabToView);
         }
     }
 
+    /**
+     * Updates the CommandObservers by calling the updateClass command.
+     *
+     * @param indexOfClassToSelect index of class to be selected.
+     */
     public void updateClass(Integer indexOfClassToSelect) {
         for (CommandObserver commandObserver : commandObservers) {
             commandObserver.updateClass(indexOfClassToSelect);
         }
     }
 
+    /**
+     * Updates the studentList of the CommandObservers.
+     */
     public void updateStudentList() {
         for (CommandObserver commandObserver : commandObservers) {
             commandObserver.updateStudentList();

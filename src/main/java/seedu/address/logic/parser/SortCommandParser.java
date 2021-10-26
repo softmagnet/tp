@@ -1,9 +1,9 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 public class SortCommandParser implements Parser<SortCommand> {
 
@@ -40,6 +40,12 @@ public class SortCommandParser implements Parser<SortCommand> {
         return new SortCommand(sortBy, directionOfSort);
     }
 
+    /**
+     * Checks the string to see if it is a valid sortBy keyword.
+     *
+     * @param sortBy String to check.
+     * @throws ParseException If it is not a valid sortBy keyword.
+     */
     public void checkSortBy(String sortBy) throws ParseException {
         for (String validSortByKeyword : validSortByKeywords) {
             if (sortBy.equals(validSortByKeyword)) {
@@ -50,6 +56,12 @@ public class SortCommandParser implements Parser<SortCommand> {
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
 
+    /**
+     * Checks the string to see if its a valid direction of sort keyword.
+     *
+     * @param directionOfSort String to check.
+     * @throws ParseException If it is not a valid directionOfSort keyword.
+     */
     public void checkDirectionOfSort(String directionOfSort) throws ParseException {
         for (String validDirectionOfSortKeyword : validDirectionOfSortKeywords) {
             if (directionOfSort.equals(validDirectionOfSortKeyword)) {

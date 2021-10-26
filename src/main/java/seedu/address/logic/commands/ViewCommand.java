@@ -1,10 +1,7 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.CommandObserver;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-
-import java.util.ArrayList;
 
 /**
  * Sets the UI to View the tab selected.

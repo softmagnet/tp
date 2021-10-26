@@ -1,23 +1,27 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import java.util.ArrayList;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Student;
 
-import java.util.ArrayList;
-
 public class SortCommand extends Command {
-    public final static String COMMAND_WORD = "sort";
-    public final static String MESSAGE_USAGE = COMMAND_WORD + ": sorts students by specified parameter and order\n"
+    public static final String COMMAND_WORD = "sort";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": sorts students by specified parameter and order\n"
             + "Parameters: PARAMETER_TO_SORT_BY DIRECTION_OF_SORT\n"
             + "Example: " + COMMAND_WORD + " name asc";;
 
-    private String sortBy;
+    private final String sortBy;
 
-    private String directionOfSort;
+    private final String directionOfSort;
 
+    /**
+     * Constructs a new SortCommand.
+     *
+     * @param sortBy sortBy keyword.
+     * @param directionOfSort directionOfSort keyword.
+     */
     public SortCommand(String sortBy, String directionOfSort) {
         this.sortBy = sortBy;
         this.directionOfSort = directionOfSort;
