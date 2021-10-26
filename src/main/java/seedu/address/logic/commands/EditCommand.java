@@ -111,19 +111,6 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(studentToEdit.getAddress());
-
-        TuitionClass originalTuitionClass = studentToEdit.getClassList().get(0);
-        ClassName updatedClassName = editPersonDescriptor.getClassName().orElse(originalTuitionClass.getClassName());
-        Rate updatedRate = editPersonDescriptor.getRate().orElse(originalTuitionClass.getRate());
-        ClassTiming updatedClassTiming = editPersonDescriptor.getClassTiming()
-                .orElse(originalTuitionClass.getClassTiming());
-        Location updatedLocation = editPersonDescriptor.getLocation().orElse(originalTuitionClass.getLocation());
-        ArrayList<TuitionClass> updatedTuitionClasses =
-                new ArrayList<>(Arrays.asList(new TuitionClass(updatedClassName,
-                        updatedClassTiming, updatedLocation, updatedRate)));
-
-        //ArrayList<TuitionClass> updatedTuitionClasses = editPersonDescriptor.getTuitionClasses()
-        //        .orElse(studentToEdit.getClassList());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
 
         // Nok
@@ -133,8 +120,7 @@ public class EditCommand extends Command {
         Address nokAddress = editPersonDescriptor.getNokAddress().orElse(studentToEdit.getNok().getAddress());
         Nok nok = new Nok(nokName, nokPhone, nokEmail, nokAddress);
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTuitionClasses,
-                nok, updatedTags);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, nok, updatedTags);
     }
 
     @Override

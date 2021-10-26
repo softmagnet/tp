@@ -52,29 +52,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Student student = parseStudent(argsBeforeNok);
-        TuitionClass tuitionClass = parseClass(argsBeforeNok);
         Nok nok = parseNok(argsAfterNok);
         student.setNok(nok);
-        student.addClass(tuitionClass);
         return new AddCommand(student);
-    }
-
-    private TuitionClass parseClass(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer
-                        .tokenize(args, PREFIX_NAME, PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION, PREFIX_TAG);
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-        }
-
-        Rate rate = ParserUtil.parseRate(argMultimap.getValue(PREFIX_RATE).get());
-        ClassTiming classTiming = ParserUtil.parseClassTiming(argMultimap.getValue(PREFIX_CLASSTIMING).get());
-        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
-        // TODO: Add a token for adding class name when doing the add command
-
-        return new TuitionClass(new ClassName("Placeholder"), classTiming, location, rate);
     }
 
     private Student parseStudent(String args) throws ParseException {

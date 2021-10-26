@@ -42,14 +42,6 @@ public class SortCommand extends Command {
                 toSort.sort((student1, student2) ->
                         student2.getName().toString().compareTo(student1.getName().toString()));
             }
-        } else if (sortBy.equals("timing")) {
-            if (directionOfSort.equals("asc")) {
-                toSort.sort((student1, student2) ->
-                        student1.getFirstClassTiming().compareTo(student2.getFirstClassTiming()));
-            } else {
-                toSort.sort((student1, student2) ->
-                        student2.getFirstClassTiming().compareTo(student1.getFirstClassTiming()));
-            }
         } else {
             return new CommandResult("sort by" + sortBy
                     + " has not been implemented by the developers");

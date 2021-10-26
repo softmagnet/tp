@@ -60,7 +60,6 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final Student studentToAdd;
-    private final TuitionClass classToAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}.
@@ -69,8 +68,6 @@ public class AddCommand extends Command {
     public AddCommand(Student student) {
         requireNonNull(student);
         studentToAdd = student;
-        int largestIndex = student.getClassList().size() - 1;
-        classToAdd = student.getClassList().get(largestIndex);
     }
 
     @Override
@@ -81,22 +78,10 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        try {
-            // Add student to the existing class
-            classToAdd.addStudent(studentToAdd.getName());
+        model.addPerson(studentToAdd);
 
-            model.addTuitionClass(classToAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToAdd));
 
-
-            // Add class to the student
-            studentToAdd.addClass(classToAdd);
-
-            model.addPerson(studentToAdd);
-            //model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, studentToAdd));
-        } catch (InvalidClassException e) {
-            throw new CommandException(Messages.MESSAGE_CLASHING_CLASS_TIMING);
-        }
     }
 
     @Override
