@@ -9,7 +9,8 @@ import seedu.address.model.tuitionclass.TuitionClass;
 
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts students/classes by specified parameter and order\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts students/classes by specified"
+            + " parameter and order\n"
             + "Parameters: PARAMETER_TO_SORT_BY DIRECTION_OF_SORT\n"
             + "Example: " + COMMAND_WORD + " name asc";
     public static final String INVALID_SORTBY = "The parameter to sort by can only be: name or timing";
@@ -45,9 +46,7 @@ public class SortCommand extends Command {
                         student2.getName().toString().compareTo(student1.getName().toString()));
             }
 
-            model.replaceFilteredStudentList(toSort);
-
-            updateStudentList();
+            model.setStudents(toSort);
 
         } else if (sortBy.equals("timing")) {
             ArrayList<TuitionClass> toSort = new ArrayList<TuitionClass>(model.getFilteredTuitionClassList());
@@ -60,9 +59,8 @@ public class SortCommand extends Command {
                         class2.getClassTiming().compareTo(class1.getClassTiming()));
             }
 
-            model.replaceFilteredTuitionClassList(toSort);
+            model.setClasses(toSort);
 
-            updateTuitionClassList();
         } else {
             return new CommandResult("sort by" + sortBy
                     + " has not been implemented by the developers");
