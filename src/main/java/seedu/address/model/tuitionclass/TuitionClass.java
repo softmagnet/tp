@@ -3,6 +3,7 @@ package seedu.address.model.tuitionclass;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalTime;
+import java.util.Optional;
 
 import seedu.address.model.person.Name;
 
@@ -45,6 +46,22 @@ public class TuitionClass {
         this.location = location;
         this.rate = rate;
         this.uniqueNameList = uniqueNameList;
+    }
+
+    /**
+     * Represents a way to create a TuitionClass with only it's classTiming.
+     * <p>
+     * A {@code Student} can have multiple {@code TuitionClass}es as well.
+     *
+     * @param classTiming The timing of the class specified. This is the unique identifier (id) of the class.
+     */
+    public TuitionClass(ClassName className, ClassTiming classTiming, Rate rate, Location location) {
+        requireAllNonNull(className, classTiming);
+        this.classTiming = classTiming;
+        this.className = className;
+        this.location = location;
+        this.rate = rate;
+        this.uniqueNameList = new UniqueNameList();
     }
 
     /**
@@ -156,10 +173,9 @@ public class TuitionClass {
 
         TuitionClass o = (TuitionClass) other;
         /* A class is uniquely identified by its timing; a single timing can only have _one_ class */
-        return /*o.className.equals(getClassName()) &&*/ o.classTiming.equals(getClassTiming())
-                && o.rate.equals(getRate()) && o.location.equals(getLocation());
+        // TuitionClasses can now have null rates and location
+        return o.classTiming.equals(getClassTiming());
     }
-
 
     /**
      * Returns true if the class timing of the class to be checked overlaps with this class.
