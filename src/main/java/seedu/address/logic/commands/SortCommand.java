@@ -9,7 +9,7 @@ import seedu.address.model.tuitionclass.TuitionClass;
 
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts students by specified parameter and order\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts students/classes by specified parameter and order\n"
             + "Parameters: PARAMETER_TO_SORT_BY DIRECTION_OF_SORT\n"
             + "Example: " + COMMAND_WORD + " name asc";
     public static final String INVALID_SORTBY = "The parameter to sort by can only be: name or timing";
