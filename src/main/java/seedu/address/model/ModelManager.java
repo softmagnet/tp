@@ -113,7 +113,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addPerson(Student student) {
-        addressBook.addPerson(student);
+        addressBook.addStudent(student);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
