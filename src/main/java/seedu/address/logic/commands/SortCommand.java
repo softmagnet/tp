@@ -45,9 +45,7 @@ public class SortCommand extends Command {
                         student2.getName().toString().compareTo(student1.getName().toString()));
             }
 
-            model.replaceFilteredStudentList(toSort);
-
-            updateStudentList();
+            model.setStudents(toSort);
 
         } else if (sortBy.equals("timing")) {
             ArrayList<TuitionClass> toSort = new ArrayList<TuitionClass>(model.getFilteredTuitionClassList());
@@ -60,9 +58,8 @@ public class SortCommand extends Command {
                         class2.getClassTiming().compareTo(class1.getClassTiming()));
             }
 
-            model.replaceFilteredTuitionClassList(toSort);
+            model.setClasses(toSort);
 
-            updateTuitionClassList();
         } else {
             return new CommandResult("sort by" + sortBy
                     + " has not been implemented by the developers");

@@ -109,7 +109,6 @@ public class AddressBookParser {
             return new FindClassNameCommandParser().parse(arguments);
 
         //// general application command
-
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
 

@@ -39,23 +39,6 @@ public abstract class Command {
         }
     }
 
-    /**
-     * Updates the studentList of the CommandObservers.
-     */
-    public void updateStudentList() {
-        for (CommandObserver commandObserver : commandObservers) {
-            commandObserver.updateStudentList();
-        }
-    }
-
-    /**
-     * Updates the tuitionClassList of the CommandObservers.
-     */
-    public void updateTuitionClassList() {
-        for (CommandObserver commandObserver : commandObservers) {
-            commandObserver.updateTuitionClassList();
-        }
-    }
 
     /**
      * Executes the command and returns the result message.
