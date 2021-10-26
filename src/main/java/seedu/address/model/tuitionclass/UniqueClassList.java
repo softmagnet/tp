@@ -179,10 +179,6 @@ public class UniqueClassList implements Iterable<TuitionClass> {
             throw new DuplicateClassException();
         }
 
-        for (Name name : editedClass.getStudentList()) {
-            System.out.println(name);
-        }
-
         internalList.set(index, editedClass);
     }
 

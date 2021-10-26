@@ -240,7 +240,12 @@ public class MainWindow extends UiPart<Stage> implements CommandObserver {
         // This is very buggy
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        updateTuitionClassList();
+    }
 
+    @Override
+    public void updateTuitionClassList() {
+        // This is very buggy
         classPanel = new ClassPanel(logic.getFilteredStudentList(), logic.getFilteredTuitionClassList());
         classListPanelPlaceholder.getChildren().add(classPanel.getRoot());
     }
