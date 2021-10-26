@@ -6,8 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
@@ -24,12 +26,17 @@ import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tuitionclass.ClassName;
 import seedu.address.model.tuitionclass.ClassTiming;
+import seedu.address.model.tuitionclass.Location;
+import seedu.address.model.tuitionclass.Rate;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
+
+    private static final String LOCATION_PLACEHOLDER = "Placeholder";
+    private static final String RATE_PLACEHOLDER = "0";
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -59,7 +66,8 @@ public class AddCommandParser implements Parser<AddCommand> {
     private TuitionClass parseClass(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer
-                        .tokenize(args, PREFIX_CLASS_NAME, PREFIX_CLASSTIMING, PREFIX_TAG);
+                        .tokenize(args,
+                                PREFIX_CLASS_NAME, PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CLASS_NAME, PREFIX_CLASSTIMING)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -67,8 +75,10 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         ClassName className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS_NAME).get());
         ClassTiming classTiming = ParserUtil.parseClassTiming(argMultimap.getValue(PREFIX_CLASSTIMING).get());
+        Rate rate = ParserUtil.parseRate(argMultimap.getValue(PREFIX_RATE).orElse(RATE_PLACEHOLDER));
+        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).orElse(LOCATION_PLACEHOLDER));
 
-        return new TuitionClass(className, classTiming);
+        return new TuitionClass(className, classTiming, rate, location);
     }
 
     private Student parseStudent(String args) throws ParseException {

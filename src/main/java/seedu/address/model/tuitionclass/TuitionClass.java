@@ -3,6 +3,7 @@ package seedu.address.model.tuitionclass;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalTime;
+import java.util.Optional;
 
 import seedu.address.model.person.Name;
 
@@ -54,12 +55,12 @@ public class TuitionClass {
      *
      * @param classTiming The timing of the class specified. This is the unique identifier (id) of the class.
      */
-    public TuitionClass(ClassName className, ClassTiming classTiming) {
+    public TuitionClass(ClassName className, ClassTiming classTiming, Rate rate, Location location) {
         requireAllNonNull(className, classTiming);
         this.classTiming = classTiming;
         this.className = className;
-        this.location = new Location("Placeholder");
-        this.rate = new Rate("0");
+        this.location = location;
+        this.rate = rate;
         this.uniqueNameList = new UniqueNameList();
     }
 
