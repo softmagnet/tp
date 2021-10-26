@@ -1,5 +1,7 @@
 package seedu.address.model.tuitionclass;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -13,7 +15,9 @@ import java.time.format.DateTimeFormatter;
 public class ClassTiming implements Comparable<ClassTiming> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Class Timing must be in the form DAY HH:MM-HH:MM, start time must be earlier than end time";
+            "Class Timing must be in the form DAY HH:MM-HH:MM, "
+                    + "\nstart time must be earlier than end time, \nand "
+                    + "start and end time has to start at the hour mark or half hour mark, but it can end at 23:59";
 
     /*
      * The string has to be in the form DAY HH:MM-HH:MM eg MON 23:59-01:00
@@ -38,9 +42,31 @@ public class ClassTiming implements Comparable<ClassTiming> {
         requireNonNull(classTiming);
         checkArgument(isValidClassTiming(classTiming), MESSAGE_CONSTRAINTS);
         value = formatClassTiming(classTiming);
-        startTime = parseStartTime(value);
-        endTime = parseEndTime(value);
+        startTime = getStartTimeFromValue();
+        endTime = getEndTimeFromValue();
         day = parseDay(value);
+    }
+
+    /**
+     * Gets the endTime from value.
+     *
+     * @return The end time.
+     */
+    private LocalTime getStartTimeFromValue() {
+        String[] timePart = splitTiming(this.value);
+        String startTime = timePart[0];
+        return LocalTime.parse(startTime, DateTimeFormatter.ofPattern("HH:mm"));
+    }
+
+    /**
+     * Gets the startTime from value.
+     *
+     * @return The start time.
+     */
+    private LocalTime getEndTimeFromValue() {
+        String[] timePart = splitTiming(this.value);
+        String endTime = timePart[1];
+        return LocalTime.parse(endTime, DateTimeFormatter.ofPattern("HH:mm"));
     }
 
     /**
@@ -131,10 +157,15 @@ public class ClassTiming implements Comparable<ClassTiming> {
      *
      * @param ct ClassTiming string to be parsed.
      * @return The start time of the input string.
+     * @throws ParseException if ct does not start at the hour or half hour mark.
      */
-    private static LocalTime parseStartTime(String ct) {
+    private static LocalTime parseStartTime(String ct) throws ParseException {
         String[] timePart = splitTiming(ct);
         String startTime = timePart[0];
+        String startTimeMinutes = startTime.split(":")[1];
+        if (!startTimeMinutes.equals("00") && !startTimeMinutes.equals("30")) {
+            throw new ParseException("Invalid start time");
+        }
         return LocalTime.parse(startTime, DateTimeFormatter.ofPattern("HH:mm"));
     }
 
@@ -143,10 +174,15 @@ public class ClassTiming implements Comparable<ClassTiming> {
      *
      * @param ct ClassTiming string to be parsed.
      * @return The end time of the input string.
+     * @throws ParseException if ct does not start at the hour or half hour mark.
      */
-    private static LocalTime parseEndTime(String ct) {
+    private static LocalTime parseEndTime(String ct) throws ParseException {
         String[] timePart = splitTiming(ct);
         String endTime = timePart[1];
+        String endTimeMinutes = endTime.split(":")[1];
+        if (!endTimeMinutes.equals("00") && !endTimeMinutes.equals("30") && !endTime.equals("23:59")) {
+            throw new ParseException("Invalid end time");
+        }
         return LocalTime.parse(endTime, DateTimeFormatter.ofPattern("HH:mm"));
     }
 
@@ -180,7 +216,7 @@ public class ClassTiming implements Comparable<ClassTiming> {
     /**
      * Returns boolean true if other is on the same day as this, false otherwise.
      *
-     * @param other Classtiming to compare to this.
+     * @param other ClassTiming to compare to this.
      * @return Boolean on whether this and other is on the same day.
      */
     public Boolean isSameDay(ClassTiming other) {
@@ -204,11 +240,15 @@ public class ClassTiming implements Comparable<ClassTiming> {
      * Returns true if a given string is a valid class timing.
      */
     public static boolean isValidClassTiming(String test) {
-        if (test.matches(VALIDATION_REGEX)) {
-            LocalTime startTime = parseStartTime(test);
-            LocalTime endTime = parseEndTime(test);
-            return startTime.isBefore(endTime);
-        } else {
+        try {
+            if (test.matches(VALIDATION_REGEX)) {
+                LocalTime startTime = parseStartTime(test);
+                LocalTime endTime = parseEndTime(test);
+                return startTime.isBefore(endTime);
+            } else {
+                return false;
+            }
+        } catch (ParseException e) {
             return false;
         }
     }
