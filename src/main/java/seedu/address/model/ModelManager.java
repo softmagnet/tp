@@ -123,7 +123,6 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
-
     @Override
     public void deleteTuitionClass(TuitionClass tuitionClass) {
         addressBook.deleteTuitionClass(tuitionClass);
@@ -182,6 +181,16 @@ public class ModelManager implements Model {
     public void setClass(TuitionClass target, TuitionClass editedClass) {
         requireAllNonNull(target, editedClass);
         addressBook.setClass(target, editedClass);
+    }
+
+    @Override
+    public void setClasses(List<TuitionClass> classes) {
+        addressBook.setClasses(classes);
+    }
+
+    @Override
+    public void setStudents(List<Student> studentsList) {
+        addressBook.setStudents(studentsList);
     }
 
     @Override

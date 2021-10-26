@@ -12,7 +12,7 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer, if you do not, you can download it from [here](https://www.oracle.com/java/technologies/downloads/#jdk17-linux).
 
 1. Download the latest `timestable.jar` from [here](https://github.com/AY2122S1-CS2103T-F11-1/tp/releases).
 
@@ -79,7 +79,20 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+## Deleting a student : `delete`
+<hr>
 
+Deletes the specified student from the address book.
+
+Format: `delete INDEX`
+
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd student in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
 ## Adding a student: `add`
 <hr>
@@ -115,6 +128,71 @@ add n/Betsy Crowe ct/Mon 5-7pm l/Serangoon Nex  t/friend e/betsycrowe@example.co
     t/slow learner r/$70 nok/ n/Karen e/karenSUper@gmail.com p/99994444
 ```
 
+## Adding a class: `addclass`
+<hr>
+
+Add a class to the address book.
+
+Format:
+
+```
+addclass cn/CLASS NAME ct/CLASS_TIMING r/HOUELY_RATE l/LOCATION
+```
+
+* This command adds a new class to keep track of all classes that the user is teaching.
+
+Examples:
+```
+addclass cn/Sec 4 A Maths ct/mon 11:30-13:30 r/70 l/Nex Tuition Center
+```
+Adds a new class with name 'Sec 4 A Maths', with class timing MON 11.30-13:30, with hourly rate of $70, at Nex 
+Tuition Center.
+
+```
+addclass cn/Sec 4 E Maths ct/tue 12:30-14:30 r/65 l/Block 123, Clementi Ave 6, #14-41
+```
+Adds a new class with name 'Sec 4 E Maths', with class timing Tue 12.30-14:30, with hourly rate of $65, at Block 123, Clementi Ave 6, #14-41.
+
+
+## Adding student/students to a class: `addtoclass`
+<hr>
+
+Add a single or multiple students to an existing class
+
+Format:
+```
+addtoclass CLASS_INDEX STUDENT_INDEX...
+```
+
+* This command adds any number of existing students into an existing class.
+* `CLASS_INDEX` is the index number of the class in the displayed class list in the `classes` tab, which will be 
+  receiving the new students.
+* `STUDENT_INDEX...` are the index number/s of the students shown in the displayed student list, these students are 
+  to be added into the class.
+  
+Example:
+```
+addtoclass 1 1 2 3
+```
+Adds the 1st, 2nd and 3rd student in the displayed student list in the `students` tab into the 1st class in the 
+displayed class list in the `classes` tab.
+
+## Delete a class: `deleteclass`
+<hr>
+
+Deletes the specified class from the address book.
+
+Format:
+```
+deleteclass INDEX
+```
+
+* Deletes the class at the specified `INDEX`.
+* The index refers to the index number shown in the displayed class list in the `classes` tab.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listclass` followed by `delete 2` deletes the 2nd class in the address book.
 
 ## Listing all students : `list`
 <hr>
@@ -122,6 +200,13 @@ add n/Betsy Crowe ct/Mon 5-7pm l/Serangoon Nex  t/friend e/betsycrowe@example.co
 Shows a list of all students in the address book.
 
 Format: `list`
+
+## Listing all the classes: `listclass`
+<hr>
+
+Shows a list of all students in the address book.
+
+Format: `listclass`
 
 ## Editing a student : `edit`
 <hr>
@@ -158,8 +243,24 @@ Examples (also editing parent information):
 * `edit 3 ct/Mon 3-4pm nok/ p/98429239 ` Edits 3rd student's class timing to be Monday 3-4pm while also editing
 NOK's number to be 98429239.
 
+## Editing a class: `editclass`
+<hr>
 
-## Locating students by name: `find`
+Edits an existing class in the class list in the `classes` tab
+
+Format:
+```
+editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]
+```
+
+* Edits the class at the specified `INDEX`. The index refers to the index number shown in the displayed class
+  list in the `classes` tab. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+
+Examples:
+* `editclass 1 ct/wed 15:00-17:00` Edits the 1st class in the class list class timing to be WED 15:00-17:00
+
+## Locating students by name: `findname`
 <hr>
 
 Finds students whose names contain any of the given keywords.
@@ -177,21 +278,30 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-## Deleting a student : `delete`
+  
+## Locating class by class timing : `findclass`
 <hr>
 
-Deletes the specified student from the address book.
+Finds a class whose class timing matches the given class timing.
 
-Format: `delete INDEX`
+Format: `findclass CLASS_TIMING`
 
-* Deletes the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
+<!---todo fill in inner working--->
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+* `findclass mon 11:00-12:00` returns the class with class timing at MON 11:00-12:00.
+
+## Locating class by class name: `findclassname`
+<hr>
+
+Finds a class whose class name matches the given keywords.
+
+Format: `findclassname KEYWORD`
+
+<!---todo fill in inner working--->
+
+Examples:
+* `findclassname math` returns all the classes with math in the class name.
 
 ## Clearing all entries : `clear`
 <hr>
