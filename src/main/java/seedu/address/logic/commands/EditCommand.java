@@ -175,12 +175,6 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
 
-            //setTuitionClasses(toCopy.tuitionClasses);
-            setLocation(toCopy.location);
-            setRate(toCopy.rate);
-            setClassTiming(toCopy.classTiming);
-            setClassName(toCopy.className);
-
             setNokName(toCopy.nokName);
             setNokPhone(toCopy.nokPhone);
             setNokEmail(toCopy.nokEmail);

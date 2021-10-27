@@ -69,7 +69,7 @@ public class RemoveFromClassCommand extends Command {
 
         //create edit class descriptor
         EditClassCommand.EditClassDescriptor editClassDescriptor = new EditClassCommand.EditClassDescriptor();
-        editClassDescriptor.setStudentList(updatedStudentNameList);
+        editClassDescriptor.setUniqueNameList(updatedStudentNameList);
 
         //swap out old tuition class with new tuition class
         TuitionClass editedClass = EditClassCommand.createEditedClass(classToRemoveFrom, editClassDescriptor);

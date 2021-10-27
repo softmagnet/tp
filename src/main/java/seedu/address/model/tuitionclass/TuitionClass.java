@@ -80,7 +80,6 @@ public class TuitionClass {
         return classTiming;
     }
 
-
     public LocalTime getStartTiming() {
         return classTiming.getStartTime();
     }
@@ -109,11 +108,6 @@ public class TuitionClass {
     public UniqueNameList getStudentList() {
         return uniqueNameList;
     }
-
-    //todo fix this
-    //public List<Name> getStudentList() {
-    //        return Collections.unmodifiableList(uniqueStudentList);
-    //}
 
     public void addStudent(Name name) {
         uniqueNameList.add(name);
@@ -218,18 +212,21 @@ public class TuitionClass {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+
         builder.append("Class Timing: ")
                 .append(getClassTiming())
                 .append(" ");
+
         if (!getClassTiming().equals(getClassName())) {
             builder.append(" Class Name: ")
                     .append(getClassName())
                     .append(" ");
-
         }
+
         builder.append("Location: ")
                 .append(getLocation())
                 .append(" ");
+
         builder.append("Rate: ")
                 .append(getRate())
                 .append(" ");
