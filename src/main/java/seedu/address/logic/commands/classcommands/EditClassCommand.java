@@ -95,6 +95,7 @@ public class EditClassCommand extends Command {
 
         model.setClass(classToEdit, editedClass);
         model.updateFilteredClassList(Model.PREDICATE_SHOW_ALL_CLASS);
+
         return new CommandResult(String.format(MESSAGE_EDIT_CLASS_SUCCESS, editedClass));
     }
 

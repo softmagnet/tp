@@ -13,15 +13,14 @@
 }
 
 .timetable-scroll {
-    -fx-background-color: derive(white, -4%);
     -fx-fit-to-height: true;
-    -fx-fit-to-width: false;
-    -fx-background-radius: 5;
+    /*-fx-fit-to-width: false;*/
+    /*-fx-background-radius: 5;*/
     -fx-max-width: 3750;
 }
 
 .timetable-scroll .thumb {
-    -fx-background-color: derive(#5e4649, 30%);
+    -fx-background-color: derive(#383838, 30%);
     -fx-background-insets: 2;
     -fx-background-radius: 5;
 }
@@ -50,4 +49,11 @@
 
 .timetable-label {
     -fx-text-fill: white;
+}
+
+.timetable-grid-empty-slot {
+    -fx-background-color: #383838;
+    -fx-background-insets: 5 0 5 0;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
 }

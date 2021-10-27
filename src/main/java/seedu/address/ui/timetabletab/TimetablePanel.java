@@ -28,6 +28,10 @@ public class TimetablePanel extends UiPart<Region> {
     private static final String FXML = "timetableTab/TimetablePanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TimetablePanel.class);
 
+    private final LocalTime defaultLatestHour = LocalTime.parse("18:00", DateTimeFormatter.ofPattern("HH:mm"));
+    private final LocalTime defaultEarliestHour = LocalTime.parse("09:00", DateTimeFormatter.ofPattern("HH:mm"));
+
+
     @FXML
     private ScrollPane scrollPane;
 
@@ -81,7 +85,6 @@ public class TimetablePanel extends UiPart<Region> {
      */
     public void buildHeader(ObservableList<TuitionClass> tuitionClasses) {
         assert tuitionClasses != null;
-
         LocalTime earliestHour = getEarliestHour(tuitionClasses);
         LocalTime latestHour = getLatestHour(tuitionClasses);
 
@@ -89,7 +92,7 @@ public class TimetablePanel extends UiPart<Region> {
 
         int columnIndex = 50;
 
-        while (earliestHour.isBefore(latestHour)) {
+        while (earliestHour.isBefore(latestHour) || earliestHour.isBefore(defaultLatestHour)) {
             if (earliestHour.equals(LocalTime.parse("23:30", DateTimeFormatter.ofPattern("HH:mm")))) {
                 timetable.add(new TimetableHeader(earliestHour, earliestHour.plusMinutes(29)).getRoot(),
                         columnIndex, 0, 15, 1);
@@ -231,6 +234,11 @@ public class TimetablePanel extends UiPart<Region> {
         assert tuitionClasses != null && tuitionClasses.size() > 0;
 
         LocalTime earliestTime = getEarliestTime(tuitionClasses);
+
+        if (earliestTime.isAfter(defaultEarliestHour)) {
+            return defaultEarliestHour;
+        }
+
         String earliestTimeStr = earliestTime.toString();
         String earliestHourWithoutMinutes = earliestTimeStr.split(":")[0];
         String earliestHourStr = earliestHourWithoutMinutes + ":00";
@@ -262,6 +270,11 @@ public class TimetablePanel extends UiPart<Region> {
         assert tuitionClasses != null && tuitionClasses.size() > 0;
 
         LocalTime latestTime = getLatestTime(tuitionClasses);
+
+        if (latestTime.isBefore(defaultLatestHour)) {
+            return defaultLatestHour;
+        }
+
         String latestTimeStr = latestTime.toString();
         String latestHourMinutes = latestTimeStr.split(":")[1];
         if (latestHourMinutes.equals("00")) {
