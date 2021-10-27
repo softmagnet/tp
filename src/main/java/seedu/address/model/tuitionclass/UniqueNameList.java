@@ -15,21 +15,13 @@ import seedu.address.model.tuitionclass.exceptions.DuplicateStudentInClassExcept
  */
 public class UniqueNameList implements Iterable<Name> {
 
-    private final ArrayList<Name> internalList;
+    private final ArrayList<Name> internalList = new ArrayList<>();
 
     /**
-     * Constructor that builds an empty UniqueNameList.
-     */
-    public UniqueNameList() {
-        internalList = new ArrayList<>();
-    }
-
-    /**
-     * Constructor that builds a UniqueNameList from one or more names.
+     * Constructor that builds a UniqueNameList from zero or more names.
      * @param names Names to be stored in the UniqueNameList
      */
     public UniqueNameList(Name ... names) {
-        internalList = new ArrayList<>();
         for (Name name : names) {
             this.add(name);
         }
