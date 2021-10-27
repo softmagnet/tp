@@ -40,9 +40,11 @@ public class DeleteClassCommand extends Command {
         if (!model.hasTuitionClass(tuitionClass)) {
             throw new CommandException(MESSAGE_MISSING_CLASS);
         }
-        ReadOnlyAddressBook addressBook = model.getAddressBook();
 
         model.deleteTuitionClass(tuitionClass);
+
+        hideTuitionClassStudentList();
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, tuitionClass));
     }
 

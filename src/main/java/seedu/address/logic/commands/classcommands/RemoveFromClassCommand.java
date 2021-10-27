@@ -29,7 +29,7 @@ public class RemoveFromClassCommand extends Command {
             + "3 4 5 "
             + "(removes students indexed 3, 4 and 5 from class indexed 2)";
 
-    public static final String MESSAGE_REMOVE_SUCCESS = "successfully removed students from class ";
+    public static final String MESSAGE_REMOVE_SUCCESS = "Successfully removed students from class ";
 
     private final Index toEditClassIndex;
     private final List<Index> studentIndices;

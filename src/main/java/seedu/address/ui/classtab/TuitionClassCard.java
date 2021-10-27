@@ -1,5 +1,6 @@
 package seedu.address.ui.classtab;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -55,15 +56,47 @@ public class TuitionClassCard extends UiPart<Region> {
         this.tuitionClass = tuitionClass;
         this.studentList = studentList;
         this.tuitionClassListView = tuitionClassListView;
-        this.selectTuitionClass();
+
+        this.studentList.addListener(new ListChangeListener<Student>() {
+            @Override
+            public void onChanged(Change<? extends Student> change) {
+                while (change.next()) {
+                    selectTuitionClass();
+                }
+            }
+        });
+
+        int index = tuitionClassListView.getSelectionModel().getSelectedIndex();
+        tuitionClassListView.getSelectionModel().clearSelection(index);
 
         // TuitionClass
+        String newClassSize = CLASS_SIZE_FIELD + tuitionClass.getStudentList().size();
+        String newClassTiming = CLASS_TIMING_FIELD + tuitionClass.getClassTiming().value;
+//
+//        if (classChanged(classSize.getText(), newClassSize, classTiming.getText(), newClassTiming)) { // Size: 1
+//        }
+
         id.setText(displayedIndex + ". ");
         className.setText(tuitionClass.getClassName().className);
-        classTiming.setText(CLASS_TIMING_FIELD + tuitionClass.getClassTiming().value);
+        classTiming.setText(newClassTiming);
         classLocation.setText(LOCATION_FIELD + tuitionClass.getLocation().value);
         rate.setText(RATE_FIELD + DOLLAR_SIGN + tuitionClass.getRate().value + PER_HOUR);
-        classSize.setText(CLASS_SIZE_FIELD + tuitionClass.getStudentList().size());
+        classSize.setText(newClassSize);
+    }
+
+    public boolean classChanged(
+            String oldClassSize, String newClassSize, String oldClassTiming, String newClassTiming) {
+        if (oldClassSize.equals("")) {
+            return false;
+        } else {
+
+            System.out.println(oldClassSize);
+            System.out.println(newClassSize);
+            System.out.println(oldClassTiming);
+            System.out.println(newClassTiming);
+
+            return oldClassTiming.equals(newClassTiming) && !oldClassSize.equals(newClassSize);
+        }
     }
 
     @FXML
