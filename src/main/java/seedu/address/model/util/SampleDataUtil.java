@@ -85,35 +85,31 @@ public class SampleDataUtil {
 
     private static TuitionClass[] getSampleClasses() {
         return new TuitionClass[] {
-                new TuitionClass(new ClassName("Sec 4 A Math"),
-                        new ClassTiming("MON 11:30-13:30"),
-                        new Location("Blk 30 Geylang Street 29, #06-40"),
-                        new Rate("50"),
-                        new UniqueNameList(new Name("Alex Yeoh"), new Name("David Li"))),
-                new TuitionClass(new ClassName("Sec 3 C Math"),
-                        new ClassTiming("MON 14:30-16:30"),
-                        new Location("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                        new Rate("60"),
-                        new UniqueNameList(new Name("Bernice Yu"))),
-                new TuitionClass(new ClassName("Sec 2 Physics"),
-                        new ClassTiming("TUE 11:00-12:30"),
-                        new Location("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                        new Rate("40"),
-                        new UniqueNameList(new Name("Charlotte Oliveiro"))),
-                new TuitionClass(new ClassName("Sec 4 A Math 2"),
-                        new ClassTiming("THU 11:30-13:30"),
-                        new Location("Blk 30 Geylang Street 29, #06-40"),
-                        new Rate("50"),
-                        new UniqueNameList(new Name("Alex Yeoh"), new Name("David Li"))),
-                new TuitionClass(new ClassName("JC1 H2 Math"),
-                        new ClassTiming("THU 16:30-18:30"),
-                        new Location("Blk 30 Geylang Street 29, #06-40"),
-                        new Rate("50"),
-                        new UniqueNameList(new Name("Alex Yeoh"), new Name("David Li")))
-
-
-
-
+            new TuitionClass(new ClassName("Sec 4 A Math"),
+                    new ClassTiming("MON 11:30-13:30"),
+                    new Location("Blk 30 Geylang Street 29, #06-40"),
+                    new Rate("50"),
+                    new UniqueNameList(new Name("Alex Yeoh"), new Name("David Li"))),
+            new TuitionClass(new ClassName("Sec 3 C Math"),
+                    new ClassTiming("MON 14:30-16:30"),
+                    new Location("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                    new Rate("60"),
+                    new UniqueNameList(new Name("Bernice Yu"))),
+            new TuitionClass(new ClassName("Sec 2 Physics"),
+                    new ClassTiming("TUE 11:00-12:30"),
+                    new Location("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                    new Rate("40"),
+                    new UniqueNameList(new Name("Charlotte Oliveiro"))),
+            new TuitionClass(new ClassName("Sec 4 A Math 2"),
+                    new ClassTiming("THU 11:30-13:30"),
+                    new Location("Blk 30 Geylang Street 29, #06-40"),
+                    new Rate("50"),
+                    new UniqueNameList(new Name("Alex Yeoh"), new Name("David Li"))),
+            new TuitionClass(new ClassName("JC1 H2 Math"),
+                    new ClassTiming("THU 16:30-18:30"),
+                    new Location("Blk 30 Geylang Street 29, #06-40"),
+                    new Rate("50"),
+                    new UniqueNameList(new Name("Alex Yeoh"), new Name("David Li")))
         };
     }
 
