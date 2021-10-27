@@ -4,8 +4,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="day" fx:id="slotPane" alignment="BOTTOM_RIGHT" styleClass="timetable-grid-day" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="slot" alignment="BOTTOM_RIGHT" styleClass="timetable-day-box" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <VBox alignment="CENTER" >
-        <Label fx:id="day" styleClass="timetableDay" text="\$day" />
+        <Label fx:id="day" styleClass="timetable-day" text="\$day" />
     </VBox>
 </HBox>

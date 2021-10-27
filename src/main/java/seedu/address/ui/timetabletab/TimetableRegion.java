@@ -11,7 +11,7 @@ import seedu.address.ui.UiPart;
 public class TimetableRegion extends UiPart<Region> {
 
     @FXML
-    private HBox slotPane;
+    private HBox slot;
 
     /**
      * Creates the timetable region UI.
@@ -22,8 +22,8 @@ public class TimetableRegion extends UiPart<Region> {
     public TimetableRegion(String fxml, long scale) {
         super(fxml);
         int scaleFactor = 2;
-        slotPane.setPrefWidth(scale * scaleFactor);
-        slotPane.setMinWidth(scale * scaleFactor);
+        slot.setPrefWidth(scale * scaleFactor);
+        slot.setMinWidth(scale * scaleFactor);
     }
 
 }

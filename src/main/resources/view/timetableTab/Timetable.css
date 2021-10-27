@@ -1,4 +1,4 @@
-.timetableDay {
+.timetable-day {
     -fx-font-family: "Open Sans Semibold";
     -fx-font-size: 16px;
     -fx-text-fill: white;
@@ -6,7 +6,7 @@
     -fx-label-padding: 0 10 0 0;
 }
 
-.timetable-grid-day {
+.timetable-day-box {
     -fx-font-family: "Open Sans Semibold";
     -fx-background-color: #383838;
     -fx-border-color: #3e7b91;
@@ -14,44 +14,30 @@
 
 .timetable-scroll {
     -fx-fit-to-height: true;
-    /*-fx-fit-to-width: false;*/
-    /*-fx-background-radius: 5;*/
     -fx-max-width: 3750;
 }
 
-.timetable-scroll .thumb {
-    -fx-background-color: derive(#383838, 30%);
-    -fx-background-insets: 2;
-    -fx-background-radius: 5;
-}
-
-.timetable-grid {
-    -fx-background-color: #383838;
-    -fx-border-color: #383838;
-    -fx-max-width: 5700;
-}
-
-.timetable-grid-cell {
+.timetable-class-slot-box {
     -fx-background-color: #3e7b91;
-    -fx-background-insets: 5 0 5 0;
-    -fx-background-radius: 10;
-    -fx-padding: 10;
+    -fx-background-radius: 15;
+    -fx-padding: 15;
 }
 
-.timetable-panel-cell {
+.timetable-time-panel {
     -fx-background-color: hotpink;
     -fx-background-insets: 5 0 5 0;
     -fx-background-radius: 10;
     -fx-padding: 10;
     -fx-max-height: 1;
-    -fx-text-alignment: center;
+    -fx-text-alignment: right;
 }
 
 .timetable-label {
     -fx-text-fill: white;
+    -fx-text-alignment: center;
 }
 
-.timetable-grid-empty-slot {
+.timetable-empty-slot-box {
     -fx-background-color: #383838;
     -fx-background-insets: 5 0 5 0;
     -fx-background-radius: 10;

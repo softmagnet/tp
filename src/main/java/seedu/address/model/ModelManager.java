@@ -121,7 +121,7 @@ public class ModelManager implements Model {
     @Override
     public void addTuitionClass(TuitionClass tuitionClass) {
         addressBook.addTuitionClass(tuitionClass);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
     }
 
     @Override
@@ -182,6 +182,7 @@ public class ModelManager implements Model {
     public void setClass(TuitionClass target, TuitionClass editedClass) {
         requireAllNonNull(target, editedClass);
         addressBook.setClass(target, editedClass);
+        updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
     }
 
     @Override
