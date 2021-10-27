@@ -12,7 +12,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.model.tuitionclass.UniqueNameList;
 
@@ -29,10 +28,10 @@ public class RemoveFromClassCommand extends Command {
             + "3 4 5 "
             + "(removes students indexed 3, 4 and 5 from class indexed 2)";
 
-    public static final String MESSAGE_REMOVE_SUCCESS = "successfully removed students from class ";
+    public static final String MESSAGE_REMOVE_SUCCESS = "Successfully removed students from class ";
 
     private final Index toEditClassIndex;
-    private final List<Index> studentIndices;
+    private final List<Index> studentIndicesToRemove;
 
     /**
      * Constructs a remove from class command.
@@ -46,23 +45,24 @@ public class RemoveFromClassCommand extends Command {
         toEditClassIndex = indexArray.get(0);
 
         //the remaining indices are those of the students in filtered student list
-        studentIndices = indexArray.subList(1, indexArray.size());
+        studentIndicesToRemove = indexArray.subList(1, indexArray.size());
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
 
-        //get names to be added
-        List<Student> lastShownStudentList = model.getFilteredStudentList();
-        checkIndicesAreValid(studentIndices, lastShownStudentList);
-        ArrayList<Name> namesToRemove = createNameList(studentIndices, lastShownStudentList);
-
         //get class to remove from
         List<TuitionClass> lastShownClassList = model.getFilteredTuitionClassList();
         TuitionClass classToRemoveFrom = lastShownClassList.get(toEditClassIndex.getZeroBased());
 
-        //get updated student list
+        //get names to be removed
         UniqueNameList currentStudentNameList = classToRemoveFrom.getStudentList();
+        currentStudentNameList.sortListByName();
+        checkIndicesAreValid(studentIndicesToRemove, currentStudentNameList);
+        ArrayList<Name> namesToRemove = createNewNameList(studentIndicesToRemove, currentStudentNameList);
+
+
+        //get updated student list
         UniqueNameList updatedStudentNameList = new UniqueNameList();
         updatedStudentNameList.addAll(currentStudentNameList);
         updatedStudentNameList.removeAll(namesToRemove);
@@ -78,18 +78,18 @@ public class RemoveFromClassCommand extends Command {
         return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, editedClass));
     }
 
-    private ArrayList<Name> createNameList(List<Index> studentIndices, List<Student> lastShownStudentList) {
-        ArrayList<Name> nameList = new ArrayList<>();
+    private ArrayList<Name> createNewNameList(List<Index> studentIndices, UniqueNameList nameList) {
+        ArrayList<Name> newNameList = new ArrayList<>();
         studentIndices.stream().forEach(index -> {
-            Student student = lastShownStudentList.get(index.getZeroBased());
-            nameList.add(student.getName());
+            Name name = nameList.get(index.getZeroBased());
+            newNameList.add(name);
         });
-        return nameList;
+        return newNameList;
     }
 
-    private void checkIndicesAreValid(List<Index> studentIndices, List<Student> lastShownStudentList)
+    private void checkIndicesAreValid(List<Index> studentIndices, UniqueNameList nameList)
             throws CommandException {
-        int size = lastShownStudentList.size();
+        int size = Integer.valueOf(nameList.size());
         for (Index index : studentIndices) {
             if (index.getZeroBased() >= size) {
                 throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);

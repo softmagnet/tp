@@ -3,6 +3,7 @@ package seedu.address.model.tuitionclass;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -19,6 +20,11 @@ public class UniqueNameList implements Iterable<Name> {
 
     public UniqueNameList() {}
 
+    /**
+     * Constructs an UniqueNameList from an array of Strings.
+     *
+     * @param nameList The String array to convert into an UniqueNameList.
+     */
     public UniqueNameList(String[] nameList) {
         for (String name : nameList) {
             internalList.add(new Name(name));
@@ -110,5 +116,23 @@ public class UniqueNameList implements Iterable<Name> {
     @Override
     public Iterator<Name> iterator() {
         return internalList.iterator();
+    }
+
+    /**
+     * Sorts the nameList in alphabetical order.
+     */
+    public void sortListByName() {
+        Collections.sort(internalList);
+    }
+
+    /**
+     * Gets the Name at the given index.
+     *
+     * @param zeroBasedIndex The index to retrieve the Name from.
+     * @return The Name at the given index.
+     */
+    public Name get(int zeroBasedIndex) {
+        assert (zeroBasedIndex < internalList.size());
+        return internalList.get(zeroBasedIndex);
     }
 }

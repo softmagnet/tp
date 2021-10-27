@@ -177,6 +177,30 @@ addtoclass 1 1 2 3
 Adds the 1st, 2nd and 3rd student in the displayed student list in the `students` tab into the 1st class in the 
 displayed class list in the `classes` tab.
 
+## Remove student/students from a class: `removefromclass`
+<hr>
+
+Remove a single or multiple students from an existing class
+
+Format:
+```
+removefromclass CLASS_INDEX STUDENT_INDEX...
+```
+
+* This command removes any number of existing students in a class from that class.
+* `CLASS_INDEX` is the index number of the class in the displayed class list in the `classes` tab, 
+  which you want to remove students from.
+* `STUDENT_INDEX...` are the index number/s of the students shown in the displayed class list
+  that you want to remove the students from, these students are
+  to be removed from the class.
+
+Example:
+```
+removefromclass 1 1 2 3
+```
+Selects the 1st class in the displayed class list in the `classes` tab.
+Removes the 1st, 2nd and 3rd student in the displayed student list of that selected class.
+
 ## Delete a class: `deleteclass`
 <hr>
 
