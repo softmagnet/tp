@@ -17,13 +17,13 @@ public class ClassTiming implements Comparable<ClassTiming> {
     public static final String MESSAGE_CONSTRAINTS =
             "Class Timing must be in the form DAY HH:MM-HH:MM, "
                     + "\nstart time must be earlier than end time, \nand "
-                    + "start and end time has to start at the hour mark or half hour mark, but it can end at 23:59";
+                    + "start and end time has to start at the hour or half hour mark, but it can end at 23:59";
 
     /*
      * The string has to be in the form DAY HH:MM-HH:MM eg MON 23:59-01:00
      */
     public static final String VALIDATION_REGEX =
-            "^(?i)(MON |TUE |WED |THU |FRI |SAT |SUN ){1}([01][0-9]|2[0-3]):[0-5][0-9]-([01][0-9]|2[0-3]):[0-5][0-9]";
+            "^(?i)(MON |TUE |WED |THU |FRI |SAT |SUN )([01][0-9]|2[0-3]):[0-5][0-9]-([01][0-9]|2[0-3]):[0-5][0-9]";
 
     public final String value;
 
