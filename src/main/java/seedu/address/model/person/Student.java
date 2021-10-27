@@ -23,27 +23,11 @@ public class Student extends Person {
 
     /* Each Student has 0..1 Nok */
     private Nok nok;
-    private final ArrayList<TuitionClass> classList = new ArrayList<>();
 
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Students have a tag as well as all the specifiers.
-     * When a student is created, we create a TuitionClass with that ClassTiming and Location.
-     */
-    public Student(
-            Name name, Phone phone, Email email, Address address, ArrayList<TuitionClass> tuitionClass, Nok nok,
-            Set<Tag> tags) {
-        super(name, phone, email, address);
-
-        this.classList.addAll(tuitionClass);
-        this.nok = nok;
-        this.tags.addAll(tags);
-    }
-
-    /**
-     * Students constructed with an empty list of TuitionClasses.
-     *
+     * Student constructor
      */
     public Student(
             Name name, Phone phone, Email email, Address address, Nok nok, Set<Tag> tags) {
@@ -51,25 +35,6 @@ public class Student extends Person {
 
         this.nok = nok;
         this.tags.addAll(tags);
-    }
-
-    /**
-     * Adds TuitionClass to the student.
-     *
-     * @param tuitionClass to be added.
-     */
-    public void addClass(TuitionClass tuitionClass) {
-        if (!classList.contains(tuitionClass)) {
-            classList.add(tuitionClass);
-        }
-    }
-
-    public void deleteClass(TuitionClass tuitionClass) {
-        classList.remove(tuitionClass);
-    }
-
-    public ArrayList<TuitionClass> getClassList() {
-        return classList;
     }
 
     public void setNok(Nok nok) {
@@ -83,10 +48,6 @@ public class Student extends Person {
     public ClassTiming getClassTiming() {
         // TODO: Placeholder
         return null;
-    }
-
-    public ClassTiming getFirstClassTiming() {
-        return classList.get(0).getClassTiming();
     }
 
     public Location getLocation() {
@@ -136,7 +97,7 @@ public class Student extends Person {
 
         Student o = (Student) other;
         return super.equals(other)
-                && o.getTags().equals(getTags()) && o.getClassList().equals(getClassList());
+                && o.getTags().equals(getTags());
     }
 
     @Override
@@ -148,12 +109,6 @@ public class Student extends Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder(super.toString());
-        builder.append("; Rate: ")
-                .append(getRate())
-                .append("; Class Timing: ")
-                .append(getClassTiming())
-                .append("; Location: ")
-                .append(getLocation());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -164,10 +119,6 @@ public class Student extends Person {
         builder.append("\nNext-of-Kin: ");
         builder.append(nok.toString());
 
-        if (classList.size() != 0) {
-            builder.append("\nClass List: ");
-            builder.append(classList.stream().map(TuitionClass::toString).collect(Collectors.joining(", ")));
-        }
 
         return builder.toString();
     }

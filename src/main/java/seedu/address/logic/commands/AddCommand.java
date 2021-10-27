@@ -31,9 +31,6 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_RATE + "RATE"
-            + PREFIX_CLASSTIMING + "CLASS TIMING "
-            + PREFIX_LOCATION + "LOCATION "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + PREFIX_NOK + " "
             + PREFIX_NAME + "NAME "
@@ -45,9 +42,6 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_RATE + "70 "
-            + PREFIX_CLASSTIMING + "Mon 11:30-13:30 "
-            + PREFIX_LOCATION + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney \n"
             + PREFIX_NOK + " "
@@ -60,7 +54,6 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final Student studentToAdd;
-    private final TuitionClass classToAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}.
@@ -69,8 +62,6 @@ public class AddCommand extends Command {
     public AddCommand(Student student) {
         requireNonNull(student);
         studentToAdd = student;
-        int largestIndex = student.getClassList().size() - 1;
-        classToAdd = student.getClassList().get(largestIndex);
     }
 
     @Override
@@ -81,22 +72,10 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        try {
-            // Add student to the existing class
-            classToAdd.addStudent(studentToAdd.getName());
+        model.addPerson(studentToAdd);
 
-            model.addTuitionClass(classToAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToAdd));
 
-
-            // Add class to the student
-            studentToAdd.addClass(classToAdd);
-
-            model.addPerson(studentToAdd);
-            //model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, studentToAdd));
-        } catch (InvalidClassException e) {
-            throw new CommandException(Messages.MESSAGE_CLASHING_CLASS_TIMING);
-        }
     }
 
     @Override

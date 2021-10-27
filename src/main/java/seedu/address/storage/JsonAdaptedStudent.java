@@ -30,10 +30,6 @@ class JsonAdaptedStudent {
     private final String phone;
     private final String email;
     private final String address;
-    //    private final String rate;
-    //    private final String classTiming;
-    //    private final String location;
-    private final List<JsonAdaptedTuitionClass> tuitionClasses = new ArrayList<>();
     private final JsonAdaptedNok nok;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -43,7 +39,6 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
-                              @JsonProperty("tuitionClasses") List<JsonAdaptedTuitionClass> tuitionClasses,
                               @JsonProperty("nok") JsonAdaptedNok nok,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
 
@@ -51,12 +46,6 @@ class JsonAdaptedStudent {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        //        this.rate = rate;
-        //        this.classTiming = classTiming;
-        //        this.location = location;
-        if (tuitionClasses != null) {
-            this.tuitionClasses.addAll(tuitionClasses);
-        }
         this.nok = nok;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -71,13 +60,6 @@ class JsonAdaptedStudent {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        // TODO: add back when these fields are coupled with the class
-        //        rate = source.getRate().value;
-        //        classTiming = source.getClassTiming().value;
-        //        location = source.getLocation().value;
-        tuitionClasses.addAll(source.getClassList().stream()
-                .map(JsonAdaptedTuitionClass::new)
-                .collect(Collectors.toList()));
         nok = source.getNok() != null ? new JsonAdaptedNok(source.getNok()) : null;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -127,45 +109,11 @@ class JsonAdaptedStudent {
         }
         final Address modelAddress = new Address(address);
 
-        final List<TuitionClass> personTuitionClasses = new ArrayList<>();
-        for (JsonAdaptedTuitionClass tuitionClass : tuitionClasses) {
-            personTuitionClasses.add(tuitionClass.toModelType());
-        }
-
-        //        if (rate == null) {
-        //            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-        //            Rate.class.getSimpleName()));
-        //        }
-        //        if (!Rate.isValidRate(rate)) {
-        //            throw new IllegalValueException(Rate.MESSAGE_CONSTRAINTS);
-        //        }
-        //        final Rate modelRate = new Rate(rate);
-        //
-        //        if (classTiming == null) {
-        //            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-        //                    ClassTiming.class.getSimpleName()));
-        //        }
-        //        if (!ClassTiming.isValidClassTiming(classTiming)) {
-        //            throw new IllegalValueException(ClassTiming.MESSAGE_CONSTRAINTS);
-        //        }
-        //        final ClassTiming modelClassTiming = new ClassTiming(classTiming);
-        //
-        //        if (location == null) {
-        //            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-        //                    Location.class.getSimpleName()));
-        //        }
-        //        if (!Location.isValidLocation(location)) {
-        //            throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
-        //        }
-        //        final Location modelLocation = new Location(location);
-
         final Nok modelNok = nok == null ? null : nok.toModelType();
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final ArrayList<TuitionClass> modelTuitionClasses = new ArrayList<>(personTuitionClasses);
-
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTuitionClasses, modelNok, modelTags);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelNok, modelTags);
     }
 
 }

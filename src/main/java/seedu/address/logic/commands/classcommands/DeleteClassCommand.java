@@ -45,15 +45,6 @@ public class DeleteClassCommand extends Command {
             throw new CommandException(MESSAGE_MISSING_CLASS);
         }
         ReadOnlyAddressBook addressBook = model.getAddressBook();
-        ObservableList<Student> students = addressBook.getPersonList();
-        Iterator<Student> studentIterator = students.iterator();
-
-        UniqueNameList uniqueNameList = tuitionClass.getStudentList();
-        studentIterator.forEachRemaining(student -> {
-            if (uniqueNameList.contains(student.getName())) {
-                student.deleteClass(tuitionClass);
-            }
-        });
 
         model.deleteTuitionClass(tuitionClass);
         return new CommandResult(String.format(MESSAGE_SUCCESS, tuitionClass));

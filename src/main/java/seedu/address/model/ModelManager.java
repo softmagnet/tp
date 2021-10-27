@@ -27,6 +27,7 @@ public class ModelManager implements Model {
     private FilteredList<Student> filteredStudents;
     private FilteredList<TuitionClass> filteredTuitionClass;
 
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -113,7 +114,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addPerson(Student student) {
-        addressBook.addPerson(student);
+        addressBook.addStudent(student);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 

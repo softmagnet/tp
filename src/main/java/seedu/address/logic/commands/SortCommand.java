@@ -47,7 +47,6 @@ public class SortCommand extends Command {
             }
 
             model.setStudents(toSort);
-
         } else if (sortBy.equals("timing")) {
             ArrayList<TuitionClass> toSort = new ArrayList<TuitionClass>(model.getFilteredTuitionClassList());
 

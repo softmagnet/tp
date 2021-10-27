@@ -46,7 +46,7 @@ public class TypicalPersons {
 
     public static final Student ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withTuitionClasses(DEFAULT_CLASS_LIST)
+            .withPhone("94351253")
             .withNokName("Long Chai Boon")
             .withNokAddress("325, Clementi State 3, #40-32")
             .withNokEmail("longchatbooon@gmail.com").withNokPhone("67785914")
@@ -54,7 +54,6 @@ public class TypicalPersons {
     public static final Student BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTuitionClasses(DEFAULT_CLASS_LIST)
             .withNokName("Short Chai Boon")
             .withNokAddress("325, West State 3, #60-12")
             .withNokEmail("hahiihi@gmail.com").withNokPhone("87759868")
@@ -62,43 +61,43 @@ public class TypicalPersons {
     public static final Student NO_NOK_BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTuitionClasses(DEFAULT_CLASS_LIST).build();
+            .build();
     public static final Student CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withNokName("Mr Batman")
             .withNokAddress("325, Bat Cave 3, #10-23")
             .withNokEmail("dontcallmeillcome@gmail.com").withNokPhone("62212222")
-            .withTuitionClasses(DEFAULT_CLASS_LIST).build();
+            .build();
     public static final Student DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
             .withNokName("Bad Chai Boon")
             .withNokAddress("1, Happy Sad 3, #10-12")
             .withNokEmail("happyorsadyouchoose@gmail.com").withNokPhone("88888888")
-            .withTuitionClasses(DEFAULT_CLASS_LIST).withTags("Maths").build();
+            .withTags("Maths").build();
     public static final Student ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
             .withNokName("Bernard Wan")
             .withNokAddress("222, Berkeys State 4, #11-32")
-            .withNokEmail("bernard@gmail.com").withNokPhone("67785314").withTuitionClasses(DEFAULT_CLASS_LIST).build();
+            .withNokEmail("bernard@gmail.com").withNokPhone("67785314").build();
     public static final Student FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
             .withNokName("Ong Lin Zhen")
             .withNokAddress("323, Lin Estate 3, #44-31")
             .withNokEmail("zhenngggii@gmail.com").withNokPhone("67382344")
-            .withTuitionClasses(DEFAULT_CLASS_LIST).build();
+            .build();
     public static final Student GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
             .withNokName("Hehe Chai Red")
             .withNokAddress("999, Estate State 4, #10-32")
             .withNokEmail("salmon@gmail.com").withNokPhone("67111111")
-            .withTuitionClasses(DEFAULT_CLASS_LIST).build();
+            .build();
 
     // Manually added
     public static final Student HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india")
-            .withTuitionClasses(DEFAULT_CLASS_LIST).build();
+            .build();
     public static final Student IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").withTuitionClasses(DEFAULT_CLASS_LIST).build();
+            .withEmail("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Student AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
@@ -124,8 +123,7 @@ public class TypicalPersons {
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Student student : getTypicalPersons()) {
-            ab.addPerson(student);
-            ab.addTuitionClass(student.getClassList().get(0));
+            ab.addStudent(student);
         }
 
         return ab;
