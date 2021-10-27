@@ -54,12 +54,12 @@ public class EditStudentDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different rate -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withRate(VALID_RATE_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
-
-        // different classTiming -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withClassTiming(VALID_CLASSTIMING_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+//        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withRate(VALID_RATE_BOB).build();
+//        assertFalse(DESC_AMY.equals(editedAmy));
+//
+//        // different classTiming -> returns false
+//        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withClassTiming(VALID_CLASSTIMING_BOB).build();
+//        assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
