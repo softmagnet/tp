@@ -19,7 +19,8 @@ public class UniqueNameList implements Iterable<Name> {
 
     /**
      * Constructor that builds a UniqueNameList from zero or more names.
-     * @param names Names to be stored in the UniqueNameList
+     *
+     * @param names Names to be stored in the UniqueNameList.
      */
     public UniqueNameList(Name ... names) {
         for (Name name : names) {
