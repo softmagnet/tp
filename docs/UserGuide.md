@@ -336,7 +336,7 @@ Examples:
 ## Viewing of different tabs: `view`
 <hr>
 
-Views an existing tab in the timetable without using the mouse to click.
+Views an existing tab in the timetable without the need to use the mouse to click.
 
 Format:
 ```
@@ -348,6 +348,18 @@ findclassname TAB_TO_VIEW
 Examples:
 * `view timetable` switches the displayed tab to be the timetable tab.
 
+## Selecting of classes: `class`
+<hr>
+
+Selects a class in the class tab and displays its students without the need to use the mouse to click.
+
+Format:
+```
+class CLASS_INDEX   
+```
+
+Examples:
+* `class 1` selects the class with `CLASS_INDEX` of 1 and displays its students in the class tab.
 
 ## Clearing all entries : `clear`
 <hr>
@@ -416,6 +428,7 @@ Action | Format, Examples
 **Help** | `help`
 **List** | `list`
 **List class** | `listclass`
+**Select class** | `class` <br> e.g., `class 1`
 **Sort** | `findclassname PARAMETER_TO_SORT_BY DIRECTION_OF_SORT` <br> e.g., `sort name asc`
 **View** | `view TAB_TO_VIEW` <br> e.g., `view timetable`
 

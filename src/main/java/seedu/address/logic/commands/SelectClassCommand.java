@@ -11,7 +11,7 @@ import seedu.address.model.tuitionclass.TuitionClass;
 public class SelectClassCommand extends Command {
     public static final String COMMAND_WORD = "class";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Selects the appropriate class\n"
-            + "Parameters: CLASS INDEX\n"
+            + "Parameters: CLASS_INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
     public static final String INVALID_TAB = "This class doesn't exists.\n"
             + "You can only switch to indexes shown in the Classlist.";
