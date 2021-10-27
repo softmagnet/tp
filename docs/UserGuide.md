@@ -265,20 +265,42 @@ Examples:
 
 Finds students whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `findname KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Partial matches will still be matched e.g. `Han` will match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-  
+* `findname John` returns `john` and `John Doe`
+* `findname alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'findname alex david'](images/findAlexDavidResult.png)
+
+## Locating students by tag: `findtag`
+<hr>
+
+Finds students whose tags contain any of the given keywords.
+
+Format: `findtag KEYWORD, [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `math` will match `Math`
+* The keywords are separated by commas. e.g. `findtag math, physics` will find students
+  with tags containing `math` or `physics`
+* Only the tag is searched.
+* Partial matches will still be matched e.g. `math` will match `A Math`, `C Math`, and `Math`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `findtag math, physics` will return students with the `Math` tag but no `Physics` tag,
+  students with only the`Physics` tag but no `Math` tag, and students with both tags.
+
+Examples:
+* `findtag math` returns `Alex Yeoh` with the `A Math` tag and `John Doe` with the `C Math` tag
+* `findtag math, physics` returns `Alex Yeoh` with the `A Math` and `Biology` tags 
+  <br>
+
+
 ## Locating class by class timing : `findclass`
 <hr>
 
