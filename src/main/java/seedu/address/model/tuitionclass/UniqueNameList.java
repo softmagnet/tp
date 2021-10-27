@@ -17,6 +17,15 @@ public class UniqueNameList implements Iterable<Name> {
 
     private final ArrayList<Name> internalList = new ArrayList<>();
 
+    public UniqueNameList() {}
+
+    public UniqueNameList(String[] nameList) {
+        for (String name : nameList) {
+            internalList.add(new Name(name));
+        }
+    }
+
+
     /**
      * Checks to see if the name in argument is already in the NameList.
      *

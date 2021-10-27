@@ -112,6 +112,14 @@ public class EditClassCommand extends Command {
         public EditClassDescriptor() {
         }
 
+        public EditClassDescriptor(EditClassDescriptor toCopy) {
+            setClassName(toCopy.className);
+            setClassTiming(toCopy.classTiming);
+            setLocation(toCopy.location);
+            setRate(toCopy.rate);
+            setUniqueNameList(toCopy.uniqueNameList);
+        }
+
         public Optional<ClassName> getClassName() {
             return Optional.ofNullable(className);
         }
@@ -148,7 +156,7 @@ public class EditClassCommand extends Command {
             return Optional.ofNullable(uniqueNameList);
         }
 
-        public void setStudentList(UniqueNameList uniqueNameList) {
+        public void setUniqueNameList(UniqueNameList uniqueNameList) {
             this.uniqueNameList = uniqueNameList;
         }
 

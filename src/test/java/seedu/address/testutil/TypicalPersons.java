@@ -3,21 +3,15 @@ package seedu.address.testutil;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_NOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASSTIMING_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASSTIMING_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_NOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_NOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_NOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RATE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -38,12 +32,6 @@ import seedu.address.model.tuitionclass.TuitionClass;
  */
 public class TypicalPersons {
 
-    public static final TuitionClass DEAFULT_TUITION_CLASS = new TuitionClass(new ClassName("Class 1"),
-            new ClassTiming("MON 11:30-13:30"), new Location("132, Jurong East Ave 4, #03-10"), new Rate("69"));
-
-    public static final ArrayList<TuitionClass> DEFAULT_CLASS_LIST =
-            new ArrayList<>(Arrays.asList(DEAFULT_TUITION_CLASS));
-
     public static final Student ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
@@ -63,8 +51,8 @@ public class TypicalPersons {
             .withEmail("johnd@example.com").withPhone("98765432")
             .build();
     public static final Student CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street")
-            .withNokName("Mr Batman")
+            .withEmail("heinz@example.com").withAddress("Campbell Road Ave 2, #11")
+            .withNokName("Jamie Kurz")
             .withNokAddress("325, Bat Cave 3, #10-23")
             .withNokEmail("dontcallmeillcome@gmail.com").withNokPhone("62212222")
             .build();
@@ -101,13 +89,11 @@ public class TypicalPersons {
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Student AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withRate(VALID_RATE_AMY)
-            .withClassTiming(VALID_CLASSTIMING_AMY).withLocation(VALID_LOCATION_AMY).withTags(VALID_TAG_FRIEND)
+            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
             .withNokName(VALID_NAME_NOK).withNokPhone(VALID_PHONE_NOK).withNokAddress(VALID_ADDRESS_NOK)
             .withNokEmail(VALID_EMAIL_NOK).build();
     public static final Student BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .withRate(VALID_RATE_BOB).withClassTiming(VALID_CLASSTIMING_BOB).withLocation(VALID_LOCATION_BOB)
             .withNokName(VALID_NAME_NOK).withNokPhone(VALID_PHONE_NOK).withNokAddress(VALID_ADDRESS_NOK)
             .withNokEmail(VALID_EMAIL_NOK)
             .build();
