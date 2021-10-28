@@ -1,6 +1,4 @@
-package seedu.address.ui.studenttab;
-
-import java.util.Comparator;
+package seedu.address.ui.classtab;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,12 +8,14 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Student;
 import seedu.address.ui.UiPart;
 
+import java.util.Comparator;
+
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class StudentCard extends UiPart<Region> {
+public class StudentClassTabCard extends UiPart<Region> {
 
-    private static final String FXML = "StudentListCard.fxml";
+    private static final String FXML = "classTab/StudentListCard.fxml";
     private static final Character DOLLAR_SIGN = '$';
     private static final String PER_HOUR = "/hr";
     private static final String CLASS_TIMING_FIELD = "Class Timing: ";
@@ -51,20 +51,10 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    // Nok
-    @FXML
-    private Label nokName;
-    @FXML
-    private Label nokPhone;
-    @FXML
-    private Label nokAddress;
-    @FXML
-    private Label nokEmail;
-
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public StudentCard(Student student, int displayedIndex) {
+    public StudentClassTabCard(Student student, int displayedIndex) {
         super(FXML);
         this.student = student;
 
@@ -74,19 +64,6 @@ public class StudentCard extends UiPart<Region> {
         phone.setText(MOBILE_FIELD + student.getPhone().value);
         address.setText(ADDRESS_FIELD + student.getAddress().value);
         email.setText(EMAIL_FIELD + student.getEmail().value);
-
-        // Nok
-        if (student.getNok() != null) {
-            nokName.setText(student.getNok().getName().fullName);
-            nokPhone.setText(student.getNok().getPhone().value);
-            nokAddress.setText(student.getNok().getAddress().value);
-            nokEmail.setText(student.getNok().getEmail().value);
-        } else {
-            nokName.setText("");
-            nokPhone.setText("");
-            nokAddress.setText("");
-            nokEmail.setText("");
-        }
 
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
@@ -101,12 +78,12 @@ public class StudentCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof StudentCard)) {
+        if (!(other instanceof StudentClassTabCard)) {
             return false;
         }
 
         // state check
-        StudentCard card = (StudentCard) other;
+        StudentClassTabCard card = (StudentClassTabCard) other;
         return id.getText().equals(card.id.getText())
                 && student.equals(card.student);
     }

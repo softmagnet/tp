@@ -8,7 +8,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.ui.StudentListViewCell;
 import seedu.address.ui.UiPart;
 
 public class TuitionClassCard extends UiPart<Region> {
@@ -79,7 +78,7 @@ public class TuitionClassCard extends UiPart<Region> {
                 studentList.filtered(student -> tuitionClass.containsStudent(student.getName()));
 
         tuitionClassListView.setItems(newStudentList);
-        tuitionClassListView.setCellFactory(listView -> new StudentListViewCell());
+        tuitionClassListView.setCellFactory(listView -> new StudentListClassTabViewCell());
     }
 
     @Override
