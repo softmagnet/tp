@@ -47,8 +47,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         ArgumentMultimap argMultimapBeforeNok =
                 ArgumentTokenizer
-                        .tokenize(argsBeforeNok, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                                PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION, PREFIX_TAG);
+                        .tokenize(argsBeforeNok, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         ArgumentMultimap argMultimapAfterNok =
                 ArgumentTokenizer.tokenize(argsAfterNok, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
@@ -76,20 +75,20 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor
                     .setAddress(ParserUtil.parseAddress(argMultimapBeforeNok.getValue(PREFIX_ADDRESS).get()));
         }
-        if (argMultimapBeforeNok.getValue(PREFIX_RATE).isPresent()) {
-            editPersonDescriptor
-                    .setRate(ParserUtil.parseRate(argMultimapBeforeNok.getValue(PREFIX_RATE).get()));
-        }
-        if (argMultimapBeforeNok.getValue(PREFIX_CLASSTIMING).isPresent()) {
-            editPersonDescriptor
-                    .setClassTiming(ParserUtil.parseClassTiming(argMultimapBeforeNok
-                            .getValue(PREFIX_CLASSTIMING).get()));
-        }
-        if (argMultimapBeforeNok.getValue(PREFIX_LOCATION).isPresent()) {
-            editPersonDescriptor
-                    .setLocation(ParserUtil.parseLocation(argMultimapBeforeNok
-                            .getValue(PREFIX_LOCATION).get()));
-        }
+//        if (argMultimapBeforeNok.getValue(PREFIX_RATE).isPresent()) {
+//            editPersonDescriptor
+//                    .setRate(ParserUtil.parseRate(argMultimapBeforeNok.getValue(PREFIX_RATE).get()));
+//        }
+//        if (argMultimapBeforeNok.getValue(PREFIX_CLASSTIMING).isPresent()) {
+//            editPersonDescriptor
+//                    .setClassTiming(ParserUtil.parseClassTiming(argMultimapBeforeNok
+//                            .getValue(PREFIX_CLASSTIMING).get()));
+//        }
+//        if (argMultimapBeforeNok.getValue(PREFIX_LOCATION).isPresent()) {
+//            editPersonDescriptor
+//                    .setLocation(ParserUtil.parseLocation(argMultimapBeforeNok
+//                            .getValue(PREFIX_LOCATION).get()));
+//        }
         parseTagsForEdit(argMultimapBeforeNok.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         // For after nok
