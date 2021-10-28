@@ -12,6 +12,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.model.tuitionclass.UniqueNameList;
 
@@ -57,8 +58,9 @@ public class RemoveFromClassCommand extends Command {
 
         //get names to be removed
         UniqueNameList currentStudentNameList = classToRemoveFrom.getStudentList();
-        currentStudentNameList.sortListByName();
         checkIndicesAreValid(studentIndicesToRemove, currentStudentNameList);
+        List<Student> filteredStudentList = model.getFilteredStudentList();
+        currentStudentNameList.sortListByList(filteredStudentList);
         ArrayList<Name> namesToRemove = createNewNameList(studentIndicesToRemove, currentStudentNameList);
 
 

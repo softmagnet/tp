@@ -4,10 +4,14 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.exceptions.DuplicateStudentInClassException;
 
 /**
@@ -119,10 +123,14 @@ public class UniqueNameList implements Iterable<Name> {
     }
 
     /**
-     * Sorts the nameList in alphabetical order.
+     * Sorts the internal Name list in the same order as the list of students given.
+     *
+     * @param listToSortBy The student list to sort the name list by.
      */
-    public void sortListByName() {
-        Collections.sort(internalList);
+    public void sortListByList(List<Student> listToSortBy) {
+        Collections.sort(internalList,
+                Comparator.comparing(name -> listToSortBy.stream().map(Person::getName)
+                        .collect(Collectors.toList()).indexOf(name)));
     }
 
     /**
