@@ -58,11 +58,6 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        descriptor.getRate().ifPresent(rate -> sb.append(PREFIX_RATE).append(rate.value).append(" "));
-        descriptor.getClassTiming().ifPresent(classTiming -> sb.append(PREFIX_CLASSTIMING)
-                .append(classTiming.value).append(" "));
-        descriptor.getLocation().ifPresent(location -> sb.append(PREFIX_LOCATION).append(location.value).append(" "));
-        descriptor.getClassName().ifPresent(name -> sb.append(PREFIX_CLASS_NAME).append(name.className).append(" "));
         //if (descriptor.getTuitionClasses().isPresent()) {
         //    List<TuitionClass> tuitionClasses = descriptor.getTuitionClasses().get();
         //    if(tuitionClasses.isEmpty()) {
