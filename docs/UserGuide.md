@@ -72,34 +72,7 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
 
 </div>
 
-### Viewing help : `help`
-
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-## Deleting a student : `delete`
-<hr>
-
-Deletes the specified student from the address book.
-
-Format: 
-```
-delete INDEX
-```
-
-* Deletes the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
-
-## Adding a student: `add`
+### Adding a student: `add`
 <hr>
 
 Adds a student to the address book.
@@ -112,9 +85,9 @@ add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ct/CLASS_TIMING l/LOCATION r/HOURLY_
 
 * This is a command that requires next-of-kin (NOK) information.
 * This command is split into two segments (excluding command keyword). The first segment are the inputs before
-`nok/` and the second segment are the inputs after `nok/`.
-  * The segments are not fixed in order and inputs in the
-  first segment are about student information whereas inputs in the second segment are about NOK's information.
+  `nok/` and the second segment are the inputs after `nok/`.
+    * The segments are not fixed in order and inputs in the
+      first segment are about student information whereas inputs in the second segment are about NOK's information.
 * The order of input within its own segment is swappable.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -133,7 +106,7 @@ add n/Betsy Crowe ct/Mon 5-7pm l/Serangoon Nex  t/friend e/betsycrowe@example.co
     t/slow learner r/$70 nok/ n/Karen e/karenSUper@gmail.com p/99994444
 ```
 
-## Adding a class: `addclass`
+### Adding a class: `addclass`
 <hr>
 
 Add a class to the address book.
@@ -150,7 +123,7 @@ Examples:
 ```
 addclass cn/Sec 4 A Maths ct/mon 11:30-13:30 r/70 l/Nex Tuition Center
 ```
-Adds a new class with name 'Sec 4 A Maths', with class timing MON 11.30-13:30, with hourly rate of $70, at Nex 
+Adds a new class with name 'Sec 4 A Maths', with class timing MON 11.30-13:30, with hourly rate of $70, at Nex
 Tuition Center.
 
 ```
@@ -159,7 +132,7 @@ addclass cn/Sec 4 E Maths ct/tue 12:30-14:30 r/65 l/Block 123, Clementi Ave 6, #
 Adds a new class with name 'Sec 4 E Maths', with class timing Tue 12.30-14:30, with hourly rate of $65, at Block 123, Clementi Ave 6, #14-41.
 
 
-## Adding student/students to a class: `addtoclass`
+### Adding student/students to a class: `addtoclass`
 <hr>
 
 Add a single or multiple students to an existing class
@@ -170,19 +143,47 @@ addtoclass CLASS_INDEX STUDENT_INDEX...
 ```
 
 * This command adds any number of existing students into an existing class.
-* `CLASS_INDEX` is the index number of the class in the displayed class list in the `classes` tab, which will be 
+* `CLASS_INDEX` is the index number of the class in the displayed class list in the `classes` tab, which will be
   receiving the new students.
-* `STUDENT_INDEX...` are the index number/s of the students shown in the displayed student list, these students are 
+* `STUDENT_INDEX...` are the index number/s of the students shown in the displayed student list, these students are
   to be added into the class.
-  
+
 Example:
 ```
 addtoclass 1 1 2 3
 ```
-Adds the 1st, 2nd and 3rd student in the displayed student list in the `students` tab into the 1st class in the 
+Adds the 1st, 2nd and 3rd student in the displayed student list in the `students` tab into the 1st class in the
 displayed class list in the `classes` tab.
 
-## Delete a class: `deleteclass`
+### Clearing all entries : `clear`
+<hr>
+
+Clears all entries from the address book.
+
+Format: `clear`
+
+
+### Deleting a student : `delete`
+<hr>
+
+Deletes the specified student from the address book.
+
+Format:
+```
+delete INDEX
+```
+
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd student in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+
+
+
+### Delete a class: `deleteclass`
 <hr>
 
 Deletes the specified class from the address book.
@@ -199,21 +200,7 @@ deleteclass INDEX
 Examples:
 * `listclass` followed by `deleteclass 2` deletes the 2nd class in the address book.
 
-## Listing all students : `list`
-<hr>
-
-Shows a list of all students in the address book.
-
-Format: `list`
-
-## Listing all the classes: `listclass`
-<hr>
-
-Shows a list of all classes in the address book.
-
-Format: `listclass`
-
-## Editing a student : `edit`
+### Editing a student : `edit`
 <hr>
 
 Edits an existing student in the address book.
@@ -226,29 +213,28 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ct/CLASS_TIMING] [l/LOCATIO
 ```
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student
-list. The index **must be a positive integer** 1, 2, 3, …​
+  list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * An optional `nok/` field can be provided to edit the student's next-of-kin. All fields that come after `nok/`
-will be for the student's next-of-kin. (same rule from `add` command applies)
-  * if `nok/` is provided, at least one of the optional fields belonging to NOK must be provided.
+  will be for the student's next-of-kin. (same rule from `add` command applies)
+    * if `nok/` is provided, at least one of the optional fields belonging to NOK must be provided.
 * When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
-  * You can remove all the student's tags by typing `t/` without
+    * You can remove all the student's tags by typing `t/` without
       specifying any tags after it.
 
 Examples (editing student information only):
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
-* `edit 3 ct/Mon 1pm to 3pm r/$50` Edits the class timing and hourly rate of the 3rd student to be `Mon 1pm to 3pm` and `$50` respectively.
 * `edit 1 n/kevin p/12345678 nok/ n/Stuart p/ 87654321` Edits the name and phone number of student 1 to become kevin and 12345678 and set his next-of-kin's name to Stuart and number of next-of-kin to be 87654321.
 * `edit 4 n/John Walker l/4 Petir Road #16-04 Singapore 657891` Edits the name and location of the 4th person to be
-   `John Walker` and `4 Petir Road #16-04 Singapore 657891` respectively.
+  `John Walker` and `4 Petir Road #16-04 Singapore 657891` respectively.
 
 Examples (also editing parent information):
 * `edit 2 nok/ p/98429239 ` Edits 2nd student's NOK's number to be 98429239.
 * `edit 3 ct/Mon 3-4pm nok/ p/98429239 ` Edits 3rd student's class timing to be Monday 3-4pm while also editing
-NOK's number to be 98429239.
+  NOK's number to be 98429239.
 
-## Editing a class: `editclass`
+### Editing a class: `editclass`
 <hr>
 
 Edits an existing class in the class list in the `classes` tab.
@@ -265,12 +251,19 @@ editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]
 Examples:
 * `editclass 1 ct/wed 15:00-17:00` Edits the 1st class in the class list class timing to be WED 15:00-17:00
 
-## Locating students by name: `findname`
+### Exiting the program : `exit`
+<hr>
+
+Exits the program.
+
+Format: `exit`
+
+### Locating students by name: `findname`
 <hr>
 
 Finds students whose names contain any of the given keywords.
 
-Format: 
+Format:
 ```
 findname KEYWORD [MORE_KEYWORDS]
 ```
@@ -288,12 +281,39 @@ Examples:
 
   ![result for 'findname alex david'](images/findAlexDavidResult.png)
 
-## Locating students by tag: `findtag`
+### Locating class by class timing : `findclass`
+<hr>
+
+Finds a class whose class timing matches the given class timing.
+
+Format: `findclass CLASS_TIMING`
+
+<!---todo fill in inner working--->
+
+Examples:
+* `findclass mon 11:00-12:00` returns the class with class timing at MON 11:00-12:00.
+
+### Locating class by class name: `findclassname`
+<hr>
+
+Finds a class whose class name matches the given keywords.
+
+Format:
+```
+findclassname KEYWORD
+```
+
+<!---todo fill in inner working--->
+
+Examples:
+* `findclassname math` returns all the classes with math in the class name.
+
+### Locating students by tag: `findtag`
 <hr>
 
 Finds students whose tags contain any of the given keywords.
 
-Format: 
+Format:
 ```
 findtag KEYWORD, [MORE_KEYWORDS]
 ```
@@ -309,37 +329,46 @@ findtag KEYWORD, [MORE_KEYWORDS]
 
 Examples:
 * `findtag math` returns `Alex Yeoh` with the `A Math` tag and `John Doe` with the `C Math` tag
-* `findtag math, physics` returns `Alex Yeoh` with the `A Math` and `Biology` tags 
+* `findtag math, physics` returns `Alex Yeoh` with the `A Math` and `Biology` tags
   <br>
-
-## Locating class by class timing : `findclass`
+  
+### Viewing help : `help`
 <hr>
 
-Finds a class whose class timing matches the given class timing.
+Shows a message explaning how to access the help page.
 
-Format: `findclass CLASS_TIMING`
+![help message](images/helpMessage.png)
 
-<!---todo fill in inner working--->
+Format: `help`
 
-Examples:
-* `findclass mon 11:00-12:00` returns the class with class timing at MON 11:00-12:00.
-
-## Locating class by class name: `findclassname`
+### Listing all students : `list`
 <hr>
 
-Finds a class whose class name matches the given keywords.
+Shows a list of all students in the address book.
 
-Format: 
-```
-findclassname KEYWORD
-```
+Format: `list`
 
-<!---todo fill in inner working--->
+### Listing all the classes: `listclass`
+<hr>
+
+Shows a list of all classes in the address book.
+
+Format: `listclass`
+
+### Selecting of classes: `class`
+<hr>
+
+Selects a class in the class tab and displays its students without the need to use the mouse to click.
+
+Format:
+```
+class CLASS_INDEX   
+```
 
 Examples:
-* `findclassname math` returns all the classes with math in the class name.
+* `class 1` selects the class with `CLASS_INDEX` of 1 and displays its students in the class tab.
 
-## Sorting students and classes: `sort`
+### Sorting students and classes: `sort`
 <hr>
 
 Sorts the students alphabetically or classes based on class timing in ascending or descending order.
@@ -358,7 +387,7 @@ Examples:
 * `sort timing asc` sorts classes based on their class timings starting from the earliest in the week to the latest.
 * `sort timing desc` sorts classes based on their class timings starting from the latest in the week to the earliest.
 
-## Viewing of different tabs: `view`
+### Viewing of different tabs: `view`
 <hr>
 
 Views an existing tab in the timetable without the need to use the mouse to click.
@@ -373,38 +402,13 @@ findclassname TAB_TO_VIEW
 Examples:
 * `view timetable` switches the displayed tab to be the timetable tab.
 
-## Selecting of classes: `class`
-<hr>
-
-Selects a class in the class tab and displays its students without the need to use the mouse to click.
-
-Format:
-```
-class CLASS_INDEX   
-```
-
-Examples:
-* `class 1` selects the class with `CLASS_INDEX` of 1 and displays its students in the class tab.
-
-## Clearing all entries : `clear`
-<hr>
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-## Exiting the program : `exit`
-<hr>
-
-Exits the program.
-
-Format: `exit`
-
 ### Saving the data
+<hr>
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
+<hr>
 
 AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -423,6 +427,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 [comment]: <> (* `schedule Monday` will show all contacts with classes on monday.)
 
 ### Archiving data files `[coming in v2.0]`
+<hr>
 
 _Details coming soon ..._
 
@@ -447,6 +452,7 @@ Action | Format, Examples
 **Delete class** | `deleteclass INDEX` <br> e.g., `deleteclass 2`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ct/CLASS_TIMING] [r/HOURLY_RATE] [t/TAG] [l/LOCATION]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Edit class** | `editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]` <br> e.g., `editclass 1 ct/wed 15:00-17:00`
+**Exit** | `exit`
 **Find name** | `findname KEYWORD [MORE_KEYWORDS]` <br> e.g., `find Stuart`
 **Find class** | `findclass CLASS_TIMING` <br> e.g., `findclass mon 11:00-12:00`
 **Find class name** | `findclassname KEYWORD` <br> e.g., `findclassname math`
