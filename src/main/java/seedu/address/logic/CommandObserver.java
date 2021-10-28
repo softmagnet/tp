@@ -19,4 +19,8 @@ public interface CommandObserver {
      */
     public void updateClass(Integer indexOfClassToSelect);
 
+    /**
+     * Hides the tuition class student list.
+     */
+    public void hideTuitionClassStudentList();
 }

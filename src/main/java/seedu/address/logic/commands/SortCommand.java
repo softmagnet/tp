@@ -60,6 +60,8 @@ public class SortCommand extends Command {
 
             model.setClasses(toSort);
 
+            hideTuitionClassStudentList();
+
         } else {
             return new CommandResult("sort by" + sortBy
                     + " has not been implemented by the developers");
