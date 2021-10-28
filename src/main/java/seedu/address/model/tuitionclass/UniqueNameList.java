@@ -27,6 +27,17 @@ public class UniqueNameList implements Iterable<Name> {
 
 
     /**
+     * Constructor that builds a UniqueNameList from zero or more names.
+     *
+     * @param names Names to be stored in the UniqueNameList.
+     */
+    public UniqueNameList(Name ... names) {
+        for (Name name : names) {
+            this.add(name);
+        }
+    }
+
+    /**
      * Checks to see if the name in argument is already in the NameList.
      *
      * @param toCheck Name to check.
