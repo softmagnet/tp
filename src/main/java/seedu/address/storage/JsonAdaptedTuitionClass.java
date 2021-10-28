@@ -14,7 +14,7 @@ import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.tuitionclass.Rate;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.model.tuitionclass.UniqueNameList;
+import seedu.address.model.tuitionclass.StudentNameList;
 
 /**
  * Jackson-friendly version of {@link TuitionClass}.
@@ -106,7 +106,7 @@ public class JsonAdaptedTuitionClass {
         }
         final Rate modelRate = new Rate(rate);
 
-        final UniqueNameList tuitionClassNameList = new UniqueNameList();
+        final StudentNameList tuitionClassNameList = new StudentNameList();
         for (String name : students) {
             tuitionClassNameList.add(new Name(name));
         }

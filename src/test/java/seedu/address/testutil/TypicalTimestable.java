@@ -3,15 +3,25 @@ package seedu.address.testutil;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_NOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASSNAME_IB_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASSNAME_IB_PHYSICS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASSTIMING_IB_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASSTIMING_IB_PHYSICS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_NOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_IB_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_IB_PHYSICS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_NOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_NOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RATE_IB_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RATE_IB_PHYSICS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENTLIST_IB_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENTLIST_IB_PHYSICS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -21,17 +31,14 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Student;
-import seedu.address.model.tuitionclass.ClassName;
-import seedu.address.model.tuitionclass.ClassTiming;
-import seedu.address.model.tuitionclass.Location;
-import seedu.address.model.tuitionclass.Rate;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalTimestable {
 
+    ///Typical Students
     public static final Student ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
@@ -46,10 +53,6 @@ public class TypicalPersons {
             .withNokAddress("325, West State 3, #60-12")
             .withNokEmail("hahiihi@gmail.com").withNokPhone("87759868")
             .withTags("Physics").build();
-    public static final Student NO_NOK_BENSON = new PersonBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432")
-            .build();
     public static final Student CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("Campbell Road Ave 2, #11")
             .withNokName("Jamie Kurz")
@@ -98,9 +101,31 @@ public class TypicalPersons {
             .withNokEmail(VALID_EMAIL_NOK)
             .build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    //// Typical Classes
 
-    private TypicalPersons() {
+    public static final TuitionClass JC_PHYISCS = new TuitionClassBuilder().withClassName("JC Physics")
+            .withClassTiming("Mon 10:00-12:00").withRate("70").withLocation("Jaycee Tuition Center Nex").build();
+    public static final TuitionClass SEC_PHYSICS = new TuitionClassBuilder().withClassName("Sec 4 Physics")
+            .withClassTiming("Tue 11:00-13:00").withRate("77").withLocation("Learning Lab Orchard").build();
+    public static final TuitionClass JC_MATHS = new TuitionClassBuilder().withClassName("JC Maths")
+            .withClassTiming("Wed 15:00-17:00").withRate("55").withLocation("Bukit Merah Block 614 #01-330").build();
+    public static final TuitionClass SEC_MATHS = new TuitionClassBuilder().withClassName("Sec 4 Maths")
+            .withClassTiming("Thu 10:00-12:00").withRate("60").withLocation("Merlion Tuition Center Kovan").build();
+    public static final TuitionClass JC_CHEMISTRY = new TuitionClassBuilder().withClassName("JC Chemistry")
+            .withClassTiming("Fri 15:00-18:00").withRate("50").withLocation("Hougang Blk 313 #11-394").build();
+    public static final TuitionClass SEC_CHEMISTRY = new TuitionClassBuilder().withClassName("Sec 4 Chemistry")
+            .withClassTiming("Sat 13:00-16:00").withRate("80").withLocation("Kumon at Orchard").build();
+
+    // Classes found in {@code CommandTestUtil}
+    public static final TuitionClass IB_PHYSICS = new TuitionClassBuilder().withClassName(VALID_CLASSNAME_IB_PHYSICS)
+            .withClassTiming(VALID_CLASSTIMING_IB_PHYSICS).withRate(VALID_RATE_IB_PHYSICS)
+            .withLocation(VALID_LOCATION_IB_PHYSICS).withStudentList(VALID_STUDENTLIST_IB_PHYSICS).build();
+    public static final TuitionClass IB_MATHS = new TuitionClassBuilder().withClassName(VALID_CLASSNAME_IB_MATHS)
+            .withClassTiming(VALID_CLASSTIMING_IB_MATHS).withRate(VALID_RATE_IB_MATHS)
+            .withLocation(VALID_LOCATION_IB_MATHS).withStudentList(VALID_STUDENTLIST_IB_MATHS).build();
+
+
+    private TypicalTimestable() {
     } // prevents instantiation
 
     /**
@@ -108,8 +133,13 @@ public class TypicalPersons {
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
+
         for (Student student : getTypicalPersons()) {
             ab.addStudent(student);
+        }
+
+        for (TuitionClass tuitionClass : getTypicalClasses()) {
+            ab.addTuitionClass(tuitionClass);
         }
 
         return ab;
@@ -117,5 +147,10 @@ public class TypicalPersons {
 
     public static List<Student> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<TuitionClass> getTypicalClasses() {
+        return new ArrayList<>(Arrays.asList(JC_CHEMISTRY, JC_MATHS, JC_PHYISCS,
+                SEC_CHEMISTRY, SEC_MATHS, SEC_PHYSICS));
     }
 }

@@ -4,8 +4,8 @@ import seedu.address.model.tuitionclass.ClassName;
 import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.tuitionclass.Rate;
+import seedu.address.model.tuitionclass.StudentNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.model.tuitionclass.UniqueNameList;
 
 public class TuitionClassBuilder {
 
@@ -19,14 +19,14 @@ public class TuitionClassBuilder {
     private ClassTiming classTiming;
     private Rate rate;
     private Location location;
-    private UniqueNameList uniqueNameList;
+    private StudentNameList studentNameList;
 
     public TuitionClassBuilder() {
         className = new ClassName(DEFAULT_CLASS_NAME);
         classTiming = new ClassTiming(DEFAULT_CLASS_TIMING);
         rate = new Rate(DEFAULT_RATE);
         location = new Location(DEFAULT_LOCATION);
-        uniqueNameList = new UniqueNameList(DEFAULT_NAME_LIST);
+        studentNameList = new StudentNameList(DEFAULT_NAME_LIST);
     }
 
     public TuitionClassBuilder(TuitionClass classToCopy) {
@@ -34,34 +34,35 @@ public class TuitionClassBuilder {
         classTiming = classToCopy.getClassTiming();
         rate = classToCopy.getRate();
         location = classToCopy.getLocation();
-        uniqueNameList = classToCopy.getStudentList();
+        studentNameList = classToCopy.getStudentList();
     }
 
-    public TuitionClassBuilder withClassName(ClassName className) {
-        this.className = className;
+    public TuitionClassBuilder withClassName(String className) {
+        this.className = new ClassName(className);
         return this;
     }
 
-    public TuitionClassBuilder withClassTiming(ClassTiming classTiming) {
+    public TuitionClassBuilder withClassTiming(String classTiming) {
+        this.classTiming = new ClassTiming(classTiming);
          return this;
     }
 
-    public TuitionClassBuilder withRate(Rate rate) {
-        this.rate = rate;
+    public TuitionClassBuilder withRate(String rate) {
+        this.rate = new Rate(rate);
         return this;
     }
 
-    public TuitionClassBuilder withLocation(Location location) {
-        this.location = location;
+    public TuitionClassBuilder withLocation(String location) {
+        this.location = new Location(location);
         return this;
     }
 
-    public TuitionClassBuilder withStudentList(UniqueNameList uniqueNameList) {
-        this.uniqueNameList = uniqueNameList;
+    public TuitionClassBuilder withStudentList(String... studentList) {
+        this.studentNameList = new StudentNameList(studentList);
         return this;
     }
 
     public TuitionClass build() {
-        return new TuitionClass(className, classTiming, location, rate, uniqueNameList);
+        return new TuitionClass(className, classTiming, location, rate, studentNameList);
     }
 }

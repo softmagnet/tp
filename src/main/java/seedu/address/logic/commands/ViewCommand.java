@@ -10,7 +10,7 @@ public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Switches tab to specified tab\n"
-            + "Parameters: TAB NAME\n"
+            + "Parameters: TAB_TO_VIEW\n"
             + "Example: " + COMMAND_WORD + " timetable";
     public static final String INVALID_TAB = "This tab doesn't exists.\n"
             + "You can only switch to students, timetable or classes.";

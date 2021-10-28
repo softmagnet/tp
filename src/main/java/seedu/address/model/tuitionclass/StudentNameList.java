@@ -18,23 +18,32 @@ import seedu.address.model.tuitionclass.exceptions.DuplicateStudentInClassExcept
  * Represents a unique list of names corresponding to the students
  * that a {@code TuitionClass} has.
  */
-public class UniqueNameList implements Iterable<Name> {
+public class StudentNameList implements Iterable<Name> {
 
     private final ArrayList<Name> internalList = new ArrayList<>();
 
-    public UniqueNameList() {}
-
     /**
-     * Constructs an UniqueNameList from an array of Strings.
+     * Constructs an StudentNameList from an array of Strings.
      *
-     * @param nameList The String array to convert into an UniqueNameList.
+     * @param nameList The String array to convert into an StudentNameList.
      */
-    public UniqueNameList(String[] nameList) {
+    public StudentNameList(String[] nameList) {
         for (String name : nameList) {
             internalList.add(new Name(name));
         }
     }
 
+
+    /**
+     * Constructor that builds a StudentNameList from zero or more names.
+     *
+     * @param names Names to be stored in the StudentNameList.
+     */
+    public StudentNameList(Name ... names) {
+        for (Name name : names) {
+            this.add(name);
+        }
+    }
 
     /**
      * Checks to see if the name in argument is already in the NameList.
@@ -58,9 +67,9 @@ public class UniqueNameList implements Iterable<Name> {
 
     /**
      * Removes all names provided from the list.
-     * @param names The UniqueNameList of names to be removed.
+     * @param names The StudentNameList of names to be removed.
      */
-    public void removeAll(UniqueNameList names) {
+    public void removeAll(StudentNameList names) {
         for (Name name : names) {
             remove(name);
         }
@@ -91,9 +100,9 @@ public class UniqueNameList implements Iterable<Name> {
     /**
      * Adds all the names in the argument into the list.
      *
-     * @param names to be added in UniqueNameList form.
+     * @param names to be added in StudentNameList form.
      */
-    public void addAll(UniqueNameList names) {
+    public void addAll(StudentNameList names) {
         for (Name name : names) {
             if (!this.contains(name)) {
                 this.add(name);
@@ -142,5 +151,18 @@ public class UniqueNameList implements Iterable<Name> {
     public Name get(int zeroBasedIndex) {
         assert (zeroBasedIndex < internalList.size());
         return internalList.get(zeroBasedIndex);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof StudentNameList)) {
+            return false;
+        }
+
+        return ((StudentNameList) o).internalList.equals(internalList);
     }
 }

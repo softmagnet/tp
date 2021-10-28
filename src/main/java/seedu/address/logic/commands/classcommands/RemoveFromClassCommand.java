@@ -13,8 +13,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
+import seedu.address.model.tuitionclass.StudentNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.model.tuitionclass.UniqueNameList;
 
 public class RemoveFromClassCommand extends Command {
     public static final String COMMAND_WORD = "removefromclass";
@@ -23,7 +23,7 @@ public class RemoveFromClassCommand extends Command {
             + " number used "
             + "in the displayed class and person list.\n"
             + "Parameters: CLASS_INDEX "
-            + "STUDENT_INDEX\n"
+            + "STUDENT_INDEX...\n"
             + "Example: " + COMMAND_WORD + " "
             + "2 "
             + "3 4 5 "
@@ -57,7 +57,7 @@ public class RemoveFromClassCommand extends Command {
         TuitionClass classToRemoveFrom = lastShownClassList.get(toEditClassIndex.getZeroBased());
 
         //get names to be removed
-        UniqueNameList currentStudentNameList = classToRemoveFrom.getStudentList();
+        StudentNameList currentStudentNameList = classToRemoveFrom.getStudentList();
         checkIndicesAreValid(studentIndicesToRemove, currentStudentNameList);
         List<Student> filteredStudentList = model.getFilteredStudentList();
         currentStudentNameList.sortListByList(filteredStudentList);
@@ -65,7 +65,7 @@ public class RemoveFromClassCommand extends Command {
 
 
         //get updated student list
-        UniqueNameList updatedStudentNameList = new UniqueNameList();
+        StudentNameList updatedStudentNameList = new StudentNameList();
         updatedStudentNameList.addAll(currentStudentNameList);
         updatedStudentNameList.removeAll(namesToRemove);
 
@@ -80,7 +80,7 @@ public class RemoveFromClassCommand extends Command {
         return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, editedClass));
     }
 
-    private ArrayList<Name> createNewNameList(List<Index> studentIndices, UniqueNameList nameList) {
+    private ArrayList<Name> createNewNameList(List<Index> studentIndices, StudentNameList nameList) {
         ArrayList<Name> newNameList = new ArrayList<>();
         studentIndices.stream().forEach(index -> {
             Name name = nameList.get(index.getZeroBased());
@@ -89,7 +89,7 @@ public class RemoveFromClassCommand extends Command {
         return newNameList;
     }
 
-    private void checkIndicesAreValid(List<Index> studentIndices, UniqueNameList nameList)
+    private void checkIndicesAreValid(List<Index> studentIndices, StudentNameList nameList)
             throws CommandException {
         int size = Integer.valueOf(nameList.size());
         for (Index index : studentIndices) {
