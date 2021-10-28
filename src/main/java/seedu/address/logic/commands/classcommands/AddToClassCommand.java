@@ -15,8 +15,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
+import seedu.address.model.tuitionclass.StudentNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.model.tuitionclass.UniqueNameList;
 import seedu.address.model.tuitionclass.exceptions.DuplicateStudentInClassException;
 
 public class AddToClassCommand extends Command {
@@ -26,7 +26,7 @@ public class AddToClassCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds students to a class by the index number used "
             + "in the displayed class and person list.\n"
             + "Parameters: CLASS_INDEX "
-            + "STUDENT_INDEX\n"
+            + "STUDENT_INDEX...\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 "
             + "2 3 5 "
@@ -66,8 +66,8 @@ public class AddToClassCommand extends Command {
         TuitionClass classToAddTo = lastShownClassList.get(toEditClassIndex.getZeroBased());
 
         //get updated student list
-        UniqueNameList currentStudentNameList = classToAddTo.getStudentList();
-        UniqueNameList updatedStudentNameList = new UniqueNameList();
+        StudentNameList currentStudentNameList = classToAddTo.getStudentList();
+        StudentNameList updatedStudentNameList = new StudentNameList();
 
         try {
             updatedStudentNameList.addAll(currentStudentNameList);
@@ -79,7 +79,7 @@ public class AddToClassCommand extends Command {
 
         //create edit class descriptor
         EditClassDescriptor editClassDescriptor = new EditClassDescriptor();
-        editClassDescriptor.setStudentList(updatedStudentNameList);
+        editClassDescriptor.setUniqueNameList(updatedStudentNameList);
 
         //swap out old tuition class with new tuition class
         TuitionClass editedClass = EditClassCommand.createEditedClass(classToAddTo, editClassDescriptor);

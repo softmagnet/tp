@@ -1,7 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,11 +10,6 @@ import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tuitionclass.ClassName;
-import seedu.address.model.tuitionclass.ClassTiming;
-import seedu.address.model.tuitionclass.Location;
-import seedu.address.model.tuitionclass.Rate;
-import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -28,9 +21,6 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_RATE = "70";
-    public static final String DEFAULT_CLASSTIMING = "Wed 16:00-17:00";
-    public static final String DEFAULT_LOCATION = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_NOK_NAME = "Zhenglin Ong";
     public static final String DEFAULT_NOK_PHONE = "97762839";
     public static final String DEFAULT_NOK_EMAIL = "zhenglin@gmail.com";
@@ -48,11 +38,6 @@ public class PersonBuilder {
     private Email nokEmail;
     private Address nokAddress;
 
-    private ArrayList<TuitionClass> classList;
-    private ClassName className;
-    private ClassTiming classTiming;
-    private Location location;
-    private Rate rate;
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -67,13 +52,6 @@ public class PersonBuilder {
         nokPhone = new Phone(DEFAULT_NOK_PHONE);
         nokEmail = new Email(DEFAULT_NOK_EMAIL);
         nokAddress = new Address(DEFAULT_NOK_ADDRESS);
-
-        classList = new ArrayList<>();
-        className = new ClassName(DEFAULT_CLASS_NAME);
-        classTiming = new ClassTiming(DEFAULT_CLASSTIMING);
-        location = new Location(DEFAULT_LOCATION);
-        rate = new Rate(DEFAULT_RATE);
-        classList.add(new TuitionClass(className, classTiming, location, rate));
     }
 
     /**
@@ -89,11 +67,6 @@ public class PersonBuilder {
         nokPhone = studentToCopy.getNok().getPhone();
         nokEmail = studentToCopy.getNok().getEmail();
         nokAddress = studentToCopy.getNok().getAddress();
-        classList = studentToCopy.getClassList();
-        //className = studentToCopy.
-        //classTiming = studentToCopy.getClassTiming();
-        //location = studentToCopy.getLocation();
-        //rate = studentToCopy.getRate();
     }
 
     /**
@@ -137,42 +110,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Rate} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withRate(String rate) {
-        TuitionClass defaultTuitionClass = classList.get(0);
-        TuitionClass editedTuitionClass = new TuitionClass(defaultTuitionClass.getClassName(),
-                defaultTuitionClass.getClassTiming(), defaultTuitionClass.getLocation(), new Rate(rate));
-        ArrayList<TuitionClass> editedClassList = new ArrayList<>(Arrays.asList(editedTuitionClass));
-        this.classList = editedClassList;
-        return this;
-    }
-
-    /**
-     * Sets the {@code ClassTiming} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withClassTiming(String classTiming) {
-        TuitionClass defaultTuitionClass = classList.get(0);
-        TuitionClass editedTuitionClass = new TuitionClass(defaultTuitionClass.getClassName(),
-                new ClassTiming(classTiming), defaultTuitionClass.getLocation(), defaultTuitionClass.getRate());
-        ArrayList<TuitionClass> editedClassList = new ArrayList<>(Arrays.asList(editedTuitionClass));
-        this.classList = editedClassList;
-        return this;
-    }
-
-    /**
-     * Sets the {@code Location} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withLocation(String location) {
-        TuitionClass defaultTuitionClass = classList.get(0);
-        TuitionClass editedTuitionClass = new TuitionClass(defaultTuitionClass.getClassName(),
-                defaultTuitionClass.getClassTiming(), new Location(location), defaultTuitionClass.getRate());
-        ArrayList<TuitionClass> editedClassList = new ArrayList<>(Arrays.asList(editedTuitionClass));
-        this.classList = editedClassList;
-        return this;
-    }
-
-    /**
      * Sets the {@code NokName} of the {@code EditPersonDescriptor} that we are building.
      */
     public PersonBuilder withNokName(String name) {
@@ -205,22 +142,13 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code TuitionClasses} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public PersonBuilder withTuitionClasses(ArrayList<TuitionClass> tuitionClasses) {
-        this.classList = tuitionClasses;
-        return this;
-    }
-
-    /**
      * Builds student with all details included in the builder.
      *
      * @return Student with all the deatils included in the builder.
      */
     public Student build() {
         Nok nok = new Nok(nokName, nokPhone, nokEmail, nokAddress);
-        //TuitionClass tuitionClass = new TuitionClass(className,)
-        return new Student(name, phone, email, address, classList, nok, tags);
+        return new Student(name, phone, email, address, nok, tags);
     }
 
 }

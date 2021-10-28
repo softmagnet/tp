@@ -34,7 +34,7 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
 
-        // sort the studentList;
+        // sort the StudentNameList;
         if (sortBy.equals("name")) {
             ArrayList<Student> toSort = new ArrayList<Student>(model.getFilteredStudentList());
 

@@ -5,12 +5,6 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tuitionClasses" : [ {
-      "classTiming" : "Mon 11:30-13:30",
-      "className" : "Class 1",
-      "rate": "69",
-      "location" : "132, Jurong East Ave 4, #03-10"
-    }],
     "nok" : {
       "name" : "Long Chai Boon",
       "phone" : "67785914",
@@ -23,12 +17,6 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tuitionClasses" : [ {
-      "classTiming" : "Mon 11:30-13:30",
-      "className" : "Class 1",
-      "rate": "69",
-      "location" : "132, Jurong East Ave 4, #03-10"
-    }],
     "nok" : {
       "name" : "Short Chai Boon",
       "phone" : "87759868",
@@ -40,15 +28,9 @@
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "address" : "wall street",
-    "tuitionClasses" : [ {
-      "classTiming" : "Mon 11:30-13:30",
-      "className" : "Class 1",
-      "rate": "69",
-      "location" : "132, Jurong East Ave 4, #03-10"
-    }],
+    "address" : "Campbell Road Ave 2, #11",
     "nok" : {
-      "name" : "Mr Batman",
+      "name" : "Jamie Kurz",
       "phone" : "62212222",
       "email" : "dontcallmeillcome@gmail.com",
       "address" : "325, Bat Cave 3, #10-23"
@@ -59,12 +41,6 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "tuitionClasses" : [ {
-      "classTiming" : "Mon 11:30-13:30",
-      "className" : "Class 1",
-      "rate": "69",
-      "location" : "132, Jurong East Ave 4, #03-10"
-    }],
     "nok" : {
       "name" : "Bad Chai Boon",
       "phone" : "88888888",
@@ -77,12 +53,6 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "tuitionClasses" : [ {
-      "classTiming" : "Mon 11:30-13:30",
-      "className" : "Class 1",
-      "rate": "69",
-      "location" : "132, Jurong East Ave 4, #03-10"
-    }],
     "nok" : {
       "name" : "Bernard Wan",
       "phone" : "67785314",
@@ -95,12 +65,6 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "tuitionClasses" : [ {
-      "classTiming" : "Mon 11:30-13:30",
-      "className" : "Class 1",
-      "rate": "69",
-      "location" : "132, Jurong East Ave 4, #03-10"
-    }],
     "nok" : {
       "name" : "Ong Lin Zhen",
       "phone" : "67382344",
@@ -113,12 +77,6 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "tuitionClasses" : [ {
-      "classTiming" : "Mon 11:30-13:30",
-      "className" : "Class 1",
-      "rate": "69",
-      "location" : "132, Jurong East Ave 4, #03-10"
-    }],
     "nok" : {
       "name" : "Hehe Chai Red",
       "phone" : "67111111",
@@ -126,5 +84,42 @@
       "address" : "999, Estate State 4, #10-32"
     },
     "tagged" : [ ]
-  } ]
+  } ],
+  "classes" : [{
+    "classTiming" : "MON 10:00-12:00",
+    "className" : "JC Physics",
+    "rate" : "70",
+    "location" : "Jaycee Tuition Center Nex",
+    "students" : []
+  }, {
+    "classTiming" : "Tue 11:00-13:00",
+    "className" : "Sec 4 Physics",
+    "rate" : "77",
+    "location" : "Learning Lab Orchard",
+    "students" : [ ]
+  }, {
+    "classTiming" : "Wed 15:00-17:00",
+    "className" : "JC Maths",
+    "rate" : "55",
+    "location" : "Bukit Merah Block 614 #01-330",
+    "students" : [ ]
+  }, {
+    "classTiming" : "Thu 10:00-12:00",
+    "className" : "Sec 4 Maths",
+    "rate" : "60",
+    "location" : "Merlion Tuition Center Kovan",
+    "students" : [ ]
+  }, {
+    "classTiming" : "Fri 15:00-18:00",
+    "className" : "JC Chemistry",
+    "rate" : "50",
+    "location" : "Hougang Blk 313 #11-394",
+    "students" : [ ]
+  }, {
+    "classTiming" : "Sat 13:00-16:00",
+    "className" : "Sec 4 Chemistry",
+    "rate" : "88",
+    "location" : "Kumon at Orchard",
+    "students" : [ ]
+  }]
 }

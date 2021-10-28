@@ -21,8 +21,8 @@ import seedu.address.model.tuitionclass.ClassName;
 import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.tuitionclass.Rate;
+import seedu.address.model.tuitionclass.StudentNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.model.tuitionclass.UniqueNameList;
 
 
 public class EditClassCommand extends Command {
@@ -75,9 +75,9 @@ public class EditClassCommand extends Command {
         ClassTiming classTiming = editClassDescriptor.getClassTiming().orElse(classToEdit.getClassTiming());
         Location location = editClassDescriptor.getLocation().orElse(classToEdit.getLocation());
         Rate rate = editClassDescriptor.getRate().orElse(classToEdit.getRate());
-        UniqueNameList uniqueNameList = editClassDescriptor.getStudentList().orElse(classToEdit.getStudentList());
+        StudentNameList studentNameList = editClassDescriptor.getStudentList().orElse(classToEdit.getStudentList());
 
-        return new TuitionClass(className, classTiming, location, rate, uniqueNameList);
+        return new TuitionClass(className, classTiming, location, rate, studentNameList);
 
     }
 
@@ -107,9 +107,22 @@ public class EditClassCommand extends Command {
         private ClassTiming classTiming;
         private Location location;
         private Rate rate;
-        private UniqueNameList uniqueNameList;
+        private StudentNameList studentNameList;
 
         public EditClassDescriptor() {
+        }
+
+        /**
+         * Constructs a copy of the given EditClassDescriptor.
+         *
+         * @param toCopy The EditClassDescriptor to copy.
+         */
+        public EditClassDescriptor(EditClassDescriptor toCopy) {
+            setClassName(toCopy.className);
+            setClassTiming(toCopy.classTiming);
+            setLocation(toCopy.location);
+            setRate(toCopy.rate);
+            setUniqueNameList(toCopy.studentNameList);
         }
 
         public Optional<ClassName> getClassName() {
@@ -144,16 +157,34 @@ public class EditClassCommand extends Command {
             this.rate = rate;
         }
 
-        public Optional<UniqueNameList> getStudentList() {
-            return Optional.ofNullable(uniqueNameList);
+        public Optional<StudentNameList> getStudentList() {
+            return Optional.ofNullable(studentNameList);
         }
 
-        public void setStudentList(UniqueNameList uniqueNameList) {
-            this.uniqueNameList = uniqueNameList;
+        public void setUniqueNameList(StudentNameList studentNameList) {
+            this.studentNameList = studentNameList;
         }
 
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(className, classTiming, rate, location, uniqueNameList);
+            return CollectionUtil.isAnyNonNull(className, classTiming, rate, location, studentNameList);
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            }
+
+            if (!(other instanceof EditClassDescriptor)) {
+                return false;
+            }
+
+            EditClassDescriptor e = (EditClassDescriptor) other;
+            return className.equals(e.className)
+                    && classTiming.equals(e.classTiming)
+                    && rate.equals(e.rate)
+                    && location.equals(e.location)
+                    && studentNameList.equals(e.studentNameList);
         }
     }
 }
