@@ -279,19 +279,21 @@ Finds students whose names contain any of the given keywords.
 
 Format:
 ```
-findname KEYWORD [MORE_KEYWORDS]
+findname KEYWORD, [MORE_KEYWORDS]
 ```
 
-* The search is case-insensitive. e.g `hans` will match `Hans`.
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
+* The search is case-insensitive. e.g. `hans` will match `Hans`.
+* The keywords are split by commas. e.g. `findname alex lim, bernice yu`
 * Only the name is searched.
 * Partial matches will still be matched e.g. `Han` will match `Hans`.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+  e.g. `findname alex lim, bernice yu` will return `Alex Lim`, `Bernice Yu`.
+* The entire keyword is used for matching e.g. `findname Alex L` will match `Alex Lim`
+    but not `Alex Yu`
 
 Examples:
 * `findname John` returns `john` and `John Doe`.
-* `findname alex david` returns `Alex Yeoh`, `David Li`.<br>
+* `findname alex, david` returns `Alex Yeoh`, `David Li`.<br>
 
   ![result for 'findname alex david'](images/findAlexDavidResult.png)
 
