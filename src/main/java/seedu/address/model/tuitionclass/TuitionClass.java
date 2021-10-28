@@ -235,4 +235,8 @@ public class TuitionClass {
 
         return builder.toString();
     }
+
+    public void replaceStudentName(Name newName, Name oldName) {
+        studentNameList.replaceStudentName(newName, oldName);
+    }
 }

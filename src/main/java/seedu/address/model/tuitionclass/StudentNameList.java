@@ -154,4 +154,11 @@ public class StudentNameList implements Iterable<Name> {
 
         return ((StudentNameList) o).internalList.equals(internalList);
     }
+
+    public void replaceStudentName(Name newName, Name oldName) {
+        int oldNameIndex = internalList.indexOf(oldName);
+        if (oldNameIndex != -1) {
+            internalList.set(oldNameIndex, newName);
+        }
+    }
 }
