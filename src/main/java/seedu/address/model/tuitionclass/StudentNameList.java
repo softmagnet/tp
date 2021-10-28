@@ -3,10 +3,15 @@ package seedu.address.model.tuitionclass;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.exceptions.DuplicateStudentInClassException;
 
 /**
@@ -17,8 +22,11 @@ public class StudentNameList implements Iterable<Name> {
 
     private final List<Name> internalList = new ArrayList<>();
 
-    public StudentNameList() {}
-
+    /**
+     * Constructs an StudentNameList from an array of Strings.
+     *
+     * @param nameList The String array to convert into an StudentNameList.
+     */
     public StudentNameList(String[] nameList) {
         for (String name : nameList) {
             internalList.add(new Name(name));
@@ -110,6 +118,28 @@ public class StudentNameList implements Iterable<Name> {
     @Override
     public Iterator<Name> iterator() {
         return internalList.iterator();
+    }
+
+    /**
+     * Sorts the internal Name list in the same order as the list of students given.
+     *
+     * @param listToSortBy The student list to sort the name list by.
+     */
+    public void sortListByList(List<Student> listToSortBy) {
+        Collections.sort(internalList,
+                Comparator.comparing(name -> listToSortBy.stream().map(Person::getName)
+                        .collect(Collectors.toList()).indexOf(name)));
+    }
+
+    /**
+     * Gets the Name at the given index.
+     *
+     * @param zeroBasedIndex The index to retrieve the Name from.
+     * @return The Name at the given index.
+     */
+    public Name get(int zeroBasedIndex) {
+        assert (zeroBasedIndex < internalList.size());
+        return internalList.get(zeroBasedIndex);
     }
 
     @Override

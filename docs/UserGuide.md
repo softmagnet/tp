@@ -169,6 +169,39 @@ addtoclass 1 1 2 3
 Adds the 1st, 2nd and 3rd student in the displayed student list in the `students` tab into the 1st class in the
 displayed class list in the `classes` tab.
 
+
+## Delete a class: `deleteclass`
+<hr>
+
+Deletes the specified class from the address book.
+
+Format:
+```
+deleteclass INDEX
+```
+
+* Deletes the class at the specified `INDEX`.
+* The index refers to the index number shown in the displayed class list in the `classes` tab.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listclass` followed by `delete 2` deletes the 2nd class in the address book.
+
+## Listing all students : `list`
+<hr>
+
+Shows a list of all students in the address book.
+
+Format: `list`
+
+## Listing all the classes: `listclass`
+<hr>
+
+Shows a list of all students in the address book.
+
+Format: `listclass`
+
+
 ### Editing a student : `edit`
 <hr>
 
