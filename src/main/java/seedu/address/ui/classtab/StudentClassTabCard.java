@@ -1,5 +1,7 @@
 package seedu.address.ui.classtab;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -8,22 +10,15 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Student;
 import seedu.address.ui.UiPart;
 
-import java.util.Comparator;
-
 /**
  * An UI component that displays information of a {@code Person}.
  */
 public class StudentClassTabCard extends UiPart<Region> {
 
     private static final String FXML = "classTab/StudentListCard.fxml";
-    private static final Character DOLLAR_SIGN = '$';
-    private static final String PER_HOUR = "/hr";
-    private static final String CLASS_TIMING_FIELD = "Class Timing: ";
-    private static final String LOCATION_FIELD = "Location: ";
     private static final String ADDRESS_FIELD = "Address: ";
     private static final String MOBILE_FIELD = "Mobile: ";
     private static final String EMAIL_FIELD = "Email: ";
-    private static final String RATE_FIELD = "Rate: ";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
