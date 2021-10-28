@@ -14,23 +14,19 @@
   </VBox>
 
   <HBox VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-    <!-- Classes -->
     <VBox fx:id="classes" styleClass="pane-with-border" minWidth="500"
           VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-      <padding>
-        <Insets right="10" bottom="30" left="10" />
-      </padding>
-      <Label fx:id="classLabel" styleClass="classLabel" text="Your classes" alignment="TOP_CENTER"/>
+      <HBox alignment="CENTER">
+        <Label fx:id="classLabel" styleClass="classLabel"/>
+      </HBox>
       <StackPane fx:id="tuitionClassListPlaceholder" styleClass="pane-transparent" HBox.hgrow="ALWAYS" />
     </VBox>
 
-    <!-- Students -->
     <VBox fx:id="students" styleClass="pane-with-border" minWidth="500"
           VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-      <padding>
-        <Insets right="10" bottom="30" left="10" />
-      </padding>
-      <Label fx:id="studentLabel" styleClass="studentLabel" text="Students" alignment="TOP_CENTER"/>
+      <HBox alignment="CENTER">
+        <Label fx:id="studentLabel" styleClass="studentLabel"/>
+      </HBox>
       <StackPane fx:id="studentListPlaceholder" styleClass="pane-transparent" HBox.hgrow="ALWAYS" />
     </VBox>
   </HBox>

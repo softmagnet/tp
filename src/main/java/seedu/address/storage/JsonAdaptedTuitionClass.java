@@ -13,8 +13,8 @@ import seedu.address.model.tuitionclass.ClassName;
 import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.tuitionclass.Rate;
-import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.model.tuitionclass.StudentNameList;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * Jackson-friendly version of {@link TuitionClass}.

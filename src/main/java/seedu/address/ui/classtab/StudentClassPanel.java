@@ -1,5 +1,7 @@
 package seedu.address.ui.classtab;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -9,8 +11,6 @@ import seedu.address.model.person.Student;
 import seedu.address.ui.StudentListViewCell;
 import seedu.address.ui.UiPart;
 
-import java.util.logging.Logger;
-
 public class StudentClassPanel extends UiPart<Region> {
     private static final String FXML = "classTab/StudentClassListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TuitionClassPanel.class);
@@ -18,6 +18,11 @@ public class StudentClassPanel extends UiPart<Region> {
     @FXML
     private ListView<Student> studentListView;
 
+    /**
+     * Represents a Panel for the Students in a Tuition Class.
+     *
+     * @param studentList The studentList that it is supposed to display.
+     */
     public StudentClassPanel(ObservableList<Student> studentList) {
         super(FXML);
         studentListView.setItems(studentList);
