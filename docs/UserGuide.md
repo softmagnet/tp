@@ -18,21 +18,23 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample student data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+1. Type the command in the command box and press 'Enter' to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Some example commands you can try using the sample student data before using your own student data:
 
    * **`list`** : Lists all contacts.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
+   
+   * **`sort`****`name`**`asc` : Sorts the students by their name in ascending alphabetic order.
+   
    * **`exit`** : Exits the app.
+
+1. To delete the sample data, you can use the  **`clear`** command which delete all the contacts, instead of deleting them one by one.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -84,7 +86,10 @@ Format: `help`
 
 Deletes the specified student from the address book.
 
-Format: `delete INDEX`
+Format: 
+```
+delete INDEX
+```
 
 * Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
@@ -192,7 +197,7 @@ deleteclass INDEX
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listclass` followed by `delete 2` deletes the 2nd class in the address book.
+* `listclass` followed by `deleteclass 2` deletes the 2nd class in the address book.
 
 ## Listing all students : `list`
 <hr>
@@ -204,7 +209,7 @@ Format: `list`
 ## Listing all the classes: `listclass`
 <hr>
 
-Shows a list of all students in the address book.
+Shows a list of all classes in the address book.
 
 Format: `listclass`
 
@@ -246,7 +251,7 @@ NOK's number to be 98429239.
 ## Editing a class: `editclass`
 <hr>
 
-Edits an existing class in the class list in the `classes` tab
+Edits an existing class in the class list in the `classes` tab.
 
 Format:
 ```
@@ -265,7 +270,10 @@ Examples:
 
 Finds students whose names contain any of the given keywords.
 
-Format: `findname KEYWORD [MORE_KEYWORDS]`
+Format: 
+```
+findname KEYWORD [MORE_KEYWORDS]
+```
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -277,6 +285,7 @@ Format: `findname KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `findname John` returns `john` and `John Doe`
 * `findname alex david` returns `Alex Yeoh`, `David Li`<br>
+
   ![result for 'findname alex david'](images/findAlexDavidResult.png)
 
 ## Locating students by tag: `findtag`
@@ -284,7 +293,10 @@ Examples:
 
 Finds students whose tags contain any of the given keywords.
 
-Format: `findtag KEYWORD, [MORE_KEYWORDS]`
+Format: 
+```
+findtag KEYWORD, [MORE_KEYWORDS]
+```
 
 * The search is case-insensitive. e.g `math` will match `Math`
 * The keywords are separated by commas. e.g. `findtag math, physics` will find students
@@ -299,7 +311,6 @@ Examples:
 * `findtag math` returns `Alex Yeoh` with the `A Math` tag and `John Doe` with the `C Math` tag
 * `findtag math, physics` returns `Alex Yeoh` with the `A Math` and `Biology` tags 
   <br>
-
 
 ## Locating class by class timing : `findclass`
 <hr>
@@ -318,12 +329,62 @@ Examples:
 
 Finds a class whose class name matches the given keywords.
 
-Format: `findclassname KEYWORD`
+Format: 
+```
+findclassname KEYWORD
+```
 
 <!---todo fill in inner working--->
 
 Examples:
 * `findclassname math` returns all the classes with math in the class name.
+
+## Sorting students and classes: `sort`
+<hr>
+
+Sorts the students alphabetically or classes based on class timing in ascending or descending order.
+
+Format:
+```
+findclassname PARAMETER_TO_SORT_BY DIRECTION_OF_SORT
+```
+
+* `PARAMETER_TO_SORT_BY` can either be `students` or `timing` which sorts the students and classes respectively.
+* `DIRECTION_OF_SORT` can either be `asc` or `desc` to represent ascending and descending respectively.
+
+Examples:
+* `sort name asc` sorts students alphabetically by their name in ascending order.
+* `sort name desc` sorts students alphabetically by their name in descending order.
+* `sort timing asc` sorts classes based on their class timings starting from the earliest in the week to the latest.
+* `sort timing desc` sorts classes based on their class timings starting from the latest in the week to the earliest.
+
+## Viewing of different tabs: `view`
+<hr>
+
+Views an existing tab in the timetable without the need to use the mouse to click.
+
+Format:
+```
+findclassname TAB_TO_VIEW   
+```
+
+* `TAB_TO_VIEW` has to be an existing tab in Timestable (students, classes, timetable).
+
+Examples:
+* `view timetable` switches the displayed tab to be the timetable tab.
+
+## Selecting of classes: `class`
+<hr>
+
+Selects a class in the class tab and displays its students without the need to use the mouse to click.
+
+Format:
+```
+class CLASS_INDEX   
+```
+
+Examples:
+* `class 1` selects the class with `CLASS_INDEX` of 1 and displays its students in the class tab.
 
 ## Clearing all entries : `clear`
 <hr>
@@ -351,14 +412,15 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-### Showing the schedule for a specific day : `schedule`
+[comment]: <> (### Showing the schedule for a specific day : `schedule`)
 
-Shows the contacts of students who have classes on a specific day.
+[comment]: <> (Shows the contacts of students who have classes on a specific day.)
 
-Format: `schedule DAY`
+[comment]: <> (Format: `schedule DAY`)
 
-Examples:
-* `schedule Monday` will show all contacts with classes on monday.
+[comment]: <> (Examples:)
+
+[comment]: <> (* `schedule Monday` will show all contacts with classes on monday.)
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -378,10 +440,21 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add class** | `addclass cn/CLASS NAME ct/CLASS_TIMING r/HOUELY_RATE l/LOCATION` <br> e.g., `addclass cn/Sec 4 A Maths ct/mon 11:30-13:30 r/70 l/Nex Tuition Center`
+**Add to class** | `addtoclass CLASS_INDEX STUDENT_INDEX...` <br> e.g., `addtoclass 1 1 2 3`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete class** | `deleteclass INDEX` <br> e.g., `deleteclass 2`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ct/CLASS_TIMING] [r/HOURLY_RATE] [t/TAG] [l/LOCATION]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**Edit class** | `editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]` <br> e.g., `editclass 1 ct/wed 15:00-17:00`
+**Find name** | `findname KEYWORD [MORE_KEYWORDS]` <br> e.g., `find Stuart`
+**Find class** | `findclass CLASS_TIMING` <br> e.g., `findclass mon 11:00-12:00`
+**Find class name** | `findclassname KEYWORD` <br> e.g., `findclassname math`
+**Find tag** | `findtag KEYWORD, [MORE_KEYWORDS]` <br> e.g., `findtag  math, physics`
 **Help** | `help`
-**Schedule** | `schedule DAY`
+**List** | `list`
+**List class** | `listclass`
+**Select class** | `class` <br> e.g., `class 1`
+**Sort** | `findclassname PARAMETER_TO_SORT_BY DIRECTION_OF_SORT` <br> e.g., `sort name asc`
+**View** | `view TAB_TO_VIEW` <br> e.g., `view timetable`
+

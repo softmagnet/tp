@@ -19,6 +19,7 @@
 
 .timetable-class-slot-box {
     -fx-background-color: #3e7b91;
+    -fx-background-insets: 3 0 3 0;
     -fx-background-radius: 15;
     -fx-padding: 15;
 }
