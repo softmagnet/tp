@@ -163,4 +163,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedClass);
         classes.setClass(target, editedClass);
     }
+
+    public void updateClassStudentLists(Name newName, Name oldName) {
+        for (TuitionClass tuitionClass : classes) {
+            tuitionClass.replaceStudentName(newName, oldName);
+        }
+    }
 }

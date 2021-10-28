@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
 
@@ -137,4 +138,6 @@ public interface Model {
     /** Replaces the filtered tuition class list */
     void replaceFilteredTuitionClassList(List<TuitionClass> tuitionClasses);
 
+    /** executes update cascade after change of student name for {@code StudentNameList} */
+    void updateClassStudentLists(Name newName, Name oldName);
 }
