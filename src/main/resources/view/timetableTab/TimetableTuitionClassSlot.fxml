@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox id="slotPane" fx:id="slotPane" styleClass="timetable-grid-cell" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <VBox alignment="TOP_LEFT" prefHeight="50" GridPane.columnIndex="0">
+<HBox fx:id="slot" styleClass="timetable-class-slot-box" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox prefHeight="50" GridPane.columnIndex="0">
         <Label fx:id="className" styleClass="timetable-label" text="\$className" />
         <Label fx:id="time" styleClass="timetable-label" text="\$time" />
     </VBox>

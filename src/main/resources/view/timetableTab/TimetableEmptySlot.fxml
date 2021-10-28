@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox id="slotPane" fx:id="slotPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-      styleClass="timetable-grid-empty-slot">
-    <VBox alignment="TOP_LEFT" prefHeight="50" GridPane.columnIndex="0" />
+<HBox fx:id="slot" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      styleClass="timetable-empty-slot-box">
+    <VBox prefHeight="50" GridPane.columnIndex="0" />
 </HBox>

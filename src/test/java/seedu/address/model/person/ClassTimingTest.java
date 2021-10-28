@@ -41,12 +41,16 @@ public class ClassTimingTest {
         assertFalse(ClassTiming.isValidClassTiming("09:00-10:00")); // missing day time
         assertFalse(ClassTiming.isValidClassTiming("monday 10:00")); // incorrect day format
         assertFalse(ClassTiming.isValidClassTiming("THUR 0900-1000")); // incorrect day format
-
+        assertFalse(ClassTiming.isValidClassTiming("THU 09:10-10:00")); // does not start on the hour or 30 min mark
+        assertFalse(ClassTiming.isValidClassTiming("THU 09:00-10:15")); // does not end on the hour or 30 min mark
+        assertFalse(ClassTiming.isValidClassTiming("THU 09:00-23:58")); // does not end at 23:59
 
 
         // valid classTiming
         assertTrue(ClassTiming.isValidClassTiming("Mon 01:00-02:00"));
+        assertTrue(ClassTiming.isValidClassTiming("mON 01:00-23:30")); // DAY in weird caps
         assertTrue(ClassTiming.isValidClassTiming("mON 01:00-23:59")); // DAY in weird caps
+
     }
 
 
@@ -109,7 +113,7 @@ public class ClassTimingTest {
                 new ClassTiming("Sat 11:00-12:00").getStartTime());
 
         assertEquals(LocalTime.parse("00:00", DateTimeFormatter.ofPattern("HH:mm")),
-                new ClassTiming("Sat 00:00-23:59").getStartTime());
+                new ClassTiming("Sat 00:00-23:30").getStartTime());
     }
 
     @Test
@@ -123,8 +127,8 @@ public class ClassTimingTest {
         assertNotEquals(LocalTime.parse("15:00", DateTimeFormatter.ofPattern("HH:mm")),
                 new ClassTiming("Sat 11:00-12:00").getEndTime());
 
-        assertEquals(LocalTime.parse("23:59", DateTimeFormatter.ofPattern("HH:mm")),
-                new ClassTiming("Sat 00:00-23:59").getEndTime());
+        assertEquals(LocalTime.parse("23:30", DateTimeFormatter.ofPattern("HH:mm")),
+                new ClassTiming("Sat 00:00-23:30").getEndTime());
     }
 
     @Test
@@ -132,12 +136,12 @@ public class ClassTimingTest {
         assertEquals("00:00-23:59", new ClassTiming("moN 00:00-23:59").getClassTiming());
         assertEquals("00:00-23:59", new ClassTiming("Tue 00:00-23:59").getClassTiming());
         assertEquals("00:00-23:59", new ClassTiming("wEd 00:00-23:59").getClassTiming());
-        assertEquals("00:00-23:59", new ClassTiming("THU 00:00-23:59").getClassTiming());
-        assertEquals("00:00-23:59", new ClassTiming("fri 00:00-23:59").getClassTiming());
-        assertEquals("00:00-23:59", new ClassTiming("sAT 00:00-23:59").getClassTiming());
-        assertEquals("00:00-23:59", new ClassTiming("SuN 00:00-23:59").getClassTiming());
+        assertEquals("00:00-23:30", new ClassTiming("THU 00:00-23:30").getClassTiming());
+        assertEquals("00:00-23:30", new ClassTiming("fri 00:00-23:30").getClassTiming());
+        assertEquals("00:00-23:30", new ClassTiming("sAT 00:00-23:30").getClassTiming());
+        assertEquals("00:00-23:30", new ClassTiming("SuN 00:00-23:30").getClassTiming());
 
-        assertNotEquals("00:01-23:49", new ClassTiming("MON 00:00-23:59").getClassTiming());
+        assertNotEquals("00:01-23:30", new ClassTiming("MON 00:00-23:59").getClassTiming());
     }
 
     @Test

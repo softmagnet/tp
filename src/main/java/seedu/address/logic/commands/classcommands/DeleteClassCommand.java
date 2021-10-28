@@ -2,19 +2,15 @@ package seedu.address.logic.commands.classcommands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Iterator;
 import java.util.List;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.model.tuitionclass.UniqueNameList;
 
 public class DeleteClassCommand extends Command {
     public static final String COMMAND_WORD = "deleteclass";
@@ -45,15 +41,6 @@ public class DeleteClassCommand extends Command {
             throw new CommandException(MESSAGE_MISSING_CLASS);
         }
         ReadOnlyAddressBook addressBook = model.getAddressBook();
-        ObservableList<Student> students = addressBook.getPersonList();
-        Iterator<Student> studentIterator = students.iterator();
-
-        UniqueNameList uniqueNameList = tuitionClass.getStudentList();
-        studentIterator.forEachRemaining(student -> {
-            if (uniqueNameList.contains(student.getName())) {
-                student.deleteClass(tuitionClass);
-            }
-        });
 
         model.deleteTuitionClass(tuitionClass);
         return new CommandResult(String.format(MESSAGE_SUCCESS, tuitionClass));

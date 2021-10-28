@@ -89,7 +89,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
-    public void addPerson(Student p) {
+    public void addStudent(Student p) {
         students.add(p);
     }
 
@@ -158,7 +158,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addToClass(ClassName className, Name studentName) {
         //TuitionClass tuitionClass =
     }
-
 
     public void setClass(TuitionClass target, TuitionClass editedClass) {
         requireNonNull(editedClass);

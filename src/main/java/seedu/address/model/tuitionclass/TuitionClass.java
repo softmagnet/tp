@@ -24,7 +24,7 @@ public class TuitionClass {
      * If the {@code Student} objects are stored, any changes to a student would cause a cascade of updates in classes
      * the student is in.
      */
-    private final UniqueNameList uniqueNameList;
+    private final StudentNameList studentNameList;
 
     /**
      * Represents a tuition class for Students to join. A {@code TuitionClass} can have multiple {@code Student}s.
@@ -38,19 +38,19 @@ public class TuitionClass {
      * @param rate How much it costs per hour to attend the class.
      */
     public TuitionClass(ClassName className, ClassTiming classTiming, Location location, Rate rate,
-                        UniqueNameList uniqueNameList) {
+                        StudentNameList studentNameList) {
         requireAllNonNull(className, classTiming, location, rate);
         this.className = className;
         this.classTiming = classTiming;
         this.location = location;
         this.rate = rate;
-        this.uniqueNameList = uniqueNameList;
+        this.studentNameList = studentNameList;
     }
 
     /**
      *  Represents a tuition class for Students to join. A {@code TuitionClass} can have multiple {@code Student}s.
      * A class is uniquely identified by its timing; a single timing can only have _one_ class. Without the
-     * UniqueNameList.
+     * StudentNameList.
      * <p>
      * A {@code Student} can have multiple {@code TuitionClass}es as well.
      *
@@ -65,7 +65,7 @@ public class TuitionClass {
         this.classTiming = classTiming;
         this.location = location;
         this.rate = rate;
-        this.uniqueNameList = new UniqueNameList();
+        this.studentNameList = new StudentNameList();
     }
 
     public ClassName getClassName() {
@@ -79,7 +79,6 @@ public class TuitionClass {
     public ClassTiming getClassTiming() {
         return classTiming;
     }
-
 
     public LocalTime getStartTiming() {
         return classTiming.getStartTime();
@@ -103,20 +102,15 @@ public class TuitionClass {
      * @return whether the tuition class contains the Student or not.
      */
     public boolean containsStudent(Name name) {
-        return uniqueNameList.contains(name);
+        return studentNameList.contains(name);
     }
 
-    public UniqueNameList getStudentList() {
-        return uniqueNameList;
+    public StudentNameList getStudentList() {
+        return studentNameList;
     }
-
-    //todo fix this
-    //public List<Name> getStudentList() {
-    //        return Collections.unmodifiableList(uniqueStudentList);
-    //}
 
     public void addStudent(Name name) {
-        uniqueNameList.add(name);
+        studentNameList.add(name);
     }
 
     /**
@@ -126,14 +120,14 @@ public class TuitionClass {
      * @return this after name has been removed.
      */
     public TuitionClass removeStudent(Name name) {
-        if (uniqueNameList.contains(name)) {
-            uniqueNameList.remove(name);
+        if (studentNameList.contains(name)) {
+            studentNameList.remove(name);
         }
         return this;
     }
 
-    public void addStudentList(UniqueNameList uniqueNameList) {
-        this.uniqueNameList.addAll(uniqueNameList);
+    public void addStudentList(StudentNameList studentNameList) {
+        this.studentNameList.addAll(studentNameList);
     }
 
     /**
@@ -155,9 +149,11 @@ public class TuitionClass {
         }
 
         TuitionClass o = (TuitionClass) other;
-        /* A class is uniquely identified by its timing; a single timing can only have _one_ class */
-        return /*o.className.equals(getClassName()) &&*/ o.classTiming.equals(getClassTiming())
-                && o.rate.equals(getRate()) && o.location.equals(getLocation());
+        return o.className.equals(getClassName())
+                && o.classTiming.equals(getClassTiming())
+                && o.rate.equals(getRate())
+                && o.location.equals(getLocation())
+                && o.studentNameList.equals(getStudentList());
     }
 
 
@@ -218,18 +214,21 @@ public class TuitionClass {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+
         builder.append("Class Timing: ")
                 .append(getClassTiming())
                 .append(" ");
+
         if (!getClassTiming().equals(getClassName())) {
             builder.append(" Class Name: ")
                     .append(getClassName())
                     .append(" ");
-
         }
+
         builder.append("Location: ")
                 .append(getLocation())
                 .append(" ");
+
         builder.append("Rate: ")
                 .append(getRate())
                 .append(" ");

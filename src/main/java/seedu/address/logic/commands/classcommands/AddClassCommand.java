@@ -39,9 +39,6 @@ public class AddClassCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        //if (model.hasTuitionClass(tuitionClass)) {
-        //    throw new CommandException(MESSAGE_DUPLICATE_CLASS);
-        //}
 
         try {
             model.addTuitionClass(tuitionClass);

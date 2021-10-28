@@ -36,19 +36,13 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder(Student student) {
         descriptor = new EditPersonDescriptor();
+
         descriptor.setName(student.getName());
         descriptor.setPhone(student.getPhone());
         descriptor.setEmail(student.getEmail());
         descriptor.setAddress(student.getAddress());
-
-        TuitionClass tuitionClass = student.getClassList().get(0);
-        descriptor.setClassName(tuitionClass.getClassName());
-        descriptor.setClassTiming(tuitionClass.getClassTiming());
-        descriptor.setRate(tuitionClass.getRate());
-        descriptor.setLocation(tuitionClass.getLocation());
-        //descriptor.setTuitionClasses(student.getClassList());
-
         descriptor.setTags(student.getTags());
+
         descriptor.setNokName(student.getNok().getName());
         descriptor.setNokPhone(student.getNok().getPhone());
         descriptor.setNokEmail(student.getNok().getEmail());
@@ -84,30 +78,6 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
-        return this;
-    }
-
-    /**
-     * Sets the {@code rate} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withRate(String rate) {
-        descriptor.setRate(new Rate(rate));
-        return this;
-    }
-
-    /**
-     * Sets the {@code ClassTiming} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withClassTiming(String classTiming) {
-        descriptor.setClassTiming(new ClassTiming(classTiming));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Location} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withLocation(String location) {
-        descriptor.setLocation(new Location(location));
         return this;
     }
 
@@ -152,14 +122,6 @@ public class EditPersonDescriptorBuilder {
         descriptor.setNokAddress(new Address(address));
         return this;
     }
-
-    //public EditPersonDescriptorBuilder withTuitionClasses(String className, String classTiming, String location,
-    //                                                      String rate) {
-    //    TuitionClass tuitionClass = new TuitionClass(new ClassName(className), new ClassTiming(classTiming)
-    //            , new Location(location), new Rate(rate));
-    //    descriptor.setTuitionClasses(new ArrayList<>(Arrays.asList(tuitionClass)));
-    //    return this;
-    //}
 
     public EditPersonDescriptor build() {
         return descriptor;

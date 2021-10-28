@@ -29,26 +29,13 @@ public class UniqueClassList implements Iterable<TuitionClass> {
      *
      * @param toAdd The tuition class to add.
      */
-    public void add(TuitionClass toAdd) {
+    public void add(TuitionClass toAdd) throws InvalidClassException {
         requireNonNull(toAdd);
-        //throw new InvalidClassException();
-        if (isValidTiming(toAdd)) {
-            internalList.add(toAdd);
-        } else {
-            for (TuitionClass tuitionClass : internalList) {
-                if (tuitionClass.getClassTiming().equals(toAdd.getClassTiming())
-                        && tuitionClass.getLocation().equals(toAdd.getLocation())) {
-                    // int index = internalList.indexOf(tuitionClass);
-                    // internalList.set(index, toAdd);
-                    tuitionClass.addStudentList(toAdd.getStudentList());
-                    this.setClass(tuitionClass, tuitionClass);
-                } else {
-                    if (tuitionClass.isOverlapping(toAdd)) {
-                        throw new InvalidClassException();
-                    }
-                }
-            }
+        if (!isValidTiming(toAdd)) {
+            throw new InvalidClassException();
         }
+
+        internalList.add(toAdd);
     }
 
     /**
@@ -71,7 +58,7 @@ public class UniqueClassList implements Iterable<TuitionClass> {
     public void removeStudent(Name name) {
         for (int i = 0; i < internalList.size(); i++) {
             TuitionClass tuitionClass = internalList.get(i);
-            UniqueNameList nameList = tuitionClass.getStudentList();
+            StudentNameList nameList = tuitionClass.getStudentList();
             if (nameList.contains(name)) {
                 TuitionClass editedTuitionClass = tuitionClass.removeStudent(name);
                 this.setClass(tuitionClass, editedTuitionClass);

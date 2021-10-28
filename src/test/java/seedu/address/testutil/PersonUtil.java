@@ -35,15 +35,11 @@ public class PersonUtil {
      * Returns the part of command string for the given {@code person}'s details.
      */
     public static String getPersonDetails(Student student) {
-        TuitionClass firstTuitionClass = student.getClassList().get(0);
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + student.getName().fullName + " ");
         sb.append(PREFIX_PHONE + student.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + student.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + student.getAddress().value + " ");
-        sb.append(PREFIX_CLASSTIMING + firstTuitionClass.getClassTiming().value + " ");
-        sb.append(PREFIX_RATE + firstTuitionClass.getRate().value + " ");
-        sb.append(PREFIX_LOCATION + firstTuitionClass.getLocation().value + " ");
         student.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         sb.append(PREFIX_NOK + " ");
         sb.append(PREFIX_NAME + student.getNok().getName().fullName + " ");

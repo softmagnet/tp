@@ -27,6 +27,7 @@ public class ModelManager implements Model {
     private FilteredList<Student> filteredStudents;
     private FilteredList<TuitionClass> filteredTuitionClass;
 
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -113,16 +114,15 @@ public class ModelManager implements Model {
 
     @Override
     public void addPerson(Student student) {
-        addressBook.addPerson(student);
+        addressBook.addStudent(student);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void addTuitionClass(TuitionClass tuitionClass) {
         addressBook.addTuitionClass(tuitionClass);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
     }
-
 
     @Override
     public void deleteTuitionClass(TuitionClass tuitionClass) {
@@ -182,6 +182,17 @@ public class ModelManager implements Model {
     public void setClass(TuitionClass target, TuitionClass editedClass) {
         requireAllNonNull(target, editedClass);
         addressBook.setClass(target, editedClass);
+        updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
+    }
+
+    @Override
+    public void setClasses(List<TuitionClass> classes) {
+        addressBook.setClasses(classes);
+    }
+
+    @Override
+    public void setStudents(List<Student> studentsList) {
+        addressBook.setStudents(studentsList);
     }
 
     @Override
