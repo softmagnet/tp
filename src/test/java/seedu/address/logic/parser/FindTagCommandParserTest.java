@@ -25,9 +25,9 @@ public class FindTagCommandParserTest {
         // no leading and trailing whitespaces
         FindTagCommand expectedFindTagCommand =
                 new FindTagCommand(new TagsContainsKeywordsPredicate(Arrays.asList("Maths", "Physics")));
-        assertParseSuccess(parser, "Maths Physics", expectedFindTagCommand);
+        assertParseSuccess(parser, "Maths, Physics", expectedFindTagCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Maths \n \t Physics  \t", expectedFindTagCommand);
+        assertParseSuccess(parser, " \n Maths, \n \t Physics  \t", expectedFindTagCommand);
     }
 }
