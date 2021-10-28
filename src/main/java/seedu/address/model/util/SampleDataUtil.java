@@ -79,7 +79,34 @@ public class SampleDataUtil {
                             new Email("bobbyb@yahoo.com"),
                             new Address("Blk 45 Aljunied Street 85, #11-31")
                     ),
-                    getTagSet("colleagues"))
+                    getTagSet("Chemistry", "Sec 3")),
+            new Student(new Name("Angelica Holcomb"), new Phone("85917748"), new Email("lorem@magnased.com"),
+                    new Address("Ap #909-605 Ante St"),
+                    new Nok(
+                            new Name("Robert Holcomb"),
+                            new Phone("85998446"),
+                            new Email("robhol@yahoo.com"),
+                            new Address("Ap #909-605 Ante St")
+                    ),
+                    getTagSet("Math", "Sec 2")),
+            new Student(new Name("Illana Page"), new Phone("86549382"), new Email("elit@dui.org"),
+                    new Address("Ap #558-850 Amet, Rd"),
+                    new Nok(
+                            new Name("Annabeth Page"),
+                            new Phone("97373300"),
+                            new Email("annabp@yahoo.com"),
+                            new Address("Ap #558-850 Amet, Rd")
+                    ),
+                    getTagSet("Physical Sciences", "Sec 1")),
+            new Student(new Name("Warren Campos"), new Phone("87718622"), new Email("magna@elit.ca"),
+                    new Address("Ap #824-4482 Egestas Avenue"),
+                    new Nok(
+                            new Name("Boris Roth"),
+                            new Phone("81308576"),
+                            new Email("aliquet.vel.vulputate@phasellusdapibus.ca"),
+                            new Address("987-5408 Dignissim Road")
+                    ),
+                    getTagSet("Chemistry", "Sec 1"))
         };
     }
 
