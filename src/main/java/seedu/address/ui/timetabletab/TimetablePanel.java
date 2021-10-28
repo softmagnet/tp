@@ -249,7 +249,7 @@ public class TimetablePanel extends UiPart<Region> {
      * Gets the earliest class timing of the list of students.
      *
      * @param tuitionClasses List of students to get the earliest class timing from.
-     * @return Earliest class timing from studentList.
+     * @return Earliest class timing from StudentNameList.
      */
     public LocalTime getEarliestTime(ObservableList<TuitionClass> tuitionClasses) {
         assert tuitionClasses != null && tuitionClasses.size() > 0;

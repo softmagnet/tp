@@ -15,8 +15,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
+import seedu.address.model.tuitionclass.StudentNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.model.tuitionclass.UniqueNameList;
 import seedu.address.model.tuitionclass.exceptions.DuplicateStudentInClassException;
 
 public class AddToClassCommand extends Command {
@@ -66,8 +66,8 @@ public class AddToClassCommand extends Command {
         TuitionClass classToAddTo = lastShownClassList.get(toEditClassIndex.getZeroBased());
 
         //get updated student list
-        UniqueNameList currentStudentNameList = classToAddTo.getStudentList();
-        UniqueNameList updatedStudentNameList = new UniqueNameList();
+        StudentNameList currentStudentNameList = classToAddTo.getStudentList();
+        StudentNameList updatedStudentNameList = new StudentNameList();
 
         try {
             updatedStudentNameList.addAll(currentStudentNameList);

@@ -13,8 +13,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
+import seedu.address.model.tuitionclass.StudentNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.model.tuitionclass.UniqueNameList;
 
 public class RemoveFromClassCommand extends Command {
     public static final String COMMAND_WORD = "removefromclass";
@@ -62,8 +62,8 @@ public class RemoveFromClassCommand extends Command {
         TuitionClass classToRemoveFrom = lastShownClassList.get(toEditClassIndex.getZeroBased());
 
         //get updated student list
-        UniqueNameList currentStudentNameList = classToRemoveFrom.getStudentList();
-        UniqueNameList updatedStudentNameList = new UniqueNameList();
+        StudentNameList currentStudentNameList = classToRemoveFrom.getStudentList();
+        StudentNameList updatedStudentNameList = new StudentNameList();
         updatedStudentNameList.addAll(currentStudentNameList);
         updatedStudentNameList.removeAll(namesToRemove);
 
