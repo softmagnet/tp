@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.util.Callback;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Student;
@@ -25,7 +26,16 @@ public class ClassPanel extends UiPart<Region> {
     private ListView<TuitionClass> tuitionClassListView;
 
     @FXML
+    private StackPane tuitionClassListPlaceholder;
+
+    @FXML
     private ListView<Student> studentListViewClassTab;
+
+    @FXML
+    private StackPane studentListPlaceholder;
+
+    private StudentClassPanel studentClassPanel;
+    private TuitionClassPanel tuitionClassPanel;
 
     private final ObservableList<TuitionClass> tuitionClassList;
 
@@ -36,9 +46,14 @@ public class ClassPanel extends UiPart<Region> {
         super(FXML);
         this.tuitionClassList = tuitionClassList;
 
-        tuitionClassListView.setItems(tuitionClassList);
-        tuitionClassListView.setCellFactory(listView ->
-                new TuitionClassListViewCell(studentList, studentListViewClassTab));
+        studentClassPanel = new StudentClassPanel(studentList);
+        tuitionClassPanel = new TuitionClassPanel(studentList, tuitionClassList);
+
+        tuitionClassPanel.setStudentClassList(studentClassPanel.getStudentListView());
+
+        studentListPlaceholder.getChildren().add(studentClassPanel.getRoot());
+        tuitionClassListPlaceholder.getChildren().add(tuitionClassPanel.getRoot());
+
         logger.info("ClassPanel tab opened");
     }
 

@@ -5,14 +5,33 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<!--  @author Zhu-Ruicong-reused-->
-<!--  From the Pet Store Helper tp project from last batch-->
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.StackPane?>
 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="tuitionClassListView" styleClass="pane-transparent" HBox.hgrow="ALWAYS" />
-  <ListView fx:id="studentListViewClassTab" styleClass="pane-transparent" HBox.hgrow="ALWAYS" />
-
   <VBox fx:id="displayInformationViewContainer" styleClass="pane-transparent" HBox.hgrow="NEVER">
     <ListView fx:id="displayInformationView" minWidth="0" prefWidth="0" HBox.hgrow="NEVER" VBox.vgrow="ALWAYS" />
   </VBox>
+
+  <HBox VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+    <!-- Classes -->
+    <VBox fx:id="classes" styleClass="pane-with-border" minWidth="500"
+          VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+      <padding>
+        <Insets right="10" bottom="30" left="10" />
+      </padding>
+      <Label fx:id="classLabel" styleClass="classLabel" text="Your classes" alignment="TOP_CENTER"/>
+      <StackPane fx:id="tuitionClassListPlaceholder" styleClass="pane-transparent" HBox.hgrow="ALWAYS" />
+    </VBox>
+
+    <!-- Students -->
+    <VBox fx:id="students" styleClass="pane-with-border" minWidth="500"
+          VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+      <padding>
+        <Insets right="10" bottom="30" left="10" />
+      </padding>
+      <Label fx:id="studentLabel" styleClass="studentLabel" text="Students" alignment="TOP_CENTER"/>
+      <StackPane fx:id="studentListPlaceholder" styleClass="pane-transparent" HBox.hgrow="ALWAYS" />
+    </VBox>
+  </HBox>
 </HBox>
