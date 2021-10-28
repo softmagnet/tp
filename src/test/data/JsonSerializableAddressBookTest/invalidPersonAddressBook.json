@@ -4,7 +4,12 @@
     "phone": "9482424",
     "email": "invalid@email!3e",
     "address": "4th street",
-    "rate": "70",
-    "classTiming": "Mon 02:00-03:00"
-  } ]
+    "nok" : {
+      "name" : "Jack Doe",
+      "phone" : "10987654",
+      "email" : "jackd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25"
+    }
+  } ],
+  "classes" : [ ]
 }
