@@ -155,6 +155,12 @@ public class StudentNameList implements Iterable<Name> {
         return ((StudentNameList) o).internalList.equals(internalList);
     }
 
+    /**
+     * Replaces the old student name in the internalList with the new name.
+     *
+     * @param newName Name to replace the old name.
+     * @param oldName Name to be replaced by the new name.
+     */
     public void replaceStudentName(Name newName, Name oldName) {
         int oldNameIndex = internalList.indexOf(oldName);
         if (oldNameIndex != -1) {

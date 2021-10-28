@@ -40,7 +40,7 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
    
    * **`exit`** : Exits the app.
 
-1. Once you are ready to use your fill in Timestable with your own students, simply use the  **`clear`** command to deletes all the sample students, instead of having to delete them one by one.
+1. Once you are ready to use your fill in Timestable with your own students, simply use the  **`clear`** command to delete all the sample students, instead of having to delete them one by one.
    Now you can start putting your students into Timestable.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -93,8 +93,7 @@ Adds a student to the address book.
 
 Format:
 ```
-add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ct/CLASS_TIMING l/LOCATION r/HOURLY_RATE [t/TAG]… nok/ n/NOK_NAME
-    p/NOK_PHONE_NUMBER e/NOK_EMAIL
+add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… nok/ n/NOK_NAME p/NOK_PHONE_NUMBER e/NOK_EMAIL
 ```
 
 * This is a command that requires next-of-kin (NOK) information.
@@ -111,13 +110,11 @@ A student can have any number of tags (including 0).
 Examples:
 
 ```
-add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 ct/Mon 2-4pm
-    l/Hougang ave 5 Block 614 #11-419 r/$50 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com
+add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com
 ```
 
 ```
-add n/Betsy Crowe ct/Mon 5-7pm l/Serangoon Nex  t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567
-    t/slow learner r/$70 nok/ n/Karen e/karenSUper@gmail.com p/99994444
+add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/slow learner nok/ n/Karen e/karenSUper@gmail.com p/99994444
 ```
 
 ### Adding a class: `addclass`
@@ -132,6 +129,7 @@ addclass cn/CLASS NAME ct/CLASS_TIMING r/HOUELY_RATE l/LOCATION
 ```
 
 * This command adds a new class to keep track of all classes that the user is teaching.
+* `CLASS_TIMING` can only start at the hour mark or half hour mark.
 
 Examples:
 ```
@@ -168,39 +166,6 @@ addtoclass 1 1 2 3
 ```
 Adds the 1st, 2nd and 3rd student in the displayed student list in the `students` tab into the 1st class in the
 displayed class list in the `classes` tab.
-
-
-## Delete a class: `deleteclass`
-<hr>
-
-Deletes the specified class from the address book.
-
-Format:
-```
-deleteclass INDEX
-```
-
-* Deletes the class at the specified `INDEX`.
-* The index refers to the index number shown in the displayed class list in the `classes` tab.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `listclass` followed by `delete 2` deletes the 2nd class in the address book.
-
-## Listing all students : `list`
-<hr>
-
-Shows a list of all students in the address book.
-
-Format: `list`
-
-## Listing all the classes: `listclass`
-<hr>
-
-Shows a list of all students in the address book.
-
-Format: `listclass`
-
 
 ### Editing a student : `edit`
 <hr>
@@ -249,6 +214,7 @@ editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]
 * Edits the class at the specified `INDEX`. The index refers to the index number shown in the displayed class
   list in the `classes` tab. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
+* `CLASS_TIMING` can only start at the hour mark or half hour mark.
 
 Examples:
 * `editclass 1 ct/wed 15:00-17:00` Edits the 1st class in the class list class timing to be WED 15:00-17:00.

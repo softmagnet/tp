@@ -72,6 +72,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor
                     .setAddress(ParserUtil.parseAddress(argMultimapBeforeNok.getValue(PREFIX_ADDRESS).get()));
         }
+
         parseTagsForEdit(argMultimapBeforeNok.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         // For after nok

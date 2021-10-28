@@ -1,8 +1,5 @@
 package seedu.address.logic.commands.classcommands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.EditClassDescriptorBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_IB_MATHS;
@@ -13,6 +10,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_IB_MAT
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RATE_IB_MATHS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENTLIST_IB_MATHS;
 import static seedu.address.logic.commands.classcommands.EditClassCommand.EditClassDescriptor;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.EditClassDescriptorBuilder;
 
 public class EditClassDescriptorTest {
 
@@ -35,29 +36,29 @@ public class EditClassDescriptorTest {
         assertFalse(DESC_IB_MATHS.equals(DESC_IB_PHYSICS));
 
         // different class name -> returns false
-        EditClassDescriptor editedIBPhysics = new EditClassDescriptorBuilder(DESC_IB_PHYSICS)
+        EditClassDescriptor editedIbPhysics = new EditClassDescriptorBuilder(DESC_IB_PHYSICS)
                 .withClassName(VALID_CLASSNAME_IB_MATHS).build();
-        assertFalse(DESC_IB_PHYSICS.equals(editedIBPhysics));
+        assertFalse(DESC_IB_PHYSICS.equals(editedIbPhysics));
 
         // different class timing -> returns false
-        editedIBPhysics = new EditClassDescriptorBuilder(DESC_IB_PHYSICS)
+        editedIbPhysics = new EditClassDescriptorBuilder(DESC_IB_PHYSICS)
                 .withClassTiming(VALID_CLASSTIMING_IB_MATHS).build();
-        assertFalse(DESC_IB_PHYSICS.equals(editedIBPhysics));
+        assertFalse(DESC_IB_PHYSICS.equals(editedIbPhysics));
 
         // different rate -> returns false
-        editedIBPhysics = new EditClassDescriptorBuilder(DESC_IB_PHYSICS)
+        editedIbPhysics = new EditClassDescriptorBuilder(DESC_IB_PHYSICS)
                 .withRate(VALID_RATE_IB_MATHS).build();
-        assertFalse(DESC_IB_PHYSICS.equals(editedIBPhysics));
+        assertFalse(DESC_IB_PHYSICS.equals(editedIbPhysics));
 
         //different location -> returns false
-        editedIBPhysics = new EditClassDescriptorBuilder(DESC_IB_PHYSICS)
+        editedIbPhysics = new EditClassDescriptorBuilder(DESC_IB_PHYSICS)
                 .withLocation(VALID_LOCATION_IB_MATHS).build();
-        assertFalse(DESC_IB_PHYSICS.equals(editedIBPhysics));
+        assertFalse(DESC_IB_PHYSICS.equals(editedIbPhysics));
 
         //different student list -> returns false
-        editedIBPhysics = new EditClassDescriptorBuilder(DESC_IB_PHYSICS)
+        editedIbPhysics = new EditClassDescriptorBuilder(DESC_IB_PHYSICS)
                 .withStudentList(VALID_STUDENTLIST_IB_MATHS).build();
-        assertFalse(DESC_IB_PHYSICS.equals(editedIBPhysics));
+        assertFalse(DESC_IB_PHYSICS.equals(editedIbPhysics));
 
     }
 }
