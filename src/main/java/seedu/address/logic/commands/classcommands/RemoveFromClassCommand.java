@@ -23,7 +23,7 @@ public class RemoveFromClassCommand extends Command {
             + " number used "
             + "in the displayed class and person list.\n"
             + "Parameters: CLASS_INDEX "
-            + "STUDENT_INDEX\n"
+            + "STUDENT_INDEX...\n"
             + "Example: " + COMMAND_WORD + " "
             + "2 "
             + "3 4 5 "
