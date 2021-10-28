@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.UniqueStudentList;
-import seedu.address.model.tuitionclass.ClassName;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.model.tuitionclass.UniqueClassList;
 
@@ -155,15 +154,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         return students.hashCode();
     }
 
-    public void addToClass(ClassName className, Name studentName) {
-        //TuitionClass tuitionClass =
-    }
-
     public void setClass(TuitionClass target, TuitionClass editedClass) {
         requireNonNull(editedClass);
         classes.setClass(target, editedClass);
     }
 
+    /**
+     * Replaces the given old name in the list with a new name.
+     *
+     * @param newName New name to replace the given old name.
+     * @param oldName Old name to be replaced by new name.
+     */
     public void updateClassStudentLists(Name newName, Name oldName) {
         for (TuitionClass tuitionClass : classes) {
             tuitionClass.replaceStudentName(newName, oldName);

@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import static seedu.address.logic.commands.classcommands.EditClassCommand.EditClassDescriptor;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -12,8 +14,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import static seedu.address.logic.commands.classcommands.EditClassCommand.EditClassDescriptor;
 
 import java.util.ArrayList;
 import java.util.Arrays;

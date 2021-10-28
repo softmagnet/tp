@@ -124,7 +124,7 @@ public class JsonAdaptedStudentTest {
         assertThrows(IllegalValueException.class, student::toModelType);
     }
 
-//    DON'T DELETE YET!! WILL MIGRATE TO JsonAdaptedClassTest
+    //    DON'T DELETE YET!! WILL MIGRATE TO JsonAdaptedClassTest
 
     //@Test
     //public void toModelType_invalidClassTiming_throwsIllegalValueException() {
