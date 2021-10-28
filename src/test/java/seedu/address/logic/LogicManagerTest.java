@@ -13,7 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_NOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFIX_NOK;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalTimestable.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;

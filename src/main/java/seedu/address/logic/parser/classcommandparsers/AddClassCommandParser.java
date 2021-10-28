@@ -17,8 +17,8 @@ import seedu.address.model.tuitionclass.ClassName;
 import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.tuitionclass.Rate;
+import seedu.address.model.tuitionclass.StudentNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.model.tuitionclass.UniqueNameList;
 
 public class AddClassCommandParser implements Parser<AddClassCommand> {
 
@@ -39,6 +39,6 @@ public class AddClassCommandParser implements Parser<AddClassCommand> {
         ClassTiming classTiming = ParserUtil.parseClassTiming(argMultimap.getValue(PREFIX_CLASSTIMING).get());
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
 
-        return new AddClassCommand(new TuitionClass(className, classTiming, location, rate, new UniqueNameList()));
+        return new AddClassCommand(new TuitionClass(className, classTiming, location, rate, new StudentNameList()));
     }
 }

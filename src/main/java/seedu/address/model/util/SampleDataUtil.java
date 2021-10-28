@@ -17,8 +17,8 @@ import seedu.address.model.tuitionclass.ClassName;
 import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.tuitionclass.Rate;
+import seedu.address.model.tuitionclass.StudentNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.model.tuitionclass.UniqueNameList;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -89,27 +89,27 @@ public class SampleDataUtil {
                     new ClassTiming("MON 11:30-13:30"),
                     new Location("Blk 30 Geylang Street 29, #06-40"),
                     new Rate("50"),
-                    new UniqueNameList(new Name("Alex Yeoh"), new Name("David Li"))),
+                    new StudentNameList(new Name("Alex Yeoh"), new Name("David Li"))),
             new TuitionClass(new ClassName("Sec 3 C Math"),
                     new ClassTiming("MON 14:30-16:30"),
                     new Location("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                     new Rate("60"),
-                    new UniqueNameList(new Name("Bernice Yu"))),
+                    new StudentNameList(new Name("Bernice Yu"))),
             new TuitionClass(new ClassName("Sec 2 Physics"),
                     new ClassTiming("TUE 11:00-12:30"),
                     new Location("Blk 11 Ang Mo Kio Street 74, #11-04"),
                     new Rate("40"),
-                    new UniqueNameList(new Name("Charlotte Oliveiro"))),
+                    new StudentNameList(new Name("Charlotte Oliveiro"))),
             new TuitionClass(new ClassName("Sec 4 A Math 2"),
                     new ClassTiming("THU 11:30-13:30"),
                     new Location("Blk 30 Geylang Street 29, #06-40"),
                     new Rate("50"),
-                    new UniqueNameList(new Name("Alex Yeoh"), new Name("David Li"))),
+                    new StudentNameList(new Name("Alex Yeoh"), new Name("David Li"))),
             new TuitionClass(new ClassName("JC1 H2 Math"),
                     new ClassTiming("THU 16:30-18:30"),
                     new Location("Blk 30 Geylang Street 29, #06-40"),
                     new Rate("50"),
-                    new UniqueNameList(new Name("Alex Yeoh"), new Name("David Li")))
+                    new StudentNameList(new Name("Alex Yeoh"), new Name("David Li")))
         };
     }
 

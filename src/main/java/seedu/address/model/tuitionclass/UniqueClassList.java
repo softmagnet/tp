@@ -58,7 +58,7 @@ public class UniqueClassList implements Iterable<TuitionClass> {
     public void removeStudent(Name name) {
         for (int i = 0; i < internalList.size(); i++) {
             TuitionClass tuitionClass = internalList.get(i);
-            UniqueNameList nameList = tuitionClass.getStudentList();
+            StudentNameList nameList = tuitionClass.getStudentList();
             if (nameList.contains(name)) {
                 TuitionClass editedTuitionClass = tuitionClass.removeStudent(name);
                 this.setClass(tuitionClass, editedTuitionClass);

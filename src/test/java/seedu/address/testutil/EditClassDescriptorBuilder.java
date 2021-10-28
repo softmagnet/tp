@@ -6,7 +6,7 @@ import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.tuitionclass.Rate;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.model.tuitionclass.UniqueNameList;
+import seedu.address.model.tuitionclass.StudentNameList;
 
 public class EditClassDescriptorBuilder {
     private EditClassDescriptor descriptor;
@@ -46,7 +46,7 @@ public class EditClassDescriptorBuilder {
         return this;
     }
     public EditClassDescriptorBuilder withStudentList(String... studentList) {
-        descriptor.setUniqueNameList(new UniqueNameList(studentList));
+        descriptor.setUniqueNameList(new StudentNameList(studentList));
         return this;
     }
 
