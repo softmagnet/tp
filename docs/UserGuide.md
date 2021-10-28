@@ -21,20 +21,27 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample student data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press 'Enter' to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try using the sample student data before using your own student data:
-
-   * **`list`** : Lists all contacts.
+1. Type the command in the command box and press 'Enter' to execute it. e.g. typing **`help`** and pressing 'Enter' will open the help window.<br>
+   Here are some example commands which you can use on our sample students data before using your own students data:
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
    
-   * **`sort`****`name`**`asc` : Sorts the students by their name in ascending alphabetic order.
+   * **`sort`****`name`****`asc`** : Sorts the students by their name in ascending alphabetic order.
+    
+   * **`addclass`**`cn/Sec 4 A Maths ct/mon 11:30-13:30 r/70 l/Nex Tuition Center`: Adds a new class with name 'Sec 4 A Maths', with class timing MON 11.30-13:30, with hourly rate of $70, at Nex Tuition Center.
+    
+   * **`addtoclass`**`1 1 2 3`: Adds the 1st, 2nd and 3rd student in the student list in the `students` tab into the 1st class in the `classes` tab
+
+   * **`view`**`classes` : Changes the tab the user is on to the `classes` tab which displays all the classes.
+   
+   * **`view`**`timetable` : Changes the tab the user is on to the `timetable` tab which displays a timetable with all the classes. 
    
    * **`exit`** : Exits the app.
 
-1. To delete the sample data, you can use the  **`clear`** command which delete all the contacts, instead of deleting them one by one.
+1. Once you are ready to use your fill in Timestable with your own students, simply use the  **`clear`** command to deletes all the sample students, instead of having to delete them one by one.
+   Now you can start putting your students into Timestable.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -72,6 +79,13 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
 
 </div>
 
+### Clearing all entries : `clear`
+<hr>
+
+Clears all entries from the address book.
+
+Format: `clear`
+
 ### Adding a student: `add`
 <hr>
 
@@ -91,7 +105,7 @@ add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ct/CLASS_TIMING l/LOCATION r/HOURLY_
 * The order of input within its own segment is swappable.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A student can have any number of tags (including 0)
+A student can have any number of tags (including 0).
 </div>
 
 Examples:
@@ -135,7 +149,7 @@ Adds a new class with name 'Sec 4 E Maths', with class timing Tue 12.30-14:30, w
 ### Adding student/students to a class: `addtoclass`
 <hr>
 
-Add a single or multiple students to an existing class
+Add a single or multiple students to an existing class.
 
 Format:
 ```
@@ -154,51 +168,6 @@ addtoclass 1 1 2 3
 ```
 Adds the 1st, 2nd and 3rd student in the displayed student list in the `students` tab into the 1st class in the
 displayed class list in the `classes` tab.
-
-### Clearing all entries : `clear`
-<hr>
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-
-### Deleting a student : `delete`
-<hr>
-
-Deletes the specified student from the address book.
-
-Format:
-```
-delete INDEX
-```
-
-* Deletes the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
-
-
-
-### Delete a class: `deleteclass`
-<hr>
-
-Deletes the specified class from the address book.
-
-Format:
-```
-deleteclass INDEX
-```
-
-* Deletes the class at the specified `INDEX`.
-* The index refers to the index number shown in the displayed class list in the `classes` tab.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `listclass` followed by `deleteclass 2` deletes the 2nd class in the address book.
 
 ### Editing a student : `edit`
 <hr>
@@ -231,7 +200,7 @@ Examples (editing student information only):
 
 Examples (also editing parent information):
 * `edit 2 nok/ p/98429239 ` Edits 2nd student's NOK's number to be 98429239.
-* `edit 3 ct/Mon 3-4pm nok/ p/98429239 ` Edits 3rd student's class timing to be Monday 3-4pm while also editing
+* `edit 3 ct/Mon 15:00-16:00 nok/ p/98429239 ` Edits 3rd student's class timing to be MON 15:00-16:00 while also editing
   NOK's number to be 98429239.
 
 ### Editing a class: `editclass`
@@ -249,14 +218,26 @@ editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]
 * At least one of the optional fields must be provided.
 
 Examples:
-* `editclass 1 ct/wed 15:00-17:00` Edits the 1st class in the class list class timing to be WED 15:00-17:00
+* `editclass 1 ct/wed 15:00-17:00` Edits the 1st class in the class list class timing to be WED 15:00-17:00.
 
-### Exiting the program : `exit`
+### Sorting students and classes: `sort`
 <hr>
 
-Exits the program.
+Sorts the students alphabetically or classes based on class timing in ascending or descending order.
 
-Format: `exit`
+Format:
+```
+sort PARAMETER_TO_SORT_BY DIRECTION_OF_SORT
+```
+
+* `PARAMETER_TO_SORT_BY` can either be `students` or `timing` which sorts the students and classes respectively.
+* `DIRECTION_OF_SORT` can either be `asc` or `desc` to represent ascending and descending respectively.
+
+Examples:
+* `sort name asc` sorts students alphabetically by their name in ascending order.
+* `sort name desc` sorts students alphabetically by their name in descending order.
+* `sort timing asc` sorts classes based on their class timings starting from the earliest in the week to the latest.
+* `sort timing desc` sorts classes based on their class timings starting from the latest in the week to the earliest.
 
 ### Locating students by name: `findname`
 <hr>
@@ -268,16 +249,16 @@ Format:
 findname KEYWORD [MORE_KEYWORDS]
 ```
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
-* Partial matches will still be matched e.g. `Han` will match `Hans`
+* Partial matches will still be matched e.g. `Han` will match `Hans`.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Examples:
-* `findname John` returns `john` and `John Doe`
-* `findname alex david` returns `Alex Yeoh`, `David Li`<br>
+* `findname John` returns `john` and `John Doe`.
+* `findname alex david` returns `Alex Yeoh`, `David Li`.<br>
 
   ![result for 'findname alex david'](images/findAlexDavidResult.png)
 
@@ -302,7 +283,6 @@ Format:
 ```
 findclassname KEYWORD
 ```
-
 <!---todo fill in inner working--->
 
 Examples:
@@ -318,74 +298,19 @@ Format:
 findtag KEYWORD, [MORE_KEYWORDS]
 ```
 
-* The search is case-insensitive. e.g `math` will match `Math`
+* The search is case-insensitive. e.g `math` will match `Math`.
 * The keywords are separated by commas. e.g. `findtag math, physics` will find students
-  with tags containing `math` or `physics`
+  with tags containing `math` or `physics`.
 * Only the tag is searched.
-* Partial matches will still be matched e.g. `math` will match `A Math`, `C Math`, and `Math`
+* Partial matches will still be matched e.g. `math` will match `A Math`, `C Math`, and `Math`.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `findtag math, physics` will return students with the `Math` tag but no `Physics` tag,
   students with only the`Physics` tag but no `Math` tag, and students with both tags.
 
 Examples:
-* `findtag math` returns `Alex Yeoh` with the `A Math` tag and `John Doe` with the `C Math` tag
-* `findtag math, physics` returns `Alex Yeoh` with the `A Math` and `Biology` tags
+* `findtag math` returns `Alex Yeoh` with the `A Math` tag and `John Doe` with the `C Math` tag.
+* `findtag math, physics` returns `Alex Yeoh` with the `A Math` and `Biology` tags.
   <br>
-  
-### Viewing help : `help`
-<hr>
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-### Listing all students : `list`
-<hr>
-
-Shows a list of all students in the address book.
-
-Format: `list`
-
-### Listing all the classes: `listclass`
-<hr>
-
-Shows a list of all classes in the address book.
-
-Format: `listclass`
-
-### Selecting of classes: `class`
-<hr>
-
-Selects a class in the class tab and displays its students without the need to use the mouse to click.
-
-Format:
-```
-class CLASS_INDEX   
-```
-
-Examples:
-* `class 1` selects the class with `CLASS_INDEX` of 1 and displays its students in the class tab.
-
-### Sorting students and classes: `sort`
-<hr>
-
-Sorts the students alphabetically or classes based on class timing in ascending or descending order.
-
-Format:
-```
-findclassname PARAMETER_TO_SORT_BY DIRECTION_OF_SORT
-```
-
-* `PARAMETER_TO_SORT_BY` can either be `students` or `timing` which sorts the students and classes respectively.
-* `DIRECTION_OF_SORT` can either be `asc` or `desc` to represent ascending and descending respectively.
-
-Examples:
-* `sort name asc` sorts students alphabetically by their name in ascending order.
-* `sort name desc` sorts students alphabetically by their name in descending order.
-* `sort timing asc` sorts classes based on their class timings starting from the earliest in the week to the latest.
-* `sort timing desc` sorts classes based on their class timings starting from the latest in the week to the earliest.
 
 ### Viewing of different tabs: `view`
 <hr>
@@ -401,6 +326,105 @@ findclassname TAB_TO_VIEW
 
 Examples:
 * `view timetable` switches the displayed tab to be the timetable tab.
+
+### Selecting of classes: `class`
+<hr>
+
+Selects a class in the class tab and displays its students without the need to use the mouse to click.
+
+Format:
+```
+class CLASS_INDEX   
+```
+
+Examples:
+* `class 1` selects the class with `CLASS_INDEX` of 1 and displays its students in the class tab.
+
+### Listing all students : `list`
+<hr>
+
+Shows a list of all students in the address book.
+
+Format: `list`
+
+### Listing all the classes: `listclass`
+<hr>
+
+Shows a list of all classes in the address book.
+
+Format: `listclass`
+
+### Removing students from a class: `removefromclass`
+<hr>
+
+Removes a single or multiple students from an existing class.
+
+Format:
+```
+removefromclass CLASS_INDEX STUDENT_INDEX...
+```
+
+* This command removes any number of existing students from an existing class.
+* `CLASS_INDEX` is the index number of the class in the displayed class list in the `classes` tab, which will be
+  removing the students.
+* `STUDENT_INDEX...` are the index number/s of the students shown in the displayed student list of the class to remove from in the `classes` tab, these students are
+  to be removed from the class.
+
+Example:
+```
+removefromclass 1 1 2 3
+```
+Removes the 1st, 2nd and 3rd student in the displayed student list of the 1st class in the `classes` tab.
+
+### Deleting a student : `delete`
+<hr>
+
+Deletes the specified student from the address book.
+
+Format:
+```
+delete INDEX
+```
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd student in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+
+### Delete a class: `deleteclass`
+<hr>
+
+Deletes the specified class from the address book.
+
+Format:
+```
+deleteclass INDEX
+```
+
+* Deletes the class at the specified `INDEX`.
+* The index refers to the index number shown in the displayed class list in the `classes` tab.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listclass` followed by `deleteclass 2` deletes the 2nd class in the address book.
+
+### Viewing help : `help`
+<hr>
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+### Exiting the program : `exit`
+<hr>
+
+Exits the program.
+
+Format: `exit`
 
 ### Saving the data
 <hr>
@@ -460,6 +484,7 @@ Action | Format, Examples
 **Help** | `help`
 **List** | `list`
 **List class** | `listclass`
+**Remove from class** | `removefromclass CLASS_INDEX STUDENT_INDEX...` <br> e.g., `removefromclass 1 1 2 3`
 **Select class** | `class` <br> e.g., `class 1`
 **Sort** | `findclassname PARAMETER_TO_SORT_BY DIRECTION_OF_SORT` <br> e.g., `sort name asc`
 **View** | `view TAB_TO_VIEW` <br> e.g., `view timetable`

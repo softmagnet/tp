@@ -26,7 +26,7 @@ public class AddToClassCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds students to a class by the index number used "
             + "in the displayed class and person list.\n"
             + "Parameters: CLASS_INDEX "
-            + "STUDENT_INDEX\n"
+            + "STUDENT_INDEX...\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 "
             + "2 3 5 "
