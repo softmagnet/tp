@@ -113,6 +113,11 @@ public class EditClassCommand extends Command {
         public EditClassDescriptor() {
         }
 
+        /**
+         * Constructs a copy of the given EditClassDescriptor.
+         *
+         * @param toCopy The EditClassDescriptor to copy.
+         */
         public EditClassDescriptor(EditClassDescriptor toCopy) {
             setClassName(toCopy.className);
             setClassTiming(toCopy.classTiming);

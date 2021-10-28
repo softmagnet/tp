@@ -32,7 +32,7 @@ public class RemoveFromClassCommand extends Command {
     public static final String MESSAGE_REMOVE_SUCCESS = "Successfully removed students from class ";
 
     private final Index toEditClassIndex;
-    private final List<Index> studentIndices;
+    private final List<Index> studentIndicesToRemove;
 
     /**
      * Constructs a remove from class command.
@@ -46,23 +46,25 @@ public class RemoveFromClassCommand extends Command {
         toEditClassIndex = indexArray.get(0);
 
         //the remaining indices are those of the students in filtered student list
-        studentIndices = indexArray.subList(1, indexArray.size());
+        studentIndicesToRemove = indexArray.subList(1, indexArray.size());
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
 
-        //get names to be added
-        List<Student> lastShownStudentList = model.getFilteredStudentList();
-        checkIndicesAreValid(studentIndices, lastShownStudentList);
-        ArrayList<Name> namesToRemove = createNameList(studentIndices, lastShownStudentList);
-
         //get class to remove from
         List<TuitionClass> lastShownClassList = model.getFilteredTuitionClassList();
         TuitionClass classToRemoveFrom = lastShownClassList.get(toEditClassIndex.getZeroBased());
 
-        //get updated student list
+        //get names to be removed
         StudentNameList currentStudentNameList = classToRemoveFrom.getStudentList();
+        checkIndicesAreValid(studentIndicesToRemove, currentStudentNameList);
+        List<Student> filteredStudentList = model.getFilteredStudentList();
+        currentStudentNameList.sortListByList(filteredStudentList);
+        ArrayList<Name> namesToRemove = createNewNameList(studentIndicesToRemove, currentStudentNameList);
+
+
+        //get updated student list
         StudentNameList updatedStudentNameList = new StudentNameList();
         updatedStudentNameList.addAll(currentStudentNameList);
         updatedStudentNameList.removeAll(namesToRemove);
@@ -78,18 +80,18 @@ public class RemoveFromClassCommand extends Command {
         return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, editedClass));
     }
 
-    private ArrayList<Name> createNameList(List<Index> studentIndices, List<Student> lastShownStudentList) {
-        ArrayList<Name> nameList = new ArrayList<>();
+    private ArrayList<Name> createNewNameList(List<Index> studentIndices, StudentNameList nameList) {
+        ArrayList<Name> newNameList = new ArrayList<>();
         studentIndices.stream().forEach(index -> {
-            Student student = lastShownStudentList.get(index.getZeroBased());
-            nameList.add(student.getName());
+            Name name = nameList.get(index.getZeroBased());
+            newNameList.add(name);
         });
-        return nameList;
+        return newNameList;
     }
 
-    private void checkIndicesAreValid(List<Index> studentIndices, List<Student> lastShownStudentList)
+    private void checkIndicesAreValid(List<Index> studentIndices, StudentNameList nameList)
             throws CommandException {
-        int size = lastShownStudentList.size();
+        int size = Integer.valueOf(nameList.size());
         for (Index index : studentIndices) {
             if (index.getZeroBased() >= size) {
                 throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
