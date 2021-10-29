@@ -3,12 +3,9 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -47,8 +44,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         ArgumentMultimap argMultimapBeforeNok =
                 ArgumentTokenizer
-                        .tokenize(argsBeforeNok, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                                PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION, PREFIX_TAG);
+                        .tokenize(argsBeforeNok, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         ArgumentMultimap argMultimapAfterNok =
                 ArgumentTokenizer.tokenize(argsAfterNok, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
@@ -76,20 +72,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor
                     .setAddress(ParserUtil.parseAddress(argMultimapBeforeNok.getValue(PREFIX_ADDRESS).get()));
         }
-        if (argMultimapBeforeNok.getValue(PREFIX_RATE).isPresent()) {
-            editPersonDescriptor
-                    .setRate(ParserUtil.parseRate(argMultimapBeforeNok.getValue(PREFIX_RATE).get()));
-        }
-        if (argMultimapBeforeNok.getValue(PREFIX_CLASSTIMING).isPresent()) {
-            editPersonDescriptor
-                    .setClassTiming(ParserUtil.parseClassTiming(argMultimapBeforeNok
-                            .getValue(PREFIX_CLASSTIMING).get()));
-        }
-        if (argMultimapBeforeNok.getValue(PREFIX_LOCATION).isPresent()) {
-            editPersonDescriptor
-                    .setLocation(ParserUtil.parseLocation(argMultimapBeforeNok
-                            .getValue(PREFIX_LOCATION).get()));
-        }
+
         parseTagsForEdit(argMultimapBeforeNok.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         // For after nok

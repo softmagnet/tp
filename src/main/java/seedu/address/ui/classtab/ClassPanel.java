@@ -11,7 +11,6 @@ import javafx.util.Callback;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.ui.TuitionClassListViewCell;
 import seedu.address.ui.UiPart;
 
 /**

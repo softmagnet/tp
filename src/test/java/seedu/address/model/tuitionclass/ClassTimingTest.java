@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.tuitionclass;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -10,8 +10,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.address.model.tuitionclass.ClassTiming;
 
 public class ClassTimingTest {
 

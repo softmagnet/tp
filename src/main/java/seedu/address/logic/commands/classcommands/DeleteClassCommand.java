@@ -9,7 +9,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 public class DeleteClassCommand extends Command {
@@ -40,9 +39,11 @@ public class DeleteClassCommand extends Command {
         if (!model.hasTuitionClass(tuitionClass)) {
             throw new CommandException(MESSAGE_MISSING_CLASS);
         }
-        ReadOnlyAddressBook addressBook = model.getAddressBook();
 
         model.deleteTuitionClass(tuitionClass);
+
+        hideTuitionClassStudentList();
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, tuitionClass));
     }
 

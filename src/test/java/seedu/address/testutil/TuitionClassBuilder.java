@@ -4,8 +4,8 @@ import seedu.address.model.tuitionclass.ClassName;
 import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.tuitionclass.Rate;
+import seedu.address.model.tuitionclass.StudentNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.model.tuitionclass.UniqueNameList;
 
 public class TuitionClassBuilder {
 
@@ -19,49 +19,93 @@ public class TuitionClassBuilder {
     private ClassTiming classTiming;
     private Rate rate;
     private Location location;
-    private UniqueNameList uniqueNameList;
+    private StudentNameList studentNameList;
 
+    /**
+     * Constructs a new TuitionClassBuilder with the default information.
+     */
     public TuitionClassBuilder() {
         className = new ClassName(DEFAULT_CLASS_NAME);
         classTiming = new ClassTiming(DEFAULT_CLASS_TIMING);
         rate = new Rate(DEFAULT_RATE);
         location = new Location(DEFAULT_LOCATION);
-        uniqueNameList = new UniqueNameList(DEFAULT_NAME_LIST);
+        studentNameList = new StudentNameList(DEFAULT_NAME_LIST);
     }
 
+    /**
+     * Constructs a new TuitionClassBuilder with the same information as the classToCopy.
+     *
+     * @param classToCopy TuitionClass to copy the information from.
+     */
     public TuitionClassBuilder(TuitionClass classToCopy) {
         className = classToCopy.getClassName();
         classTiming = classToCopy.getClassTiming();
         rate = classToCopy.getRate();
         location = classToCopy.getLocation();
-        uniqueNameList = classToCopy.getStudentList();
+        studentNameList = classToCopy.getStudentList();
     }
 
-    public TuitionClassBuilder withClassName(ClassName className) {
-        this.className = className;
+    /**
+     * Changes the class name of the TuitionClassBuilder to the given name.
+     *
+     * @param className Name to be changed to.
+     * @return TuitionClassBuilder with the new name.
+     */
+    public TuitionClassBuilder withClassName(String className) {
+        this.className = new ClassName(className);
         return this;
     }
 
-    public TuitionClassBuilder withClassTiming(ClassTiming classTiming) {
-         return this;
-    }
-
-    public TuitionClassBuilder withRate(Rate rate) {
-        this.rate = rate;
+    /**
+     * Changes the class timing of the TuitionClassBuilder to the given class timing.
+     *
+     * @param classTiming Class timing to be changed to.
+     * @return TuitionClassBuilder with the new class timing.
+     */
+    public TuitionClassBuilder withClassTiming(String classTiming) {
+        this.classTiming = new ClassTiming(classTiming);
         return this;
     }
 
-    public TuitionClassBuilder withLocation(Location location) {
-        this.location = location;
+    /**
+     * Changes the rate of the TuitionClassBuilder to the given rate.
+     *
+     * @param rate Rate to be changed to.
+     * @return TuitionClassBuilder with the new rate.
+     */
+    public TuitionClassBuilder withRate(String rate) {
+        this.rate = new Rate(rate);
         return this;
     }
 
-    public TuitionClassBuilder withStudentList(UniqueNameList uniqueNameList) {
-        this.uniqueNameList = uniqueNameList;
+    /**
+     * Changes the location of the TuitionClassBuilder to the given location.
+     *
+     * @param location Location to be changed to.
+     * @return TuitionClassBuilder with the new location.
+     */
+    public TuitionClassBuilder withLocation(String location) {
+        this.location = new Location(location);
         return this;
     }
 
+    /**
+     * Changes the student list of the TuitionClassBuilder to the given student list.
+     *
+     * @param studentList Student list to be changed to.
+     * @return TuitionClassBuilder with the new student list.
+     */
+    public TuitionClassBuilder withStudentList(String... studentList) {
+        this.studentNameList = new StudentNameList(studentList);
+        return this;
+    }
+
+    /**
+     * Builds a TuitionClass with the information of the TuitionClassBuilder object.
+     *
+     * @return TuitionClass with the information of the TuitionClassBuilder.
+     */
     public TuitionClass build() {
-        return new TuitionClass(className, classTiming, location, rate, uniqueNameList);
+        return new TuitionClass(className, classTiming, location, rate, studentNameList);
     }
 }

@@ -40,7 +40,7 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
    
    * **`exit`** : Exits the app.
 
-1. Once you are ready to use your fill in Timestable with your own students, simply use the  **`clear`** command to deletes all the sample students, instead of having to delete them one by one.
+1. Once you are ready to use your fill in Timestable with your own students, simply use the  **`clear`** command to delete all the sample students, instead of having to delete them one by one.
    Now you can start putting your students into Timestable.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -93,8 +93,7 @@ Adds a student to the address book.
 
 Format:
 ```
-add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ct/CLASS_TIMING l/LOCATION r/HOURLY_RATE [t/TAG]… nok/ n/NOK_NAME
-    p/NOK_PHONE_NUMBER e/NOK_EMAIL
+add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… nok/ n/NOK_NAME p/NOK_PHONE_NUMBER e/NOK_EMAIL
 ```
 
 * This is a command that requires next-of-kin (NOK) information.
@@ -111,13 +110,11 @@ A student can have any number of tags (including 0).
 Examples:
 
 ```
-add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 ct/Mon 2-4pm
-    l/Hougang ave 5 Block 614 #11-419 r/$50 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com
+add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com
 ```
 
 ```
-add n/Betsy Crowe ct/Mon 5-7pm l/Serangoon Nex  t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567
-    t/slow learner r/$70 nok/ n/Karen e/karenSUper@gmail.com p/99994444
+add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/slow learner nok/ n/Karen e/karenSUper@gmail.com p/99994444
 ```
 
 ### Adding a class: `addclass`
@@ -132,6 +129,7 @@ addclass cn/CLASS NAME ct/CLASS_TIMING r/HOUELY_RATE l/LOCATION
 ```
 
 * This command adds a new class to keep track of all classes that the user is teaching.
+* `CLASS_TIMING` can only start at the hour mark or half hour mark.
 
 Examples:
 ```
@@ -216,6 +214,7 @@ editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]
 * Edits the class at the specified `INDEX`. The index refers to the index number shown in the displayed class
   list in the `classes` tab. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
+* `CLASS_TIMING` can only start at the hour mark or half hour mark.
 
 Examples:
 * `editclass 1 ct/wed 15:00-17:00` Edits the 1st class in the class list class timing to be WED 15:00-17:00.
@@ -246,19 +245,21 @@ Finds students whose names contain any of the given keywords.
 
 Format:
 ```
-findname KEYWORD [MORE_KEYWORDS]
+findname KEYWORD, [MORE_KEYWORDS]
 ```
 
-* The search is case-insensitive. e.g `hans` will match `Hans`.
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
+* The search is case-insensitive. e.g. `hans` will match `Hans`.
+* The keywords are split by commas. e.g. `findname alex lim, bernice yu`
 * Only the name is searched.
 * Partial matches will still be matched e.g. `Han` will match `Hans`.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+  e.g. `findname alex lim, bernice yu` will return `Alex Lim`, `Bernice Yu`.
+* The entire keyword is used for matching e.g. `findname Alex L` will match `Alex Lim`
+    but not `Alex Yu`
 
 Examples:
 * `findname John` returns `john` and `John Doe`.
-* `findname alex david` returns `Alex Yeoh`, `David Li`.<br>
+* `findname alex, david` returns `Alex Yeoh`, `David Li`.<br>
 
   ![result for 'findname alex david'](images/findAlexDavidResult.png)
 
@@ -267,12 +268,29 @@ Examples:
 
 Finds a class whose class timing matches the given class timing.
 
-Format: `findclass CLASS_TIMING`
+Format: `findclass KEYWORD...`
 
 <!---todo fill in inner working--->
 
+* The valid keywords for this command are limited to the following types:
+    1. 3 letter abbreviation for day of the week e.g. `Mon`, `Tue`, etc.
+    2. time expressed in HH:MM-HH:MM format   e.g. `11:30-12:30`, `15:00-16:00`, etc.
+* Either a single keyword or two keywords of different types should be provided or no classes would be returned
+  because a single class can't happen at two different times.
+    * Important clarifiication: In timestable, class refers to a single session of a type of class. E.g. A Physics class
+      might have multiple sessions, but each session can only occur at one time.
+* If two keywords are entered, then the class returned would be the one that match all the keywords
+  (see example below).
+
 Examples:
-* `findclass mon 11:00-12:00` returns the class with class timing at MON 11:00-12:00.
+1. Single keyword
+    * `findclass mon` returns all classes on Monday
+    * `findclass 10:00-12:00` returns all classes scheduled for 10:00 to 12:00 no matter which day of the week it belongs
+      to
+2. two keywords
+    * `findclass mon 11:00-12:00` returns the exact class with on Mon at 11:00-12:00.
+    * `findclass tue 11:00-12:00` returns the exact class with on Tue at 11:00-12:00.
+   
 
 ### Locating class by class name: `findclassname`
 <hr>
@@ -281,12 +299,20 @@ Finds a class whose class name matches the given keywords.
 
 Format:
 ```
-findclassname KEYWORD
+findclassname KEYWORD...
 ```
 <!---todo fill in inner working--->
 
+* case-insensitive `PHYSICS` will match 'physics'
+* each keyword is separated by a space
+* only classes that match all keywords will be shown
+* a match happens when a whole word is matched and not in part e.g. if keyword is `Phy` then the class with name
+  `Physics` would not be part of the result because it is not a whole word match
+
 Examples:
 * `findclassname math` returns all the classes with math in the class name.
+* `findclassname Sec 4 maths` returns all the classes with `sec`, `4`, and `maths` in the class name. Hence,
+  class with name `maths sec 4` and class with name `sec 4 maths` would both be returned.
 
 ### Locating students by tag: `findtag`
 <hr>

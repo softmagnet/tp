@@ -30,8 +30,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalTimestable.AMY;
+import static seedu.address.testutil.TypicalTimestable.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,9 +41,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.tuitionclass.Location;
-import seedu.address.model.tuitionclass.Rate;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
@@ -97,7 +94,8 @@ public class AddCommandParserTest {
         // zero tags
         Student expectedStudent = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                        + ADDRESS_DESC_AMY + VALID_PREFIX_NOK + NAME_DESC_NOK + PHONE_DESC_NOK + EMAIL_DESC_NOK + ADDRESS_DESC_NOK,
+                        + ADDRESS_DESC_AMY + VALID_PREFIX_NOK + NAME_DESC_NOK + PHONE_DESC_NOK
+                        + EMAIL_DESC_NOK + ADDRESS_DESC_NOK,
                 new AddCommand(expectedStudent));
     }
 

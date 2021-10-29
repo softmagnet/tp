@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import static seedu.address.logic.commands.classcommands.EditClassCommand.EditClassDescriptor;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -12,8 +14,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import static seedu.address.logic.commands.classcommands.EditClassCommand.EditClassDescriptor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -69,24 +69,26 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     //// SAMPLE CLASS INFO
-    public static final String VALID_CLASSNAME_PHYSICS = "Sec 4 Physics";
-    public static final String VALID_CLASSNAME_MATHS = "Sec 4 Maths";
-    public static final String VALID_CLASSTIMING_PHYSICS = "tue 13:00-14:00";
-    public static final String VALID_CLASSTIMING_MATHS = "mon 10:00-11:00";
-    public static final String VALID_RATE_PHYSICS = "70";
-    public static final String VALID_RATE_MATHS = "80";
-    public static final String VALID_LOCATION_PHYSICS = "Block 312, Amy Street 1";
-    public static final String VALID_LOCATION_MATHS = "Block 123, Bobby Street 3";
+    public static final String VALID_CLASSNAME_IB_PHYSICS = "IB Physics";
+    public static final String VALID_CLASSNAME_IB_MATHS = "IB Maths";
+    public static final String VALID_CLASSTIMING_IB_PHYSICS = "tue 13:00-14:00";
+    public static final String VALID_CLASSTIMING_IB_MATHS = "mon 10:00-11:00";
+    public static final String VALID_RATE_IB_PHYSICS = "70";
+    public static final String VALID_RATE_IB_MATHS = "80";
+    public static final String VALID_LOCATION_IB_PHYSICS = "Block 312, Adams Street 1";
+    public static final String VALID_LOCATION_IB_MATHS = "Block 123, Brown Street 3";
+    public static final String[] VALID_STUDENTLIST_IB_PHYSICS = {"Benson Meier", "Alice Pauline"};
+    public static final String[] VALID_STUDENTLIST_IB_MATHS = {"Carl Kurz", "Daniel Meier"};
 
-    public static final String RATE_DESC_PHYSICS = " " + PREFIX_RATE + VALID_RATE_PHYSICS;
-    public static final String RATE_DESC_MATHS = " " + PREFIX_RATE + VALID_RATE_MATHS;
-    public static final String CLASSTIMING_DESC_PHYSICS = " " + PREFIX_CLASSTIMING + VALID_CLASSTIMING_PHYSICS;
-    public static final String CLASSTIMING_DESC_MATHS = " " + PREFIX_CLASSTIMING + VALID_CLASSTIMING_MATHS;
-    public static final String LOCATION_DESC_PHYSICS = " " + PREFIX_LOCATION + VALID_LOCATION_PHYSICS;
-    public static final String LOCATION_DESC_MATHS = " " + PREFIX_LOCATION + VALID_LOCATION_MATHS;
+
+    public static final String RATE_DESC_PHYSICS = " " + PREFIX_RATE + VALID_RATE_IB_PHYSICS;
+    public static final String RATE_DESC_MATHS = " " + PREFIX_RATE + VALID_RATE_IB_MATHS;
+    public static final String CLASSTIMING_DESC_PHYSICS = " " + PREFIX_CLASSTIMING + VALID_CLASSTIMING_IB_PHYSICS;
+    public static final String CLASSTIMING_DESC_MATHS = " " + PREFIX_CLASSTIMING + VALID_CLASSTIMING_IB_MATHS;
+    public static final String LOCATION_DESC_PHYSICS = " " + PREFIX_LOCATION + VALID_LOCATION_IB_PHYSICS;
+    public static final String LOCATION_DESC_MATHS = " " + PREFIX_LOCATION + VALID_LOCATION_IB_MATHS;
 
     public static final String INVALID_RATE_DESC = " " + PREFIX_RATE + "-32"; // negative rate not allowed for rate
     // empty string not allowed for classTiming
@@ -99,8 +101,8 @@ public class CommandTestUtil {
 
     public static final EditPersonDescriptor DESC_AMY;
     public static final EditPersonDescriptor DESC_BOB;
-    public static final EditClassDescriptor DESC_PHYSICS;
-    public static final EditClassDescriptor DESC_MATHS;
+    public static final EditClassDescriptor DESC_IB_PHYSICS;
+    public static final EditClassDescriptor DESC_IB_MATHS;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -114,13 +116,13 @@ public class CommandTestUtil {
                 .withNokPhone(VALID_PHONE_NOK).withNokAddress(VALID_ADDRESS_NOK)
                 .withNokEmail(VALID_EMAIL_NOK).build();
 
-        DESC_PHYSICS = new EditClassDescriptorBuilder().withClassName(VALID_CLASSNAME_PHYSICS)
-                .withClassTiming(VALID_CLASSTIMING_PHYSICS).withRate(VALID_RATE_PHYSICS)
-                .withLocation(VALID_LOCATION_PHYSICS).build();
+        DESC_IB_PHYSICS = new EditClassDescriptorBuilder().withClassName(VALID_CLASSNAME_IB_PHYSICS)
+                .withClassTiming(VALID_CLASSTIMING_IB_PHYSICS).withRate(VALID_RATE_IB_PHYSICS)
+                .withLocation(VALID_LOCATION_IB_PHYSICS).withStudentList(VALID_STUDENTLIST_IB_PHYSICS).build();
 
-        DESC_MATHS = new EditClassDescriptorBuilder().withClassName(VALID_CLASSNAME_MATHS)
-                .withClassTiming(VALID_CLASSTIMING_MATHS).withRate(VALID_RATE_MATHS)
-                .withLocation(VALID_LOCATION_MATHS).build();
+        DESC_IB_MATHS = new EditClassDescriptorBuilder().withClassName(VALID_CLASSNAME_IB_MATHS)
+                .withClassTiming(VALID_CLASSTIMING_IB_MATHS).withRate(VALID_RATE_IB_MATHS)
+                .withLocation(VALID_LOCATION_IB_MATHS).withStudentList(VALID_STUDENTLIST_IB_PHYSICS).build();
     }
 
     /**

@@ -39,6 +39,14 @@ public abstract class Command {
         }
     }
 
+    /**
+     * Updates the CommandObservers by calling the hideTuitionClassStudentList command.
+     */
+    public void hideTuitionClassStudentList() {
+        for (CommandObserver commandObserver : commandObservers) {
+            commandObserver.hideTuitionClassStudentList();
+        }
+    }
 
     /**
      * Executes the command and returns the result message.
