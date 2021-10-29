@@ -268,12 +268,29 @@ Examples:
 
 Finds a class whose class timing matches the given class timing.
 
-Format: `findclass CLASS_TIMING`
+Format: `findclass KEYWORD...`
 
 <!---todo fill in inner working--->
 
+* The valid keywords for this command are limited to the following types:
+    1. 3 letter abbreviation for day of the week e.g. `Mon`, `Tue`, etc.
+    2. time expressed in HH:MM-HH:MM format   e.g. `11:30-12:30`, `15:00-16:00`, etc.
+* Either a single keyword or two keywords of different types should be provided or no classes would be returned
+  because a single class can't happen at two different times.
+    * Important clarifiication: In timestable, class refers to a single session of a type of class. E.g. A Physics class
+      might have multiple sessions, but each session can only occur at one time.
+* If two keywords are entered, then the class returned would be the one that match all the keywords
+  (see example below).
+
 Examples:
-* `findclass mon 11:00-12:00` returns the class with class timing at MON 11:00-12:00.
+1. Single keyword
+    * `findclass mon` returns all classes on Monday
+    * `findclass 10:00-12:00` returns all classes scheduled for 10:00 to 12:00 no matter which day of the week it belongs
+      to
+2. two keywords
+    * `findclass mon 11:00-12:00` returns the exact class with on Mon at 11:00-12:00.
+    * `findclass tue 11:00-12:00` returns the exact class with on Tue at 11:00-12:00.
+   
 
 ### Locating class by class name: `findclassname`
 <hr>
@@ -282,12 +299,20 @@ Finds a class whose class name matches the given keywords.
 
 Format:
 ```
-findclassname KEYWORD
+findclassname KEYWORD...
 ```
 <!---todo fill in inner working--->
 
+* case-insensitive `PHYSICS` will match 'physics'
+* each keyword is separated by a space
+* only classes that match all keywords will be shown
+* a match happens when a whole word is matched and not in part e.g. if keyword is `Phy` then the class with name
+  `Physics` would not be part of the result because it is not a whole word match
+
 Examples:
 * `findclassname math` returns all the classes with math in the class name.
+* `findclassname Sec 4 maths` returns all the classes with `sec`, `4`, and `maths` in the class name. Hence,
+  class with name `maths sec 4` and class with name `sec 4 maths` would both be returned.
 
 ### Locating students by tag: `findtag`
 <hr>
