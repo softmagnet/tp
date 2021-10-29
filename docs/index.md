@@ -40,3 +40,4 @@ Simply head over to the Timetable tab by clicking on it or using the view comman
 **Acknowledgements**
 
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* Past year projects: [Link](https://github.com/AY1920S2-CS2103-W15-4/main)
