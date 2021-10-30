@@ -73,11 +73,11 @@
 
           <Tab fx:id="timetableTab" text="Timetable">
             <VBox fx:id="timetableList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
-                  VBox.vgrow="ALWAYS" style="-fx-background-color: #383838">
+                  VBox.vgrow="ALWAYS" style="-fx-background-color: derive(#722F37, 20%)">
               <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
               </padding>
-              <StackPane fx:id="timetablePanelPlaceholder" VBox.vgrow="ALWAYS" style="-fx-background-color: #383838"/>
+              <StackPane fx:id="timetablePanelPlaceholder" VBox.vgrow="ALWAYS" style="-fx-background-color: derive(#722F37, 20%)"/>
             </VBox>
           </Tab>
 
