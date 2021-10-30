@@ -219,6 +219,14 @@
     -fx-background-color: #722F37;
 }
 
+.menu-button:hover, .menu-button:focused, .menu-button:showing {
+    -fx-background-color: #722F37;
+}
+
+.menu-item:focused {
+    -fx-background-color: #722F37;
+}
+
 /*
  * Metro style Push Button
  * Author: Pedro Duque Vieira
@@ -393,4 +401,9 @@
 
 .tab:hover {
     -fx-background-color: #c27882;
+}
+
+/* Reused from https://stackoverflow.com/a/34247033/12499338 */
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-color: transparent;
 }
