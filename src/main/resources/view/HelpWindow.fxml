@@ -20,7 +20,7 @@
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <HBox alignment="CENTER" style="-fx-background-color: #61b0ff;">
+      <HBox alignment="CENTER" style="-fx-background-color: #7e4147;">
         <children>
           <Label fx:id="helpMessage" text="Label" textFill="WHITE">
             <HBox.margin>

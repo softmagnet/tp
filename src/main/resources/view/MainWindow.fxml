@@ -22,7 +22,7 @@
     <Scene>
       <stylesheets>
         <URL value="@Fonts.css"/>
-        <URL value="@BlueTheme.css" />
+        <URL value="@RedTheme.css" />
         <URL value="@Extensions.css" />
         <URL value="@timetableTab/Timetable.css" />
         <URL value="@classTab/ClassPanel.css" />
