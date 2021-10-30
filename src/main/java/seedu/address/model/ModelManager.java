@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
 
@@ -171,6 +172,15 @@ public class ModelManager implements Model {
         ObservableList<TuitionClass> newList = FXCollections.observableArrayList();
         newList.addAll(tuitionClassList);
         this.filteredTuitionClass = new FilteredList<>(newList);
+    }
+
+    @Override
+    public void updateClassStudentLists(Name newName, Name oldName) {
+        requireAllNonNull(newName, oldName);
+        if (newName.equals(oldName)) {
+            return;
+        }
+        addressBook.updateClassStudentLists(newName, oldName);
     }
 
     @Override

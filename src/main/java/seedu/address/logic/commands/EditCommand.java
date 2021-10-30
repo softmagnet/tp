@@ -2,17 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -31,11 +26,6 @@ import seedu.address.model.person.Nok;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tuitionclass.ClassName;
-import seedu.address.model.tuitionclass.ClassTiming;
-import seedu.address.model.tuitionclass.Location;
-import seedu.address.model.tuitionclass.Rate;
-import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -47,14 +37,11 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_RATE + "RATE] "
-            + "[" + PREFIX_CLASSTIMING + "CLASS TIMING] "
-            + "[" + PREFIX_LOCATION + "LOCATION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -82,6 +69,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -89,7 +77,14 @@ public class EditCommand extends Command {
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
+
+        //execute update scade, change name in student name list in tuitionclass
+        editPersonDescriptor.getName().ifPresent(name -> {
+            model.updateClassStudentLists(name, studentToEdit.getName());
+        });
+
         Student editedStudent = createEditedPerson(studentToEdit, editPersonDescriptor);
+
 
         if (!studentToEdit.isSamePerson(editedStudent) && model.hasPerson(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -152,12 +147,6 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
-        private ArrayList<TuitionClass> tuitionClasses;
-        private ClassName className;
-        private ClassTiming classTiming;
-        private Location location;
-        private Rate rate;
-
         private Name nokName;
         private Phone nokPhone;
         private Email nokEmail;
@@ -187,8 +176,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, location, rate, className, classTiming,
-                    tuitionClasses, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, nokAddress, nokEmail, nokName,
+                    nokPhone);
         }
 
         public void setName(Name name) {
@@ -219,68 +208,11 @@ public class EditCommand extends Command {
             this.address = address;
         }
 
-        public void setClassName(ClassName className) {
-            this.className = className;
-        }
-
-        public Optional<ClassName> getClassName() {
-            return Optional.ofNullable(className);
-        }
-
-        public void setRate(Rate rate) {
-            if (tuitionClasses != null) {
-                TuitionClass tuitionClass = this.tuitionClasses.get(0);
-                TuitionClass editedTuitionClass = new TuitionClass(tuitionClass.getClassName(),
-                        tuitionClass.getClassTiming(), tuitionClass.getLocation(), rate);
-                this.tuitionClasses = new ArrayList<>(Arrays.asList(editedTuitionClass));
-            }
-            this.rate = rate;
-        }
-
-        public Optional<Rate> getRate() {
-            return Optional.ofNullable(rate);
-        }
-
-        public void setLocation(Location location) {
-            if (tuitionClasses != null) {
-                TuitionClass tuitionClass = this.tuitionClasses.get(0);
-                TuitionClass editedTuitionClass = new TuitionClass(tuitionClass.getClassName(),
-                        tuitionClass.getClassTiming(), location, tuitionClass.getRate());
-                this.tuitionClasses = new ArrayList<>(Arrays.asList(editedTuitionClass));
-            }
-            this.location = location;
-        }
-
-        public Optional<Location> getLocation() {
-            return Optional.ofNullable(location);
-        }
-
-        public void setClassTiming(ClassTiming classTiming) {
-            if (tuitionClasses != null) {
-                TuitionClass tuitionClass = this.tuitionClasses.get(0);
-                TuitionClass editedTuitionClass = new TuitionClass(tuitionClass.getClassName(),
-                        classTiming, tuitionClass.getLocation(), tuitionClass.getRate());
-                this.tuitionClasses = new ArrayList<>(Arrays.asList(editedTuitionClass));
-
-            }
-            this.classTiming = classTiming;
-        }
-
-        public Optional<ClassTiming> getClassTiming() {
-            return Optional.ofNullable(classTiming);
-        }
-
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
 
-        //public Optional<ArrayList<TuitionClass>> getTuitionClasses() {
-        //    return (tuitionClasses != null) ? Optional.of(tuitionClasses)
-        //            : Optional.empty();
-        //}
-        //public void setTuitionClasses(ArrayList<TuitionClass> tuitionClasses) {
-        //    this.tuitionClasses = tuitionClasses;
-        //}
+        //// nok
 
         public void setNokName(Name nokName) {
             this.nokName = nokName;
@@ -349,10 +281,12 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    //&& getTuitionClasses().equals(e.getTuitionClasses())
-                    && getRate().equals(e.getRate())
-                    && getClassTiming().equals(e.getClassTiming())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getNokAddress().equals(e.getNokAddress())
+                    && getNokEmail().equals(e.getNokEmail())
+                    && getNokName().equals(e.getNokName())
+                    && getNokPhone().equals(e.getNokPhone());
+
         }
     }
 }

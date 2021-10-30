@@ -21,6 +21,9 @@ public class TuitionClassBuilder {
     private Location location;
     private StudentNameList studentNameList;
 
+    /**
+     * Constructs a new TuitionClassBuilder with the default information.
+     */
     public TuitionClassBuilder() {
         className = new ClassName(DEFAULT_CLASS_NAME);
         classTiming = new ClassTiming(DEFAULT_CLASS_TIMING);
@@ -29,6 +32,11 @@ public class TuitionClassBuilder {
         studentNameList = new StudentNameList(DEFAULT_NAME_LIST);
     }
 
+    /**
+     * Constructs a new TuitionClassBuilder with the same information as the classToCopy.
+     *
+     * @param classToCopy TuitionClass to copy the information from.
+     */
     public TuitionClassBuilder(TuitionClass classToCopy) {
         className = classToCopy.getClassName();
         classTiming = classToCopy.getClassTiming();
@@ -37,31 +45,66 @@ public class TuitionClassBuilder {
         studentNameList = classToCopy.getStudentList();
     }
 
+    /**
+     * Changes the class name of the TuitionClassBuilder to the given name.
+     *
+     * @param className Name to be changed to.
+     * @return TuitionClassBuilder with the new name.
+     */
     public TuitionClassBuilder withClassName(String className) {
         this.className = new ClassName(className);
         return this;
     }
 
+    /**
+     * Changes the class timing of the TuitionClassBuilder to the given class timing.
+     *
+     * @param classTiming Class timing to be changed to.
+     * @return TuitionClassBuilder with the new class timing.
+     */
     public TuitionClassBuilder withClassTiming(String classTiming) {
         this.classTiming = new ClassTiming(classTiming);
-         return this;
+        return this;
     }
 
+    /**
+     * Changes the rate of the TuitionClassBuilder to the given rate.
+     *
+     * @param rate Rate to be changed to.
+     * @return TuitionClassBuilder with the new rate.
+     */
     public TuitionClassBuilder withRate(String rate) {
         this.rate = new Rate(rate);
         return this;
     }
 
+    /**
+     * Changes the location of the TuitionClassBuilder to the given location.
+     *
+     * @param location Location to be changed to.
+     * @return TuitionClassBuilder with the new location.
+     */
     public TuitionClassBuilder withLocation(String location) {
         this.location = new Location(location);
         return this;
     }
 
+    /**
+     * Changes the student list of the TuitionClassBuilder to the given student list.
+     *
+     * @param studentList Student list to be changed to.
+     * @return TuitionClassBuilder with the new student list.
+     */
     public TuitionClassBuilder withStudentList(String... studentList) {
         this.studentNameList = new StudentNameList(studentList);
         return this;
     }
 
+    /**
+     * Builds a TuitionClass with the information of the TuitionClassBuilder object.
+     *
+     * @return TuitionClass with the information of the TuitionClassBuilder.
+     */
     public TuitionClass build() {
         return new TuitionClass(className, classTiming, location, rate, studentNameList);
     }

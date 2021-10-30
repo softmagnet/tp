@@ -23,7 +23,7 @@ public class JsonAdaptedStudentTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TAG = " ";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -124,7 +124,7 @@ public class JsonAdaptedStudentTest {
         assertThrows(IllegalValueException.class, student::toModelType);
     }
 
-//    DON'T DELETE YET!! WILL MIGRATE TO JsonAdaptedClassTest
+    //    DON'T DELETE YET!! WILL MIGRATE TO JsonAdaptedClassTest
 
     //@Test
     //public void toModelType_invalidClassTiming_throwsIllegalValueException() {

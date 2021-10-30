@@ -220,14 +220,22 @@ public class MainWindow extends UiPart<Stage> implements CommandObserver {
         requireNonNull(indexOfClassToSelect);
         List<TuitionClass> lastShownList = logic.getFilteredTuitionClassList();
 
-        TuitionClass tuitionClass = lastShownList.get(indexOfClassToSelect);
+        ObservableList<Student> newStudentList;
 
-        ObservableList<Student> newStudentList =
-                logic.getFilteredStudentList().filtered(student -> tuitionClass.containsStudent(student.getName()));
+        TuitionClass tuitionClass = lastShownList.get(indexOfClassToSelect);
+        newStudentList = logic.getFilteredStudentList().filtered(student ->
+                tuitionClass.containsStudent(student.getName()));
 
         classPanel.setItems(newStudentList);
         classPanel.setCellFactory(listView -> new StudentListViewCell());
+    }
 
+    @Override
+    public void hideTuitionClassStudentList() {
+        ObservableList<Student> newStudentList = logic.getFilteredStudentList().filtered(student -> false);
+
+        classPanel.setItems(newStudentList);
+        classPanel.setCellFactory(listView -> new StudentListViewCell());
     }
 
     @Override

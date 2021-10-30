@@ -20,7 +20,7 @@ import seedu.address.model.tuitionclass.exceptions.DuplicateStudentInClassExcept
  */
 public class StudentNameList implements Iterable<Name> {
 
-    private final ArrayList<Name> internalList = new ArrayList<>();
+    private final List<Name> internalList = new ArrayList<>();
 
     /**
      * Constructs an StudentNameList from an array of Strings.
@@ -33,13 +33,12 @@ public class StudentNameList implements Iterable<Name> {
         }
     }
 
-
     /**
      * Constructor that builds a StudentNameList from zero or more names.
      *
      * @param names Names to be stored in the StudentNameList.
      */
-    public StudentNameList(Name ... names) {
+    public StudentNameList(Name... names) {
         for (Name name : names) {
             this.add(name);
         }
@@ -63,16 +62,6 @@ public class StudentNameList implements Iterable<Name> {
      */
     public void remove(Name name) {
         internalList.remove(name);
-    }
-
-    /**
-     * Removes all names provided from the list.
-     * @param names The StudentNameList of names to be removed.
-     */
-    public void removeAll(StudentNameList names) {
-        for (Name name : names) {
-            remove(name);
-        }
     }
 
     /**
@@ -164,5 +153,18 @@ public class StudentNameList implements Iterable<Name> {
         }
 
         return ((StudentNameList) o).internalList.equals(internalList);
+    }
+
+    /**
+     * Replaces the old student name in the internalList with the new name.
+     *
+     * @param newName Name to replace the old name.
+     * @param oldName Name to be replaced by the new name.
+     */
+    public void replaceStudentName(Name newName, Name oldName) {
+        int oldNameIndex = internalList.indexOf(oldName);
+        if (oldNameIndex != -1) {
+            internalList.set(oldNameIndex, newName);
+        }
     }
 }

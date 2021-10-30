@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalTimestable.IB_MATHS;
 import static seedu.address.testutil.TypicalTimestable.IB_PHYSICS;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.TuitionClassBuilder;
 
 public class TuitionClassTest {
@@ -27,21 +28,21 @@ public class TuitionClassTest {
         assertFalse(IB_PHYSICS.isSameClass(null));
 
         //same class timing, all other attribtues different -> returns true
-        TuitionClass editedIBPhysics = new TuitionClassBuilder(IB_PHYSICS).withClassName(VALID_CLASSNAME_IB_MATHS)
+        TuitionClass editedIbPhysics = new TuitionClassBuilder(IB_PHYSICS).withClassName(VALID_CLASSNAME_IB_MATHS)
                 .withLocation(VALID_LOCATION_IB_MATHS).withRate(VALID_RATE_IB_MATHS)
                 .withStudentList(VALID_STUDENTLIST_IB_MATHS).build();
-        assertTrue(IB_PHYSICS.isSameClass(editedIBPhysics));
+        assertTrue(IB_PHYSICS.isSameClass(editedIbPhysics));
 
         //different class timing, all other attributes same -> returns false
-        editedIBPhysics = new TuitionClassBuilder(IB_PHYSICS).withClassTiming(VALID_CLASSTIMING_IB_MATHS).build();
-        assertFalse(IB_PHYSICS.isSameClass(editedIBPhysics));
+        editedIbPhysics = new TuitionClassBuilder(IB_PHYSICS).withClassTiming(VALID_CLASSTIMING_IB_MATHS).build();
+        assertFalse(IB_PHYSICS.isSameClass(editedIbPhysics));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        TuitionClass IBPhysicsCopy = new TuitionClassBuilder(IB_PHYSICS).build();
-        assertTrue(IB_PHYSICS.equals(IBPhysicsCopy));
+        TuitionClass iBPhysicsCopy = new TuitionClassBuilder(IB_PHYSICS).build();
+        assertTrue(IB_PHYSICS.equals(iBPhysicsCopy));
 
         // same object -> returns true
         assertTrue(IB_PHYSICS.equals(IB_PHYSICS));
@@ -56,29 +57,29 @@ public class TuitionClassTest {
         assertFalse(IB_PHYSICS.equals(IB_MATHS));
 
         // different class name -> returns false
-        TuitionClass editedIBPhysics = new TuitionClassBuilder(IB_PHYSICS).withClassName(VALID_CLASSNAME_IB_MATHS)
+        TuitionClass editedIbPhysics = new TuitionClassBuilder(IB_PHYSICS).withClassName(VALID_CLASSNAME_IB_MATHS)
                 .build();
-        assertFalse(IB_PHYSICS.equals(editedIBPhysics));
+        assertFalse(IB_PHYSICS.equals(editedIbPhysics));
 
         // different class timing -> returns false
-        editedIBPhysics = new TuitionClassBuilder(IB_PHYSICS).withClassTiming(VALID_CLASSTIMING_IB_MATHS)
+        editedIbPhysics = new TuitionClassBuilder(IB_PHYSICS).withClassTiming(VALID_CLASSTIMING_IB_MATHS)
                 .build();
-        assertFalse(IB_PHYSICS.equals(editedIBPhysics));
+        assertFalse(IB_PHYSICS.equals(editedIbPhysics));
 
         // different rate -> returns false
-        editedIBPhysics = new TuitionClassBuilder(IB_PHYSICS).withRate(VALID_RATE_IB_MATHS)
+        editedIbPhysics = new TuitionClassBuilder(IB_PHYSICS).withRate(VALID_RATE_IB_MATHS)
                 .build();
-        assertFalse(IB_PHYSICS.equals(editedIBPhysics));
+        assertFalse(IB_PHYSICS.equals(editedIbPhysics));
 
         // different location -> returns false
-        editedIBPhysics = new TuitionClassBuilder(IB_PHYSICS).withLocation(VALID_LOCATION_IB_MATHS)
+        editedIbPhysics = new TuitionClassBuilder(IB_PHYSICS).withLocation(VALID_LOCATION_IB_MATHS)
                 .build();
-        assertFalse(IB_PHYSICS.equals(editedIBPhysics));
+        assertFalse(IB_PHYSICS.equals(editedIbPhysics));
 
         // different student list -> returns false
-        editedIBPhysics = new TuitionClassBuilder(IB_PHYSICS).withStudentList(VALID_STUDENTLIST_IB_MATHS)
+        editedIbPhysics = new TuitionClassBuilder(IB_PHYSICS).withStudentList(VALID_STUDENTLIST_IB_MATHS)
                 .build();
-        assertFalse(IB_PHYSICS.equals(editedIBPhysics));
+        assertFalse(IB_PHYSICS.equals(editedIbPhysics));
     }
 
 

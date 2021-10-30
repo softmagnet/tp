@@ -31,6 +31,9 @@ public class FindClassCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredClassList(predicate);
+
+        hideTuitionClassStudentList();
+
         return new CommandResult(
                 String.format(Messages.MESSAGE_CLASSES_LISTED_OVERVIEW, model.getFilteredTuitionClassList().size()));
     }
