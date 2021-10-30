@@ -4,9 +4,11 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.util.Callback;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Student;
@@ -24,20 +26,37 @@ public class ClassPanel extends UiPart<Region> {
     private ListView<TuitionClass> tuitionClassListView;
 
     @FXML
+    private StackPane tuitionClassListPlaceholder;
+
+    @FXML
     private ListView<Student> studentListViewClassTab;
 
-    private final ObservableList<TuitionClass> tuitionClassList;
+    @FXML
+    private StackPane studentListPlaceholder;
+
+    // Labels
+    @FXML
+    private Label classLabel;
+    @FXML
+    private Label studentLabel;
 
     /**
      * Creates a {@code StudentListPanel} with the given {@code ObservableList}.
      */
     public ClassPanel(ObservableList<Student> studentList, ObservableList<TuitionClass> tuitionClassList) {
         super(FXML);
-        this.tuitionClassList = tuitionClassList;
+        StudentClassPanel studentClassPanel = new StudentClassPanel(studentList);
+        TuitionClassPanel tuitionClassPanel = new TuitionClassPanel(studentList, tuitionClassList);
 
-        tuitionClassListView.setItems(tuitionClassList);
-        tuitionClassListView.setCellFactory(listView ->
-                new TuitionClassListViewCell(studentList, studentListViewClassTab));
+        tuitionClassPanel.setStudentClassList(studentClassPanel.getStudentListView());
+
+        studentListPlaceholder.getChildren().add(studentClassPanel.getRoot());
+        tuitionClassListPlaceholder.getChildren().add(tuitionClassPanel.getRoot());
+
+        // Set UI stuff
+        classLabel.setText("Your classes");
+        studentLabel.setText("Students");
+
         logger.info("ClassPanel tab opened");
     }
 

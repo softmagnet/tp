@@ -8,8 +8,8 @@
 
 .timetable-day-box {
     -fx-font-family: "Open Sans Semibold";
-    -fx-background-color: #383838;
-    -fx-border-color: #3e7b91;
+    -fx-background-color: derive(#7e4147, 20%);
+    -fx-border-color: #C0888E;
 }
 
 .timetable-scroll {
@@ -18,14 +18,14 @@
 }
 
 .timetable-class-slot-box {
-    -fx-background-color: #3e7b91;
+    -fx-background-color: #C6949A;
     -fx-background-insets: 3 0 3 0;
     -fx-background-radius: 15;
     -fx-padding: 15;
 }
 
 .timetable-time-panel {
-    -fx-background-color: hotpink;
+    -fx-background-color: #BA7C83;
     -fx-background-insets: 5 0 5 0;
     -fx-background-radius: 10;
     -fx-padding: 10;
@@ -39,7 +39,7 @@
 }
 
 .timetable-empty-slot-box {
-    -fx-background-color: #383838;
+    -fx-background-color: derive(#7e4147, 20%);
     -fx-background-insets: 5 0 5 0;
     -fx-background-radius: 10;
     -fx-padding: 10;

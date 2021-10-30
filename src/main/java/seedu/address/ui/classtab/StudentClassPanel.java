@@ -1,4 +1,4 @@
-package seedu.address.ui.studenttab;
+package seedu.address.ui.classtab;
 
 import java.util.logging.Logger;
 
@@ -11,22 +11,25 @@ import seedu.address.model.person.Student;
 import seedu.address.ui.StudentListViewCell;
 import seedu.address.ui.UiPart;
 
-/**
- * Panel containing the list of persons.
- */
-public class StudentListPanel extends UiPart<Region> {
+public class StudentClassPanel extends UiPart<Region> {
     private static final String FXML = "classTab/StudentClassListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(TuitionClassPanel.class);
 
     @FXML
     private ListView<Student> studentListView;
 
     /**
-     * Creates a {@code StudentListPanel} with the given {@code ObservableList}.
+     * Represents a Panel for the Students in a Tuition Class.
+     *
+     * @param studentList The studentList that it is supposed to display.
      */
-    public StudentListPanel(ObservableList<Student> studentList) {
+    public StudentClassPanel(ObservableList<Student> studentList) {
         super(FXML);
         studentListView.setItems(studentList);
         studentListView.setCellFactory(listView -> new StudentListViewCell());
+    }
+
+    public ListView<Student> getStudentListView() {
+        return studentListView;
     }
 }

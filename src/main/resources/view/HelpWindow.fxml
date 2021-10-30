@@ -20,9 +20,9 @@
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <HBox alignment="CENTER">
+      <HBox alignment="CENTER" style="-fx-background-color: #7e4147;">
         <children>
-          <Label fx:id="helpMessage" text="Label">
+          <Label fx:id="helpMessage" text="Label" textFill="WHITE">
             <HBox.margin>
               <Insets right="5.0" />
             </HBox.margin>

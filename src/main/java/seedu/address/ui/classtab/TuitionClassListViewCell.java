@@ -14,10 +14,13 @@ public class TuitionClassListViewCell extends ListCell<TuitionClass> {
     private final ObservableList<Student> studentList;
     private final ListView<Student> studentClassListView;
 
+
     /**
      * Represents the cell displaying the tuition class.
      *
      * @param studentList The student list associated with the tuition class.
+     * @param studentClassListView The UI associated with the tuition class.
+     *
      * @param studentClassListView The UI associated with the tuition class.
      */
     public TuitionClassListViewCell(ObservableList<Student> studentList, ListView<Student> studentClassListView) {

@@ -13,9 +13,9 @@ import seedu.address.ui.UiPart;
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class StudentCardClassTab extends UiPart<Region> {
+public class StudentClassTabCard extends UiPart<Region> {
 
-    private static final String FXML = "classTab/StudentCardClassTab.fxml";
+    private static final String FXML = "classTab/StudentListCard.fxml";
     private static final String ADDRESS_FIELD = "Address: ";
     private static final String MOBILE_FIELD = "Mobile: ";
     private static final String EMAIL_FIELD = "Email: ";
@@ -49,7 +49,7 @@ public class StudentCardClassTab extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public StudentCardClassTab(Student student, int displayedIndex) {
+    public StudentClassTabCard(Student student, int displayedIndex) {
         super(FXML);
         this.student = student;
 
@@ -63,5 +63,23 @@ public class StudentCardClassTab extends UiPart<Region> {
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof StudentClassTabCard)) {
+            return false;
+        }
+
+        // state check
+        StudentClassTabCard card = (StudentClassTabCard) other;
+        return id.getText().equals(card.id.getText())
+                && student.equals(card.student);
     }
 }

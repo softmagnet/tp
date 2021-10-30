@@ -76,9 +76,6 @@ public class MainWindow extends UiPart<Stage> implements CommandObserver {
     @FXML
     private Tab tuitionClassTab;
 
-    //    @FXML
-    //    private ListView<Student> studentListView;
-
     @FXML
     private StackPane timetablePanelPlaceholder;
 
