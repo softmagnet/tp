@@ -33,6 +33,10 @@ public class AddToClassCommand extends Command {
             + "(adds students indexed 2, 3 and 5 to class indexed 1)";
 
     public static final String MESSAGE_ADD_SUCCESS = "Successfully added students to class ";
+    public static final String NO_STUDENT_INDEX_PROVIDED_MESSAGE = "No student index is provided!";
+    public static final String INVALID_OR_MISSING_CLASS_INDEX = "Class index is invalid or is not provided";
+    public static int CLASS_INDEX_POSITION = 0;
+    public static int STUDENT_INDEX_STARTING_POSITION = 1;
 
     private final Index toEditClassIndex;
     private final List<Index> studentIndices;
@@ -42,14 +46,14 @@ public class AddToClassCommand extends Command {
      *
      * @param indexArray ArrayList of index.
      */
-    public AddToClassCommand(ArrayList<Index> indexArray) {
+    public AddToClassCommand(List<Index> indexArray) {
         requireNonNull(indexArray);
 
         //the first index is the index of class in filtered class list that students would be added to
-        toEditClassIndex = indexArray.get(0);
+        toEditClassIndex = indexArray.get(CLASS_INDEX_POSITION);
 
         //the remaining indices are those of the students in filtered student list
-        studentIndices = indexArray.subList(1, indexArray.size());
+        studentIndices = indexArray.subList(STUDENT_INDEX_STARTING_POSITION, indexArray.size());
     }
 
     //TODO: need consider if class alr has that name
@@ -58,7 +62,7 @@ public class AddToClassCommand extends Command {
 
         //get names to be added
         List<Student> lastShownStudentList = model.getFilteredStudentList();
-        checkIndicesAreValid(studentIndices, lastShownStudentList);
+        checkIndicesAreValid(lastShownStudentList);
         ArrayList<Name> namesToAdd = createNameList(studentIndices, lastShownStudentList);
 
         //get class to add to
@@ -97,15 +101,33 @@ public class AddToClassCommand extends Command {
         return nameList;
     }
 
-    private void checkIndicesAreValid(List<Index> studentIndices, List<Student> lastShownStudentList)
+    private void checkIndicesAreValid(List<Student> lastShownStudentList)
             throws CommandException {
         int size = lastShownStudentList.size();
+
+        if (toEditClassIndex.getZeroBased() >= size) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
+        }
+
         for (Index index : studentIndices) {
             if (index.getZeroBased() >= size) {
-                throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
             }
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
 
+        if (!(o instanceof AddToClassCommand)) {
+            return false;
+        }
+
+        AddToClassCommand other = ((AddToClassCommand) o);
+        return other.toEditClassIndex.equals(toEditClassIndex)
+                && other.studentIndices.equals(studentIndices);
+    }
 }
