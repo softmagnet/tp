@@ -2,6 +2,8 @@ package seedu.address.model.tuitionclass;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.ModelTestUtils.LONG_STRING_85_CHAR;
+import static seedu.address.model.ModelTestUtils.LONG_STRING_86_CHAR;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -30,6 +32,7 @@ public class ClassNameTest {
         assertFalse(ClassName.isValidClassName("^")); // only non-alphanumeric characters
         assertFalse(ClassName.isValidClassName("physics*")); // contains non-alphanumeric characters
         assertFalse(ClassName.isValidClassName("A-Maths")); //contains mix of alphanumeric and non-alphanumeric
+        assertFalse(ClassName.isValidClassName(LONG_STRING_86_CHAR));
 
         //valid name
         assertTrue(ClassName.isValidClassName("403")); //numbers only
@@ -37,6 +40,7 @@ public class ClassNameTest {
         assertTrue(ClassName.isValidClassName("sec 4 physics")); //mix of alphanumeric
         assertTrue(ClassName.isValidClassName("CHEMISTRY")); //capital letters
         assertTrue(ClassName.isValidClassName("Learning Lab Tuition center Chemistry Sec 4")); //long name
+        assertTrue(ClassName.isValidClassName(LONG_STRING_85_CHAR));
     }
 
 }

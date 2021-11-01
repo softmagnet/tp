@@ -39,13 +39,15 @@ public class RateTest {
         assertFalse(Rate.isValidRate("32.3232"));
         assertFalse(Rate.isValidRate(".32"));
         assertFalse(Rate.isValidRate(".3232"));
+        assertFalse(Rate.isValidRate("1000000"));
+        assertFalse(Rate.isValidRate("9999000"));
 
         //valid rate
         assertTrue(Rate.isValidRate("50"));
         assertTrue(Rate.isValidRate("50.3"));
         assertTrue(Rate.isValidRate("40.40"));
         assertTrue(Rate.isValidRate("0"));
-        assertTrue(Rate.isValidRate("32131893721"));
+        assertTrue(Rate.isValidRate("999999.99"));
     }
 }
 

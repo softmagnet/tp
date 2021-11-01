@@ -39,4 +39,14 @@ public class AppUtil {
             throw new IllegalArgumentException(errorMessage);
         }
     }
+
+    /**
+     * Checks that {@code test} doesn't exceed {@code maxLength}. Part of argument validation.
+     */
+    public static boolean isWithinLength(String test, int maxLength) {
+        if (test.length() <= maxLength) {
+            return true;
+        }
+        return false;
+    }
 }
