@@ -166,13 +166,10 @@ public class UniqueClassList implements Iterable<TuitionClass> {
             throw new DuplicateClassException();
         }
         //check for overlapping ClassTiming.
-        for (TuitionClass tuitionClass : internalList) {
-            if (tuitionClass.isOverlapping(editedClass)) {
-                throw new InvalidClassException();
-            }
+        if (!target.isSameClass(editedClass) && !isValidTiming(editedClass)) {
+            throw new InvalidClassException();
         }
-
-        internalList.set(index, editedClass);
+            internalList.set(index, editedClass);
     }
 
     //TODO: need a personsAreUnique method probably
