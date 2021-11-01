@@ -2,6 +2,7 @@ package seedu.address.model.tuitionclass;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.model.util.Commons.MAX_CHAR_COUNT;
 
 /**
  * Represents a Person's class location in the address book.
@@ -9,13 +10,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Location {
 
-    public static final String MESSAGE_CONSTRAINTS = "Class location can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Class location should be between 1 and "
+            + MAX_CHAR_COUNT + " characters long!";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "[^\\s].{0,84}";
 
     public final String value;
 
