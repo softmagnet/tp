@@ -51,7 +51,7 @@ public class UniqueClassListTest {
     }
 
     @Test
-    public void add_duplicatePerson_throwsInvalidClassException() {
+    public void add_duplicateTuitionClass_throwsInvalidClassException() {
         uniqueClassList.add(JC_CHEMISTRY);
         assertThrows(InvalidClassException.class, () -> uniqueClassList.add(JC_CHEMISTRY));
     }
