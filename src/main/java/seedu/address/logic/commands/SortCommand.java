@@ -7,6 +7,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
 
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLASS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts students/classes by specified"
@@ -36,6 +39,8 @@ public class SortCommand extends Command {
 
         // sort the StudentNameList;
         if (sortBy.equals("name")) {
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
             ArrayList<Student> toSort = new ArrayList<Student>(model.getFilteredStudentList());
 
             if (directionOfSort.equals("asc")) {
@@ -48,6 +53,8 @@ public class SortCommand extends Command {
 
             model.setStudents(toSort);
         } else if (sortBy.equals("timing")) {
+            model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
+
             ArrayList<TuitionClass> toSort = new ArrayList<TuitionClass>(model.getFilteredTuitionClassList());
 
             if (directionOfSort.equals("asc")) {
