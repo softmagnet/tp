@@ -167,4 +167,16 @@ public class StudentNameList implements Iterable<Name> {
             internalList.set(oldNameIndex, newName);
         }
     }
+
+    /**
+     * Utility method for testing
+     */
+    public String[] getNames() {
+        int len = internalList.size();
+        String[] res = new String[len];
+        for (int i = 0; i < len; i++) {
+            res[i] = internalList.get(i).getFullName();
+        }
+        return res;
+    }
 }

@@ -71,12 +71,4 @@ public class AddToClassCommandParserTest {
         AddToClassCommand expectedCommand2 = new AddToClassCommand(indexArray2);
         assertParseSuccess(parser, "1 1 2 3", expectedCommand2);
     }
-
-
-
-
-
-
-
-
 }
