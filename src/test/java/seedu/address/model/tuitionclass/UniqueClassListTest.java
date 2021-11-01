@@ -1,6 +1,7 @@
 package seedu.address.model.tuitionclass;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -57,22 +58,22 @@ public class UniqueClassListTest {
     }
 
     @Test
-    public void setTuitionClass_nullTargetTuitionClass_throwsNullPointerException() {
+    public void setClass_nullTargetTuitionClass_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueClassList.setClass(null, JC_CHEMISTRY));
     }
 
     @Test
-    public void setTuitionClass_nullEditedTuitionClass_throwsNullPointerException() {
+    public void setClass_nullEditedTuitionClass_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueClassList.setClass(JC_CHEMISTRY, null));
     }
 
     @Test
-    public void setTuitionClass_targetTuitionClassNotInList_throwsTuitionClassNotFoundException() {
+    public void setClass_targetTuitionClassNotInList_throwsTuitionClassNotFoundException() {
         assertThrows(TuitionClassNotFoundException.class, () -> uniqueClassList.setClass(JC_CHEMISTRY, JC_CHEMISTRY));
     }
 
     @Test
-    public void setTuitionClass_editedTuitionClassIsSameTuitionClass_success() {
+    public void setClass_editedTuitionClassIsSameTuitionClass_success() {
         uniqueClassList.add(JC_CHEMISTRY);
         uniqueClassList.setClass(JC_CHEMISTRY, JC_CHEMISTRY);
         UniqueClassList expectedUniqueClassList = new UniqueClassList();
@@ -81,7 +82,7 @@ public class UniqueClassListTest {
     }
 
     @Test
-    public void setTuitionClass_editedTuitionClassHasSameIdentity_success() {
+    public void setClass_editedTuitionClassHasSameIdentity_success() {
         uniqueClassList.add(JC_CHEMISTRY);
         TuitionClass editedChem = new TuitionClassBuilder(JC_CHEMISTRY).withRate("69")
                 .withLocation("Punggol Central Waterway Point #2-14").build();
@@ -92,7 +93,7 @@ public class UniqueClassListTest {
     }
 
     @Test
-    public void setTuitionClass_editedTuitionClassHasDifferentIdentity_success() {
+    public void setClass_editedTuitionClassHasDifferentIdentity_success() {
         uniqueClassList.add(JC_CHEMISTRY);
         uniqueClassList.setClass(JC_CHEMISTRY, JC_MATHS);
         UniqueClassList expectedUniqueClassList = new UniqueClassList();
@@ -101,7 +102,7 @@ public class UniqueClassListTest {
     }
 
     @Test
-    public void setTuitionClass_editedTuitionClassHasNonUniqueIdentity_throwsDuplicateClassException() {
+    public void setClass_editedTuitionClassHasNonUniqueIdentity_throwsDuplicateClassException() {
         uniqueClassList.add(JC_CHEMISTRY);
         uniqueClassList.add(JC_MATHS);
         assertThrows(DuplicateClassException.class, () -> uniqueClassList.setClass(JC_CHEMISTRY, JC_MATHS));
@@ -126,12 +127,12 @@ public class UniqueClassListTest {
     }
 
     @Test
-    public void setTuitionClass_nullUniqueClassList_throwsNullPointerException() {
+    public void setClasses_nullUniqueClassList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueClassList.setClasses((List<TuitionClass>) null));
     }
 
     @Test
-    public void setTuitionClass_uniqueClassList_replacesOwnListWithProvidedList() {
+    public void setClasses_uniqueClassList_replacesOwnListWithProvidedList() {
         uniqueClassList.add(JC_CHEMISTRY);
         List<TuitionClass> tuitionClassList = new ArrayList<>();
         tuitionClassList.add(JC_MATHS);
@@ -156,5 +157,15 @@ public class UniqueClassListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueClassList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void equals_twoUniqueClassListSameClassesDifferentOrder_notEquals() {
+        uniqueClassList.add(JC_CHEMISTRY);
+        uniqueClassList.add(JC_MATHS);
+        UniqueClassList uniqueClassList2 = new UniqueClassList();
+        uniqueClassList2.add(JC_MATHS);
+        uniqueClassList2.add(JC_CHEMISTRY);
+        assertFalse(uniqueClassList.equals(uniqueClassList2));
     }
 }
