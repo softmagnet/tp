@@ -24,23 +24,23 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
 1. Type the command in the command box and press 'Enter' to execute it. e.g. typing **`help`** and pressing 'Enter' will open the help window.<br>
    Here are some example commands which you can use on our sample students data before using your own students data:
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add `**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25` : Adds a contact named `John Doe` to the Address Book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete `**`3` : Deletes the 3rd contact shown in the current list.
    
-   * **`sort`****`name`****`asc`** : Sorts the students by their name in ascending alphabetic order.
+   * **`sort `**`name asc` : Sorts the students by their name in ascending alphabetic order.
     
-   * **`addclass`**`cn/Sec 4 A Maths ct/mon 11:30-13:30 r/70 l/Nex Tuition Center`: Adds a new class with name 'Sec 4 A Maths', with class timing MON 11.30-13:30, with hourly rate of $70, at Nex Tuition Center.
+   * **`addclass `**`cn/Sec 4 A Maths ct/FRI 11:30-13:30 r/70 l/Nex Tuition Center`: Adds a new class with name 'Sec 4 A Maths', with class timing MON 11.30-13:30, with hourly rate of $70, at Nex Tuition Center.
     
-   * **`addtoclass`**`1 1 2 3`: Adds the 1st, 2nd and 3rd student in the student list in the `students` tab into the 1st class in the `classes` tab
+   * **`addtoclass `**`1 2 3`: Adds the 2nd and 3rd student in the student list in the `students` tab into the 1st class in the `classes` tab
 
-   * **`view`**`classes` : Changes the tab the user is on to the `classes` tab which displays all the classes.
+   * **`view `**`classes` : Changes the tab the user is on to the `classes` tab which displays all the classes.
    
-   * **`view`**`timetable` : Changes the tab the user is on to the `timetable` tab which displays a timetable with all the classes. 
+   * **`view `**`timetable` : Changes the tab the user is on to the `timetable` tab which displays a timetable with all the classes. 
    
-   * **`exit`** : Exits the app.
+   * **`exit `** : Exits the app.
 
-1. Once you are ready to use your fill in Timestable with your own students, simply use the  **`clear`** command to delete all the sample students, instead of having to delete them one by one.
+1. Once you are ready to fill in Timestable with your own students, simply use the  **`clear`** command to delete all the sample students, instead of having to delete them one by one.
    Now you can start putting your students into Timestable.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -53,8 +53,12 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the inputs to be supplied by the user.<br>
+  e.g. in `add n/NAME`, `NAME` is an input which can be used as `add n/John Doe`.
+
+* The inputs before the `/` are known as _parameters_, and the ones after the `/` are known as _arguments_.<br>
+  e.g `n/NAME` (`/n` is the parameter for name, `NAME` is the argument),   
+  e.g `a/ADDRESS` (`/a` is the parameter for name, `ADDRESS` is the argument) etc.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -93,14 +97,13 @@ Adds a student to the address book.
 
 Format:
 ```
-add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… nok/ n/NOK_NAME p/NOK_PHONE_NUMBER e/NOK_EMAIL
+add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… nok/ n/NOK_NAME p/NOK_PHONE_NUMBER e/NOK_EMAIL a/NOK_ADDRESS
 ```
 
 * This is a command that requires next-of-kin (NOK) information.
 * This command is split into two segments (excluding command keyword). The first segment are the inputs before
   `nok/` and the second segment are the inputs after `nok/`.
-    * The segments are not fixed in order and inputs in the
-      first segment are about student information whereas inputs in the second segment are about NOK's information.
+    * The segments are not fixed in order and inputs in the first segment are about student information whereas inputs in the second segment are about NOK's information.
 * The order of input within its own segment is swappable.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -110,11 +113,11 @@ A student can have any number of tags (including 0).
 Examples:
 
 ```
-add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com
+add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com a/311, Clementi Ave 2, #02-25 
 ```
 
 ```
-add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/slow learner nok/ n/Karen e/karenSUper@gmail.com p/99994444
+add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/slow learner nok/ n/Karen e/karenSUper@gmail.com p/99994444 a/311, Clementi Ave 2, #02-25 
 ```
 
 ### Adding a class: `addclass`
@@ -125,23 +128,25 @@ Add a class to the address book.
 Format:
 
 ```
-addclass cn/CLASS NAME ct/CLASS_TIMING r/HOUELY_RATE l/LOCATION
+addclass cn/CLASS NAME ct/CLASS_TIMING r/HOURLY_RATE l/LOCATION
 ```
 
 * This command adds a new class to keep track of all classes that the user is teaching.
-* `CLASS_TIMING` can only start at the hour mark or half hour mark.
+* `CLASS_TIMING` must be in the form `ct/DAY HH:MM-HH:MM`
+* `DAY` is case insensitive.
+* `CLASS_TIMING` can only start at the hour mark or half hour mark, but can end at 23:59
 
 Examples:
 ```
-addclass cn/Sec 4 A Maths ct/mon 11:30-13:30 r/70 l/Nex Tuition Center
+addclass cn/Sec 4 A Maths ct/MON 11:30-13:30 r/70 l/Nex Tuition Center
 ```
-Adds a new class with name `Sec 4 A Maths`, with class timing `MON 11.30-13:30`, with hourly rate of $`70`, at `Nex
+Adds a new class with name `Sec 4 A Maths`, with class timing `MON 11:30-13:30`, with hourly rate of $`70`, at `Nex
 Tuition Center`.
 
 ```
-addclass cn/Sec 4 E Maths ct/tue 12:30-14:30 r/65 l/Block 123, Clementi Ave 6, #14-41
+addclass cn/Sec 4 E Maths ct/TUE 12:30-14:30 r/65 l/Block 123, Clementi Ave 6, #14-41
 ```
-Adds a new class with name `Sec 4 E Maths`, with class timing `Tue 12.30-14:30`, with hourly rate of $`65`, at `Block 123, Clementi Ave 6, #14-41`.
+Adds a new class with name `Sec 4 E Maths`, with class timing `Tue 12:30-14:30`, with hourly rate of $`65`, at `Block 123, Clementi Ave 6, #14-41`.
 
 
 ### Adding student/students to a class: `addtoclass`
@@ -174,14 +179,14 @@ Edits an existing student in the address book.
 
 Format:
 ```
-edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [nok/] [p/NOK_NAME] [p/NOK_PHONE_NUMBER] [e/NOK_EMAIL]
+edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [nok/] [n/NOK_NAME] [p/NOK_PHONE_NUMBER] [e/NOK_EMAIL]
 
 ```
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student
   list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* An optional `nok/` field can be provided to edit the student's next-of-kin. All fields that come after `nok/`
+* An optional `nok/` field can be provided to edit the student's next-of-kin (NOK). All fields that come after `nok/`
   will be for the student's next-of-kin. (same rule from `add` command applies)
     * If `nok/` is provided, at least one of the optional fields belonging to NOK must be provided.
 * When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
@@ -191,7 +196,7 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [nok/] [p/NOK_
 Examples (editing student information only):
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the `PHONE` and `EMAIL` of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the `NAME` of the 2nd student to be `Betsy Crower` and clears all existing `TAG`s.
-* `edit 1 n/kevin p/12345678 nok/ n/Stuart p/ 87654321` Edits the `NAME` and `PHONE` of student 1 to become `kevin` and `12345678` and set his next-of-kin's `NAME` and `PHONE` to become `Stuart` and `87654321`.
+* `edit 1 n/kevin p/12345678` Edits the `NAME` and `PHONE` of student 1 to become `kevin` and `12345678`.
 * `edit 4 n/John Walker a/4 Petir Road #16-04 Singapore 657891` Edits the `NAME` and `ADDRESS` of the 4th person to be
   `John Walker` and `4 Petir Road #16-04 Singapore 657891` respectively.
 
@@ -345,7 +350,7 @@ Views an existing tab in Timestable without the need to use the mouse to click.
 
 Format:
 ```
-findclassname TAB_TO_VIEW   
+view TAB_TO_VIEW   
 ```
 
 * `TAB_TO_VIEW` has to be an existing tab in Timestable (`students`, `classes`, `timetable`).
@@ -369,14 +374,14 @@ Examples:
 ### Listing all students : `list`
 <hr>
 
-Shows a list of all students in the address book.
+Shows a list of all students in the Students tab.
 
 Format: `list`
 
 ### Listing all the classes: `listclass`
 <hr>
 
-Shows a list of all classes in the address book.
+Shows a list of all classes in the Class tab.
 
 Format: `listclass`
 
@@ -514,4 +519,11 @@ Action | Format, Examples
 **Select class** | `class` <br> e.g., `class 1`
 **Sort** | `findclassname PARAMETER_TO_SORT_BY DIRECTION_OF_SORT` <br> e.g., `sort name asc`
 **View** | `view TAB_TO_VIEW` <br> e.g., `view timetable`
+
+## Glossary
+- NOK: Next-of-kin. Refers to the student's guardian, parent or perhaps close friend to be contacted regarding admin matters like payment. 
+- Parameters: Inputs in a command that are before the `/`. 
+- Arguments: Inputs in a command after the `/`.  
+  e.g `n/NAME` (`/n` is the parameter for name, `NAME` is the argument),   
+  e.g `a/ADDRESS` (`/a` is the parameter for name, `ADDRESS` is the argument) etc.
 
