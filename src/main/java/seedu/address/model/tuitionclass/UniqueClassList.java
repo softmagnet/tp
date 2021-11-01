@@ -169,7 +169,7 @@ public class UniqueClassList implements Iterable<TuitionClass> {
         if (!target.isSameClass(editedClass) && !isValidTiming(editedClass)) {
             throw new InvalidClassException();
         }
-            internalList.set(index, editedClass);
+        internalList.set(index, editedClass);
     }
 
     //TODO: need a personsAreUnique method probably
