@@ -165,7 +165,10 @@ public class UniqueClassList implements Iterable<TuitionClass> {
         if (!target.isSameClass(editedClass) && contains(editedClass)) {
             throw new DuplicateClassException();
         }
-
+        //check for overlapping ClassTiming.
+        if (!target.isSameClass(editedClass) && !isValidTiming(editedClass)) {
+            throw new InvalidClassException();
+        }
         internalList.set(index, editedClass);
     }
 
