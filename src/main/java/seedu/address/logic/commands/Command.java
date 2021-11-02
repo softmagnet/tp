@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import seedu.address.logic.CommandObserver;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.ui.TabName;
 
 /**
  * Represents a command with hidden internal logic and the ability to be executed.
@@ -20,11 +21,11 @@ public abstract class Command {
     /**
      * Updates the CommandObservers by calling the updateView method for each of them.
      *
-     * @param indexOfTabToView index of tab to be viewed.
+     * @param tabToView Tab to be viewed.
      */
-    public void updateView(Integer indexOfTabToView) {
+    public void updateView(TabName tabToView) {
         for (CommandObserver commandObserver : commandObservers) {
-            commandObserver.updateView(indexOfTabToView);
+            commandObserver.updateView(tabToView);
         }
     }
 

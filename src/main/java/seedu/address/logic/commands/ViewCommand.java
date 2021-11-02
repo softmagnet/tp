@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.ui.TabName;
 
 /**
  * Sets the UI to View the tab selected.
@@ -15,29 +16,20 @@ public class ViewCommand extends Command {
     public static final String INVALID_TAB = "This tab doesn't exists.\n"
             + "You can only switch to students, timetable or classes.";
 
-    private final int indexToView;
+    private final TabName tabToView;
 
     /**
      * Creates an ViewCommand to view the specified tab index.
      */
-    public ViewCommand(int indexToView) {
-        this.indexToView = indexToView;
+    public ViewCommand(TabName tab) {
+        this.tabToView = tab;
     }
 
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        String tabToView = "";
 
-        if (indexToView == 0) {
-            tabToView = "students";
-        } else if (indexToView == 1) {
-            tabToView = "classes";
-        } else if (indexToView == 2) {
-            tabToView = "timetable";
-        }
-
-        updateView(indexToView);
+        updateView(tabToView);
 
         return new CommandResult("Successfully switched to " + tabToView + " tab",
                 false, false);
@@ -49,9 +41,10 @@ public class ViewCommand extends Command {
             return true;
         } else if (obj instanceof ViewCommand) {
             ViewCommand viewCommand = (ViewCommand) obj;
-            return this.indexToView == viewCommand.indexToView;
+            return this.tabToView == viewCommand.tabToView;
         } else {
             return false;
         }
     }
+
 }
