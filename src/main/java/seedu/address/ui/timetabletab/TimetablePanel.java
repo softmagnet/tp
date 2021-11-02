@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ListChangeListener;
@@ -16,7 +15,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.tuitionclass.ClassTiming;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.ui.UiPart;
 
@@ -64,7 +62,7 @@ public class TimetablePanel extends UiPart<Region> {
      * @param tuitionClasses List of tuitionClass to retrieve the tuition class timings from for the timetable.
      */
     public void build(ObservableList<TuitionClass> tuitionClasses) {
-        clearAll();
+        clearTimetable();
         if (tuitionClasses == null || tuitionClasses.isEmpty()) {
             logger.info("No class in uniqueClassList.");
             Label label = new Label("You have no classes.");
@@ -88,9 +86,10 @@ public class TimetablePanel extends UiPart<Region> {
         LocalTime earliestHour = getEarliestHour(tuitionClasses);
         LocalTime latestHour = getLatestHour(tuitionClasses);
 
-        timetable.add(new TimetableHeader("Time Slots", 50).getRoot(), 0, 0, 50, 1);
+        timetable.add(new TimetableHeader("Time Slots", TimetableDay.getWidth()).getRoot(),
+                0, 0, 50, 1);
 
-        int columnIndex = 50;
+        int columnIndex = TimetableDay.getWidth();
 
         while (earliestHour.isBefore(latestHour) || earliestHour.isBefore(defaultLatestHour)) {
             if (earliestHour.equals(LocalTime.parse("23:30", DateTimeFormatter.ofPattern("HH:mm")))) {
@@ -119,7 +118,7 @@ public class TimetablePanel extends UiPart<Region> {
         LocalTime earliestHour = getEarliestHour(tuitionClasses);
 
         //earliest time is after the date
-        ArrayList<TuitionClass> sortedList = new ArrayList<TuitionClass>(tuitionClasses);
+        ArrayList<TuitionClass> sortedList = new ArrayList<>(tuitionClasses);
         sortedList.sort(Comparator.comparing(TuitionClass::getClassTiming));
 
 
@@ -200,28 +199,6 @@ public class TimetablePanel extends UiPart<Region> {
         assert startTime.isBefore(endTime) || startTime.equals(endTime);
 
         return (int) startTime.until(endTime, ChronoUnit.MINUTES);
-    }
-
-    /**
-     * Removes duplicate class timings from a list of class timings.
-     *
-     * @param classTimings List of class timings which duplicates are to be removed from.
-     * @return ArrayList of classTimings which have duplicates removed.
-     */
-    public ArrayList<ClassTiming> removeDuplicateClassTimings(List<ClassTiming> classTimings) {
-        assert classTimings != null;
-
-        ArrayList<ClassTiming> uniqueClassTimings = new ArrayList<>();
-
-        for (int i = 0; i < classTimings.size(); i++) {
-            ClassTiming currentClassTiming = classTimings.get(i);
-            if (uniqueClassTimings.contains(currentClassTiming)) {
-                continue;
-            }
-            uniqueClassTimings.add(currentClassTiming);
-        }
-
-        return uniqueClassTimings;
     }
 
     /**
@@ -320,7 +297,7 @@ public class TimetablePanel extends UiPart<Region> {
     /**
      * Clears the previously constructed timetable.
      */
-    private void clearAll() {
+    private void clearTimetable() {
         timetable.getChildren().clear();
         timetable.getRowConstraints().clear();
         timetable.getColumnConstraints().clear();
