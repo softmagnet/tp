@@ -7,7 +7,9 @@ import java.util.ArrayList;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
+import seedu.address.model.tuitionclass.StudentNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 public class SortCommand extends Command {
@@ -39,34 +41,53 @@ public class SortCommand extends Command {
 
         // sort the StudentNameList;
         if (sortBy.equals("name")) {
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
 
-            ArrayList<Student> toSort = new ArrayList<Student>(model.getFilteredStudentList());
+            ArrayList<Student> studentsToSort = new ArrayList<Student>(model.getFilteredStudentList());
 
             if (directionOfSort.equals("asc")) {
-                toSort.sort((student1, student2) ->
+                studentsToSort.sort((student1, student2) ->
                         student1.getName().toString().compareTo(student2.getName().toString()));
             } else {
-                toSort.sort((student1, student2) ->
+                studentsToSort.sort((student1, student2) ->
                         student2.getName().toString().compareTo(student1.getName().toString()));
             }
 
-            model.setStudents(toSort);
+            model.setStudents(studentsToSort);
         } else if (sortBy.equals("timing")) {
             model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
 
-            ArrayList<TuitionClass> toSort = new ArrayList<TuitionClass>(model.getFilteredTuitionClassList());
+            ArrayList<TuitionClass> classesToSort = new ArrayList<TuitionClass>(model.getFilteredTuitionClassList());
 
             if (directionOfSort.equals("asc")) {
-                toSort.sort((class1, class2) ->
+                classesToSort.sort((class1, class2) ->
                         class1.getClassTiming().compareTo(class2.getClassTiming()));
             } else {
-                toSort.sort((class1, class2) ->
+                classesToSort.sort((class1, class2) ->
                         class2.getClassTiming().compareTo(class1.getClassTiming()));
             }
 
-            model.setClasses(toSort);
 
+            model.setClasses(classesToSort);
+
+            ArrayList<Student> unsortedStudentList = new ArrayList<>(model.getFilteredStudentList());
+            ArrayList<Student> sortedStudentList = new ArrayList<>();
+            // sort the student list so that it is sorted based in order of classes
+            for (int i = 0; i < classesToSort.size(); i++) {
+                TuitionClass tuitionClass = classesToSort.get(i);
+                StudentNameList studentNameList = tuitionClass.getStudentList();
+                //check if student in the name list, then add to a new array if its not inside
+                for (int j = 0; j < studentNameList.size(); j++) {
+                    Student toAdd = getStudentWithName(unsortedStudentList, studentNameList.get(j));
+                    if (!sortedStudentList.contains(toAdd)) {
+                        sortedStudentList.add(toAdd);
+                    }
+                }
+            }
+
+            addStudentsWithNoClasses(sortedStudentList, unsortedStudentList, classesToSort);
+
+            model.setStudents(sortedStudentList);
             hideTuitionClassStudentList();
 
         } else {
@@ -74,10 +95,33 @@ public class SortCommand extends Command {
                     + " has not been implemented by the developers");
         }
 
-
-
         return new CommandResult("Sorted students based on " + sortBy
                 + " in " + directionOfSort + " direction");
+    }
+
+    private void addStudentsWithNoClasses(
+            ArrayList<Student> listToAddTo, ArrayList<Student> studentList, ArrayList<TuitionClass> tuitionClassList) {
+        for (int i = 0; i < studentList.size(); i++) {
+            boolean hasClass = false;
+            Student studentToCheck = studentList.get(i);
+            for (int j = 0; j < tuitionClassList.size(); j++) {
+                if (tuitionClassList.get(j).containsStudent(studentToCheck.getName())) {
+                    hasClass = true;
+                }
+            }
+            if (!hasClass) {
+                listToAddTo.add(studentToCheck);
+            }
+        }
+    }
+
+    private Student getStudentWithName(ArrayList<Student> unsortedStudentList, Name name) {
+        for (Student student : unsortedStudentList) {
+            if (student.getName().equals(name)) {
+                return student;
+            }
+        }
+        return null;
     }
 
     @Override

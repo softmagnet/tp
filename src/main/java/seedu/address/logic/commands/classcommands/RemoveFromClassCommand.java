@@ -91,7 +91,7 @@ public class RemoveFromClassCommand extends Command {
 
     private void checkIndicesAreValid(List<Index> studentIndices, StudentNameList nameList)
             throws CommandException {
-        int size = Integer.valueOf(nameList.size());
+        int size = nameList.size();
         for (Index index : studentIndices) {
             if (index.getZeroBased() >= size) {
                 throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
