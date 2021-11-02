@@ -93,6 +93,14 @@ public class TuitionClassTest {
     }
 
     @Test
+    public void isOverlapping_oneClassWithinOther_returnsTrue() {
+        TuitionClass class1 = new TuitionClass(className, new ClassTiming("MON 16:00-18:00"), location, rate);
+        TuitionClass class2 = new TuitionClass(className, new ClassTiming("MON 15:00-19:00"), location, rate);
+        assertTrue(class1.isOverlapping(class2));
+        assertTrue(class2.isOverlapping(class1));
+    }
+
+    @Test
     public void isOverlapping_differentDay_returnsFalse() {
         TuitionClass class1 = new TuitionClass(className, new ClassTiming("MON 16:00-18:00"), location, rate);
         TuitionClass class2 = new TuitionClass(className, new ClassTiming("TUE 17:00-18:00"), location, rate);

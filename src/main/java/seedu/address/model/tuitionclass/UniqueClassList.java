@@ -10,7 +10,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tuitionclass.exceptions.DuplicateClassException;
 import seedu.address.model.tuitionclass.exceptions.InvalidClassException;
 import seedu.address.model.tuitionclass.exceptions.TuitionClassNotFoundException;
@@ -73,7 +72,7 @@ public class UniqueClassList implements Iterable<TuitionClass> {
         for (int i = 0; i < editedClasses.size(); i++) {
             for (int j = i + 1; j < editedClasses.size(); j++) {
                 if (editedClasses.get(i).equals(editedClasses.get(j))) {
-                    editedClasses.remove(j);
+                    throw new DuplicateClassException();
                 }
             }
         }
@@ -155,7 +154,7 @@ public class UniqueClassList implements Iterable<TuitionClass> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new TuitionClassNotFoundException();
         }
 
         /*
@@ -165,7 +164,10 @@ public class UniqueClassList implements Iterable<TuitionClass> {
         if (!target.isSameClass(editedClass) && contains(editedClass)) {
             throw new DuplicateClassException();
         }
-
+        //check for overlapping ClassTiming.
+        if (!target.isSameClass(editedClass) && !isValidTiming(editedClass)) {
+            throw new InvalidClassException();
+        }
         internalList.set(index, editedClass);
     }
 
