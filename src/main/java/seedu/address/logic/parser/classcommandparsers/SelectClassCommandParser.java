@@ -1,10 +1,13 @@
 package seedu.address.logic.parser.classcommandparsers;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.SelectClassCommand;
+import seedu.address.logic.commands.classcommands.EditClassCommand;
+import seedu.address.logic.commands.classcommands.SelectClassCommand;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class SelectClassCommandParser implements Parser<SelectClassCommand> {
@@ -23,7 +26,14 @@ public class SelectClassCommandParser implements Parser<SelectClassCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectClassCommand.MESSAGE_USAGE));
         }
 
-        Index indexOfClassToView = Index.fromOneBased(Integer.parseInt(splitArgs[1]));
+        Index indexOfClassToView;
+
+        try {
+            indexOfClassToView = ParserUtil.parseIndex(splitArgs[1]);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_CLASS_DISPLAYED_INDEX,
+                    EditClassCommand.MESSAGE_USAGE));
+        }
 
         return new SelectClassCommand(indexOfClassToView);
     }

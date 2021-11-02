@@ -54,13 +54,11 @@ public class TuitionClassCard extends UiPart<Region> {
         this.tuitionClass = tuitionClass;
         this.studentList = studentList;
         this.tuitionClassListView = tuitionClassListView;
-        this.selectTuitionClass();
 
         int index = tuitionClassListView.getSelectionModel().getSelectedIndex();
         tuitionClassListView.getSelectionModel().clearSelection(index);
 
         // TuitionClass
-
         id.setText(displayedIndex + ". ");
         className.setText(tuitionClass.getClassName().className);
         classTiming.setText(CLASS_TIMING_FIELD + tuitionClass.getClassTiming().value);

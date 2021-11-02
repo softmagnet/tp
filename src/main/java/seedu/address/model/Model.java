@@ -132,12 +132,12 @@ public interface Model {
      */
     void setStudents(List<Student> students);
 
-    /** Replaces the filtered student list */
+    /** Replaces the filtered student list. */
     void replaceFilteredStudentList(List<Student> studentList);
 
-    /** Replaces the filtered tuition class list */
+    /** Replaces the filtered tuition class list. */
     void replaceFilteredTuitionClassList(List<TuitionClass> tuitionClasses);
 
-    /** executes update cascade after change of student name for {@code StudentNameList} */
+    /** Executes update cascade after change of student name for {@code StudentNameList}. */
     void updateClassStudentLists(Name newName, Name oldName);
 }

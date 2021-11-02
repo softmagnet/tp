@@ -148,6 +148,7 @@ public class MainWindow extends UiPart<Stage> implements CommandObserver {
 
         classPanel = new ClassPanel(logic.getFilteredStudentList(), logic.getFilteredTuitionClassList());
         classListPanelPlaceholder.getChildren().add(classPanel.getRoot());
+        hideTuitionClassStudentList();
 
         timetablePanel = new TimetablePanel(logic.getFilteredTuitionClassList());
         timetablePanelPlaceholder.getChildren().add(timetablePanel.getRoot());
@@ -222,9 +223,7 @@ public class MainWindow extends UiPart<Stage> implements CommandObserver {
         TuitionClass tuitionClass = lastShownList.get(indexOfClassToSelect);
         newStudentList = logic.getFilteredStudentList().filtered(student ->
                 tuitionClass.containsStudent(student.getName()));
-
         classPanel.setItems(newStudentList);
-        classPanel.setCellFactory(listView -> new StudentListViewCell());
     }
 
     @Override
@@ -232,7 +231,6 @@ public class MainWindow extends UiPart<Stage> implements CommandObserver {
         ObservableList<Student> newStudentList = logic.getFilteredStudentList().filtered(student -> false);
 
         classPanel.setItems(newStudentList);
-        classPanel.setCellFactory(listView -> new StudentListViewCell());
     }
 
     @Override
