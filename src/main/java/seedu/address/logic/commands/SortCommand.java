@@ -7,10 +7,9 @@ import java.util.ArrayList;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
-import seedu.address.model.tuitionclass.StudentNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.ui.TabName;
 
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
@@ -54,7 +53,7 @@ public class SortCommand extends Command {
             }
 
             model.setStudents(studentsToSort);
-            
+
         } else if (sortBy.equals("timing")) {
             model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
 
@@ -71,16 +70,7 @@ public class SortCommand extends Command {
 
             model.setClasses(classesToSort);
 
-            model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
-            ArrayList<Student> unsortedStudentList = new ArrayList<>(model.getFilteredStudentList());
-            ArrayList<Student> sortedStudentList = new ArrayList<>();
-
-            // sort the student list so that it is sorted based in order of classes
-            filterStudentBasedOnClasses(sortedStudentList, unsortedStudentList, classesToSort);
-
-            addStudentsWithNoClasses(sortedStudentList, unsortedStudentList, classesToSort);
-
-            model.setStudents(sortedStudentList);
+            updateView(TabName.CLASSES);
 
             hideTuitionClassStudentList();
 
@@ -91,69 +81,6 @@ public class SortCommand extends Command {
 
         return new CommandResult("Sorted students based on " + sortBy
                 + " in " + directionOfSort + " direction");
-    }
-
-    /**
-     * Orders the studentList in the order of them appearing in the tuitionClassList. If they appear in multiple
-     * tuition classes in the tuitionClassList, their first occurrence would be taken as their oder in the resulting
-     * order.
-     *
-     * @param listToAddTo ArrayList to be addedTo.
-     * @param studentList ArrayList of students in original order.
-     * @param tuitionClassList ArrayList of tuitionClasses which we are going to match the order.
-     */
-    private void filterStudentBasedOnClasses(
-            ArrayList<Student> listToAddTo, ArrayList<Student> studentList, ArrayList<TuitionClass> tuitionClassList) {
-        for (int i = 0; i < tuitionClassList.size(); i++) {
-            TuitionClass tuitionClass = tuitionClassList.get(i);
-            StudentNameList studentNameList = tuitionClass.getStudentList();
-            //check if student in the name list, then add to a new array if its not inside
-            for (int j = 0; j < studentNameList.size(); j++) {
-                Student toAdd = getStudentWithName(studentList, studentNameList.get(j));
-                if (toAdd != null && !listToAddTo.contains(toAdd)) {
-                    listToAddTo.add(toAdd);
-                }
-            }
-        }
-    }
-
-    /**
-     * Adds students from the studentList with no classes in the tuitionClassList into the listToAddTo.
-     *
-     * @param listToAddTo ArrayList to be added to.
-     * @param studentList Original arrayList of students.
-     * @param tuitionClassList ArrayList of tuitionClass to check if student is inside.
-     */
-    private void addStudentsWithNoClasses(
-            ArrayList<Student> listToAddTo, ArrayList<Student> studentList, ArrayList<TuitionClass> tuitionClassList) {
-        for (int i = 0; i < studentList.size(); i++) {
-            boolean hasClass = false;
-            Student studentToCheck = studentList.get(i);
-            for (TuitionClass tuitionClass : tuitionClassList) {
-                if (tuitionClass.containsStudent(studentToCheck.getName())) {
-                    hasClass = true;
-                }
-            }
-            if (!hasClass) {
-                listToAddTo.add(studentToCheck);
-            }
-        }
-    }
-
-    /**
-     * Gets the student with given name from the ArrayList of students.
-     *
-     * @param unsortedStudentList ArrayList of students to get student with given name from.
-     * @param name Name of student to be returned from the list.
-     * @return Student with the given name.
-     */
-    private Student getStudentWithName(ArrayList<Student> unsortedStudentList, Name name) {
-        for (Student student : unsortedStudentList) {
-            if (student.getName().equals(name)) {
-                return student;
-            }
-        }
-        return null;
     }
 
     @Override
