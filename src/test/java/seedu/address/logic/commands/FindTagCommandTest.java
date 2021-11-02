@@ -56,7 +56,7 @@ public class FindTagCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         TagsContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindTagCommand command = new FindTagCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredStudentList());
     }
@@ -66,7 +66,7 @@ public class FindTagCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         TagsContainsKeywordsPredicate predicate = preparePredicate("Maths");
         FindTagCommand command = new FindTagCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, DANIEL), model.getFilteredStudentList());
     }
@@ -76,7 +76,7 @@ public class FindTagCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         TagsContainsKeywordsPredicate predicate = preparePredicate("maths physics");
         FindTagCommand command = new FindTagCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredStudentList());
     }

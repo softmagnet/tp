@@ -21,9 +21,8 @@ public class TimetableRegion extends UiPart<Region> {
      */
     public TimetableRegion(String fxml, long scale) {
         super(fxml);
-        int scaleFactor = 2;
-        slot.setPrefWidth(scale * scaleFactor);
-        slot.setMinWidth(scale * scaleFactor);
+        slot.setPrefWidth(scale * 2);
+        slot.setMinWidth(scale * 2);
     }
 
 }

@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.ui.TabName;
 
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
@@ -39,33 +40,37 @@ public class SortCommand extends Command {
 
         // sort the StudentNameList;
         if (sortBy.equals("name")) {
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
 
-            ArrayList<Student> toSort = new ArrayList<Student>(model.getFilteredStudentList());
+            ArrayList<Student> studentsToSort = new ArrayList<>(model.getFilteredStudentList());
 
             if (directionOfSort.equals("asc")) {
-                toSort.sort((student1, student2) ->
+                studentsToSort.sort((student1, student2) ->
                         student1.getName().toString().compareTo(student2.getName().toString()));
             } else {
-                toSort.sort((student1, student2) ->
+                studentsToSort.sort((student1, student2) ->
                         student2.getName().toString().compareTo(student1.getName().toString()));
             }
 
-            model.setStudents(toSort);
+            model.setStudents(studentsToSort);
+
         } else if (sortBy.equals("timing")) {
             model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
 
-            ArrayList<TuitionClass> toSort = new ArrayList<TuitionClass>(model.getFilteredTuitionClassList());
+            ArrayList<TuitionClass> classesToSort = new ArrayList<>(model.getFilteredTuitionClassList());
 
             if (directionOfSort.equals("asc")) {
-                toSort.sort((class1, class2) ->
+                classesToSort.sort((class1, class2) ->
                         class1.getClassTiming().compareTo(class2.getClassTiming()));
             } else {
-                toSort.sort((class1, class2) ->
+                classesToSort.sort((class1, class2) ->
                         class2.getClassTiming().compareTo(class1.getClassTiming()));
             }
 
-            model.setClasses(toSort);
+
+            model.setClasses(classesToSort);
+
+            updateView(TabName.CLASSES);
 
             hideTuitionClassStudentList();
 
@@ -73,8 +78,6 @@ public class SortCommand extends Command {
             return new CommandResult("sort by" + sortBy
                     + " has not been implemented by the developers");
         }
-
-
 
         return new CommandResult("Sorted students based on " + sortBy
                 + " in " + directionOfSort + " direction");
