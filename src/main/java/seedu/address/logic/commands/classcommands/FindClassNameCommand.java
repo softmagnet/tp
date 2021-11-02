@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tuitionclass.predicates.ClassNameContainsKeywordsPredicate;
+import seedu.address.ui.TabName;
 
 public class FindClassNameCommand extends Command {
 
@@ -28,6 +29,10 @@ public class FindClassNameCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredClassList(predicate);
+
+        updateView(TabName.CLASSES);
+        hideTuitionClassStudentList();
+
         return new CommandResult(
                 String.format(Messages.MESSAGE_CLASSES_LISTED_OVERVIEW, model.getFilteredTuitionClassList().size()));
     }
