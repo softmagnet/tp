@@ -90,13 +90,13 @@
     "className" : "JC Physics",
     "rate" : "70",
     "location" : "Jaycee Tuition Center Nex",
-    "students" : []
+    "students" : [ "Benson Meier", "Alice Pauline" ]
   }, {
     "classTiming" : "Tue 11:00-13:00",
     "className" : "Sec 4 Physics",
     "rate" : "77",
     "location" : "Learning Lab Orchard",
-    "students" : [ ]
+    "students" : [ "Carl Kurz", "Daniel Meier" ]
   }, {
     "classTiming" : "Wed 15:00-17:00",
     "className" : "JC Maths",
@@ -118,7 +118,7 @@
   }, {
     "classTiming" : "Sat 13:00-16:00",
     "className" : "Sec 4 Chemistry",
-    "rate" : "88",
+    "rate" : "80",
     "location" : "Kumon at Orchard",
     "students" : [ ]
   }]

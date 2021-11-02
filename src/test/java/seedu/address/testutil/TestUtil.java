@@ -4,10 +4,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.person.Student;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * A utility class for test cases.
@@ -47,9 +51,22 @@ public class TestUtil {
     }
 
     /**
-     * Returns the person in the {@code model}'s person list at {@code index}.
+     * Returns the Student in the {@code model}'s student list at {@code index} - 1.
      */
-    public static Student getPerson(Model model, Index index) {
-        return model.getFilteredStudentList().get(index.getZeroBased());
+    public static Student getStudentOneBased(Model model, int index) {
+        return model.getFilteredStudentList().get(index - 1);
+    }
+
+    /**
+     * Returns the tuition class in the {@code model}'s student list at {@code index} - 1.
+     */
+    public static TuitionClass getClassOneBased(Model model, int index) {
+        return model.getFilteredTuitionClassList().get(index - 1);
+    }
+
+    public static List<Index> getIndexList(int... indices) {
+        List<Index> res = new ArrayList<>();
+        Arrays.stream(indices).forEach(index -> res.add(Index.fromOneBased(index)));
+        return res;
     }
 }
