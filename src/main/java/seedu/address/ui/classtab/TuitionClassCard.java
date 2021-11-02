@@ -54,6 +54,8 @@ public class TuitionClassCard extends UiPart<Region> {
         this.tuitionClass = tuitionClass;
         this.studentList = studentList;
         this.tuitionClassListView = tuitionClassListView;
+        
+        selectTuitionClass();
 
         int index = tuitionClassListView.getSelectionModel().getSelectedIndex();
         tuitionClassListView.getSelectionModel().clearSelection(index);
