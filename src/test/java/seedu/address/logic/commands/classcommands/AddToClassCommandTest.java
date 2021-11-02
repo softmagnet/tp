@@ -12,6 +12,7 @@ import static seedu.address.testutil.TestUtil.getClassOneBased;
 import static seedu.address.testutil.TestUtil.getIndexList;
 import static seedu.address.testutil.TestUtil.getStudentOneBased;
 import static seedu.address.testutil.TypicalTimestable.BENSON;
+import static seedu.address.testutil.TypicalTimestable.JC_CHEMISTRY;
 import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -73,27 +74,31 @@ public class AddToClassCommandTest {
 
     @Test
     public void execute_classIndexOutOfRange_failure() {
-        Model failureModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         AddToClassCommand addToClassCommand = new AddToClassCommand(getIndexList(22, 1, 2));
-        assertCommandFailure(addToClassCommand, failureModel, MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
+        assertCommandFailure(addToClassCommand, model, MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_indexOutOfRange_failure() {
-        Model failureModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         AddToClassCommand addToClassCommand = new AddToClassCommand(getIndexList(1, 12, 2));
-        assertCommandFailure(addToClassCommand, failureModel, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandFailure(addToClassCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_addDuplicateStudentsToClass_failure() {
-        Model failureModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(new AddressBook(), new UserPrefs());
 
-        //student indexed 1 is already in class indexed 1
-        AddToClassCommand addToClassCommand = new AddToClassCommand(getIndexList(1, 2, 3));
+        model.addPerson(BENSON);
+        TuitionClass newClass = new TuitionClassBuilder(JC_CHEMISTRY).withStudentList(BENSON.getName().fullName)
+                .build();
+        model.addTuitionClass(newClass);
+
+        AddToClassCommand addToClassCommand = new AddToClassCommand(getIndexList(1, 1));
 
         String expectedMessage = MESSAGE_DUPLICATE_STUDENT + BENSON.getName();
-        assertCommandFailure(addToClassCommand, failureModel, expectedMessage);
+        assertCommandFailure(addToClassCommand, model, expectedMessage);
     }
 
     @Test
