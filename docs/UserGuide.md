@@ -251,7 +251,8 @@ Examples:
 ### Locating students by name: `findname`
 <hr>
 
-Finds students whose `NAME` contain any of the given keywords.
+Finds students whose `NAME` contain any of the given keywords.  
+Note that you have to run `list` to display all the students again.
 
 Format:
 ```
@@ -276,7 +277,8 @@ Examples:
 ### Locating class by class timing : `findclass`
 <hr>
 
-Finds a class whose `CLASS_TIMING` matches the given keyword.
+Finds a class whose `CLASS_TIMING` matches the given keyword.  
+Note that you have to run `list` to display all the students again.
 
 Format: `findclass KEYWORD...`
 
@@ -305,7 +307,8 @@ Examples:
 ### Locating class by class name: `findclassname`
 <hr>
 
-Finds a class whose class name matches the given keywords.
+Finds a class whose class name matches the given keywords.  
+Note that you have to run `list` to display all the students again.
 
 Format:
 ```
@@ -327,7 +330,8 @@ Examples:
 ### Locating students by tag: `findtag`
 <hr>
 
-Finds students whose `TAG`s contain any of the given keywords.
+Finds students whose `TAG`s contain any of the given keywords.  
+Note that you have to run `list` to display all the students again.
 
 Format:
 ```
