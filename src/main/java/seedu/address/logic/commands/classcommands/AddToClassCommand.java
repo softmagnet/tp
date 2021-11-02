@@ -62,9 +62,6 @@ public class AddToClassCommand extends Command {
 
         //get names to be added
         List<Student> lastShownStudentList = model.getFilteredStudentList();
-        //if (lastShownStudentList.size() == 0) {
-        //    throw new CommandException(INVALID_OR_MISSING_STUDENT_INDEX);
-        //}
         checkIndicesAreValid(lastShownStudentList);
         ArrayList<Name> namesToAdd = createNameList(studentIndices, lastShownStudentList);
 
