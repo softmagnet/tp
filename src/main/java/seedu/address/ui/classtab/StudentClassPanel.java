@@ -4,10 +4,8 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import javafx.util.Callback;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Student;
 import seedu.address.ui.StudentListViewCell;
