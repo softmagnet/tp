@@ -66,9 +66,15 @@ public class AddToClassCommandParserTest {
         List<Index> indexArray1 = Arrays.asList(validIndex1, validIndex2);
         AddToClassCommand expectedCommand1 = new AddToClassCommand(indexArray1);
         assertParseSuccess(parser, "1 2", expectedCommand1);
+
         //add multiple students
         List<Index> indexArray2 = Arrays.asList(validIndex1, validIndex1, validIndex2, validIndex3);
         AddToClassCommand expectedCommand2 = new AddToClassCommand(indexArray2);
         assertParseSuccess(parser, "1 1 2 3", expectedCommand2);
+
+        //duplicate student indices in command will parse sucessfully with only one index in result
+        List<Index> indexArray3 = Arrays.asList(validIndex1, validIndex1, validIndex3);
+        AddToClassCommand expectedCommand3 = new AddToClassCommand(indexArray3);
+        assertParseSuccess(parser, "1 1 1 3", expectedCommand3);
     }
 }

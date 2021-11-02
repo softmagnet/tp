@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLA
 import static seedu.address.logic.commands.classcommands.AddToClassCommand.CLASS_INDEX_POSITION;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.classcommands.AddToClassCommand;
@@ -24,16 +25,17 @@ public class AddToClassCommandParser implements Parser<AddToClassCommand> {
         requireNonNull(args);
 
         String[] argsArray = args.trim().split("\\s+");
-        ArrayList<Index> indexArray = mapToIndexArray(argsArray);
+        List<Index> indexArray = mapToIndexArray(argsArray);
 
         return new AddToClassCommand(indexArray);
     }
 
-    private ArrayList<Index> mapToIndexArray(String[] str) throws ParseException {
+    private List<Index> mapToIndexArray(String[] str) throws ParseException {
         ArrayList<Index> indexArray = new ArrayList<>();
         for (int i = 0; i < str.length; i++) {
             try {
-                indexArray.add(ParserUtil.parseIndex(str[i]));
+                Index currentIndex = ParserUtil.parseIndex(str[i]);
+                indexArray.add(currentIndex);
             } catch (ParseException pe) {
                 String errorMessage = i == CLASS_INDEX_POSITION
                         ? AddToClassCommand.INVALID_OR_MISSING_CLASS_INDEX
@@ -46,7 +48,24 @@ public class AddToClassCommandParser implements Parser<AddToClassCommand> {
             throw new ParseException(AddToClassCommand.NO_STUDENT_INDEX_PROVIDED_MESSAGE);
         }
 
-        return indexArray;
+        return copyWithoutDuplicateExcludeFirst(indexArray);
+    }
+
+    private List<Index> copyWithoutDuplicateExcludeFirst(List<Index> indexArray) {
+        int size = indexArray.size();
+        assert size >= 2 : "Should have thrown ParseException.";
+
+        List<Index> res = new ArrayList<>();
+
+        for (int i = 1; i < size; i++) {
+            Index currentIndex = indexArray.get(i);
+            if (!res.contains(currentIndex)) {
+                res.add(currentIndex);
+            }
+        }
+
+        res.add(0, indexArray.get(0));
+        return res;
     }
 
 

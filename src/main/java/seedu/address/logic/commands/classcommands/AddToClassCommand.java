@@ -2,7 +2,7 @@ package seedu.address.logic.commands.classcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.commands.classcommands.EditClassCommand.EditClassDescriptor;
-import static seedu.address.logic.commands.classcommands.EditClassCommand.MESSAGE_DUPLICATE_PERSON;
+import static seedu.address.logic.commands.classcommands.EditClassCommand.MESSAGE_DUPLICATE_STUDENT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +77,7 @@ public class AddToClassCommand extends Command {
             updatedStudentNameList.addAll(currentStudentNameList);
             updatedStudentNameList.addAll(namesToAdd);
         } catch (DuplicateStudentInClassException e) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON + e.getMessage());
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT + e.getMessage());
         }
 
 
@@ -104,6 +104,7 @@ public class AddToClassCommand extends Command {
     private void checkIndicesAreValid(List<Student> lastShownStudentList)
             throws CommandException {
         int size = lastShownStudentList.size();
+        assert size > 0;
 
         if (toEditClassIndex.getZeroBased() >= size) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
