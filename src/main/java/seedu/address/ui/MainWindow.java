@@ -148,6 +148,7 @@ public class MainWindow extends UiPart<Stage> implements CommandObserver {
 
         classPanel = new ClassPanel(logic.getFilteredStudentList(), logic.getFilteredTuitionClassList());
         classListPanelPlaceholder.getChildren().add(classPanel.getRoot());
+        hideTuitionClassStudentList();
 
         timetablePanel = new TimetablePanel(logic.getFilteredTuitionClassList());
         timetablePanelPlaceholder.getChildren().add(timetablePanel.getRoot());
