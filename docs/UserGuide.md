@@ -278,7 +278,7 @@ Examples:
 <hr>
 
 Finds a class whose `CLASS_TIMING` matches the given keyword.  
-Note that you have to run `list` to display all the students again.
+Note that you have to run `listclass` to display all the classes again.
 
 Format: `findclass KEYWORD...`
 
@@ -308,7 +308,7 @@ Examples:
 <hr>
 
 Finds a class whose class name matches the given keywords.  
-Note that you have to run `list` to display all the students again.
+Note that you have to run `listclass` to display all the classes again.
 
 Format:
 ```
