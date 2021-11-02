@@ -23,6 +23,7 @@ import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.tuitionclass.Rate;
 import seedu.address.model.tuitionclass.StudentNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.model.tuitionclass.exceptions.InvalidClassException;
 
 
 public class EditClassCommand extends Command {
@@ -93,8 +94,12 @@ public class EditClassCommand extends Command {
         TuitionClass classToEdit = lastShownClassList.get(index.getZeroBased());
         TuitionClass editedClass = createEditedClass(classToEdit, editClassDescriptor);
 
-        model.setClass(classToEdit, editedClass);
-        model.updateFilteredClassList(Model.PREDICATE_SHOW_ALL_CLASS);
+        try {
+            model.setClass(classToEdit, editedClass);
+            model.updateFilteredClassList(Model.PREDICATE_SHOW_ALL_CLASS);
+        } catch (InvalidClassException ie) {
+            throw new CommandException(ie.getMessage());
+        }
 
         return new CommandResult(String.format(MESSAGE_EDIT_CLASS_SUCCESS, editedClass));
     }

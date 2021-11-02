@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.AppUtil.isWithinLength;
 
 /**
  * Represents a Person's name in the address book.
@@ -9,8 +10,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Name implements Comparable<Name> {
 
+    public static final int MAX_CHAR_COUNT = 120;
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Names contains characters that is not alphanumeric/space, or the name is not between 1 and 120 "
+            + "characters long.";
 
     /*
      * The first character of the name must not be a whitespace,
@@ -35,7 +38,7 @@ public class Name implements Comparable<Name> {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && isWithinLength(test, MAX_CHAR_COUNT);
     }
 
 

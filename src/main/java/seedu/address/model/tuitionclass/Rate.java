@@ -2,6 +2,7 @@ package seedu.address.model.tuitionclass;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.model.util.Commons.MAX_CHAR_COUNT;
 
 /**
  * Represents a Student's tuition rate in the address book.
@@ -9,10 +10,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Rate {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Rate should not be negative and can "
-                    + "at most be up to 2 decimal places. You also cannot enter a decimal point without"
-                    + "following it up with at least one digit.";
-    public static final String VALIDATION_REGEX = "\\d+(\\.\\d{1,2})?";
+            "Rate should satisfy the following constraints:\n"
+            + "1. not exceed a million\n"
+            + "2. not be negative\n"
+            + "3. not be empty\n"
+            + "4. at most be up to 2 decimal places\n"
+            + "5. You also cannot enter a decimal point without following it up with at least one digit.\n";
+    public static final String VALIDATION_REGEX = "\\d{1,6}(\\.\\d{1,2})?";
 
     public final String value;
 
@@ -34,7 +38,7 @@ public class Rate {
      * @return A boolean value.
      */
     public static boolean isValidRate(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() < MAX_CHAR_COUNT;
     }
 
     @Override

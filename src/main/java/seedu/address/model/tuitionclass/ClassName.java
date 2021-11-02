@@ -2,6 +2,8 @@ package seedu.address.model.tuitionclass;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.AppUtil.isWithinLength;
+import static seedu.address.model.util.Commons.MAX_CHAR_COUNT;
 
 /**
  * Represents the name given to a tuition class by a user
@@ -9,7 +11,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class ClassName {
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Class name contains characters that is not alphanumeric/space, or the name is not between 1 and "
+            + MAX_CHAR_COUNT + " characters long!";
 
     /*
      * The first character of the name must not be a whitespace,
@@ -34,7 +37,7 @@ public class ClassName {
      * Returns true if a given string is a valid class name.
      */
     public static boolean isValidClassName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && isWithinLength(test, MAX_CHAR_COUNT);
     }
 
     @Override

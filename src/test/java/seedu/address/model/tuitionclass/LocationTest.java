@@ -2,6 +2,8 @@ package seedu.address.model.tuitionclass;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.ModelTestUtils.LONG_STRING_85_CHAR;
+import static seedu.address.model.ModelTestUtils.LONG_STRING_86_CHAR;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -29,10 +31,12 @@ public class LocationTest {
         assertFalse(Location.isValidLocation(""));
         assertFalse(Location.isValidLocation(" "));
         assertFalse(Location.isValidLocation(" Serangoon"));
+        assertFalse(Location.isValidLocation(LONG_STRING_86_CHAR));
 
         //valid locations
         assertTrue(Location.isValidLocation("Nex Kumon")); //no non-alpha numeric
         assertTrue(Location.isValidLocation("Hougang blk 111 #02-310")); //contains non-alpha numeric
+        assertTrue(Location.isValidLocation(LONG_STRING_85_CHAR));
     }
 
 }
