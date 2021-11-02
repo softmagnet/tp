@@ -7,6 +7,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.ui.TabName;
 
 public class SelectClassCommand extends Command {
     public static final String COMMAND_WORD = "class";
@@ -32,6 +33,8 @@ public class SelectClassCommand extends Command {
         }
 
         TuitionClass tuitionClass = lastShownList.get(targetIndex.getZeroBased());
+
+        updateView(TabName.CLASSES);
 
         updateClass(targetIndex.getZeroBased());
 
