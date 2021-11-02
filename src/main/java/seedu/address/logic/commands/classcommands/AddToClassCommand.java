@@ -18,6 +18,7 @@ import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.StudentNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.model.tuitionclass.exceptions.DuplicateStudentInClassException;
+import seedu.address.ui.TabName;
 
 public class AddToClassCommand extends Command {
 
@@ -83,7 +84,6 @@ public class AddToClassCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT + e.getMessage());
         }
 
-
         //create edit class descriptor
         EditClassDescriptor editClassDescriptor = new EditClassDescriptor();
         editClassDescriptor.setUniqueNameList(updatedStudentNameList);
@@ -91,6 +91,10 @@ public class AddToClassCommand extends Command {
         //swap out old tuition class with new tuition class
         TuitionClass editedClass = EditClassCommand.createEditedClass(classToAddTo, editClassDescriptor);
         model.setClass(classToAddTo, editedClass);
+
+        // Switches the view to the class view and updates the class
+        updateView(TabName.CLASSES);
+        updateClass(toEditClassIndex.getZeroBased());
 
         return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, editedClass));
     }

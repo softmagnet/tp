@@ -34,8 +34,8 @@ public class SelectClassCommand extends Command {
 
         TuitionClass tuitionClass = lastShownList.get(targetIndex.getZeroBased());
 
+        // Switches the view to the class view and updates the class
         updateView(TabName.CLASSES);
-
         updateClass(targetIndex.getZeroBased());
 
         return new CommandResult("Viewing class " + tuitionClass.toString(),
