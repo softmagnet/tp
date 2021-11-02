@@ -5,11 +5,8 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.util.Callback;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
@@ -23,13 +20,7 @@ public class ClassPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ClassPanel.class);
 
     @FXML
-    private ListView<TuitionClass> tuitionClassListView;
-
-    @FXML
     private StackPane tuitionClassListPlaceholder;
-
-    @FXML
-    private ListView<Student> studentListViewClassTab;
 
     @FXML
     private StackPane studentListPlaceholder;
@@ -69,10 +60,6 @@ public class ClassPanel extends UiPart<Region> {
 
     public void setItems(ObservableList<Student> studentObservableList) {
         studentClassPanel.setItems(studentObservableList);
-    }
-
-    public void setCellFactory(Callback<ListView<Student>, ListCell<Student>> studentObservableList) {
-        studentClassPanel.setCellFactory(studentObservableList);
     }
 
 }
