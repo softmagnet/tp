@@ -19,7 +19,7 @@
       <HBox alignment="CENTER">
         <Label fx:id="classLabel" styleClass="classLabel"/>
       </HBox>
-      <StackPane fx:id="tuitionClassListPlaceholder" styleClass="pane-transparent" HBox.hgrow="ALWAYS" />
+      <StackPane fx:id="tuitionClassListPlaceholder" styleClass="pane-transparent" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
     </VBox>
 
     <VBox fx:id="students" styleClass="pane-with-border" minWidth="500"
@@ -27,7 +27,7 @@
       <HBox alignment="CENTER">
         <Label fx:id="studentLabel" styleClass="studentLabel"/>
       </HBox>
-      <StackPane fx:id="studentListPlaceholder" styleClass="pane-transparent" HBox.hgrow="ALWAYS" />
+      <StackPane fx:id="studentListPlaceholder" styleClass="pane-transparent" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
     </VBox>
   </HBox>
 </HBox>

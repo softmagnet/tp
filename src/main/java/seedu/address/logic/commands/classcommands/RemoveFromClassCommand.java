@@ -15,6 +15,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.StudentNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.ui.TabName;
 
 public class RemoveFromClassCommand extends Command {
     public static final String COMMAND_WORD = "removefromclass";
@@ -79,6 +80,10 @@ public class RemoveFromClassCommand extends Command {
         //swap out old tuition class with new tuition class
         TuitionClass editedClass = EditClassCommand.createEditedClass(classToRemoveFrom, editClassDescriptor);
         model.setClass(classToRemoveFrom, editedClass);
+
+        // Switches the view to the class view and updates the class
+        updateView(TabName.CLASSES);
+        updateClass(toEditClassIndex.getZeroBased());
 
         return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, editedClass));
     }
