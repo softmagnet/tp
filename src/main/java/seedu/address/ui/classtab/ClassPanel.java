@@ -23,13 +23,7 @@ public class ClassPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ClassPanel.class);
 
     @FXML
-    private ListView<TuitionClass> tuitionClassListView;
-
-    @FXML
     private StackPane tuitionClassListPlaceholder;
-
-    @FXML
-    private ListView<Student> studentListViewClassTab;
 
     @FXML
     private StackPane studentListPlaceholder;
@@ -69,10 +63,6 @@ public class ClassPanel extends UiPart<Region> {
 
     public void setItems(ObservableList<Student> studentObservableList) {
         studentClassPanel.setItems(studentObservableList);
-    }
-
-    public void setCellFactory(Callback<ListView<Student>, ListCell<Student>> studentObservableList) {
-        studentClassPanel.setCellFactory(studentObservableList);
     }
 
 }
