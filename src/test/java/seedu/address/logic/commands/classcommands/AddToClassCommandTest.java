@@ -1,14 +1,5 @@
 package seedu.address.logic.commands.classcommands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.testutil.TuitionClassBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX;
@@ -20,9 +11,20 @@ import static seedu.address.logic.commands.classcommands.EditClassCommand.MESSAG
 import static seedu.address.testutil.TestUtil.getClassOneBased;
 import static seedu.address.testutil.TestUtil.getIndexList;
 import static seedu.address.testutil.TestUtil.getStudentOneBased;
-import static seedu.address.testutil.TypicalTimestable.ALICE;
 import static seedu.address.testutil.TypicalTimestable.BENSON;
 import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBook;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.testutil.TuitionClassBuilder;
+
+
 
 public class AddToClassCommandTest {
 
@@ -77,7 +79,7 @@ public class AddToClassCommandTest {
     }
 
     @Test
-    public void execute_IndexOutOfRange_failure() {
+    public void execute_indexOutOfRange_failure() {
         Model failureModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         AddToClassCommand addToClassCommand = new AddToClassCommand(getIndexList(1, 12, 2));
         assertCommandFailure(addToClassCommand, failureModel, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);

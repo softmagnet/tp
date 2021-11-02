@@ -1,21 +1,20 @@
 package seedu.address.logic.parser.classcommands;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.index.Index.fromOneBased;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.commands.classcommands.AddToClassCommand.INVALID_OR_MISSING_CLASS_INDEX;
 import static seedu.address.logic.commands.classcommands.AddToClassCommand.NO_STUDENT_INDEX_PROVIDED_MESSAGE;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.classcommands.AddToClassCommand;
-;
 import seedu.address.logic.parser.classcommandparsers.AddToClassCommandParser;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class AddToClassCommandParserTest {
     private Index validIndex1 = fromOneBased(1);

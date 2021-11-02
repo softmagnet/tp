@@ -35,8 +35,8 @@ public class AddToClassCommand extends Command {
     public static final String MESSAGE_ADD_SUCCESS = "Successfully added students to class ";
     public static final String NO_STUDENT_INDEX_PROVIDED_MESSAGE = "No student index is provided!";
     public static final String INVALID_OR_MISSING_CLASS_INDEX = "Class index is invalid or is not provided";
-    public static int CLASS_INDEX_POSITION = 0;
-    public static int STUDENT_INDEX_STARTING_POSITION = 1;
+    public static final int CLASS_INDEX_POSITION = 0;
+    public static final int STUDENT_INDEX_STARTING_POSITION = 1;
 
     private final Index toEditClassIndex;
     private final List<Index> studentIndices;
