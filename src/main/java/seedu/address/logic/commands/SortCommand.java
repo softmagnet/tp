@@ -43,7 +43,7 @@ public class SortCommand extends Command {
         if (sortBy.equals("name")) {
             model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
 
-            ArrayList<Student> studentsToSort = new ArrayList<Student>(model.getFilteredStudentList());
+            ArrayList<Student> studentsToSort = new ArrayList<>(model.getFilteredStudentList());
 
             if (directionOfSort.equals("asc")) {
                 studentsToSort.sort((student1, student2) ->
@@ -54,10 +54,11 @@ public class SortCommand extends Command {
             }
 
             model.setStudents(studentsToSort);
+            
         } else if (sortBy.equals("timing")) {
             model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
 
-            ArrayList<TuitionClass> classesToSort = new ArrayList<TuitionClass>(model.getFilteredTuitionClassList());
+            ArrayList<TuitionClass> classesToSort = new ArrayList<>(model.getFilteredTuitionClassList());
 
             if (directionOfSort.equals("asc")) {
                 classesToSort.sort((class1, class2) ->
@@ -70,24 +71,17 @@ public class SortCommand extends Command {
 
             model.setClasses(classesToSort);
 
+            model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
             ArrayList<Student> unsortedStudentList = new ArrayList<>(model.getFilteredStudentList());
             ArrayList<Student> sortedStudentList = new ArrayList<>();
+
             // sort the student list so that it is sorted based in order of classes
-            for (int i = 0; i < classesToSort.size(); i++) {
-                TuitionClass tuitionClass = classesToSort.get(i);
-                StudentNameList studentNameList = tuitionClass.getStudentList();
-                //check if student in the name list, then add to a new array if its not inside
-                for (int j = 0; j < studentNameList.size(); j++) {
-                    Student toAdd = getStudentWithName(unsortedStudentList, studentNameList.get(j));
-                    if (!sortedStudentList.contains(toAdd)) {
-                        sortedStudentList.add(toAdd);
-                    }
-                }
-            }
+            filterStudentBasedOnClasses(sortedStudentList, unsortedStudentList, classesToSort);
 
             addStudentsWithNoClasses(sortedStudentList, unsortedStudentList, classesToSort);
 
             model.setStudents(sortedStudentList);
+
             hideTuitionClassStudentList();
 
         } else {
@@ -99,13 +93,28 @@ public class SortCommand extends Command {
                 + " in " + directionOfSort + " direction");
     }
 
+    private void filterStudentBasedOnClasses(
+            ArrayList<Student> listToAddTo, ArrayList<Student> studentList, ArrayList<TuitionClass> tuitionClassList) {
+        for (int i = 0; i < tuitionClassList.size(); i++) {
+            TuitionClass tuitionClass = tuitionClassList.get(i);
+            StudentNameList studentNameList = tuitionClass.getStudentList();
+            //check if student in the name list, then add to a new array if its not inside
+            for (int j = 0; j < studentNameList.size(); j++) {
+                Student toAdd = getStudentWithName(studentList, studentNameList.get(j));
+                if (!listToAddTo.contains(toAdd)) {
+                    listToAddTo.add(toAdd);
+                }
+            }
+        }
+    }
+
     private void addStudentsWithNoClasses(
             ArrayList<Student> listToAddTo, ArrayList<Student> studentList, ArrayList<TuitionClass> tuitionClassList) {
         for (int i = 0; i < studentList.size(); i++) {
             boolean hasClass = false;
             Student studentToCheck = studentList.get(i);
-            for (int j = 0; j < tuitionClassList.size(); j++) {
-                if (tuitionClassList.get(j).containsStudent(studentToCheck.getName())) {
+            for (TuitionClass tuitionClass : tuitionClassList) {
+                if (tuitionClass.containsStudent(studentToCheck.getName())) {
                     hasClass = true;
                 }
             }
