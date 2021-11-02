@@ -55,7 +55,7 @@ public class RemoveFromClassCommand extends Command {
 
         //get class to remove from
         List<TuitionClass> lastShownClassList = model.getFilteredTuitionClassList();
-        if (lastShownClassList.size() == 0) {
+        if (lastShownClassList.size() == 0 || toEditClassIndex.getOneBased() > lastShownClassList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
         }
         TuitionClass classToRemoveFrom = lastShownClassList.get(toEditClassIndex.getZeroBased());
