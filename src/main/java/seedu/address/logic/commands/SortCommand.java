@@ -1,14 +1,14 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLASS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
 import java.util.ArrayList;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
-
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLASS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
