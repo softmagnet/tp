@@ -3,6 +3,7 @@ package seedu.address.model.tuitionclass;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalTime;
+import java.util.Arrays;
 
 import seedu.address.model.person.Name;
 
@@ -111,6 +112,10 @@ public class TuitionClass {
 
     public void addStudent(Name name) {
         studentNameList.add(name);
+    }
+
+    public void addAllStudents(Name... names) {
+        studentNameList.addAll(Arrays.asList(names));
     }
 
     /**

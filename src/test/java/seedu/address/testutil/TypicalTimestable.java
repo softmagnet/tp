@@ -104,9 +104,11 @@ public class TypicalTimestable {
     //// Typical Classes
 
     public static final TuitionClass JC_PHYISCS = new TuitionClassBuilder().withClassName("JC Physics")
-            .withClassTiming("Mon 10:00-12:00").withRate("70").withLocation("Jaycee Tuition Center Nex").build();
+            .withClassTiming("Mon 10:00-12:00").withRate("70").withLocation("Jaycee Tuition Center Nex")
+            .withStudentList(VALID_STUDENTLIST_IB_PHYSICS).build();
     public static final TuitionClass SEC_PHYSICS = new TuitionClassBuilder().withClassName("Sec 4 Physics")
-            .withClassTiming("Tue 11:00-13:00").withRate("77").withLocation("Learning Lab Orchard").build();
+            .withClassTiming("Tue 11:00-13:00").withRate("77").withLocation("Learning Lab Orchard")
+            .withStudentList(VALID_STUDENTLIST_IB_MATHS).build();
     public static final TuitionClass JC_MATHS = new TuitionClassBuilder().withClassName("JC Maths")
             .withClassTiming("Wed 15:00-17:00").withRate("55").withLocation("Bukit Merah Block 614 #01-330").build();
     public static final TuitionClass SEC_MATHS = new TuitionClassBuilder().withClassName("Sec 4 Maths")
@@ -130,6 +132,7 @@ public class TypicalTimestable {
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.
+     * Contains 7 students and 6 classes.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
@@ -150,7 +153,7 @@ public class TypicalTimestable {
     }
 
     public static List<TuitionClass> getTypicalClasses() {
-        return new ArrayList<>(Arrays.asList(JC_CHEMISTRY, JC_MATHS, JC_PHYISCS,
-                SEC_CHEMISTRY, SEC_MATHS, SEC_PHYSICS));
+        return new ArrayList<>(Arrays.asList(JC_PHYISCS, SEC_PHYSICS, JC_MATHS, SEC_MATHS,
+                JC_CHEMISTRY, SEC_CHEMISTRY));
     }
 }
