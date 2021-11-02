@@ -80,6 +80,8 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
   e.g. `n/John p/97833242 … /nok n/Harry p/87738383 …` `John` and `97833242` are information belonging to the student
   and `John`'s NOK's name is `Harry` whose phone number is `87738383`.
 
+* For commands that require index (e.g. EditClass, AddToClass, etc), zero, negative and out-of-range indices are 
+rejected with an error message.
 
 </div>
 
@@ -164,6 +166,9 @@ addtoclass CLASS_INDEX STUDENT_INDEX...
   receiving the new students.
 * `STUDENT_INDEX...` are the index number/s of the students shown in the displayed student list, these students are
   to be added into the class.
+* Exactly one class index must be provided and at least one student index must be provided
+* Students that already exist in the class can't be added to the same class
+* If you enter duplicate student indices in one command, it will work normally as Timestable just adds the student once.
 
 Example:
 ```
