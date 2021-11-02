@@ -21,10 +21,11 @@ import static seedu.address.testutil.TestUtil.getClassOneBased;
 import static seedu.address.testutil.TestUtil.getIndexList;
 import static seedu.address.testutil.TestUtil.getStudentOneBased;
 import static seedu.address.testutil.TypicalTimestable.ALICE;
+import static seedu.address.testutil.TypicalTimestable.BENSON;
 import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBook;
 
 public class AddToClassCommandTest {
-    Model failureModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
 
 
     @Test
@@ -70,24 +71,26 @@ public class AddToClassCommandTest {
 
     @Test
     public void execute_classIndexOutOfRange_failure() {
+        Model failureModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         AddToClassCommand addToClassCommand = new AddToClassCommand(getIndexList(22, 1, 2));
         assertCommandFailure(addToClassCommand, failureModel, MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_IndexOutOfRange_failure() {
+        Model failureModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         AddToClassCommand addToClassCommand = new AddToClassCommand(getIndexList(1, 12, 2));
         assertCommandFailure(addToClassCommand, failureModel, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_addDuplicateStudentsToClass_failure() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model failureModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
         //student indexed 1 is already in class indexed 1
-        AddToClassCommand addToClassCommand = new AddToClassCommand(getIndexList(1, 1, 3));
+        AddToClassCommand addToClassCommand = new AddToClassCommand(getIndexList(1, 2, 3));
 
-        String expectedMessage = MESSAGE_DUPLICATE_STUDENT + ALICE.getName();
+        String expectedMessage = MESSAGE_DUPLICATE_STUDENT + BENSON.getName();
         assertCommandFailure(addToClassCommand, failureModel, expectedMessage);
     }
 
