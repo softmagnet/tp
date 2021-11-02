@@ -93,6 +93,15 @@ public class SortCommand extends Command {
                 + " in " + directionOfSort + " direction");
     }
 
+    /**
+     * Orders the studentList in the order of them appearing in the tuitionClassList. If they appear in multiple
+     * tuition classes in the tuitionClassList, their first occurrence would be taken as their oder in the resulting
+     * order.
+     *
+     * @param listToAddTo ArrayList to be addedTo.
+     * @param studentList ArrayList of students in original order.
+     * @param tuitionClassList ArrayList of tuitionClasses which we are going to match the order.
+     */
     private void filterStudentBasedOnClasses(
             ArrayList<Student> listToAddTo, ArrayList<Student> studentList, ArrayList<TuitionClass> tuitionClassList) {
         for (int i = 0; i < tuitionClassList.size(); i++) {
@@ -101,13 +110,20 @@ public class SortCommand extends Command {
             //check if student in the name list, then add to a new array if its not inside
             for (int j = 0; j < studentNameList.size(); j++) {
                 Student toAdd = getStudentWithName(studentList, studentNameList.get(j));
-                if (!listToAddTo.contains(toAdd)) {
+                if (toAdd != null && !listToAddTo.contains(toAdd)) {
                     listToAddTo.add(toAdd);
                 }
             }
         }
     }
 
+    /**
+     * Adds students from the studentList with no classes in the tuitionClassList into the listToAddTo.
+     *
+     * @param listToAddTo ArrayList to be added to.
+     * @param studentList Original arrayList of students.
+     * @param tuitionClassList ArrayList of tuitionClass to check if student is inside.
+     */
     private void addStudentsWithNoClasses(
             ArrayList<Student> listToAddTo, ArrayList<Student> studentList, ArrayList<TuitionClass> tuitionClassList) {
         for (int i = 0; i < studentList.size(); i++) {
@@ -124,6 +140,13 @@ public class SortCommand extends Command {
         }
     }
 
+    /**
+     * Gets the student with given name from the ArrayList of students.
+     *
+     * @param unsortedStudentList ArrayList of students to get student with given name from.
+     * @param name Name of student to be returned from the list.
+     * @return Student with the given name.
+     */
     private Student getStudentWithName(ArrayList<Student> unsortedStudentList, Name name) {
         for (Student student : unsortedStudentList) {
             if (student.getName().equals(name)) {
