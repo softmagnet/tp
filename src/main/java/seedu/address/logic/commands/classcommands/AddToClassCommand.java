@@ -62,11 +62,17 @@ public class AddToClassCommand extends Command {
 
         //get names to be added
         List<Student> lastShownStudentList = model.getFilteredStudentList();
+        //if (lastShownStudentList.size() == 0) {
+        //    throw new CommandException(INVALID_OR_MISSING_STUDENT_INDEX);
+        //}
         checkIndicesAreValid(lastShownStudentList);
         ArrayList<Name> namesToAdd = createNameList(studentIndices, lastShownStudentList);
 
         //get class to add to
         List<TuitionClass> lastShownClassList = model.getFilteredTuitionClassList();
+        if (lastShownClassList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
+        }
         TuitionClass classToAddTo = lastShownClassList.get(toEditClassIndex.getZeroBased());
 
         //get updated student list
@@ -104,6 +110,11 @@ public class AddToClassCommand extends Command {
     private void checkIndicesAreValid(List<Student> lastShownStudentList)
             throws CommandException {
         int size = lastShownStudentList.size();
+
+        if (size == 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        }
+
         assert size > 0;
 
         if (toEditClassIndex.getZeroBased() >= size) {
