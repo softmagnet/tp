@@ -5,9 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_IB_MATHS;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_IB_PHYSICS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASSNAME_IB_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASSNAME_IB_PHYSICS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASSTIMING_IB_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASSTIMING_IB_PHYSICS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_IB_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_IB_PHYSICS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RATE_IB_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RATE_IB_PHYSICS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENTLIST_IB_MATHS;
 import static seedu.address.logic.commands.classcommands.EditClassCommand.EditClassDescriptor;
 
@@ -17,11 +21,23 @@ import seedu.address.testutil.EditClassDescriptorBuilder;
 
 public class EditClassDescriptorTest {
 
+
     @Test
     public void equals() {
-        // same values -> returns true
+        // shallow copy -> returns true
         EditClassDescriptor descriptorWithSameValues = new EditClassDescriptor(DESC_IB_MATHS);
         assertTrue(DESC_IB_MATHS.equals(descriptorWithSameValues));
+
+        //deep copy with  null studentNameList -> returns true
+        EditClassDescriptor editClassDescriptor1 = new EditClassDescriptorBuilder()
+                .withClassName(VALID_CLASSNAME_IB_PHYSICS).withClassTiming(VALID_CLASSTIMING_IB_PHYSICS)
+                .withRate(VALID_RATE_IB_PHYSICS).withLocation(VALID_LOCATION_IB_PHYSICS).build();
+
+        EditClassDescriptor editClassDescriptor2 = new EditClassDescriptorBuilder()
+                .withClassName(VALID_CLASSNAME_IB_PHYSICS).withClassTiming(VALID_CLASSTIMING_IB_PHYSICS)
+                .withRate(VALID_RATE_IB_PHYSICS).withLocation(VALID_LOCATION_IB_PHYSICS).build();
+
+        assertTrue(editClassDescriptor1.equals(editClassDescriptor2));
 
         // same object -> returns true
         assertTrue(DESC_IB_MATHS.equals(DESC_IB_MATHS));
@@ -59,6 +75,5 @@ public class EditClassDescriptorTest {
         editedIbPhysics = new EditClassDescriptorBuilder(DESC_IB_PHYSICS)
                 .withStudentList(VALID_STUDENTLIST_IB_MATHS).build();
         assertFalse(DESC_IB_PHYSICS.equals(editedIbPhysics));
-
     }
 }

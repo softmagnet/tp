@@ -31,7 +31,7 @@ public class EditClassCommand extends Command {
     public static final String COMMAND_WORD = "editclass";
 
     public static final String MESSAGE_EDIT_CLASS_SUCCESS = "Edited class: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to editclass must be provided.";
+    public static final String MESSAGE_NO_FIELD_PROVIDED = "At least one field to editclass must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in this class:\n";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the class identified "
@@ -127,7 +127,7 @@ public class EditClassCommand extends Command {
             setClassTiming(toCopy.classTiming);
             setLocation(toCopy.location);
             setRate(toCopy.rate);
-            setUniqueNameList(toCopy.studentNameList);
+            setStudentList(toCopy.studentNameList);
         }
 
         public Optional<ClassName> getClassName() {
@@ -166,7 +166,7 @@ public class EditClassCommand extends Command {
             return Optional.ofNullable(studentNameList);
         }
 
-        public void setUniqueNameList(StudentNameList studentNameList) {
+        public void setStudentList(StudentNameList studentNameList) {
             this.studentNameList = studentNameList;
         }
 
@@ -185,11 +185,19 @@ public class EditClassCommand extends Command {
             }
 
             EditClassDescriptor e = (EditClassDescriptor) other;
-            return className.equals(e.className)
-                    && classTiming.equals(e.classTiming)
-                    && rate.equals(e.rate)
-                    && location.equals(e.location)
-                    && studentNameList.equals(e.studentNameList);
+            return getClassName().equals(e.getClassName())
+                    && getClassTiming().equals(e.getClassTiming())
+                    && getRate().equals(e.getRate())
+                    && getLocation().equals(e.getLocation())
+                    && getStudentList().equals(e.getStudentList());
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return this == o
+                || ((o instanceof EditClassCommand)
+                    && index.equals(((EditClassCommand) o).index)
+                    && editClassDescriptor.equals(((EditClassCommand) o).editClassDescriptor));
     }
 }
