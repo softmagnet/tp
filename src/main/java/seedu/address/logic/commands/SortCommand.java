@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLASS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
 import java.util.ArrayList;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -36,6 +39,8 @@ public class SortCommand extends Command {
 
         // sort the StudentNameList;
         if (sortBy.equals("name")) {
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
             ArrayList<Student> toSort = new ArrayList<Student>(model.getFilteredStudentList());
 
             if (directionOfSort.equals("asc")) {
@@ -48,6 +53,8 @@ public class SortCommand extends Command {
 
             model.setStudents(toSort);
         } else if (sortBy.equals("timing")) {
+            model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
+
             ArrayList<TuitionClass> toSort = new ArrayList<TuitionClass>(model.getFilteredTuitionClassList());
 
             if (directionOfSort.equals("asc")) {

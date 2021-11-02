@@ -1,5 +1,7 @@
 package seedu.address.logic;
 
+import seedu.address.ui.TabName;
+
 /**
  * Interface to represent the observers of command class.
  */
@@ -8,9 +10,9 @@ public interface CommandObserver {
     /**
      * Updates the view of the observer.
      *
-     * @param indexOfTabToView tab index to change the view to.
+     * @param tabToView tab to change the view to.
      */
-    public void updateView(Integer indexOfTabToView);
+    public void updateView(TabName tabToView);
 
     /**
      * Updates the class selected of the observer.

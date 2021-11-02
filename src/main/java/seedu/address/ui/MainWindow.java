@@ -236,10 +236,12 @@ public class MainWindow extends UiPart<Stage> implements CommandObserver {
     }
 
     @Override
-    public void updateView(Integer tabToView) {
+    public void updateView(TabName tabToView) {
         requireNonNull(tabToView);
-        tabPane.getSelectionModel().select(tabToView);
+        tabPane.getSelectionModel().select(tabToView.getIndex());
     }
+
+
 
     /**
      * Executes the command and returns the result.

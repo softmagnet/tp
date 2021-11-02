@@ -6,6 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLASS;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
+import seedu.address.ui.TabName;
 
 public class ListClassCommand extends Command {
 
@@ -16,6 +17,7 @@ public class ListClassCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        updateView(TabName.CLASSES);
         model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
         return new CommandResult(MESSAGE_SUCCESS);
     }

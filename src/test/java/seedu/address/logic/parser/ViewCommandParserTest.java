@@ -7,14 +7,11 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ViewCommand;
+import seedu.address.ui.TabName;
 
 class ViewCommandParserTest {
 
     private final ViewCommandParser parser = new ViewCommandParser();
-
-    private int studentsIndex = 0;
-    private int classesIndex = 1;
-    private int timetableIndex = 2;
 
     @Test
     public void parse_emptyArg_throwParseException() {
@@ -52,12 +49,12 @@ class ViewCommandParserTest {
     @Test
     public void parse_validArgs_returnsViewCommand() {
         assertParseSuccess(parser, "timetable",
-                new ViewCommand(timetableIndex));
+                new ViewCommand(TabName.TIMETABLE));
 
         assertParseSuccess(parser, "classes",
-               new ViewCommand(classesIndex));
+               new ViewCommand(TabName.CLASSES));
 
         assertParseSuccess(parser, "students",
-                new ViewCommand(studentsIndex));
+                new ViewCommand(TabName.STUDENTS));
     }
 }

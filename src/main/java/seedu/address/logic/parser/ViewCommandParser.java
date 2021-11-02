@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.TabName;
 
 /**
  * Parses input command and returns ViewCommand.
@@ -31,23 +32,23 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         }
 
         String tabToView = splitArgs[0];
-        int indexOfTabToView;
+        TabName tab;
 
         switch (tabToView) {
         case "students":
-            indexOfTabToView = 0;
+            tab = TabName.STUDENTS;
             break;
         case "classes":
-            indexOfTabToView = 1;
+            tab = TabName.CLASSES;
             break;
         case "timetable":
-            indexOfTabToView = 2;
+            tab = TabName.TIMETABLE;
             break;
         default:
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.INVALID_TAB));
         }
 
-        return new ViewCommand(indexOfTabToView);
+        return new ViewCommand(tab);
     }
 }

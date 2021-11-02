@@ -40,13 +40,20 @@ public class ClassPanel extends UiPart<Region> {
     @FXML
     private Label studentLabel;
 
+    private final StudentClassPanel studentClassPanel;
+
+    private final TuitionClassPanel tuitionClassPanel;
+
     /**
      * Creates a {@code StudentListPanel} with the given {@code ObservableList}.
      */
     public ClassPanel(ObservableList<Student> studentList, ObservableList<TuitionClass> tuitionClassList) {
         super(FXML);
-        StudentClassPanel studentClassPanel = new StudentClassPanel(studentList);
-        TuitionClassPanel tuitionClassPanel = new TuitionClassPanel(studentList, tuitionClassList);
+        //right side
+        this.studentClassPanel = new StudentClassPanel(studentList);
+
+        //left side
+        this.tuitionClassPanel = new TuitionClassPanel(studentList, tuitionClassList);
 
         tuitionClassPanel.setStudentClassList(studentClassPanel.getStudentListView());
 
@@ -61,11 +68,11 @@ public class ClassPanel extends UiPart<Region> {
     }
 
     public void setItems(ObservableList<Student> studentObservableList) {
-        studentListViewClassTab.setItems(studentObservableList);
+        studentClassPanel.setItems(studentObservableList);
     }
 
     public void setCellFactory(Callback<ListView<Student>, ListCell<Student>> studentObservableList) {
-        studentListViewClassTab.setCellFactory(studentObservableList);
+        studentClassPanel.setCellFactory(studentObservableList);
     }
 
 }
