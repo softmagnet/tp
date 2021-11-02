@@ -16,7 +16,7 @@ import seedu.address.logic.commands.FindNameCommand;
 import seedu.address.logic.commands.FindTagCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.SelectClassCommand;
+import seedu.address.logic.commands.classcommands.SelectClassCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.classcommands.AddClassCommand;
