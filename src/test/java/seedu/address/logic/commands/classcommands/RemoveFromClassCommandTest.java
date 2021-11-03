@@ -5,6 +5,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.classcommands.RemoveFromClassCommand.MESSAGE_REMOVE_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TestUtil.getIndexList;
+import static seedu.address.testutil.TypicalTimestable.ALICE;
+import static seedu.address.testutil.TypicalTimestable.CARL;
 import static seedu.address.testutil.TypicalTimestable.getTypicalPersons;
 
 import java.nio.file.Path;
@@ -34,7 +36,6 @@ import seedu.address.model.tuitionclass.Rate;
 import seedu.address.model.tuitionclass.StudentNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.model.tuitionclass.UniqueClassList;
-import seedu.address.testutil.TypicalTimestable;
 
 public class RemoveFromClassCommandTest {
 
@@ -54,7 +55,7 @@ public class RemoveFromClassCommandTest {
 
         // expected model
         List<Student> studentList = getTypicalPersons();
-        studentList.remove(TypicalTimestable.ALICE);
+        studentList.remove(ALICE);
         Model expectedModel = new ModelStubWithClass(studentList);
 
         String expectedMessage = MESSAGE_REMOVE_SUCCESS;
@@ -70,9 +71,9 @@ public class RemoveFromClassCommandTest {
         RemoveFromClassCommand command = new RemoveFromClassCommand(getIndexList(1, 1, 3));
 
         // expected model
-        List<Student> studentList = TypicalTimestable.getTypicalPersons();
-        studentList.remove(TypicalTimestable.ALICE);
-        studentList.remove(TypicalTimestable.CARL);
+        List<Student> studentList = getTypicalPersons();
+        studentList.remove(ALICE);
+        studentList.remove(CARL);
         Model expectedModel = new ModelStubWithClass(studentList);
 
         String expectedMessage = MESSAGE_REMOVE_SUCCESS;
@@ -89,8 +90,8 @@ public class RemoveFromClassCommandTest {
 
         // expected model
         List<Student> studentList = getTypicalPersons();
-        studentList.remove(TypicalTimestable.ALICE);
-        studentList.remove(TypicalTimestable.CARL);
+        studentList.remove(ALICE);
+        studentList.remove(CARL);
         Model expectedModel = new ModelStubWithClass(studentList);
 
         String expectedMessage = MESSAGE_REMOVE_SUCCESS;
