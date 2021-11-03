@@ -3,6 +3,8 @@ layout: page
 title: User Guide
 ---
 
+![Logo](images/TimestableLogo.png)
+
 TimesTable is a **desktop app for managing your tuition students and classes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TimesTable can get your class management tasks done faster than traditional GUI apps.
 
 * Table of Contents
@@ -221,12 +223,15 @@ editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]
 ```
 
 * Edits the class at the specified `INDEX`. The index refers to the index number shown in the displayed class
-  list in the `classes` tab. The index **must be a positive integer** 1, 2, 3, …​
+  list in the `classes` tab. 
+  * The index **must be a positive integer** 1, 2, 3, …​
+  * The index must also not be out of rage.
 * At least one of the optional fields must be provided.
 * `CLASS_TIMING` can only start at the hour mark or half hour mark.
+* Edit commands that will create a **clash of class timing** is not accepted.
 
 Examples:
-* `editclass 1 ct/wed 15:00-17:00` Edits the 1st class in the class list's `CLASS_TIMIMG` to be `WED 15:00-17:00`.
+* `editclass 1 ct/wed 15:00-17:00` Edits the first class in the class list's `CLASS_TIMIMG` to be `WED 15:00-17:00`.
 
 ### Sorting students and classes: `sort`
 <hr>
@@ -489,11 +494,6 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 [comment]: <> (Examples:)
 
 [comment]: <> (* `schedule Monday` will show all contacts with classes on monday.)
-
-### Archiving data files `[coming in v2.0]`
-<hr>
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
