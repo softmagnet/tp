@@ -19,6 +19,7 @@ public class SortCommand extends Command {
             + "Example: " + COMMAND_WORD + " name asc";
     public static final String INVALID_SORTBY = "The parameter to sort by can only be: name or timing";
     public static final String INVALID_DIRECTIONOFSORT = "The direction of sort can only be asc or desc";
+    public static final String MESSAGE_SUCCESS = "Sorted %s based on %s in %s direction";
 
     private final String sortBy;
 
@@ -54,6 +55,8 @@ public class SortCommand extends Command {
 
             model.setStudents(studentsToSort);
 
+            return new CommandResult(String.format(MESSAGE_SUCCESS, "students", sortBy, directionOfSort));
+
         } else if (sortBy.equals("timing")) {
             model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
 
@@ -74,13 +77,11 @@ public class SortCommand extends Command {
 
             hideTuitionClassStudentList();
 
+            return new CommandResult(String.format(MESSAGE_SUCCESS, "classes", sortBy, directionOfSort));
         } else {
             return new CommandResult("sort by" + sortBy
                     + " has not been implemented by the developers");
         }
-
-        return new CommandResult("Sorted students based on " + sortBy
-                + " in " + directionOfSort + " direction");
     }
 
     @Override
