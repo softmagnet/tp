@@ -83,7 +83,8 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
   and `John`'s NOK's name is `Harry` whose phone number is `87738383`.
 
 * For commands that require index (e.g. EditClass, AddToClass, etc), zero, negative and out-of-range indices are 
-rejected with an error message.
+rejected with an error message. (Out of range means that the index entered is greater than the number of entries in
+a class or student list)
 
 </div>
 
@@ -225,10 +226,10 @@ editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]
 * Edits the class at the specified `INDEX`. The index refers to the index number shown in the displayed class
   list in the `classes` tab. 
   * The index **must be a positive integer** 1, 2, 3, …​
-  * The index must also not be out of rage.
+  * The index must also not be out of range.
 * At least one of the optional fields must be provided.
 * `CLASS_TIMING` can only start at the hour mark or half hour mark.
-* Edit commands that will create a **clash of class timing** is not accepted.
+* Edit commands that will create a clash of `CLASS_TIMING` with other classes is not accepted.
 
 Examples:
 * `editclass 1 ct/wed 15:00-17:00` Edits the first class in the class list's `CLASS_TIMIMG` to be `WED 15:00-17:00`.
