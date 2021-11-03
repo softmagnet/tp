@@ -1,6 +1,22 @@
 package seedu.address.logic.commands.classcommands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.classcommands.EditClassCommand.EditClassDescriptor;
+import static seedu.address.logic.commands.classcommands.EditClassCommand.MESSAGE_EDIT_CLASS_SUCCESS;
+import static seedu.address.model.tuitionclass.exceptions.DuplicateClassException.DUPLICATE_CLASS_ERROR_MESSAGE;
+import static seedu.address.model.tuitionclass.exceptions.OverlappingClassException.OVERLAP_ERROR_MESSAGE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.address.testutil.TypicalTimestable.JC_MATHS;
+import static seedu.address.testutil.TypicalTimestable.JC_PHYISCS;
+import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBook;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -10,20 +26,7 @@ import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.testutil.EditClassDescriptorBuilder;
 import seedu.address.testutil.TuitionClassBuilder;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.classcommands.EditClassCommand.MESSAGE_EDIT_CLASS_SUCCESS;
-import static seedu.address.model.tuitionclass.exceptions.DuplicateClassException.DUPLICATE_CLASS_ERROR_MESSAGE;
-import static seedu.address.model.tuitionclass.exceptions.OverlappingClassException.OVERLAP_ERROR_MESSAGE;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
-import static seedu.address.testutil.TypicalTimestable.JC_MATHS;
-import static seedu.address.testutil.TypicalTimestable.JC_PHYISCS;
-import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBook;
-import static seedu.address.logic.commands.classcommands.EditClassCommand.EditClassDescriptor;
+
 
 public class EditClassCommandTest {
 

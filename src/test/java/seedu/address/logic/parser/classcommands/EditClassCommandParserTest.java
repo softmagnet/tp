@@ -1,12 +1,5 @@
 package seedu.address.logic.parser.classcommands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.classcommands.EditClassCommand;
-import seedu.address.logic.parser.classcommandparsers.EditClassCommandParser;
-import seedu.address.testutil.EditClassDescriptorBuilder;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.CLASSTIMING_DESC_MATHS;
 import static seedu.address.logic.commands.CommandTestUtil.CLASSTIMING_DESC_PHYSICS;
@@ -24,14 +17,20 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_IB_MAT
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_IB_PHYSICS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RATE_IB_MATHS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RATE_IB_PHYSICS;
+import static seedu.address.logic.commands.classcommands.EditClassCommand.EditClassDescriptor;
 import static seedu.address.logic.commands.classcommands.EditClassCommand.MESSAGE_NO_FIELD_PROVIDED;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
-import static seedu.address.logic.commands.classcommands.EditClassCommand.EditClassDescriptor;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.classcommands.EditClassCommand;
+import seedu.address.logic.parser.classcommandparsers.EditClassCommandParser;
+import seedu.address.testutil.EditClassDescriptorBuilder;
 
 public class EditClassCommandParserTest {
 
