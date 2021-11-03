@@ -260,6 +260,7 @@ public class AddClassCommandTest {
 
         @Override
         public void addTuitionClass(TuitionClass tuitionClass) {
+            requireNonNull(tuitionClass);
             addressBook.addTuitionClass(tuitionClass);
         }
     }
@@ -268,7 +269,6 @@ public class AddClassCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingTuitionClassAdded extends ModelStub {
-        //final ArrayList<Student> personsAdded = new ArrayList<>();
         final ArrayList<TuitionClass> tuitionClassesAdded = new ArrayList<>();
 
         @Override
