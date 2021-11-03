@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.classcommands.RemoveFromClassCommand.MESSAGE_REMOVE_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TestUtil.getIndexList;
+import static seedu.address.testutil.TypicalTimestable.getTypicalPersons;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -46,13 +47,13 @@ public class RemoveFromClassCommandTest {
     @Test
     public void execute_removeSingleStudent_success() {
         // model stub with a class containing ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE.
-        Model model = new ModelStubWithClass(TypicalTimestable.getTypicalPersons());
+        Model model = new ModelStubWithClass(getTypicalPersons());
 
         // command to execute
         RemoveFromClassCommand command = new RemoveFromClassCommand(getIndexList(1, 1));
 
         // expected model
-        List<Student> studentList = TypicalTimestable.getTypicalPersons();
+        List<Student> studentList = getTypicalPersons();
         studentList.remove(TypicalTimestable.ALICE);
         Model expectedModel = new ModelStubWithClass(studentList);
 
@@ -63,7 +64,7 @@ public class RemoveFromClassCommandTest {
     @Test
     public void execute_removeMultipleStudents_success() {
         // model stub with a class containing ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE.
-        Model model = new ModelStubWithClass(TypicalTimestable.getTypicalPersons());
+        Model model = new ModelStubWithClass(getTypicalPersons());
 
         // command to execute
         RemoveFromClassCommand command = new RemoveFromClassCommand(getIndexList(1, 1, 3));
@@ -81,13 +82,13 @@ public class RemoveFromClassCommandTest {
     @Test
     public void execute_duplicateStudentIndexes_success() {
         // model stub with a class containing ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE.
-        Model model = new ModelStubWithClass(TypicalTimestable.getTypicalPersons());
+        Model model = new ModelStubWithClass(getTypicalPersons());
 
         // command to execute
         RemoveFromClassCommand command = new RemoveFromClassCommand(getIndexList(1, 1, 3, 1));
 
         // expected model
-        List<Student> studentList = TypicalTimestable.getTypicalPersons();
+        List<Student> studentList = getTypicalPersons();
         studentList.remove(TypicalTimestable.ALICE);
         studentList.remove(TypicalTimestable.CARL);
         Model expectedModel = new ModelStubWithClass(studentList);
@@ -100,7 +101,7 @@ public class RemoveFromClassCommandTest {
     @Test
     public void execute_studentIndexGreaterThanNumberOfStudents_throwsCommandException() {
         // model stub with a class containing ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE.
-        Model model = new ModelStubWithClass(TypicalTimestable.getTypicalPersons());
+        Model model = new ModelStubWithClass(getTypicalPersons());
 
         // command to execute
         RemoveFromClassCommand command = new RemoveFromClassCommand(getIndexList(1, 8));
@@ -113,7 +114,7 @@ public class RemoveFromClassCommandTest {
     @Test
     public void execute_classIndexGreaterThanClassNumber_throwsCommandException() {
         // model stub with a class containing ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE.
-        Model model = new ModelStubWithClass(TypicalTimestable.getTypicalPersons());
+        Model model = new ModelStubWithClass(getTypicalPersons());
 
         // command to execute
         RemoveFromClassCommand command = new RemoveFromClassCommand(getIndexList(2, 1));
