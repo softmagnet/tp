@@ -111,8 +111,8 @@ public class StudentNameList implements Iterable<Name> {
         }
     }
 
-    public String size() {
-        return String.valueOf(internalList.size());
+    public int size() {
+        return internalList.size();
     }
 
     @Override

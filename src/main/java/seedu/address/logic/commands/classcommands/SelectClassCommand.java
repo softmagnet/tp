@@ -1,9 +1,11 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.classcommands;
 
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tuitionclass.TuitionClass;
@@ -34,8 +36,8 @@ public class SelectClassCommand extends Command {
 
         TuitionClass tuitionClass = lastShownList.get(targetIndex.getZeroBased());
 
+        // Switches the view to the class view and updates the class
         updateView(TabName.CLASSES);
-
         updateClass(targetIndex.getZeroBased());
 
         return new CommandResult("Viewing class " + tuitionClass.toString(),

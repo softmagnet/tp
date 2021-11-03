@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -34,6 +35,9 @@ public class DeleteClassCommand extends Command {
         requireNonNull(model);
 
         List<TuitionClass> lastShownClassList = model.getFilteredTuitionClassList();
+        if (index.getOneBased() > lastShownClassList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
+        }
         TuitionClass tuitionClass = lastShownClassList.get(index.getZeroBased());
 
         if (!model.hasTuitionClass(tuitionClass)) {

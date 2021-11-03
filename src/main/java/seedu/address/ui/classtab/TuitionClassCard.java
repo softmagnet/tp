@@ -54,19 +54,17 @@ public class TuitionClassCard extends UiPart<Region> {
         this.tuitionClass = tuitionClass;
         this.studentList = studentList;
         this.tuitionClassListView = tuitionClassListView;
-        selectTuitionClass();
 
         int index = tuitionClassListView.getSelectionModel().getSelectedIndex();
         tuitionClassListView.getSelectionModel().clearSelection(index);
 
         // TuitionClass
-
         id.setText(displayedIndex + ". ");
         className.setText(tuitionClass.getClassName().className);
         classTiming.setText(CLASS_TIMING_FIELD + tuitionClass.getClassTiming().value);
         classLocation.setText(LOCATION_FIELD + tuitionClass.getLocation().value);
         rate.setText(RATE_FIELD + DOLLAR_SIGN + tuitionClass.getRate().value + PER_HOUR);
-        classSize.setText(CLASS_SIZE_FIELD + tuitionClass.getStudentList().size());
+        classSize.setText(CLASS_SIZE_FIELD + String.valueOf(tuitionClass.getStudentList().size()));
     }
 
     @FXML

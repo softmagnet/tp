@@ -15,6 +15,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.StudentNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.ui.TabName;
 
 public class RemoveFromClassCommand extends Command {
     public static final String COMMAND_WORD = "removefromclass";
@@ -54,7 +55,7 @@ public class RemoveFromClassCommand extends Command {
 
         //get class to remove from
         List<TuitionClass> lastShownClassList = model.getFilteredTuitionClassList();
-        if (lastShownClassList.size() == 0) {
+        if (lastShownClassList.size() == 0 || toEditClassIndex.getOneBased() > lastShownClassList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
         }
         TuitionClass classToRemoveFrom = lastShownClassList.get(toEditClassIndex.getZeroBased());
@@ -80,6 +81,10 @@ public class RemoveFromClassCommand extends Command {
         TuitionClass editedClass = EditClassCommand.createEditedClass(classToRemoveFrom, editClassDescriptor);
         model.setClass(classToRemoveFrom, editedClass);
 
+        // Switches the view to the class view and updates the class
+        updateView(TabName.CLASSES);
+        updateClass(toEditClassIndex.getZeroBased());
+
         return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, editedClass));
     }
 
@@ -94,7 +99,7 @@ public class RemoveFromClassCommand extends Command {
 
     private void checkIndicesAreValid(List<Index> studentIndices, StudentNameList nameList)
             throws CommandException {
-        int size = Integer.valueOf(nameList.size());
+        int size = nameList.size();
         for (Index index : studentIndices) {
             if (index.getZeroBased() >= size) {
                 throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
