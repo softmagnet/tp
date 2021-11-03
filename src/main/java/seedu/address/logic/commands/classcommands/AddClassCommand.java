@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.classcommands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
@@ -33,7 +34,13 @@ public class AddClassCommand extends Command {
 
     private final TuitionClass tuitionClass;
 
+    /**
+     * Creates an AddToClassCommand to add the specified tuitionClass.
+     *
+     * @param tuitionClass TuitionClass to be added.
+     */
     public AddClassCommand(TuitionClass tuitionClass) {
+        requireNonNull(tuitionClass);
         this.tuitionClass = tuitionClass;
     }
 
@@ -49,5 +56,10 @@ public class AddClassCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, tuitionClass));
     }
 
-
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddClassCommand // instanceof handles nulls
+                && tuitionClass.equals(((AddClassCommand) other).tuitionClass));
+    }
 }
