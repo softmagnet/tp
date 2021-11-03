@@ -131,13 +131,13 @@ public class TypicalTimestable {
     } // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical students and classes.
      * Contains 7 students and 6 classes.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
 
-        for (Student student : getTypicalPersons()) {
+        for (Student student : getTypicalStudents()) {
             ab.addStudent(student);
         }
 
@@ -148,7 +148,47 @@ public class TypicalTimestable {
         return ab;
     }
 
-    public static List<Student> getTypicalPersons() {
+    /**
+     * Returns an {@code AddressBook} with all the typical students in reversed order, and classes.
+     * Contains 7 students and 6 classes.
+     */
+    public static AddressBook getTypicalAddressBookReverseStudents() {
+        AddressBook ab = new AddressBook();
+
+        List<Student> studentList = getTypicalStudents();
+
+        for (int i = 0; i < studentList.size(); i++) {
+            ab.addStudent(studentList.get(studentList.size() - 1 - i));
+        }
+
+        for (TuitionClass tuitionClass : getTypicalClasses()) {
+            ab.addTuitionClass(tuitionClass);
+        }
+
+        return ab;
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical students, and classes in reversed order.
+     * Contains 7 students and 6 classes.
+     */
+    public static AddressBook getTypicalAddressBookReverseClasses() {
+        AddressBook ab = new AddressBook();
+
+        for (Student student : getTypicalStudents()) {
+            ab.addStudent(student);
+        }
+
+        List<TuitionClass> tuitionClassList = getTypicalClasses();
+
+        for (int i = 0; i < tuitionClassList.size(); i++) {
+            ab.addTuitionClass(tuitionClassList.get(tuitionClassList.size() - 1 - i));
+        }
+
+        return ab;
+    }
+
+    public static List<Student> getTypicalStudents() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 
