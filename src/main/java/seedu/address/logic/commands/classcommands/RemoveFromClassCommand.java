@@ -22,7 +22,8 @@ public class RemoveFromClassCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes students from a class by the index"
             + " number used "
-            + "in the displayed class and person list.\n"
+            + "in the displayed class and student list in classes tab.\n"
+            + "Indexes must be non-zero positive integers.\n"
             + "Parameters: CLASS_INDEX "
             + "STUDENT_INDEX...\n"
             + "Example: " + COMMAND_WORD + " "
@@ -30,6 +31,7 @@ public class RemoveFromClassCommand extends Command {
             + "3 4 5 "
             + "(removes students indexed 3, 4 and 5 from class indexed 2)";
 
+    public static final String NO_STUDENT_INDEX_PROVIDED_MESSAGE = "No student index is provided!";
     public static final String MESSAGE_REMOVE_SUCCESS = "Successfully removed students from class ";
 
     private final Index toEditClassIndex;
