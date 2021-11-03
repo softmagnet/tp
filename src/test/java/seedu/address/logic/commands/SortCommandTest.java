@@ -19,80 +19,72 @@ class SortCommandTest {
     void execute_nameInDescOrder_sortNameAsc() {
         Model model = new ModelManager(getTypicalAddressBookReverseStudents(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        String sortBy = "name";
-        String directionOfSort = "asc";
-        assertCommandSuccess(new SortCommand(sortBy, directionOfSort), model,
-                String.format(SortCommand.MESSAGE_SUCCESS, "students", sortBy, directionOfSort), expectedModel);
+        assertCommandSuccess(new SortCommand(SortCommand.SORT_BY_NAME, SortCommand.DIRECTION_OF_SORT_ASC), model,
+                String.format(SortCommand.MESSAGE_SUCCESS, SortCommand.STUDENT_TAB_SORTED,
+                        SortCommand.SORT_BY_NAME, SortCommand.DIRECTION_OF_SORT_ASC), expectedModel);
     }
 
     @Test
     void execute_nameInAscOrder_sortNameAsc() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        String sortBy = "name";
-        String directionOfSort = "asc";
-        assertCommandSuccess(new SortCommand(sortBy, directionOfSort), model,
-                String.format(SortCommand.MESSAGE_SUCCESS, "students", sortBy, directionOfSort), expectedModel);
+        assertCommandSuccess(new SortCommand(SortCommand.SORT_BY_NAME, SortCommand.DIRECTION_OF_SORT_ASC), model,
+                String.format(SortCommand.MESSAGE_SUCCESS, SortCommand.STUDENT_TAB_SORTED,
+                        SortCommand.SORT_BY_NAME, SortCommand.DIRECTION_OF_SORT_ASC), expectedModel);
     }
 
     @Test
     void execute_nameInDescOrder_sortNameDesc() {
         Model model = new ModelManager(getTypicalAddressBookReverseStudents(), new UserPrefs());
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        String sortBy = "name";
-        String directionOfSort = "desc";
-        assertCommandSuccess(new SortCommand(sortBy, directionOfSort), model,
-                String.format(SortCommand.MESSAGE_SUCCESS, "students", sortBy, directionOfSort), expectedModel);
+        assertCommandSuccess(new SortCommand(SortCommand.SORT_BY_NAME, SortCommand.DIRECTION_OF_SORT_DESC), model,
+                String.format(SortCommand.MESSAGE_SUCCESS, SortCommand.STUDENT_TAB_SORTED,
+                        SortCommand.SORT_BY_NAME, SortCommand.DIRECTION_OF_SORT_DESC), expectedModel);
     }
 
     @Test
     void execute_nameInAscOrder_sortNameDesc() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBookReverseStudents(), new UserPrefs());
-        String sortBy = "name";
-        String directionOfSort = "desc";
-        assertCommandSuccess(new SortCommand(sortBy, directionOfSort), model,
-                String.format(SortCommand.MESSAGE_SUCCESS, "students", sortBy, directionOfSort), expectedModel);
+        assertCommandSuccess(new SortCommand(SortCommand.SORT_BY_NAME, SortCommand.DIRECTION_OF_SORT_DESC), model,
+                String.format(SortCommand.MESSAGE_SUCCESS, SortCommand.STUDENT_TAB_SORTED,
+                        SortCommand.SORT_BY_NAME, SortCommand.DIRECTION_OF_SORT_DESC), expectedModel);
     }
 
     @Test
     void execute_classInAscOrder_sortTimingAsc() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        String sortBy = "timing";
-        String directionOfSort = "asc";
-        assertCommandSuccess(new SortCommand(sortBy, directionOfSort), model,
-                String.format(SortCommand.MESSAGE_SUCCESS, "classes", sortBy, directionOfSort), expectedModel);
+        assertCommandSuccess(new SortCommand(SortCommand.SORT_BY_CLASS_TIMING, SortCommand.DIRECTION_OF_SORT_ASC),
+                model, String.format(SortCommand.MESSAGE_SUCCESS, SortCommand.CLASSES_TAB_SORTED,
+                        SortCommand.SORT_BY_CLASS_TIMING, SortCommand.DIRECTION_OF_SORT_ASC), expectedModel);
     }
 
     @Test
     void execute_classInDescOrder_sortTimingAsc() {
         Model model = new ModelManager(getTypicalAddressBookReverseClasses(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        String sortBy = "timing";
-        String directionOfSort = "asc";
-        assertCommandSuccess(new SortCommand(sortBy, directionOfSort), model,
-                String.format(SortCommand.MESSAGE_SUCCESS, "classes", sortBy, directionOfSort), expectedModel);
+        assertCommandSuccess(new SortCommand(SortCommand.SORT_BY_CLASS_TIMING, SortCommand.DIRECTION_OF_SORT_ASC),
+                model, String.format(SortCommand.MESSAGE_SUCCESS, SortCommand.CLASSES_TAB_SORTED,
+                        SortCommand.SORT_BY_CLASS_TIMING, SortCommand.DIRECTION_OF_SORT_ASC), expectedModel);
     }
 
     @Test
     void execute_classInAscOrder_sortTimingDesc() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBookReverseClasses(), new UserPrefs());
-        String sortBy = "timing";
-        String directionOfSort = "desc";
-        assertCommandSuccess(new SortCommand(sortBy, directionOfSort), model,
-                String.format(SortCommand.MESSAGE_SUCCESS, "classes", sortBy, directionOfSort), expectedModel);
+        assertCommandSuccess(new SortCommand(SortCommand.SORT_BY_CLASS_TIMING, SortCommand.DIRECTION_OF_SORT_DESC),
+                model, String.format(SortCommand.MESSAGE_SUCCESS, SortCommand.CLASSES_TAB_SORTED,
+                        SortCommand.SORT_BY_CLASS_TIMING, SortCommand.DIRECTION_OF_SORT_DESC), expectedModel);
     }
 
     @Test
     void execute_classInDescOrder_sortTimingDesc() {
         Model model = new ModelManager(getTypicalAddressBookReverseClasses(), new UserPrefs());
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        String sortBy = "timing";
-        String directionOfSort = "desc";
-        assertCommandSuccess(new SortCommand(sortBy, directionOfSort), model,
-                String.format(SortCommand.MESSAGE_SUCCESS, "classes", sortBy, directionOfSort), expectedModel);
+        assertCommandSuccess(new SortCommand(SortCommand.SORT_BY_CLASS_TIMING, SortCommand.DIRECTION_OF_SORT_DESC),
+                model, String.format(SortCommand.MESSAGE_SUCCESS, SortCommand.CLASSES_TAB_SORTED,
+                        SortCommand.SORT_BY_CLASS_TIMING, SortCommand.DIRECTION_OF_SORT_DESC), expectedModel);
     }
 
     @Test
