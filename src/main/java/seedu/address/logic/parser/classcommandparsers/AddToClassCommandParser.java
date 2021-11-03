@@ -1,8 +1,7 @@
 package seedu.address.logic.parser.classcommandparsers;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
-import static seedu.address.logic.commands.classcommands.AddToClassCommand.CLASS_INDEX_POSITION;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,10 +36,12 @@ public class AddToClassCommandParser implements Parser<AddToClassCommand> {
                 Index currentIndex = ParserUtil.parseIndex(str[i]);
                 indexArray.add(currentIndex);
             } catch (ParseException pe) {
-                String errorMessage = i == CLASS_INDEX_POSITION
-                        ? AddToClassCommand.INVALID_OR_MISSING_CLASS_INDEX
-                        : MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
-                throw new ParseException(errorMessage);
+                //String errorMessage = i == CLASS_INDEX_POSITION
+                //        ? AddToClassCommand.INVALID_OR_MISSING_CLASS_INDEX
+                //        : MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
+                //throw new ParseException(errorMessage);
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AddToClassCommand.MESSAGE_USAGE), pe);
             }
         }
 

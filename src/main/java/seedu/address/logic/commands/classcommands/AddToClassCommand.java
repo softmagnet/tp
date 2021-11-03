@@ -25,7 +25,8 @@ public class AddToClassCommand extends Command {
     public static final String COMMAND_WORD = "addtoclass";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds students to a class by the index number used "
-            + "in the displayed class and person list.\n"
+            + "in the displayed class and student list in students tab.\n"
+            + "Indexes must be non-zero positive integers.\n"
             + "Parameters: CLASS_INDEX "
             + "STUDENT_INDEX...\n"
             + "Example: " + COMMAND_WORD + " "
@@ -68,7 +69,7 @@ public class AddToClassCommand extends Command {
 
         //get class to add to
         List<TuitionClass> lastShownClassList = model.getFilteredTuitionClassList();
-        if (lastShownClassList.size() == 0) {
+        if (lastShownClassList.size() == 0 || toEditClassIndex.getOneBased() > lastShownClassList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
         }
         TuitionClass classToAddTo = lastShownClassList.get(toEditClassIndex.getZeroBased());

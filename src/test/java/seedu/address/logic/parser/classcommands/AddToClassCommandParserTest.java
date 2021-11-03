@@ -1,8 +1,7 @@
 package seedu.address.logic.parser.classcommands;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.index.Index.fromOneBased;
-import static seedu.address.logic.commands.classcommands.AddToClassCommand.INVALID_OR_MISSING_CLASS_INDEX;
 import static seedu.address.logic.commands.classcommands.AddToClassCommand.NO_STUDENT_INDEX_PROVIDED_MESSAGE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -25,8 +24,10 @@ public class AddToClassCommandParserTest {
 
     @Test
     public void parse_emptyArgs_failure() {
-        assertParseFailure(parser, "", INVALID_OR_MISSING_CLASS_INDEX); //nothing
-        assertParseFailure(parser, "  ", INVALID_OR_MISSING_CLASS_INDEX); //whitespace
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddToClassCommand.MESSAGE_USAGE)); //nothing
+        assertParseFailure(parser, "  ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddToClassCommand.MESSAGE_USAGE)); //whitespace
     }
 
     @Test
@@ -38,25 +39,33 @@ public class AddToClassCommandParserTest {
     @Test
     public void parse_invalidClassIndex_failure() {
         //non-digit with no student index
-        assertParseFailure(parser, "ds", INVALID_OR_MISSING_CLASS_INDEX);
+        assertParseFailure(parser, "ds", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddToClassCommand.MESSAGE_USAGE));
         //non-digit with student index
-        assertParseFailure(parser, "dsajkdha 3", INVALID_OR_MISSING_CLASS_INDEX);
+        assertParseFailure(parser, "dsajkdha 3", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddToClassCommand.MESSAGE_USAGE));
         //negative
-        assertParseFailure(parser, "-3 3", INVALID_OR_MISSING_CLASS_INDEX);
+        assertParseFailure(parser, "-3 3", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddToClassCommand.MESSAGE_USAGE));
         //zero
-        assertParseFailure(parser, "0 3", INVALID_OR_MISSING_CLASS_INDEX);
+        assertParseFailure(parser, "0 3", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddToClassCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidStudentIndex_failure() {
         //non-digit
-        assertParseFailure(parser, "3 dsa", MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertParseFailure(parser, "3 dsa", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddToClassCommand.MESSAGE_USAGE));
         //negative
-        assertParseFailure(parser, "3 -3", MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertParseFailure(parser, "3 -3", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddToClassCommand.MESSAGE_USAGE));
         //zero
-        assertParseFailure(parser, "3 0", MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertParseFailure(parser, "3 0", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddToClassCommand.MESSAGE_USAGE));
         //first valid second invalid
-        assertParseFailure(parser, "3 2 0", MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertParseFailure(parser, "3 2 0", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddToClassCommand.MESSAGE_USAGE));
     }
 
     @Test
