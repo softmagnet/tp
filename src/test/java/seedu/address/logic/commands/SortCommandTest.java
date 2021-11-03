@@ -2,14 +2,82 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBookReverseClasses;
+import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBookReverseStudents;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.logic.commands.classcommands.ListClassCommand;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 
 class SortCommandTest {
 
     @Test
-    void execute() {
-        //Todo discuss how to implement this since it doesnt touch the model.
+    void execute_nameInDescOrder_sortNameAsc() {
+        Model model = new ModelManager(getTypicalAddressBookReverseStudents(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        assertCommandSuccess(new SortCommand("name","asc"), model,
+                "Sorted students based on name in asc direction", expectedModel);
+    }
+
+    @Test
+    void execute_nameInAscOrder_sortNameAsc() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        assertCommandSuccess(new SortCommand("name","asc"), model,
+                "Sorted students based on name in asc direction", expectedModel);
+    }
+
+    @Test
+    void execute_nameInDescOrder_sortNameDesc() {
+        Model model = new ModelManager(getTypicalAddressBookReverseStudents(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        assertCommandSuccess(new SortCommand("name","desc"), model,
+                "Sorted students based on name in desc direction", expectedModel);
+    }
+
+    @Test
+    void execute_nameInAscOrder_sortNameDesc() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBookReverseStudents(), new UserPrefs());
+        assertCommandSuccess(new SortCommand("name","desc"), model,
+                "Sorted students based on name in desc direction", expectedModel);
+    }
+
+    @Test
+    void execute_classInAscOrder_sortTimingAsc() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+//        Sorted students based on timing in asc direction
+        assertCommandSuccess(new SortCommand("timing","asc"), model,
+                "Sorted students based on timing in asc direction", expectedModel);
+    }
+
+    @Test
+    void execute_classInDescOrder_sortTimingAsc() {
+        Model model = new ModelManager(getTypicalAddressBookReverseClasses(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        assertCommandSuccess(new SortCommand("timing","asc"), model,
+                "Sorted students based on timing in asc direction", expectedModel);
+    }
+
+    @Test
+    void execute_classInAscOrder_sortTimingDesc() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBookReverseClasses(), new UserPrefs());
+        assertCommandSuccess(new SortCommand("timing","desc"), model,
+                "Sorted students based on timing in desc direction", expectedModel);
+    }
+
+    @Test
+    void execute_classInDescOrder_sortTimingDesc() {
+        Model model = new ModelManager(getTypicalAddressBookReverseClasses(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        assertCommandSuccess(new SortCommand("timing","desc"), model,
+                "Sorted students based on timing in desc direction", expectedModel);
     }
 
     @Test
