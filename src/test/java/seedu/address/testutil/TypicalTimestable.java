@@ -155,10 +155,6 @@ public class TypicalTimestable {
     public static AddressBook getTypicalAddressBookReverseStudents() {
         AddressBook ab = new AddressBook();
 
-//        for (Student student : getTypicalPersons()) {
-//            ab.addStudent(student);
-//        }
-
         List<Student> studentList = getTypicalStudents();
 
         for (int i = 0; i < studentList.size(); i++) {
