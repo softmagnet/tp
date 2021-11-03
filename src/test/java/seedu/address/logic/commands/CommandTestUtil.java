@@ -25,6 +25,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.model.tuitionclass.predicates.ClassNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditClassDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -169,10 +171,10 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the Student at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    public static void showStudentAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
 
         Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
@@ -180,6 +182,20 @@ public class CommandTestUtil {
         model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredStudentList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the classes at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showClassAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTuitionClassList().size());
+
+        TuitionClass tuitionClass = model.getFilteredTuitionClassList().get(targetIndex.getZeroBased());
+        final String[] splitName = tuitionClass.getClassName().toString().split("\\s+");
+        model.updateFilteredClassList(new ClassNameContainsKeywordsPredicate(Arrays.asList(splitName)));
+
+        assertEquals(1, model.getFilteredTuitionClassList().size());
     }
 
 }

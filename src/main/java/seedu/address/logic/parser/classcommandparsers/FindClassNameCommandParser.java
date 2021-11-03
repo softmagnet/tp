@@ -19,8 +19,8 @@ public class FindClassNameCommandParser implements Parser<FindClassNameCommand> 
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClassNameCommand.MESSAGE_USAGE));
         }
 
-        String[] classTimingKeywords = trimmedArgs.split("\\s+");
+        String[] classNameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindClassNameCommand(new ClassNameContainsKeywordsPredicate(Arrays.asList(classTimingKeywords)));
+        return new FindClassNameCommand(new ClassNameContainsKeywordsPredicate(Arrays.asList(classNameKeywords)));
     }
 }
