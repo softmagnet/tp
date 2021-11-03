@@ -42,7 +42,7 @@ public class RemoveFromClassCommand extends Command {
      *
      * @param indexArray Array with index of class to remove from and index of students.
      */
-    public RemoveFromClassCommand(ArrayList<Index> indexArray) {
+    public RemoveFromClassCommand(List<Index> indexArray) {
         requireNonNull(indexArray);
 
         //the first index is the index of class in filtered class list that students would be removed from

@@ -103,7 +103,7 @@ public class TypicalTimestable {
 
     //// Typical Classes
 
-    public static final TuitionClass JC_PHYISCS = new TuitionClassBuilder().withClassName("JC Physics")
+    public static final TuitionClass JC_PHYSICS = new TuitionClassBuilder().withClassName("JC Physics")
             .withClassTiming("Mon 10:00-12:00").withRate("70").withLocation("Jaycee Tuition Center Nex")
             .withStudentList(VALID_STUDENTLIST_IB_PHYSICS).build();
     public static final TuitionClass SEC_PHYSICS = new TuitionClassBuilder().withClassName("Sec 4 Physics")
@@ -153,7 +153,7 @@ public class TypicalTimestable {
     }
 
     public static List<TuitionClass> getTypicalClasses() {
-        return new ArrayList<>(Arrays.asList(JC_PHYISCS, SEC_PHYSICS, JC_MATHS, SEC_MATHS,
+        return new ArrayList<>(Arrays.asList(JC_PHYSICS, SEC_PHYSICS, JC_MATHS, SEC_MATHS,
                 JC_CHEMISTRY, SEC_CHEMISTRY));
     }
 }
