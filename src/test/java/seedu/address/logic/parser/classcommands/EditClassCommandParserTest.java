@@ -2,41 +2,35 @@ package seedu.address.logic.parser.classcommands;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.classcommands.EditClassCommand;
 import seedu.address.logic.parser.classcommandparsers.EditClassCommandParser;
 import seedu.address.testutil.EditClassDescriptorBuilder;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.CLASSTIMING_DESC_MATHS;
 import static seedu.address.logic.commands.CommandTestUtil.CLASSTIMING_DESC_PHYSICS;
 import static seedu.address.logic.commands.CommandTestUtil.CLASS_NAME_DESC_MATHS;
 import static seedu.address.logic.commands.CommandTestUtil.CLASS_NAME_DESC_PHYSICS;
 import static seedu.address.logic.commands.CommandTestUtil.LOCATION_DESC_MATHS;
 import static seedu.address.logic.commands.CommandTestUtil.LOCATION_DESC_PHYSICS;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.RATE_DESC_MATHS;
 import static seedu.address.logic.commands.CommandTestUtil.RATE_DESC_PHYSICS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASSNAME_IB_MATHS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASSNAME_IB_PHYSICS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASSTIMING_IB_MATHS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASSTIMING_IB_PHYSICS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_IB_MATHS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_IB_PHYSICS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RATE_IB_MATHS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RATE_IB_PHYSICS;
 import static seedu.address.logic.commands.classcommands.EditClassCommand.MESSAGE_NO_FIELD_PROVIDED;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.logic.commands.classcommands.EditClassCommand.EditClassDescriptor;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 
 
 public class EditClassCommandParserTest {
@@ -86,7 +80,7 @@ public class EditClassCommandParserTest {
     @Test
     public void parse_singleFieldsSpecified_success() {
         //class name
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + CLASS_NAME_DESC_MATHS;
         EditClassDescriptor descriptor = new EditClassDescriptorBuilder().withClassName(VALID_CLASSNAME_IB_MATHS)
                 .build();
@@ -119,7 +113,7 @@ public class EditClassCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         //note that studentNameList is not included because you can't edit studentNameList with editclass command
 
-        Index targetIndex = INDEX_SECOND_PERSON;
+        Index targetIndex = INDEX_SECOND;
         String userInput = targetIndex.getOneBased() + RATE_DESC_PHYSICS + CLASSTIMING_DESC_PHYSICS
                 + CLASS_NAME_DESC_PHYSICS + LOCATION_DESC_PHYSICS;
 
@@ -133,7 +127,7 @@ public class EditClassCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + RATE_DESC_MATHS + RATE_DESC_PHYSICS + LOCATION_DESC_MATHS
                 + LOCATION_DESC_PHYSICS + CLASS_NAME_DESC_MATHS + CLASS_NAME_DESC_PHYSICS + CLASSTIMING_DESC_MATHS
                 + CLASSTIMING_DESC_PHYSICS;
@@ -144,8 +138,4 @@ public class EditClassCommandParserTest {
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
-
-
-        //overlapping classtiming -> commandtest not here
-    //out of range ->
 }

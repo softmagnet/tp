@@ -23,7 +23,8 @@ import seedu.address.model.tuitionclass.Location;
 import seedu.address.model.tuitionclass.Rate;
 import seedu.address.model.tuitionclass.StudentNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.model.tuitionclass.exceptions.InvalidClassException;
+import seedu.address.model.tuitionclass.exceptions.DuplicateClassException;
+import seedu.address.model.tuitionclass.exceptions.OverlappingClassException;
 
 
 public class EditClassCommand extends Command {
@@ -97,8 +98,8 @@ public class EditClassCommand extends Command {
         try {
             model.setClass(classToEdit, editedClass);
             model.updateFilteredClassList(Model.PREDICATE_SHOW_ALL_CLASS);
-        } catch (InvalidClassException ie) {
-            throw new CommandException(ie.getMessage());
+        } catch (OverlappingClassException | DuplicateClassException e) {
+            throw new CommandException(e.getMessage());
         }
 
         return new CommandResult(String.format(MESSAGE_EDIT_CLASS_SUCCESS, editedClass));

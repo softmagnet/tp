@@ -11,7 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Name;
 import seedu.address.model.tuitionclass.exceptions.DuplicateClassException;
-import seedu.address.model.tuitionclass.exceptions.InvalidClassException;
+import seedu.address.model.tuitionclass.exceptions.OverlappingClassException;
 import seedu.address.model.tuitionclass.exceptions.TuitionClassNotFoundException;
 
 /**
@@ -28,10 +28,10 @@ public class UniqueClassList implements Iterable<TuitionClass> {
      *
      * @param toAdd The tuition class to add.
      */
-    public void add(TuitionClass toAdd) throws InvalidClassException {
+    public void add(TuitionClass toAdd) throws OverlappingClassException {
         requireNonNull(toAdd);
         if (!isValidTiming(toAdd)) {
-            throw new InvalidClassException();
+            throw new OverlappingClassException();
         }
 
         internalList.add(toAdd);
@@ -157,16 +157,13 @@ public class UniqueClassList implements Iterable<TuitionClass> {
             throw new TuitionClassNotFoundException();
         }
 
-        /*
-          if editedClass does not have same timing as target class and there's already another class with same timing
-          as editedClass, then edit
-         */
         if (!target.isSameClass(editedClass) && contains(editedClass)) {
             throw new DuplicateClassException();
         }
+
         //check for overlapping ClassTiming.
         if (!target.isSameClass(editedClass) && !isValidTiming(editedClass)) {
-            throw new InvalidClassException();
+            throw new OverlappingClassException();
         }
         internalList.set(index, editedClass);
     }
