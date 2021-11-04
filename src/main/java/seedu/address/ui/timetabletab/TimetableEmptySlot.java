@@ -3,6 +3,8 @@ package seedu.address.ui.timetabletab;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
+// Solution below adapted from
+// https://github.com/AY1920S2-CS2103-W15-4/main/blob/master/src/main/java/clzzz/helper/ui/calendar/CalendarBuffer.java
 /**
  * A UI for the empty slot with no tuition class in the timetable.
  */

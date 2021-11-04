@@ -123,6 +123,10 @@ public class AddCommandParserTest {
                         + VALID_ADDRESS_BOB + VALID_PREFIX_NOK + NAME_DESC_NOK + PHONE_DESC_NOK + EMAIL_DESC_NOK
                         + ADDRESS_DESC_NOK, expectedMessage);
 
+        // missing nok prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + VALID_ADDRESS_BOB, expectedMessage);
+
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB
                         + VALID_ADDRESS_BOB + VALID_PREFIX_NOK + NAME_DESC_NOK + PHONE_DESC_NOK + EMAIL_DESC_NOK
@@ -151,6 +155,10 @@ public class AddCommandParserTest {
                         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + VALID_PREFIX_NOK + NAME_DESC_NOK + PHONE_DESC_NOK
                         + EMAIL_DESC_NOK + ADDRESS_DESC_NOK, Address.MESSAGE_CONSTRAINTS);
 
+        // invalid nok
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + VALID_PREFIX_NOK,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
