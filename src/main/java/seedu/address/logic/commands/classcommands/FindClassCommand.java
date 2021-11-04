@@ -24,7 +24,13 @@ public class FindClassCommand extends Command {
 
     private final ClassTimingContainsKeywordsPredicate predicate;
 
+    /**
+     * Constructs a new FindClassCommand.
+     *
+     * @param predicate The predicate to filter the classes by.
+     */
     public FindClassCommand(ClassTimingContainsKeywordsPredicate predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 

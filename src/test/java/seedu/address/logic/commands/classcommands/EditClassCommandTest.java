@@ -12,7 +12,7 @@ import static seedu.address.model.tuitionclass.exceptions.OverlappingClassExcept
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalTimestable.JC_MATHS;
-import static seedu.address.testutil.TypicalTimestable.JC_PHYISCS;
+import static seedu.address.testutil.TypicalTimestable.JC_PHYSICS;
 import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -57,7 +57,7 @@ public class EditClassCommandTest {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Index targetIndex = INDEX_FIRST;
 
-        TuitionClass editedClass = new TuitionClassBuilder(JC_PHYISCS).withClassName("Discrete Maths").build();
+        TuitionClass editedClass = new TuitionClassBuilder(JC_PHYSICS).withClassName("Discrete Maths").build();
         EditClassDescriptor descriptor = new EditClassDescriptorBuilder().withClassName("Discrete Maths").build();
         EditClassCommand editClassCommand = new EditClassCommand(targetIndex, descriptor);
 
@@ -73,8 +73,8 @@ public class EditClassCommandTest {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Index targetIndex = INDEX_FIRST;
 
-        TuitionClass editedClass = JC_PHYISCS;
-        EditClassDescriptor descriptor = new EditClassDescriptorBuilder(JC_PHYISCS).build();
+        TuitionClass editedClass = JC_PHYSICS;
+        EditClassDescriptor descriptor = new EditClassDescriptorBuilder(JC_PHYSICS).build();
         EditClassCommand editClassCommand = new EditClassCommand(targetIndex, descriptor);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
