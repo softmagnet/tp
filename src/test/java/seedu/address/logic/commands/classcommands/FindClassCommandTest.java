@@ -1,7 +1,24 @@
 package seedu.address.logic.commands.classcommands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_CLASSES_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalTimestable.JC_CHEMISTRY;
+import static seedu.address.testutil.TypicalTimestable.JC_CHEMISTRY_DAY;
+import static seedu.address.testutil.TypicalTimestable.JC_PHYSICS;
+import static seedu.address.testutil.TypicalTimestable.JC_PHYSICS_CLASS_TIMING;
+import static seedu.address.testutil.TypicalTimestable.JC_PHYSICS_DAY;
+import static seedu.address.testutil.TypicalTimestable.JC_PHYSICS_TIME;
+import static seedu.address.testutil.TypicalTimestable.SEC_CHEMISTRY;
+import static seedu.address.testutil.TypicalTimestable.SEC_CHEMISTRY_DAY;
+import static seedu.address.testutil.TypicalTimestable.SEC_MATHS;
+import static seedu.address.testutil.TypicalTimestable.SEC_MATHS_TIME;
+import static seedu.address.testutil.TypicalTimestable.SEC_PHYSICS_CLASS_TIMING;
+import static seedu.address.testutil.TypicalTimestable.SEC_PHYSICS_DAY;
+import static seedu.address.testutil.TypicalTimestable.SEC_PHYSICS_TIME;
 import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -18,6 +35,8 @@ import seedu.address.model.tuitionclass.predicates.ClassTimingContainsKeywordsPr
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindClassCommandTest {
+    // model stub with a class containing JC_PHYISCS, SEC_PHYSICS, JC_MATHS, SEC_MATHS,
+    //                JC_CHEMISTRY, SEC_CHEMISTRY
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -48,26 +67,73 @@ public class FindClassCommandTest {
         assertFalse(findClassFirstCommand.equals(findClassSecondCommand));
     }
 
-    //    //todo for kevin to fix these tests (currently there are things in the model at the start
-    //    @Test
-    //    public void execute_zeroKeywords_noPersonFound() {
-    //        String expectedMessage = String.format(MESSAGE_CLASSES_LISTED_OVERVIEW, 0);
-    //        ClassTimingContainsKeywordsPredicate predicate = preparePredicate(" ");
-    //        FindClassCommand command = new FindClassCommand(predicate);
-    //        expectedModel.updateFilteredClassList(predicate);
-    //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    //        assertEquals(Collections.emptyList(), model.getFilteredStudentList());
-    //    }
-    //
-    //    @Test
-    //    public void execute_multipleKeywords_multiplePersonsFound() {
-    //        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-    //        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-    //        FindNameCommand command = new FindNameCommand(predicate);
-    //        expectedModel.updateFilteredPersonList(predicate);
-    //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    //        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredStudentList());
-    //    }
+    @Test
+    public void constructor_nullInput_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new FindClassCommand(null));
+    }
+
+    @Test
+    public void execute_findSingleClass_success() {
+        // command to execute
+        ClassTimingContainsKeywordsPredicate predicate = preparePredicate(JC_PHYSICS_CLASS_TIMING);
+        FindClassCommand command = new FindClassCommand(predicate);
+        expectedModel.updateFilteredClassList(predicate);
+
+        String expectedMessage = String.format(MESSAGE_CLASSES_LISTED_OVERVIEW, 1);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(JC_PHYSICS), model.getFilteredTuitionClassList());
+    }
+
+    @Test
+    public void execute_findTwoClasses_success() {
+        // Both JC Physics and Sec maths are at the same time but different day.
+        ClassTimingContainsKeywordsPredicate predicate = preparePredicate(JC_PHYSICS_TIME + " " + SEC_MATHS_TIME);
+        FindClassCommand command = new FindClassCommand(predicate);
+        expectedModel.updateFilteredClassList(predicate);
+
+        String expectedMessage = String.format(MESSAGE_CLASSES_LISTED_OVERVIEW, 2);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(JC_PHYSICS, SEC_MATHS), model.getFilteredTuitionClassList());
+
+        // Both JC Chemistry and Sec Chemistry are at the same day but different time.
+        predicate = preparePredicate(JC_CHEMISTRY_DAY + " " + SEC_CHEMISTRY_DAY);
+        command = new FindClassCommand(predicate);
+        expectedModel.updateFilteredClassList(predicate);
+
+        expectedMessage = String.format(MESSAGE_CLASSES_LISTED_OVERVIEW, 2);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(JC_CHEMISTRY, SEC_CHEMISTRY), model.getFilteredTuitionClassList());
+    }
+
+    @Test
+    public void execute_findTwoClassDayTimings_noClassFound() {
+        // Expected behaviour is that when we specify two timings, no class matches this timing
+        // so it finds no classes, for the same timing, day, and class timing.
+
+        ClassTimingContainsKeywordsPredicate predicate =
+                preparePredicate(JC_PHYSICS_CLASS_TIMING + " " + SEC_PHYSICS_CLASS_TIMING);
+        FindClassCommand command = new FindClassCommand(predicate);
+        expectedModel.updateFilteredClassList(predicate);
+
+        String expectedMessage = String.format(MESSAGE_CLASSES_LISTED_OVERVIEW, 0);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+
+        predicate =
+                preparePredicate(JC_PHYSICS_DAY + " " + SEC_PHYSICS_DAY);
+        command = new FindClassCommand(predicate);
+        expectedModel.updateFilteredClassList(predicate);
+
+        expectedMessage = String.format(MESSAGE_CLASSES_LISTED_OVERVIEW, 0);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+
+        predicate =
+                preparePredicate(JC_PHYSICS_TIME + " " + SEC_PHYSICS_TIME);
+        command = new FindClassCommand(predicate);
+        expectedModel.updateFilteredClassList(predicate);
+
+        expectedMessage = String.format(MESSAGE_CLASSES_LISTED_OVERVIEW, 0);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
 
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.

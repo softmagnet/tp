@@ -101,22 +101,42 @@ public class TypicalTimestable {
             .withNokEmail(VALID_EMAIL_NOK)
             .build();
 
-    //// Typical Classes
+    // Typical Classes
+    public static final String JC_PHYSICS_DAY = "Mon";
+    public static final String JC_PHYSICS_TIME = "10:00-12:00";
+    public static final String JC_PHYSICS_CLASS_TIMING = JC_PHYSICS_DAY + " " + JC_PHYSICS_TIME;
+    public static final String SEC_PHYSICS_DAY = "Tue";
+    public static final String SEC_PHYSICS_TIME = "11:00-13:00";
+    public static final String SEC_PHYSICS_CLASS_TIMING = SEC_PHYSICS_DAY + " " + SEC_PHYSICS_TIME;
+    public static final String JC_MATHS_DAY = "Wed";
+    public static final String JC_MATHS_TIME = "15:00-17:00";
+    public static final String JC_MATHS_CLASS_TIMING = JC_MATHS_DAY + " " + JC_MATHS_TIME;
+    public static final String SEC_MATHS_DAY = "Thu";
+    public static final String SEC_MATHS_TIME = "10:00-12:00";
+    public static final String SEC_MATHS_CLASS_TIMING = SEC_MATHS_DAY + " " + SEC_MATHS_TIME;
+    public static final String JC_CHEMISTRY_DAY = "Fri";
+    public static final String JC_CHEMISTRY_TIME = "17:00-18:00";
+    public static final String JC_CHEMISTRY_CLASS_TIMING = JC_CHEMISTRY_DAY + " " + JC_CHEMISTRY_TIME;
+    public static final String SEC_CHEMISTRY_DAY = "Fri";
+    public static final String SEC_CHEMISTRY_TIME = "13:00-16:00";
+    public static final String SEC_CHEMISTRY_CLASS_TIMING = SEC_CHEMISTRY_DAY + " " + SEC_CHEMISTRY_TIME;
 
-    public static final TuitionClass JC_PHYISCS = new TuitionClassBuilder().withClassName("JC Physics")
-            .withClassTiming("Mon 10:00-12:00").withRate("70").withLocation("Jaycee Tuition Center Nex")
+    public static final TuitionClass JC_PHYSICS = new TuitionClassBuilder().withClassName("JC Physics")
+            .withClassTiming(JC_PHYSICS_CLASS_TIMING).withRate("70").withLocation("Jaycee Tuition Center Nex")
             .withStudentList(VALID_STUDENTLIST_IB_PHYSICS).build();
     public static final TuitionClass SEC_PHYSICS = new TuitionClassBuilder().withClassName("Sec 4 Physics")
-            .withClassTiming("Tue 11:00-13:00").withRate("77").withLocation("Learning Lab Orchard")
+            .withClassTiming(SEC_PHYSICS_CLASS_TIMING).withRate("77").withLocation("Learning Lab Orchard")
             .withStudentList(VALID_STUDENTLIST_IB_MATHS).build();
     public static final TuitionClass JC_MATHS = new TuitionClassBuilder().withClassName("JC Maths")
-            .withClassTiming("Wed 15:00-17:00").withRate("55").withLocation("Bukit Merah Block 614 #01-330").build();
+            .withClassTiming(JC_MATHS_CLASS_TIMING).withRate("55")
+            .withLocation("Bukit Merah Block 614 #01-330").build();
     public static final TuitionClass SEC_MATHS = new TuitionClassBuilder().withClassName("Sec 4 Maths")
-            .withClassTiming("Thu 10:00-12:00").withRate("60").withLocation("Merlion Tuition Center Kovan").build();
+            .withClassTiming(SEC_MATHS_CLASS_TIMING).withRate("60")
+            .withLocation("Merlion Tuition Center Kovan").build();
     public static final TuitionClass JC_CHEMISTRY = new TuitionClassBuilder().withClassName("JC Chemistry")
-            .withClassTiming("Fri 15:00-18:00").withRate("50").withLocation("Hougang Blk 313 #11-394").build();
+            .withClassTiming(JC_CHEMISTRY_CLASS_TIMING).withRate("50").withLocation("Hougang Blk 313 #11-394").build();
     public static final TuitionClass SEC_CHEMISTRY = new TuitionClassBuilder().withClassName("Sec 4 Chemistry")
-            .withClassTiming("Sat 13:00-16:00").withRate("80").withLocation("Kumon at Orchard").build();
+            .withClassTiming(SEC_CHEMISTRY_CLASS_TIMING).withRate("80").withLocation("Kumon at Orchard").build();
 
     // Classes found in {@code CommandTestUtil}
     public static final TuitionClass IB_PHYSICS = new TuitionClassBuilder().withClassName(VALID_CLASSNAME_IB_PHYSICS)
@@ -193,7 +213,7 @@ public class TypicalTimestable {
     }
 
     public static List<TuitionClass> getTypicalClasses() {
-        return new ArrayList<>(Arrays.asList(JC_PHYISCS, SEC_PHYSICS, JC_MATHS, SEC_MATHS,
+        return new ArrayList<>(Arrays.asList(JC_PHYSICS, SEC_PHYSICS, JC_MATHS, SEC_MATHS,
                 JC_CHEMISTRY, SEC_CHEMISTRY));
     }
 }
