@@ -12,8 +12,8 @@ import seedu.address.model.tuitionclass.predicates.ClassTimingContainsKeywordsPr
 public class FindClassCommandParser implements Parser<FindClassCommand> {
 
     private static final String VALIDATION_REGEX_DAY = "(?i)(MON|TUE|WED|THU|FRI|SAT|SUN){1}";
-    private static final String VALIDATION_REGEX_TIME = "([01][0-9]|2[0-3]):[0-5][0-9]-([01][0-9]|2[0-3])"
-            + ":[0-5][0-9]{1}";
+    private static final String VALIDATION_REGEX_TIME = "([01][0-9]|2[0-3]):[03]0-(([01][0-9]|2[0-3])"
+            + ":[03]0|23:59){1}";
 
     /**
      * Returns true if all keywords contained in {@code classTimingKeywords} is a three-letter abbreviation

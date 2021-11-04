@@ -1,7 +1,7 @@
 package seedu.address.logic.parser.classcommandparsers;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
@@ -30,7 +30,7 @@ public class EditClassCommandParser implements Parser<EditClassCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_CLASS_DISPLAYED_INDEX,
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditClassCommand.MESSAGE_USAGE));
         }
 
@@ -51,7 +51,7 @@ public class EditClassCommandParser implements Parser<EditClassCommand> {
         }
 
         if (!editClassDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditClassCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditClassCommand.MESSAGE_NO_FIELD_PROVIDED);
         }
 
         return new EditClassCommand(index, editClassDescriptor);

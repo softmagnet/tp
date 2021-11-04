@@ -5,7 +5,8 @@ package seedu.address.model.tuitionclass.exceptions;
  * as an already existing tuition class
  */
 public class DuplicateClassException extends RuntimeException {
+    public static final String DUPLICATE_CLASS_ERROR_MESSAGE = "Operation would result in classes with same timing!";
     public DuplicateClassException() {
-        super("Operation would result in classes with same timing!");
+        super(DUPLICATE_CLASS_ERROR_MESSAGE);
     }
 }

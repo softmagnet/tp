@@ -9,10 +9,10 @@ import seedu.address.model.tuitionclass.TuitionClass;
 
 public class TuitionClassBuilder {
 
-    public static final String DEFAULT_CLASS_NAME = "Sec 4 Physics";
-    public static final String DEFAULT_RATE = "60";
-    public static final String DEFAULT_LOCATION = "Serangoon NEX #03-33";
-    public static final String DEFAULT_CLASS_TIMING = "Wed 16:00-17:00";
+    public static final String DEFAULT_CLASS_NAME = "O Levels English";
+    public static final String DEFAULT_RATE = "51";
+    public static final String DEFAULT_LOCATION = "Tuas Blk 111";
+    public static final String DEFAULT_CLASS_TIMING = "sun 16:00-17:00";
     public static final String[] DEFAULT_NAME_LIST = {"Alice", "Benson", "Carl"};
 
     private ClassName className;

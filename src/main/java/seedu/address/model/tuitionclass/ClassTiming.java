@@ -16,7 +16,7 @@ public class ClassTiming implements Comparable<ClassTiming> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Class Timing must be in the form DAY HH:MM-HH:MM, "
-                    + "\nstart time must be earlier than end time, \nand "
+                    + "\nstart time must be earlier than end time, and "
                     + "start and end time has to start at the hour or half hour mark, but it can end at 23:59";
 
     /*
