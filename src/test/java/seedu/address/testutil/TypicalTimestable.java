@@ -115,10 +115,10 @@ public class TypicalTimestable {
     public static final String SEC_MATHS_TIME = "10:00-12:00";
     public static final String SEC_MATHS_CLASS_TIMING = SEC_MATHS_DAY + " " + SEC_MATHS_TIME;
     public static final String JC_CHEMISTRY_DAY = "Fri";
-    public static final String JC_CHEMISTRY_TIME = "17:00-18:00";
+    public static final String JC_CHEMISTRY_TIME = "13:00-16:00";
     public static final String JC_CHEMISTRY_CLASS_TIMING = JC_CHEMISTRY_DAY + " " + JC_CHEMISTRY_TIME;
     public static final String SEC_CHEMISTRY_DAY = "Fri";
-    public static final String SEC_CHEMISTRY_TIME = "13:00-16:00";
+    public static final String SEC_CHEMISTRY_TIME = "17:00-18:00";
     public static final String SEC_CHEMISTRY_CLASS_TIMING = SEC_CHEMISTRY_DAY + " " + SEC_CHEMISTRY_TIME;
 
     public static final TuitionClass JC_PHYSICS = new TuitionClassBuilder().withClassName("JC Physics")
