@@ -14,7 +14,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.tuitionclass.exceptions.DuplicateClassException;
-import seedu.address.model.tuitionclass.exceptions.InvalidClassException;
+import seedu.address.model.tuitionclass.exceptions.OverlappingClassException;
 import seedu.address.model.tuitionclass.exceptions.TuitionClassNotFoundException;
 import seedu.address.testutil.TuitionClassBuilder;
 
@@ -53,7 +53,7 @@ public class UniqueClassListTest {
     @Test
     public void add_duplicateTuitionClass_throwsInvalidClassException() {
         uniqueClassList.add(JC_CHEMISTRY);
-        assertThrows(InvalidClassException.class, () -> uniqueClassList.add(JC_CHEMISTRY));
+        assertThrows(OverlappingClassException.class, () -> uniqueClassList.add(JC_CHEMISTRY));
     }
 
     @Test

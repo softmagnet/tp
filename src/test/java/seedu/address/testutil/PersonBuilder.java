@@ -25,7 +25,6 @@ public class PersonBuilder {
     public static final String DEFAULT_NOK_PHONE = "97762839";
     public static final String DEFAULT_NOK_EMAIL = "zhenglin@gmail.com";
     public static final String DEFAULT_NOK_ADDRESS = "345, Clementi Ave 6, #02-141";
-    public static final String DEFAULT_CLASS_NAME = "Math wed class";
 
     private Name name;
     private Phone phone;

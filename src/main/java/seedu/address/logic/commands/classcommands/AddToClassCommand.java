@@ -87,7 +87,7 @@ public class AddToClassCommand extends Command {
 
         //create edit class descriptor
         EditClassDescriptor editClassDescriptor = new EditClassDescriptor();
-        editClassDescriptor.setUniqueNameList(updatedStudentNameList);
+        editClassDescriptor.setStudentList(updatedStudentNameList);
 
         //swap out old tuition class with new tuition class
         TuitionClass editedClass = EditClassCommand.createEditedClass(classToAddTo, editClassDescriptor);

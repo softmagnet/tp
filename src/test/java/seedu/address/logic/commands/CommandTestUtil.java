@@ -94,6 +94,8 @@ public class CommandTestUtil {
     public static final String CLASSTIMING_DESC_MATHS = " " + PREFIX_CLASSTIMING + VALID_CLASSTIMING_IB_MATHS;
     public static final String LOCATION_DESC_PHYSICS = " " + PREFIX_LOCATION + VALID_LOCATION_IB_PHYSICS;
     public static final String LOCATION_DESC_MATHS = " " + PREFIX_LOCATION + VALID_LOCATION_IB_MATHS;
+    public static final String CLASS_NAME_DESC_PHYSICS = " " + PREFIX_CLASS_NAME + VALID_CLASSNAME_IB_PHYSICS;
+    public static final String CLASS_NAME_DESC_MATHS = " " + PREFIX_CLASS_NAME + VALID_CLASSNAME_IB_MATHS;
 
     public static final String INVALID_RATE_DESC = " " + PREFIX_RATE + "-32"; // negative rate not allowed for rate
     // empty string not allowed for classTiming

@@ -12,7 +12,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.model.tuitionclass.exceptions.InvalidClassException;
+import seedu.address.model.tuitionclass.exceptions.OverlappingClassException;
 
 public class AddClassCommand extends Command {
 
@@ -49,7 +49,7 @@ public class AddClassCommand extends Command {
 
         try {
             model.addTuitionClass(tuitionClass);
-        } catch (InvalidClassException ice) {
+        } catch (OverlappingClassException ice) {
             throw new CommandException(Messages.MESSAGE_CLASHING_CLASS_TIMING);
         }
 
