@@ -48,7 +48,7 @@ public class RemoveFromClassCommandTest {
     @Test
     public void execute_removeSingleStudent_success() {
         // model stub with a class containing ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE.
-        Model model = new ModelStubWithClass(getTypicalStudents());
+        ModelStubWithClass modelStubWithClass = new ModelStubWithClass(getTypicalStudents());
 
         // command to execute
         RemoveFromClassCommand command = new RemoveFromClassCommand(getIndexList(1, 1));
@@ -56,16 +56,16 @@ public class RemoveFromClassCommandTest {
         // expected model
         List<Student> studentList = getTypicalStudents();
         studentList.remove(ALICE);
-        Model expectedModel = new ModelStubWithClass(studentList);
+        ModelStubWithClass expectedModelStub = new ModelStubWithClass(studentList);
 
         String expectedMessage = MESSAGE_REMOVE_SUCCESS;
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, modelStubWithClass, expectedMessage, expectedModelStub);
     }
 
     @Test
     public void execute_removeMultipleStudents_success() {
         // model stub with a class containing ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE.
-        Model model = new ModelStubWithClass(getTypicalStudents());
+        ModelStubWithClass modelStubWithClass = new ModelStubWithClass(getTypicalStudents());
 
         // command to execute
         RemoveFromClassCommand command = new RemoveFromClassCommand(getIndexList(1, 1, 3));
@@ -74,16 +74,16 @@ public class RemoveFromClassCommandTest {
         List<Student> studentList = getTypicalStudents();
         studentList.remove(ALICE);
         studentList.remove(CARL);
-        Model expectedModel = new ModelStubWithClass(studentList);
+        ModelStubWithClass expectedModelStub = new ModelStubWithClass(studentList);
 
         String expectedMessage = MESSAGE_REMOVE_SUCCESS;
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, modelStubWithClass, expectedMessage, expectedModelStub);
     }
 
     @Test
     public void execute_duplicateStudentIndexes_success() {
         // model stub with a class containing ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE.
-        Model model = new ModelStubWithClass(getTypicalStudents());
+        ModelStubWithClass modelStubWithClass = new ModelStubWithClass(getTypicalStudents());
 
         // command to execute
         RemoveFromClassCommand command = new RemoveFromClassCommand(getIndexList(1, 1, 3, 1));
@@ -92,48 +92,48 @@ public class RemoveFromClassCommandTest {
         List<Student> studentList = getTypicalStudents();
         studentList.remove(ALICE);
         studentList.remove(CARL);
-        Model expectedModel = new ModelStubWithClass(studentList);
+        ModelStubWithClass expectedModelStub = new ModelStubWithClass(studentList);
 
         String expectedMessage = MESSAGE_REMOVE_SUCCESS;
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, modelStubWithClass, expectedMessage, expectedModelStub);
 
     }
 
     @Test
     public void execute_studentIndexGreaterThanNumberOfStudents_throwsCommandException() {
         // model stub with a class containing ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE.
-        Model model = new ModelStubWithClass(getTypicalStudents());
+        ModelStubWithClass modelStubWithClass = new ModelStubWithClass(getTypicalStudents());
 
         // command to execute
         RemoveFromClassCommand command = new RemoveFromClassCommand(getIndexList(1, 8));
 
         String expectedMessage = Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(model));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(modelStubWithClass));
     }
 
 
     @Test
     public void execute_classIndexGreaterThanClassNumber_throwsCommandException() {
         // model stub with a class containing ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE.
-        Model model = new ModelStubWithClass(getTypicalStudents());
+        ModelStubWithClass modelStubWithClass = new ModelStubWithClass(getTypicalStudents());
 
         // command to execute
         RemoveFromClassCommand command = new RemoveFromClassCommand(getIndexList(2, 1));
 
         String expectedMessage = Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX;
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(model));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(modelStubWithClass));
     }
 
     @Test
     public void execute_removeSingleStudentFromEmptyClass_failure() {
         // model stub with a empty class;
-        Model model = new ModelStubWithClass(new ArrayList<Student>());
+        ModelStubWithClass modelStubWithClass = new ModelStubWithClass(new ArrayList<Student>());
 
         // command to execute
         RemoveFromClassCommand command = new RemoveFromClassCommand(getIndexList(1, 1));
 
         String expectedMessage = Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(model));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(modelStubWithClass));
     }
 
     /**
