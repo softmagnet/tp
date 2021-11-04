@@ -11,6 +11,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.ui.TabName;
 
 public class DeleteClassCommand extends Command {
     public static final String COMMAND_WORD = "deleteclass";
@@ -45,6 +46,8 @@ public class DeleteClassCommand extends Command {
         }
 
         model.deleteTuitionClass(tuitionClass);
+
+        updateView(TabName.CLASSES);
 
         hideTuitionClassStudentList();
 

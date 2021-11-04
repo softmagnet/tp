@@ -63,6 +63,8 @@ public class SortCommand extends Command {
 
             model.setStudents(studentsToSort);
 
+            updateView(TabName.STUDENTS);
+
             return new CommandResult(String.format(MESSAGE_SUCCESS, STUDENT_TAB_SORTED, sortBy, directionOfSort));
 
         } else if (sortBy.equals(SORT_BY_CLASS_TIMING)) {

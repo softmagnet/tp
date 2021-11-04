@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.predicates.TagsContainsKeywordsPredicate;
+import seedu.address.ui.TabName;
 
 /**
  * Finds and lists all persons in address book whose list of tags contains any of the argument keywords.
@@ -29,6 +30,9 @@ public class FindTagCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
+
+        updateView(TabName.STUDENTS);
+
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
     }

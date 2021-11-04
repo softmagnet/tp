@@ -14,6 +14,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -38,6 +39,9 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         if (args.contains("nok/")) {
             String[] splitArgs = args.split("nok/");
+            if (splitArgs.length != 2) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            }
             argsBeforeNok = splitArgs[0];
             argsAfterNok = splitArgs[1];
         }

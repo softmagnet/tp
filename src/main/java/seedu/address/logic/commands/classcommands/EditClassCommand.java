@@ -25,6 +25,7 @@ import seedu.address.model.tuitionclass.StudentNameList;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.model.tuitionclass.exceptions.DuplicateClassException;
 import seedu.address.model.tuitionclass.exceptions.OverlappingClassException;
+import seedu.address.ui.TabName;
 
 
 public class EditClassCommand extends Command {
@@ -102,6 +103,7 @@ public class EditClassCommand extends Command {
             throw new CommandException(e.getMessage());
         }
 
+        updateView(TabName.CLASSES);
         return new CommandResult(String.format(MESSAGE_EDIT_CLASS_SUCCESS, editedClass));
     }
 

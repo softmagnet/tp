@@ -13,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.model.tuitionclass.exceptions.OverlappingClassException;
+import seedu.address.ui.TabName;
 
 public class AddClassCommand extends Command {
 
@@ -53,6 +54,7 @@ public class AddClassCommand extends Command {
             throw new CommandException(Messages.MESSAGE_CLASHING_CLASS_TIMING);
         }
 
+        updateView(TabName.CLASSES);
         return new CommandResult(String.format(MESSAGE_SUCCESS, tuitionClass));
     }
 
