@@ -26,6 +26,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.model.tuitionclass.predicates.ClassNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditClassDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -82,8 +84,10 @@ public class CommandTestUtil {
     public static final String VALID_LOCATION_IB_MATHS = "Block 123, Brown Street 3";
     public static final String[] VALID_STUDENTLIST_IB_PHYSICS = {"Benson Meier", "Alice Pauline"};
     public static final String[] VALID_STUDENTLIST_IB_MATHS = {"Carl Kurz", "Daniel Meier"};
+    public static final String[] VALID_EMPTY_STUDENTLIST = { };
 
-
+    public static final String CLASSNAME_DESC_PHYSICS = " " + PREFIX_CLASS_NAME + VALID_CLASSNAME_IB_PHYSICS;
+    public static final String CLASSNAME_DESC_MATHS = " " + PREFIX_CLASS_NAME + VALID_CLASSNAME_IB_MATHS;
     public static final String RATE_DESC_PHYSICS = " " + PREFIX_RATE + VALID_RATE_IB_PHYSICS;
     public static final String RATE_DESC_MATHS = " " + PREFIX_RATE + VALID_RATE_IB_MATHS;
     public static final String CLASSTIMING_DESC_PHYSICS = " " + PREFIX_CLASSTIMING + VALID_CLASSTIMING_IB_PHYSICS;
@@ -97,7 +101,8 @@ public class CommandTestUtil {
     // empty string not allowed for classTiming
     public static final String INVALID_CLASSTIMING_DESC = " " + PREFIX_CLASSTIMING;
     public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION; // empty string not allowed for locations
-
+    // non-alphanumeric not allowed for className
+    public static final String INVALID_CLASSNAME_DESC = " " + PREFIX_CLASS_NAME + "IB_MATHS!";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -172,10 +177,10 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the Student at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    public static void showStudentAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
 
         Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
@@ -183,6 +188,20 @@ public class CommandTestUtil {
         model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredStudentList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the classes at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showClassAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTuitionClassList().size());
+
+        TuitionClass tuitionClass = model.getFilteredTuitionClassList().get(targetIndex.getZeroBased());
+        final String[] splitName = tuitionClass.getClassName().toString().split("\\s+");
+        model.updateFilteredClassList(new ClassNameContainsKeywordsPredicate(Arrays.asList(splitName)));
+
+        assertEquals(1, model.getFilteredTuitionClassList().size());
     }
 
 }

@@ -10,11 +10,6 @@ import seedu.address.ui.TabName;
 class ViewCommandTest {
 
     @Test
-    void execute() {
-       //Todo discuss how to implement this since it doesnt touch the model.
-    }
-
-    @Test
     void testEquals() {
         ViewCommand viewTimetable = new ViewCommand(TabName.TIMETABLE);
         ViewCommand viewStudents = new ViewCommand(TabName.STUDENTS);
