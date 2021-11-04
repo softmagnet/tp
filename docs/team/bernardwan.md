@@ -24,24 +24,40 @@ Given below are my contributions to the project.
 
 
 * **Enhancements to existing features**:
-    * Updated the behaviour of the findname and findtag command to support partial matches and to allow for multi-word searches (Pull requests [\#33](), [\#34]())
+    * Updated the behaviour of the findname and findtag command to support partial matches 
+      and to allow for multi-word searches (Pull requests [\#33](), [\#34]())
+        * more info
     * Wrote additional tests for existing features to increase test coverage (Pull requests [\#260](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/260), [\#266](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/266), [\#273](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/273))
     * Updated the sample data to fill out the timetable, have more students with realistic data. (add link)
     * Add tests for NOK feature
     * Other things from AddClass branch
 
 * **Documentation**:
-    * Landing Page:
-        * Updated landing page to reflect TimesTable contents.
-        * Added a section for each major feature.
-        * Added pictures for the different features. [\#133](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/133)
+    
     * User Guide:
         * Added section for location field. [\#37](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/37)
         * Updated behavior for find features. [\#145](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/145)
         * Update UG and examples for findname and findtag. [\#163](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/163)
     * Developer Guide:
+        * Updated NFRs section to include relevant information.
         * Added implementation details of the `deleteclass` feature.
         * Added implementation details of the `removefromclass` feature. [\#82](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/82)
+
+* **Contributions to team-based tasks**
+    * Set up project website:
+        * Set up github pages
+        * Changed settings
+        * Changed names and links from AddressBook to TimesTable
+    * Landing Page:
+        * Updated landing page to reflect TimesTable contents.
+        * Added a section for each major feature.
+        * Added pictures for the different features. [\#133](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/133) 
+    * Project Demo for 1.3:
+        * Recorded gifs and screenshots for different features
+    * Helped maintained issue tracker:
+        * Created new issues
+        * Added milestones and assignees
+        * Closed relevant issues
 
 * **Community**:
     * Reviewed and merged other members' pull requests.
