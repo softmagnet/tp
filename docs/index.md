@@ -14,16 +14,18 @@ If you can type fast, TimesTable can get your class management tasks done faster
 * If you are interested in using TimesTable, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing TimesTable, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
-##Features
+## Features
 
-###Student Management
+### Student Management
+
 ![Ui](images/Ui.png)
 
 TimesTable supports all basic contact management commands such as adding of students and their contact info, editing of contact info,
 deleting students, finding students, sorting, etc. Furthermore, TimesTable also stores the Next-of-Kin(NOK) information of the student,
 which is important and often used. This is displayed to the right of the student information.
 
-###Class Management
+### Class Management
+
 ![ClassList](images/ClassList.png)
 
 TimesTable allows users to easily create and manage their classes. The Class tab shows all the information
@@ -31,7 +33,8 @@ about your various classes at a glance, with the student information in the side
 easily add and remove students from the various classes using the commands. The class list can also be filtered
 to search for a  specific class.
 
-###View Timetable
+### View Timetable
+
 ![Timetable](images/Timetable.png)
 
 TimesTable automatically generates a timetable for you based on the classes that you have added.
