@@ -65,8 +65,6 @@ public class TimetablePanel extends UiPart<Region> {
         clearTimetable();
         if (tuitionClasses == null || tuitionClasses.isEmpty()) {
             logger.info("No class in uniqueClassList.");
-            Label label = new Label("You have no classes.");
-            timetable.add(label, 0, 0);
         } else {
             logger.info("Building timetable from uniqueClassList.");
             buildHeader(tuitionClasses);
