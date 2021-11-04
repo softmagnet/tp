@@ -28,8 +28,14 @@ Given below are my contributions to the project.
       [2](https://github.com/AY2122S1-CS2103T-F11-1/tp/commit/7ddac4e24d6abc6da6b669c0daf50a85601c3f5a),
       [3](https://github.com/AY2122S1-CS2103T-F11-1/tp/commit/d344612297e2d21c988653b51a7eaa7d409cdacb),
       [4](https://github.com/AY2122S1-CS2103T-F11-1/tp/commit/39d388fd3f0bf55dd3dcab9995d41ccf0419f0c6))
-    * Wrote additional tests for existing features to increase coverage (Pull request [\#234](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/234))
-    * Bug fixes for features `Class size` in `classes` tab and `Student list` in `classes` tab (Pull request [\#106](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/106) , [\#137](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/137))
+    * Wrote additional tests for existing features to increase coverage (Pull request [\#234](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/234), [\#259](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/259))
+    * Bug fixes for features `Class size` in `classes` tab and `Student list` in `classes` tab (Pull request 
+      [\#106](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/106),
+      [\#137](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/137),
+      [\#246](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/246),
+      [\#249](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/249),
+      [\#251](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/251),
+      [\#252](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/252))
     * Fix old test cases which were outdated due to change in commands (Pull request [\#115](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/115), [\#155](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/155))
   
 * **Documentation**
@@ -46,6 +52,9 @@ Given below are my contributions to the project.
     [\#53](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/53),
     [\#92](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/92),
     [\#152](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/152),
-    [\#237](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/237))
+    [\#237](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/237),
+    [\#253](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/253),
+    [\#254](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/254),
+    [\#260](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/260))
   * Reported bugs for other teams during PE-D: [ped issues github](https://github.com/Ongzl/ped/issues)
   

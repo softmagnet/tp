@@ -173,92 +173,6 @@ To add a searchable attributes, one has to design and add a new predicate.
 
 
 
-
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Timetable feature
 The timetable feature is a feature which displays the user's classes in a visual timetable format.
 
@@ -272,14 +186,14 @@ Additionally, due to the limited size of the app window, the timetable would adj
 earliest class timing so that the timetable would not look cluttered. There is a time panel at the top to indicate what
 time are the slots at.
 
-### \[Proposed\] \[Unfinished\] Adding a Student to a class
+### Adding a Student to a class
 When adding a student, a Class is automatically created if a class at the same timing doesn't already exist.
 The AddCommandParse parses the user input to obtain the classTiming (denoted by parameter `/ct`), and
 uniquely identifies the class. Afterwards, an AddCommand is created with the `Class` and `Student`, after which
 it checks whether an existing class with the same timing exists and adds the student to the `Class`'s classList
 and if not, adds the student to the new class created.
 
-### \[Proposed\] \[Unfinished\] Deleting Tuition Class
+### Deleting Tuition Class
 To delete a tuition class, the 'deleteclass' command is used.
 The DeleteCommandParser parses the user input to obtain the parameters, which is the class timing of the class to be
 deleted.
@@ -292,7 +206,7 @@ Finally, the TuitionClass itself can be removed from the AddressBook's class lis
 
 A diagram of the procedure is shown below:
 
-### \[Proposed\] \[Unfinished\] A UniqueTuitionClassList in Model and by extension a "Classes" tab
+### A UniqueTuitionClassList in Model and by extension a "Classes" tab
 A student can attend multiple TuitionClass, so a List<JSONAdaptedTuitionClass> is used to store the classes this student
 attends, while each TuitionClass contains a List<Name> of all student who attends it.
 When a new Student is added to the AddressBook, the TuitionClass of the new Student created will be checked through
@@ -383,20 +297,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TimesTable` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  TimesTable shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  TimesTable deletes the person
+1.  User requests to list persons.
+2.  TimesTable shows a list of persons.
+3.  User requests to delete a specific person in the list.
+4.  TimesTable deletes the person.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
@@ -404,33 +318,229 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. TimesTable shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
+    
+* 3b. The given delete command has a typo.
 
-**Use case: Add a person**
+    * 3b1. TimesTable shows an error message.
+
+      Use case resumes at step 3.
+
+**Use case: Add a student**
 
 **MSS**
-1. User adds details of new person to be added to TimesTable.
+1. User input details of new person to be added to TimesTable.
 2. TimesTable adds new person with relevant details.
 
     Use case ends.
 
 **Extension**
-* 1a. User keys in add command with invalid format.
-    *1a1. TimesTable shows an error message.
+* 1a. User keys in add command with invalid format(missing compulsory fields).
+  
+    * 1a1. TimesTable shows an error message.
 
-    Use case resumes at step 1.
+      Use case resumes at step 1.
+    
+* 1b. User keys in add command with valid format but invalid String format for certain field.
 
-**Use case: Add parent contact**
+    * 1b1. TimesTable shows an error message saying which field contains the invalid format.
+
+      Use case resumes at step 1.
+
+**Use case: Edit student details**
 
 **MSS**
-1. User adds detail of parent contact to existing contact.
-2. TimesTable updates the parent contact field with the added details.
+1. User edits details of existing student.
+2. TimesTable updates the student with the added details.
+
+   Use case ends.
 
 **Extension**
-* 1a. User keys in Add Parent command with invalid format.
-    *1a1. TimesTable shows an error message.
+* 1a. User keys in field with invalid format.
+  
+    * 1a1. TimesTable shows an error message.
 
-  Use case resumes at step 1.
+      Use case resumes at step 1.
+
+**Use case: Find student by name**
+
+**MSS**
+1. User input name of student that user wants to find.
+2. TimesTable shows the student that has the same name.
+
+   Use case ends.
+
+**Extension**
+* 1a. No student name matches the name keyword inputted.
+
+    * 1a1. TimesTable shows no student listed.
+
+      Use case ends.
+
+**Use case: Find student by tag**
+
+**MSS**
+1. User input tag of student that user wants to find.
+2. TimesTable shows the student that has the same tag.
+
+   Use case ends.
+
+**Extension**
+* 1a. No student tag matches the tag keyword inputted.
+
+    * 1a1. TimesTable shows no student listed.
+
+      Use case ends.
+    
+**Use case: Add a tuition class**
+
+**MSS**
+1. User input details of new tuition class to be added to TimesTable.
+2. TimesTable adds new tuition class with relevant details.
+
+   Use case ends.
+
+**Extension**
+* 1a. User keys in addclass command with invalid format(missing compulsory fields).
+
+    * 1a1. TimesTable shows an error message.
+
+      Use case resumes at step 1.
+    
+* 1b. User keys in addclass command with valid format but invalid String format for certain field.
+
+    * 1b1. TimesTable shows an error message saying which field contains the invalid format.
+
+      Use case resumes at step 1.
+    
+* 1c. User keys in addclass command with valid format, valid String format for all fields, but class timing overlaps 
+  with other classes already in TimesTable.
+  
+    * 1c1. TimesTable shows an error message saying that this operation would cause a clash in class timing.
+
+      Use case resumes at step 1.
+
+**Use case: Delete a tuition class**
+
+**MSS**
+
+1.  User requests to list classes.
+2.  TimesTable shows a list of classes.
+3.  User requests to delete a specific class in the list.
+4.  TimesTable deletes the class.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TimesTable shows an error message.
+
+      Use case resumes at step 3.
+
+* 3b. The given deleteclass command has a typo.
+
+    * 3b1. TimesTable shows an error message.
+
+      Use case resumes at step 3.
+
+**Use case: Add students to a tuition class**
+
+**MSS**
+1. User input index of class(in `classes` tab) to be added to and index of students(in `students` tab) to be added.
+2. TimesTable adds students selected into class selected.
+
+   Use case ends.
+
+**Extension**
+* 1a. User keys in addtoclass command with invalid index(student or class or both).
+
+    * 1a1. TimesTable shows an error message citing which index is invalid.
+
+      Use case resumes at step 1.
+    
+* 1b. User attempts to add student to a class where the student is already in.
+
+    * 1b1. TimesTable shows an error message saying that student is already in the class.
+
+      Use case resumes at step 1.
+
+**Use case: Remove students from a tuition class**
+
+**MSS**
+1. User input index of class(in `classes` tab) to be added to and index of students(in `classes` tab) to be removed.
+2. TimesTable removes students from the class selected.
+
+   Use case ends.
+
+**Extension**
+* 1a. User keys in removefromclass command with invalid index(student or class or both).
+
+    * 1a1. TimesTable shows an error message citing which index is invalid.
+
+      Use case resumes at step 1.
+    
+**Use case: Edit tuition class details**
+
+**MSS**
+1. User edits details of existing tuition class.
+2. TimesTable updates the tuition class with the added details.
+
+   Use case ends.
+
+**Extension**
+* 1a. User keys in field with invalid format(wrong field name).
+
+    * 1a1. TimesTable shows an error message.
+
+      Use case resumes at step 1.
+    
+* 1b. User keys in invalid index.
+
+    * 1b1. TimesTable shows an error message.
+
+      Use case resumes at step 1.
+    
+* 1c. User keys in class timing that overlaps with other class's class timing.
+  
+    * 1c1. TimesTable shows an error message saying that this operation would cause a clash in class timing.
+
+      Use case resumes at step 1.
+
+**Use case: Find tuition class by class timing**
+
+**MSS**
+1. User input class timing of tuition class that user wants to find.
+2. TimesTable shows the tuition classes that has similar class timing.
+
+   Use case ends.
+
+**Extension**
+* 1a. No tuition class timing matches the class timing keyword inputted.
+
+    * 1a1. TimesTable shows no tuition classes listed.
+
+      Use case ends.
+
+**Use case: Find tuition class by name**
+
+**MSS**
+1. User input name of tuition class that user wants to find.
+2. TimesTable shows the tuition class that has similar name.
+
+   Use case ends.
+
+**Extension**
+* 1a. No tuition class name matches the name keyword inputted.
+
+    * 1a1. TimesTable shows no tuition class listed.
+
+      Use case ends.  
 
 ### Non-Functional Requirements
 
@@ -520,7 +630,7 @@ testers are expected to do more *exploratory* testing.
 
 3. _{ more test cases …​ }_
 
-### Saving data
+## Saving data
 
 1. Dealing with missing/corrupted data files
 
