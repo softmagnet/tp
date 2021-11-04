@@ -101,6 +101,7 @@ public class TypicalTimestable {
             .withNokEmail(VALID_EMAIL_NOK)
             .build();
 
+
     // Typical Classes
     public static final String JC_PHYSICS_DAY = "Mon";
     public static final String JC_PHYSICS_TIME = "10:00-12:00";
