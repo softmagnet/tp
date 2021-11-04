@@ -28,9 +28,6 @@ import seedu.address.testutil.TuitionClassBuilder;
 
 
 public class AddToClassCommandTest {
-
-
-
     @Test
     public void execute_addSingleStudentToClass_success() {
         //create model to used in actual execution
@@ -124,11 +121,5 @@ public class AddToClassCommandTest {
         //same value returns true
         assertTrue(standardCommand.equals(new AddToClassCommand(getIndexList(1, 2, 3))));
     }
-
-
-
-
-
-
 }
 
