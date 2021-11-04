@@ -17,7 +17,8 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.ui.UiPart;
 
-
+// Solution below adapted from
+// https://github.com/AY1920S2-CS2103-W15-4/main/blob/master/src/main/java/clzzz/helper/ui/calendar/CalendarPanel.java
 /**
  * A UI for the Timetable Panel Tab.
  */
