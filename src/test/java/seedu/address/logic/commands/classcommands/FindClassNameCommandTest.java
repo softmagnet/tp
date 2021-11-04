@@ -29,7 +29,7 @@ public class FindClassNameCommandTest {
     }
 
     @Test
-    public void execute_singleKeywords_MultipleClassFound() {
+    public void execute_singleKeywords_multipleClassFound() {
         String expectedMessage = String.format(MESSAGE_CLASSES_LISTED_OVERVIEW, 2);
         ClassNameContainsKeywordsPredicate predicate = preparePredicate("Physics");
         FindClassNameCommand command = new FindClassNameCommand(predicate);
