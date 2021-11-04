@@ -110,6 +110,7 @@ add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… nok/ n/NOK_NAME p/NOK_PHO
   `nok/` and the second segment are the inputs after `nok/`.
     * The segments are not fixed in order and inputs in the first segment are about student information whereas inputs in the second segment are about NOK's information.
 * The order of input within its own segment is swappable.
+* The command does not allow adding duplicate students - as defined as the student having the same name, ignoring case.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0).
