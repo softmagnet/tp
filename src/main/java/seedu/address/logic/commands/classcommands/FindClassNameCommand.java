@@ -36,4 +36,17 @@ public class FindClassNameCommand extends Command {
         return new CommandResult(
                 String.format(Messages.MESSAGE_CLASSES_LISTED_OVERVIEW, model.getFilteredTuitionClassList().size()));
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof FindClassNameCommand)) {
+            return false;
+        }
+
+        return ((FindClassNameCommand) o).predicate.equals(predicate);
+    }
 }

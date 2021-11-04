@@ -1,13 +1,9 @@
 package seedu.address.logic.commands;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.address.Commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static seedu.address.testutil.TypicalTimestable.CARL;
-//import static seedu.address.testutil.TypicalTimestable.ELLE;
-//import static seedu.address.testutil.TypicalTimestable.FIONA;
+import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -54,26 +50,41 @@ public class FindNameCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
-    //todo ZW fix ur tests
-    //@Test
-    //public void execute_zeroKeywords_noPersonFound() {
-    //    String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-    //    NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-    //    FindNameCommand command = new FindNameCommand(predicate);
-    //    expectedModel.updateFilteredPersonList(predicate);
-    //    assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    //    assertEquals(Collections.emptyList(), model.getFilteredStudentList());
-    //}
+    @Test
+    public void execute_singleKeywords_noPersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Jeremiah");
+        FindNameCommand command = new FindNameCommand(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
 
-    //@Test
-    //public void execute_multipleKeywords_multiplePersonsFound() {
-    //    String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-    //    NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-    //    FindNameCommand command = new FindNameCommand(predicate);
-    //    expectedModel.updateFilteredPersonList(predicate);
-    //    assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    //    assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredStudentList());
-    //}
+    @Test
+    public void execute_singleKeywords_singlePersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz");
+        FindNameCommand command = new FindNameCommand(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_singleKeywords_multiplePersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Meier");
+        FindNameCommand command = new FindNameCommand(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_multpleKeywords_multiplePersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
+        NameContainsKeywordsPredicate predicate = preparePredicate("carl elle meier");
+        FindNameCommand command = new FindNameCommand(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
 
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
