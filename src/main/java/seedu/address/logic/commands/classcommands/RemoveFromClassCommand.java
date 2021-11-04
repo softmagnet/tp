@@ -108,4 +108,19 @@ public class RemoveFromClassCommand extends Command {
             }
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof RemoveFromClassCommand)) {
+            return false;
+        }
+
+        RemoveFromClassCommand other = ((RemoveFromClassCommand) o);
+        return other.toEditClassIndex.equals(toEditClassIndex)
+                && other.studentIndicesToRemove.equals(studentIndicesToRemove);
+    }
 }

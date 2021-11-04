@@ -69,7 +69,7 @@ public class AddToClassCommandParserTest {
     }
 
     @Test
-    public void parse_all_sucess() {
+    public void parse_all_success() {
         //add single student
         List<Index> indexArray1 = Arrays.asList(validIndex1, validIndex2);
         AddToClassCommand expectedCommand1 = new AddToClassCommand(indexArray1);
