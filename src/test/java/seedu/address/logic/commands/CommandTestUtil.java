@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import static seedu.address.logic.commands.classcommands.EditClassCommand.EditClassDescriptor;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -83,20 +84,25 @@ public class CommandTestUtil {
     public static final String VALID_LOCATION_IB_MATHS = "Block 123, Brown Street 3";
     public static final String[] VALID_STUDENTLIST_IB_PHYSICS = {"Benson Meier", "Alice Pauline"};
     public static final String[] VALID_STUDENTLIST_IB_MATHS = {"Carl Kurz", "Daniel Meier"};
+    public static final String[] VALID_EMPTY_STUDENTLIST = { };
 
-
+    public static final String CLASSNAME_DESC_PHYSICS = " " + PREFIX_CLASS_NAME + VALID_CLASSNAME_IB_PHYSICS;
+    public static final String CLASSNAME_DESC_MATHS = " " + PREFIX_CLASS_NAME + VALID_CLASSNAME_IB_MATHS;
     public static final String RATE_DESC_PHYSICS = " " + PREFIX_RATE + VALID_RATE_IB_PHYSICS;
     public static final String RATE_DESC_MATHS = " " + PREFIX_RATE + VALID_RATE_IB_MATHS;
     public static final String CLASSTIMING_DESC_PHYSICS = " " + PREFIX_CLASSTIMING + VALID_CLASSTIMING_IB_PHYSICS;
     public static final String CLASSTIMING_DESC_MATHS = " " + PREFIX_CLASSTIMING + VALID_CLASSTIMING_IB_MATHS;
     public static final String LOCATION_DESC_PHYSICS = " " + PREFIX_LOCATION + VALID_LOCATION_IB_PHYSICS;
     public static final String LOCATION_DESC_MATHS = " " + PREFIX_LOCATION + VALID_LOCATION_IB_MATHS;
+    public static final String CLASS_NAME_DESC_PHYSICS = " " + PREFIX_CLASS_NAME + VALID_CLASSNAME_IB_PHYSICS;
+    public static final String CLASS_NAME_DESC_MATHS = " " + PREFIX_CLASS_NAME + VALID_CLASSNAME_IB_MATHS;
 
     public static final String INVALID_RATE_DESC = " " + PREFIX_RATE + "-32"; // negative rate not allowed for rate
     // empty string not allowed for classTiming
     public static final String INVALID_CLASSTIMING_DESC = " " + PREFIX_CLASSTIMING;
     public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION; // empty string not allowed for locations
-
+    // non-alphanumeric not allowed for className
+    public static final String INVALID_CLASSNAME_DESC = " " + PREFIX_CLASS_NAME + "IB_MATHS!";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

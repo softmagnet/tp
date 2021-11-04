@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.classcommands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
@@ -11,7 +12,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.model.tuitionclass.exceptions.InvalidClassException;
+import seedu.address.model.tuitionclass.exceptions.OverlappingClassException;
 
 public class AddClassCommand extends Command {
 
@@ -33,7 +34,13 @@ public class AddClassCommand extends Command {
 
     private final TuitionClass tuitionClass;
 
+    /**
+     * Creates an AddToClassCommand to add the specified tuitionClass.
+     *
+     * @param tuitionClass TuitionClass to be added.
+     */
     public AddClassCommand(TuitionClass tuitionClass) {
+        requireNonNull(tuitionClass);
         this.tuitionClass = tuitionClass;
     }
 
@@ -42,12 +49,17 @@ public class AddClassCommand extends Command {
 
         try {
             model.addTuitionClass(tuitionClass);
-        } catch (InvalidClassException ice) {
+        } catch (OverlappingClassException ice) {
             throw new CommandException(Messages.MESSAGE_CLASHING_CLASS_TIMING);
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, tuitionClass));
     }
 
-
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddClassCommand // instanceof handles nulls
+                && tuitionClass.equals(((AddClassCommand) other).tuitionClass));
+    }
 }

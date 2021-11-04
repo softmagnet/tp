@@ -31,7 +31,7 @@ public class EditClassDescriptorBuilder {
         descriptor.setClassTiming(tuitionClass.getClassTiming());
         descriptor.setRate(tuitionClass.getRate());
         descriptor.setLocation(tuitionClass.getLocation());
-        descriptor.setUniqueNameList(tuitionClass.getStudentList());
+        descriptor.setStudentList(tuitionClass.getStudentList());
     }
 
     /**
@@ -85,7 +85,7 @@ public class EditClassDescriptorBuilder {
      * @return EditClassDescriptorBuilder object with the student list set to the given student list.
      */
     public EditClassDescriptorBuilder withStudentList(String... studentList) {
-        descriptor.setUniqueNameList(new StudentNameList(studentList));
+        descriptor.setStudentList(new StudentNameList(studentList));
         return this;
     }
 
