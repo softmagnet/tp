@@ -85,6 +85,10 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
 * For commands that require index (e.g. EditClass, AddToClass, etc), zero, negative and out-of-range indices are 
 rejected with an error message. (Out of range means that the index entered is greater than the number of entries in
 a class or student list)
+  
+* For commands that narrow down the list of `students` or `class` (eg. FindName, FindClass, Sort, etc), the displayed 
+  changes will be shown across all 3 tabs, `list` and/or `listclass` commands will have to be used to show the lists 
+  in the original form. Class size will not be affected by filtering students.
 
 </div>
 
@@ -110,6 +114,7 @@ add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… nok/ n/NOK_NAME p/NOK_PHO
   `nok/` and the second segment are the inputs after `nok/`.
     * The segments are not fixed in order and inputs in the first segment are about student information whereas inputs in the second segment are about NOK's information.
 * The order of input within its own segment is swappable.
+* The command does not allow adding duplicate students - as defined as the student having the same name, ignoring case.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0).
@@ -172,13 +177,14 @@ addtoclass CLASS_INDEX STUDENT_INDEX...
 * Exactly one class index must be provided and at least one student index must be provided
 * Students that already exist in the class can't be added to the same class
 * If you enter duplicate student indices in one command, it will work normally as Timestable just adds the student once.
+* Size of the class will change to reflect the current size of the class.
 
 Example:
 ```
 addtoclass 1 1 2 3
 ```
 Adds the 1st, 2nd and 3rd student in the displayed student list in the `students` tab into the 1st class in the
-displayed class list in the `classes` tab.
+displayed class list in the `classes` tab, `size` of the class will increase by 3.
 
 ### Editing a student : `edit`
 <hr>
@@ -259,6 +265,8 @@ Examples:
 
 Finds students whose `NAME` contain any of the given keywords.  
 Note that you have to run `list` to display all the students again.
+Note `Students` list in the `classes` tab will only show students found, `size` of the class will remain unchanged
+despite filtering.
 
 Format:
 ```
@@ -275,8 +283,8 @@ findname KEYWORD, [MORE_KEYWORDS]
     but not `Alex Yu`
 
 Examples:
-* `findname John` returns `john` and `John Doe`.
-* `findname alex, david` returns `Alex Yeoh`, `David Li`.<br>
+* `findname John` returns `john` and `John Doe` in both `Students` and `Classes` tab.
+* `findname alex, david` returns `Alex Yeoh`, `David Li` in both `Students` and `Classes` tab.<br>
 
   ![result for 'findname alex david'](images/findAlexDavidResult.png)
 
@@ -338,6 +346,8 @@ Examples:
 
 Finds students whose `TAG`s contain any of the given keywords.  
 Note that you have to run `list` to display all the students again.
+Note `Students` list in the `classes` tab will only show students found, `size` of the class will remain unchanged 
+despite filtering.
 
 Format:
 ```
@@ -354,8 +364,8 @@ findtag KEYWORD, [MORE_KEYWORDS]
   students with only the`Physics` `TAG` but no `Math` `TAG`, and students with both `TAG`s.
 
 Examples:
-* `findtag math` returns `Alex Yeoh` with the `A Math` `TAG` and `John Doe` with the `C Math` `TAG`.
-* `findtag math, physics` returns `Alex Yeoh` with the `A Math` and `Biology` `TAG`s.
+* `findtag math` returns `Alex Yeoh` with the `A Math` `TAG` and `John Doe` with the `C Math` `TAG` in both `Students` and `Classes` tab.
+* `findtag math, physics` returns `Alex Yeoh` with the `A Math` and `Biology` `TAG`s in both `Students` and `Classes` tab.
   <br>
 
 ### Viewing of different tabs: `view`
@@ -420,7 +430,8 @@ Example:
 ```
 removefromclass 1 1 2 3
 ```
-Removes the 1st, 2nd and 3rd student in the displayed student list of the 1st class in the `classes` tab.
+Removes the 1st, 2nd and 3rd student in the displayed student list of the 1st class in the `classes` tab with the 
+`size` decreasing by 3.
 
 ### Deleting a student : `delete`
 <hr>
