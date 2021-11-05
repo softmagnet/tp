@@ -116,19 +116,28 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
 
+![Structure of the UI Component](images/ModelClassDiagram.png)
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data.
+  * All `Student` objects which are contained in `UniqueStudentList`.
+  * All `TuitionClass` objects which are contained in `UniqueClassList`.
+* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ 
+list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed'
+e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* Similarly, the currently 'selected' `TuitionClass` objects are stored in a separated _filtered_ list which is exposed
+to outsiders as an unmodifiable `ObservableList<TuitionClass>`.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: 
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+**Note about the model design:**<br>
+
+* Note that `StudentNameList` contains a `List<Name>`.
+* Note that the diagram omits the relationship that `Student` and `NOK` are subclasses of the abstract class `Person`.
 
 </div>
 
@@ -156,15 +165,19 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Find commands
 
-The implementation of all search-related commands such as `findtag` and `findname` uses a common approach of setting a
-predicate inside the `FilteredList` class. As mentioned above in `Model` section, this filtered list contains an
-`ObservableList<Person>` that is bound to the UI such that UI is responsive to any changes in the list and these changes
-can be brought forward by setting a new predicate. One should also note that the default predicate always returns a
-boolean `true` which means no `Person` is filtered out at the start.
+The implementation of all search-related commands such as `findtag`, `findname`, `findclass` and `findclassname` uses a 
+common approach of setting a predicate inside the corresponding `FilteredList` class. As mentioned above in `Model`
+section, the filtered list either contains an `ObservableList<Student>` or `ObservableList<TuitionClass>` that is bound to the
+UI such that UI is responsive to any changes in the list and these changes can be brought forward by setting a new 
+predicate. One should also note that the default predicate always returns a boolean `true` which means no `Person`
+or `TuitionClass`is filtered out at the start.
 
-The sequence diagram when a `findXYZ` (XYZ is placeholder for searchable attributes) command is executed is as follows:
+The sequence diagram when a `findtag` command is executed is as follows:
 
-![Sequence of execution when a find command is executed](images/FindSequenceDiagram.png)
+![Sequence of execution when a findtag command is executed](images/FindSequenceDiagram.png)
+
+The rest of the find command works the same way but note that for `findclass` and `findclassname`, they are calling the
+`setPredicate` method of `filteredTuitionClass` instead.
 
 Furthermore, to fully understand the find command, we also have to understand how predicate is works. The predicates used
 that filters out students are typical java `Predicate`. It is important to know that for each find command, multiple
