@@ -1,5 +1,7 @@
 package seedu.address.ui.timetabletab;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -17,7 +19,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.ui.UiPart;
 
-import static java.util.Objects.requireNonNull;
 
 // Solution below adapted from
 // https://github.com/AY1920S2-CS2103-W15-4/main/blob/master/src/main/java/clzzz/helper/ui/calendar/CalendarPanel.java
