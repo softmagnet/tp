@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalTimestable.getTypicalStudents;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -252,6 +253,16 @@ public class RemoveFromClassCommandTest {
 
         @Override
         public void updateClassStudentLists(Name newName, Name oldName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortStudents(Comparator<? super Student> c) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortClasses(Comparator<? super TuitionClass> c) {
             throw new AssertionError("This method should not be called.");
         }
     }
