@@ -14,6 +14,7 @@ import static seedu.times.logic.parser.CliSyntax.PREFIX_NOK;
 import static seedu.times.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.times.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.times.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.times.logic.parser.ParserUtil.FIND_REGEX_WITH_COMMA_DELIMITER;
 import static seedu.times.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -198,7 +199,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredTuitionClassList().size());
 
         TuitionClass tuitionClass = model.getFilteredTuitionClassList().get(targetIndex.getZeroBased());
-        final String[] splitName = tuitionClass.getClassName().toString().split("\\s+");
+        final String[] splitName = tuitionClass.getClassName().toString().split(FIND_REGEX_WITH_COMMA_DELIMITER);
         model.updateFilteredClassList(new ClassNameContainsKeywordsPredicate(Arrays.asList(splitName)));
 
         assertEquals(1, model.getFilteredTuitionClassList().size());
