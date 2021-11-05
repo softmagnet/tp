@@ -264,7 +264,8 @@ Examples:
 
 Finds students whose `NAME` contain any of the given keywords.  
 Note that you have to run `list` to display all the students again.
-Note `Students` list in the `classes` tab will only show students found, `size` of the class will still remain constant.
+Note `Students` list in the `classes` tab will only show students found, `size` of the class will remain unchanged
+despite filtering.
 
 Format:
 ```
@@ -344,7 +345,8 @@ Examples:
 
 Finds students whose `TAG`s contain any of the given keywords.  
 Note that you have to run `list` to display all the students again.
-Note `Students` list in the `classes` tab will only show students found, `size` of the class will still remain constant.
+Note `Students` list in the `classes` tab will only show students found, `size` of the class will remain unchanged 
+despite filtering.
 
 Format:
 ```

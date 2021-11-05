@@ -38,7 +38,7 @@ public class JsonAdaptedTuitionClassTest {
     }
 
     @Test
-    public void toModelType_nullStudentList_success() throws Exception {
+    public void toModelType_emptyStudentList_success() throws Exception {
         assertDoesNotThrow(() -> new JsonAdaptedTuitionClass(VALID_CLASS_TIMING, VALID_CLASS_NAME, VALID_RATE,
                 VALID_LOCATION, VALID_EMPTY_STUDENT_NAME_LIST));
     }
