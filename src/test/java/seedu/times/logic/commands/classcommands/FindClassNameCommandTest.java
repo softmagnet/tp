@@ -21,7 +21,7 @@ public class FindClassNameCommandTest {
     private Model expectedModel = new ModelManager(getTypicalTimesTable(), new UserPrefs());
 
     @Test
-    public void execute_singleKeywords_noClassFound() {
+    public void execute_singleKeyword_noClassFound() {
         String expectedMessage = String.format(MESSAGE_CLASSES_LISTED_OVERVIEW, 0);
         ClassNameContainsKeywordsPredicate predicate = preparePredicate("Geography");
         FindClassNameCommand command = new FindClassNameCommand(predicate);
@@ -30,7 +30,7 @@ public class FindClassNameCommandTest {
     }
 
     @Test
-    public void execute_singleKeywords_multipleClassFound() {
+    public void execute_singleKeyword_multipleClassFound() {
         String expectedMessage = String.format(MESSAGE_CLASSES_LISTED_OVERVIEW, 2);
         ClassNameContainsKeywordsPredicate predicate = preparePredicate("Physics");
         FindClassNameCommand command = new FindClassNameCommand(predicate);
