@@ -1,5 +1,7 @@
 package seedu.address.ui.timetabletab;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -16,6 +18,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.ui.UiPart;
+
 
 // Solution below adapted from
 // https://github.com/AY1920S2-CS2103-W15-4/main/blob/master/src/main/java/clzzz/helper/ui/calendar/CalendarPanel.java
@@ -62,13 +65,14 @@ public class TimetablePanel extends UiPart<Region> {
      * @param tuitionClasses List of tuitionClass to retrieve the tuition class timings from for the timetable.
      */
     public void build(ObservableList<TuitionClass> tuitionClasses) {
+        requireNonNull(tuitionClasses);
         clearTimetable();
-        if (tuitionClasses == null || tuitionClasses.isEmpty()) {
+        buildHeader(tuitionClasses);
+        buildDays();
+        if (tuitionClasses.isEmpty()) {
             logger.info("No class in uniqueClassList.");
         } else {
             logger.info("Building timetable from uniqueClassList.");
-            buildHeader(tuitionClasses);
-            buildDays();
             buildClasses(tuitionClasses);
         }
     }
@@ -81,21 +85,21 @@ public class TimetablePanel extends UiPart<Region> {
      */
     public void buildHeader(ObservableList<TuitionClass> tuitionClasses) {
         assert tuitionClasses != null;
-        LocalTime earliestHour = getEarliestHour(tuitionClasses);
-        LocalTime latestHour = getLatestHour(tuitionClasses);
+        LocalTime earliestHour = tuitionClasses.size() == 0 ? defaultEarliestHour : getEarliestHour(tuitionClasses);
+        LocalTime latestHour = tuitionClasses.size() == 0 ? defaultLatestHour : getLatestHour(tuitionClasses);
 
-        timetable.add(new TimetableHeader("Time Slots", TimetableDay.getWidth()).getRoot(),
+        timetable.add(new TimetableHeaderLabel("Time Slots", TimetableDay.getWidth()).getRoot(),
                 0, 0, 50, 1);
 
         int columnIndex = TimetableDay.getWidth();
 
         while (earliestHour.isBefore(latestHour) || earliestHour.isBefore(defaultLatestHour)) {
             if (earliestHour.equals(LocalTime.parse("23:30", DateTimeFormatter.ofPattern("HH:mm")))) {
-                timetable.add(new TimetableHeader(earliestHour, earliestHour.plusMinutes(29)).getRoot(),
+                timetable.add(new TimetableHeaderTiming(earliestHour, earliestHour.plusMinutes(29)).getRoot(),
                         columnIndex, 0, 15, 1);
                 break;
             } else {
-                timetable.add(new TimetableHeader(earliestHour, earliestHour.plusMinutes(30)).getRoot(),
+                timetable.add(new TimetableHeaderTiming(earliestHour, earliestHour.plusMinutes(30)).getRoot(),
                         columnIndex, 0, 15, 1);
             }
             columnIndex += 30;

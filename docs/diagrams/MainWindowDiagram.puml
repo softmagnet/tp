@@ -4,11 +4,10 @@ skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
 
-package UI <<Rectangle>>{
-Interface Ui <<Interface>>
-Interface CommandObserver <<Interface>>
+
+
+package MainWindow <<Rectangle>>{
 Class "{abstract}\nUiPart" as UiPart
-Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
@@ -16,12 +15,17 @@ Class PersonListPanel
 Class PersonCard
 Class StatusBarFooter
 Class CommandBox
-Enum TabName <<Enumeration>>
 
 package Timetable <<Rectangle>> {
 Class HiddenTimetable #FFFFFF
 }
+
 }
+
+
+Class UiManager
+Interface Ui <<Interface>>
+Interface CommandObserver <<Interface>>
 
 package Model <<Rectangle>> {
 Class HiddenModel #FFFFFF
@@ -32,21 +36,20 @@ Class HiddenLogic #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Ui
 
-UiManager .left.|> Ui
-UiManager -down-> "1" MainWindow
+UiManager .right.|> Ui
+UiManager -left-> "1" MainWindow
+
 MainWindow .up.|> CommandObserver
 MainWindow *-up---> "\n\n\n1" Timetable
-MainWindow *-down->  "1" CommandBox
+MainWindow *-left->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
+MainWindow -down-|> UiPart
 
 PersonListPanel -down-> "*" PersonCard
-
-MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
@@ -54,13 +57,13 @@ PersonListPanel --|> UiPart
 PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
-Timetable --|> UiPart
+Timetable -right-|> UiPart
 
 PersonCard ..> Model
-UiManager -left-> Logic
-MainWindow -left-> Logic
+UiManager -up-> Logic
+MainWindow -right-> Logic
 
-Logic -up-> CommandObserver :  \n\n\n\n\n\n\n\n\nObserves >
+Logic -up-> "*" CommandObserver
 
 PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
@@ -68,7 +71,4 @@ CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
-
-MainWindow ..> TabName
-Logic ..> TabName
 @enduml
