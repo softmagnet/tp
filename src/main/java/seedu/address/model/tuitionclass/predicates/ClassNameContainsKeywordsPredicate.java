@@ -3,7 +3,6 @@ package seedu.address.model.tuitionclass.predicates;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 public class ClassNameContainsKeywordsPredicate implements Predicate<TuitionClass> {
@@ -16,8 +15,9 @@ public class ClassNameContainsKeywordsPredicate implements Predicate<TuitionClas
 
     @Override
     public boolean test(TuitionClass tuitionClass) {
+        String classNameLowerCase = tuitionClass.getClassName().className.toLowerCase();
         return keywords.stream()
-                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(tuitionClass.getClassName().className, keyword));
+                .anyMatch(keyword -> classNameLowerCase.contains(keyword.toLowerCase()));
     }
 
     @Override

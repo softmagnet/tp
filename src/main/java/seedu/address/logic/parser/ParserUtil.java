@@ -2,11 +2,14 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -26,6 +29,7 @@ import seedu.address.model.tuitionclass.Rate;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String FIND_REGEX_WITH_COMMA_DELIMITER = ",\\s*";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -209,5 +213,18 @@ public class ParserUtil {
             throw new ParseException(ClassName.MESSAGE_CONSTRAINTS);
         }
         return new ClassName(trimmedClassName);
+    }
+
+    /**
+     * Returns a list of search terms to be used for filtering student or class list.
+     *
+     * @throws ParseException if given {@code trimmedArgs} does not have any search term
+     */
+    public static List<String> getSearchTermList(String trimmedArgs, String regex) throws ParseException {
+        String[] searchTerms = trimmedArgs.split(regex);
+        if (searchTerms.length == 0) {
+            throw new ParseException(Messages.MESSAGE_NO_SEARCH_TERMS_ENTERED);
+        }
+        return Arrays.asList(searchTerms);
     }
 }

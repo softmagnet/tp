@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_CLASSES_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.ParserUtil.FIND_REGEX_WITH_COMMA_DELIMITER;
 import static seedu.address.testutil.TypicalTimestable.getTypicalTimesTable;
 
 import java.util.Arrays;
@@ -20,7 +21,7 @@ public class FindClassNameCommandTest {
     private Model expectedModel = new ModelManager(getTypicalTimesTable(), new UserPrefs());
 
     @Test
-    public void execute_singleKeywords_noClassFound() {
+    public void execute_singleKeyword_noClassFound() {
         String expectedMessage = String.format(MESSAGE_CLASSES_LISTED_OVERVIEW, 0);
         ClassNameContainsKeywordsPredicate predicate = preparePredicate("Geography");
         FindClassNameCommand command = new FindClassNameCommand(predicate);
@@ -29,7 +30,7 @@ public class FindClassNameCommandTest {
     }
 
     @Test
-    public void execute_singleKeywords_multipleClassFound() {
+    public void execute_singleKeyword_multipleClassFound() {
         String expectedMessage = String.format(MESSAGE_CLASSES_LISTED_OVERVIEW, 2);
         ClassNameContainsKeywordsPredicate predicate = preparePredicate("Physics");
         FindClassNameCommand command = new FindClassNameCommand(predicate);
@@ -38,9 +39,9 @@ public class FindClassNameCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_noClassFound() {
-        String expectedMessage = String.format(MESSAGE_CLASSES_LISTED_OVERVIEW, 0);
-        ClassNameContainsKeywordsPredicate predicate = preparePredicate("sec jc");
+    public void execute_multipleTerms_multipleClassFound() {
+        String expectedMessage = String.format(MESSAGE_CLASSES_LISTED_OVERVIEW, 6);
+        ClassNameContainsKeywordsPredicate predicate = preparePredicate("sec, jc");
         FindClassNameCommand command = new FindClassNameCommand(predicate);
         expectedModel.updateFilteredClassList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -75,6 +76,7 @@ public class FindClassNameCommandTest {
     }
 
     private ClassNameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new ClassNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        return new ClassNameContainsKeywordsPredicate(Arrays.asList(userInput.trim()
+                .split(FIND_REGEX_WITH_COMMA_DELIMITER)));
     }
 }

@@ -14,6 +14,7 @@ public class FindClassCommandParser implements Parser<FindClassCommand> {
     private static final String VALIDATION_REGEX_DAY = "(?i)(MON|TUE|WED|THU|FRI|SAT|SUN){1}";
     private static final String VALIDATION_REGEX_TIME = "([01][0-9]|2[0-3]):[03]0-(([01][0-9]|2[0-3])"
             + ":[03]0|23:59){1}";
+    private static final String FIND_REGEX = "\\s+";
 
     /**
      * Returns true if all keywords contained in {@code classTimingKeywords} is a three-letter abbreviation
@@ -35,7 +36,7 @@ public class FindClassCommandParser implements Parser<FindClassCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClassCommand.MESSAGE_USAGE));
         }
 
-        String[] classTimingKeywords = trimmedArgs.split("\\s+");
+        String[] classTimingKeywords = trimmedArgs.split(FIND_REGEX);
 
         if (!isAllValidKeyword(classTimingKeywords)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClassCommand.MESSAGE_USAGE));
