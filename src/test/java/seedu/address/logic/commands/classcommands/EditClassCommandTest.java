@@ -13,27 +13,25 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalTimestable.JC_MATHS;
 import static seedu.address.testutil.TypicalTimestable.JC_PHYSICS;
-import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTimestable.getTypicalTimesTable;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TimesTable;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.testutil.EditClassDescriptorBuilder;
 import seedu.address.testutil.TuitionClassBuilder;
-
-
 
 public class EditClassCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         //create model to used in actual execution
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTimesTable(), new UserPrefs());
         Index targetIndex = INDEX_FIRST;
 
         //create command to be tested
@@ -44,7 +42,7 @@ public class EditClassCommandTest {
         EditClassCommand editClassCommand = new EditClassCommand(targetIndex, descriptor);
 
         //create expected model by manually setting target class to updated class
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TimesTable(model.getTimesTable()), new UserPrefs());
         expectedModel.setClass(model.getFilteredTuitionClassList().get(targetIndex.getZeroBased()), editedClass);
 
         //run assertCommand function with corresponding message
@@ -54,14 +52,14 @@ public class EditClassCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTimesTable(), new UserPrefs());
         Index targetIndex = INDEX_FIRST;
 
         TuitionClass editedClass = new TuitionClassBuilder(JC_PHYSICS).withClassName("Discrete Maths").build();
         EditClassDescriptor descriptor = new EditClassDescriptorBuilder().withClassName("Discrete Maths").build();
         EditClassCommand editClassCommand = new EditClassCommand(targetIndex, descriptor);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TimesTable(model.getTimesTable()), new UserPrefs());
         expectedModel.setClass(model.getFilteredTuitionClassList().get(targetIndex.getZeroBased()), editedClass);
 
         String expectedMessage = String.format(MESSAGE_EDIT_CLASS_SUCCESS, editedClass);
@@ -70,14 +68,14 @@ public class EditClassCommandTest {
 
     @Test
     public void execute_editedClassIsSameAsOriginal_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTimesTable(), new UserPrefs());
         Index targetIndex = INDEX_FIRST;
 
         TuitionClass editedClass = JC_PHYSICS;
         EditClassDescriptor descriptor = new EditClassDescriptorBuilder(JC_PHYSICS).build();
         EditClassCommand editClassCommand = new EditClassCommand(targetIndex, descriptor);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TimesTable(model.getTimesTable()), new UserPrefs());
 
         String expectedMessage = String.format(MESSAGE_EDIT_CLASS_SUCCESS, editedClass);;
         assertCommandSuccess(editClassCommand, model, expectedMessage, expectedModel);
@@ -85,7 +83,7 @@ public class EditClassCommandTest {
 
     @Test
     public void execute_editedClassIsDuplicateOfOther_failure() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTimesTable(), new UserPrefs());
         Index targetIndex = INDEX_FIRST;
 
         EditClassDescriptor descriptor = new EditClassDescriptorBuilder(JC_MATHS).build();
@@ -97,7 +95,7 @@ public class EditClassCommandTest {
 
     @Test
     public void execute_editedClassOverlapClassTiming_failure() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTimesTable(), new UserPrefs());
         Index targetIndex = INDEX_FIRST;
 
         //overlap with JC_MATHS
@@ -112,7 +110,7 @@ public class EditClassCommandTest {
 
     @Test
     public void execute_indexOutOfRange_failure() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTimesTable(), new UserPrefs());
         Index targetIndex = Index.fromOneBased(999);
 
         TuitionClass editedClass = new TuitionClassBuilder().build();

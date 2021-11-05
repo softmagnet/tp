@@ -5,7 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.classcommands.DeleteClassCommand.MESSAGE_SUCCESS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
-import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTimestable.getTypicalTimesTable;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,14 +19,14 @@ import seedu.address.model.tuitionclass.TuitionClass;
 
 public class DeleteClassCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTimesTable(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         DeleteClassCommand deleteClassCommand = new DeleteClassCommand(INDEX_FIRST);
         TuitionClass tuitionClass = model.getFilteredTuitionClassList().get(0);
 
-        ModelManager expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(getTypicalTimesTable(), new UserPrefs());
         expectedModel.deleteTuitionClass(tuitionClass);
 
 
@@ -48,7 +48,7 @@ public class DeleteClassCommandTest {
         DeleteClassCommand deleteClassCommand = new DeleteClassCommand(INDEX_FIRST);
         TuitionClass tuitionClass = model.getFilteredTuitionClassList().get(INDEX_FIRST.getZeroBased());
 
-        ModelManager expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(getTypicalTimesTable(), new UserPrefs());
         expectedModel.deleteTuitionClass(tuitionClass);
         expectedModel.updateFilteredClassList(p -> false);
 
