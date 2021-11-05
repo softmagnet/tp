@@ -69,7 +69,7 @@ It was challenging to consider the flow of data for components while ensuring th
     * Adding a class [\#86](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/86)
   
 * **Community**
-  * PRs reviewed (with non-trivial review comments): (Pull request [\#26](),
+  * PRs reviewed (with non-trivial review comments): (Pull request,
     [\#256](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/256),
     [\#81](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/81),
     [\#50](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/50),
