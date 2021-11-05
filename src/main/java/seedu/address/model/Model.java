@@ -110,7 +110,7 @@ public interface Model {
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
-    void updateFilteredClassList(Predicate<TuitionClass> predicateShowAllClass);
+    void updateFilteredClassList(Predicate<TuitionClass> predicate);
 
     /** Returns an unmodifiable view of the filtered tuition class list */
     ObservableList<TuitionClass> getFilteredTuitionClassList();

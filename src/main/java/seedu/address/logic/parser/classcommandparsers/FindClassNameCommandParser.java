@@ -1,8 +1,8 @@
 package seedu.address.logic.parser.classcommandparsers;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import java.util.Arrays;
+import static seedu.address.logic.parser.ParserUtil.FIND_REGEX_WITH_COMMA_DELIMITER;
+import static seedu.address.logic.parser.ParserUtil.getSearchTermList;
 
 import seedu.address.logic.commands.classcommands.FindClassNameCommand;
 import seedu.address.logic.parser.Parser;
@@ -19,8 +19,7 @@ public class FindClassNameCommandParser implements Parser<FindClassNameCommand> 
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClassNameCommand.MESSAGE_USAGE));
         }
 
-        String[] classNameKeywords = trimmedArgs.split("\\s+");
-
-        return new FindClassNameCommand(new ClassNameContainsKeywordsPredicate(Arrays.asList(classNameKeywords)));
+        return new FindClassNameCommand(new ClassNameContainsKeywordsPredicate(getSearchTermList(trimmedArgs,
+                FIND_REGEX_WITH_COMMA_DELIMITER)));
     }
 }
