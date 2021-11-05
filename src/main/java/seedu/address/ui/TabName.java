@@ -10,7 +10,7 @@ public enum TabName {
 
     private final int index;
 
-    private TabName(int index) {
+    TabName(int index) {
         this.index = index;
     }
 

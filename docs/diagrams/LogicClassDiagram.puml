@@ -23,6 +23,10 @@ Class HiddenModel #FFFFFF
 package Storage{
 }
 
+package UI {
+Class HiddenUI #FFFFFF
+}
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
@@ -33,13 +37,18 @@ AddressBookParser ..> XYZCommand : creates >
 XYZCommand -up-|> Command
 LogicManager .left.> Command : executes >
 
-LogicManager --> Model
+
+LogicManager -right-> Model
 LogicManager --> Storage
 Storage --[hidden] Model
 Command .[hidden]up.> Storage
-Command .right.> Model
+Command .up.> Model
+Command .right.> UI : Observed by >
+XYZCommand .down.> UI
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
+UI --> Logic
+LogicManager --> UI
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult : produces >

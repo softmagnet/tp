@@ -5,6 +5,6 @@
 
 <HBox fx:id="slot" styleClass="timetable-time-panel" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <VBox GridPane.columnIndex="0">
-        <Label fx:id="headerTime" styleClass="timetable-label" text="\$time" />
+        <Label fx:id="headerLabel" styleClass="timetable-label" text="\$time" />
     </VBox>
 </HBox>

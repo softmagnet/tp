@@ -65,6 +65,8 @@ public class TimetablePanel extends UiPart<Region> {
         clearTimetable();
         if (tuitionClasses == null || tuitionClasses.isEmpty()) {
             logger.info("No class in uniqueClassList.");
+            buildHeader(tuitionClasses);
+            buildDays();
         } else {
             logger.info("Building timetable from uniqueClassList.");
             buildHeader(tuitionClasses);
@@ -81,21 +83,21 @@ public class TimetablePanel extends UiPart<Region> {
      */
     public void buildHeader(ObservableList<TuitionClass> tuitionClasses) {
         assert tuitionClasses != null;
-        LocalTime earliestHour = getEarliestHour(tuitionClasses);
-        LocalTime latestHour = getLatestHour(tuitionClasses);
+        LocalTime earliestHour = tuitionClasses.size() == 0 ? defaultEarliestHour : getEarliestHour(tuitionClasses);
+        LocalTime latestHour = tuitionClasses.size() == 0 ? defaultLatestHour : getLatestHour(tuitionClasses);
 
-        timetable.add(new TimetableHeader("Time Slots", TimetableDay.getWidth()).getRoot(),
+        timetable.add(new TimetableHeaderLabel("Time Slots", TimetableDay.getWidth()).getRoot(),
                 0, 0, 50, 1);
 
         int columnIndex = TimetableDay.getWidth();
 
         while (earliestHour.isBefore(latestHour) || earliestHour.isBefore(defaultLatestHour)) {
             if (earliestHour.equals(LocalTime.parse("23:30", DateTimeFormatter.ofPattern("HH:mm")))) {
-                timetable.add(new TimetableHeader(earliestHour, earliestHour.plusMinutes(29)).getRoot(),
+                timetable.add(new TimetableHeaderTiming(earliestHour, earliestHour.plusMinutes(29)).getRoot(),
                         columnIndex, 0, 15, 1);
                 break;
             } else {
-                timetable.add(new TimetableHeader(earliestHour, earliestHour.plusMinutes(30)).getRoot(),
+                timetable.add(new TimetableHeaderTiming(earliestHour, earliestHour.plusMinutes(30)).getRoot(),
                         columnIndex, 0, 15, 1);
             }
             columnIndex += 30;
