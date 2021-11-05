@@ -93,7 +93,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `TimesTableParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -110,7 +110,10 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `TimesTableParser` class creates an `XYZCommandParser` (`XYZ` is a 
+  placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to 
+  parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TimesTableParser` returns 
+  back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -121,7 +124,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data.
+* stores the TimesTable data.
   * All `Student` objects which are contained in `UniqueStudentList`.
   * All `TuitionClass` objects which are contained in `UniqueClassList`.
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ 
@@ -146,16 +149,21 @@ to outsiders as an unmodifiable `ObservableList<TuitionClass>`.
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagramWTuitionClass.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both TimesTable data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `TimesTableStorage` and `UserPrefStorage`, which means it can be treated as either one (if only 
+  the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* `JsonAdaptedStudent` are saved in a `List<JsonAdaptedStudent>` and `JsonAdaptedTuitionClass` are saved in a 
+  `ListJsonAdaptedTuitionClass>`
+* `JsonAdaptedTag`s are stored in `JsonAdaptedStudent` as a `List<JsonAdaptedTag>`
+  
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.times.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -210,19 +218,19 @@ and if not, adds the student to the new class created.
 To delete a tuition class, the 'deleteclass' command is used.
 The DeleteCommandParser parses the user input to obtain the parameters, which is the class timing of the class to be
 deleted.
-Then, a DeleteCommand is created with the parsed class timing. When the DeleteCommand#execute() is run, the AddressBook
+Then, a DeleteCommand is created with the parsed class timing. When the DeleteCommand#execute() is run, the TimesTable
 is searched to find the tuition class to be deleted. If no classes matches the ClassTiming, an exception is thrown.
 Otherwise, the TuitionClass is obtained. The TuitionClass object stores a list of students in the class in the form
 of a list of names. From each name, the respective student is found and the TuitionClass is deleted from the student's
 internal class list.
-Finally, the TuitionClass itself can be removed from the AddressBook's class list.
+Finally, the TuitionClass itself can be removed from the TimesTable's class list.
 
 A diagram of the procedure is shown below:
 
 ### A UniqueTuitionClassList in Model and by extension a "Classes" tab
 A student can attend multiple TuitionClass, so a List<JSONAdaptedTuitionClass> is used to store the classes this student
 attends, while each TuitionClass contains a List<Name> of all student who attends it.
-When a new Student is added to the AddressBook, the TuitionClass of the new Student created will be checked through
+When a new Student is added to the TimesTable, the TuitionClass of the new Student created will be checked through
 the UniqueTuitionClassList for equality and overlapping, if the TuitionClasses are equal, the new student name will be
 added to the TuitionClass name list and the TuitionClass of the new student will be replaced by the TuitionClass with
 the updated name list, if they are overlapping but not equal, an exception will be thrown.
