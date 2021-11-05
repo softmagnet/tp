@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -18,35 +17,35 @@ import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the timestable data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final TimesTable timesTable;
     private final UserPrefs userPrefs;
     private FilteredList<Student> filteredStudents;
     private FilteredList<TuitionClass> filteredTuitionClass;
 
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given timestable and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyTimesTable timestable, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(timestable, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with timestable: " + timestable + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.timesTable = new TimesTable(timestable);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.addressBook.getPersonList());
+        filteredStudents = new FilteredList<>(this.timesTable.getStudentList());
         filteredTuitionClass =
-                new FilteredList<>(this.addressBook.getTuitionClassList());
+                new FilteredList<>(this.timesTable.getTuitionClassList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new TimesTable(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -74,74 +73,74 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTimesTableFilePath() {
+        return userPrefs.getTimesTableFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setTimesTableFilePath(Path timesTableFilePath) {
+        requireNonNull(timesTableFilePath);
+        userPrefs.setTimesTableFilePath(timesTableFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== TimesTable ================================================================================
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
-    }
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public ReadOnlyTimesTable getTimesTable() {
+        return timesTable;
     }
 
     @Override
-    public boolean hasPerson(Student student) {
+    public void setTimesTable(ReadOnlyTimesTable timestable) {
+        this.timesTable.resetData(timestable);
+    }
+
+    @Override
+    public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return addressBook.hasPerson(student);
+        return timesTable.hasPerson(student);
     }
 
     @Override
     public boolean hasTuitionClass(TuitionClass tuitionClass) {
         requireNonNull(tuitionClass);
-        return addressBook.hasTuitionClass(tuitionClass);
+        return timesTable.hasTuitionClass(tuitionClass);
     }
 
     @Override
-    public void deletePerson(Student target) {
-        addressBook.removePerson(target);
+    public void deleteStudent(Student target) {
+        timesTable.removePerson(target);
     }
 
     @Override
     public void addPerson(Student student) {
-        addressBook.addStudent(student);
+        timesTable.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void addTuitionClass(TuitionClass tuitionClass) {
-        addressBook.addTuitionClass(tuitionClass);
+        timesTable.addTuitionClass(tuitionClass);
         updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
     }
 
     @Override
     public void deleteTuitionClass(TuitionClass tuitionClass) {
-        addressBook.deleteTuitionClass(tuitionClass);
+        timesTable.deleteTuitionClass(tuitionClass);
     }
 
     @Override
-    public void setPerson(Student target, Student editedStudent) {
+    public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
 
-        addressBook.setPerson(target, editedStudent);
+        timesTable.setPerson(target, editedStudent);
     }
 
     //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedTimesTable}
      */
     @Override
     public ObservableList<Student> getFilteredStudentList() {
@@ -155,23 +154,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void replaceFilteredStudentList(List<Student> studentList) {
-        ObservableList<Student> newList = FXCollections.observableArrayList();
-        newList.addAll(studentList);
-        this.filteredStudents = new FilteredList<>(newList);
-    }
-
-    @Override
     public void updateFilteredClassList(Predicate<TuitionClass> predicate) {
         requireNonNull(predicate);
         filteredTuitionClass.setPredicate(predicate);
-    }
-
-    @Override
-    public void replaceFilteredTuitionClassList(List<TuitionClass> tuitionClassList) {
-        ObservableList<TuitionClass> newList = FXCollections.observableArrayList();
-        newList.addAll(tuitionClassList);
-        this.filteredTuitionClass = new FilteredList<>(newList);
     }
 
     @Override
@@ -180,7 +165,7 @@ public class ModelManager implements Model {
         if (newName.equals(oldName)) {
             return;
         }
-        addressBook.updateClassStudentLists(newName, oldName);
+        timesTable.updateClassStudentLists(newName, oldName);
     }
 
     @Override
@@ -191,18 +176,18 @@ public class ModelManager implements Model {
     @Override
     public void setClass(TuitionClass target, TuitionClass editedClass) {
         requireAllNonNull(target, editedClass);
-        addressBook.setClass(target, editedClass);
+        timesTable.setClass(target, editedClass);
         updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
     }
 
     @Override
     public void setClasses(List<TuitionClass> classes) {
-        addressBook.setClasses(classes);
+        timesTable.setClasses(classes);
     }
 
     @Override
     public void setStudents(List<Student> studentsList) {
-        addressBook.setStudents(studentsList);
+        timesTable.setStudents(studentsList);
     }
 
     @Override
@@ -219,7 +204,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return timesTable.equals(other.timesTable)
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents)
                 && filteredTuitionClass.equals(other.filteredTuitionClass);

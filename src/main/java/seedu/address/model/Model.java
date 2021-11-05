@@ -45,40 +45,40 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTimesTableFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setTimesTableFilePath(Path timesTableFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code timestable}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setTimesTable(ReadOnlyTimesTable timesTable);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    boolean hasPerson(Student student);
+    /** Returns the TimesTable */
+    ReadOnlyTimesTable getTimesTable();
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in the TimesTable.
      */
-    void deletePerson(Student target);
+    boolean hasStudent(Student student);
+
+    /**
+     * Deletes the given student.
+     * The person must exist in the TimesTable.
+     */
+    void deleteStudent(Student target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the TimesTable.
      */
     void addPerson(Student student);
 
     /**
-     * Returns true if a class with the same identity as {@code TuitionClass} exists in the address book.
+     * Returns true if a class with the same identity as {@code TuitionClass} exists in the TimesTable.
      */
     boolean hasTuitionClass(TuitionClass tuitionClass);
 
@@ -90,16 +90,16 @@ public interface Model {
 
     /**
      * Deletes the given tuition class.
-     * The class must exist in the address book.
+     * The class must exist in the TimesTable.
      */
     void deleteTuitionClass(TuitionClass target);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given student {@code target} with {@code editedStudent}.
+     * {@code target} must exist in the TimesTable.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the TimesTable.
      */
-    void setPerson(Student target, Student editedStudent);
+    void setStudent(Student target, Student editedStudent);
 
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
@@ -131,12 +131,6 @@ public interface Model {
      * Replaces the filtered student list with the classes.
      */
     void setStudents(List<Student> students);
-
-    /** Replaces the filtered student list. */
-    void replaceFilteredStudentList(List<Student> studentList);
-
-    /** Replaces the filtered tuition class list. */
-    void replaceFilteredTuitionClassList(List<TuitionClass> tuitionClasses);
 
     /** Executes update cascade after change of student name for {@code StudentNameList}. */
     void updateClassStudentLists(Name newName, Name oldName);

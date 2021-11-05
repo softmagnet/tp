@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.TimesTable;
 import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
 
@@ -152,11 +152,11 @@ public class TypicalTimestable {
     } // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical students and classes.
+     * Returns a {@code TimesTable} with all the typical students and classes.
      * Contains 7 students and 6 classes.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static TimesTable getTypicalTimesTable() {
+        TimesTable ab = new TimesTable();
 
         for (Student student : getTypicalStudents()) {
             ab.addStudent(student);
@@ -170,11 +170,11 @@ public class TypicalTimestable {
     }
 
     /**
-     * Returns an {@code AddressBook} with all the typical students in reversed order, and classes.
+     * Returns an {@code TimesTable} with all the typical students in reversed order, and classes.
      * Contains 7 students and 6 classes.
      */
-    public static AddressBook getTypicalAddressBookReverseStudents() {
-        AddressBook ab = new AddressBook();
+    public static TimesTable getTypicalTimesTableReverseStudents() {
+        TimesTable ab = new TimesTable();
 
         List<Student> studentList = getTypicalStudents();
 
@@ -190,11 +190,11 @@ public class TypicalTimestable {
     }
 
     /**
-     * Returns an {@code AddressBook} with all the typical students, and classes in reversed order.
+     * Returns a {@code TimesTable} with all the typical students, and classes in reversed order.
      * Contains 7 students and 6 classes.
      */
-    public static AddressBook getTypicalAddressBookReverseClasses() {
-        AddressBook ab = new AddressBook();
+    public static TimesTable getTypicalTimesTableReverseClasses() {
+        TimesTable ab = new TimesTable();
 
         for (Student student : getTypicalStudents()) {
             ab.addStudent(student);

@@ -19,7 +19,7 @@ import static seedu.address.testutil.TypicalTimestable.SEC_MATHS_TIME;
 import static seedu.address.testutil.TypicalTimestable.SEC_PHYSICS_CLASS_TIMING;
 import static seedu.address.testutil.TypicalTimestable.SEC_PHYSICS_DAY;
 import static seedu.address.testutil.TypicalTimestable.SEC_PHYSICS_TIME;
-import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTimestable.getTypicalTimesTable;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -37,8 +37,8 @@ import seedu.address.model.tuitionclass.predicates.ClassTimingContainsKeywordsPr
 public class FindClassCommandTest {
     // model stub with a class containing JC_PHYISCS, SEC_PHYSICS, JC_MATHS, SEC_MATHS,
     //                JC_CHEMISTRY, SEC_CHEMISTRY
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTimesTable(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalTimesTable(), new UserPrefs());
 
     @Test
     public void equals() {

@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTimestable.getTypicalTimesTable;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,14 +22,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalTimesTable(), new UserPrefs());
     }
 
     @Test
     public void execute_newPerson_success() {
         Student validStudent = new PersonBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTimesTable(), new UserPrefs());
         expectedModel.addPerson(validStudent);
 
         assertCommandSuccess(new AddCommand(validStudent), model,
@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Student studentInList = model.getAddressBook().getPersonList().get(0);
+        Student studentInList = model.getTimesTable().getStudentList().get(0);
         assertCommandFailure(new AddCommand(studentInList), model,
                 AddCommand.MESSAGE_DUPLICATE_PERSON);
     }

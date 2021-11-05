@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalTimestable.ALICE;
 import static seedu.address.testutil.TypicalTimestable.BENSON;
 import static seedu.address.testutil.TypicalTimestable.DANIEL;
-import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTimestable.getTypicalTimesTable;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,8 +21,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.predicates.TagsContainsKeywordsPredicate;
 
 public class FindTagCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTimesTable(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalTimesTable(), new UserPrefs());
 
     @Test
     public void equals() {
