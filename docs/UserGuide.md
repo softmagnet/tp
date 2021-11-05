@@ -18,7 +18,7 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
 
 1. Download the latest `timestable.jar` from [here](https://github.com/AY2122S1-CS2103T-F11-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your TimesTable.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample student data.<br>
    ![Ui](images/Ui.png)
@@ -486,15 +486,15 @@ Format: `exit`
 ### Saving the data
 <hr>
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Timestable data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 <hr>
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Timestable data are saved as a JSON file `[JAR file location]/data/timestable.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Timestable will discard all data and start with an empty data file at the next run.
 </div>
 
 [comment]: <> (### Showing the schedule for a specific day : `schedule`)
@@ -512,7 +512,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Timestable home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 

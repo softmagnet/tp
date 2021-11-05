@@ -3,9 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBookReverseClasses;
-import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBookReverseStudents;
+import static seedu.address.testutil.TypicalTimestable.getTypicalTimesTable;
+import static seedu.address.testutil.TypicalTimestable.getTypicalTimesTableReverseClasses;
+import static seedu.address.testutil.TypicalTimestable.getTypicalTimesTableReverseStudents;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,8 +17,8 @@ class SortCommandTest {
 
     @Test
     void execute_nameInDescOrder_sortNameAsc() {
-        Model model = new ModelManager(getTypicalAddressBookReverseStudents(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTimesTableReverseStudents(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalTimesTable(), new UserPrefs());
         assertCommandSuccess(new SortCommand(SortCommand.SORT_BY_NAME, SortCommand.DIRECTION_OF_SORT_ASC), model,
                 String.format(SortCommand.MESSAGE_SUCCESS, SortCommand.STUDENT_TAB_SORTED,
                         SortCommand.SORT_BY_NAME, SortCommand.DIRECTION_OF_SORT_ASC), expectedModel);
@@ -26,8 +26,8 @@ class SortCommandTest {
 
     @Test
     void execute_nameInAscOrder_sortNameAsc() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTimesTable(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTimesTable(), new UserPrefs());
         assertCommandSuccess(new SortCommand(SortCommand.SORT_BY_NAME, SortCommand.DIRECTION_OF_SORT_ASC), model,
                 String.format(SortCommand.MESSAGE_SUCCESS, SortCommand.STUDENT_TAB_SORTED,
                         SortCommand.SORT_BY_NAME, SortCommand.DIRECTION_OF_SORT_ASC), expectedModel);
@@ -35,8 +35,8 @@ class SortCommandTest {
 
     @Test
     void execute_nameInDescOrder_sortNameDesc() {
-        Model model = new ModelManager(getTypicalAddressBookReverseStudents(), new UserPrefs());
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTimesTableReverseStudents(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTimesTable(), new UserPrefs());
         assertCommandSuccess(new SortCommand(SortCommand.SORT_BY_NAME, SortCommand.DIRECTION_OF_SORT_DESC), model,
                 String.format(SortCommand.MESSAGE_SUCCESS, SortCommand.STUDENT_TAB_SORTED,
                         SortCommand.SORT_BY_NAME, SortCommand.DIRECTION_OF_SORT_DESC), expectedModel);
@@ -44,8 +44,8 @@ class SortCommandTest {
 
     @Test
     void execute_nameInAscOrder_sortNameDesc() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBookReverseStudents(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTimesTable(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalTimesTableReverseStudents(), new UserPrefs());
         assertCommandSuccess(new SortCommand(SortCommand.SORT_BY_NAME, SortCommand.DIRECTION_OF_SORT_DESC), model,
                 String.format(SortCommand.MESSAGE_SUCCESS, SortCommand.STUDENT_TAB_SORTED,
                         SortCommand.SORT_BY_NAME, SortCommand.DIRECTION_OF_SORT_DESC), expectedModel);
@@ -53,8 +53,8 @@ class SortCommandTest {
 
     @Test
     void execute_classInAscOrder_sortTimingAsc() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTimesTable(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTimesTable(), new UserPrefs());
         assertCommandSuccess(new SortCommand(SortCommand.SORT_BY_CLASS_TIMING, SortCommand.DIRECTION_OF_SORT_ASC),
                 model, String.format(SortCommand.MESSAGE_SUCCESS, SortCommand.CLASSES_TAB_SORTED,
                         SortCommand.SORT_BY_CLASS_TIMING, SortCommand.DIRECTION_OF_SORT_ASC), expectedModel);
@@ -62,8 +62,8 @@ class SortCommandTest {
 
     @Test
     void execute_classInDescOrder_sortTimingAsc() {
-        Model model = new ModelManager(getTypicalAddressBookReverseClasses(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTimesTableReverseClasses(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalTimesTable(), new UserPrefs());
         assertCommandSuccess(new SortCommand(SortCommand.SORT_BY_CLASS_TIMING, SortCommand.DIRECTION_OF_SORT_ASC),
                 model, String.format(SortCommand.MESSAGE_SUCCESS, SortCommand.CLASSES_TAB_SORTED,
                         SortCommand.SORT_BY_CLASS_TIMING, SortCommand.DIRECTION_OF_SORT_ASC), expectedModel);
@@ -71,8 +71,8 @@ class SortCommandTest {
 
     @Test
     void execute_classInAscOrder_sortTimingDesc() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBookReverseClasses(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTimesTable(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalTimesTableReverseClasses(), new UserPrefs());
         assertCommandSuccess(new SortCommand(SortCommand.SORT_BY_CLASS_TIMING, SortCommand.DIRECTION_OF_SORT_DESC),
                 model, String.format(SortCommand.MESSAGE_SUCCESS, SortCommand.CLASSES_TAB_SORTED,
                         SortCommand.SORT_BY_CLASS_TIMING, SortCommand.DIRECTION_OF_SORT_DESC), expectedModel);
@@ -80,8 +80,8 @@ class SortCommandTest {
 
     @Test
     void execute_classInDescOrder_sortTimingDesc() {
-        Model model = new ModelManager(getTypicalAddressBookReverseClasses(), new UserPrefs());
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTimesTableReverseClasses(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTimesTable(), new UserPrefs());
         assertCommandSuccess(new SortCommand(SortCommand.SORT_BY_CLASS_TIMING, SortCommand.DIRECTION_OF_SORT_DESC),
                 model, String.format(SortCommand.MESSAGE_SUCCESS, SortCommand.CLASSES_TAB_SORTED,
                         SortCommand.SORT_BY_CLASS_TIMING, SortCommand.DIRECTION_OF_SORT_DESC), expectedModel);

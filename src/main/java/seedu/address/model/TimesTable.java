@@ -15,7 +15,7 @@ import seedu.address.model.tuitionclass.UniqueClassList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class TimesTable implements ReadOnlyTimesTable {
 
     private final UniqueStudentList students;
     private final UniqueClassList classes;
@@ -32,12 +32,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         classes = new UniqueClassList();
     }
 
-    public AddressBook() {}
+    public TimesTable() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates a TimesTable using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public TimesTable(ReadOnlyTimesTable toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -57,12 +57,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code TimesTable} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyTimesTable newData) {
         requireNonNull(newData);
 
-        setStudents(newData.getPersonList());
+        setStudents(newData.getStudentList());
         setClasses(newData.getTuitionClassList());
     }
 
@@ -112,7 +112,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code TimesTable}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Student key) {
@@ -133,7 +133,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Student> getPersonList() {
+    public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
     }
 
@@ -145,8 +145,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && students.equals(((AddressBook) other).students));
+                || (other instanceof TimesTable // instanceof handles nulls
+                && students.equals(((TimesTable) other).students));
     }
 
     @Override

@@ -17,10 +17,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTimesTable;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TimesTable;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
@@ -103,12 +103,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getTimesTableFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setTimesTableFilePath(Path timesTableFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -118,22 +118,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setTimesTable(ReadOnlyTimesTable newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyTimesTable getTimesTable() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Student student) {
+        public boolean hasStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Student target) {
+        public void deleteStudent(Student target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -153,7 +153,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setPerson(Student target, Student editedStudent) {
+        public void setStudent(Student target, Student editedStudent) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -179,16 +179,6 @@ public class AddCommandTest {
 
         @Override
         public void setClass(TuitionClass target, TuitionClass editedClass) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void replaceFilteredStudentList(List<Student> studentList) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void replaceFilteredTuitionClassList(List<TuitionClass> tuitionClassList) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -220,7 +210,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Student student) {
+        public boolean hasStudent(Student student) {
             requireNonNull(student);
             return this.student.isSamePerson(student);
         }
@@ -234,7 +224,7 @@ public class AddCommandTest {
         final ArrayList<TuitionClass> tuitionClassesAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Student student) {
+        public boolean hasStudent(Student student) {
             requireNonNull(student);
             return personsAdded.stream().anyMatch(student::isSamePerson);
         }
@@ -252,8 +242,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyTimesTable getTimesTable() {
+            return new TimesTable();
         }
     }
 

@@ -13,14 +13,14 @@ import static seedu.address.testutil.TestUtil.getIndexList;
 import static seedu.address.testutil.TestUtil.getStudentOneBased;
 import static seedu.address.testutil.TypicalTimestable.BENSON;
 import static seedu.address.testutil.TypicalTimestable.JC_CHEMISTRY;
-import static seedu.address.testutil.TypicalTimestable.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTimestable.getTypicalTimesTable;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TimesTable;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.testutil.TuitionClassBuilder;
@@ -31,13 +31,13 @@ public class AddToClassCommandTest {
     @Test
     public void execute_addSingleStudentToClass_success() {
         //create model to used in actual execution
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTimesTable(), new UserPrefs());
 
         //create command to be tested
         AddToClassCommand addToClassCommand = new AddToClassCommand(getIndexList(1, 3));
 
         //create expected model by manually setting target class to updated class
-        Model expectedModel = new ModelManager(new AddressBook(getTypicalAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TimesTable(getTypicalTimesTable()), new UserPrefs());
         TuitionClass classToAddto = getClassOneBased(expectedModel, 1);
         TuitionClass editedClass = new TuitionClassBuilder(classToAddto)
                 .withStudentList(classToAddto.getStudentList().getNames()).build();
@@ -51,11 +51,11 @@ public class AddToClassCommandTest {
 
     @Test
     public void execute_addMultipleStudentsToClass_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTimesTable(), new UserPrefs());
 
         AddToClassCommand addToClassCommand = new AddToClassCommand(getIndexList(2, 1, 2));
 
-        Model expectedModel = new ModelManager(new AddressBook(getTypicalAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TimesTable(getTypicalTimesTable()), new UserPrefs());
         TuitionClass classToAddto = getClassOneBased(expectedModel, 2);
         TuitionClass editedClass = new TuitionClassBuilder(classToAddto)
                 .withStudentList(classToAddto.getStudentList().getNames()).build();
@@ -71,21 +71,21 @@ public class AddToClassCommandTest {
 
     @Test
     public void execute_classIndexOutOfRange_failure() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTimesTable(), new UserPrefs());
         AddToClassCommand addToClassCommand = new AddToClassCommand(getIndexList(22, 1, 2));
         assertCommandFailure(addToClassCommand, model, MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_indexOutOfRange_failure() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalTimesTable(), new UserPrefs());
         AddToClassCommand addToClassCommand = new AddToClassCommand(getIndexList(1, 12, 2));
         assertCommandFailure(addToClassCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_addDuplicateStudentsToClass_failure() {
-        Model model = new ModelManager(new AddressBook(), new UserPrefs());
+        Model model = new ModelManager(new TimesTable(), new UserPrefs());
 
         model.addPerson(BENSON);
         TuitionClass newClass = new TuitionClassBuilder(JC_CHEMISTRY).withStudentList(BENSON.getName().fullName)
