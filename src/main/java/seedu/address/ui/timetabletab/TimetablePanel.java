@@ -17,6 +17,8 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.ui.UiPart;
 
+import static java.util.Objects.requireNonNull;
+
 // Solution below adapted from
 // https://github.com/AY1920S2-CS2103-W15-4/main/blob/master/src/main/java/clzzz/helper/ui/calendar/CalendarPanel.java
 /**
@@ -62,15 +64,14 @@ public class TimetablePanel extends UiPart<Region> {
      * @param tuitionClasses List of tuitionClass to retrieve the tuition class timings from for the timetable.
      */
     public void build(ObservableList<TuitionClass> tuitionClasses) {
+        requireNonNull(tuitionClasses);
         clearTimetable();
-        if (tuitionClasses == null || tuitionClasses.isEmpty()) {
+        buildHeader(tuitionClasses);
+        buildDays();
+        if (tuitionClasses.isEmpty()) {
             logger.info("No class in uniqueClassList.");
-            buildHeader(tuitionClasses);
-            buildDays();
         } else {
             logger.info("Building timetable from uniqueClassList.");
-            buildHeader(tuitionClasses);
-            buildDays();
             buildClasses(tuitionClasses);
         }
     }
