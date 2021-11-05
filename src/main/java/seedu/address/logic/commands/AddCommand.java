@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Student;
+import seedu.address.ui.TabName;
 
 /**
  * Adds a person to the address book.
@@ -36,8 +37,8 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney \n"
+            + PREFIX_TAG + "Chemistry "
+            + PREFIX_TAG + "Sec 3 \n"
             + PREFIX_NOK + " "
             + PREFIX_NAME + "Jack Doe "
             + PREFIX_PHONE + "10987654 "
@@ -67,6 +68,8 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(studentToAdd);
+
+        updateView(TabName.STUDENTS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, studentToAdd));
 

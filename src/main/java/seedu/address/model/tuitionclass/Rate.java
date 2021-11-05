@@ -11,10 +11,10 @@ public class Rate {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Rate should satisfy the following constraints:\n"
-            + "1. not exceed a million\n"
-            + "2. not be negative\n"
-            + "3. not be empty\n"
-            + "4. at most be up to 2 decimal places\n"
+            + "1. Not exceed a million\n"
+            + "2. Not be negative\n"
+            + "3. Not be empty\n"
+            + "4. At most be up to 2 decimal places\n"
             + "5. You also cannot enter a decimal point without following it up with at least one digit.\n";
     public static final String VALIDATION_REGEX = "\\d{1,6}(\\.\\d{1,2})?";
 

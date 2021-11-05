@@ -3,6 +3,8 @@ package seedu.address.ui.timetabletab;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+// Solution below adapted from
+// https://github.com/AY1920S2-CS2103-W15-4/main/blob/master/src/main/java/clzzz/helper/ui/calendar/CalendarDate.java
 /**
  * A Ui to display the Days at the left side of the timetable.
  */

@@ -55,7 +55,7 @@ public class Name implements Comparable<Name> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
-                && fullName.equals(((Name) other).fullName)); // state check
+                && fullName.compareToIgnoreCase(((Name) other).fullName) == 0); // compares names, ignores case
     }
 
     @Override

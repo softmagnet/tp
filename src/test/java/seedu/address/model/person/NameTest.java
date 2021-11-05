@@ -41,4 +41,14 @@ public class NameTest {
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
         assertTrue(Name.isValidName(LONG_STRING_120_CHAR));
     }
+
+    @Test
+    public void compareTo() {
+        Name alice = new Name("Alice");
+        Name bernard = new Name("Bernard");
+        assertTrue(alice.compareTo(bernard) < 0);
+        assertTrue(alice.compareTo(alice) == 0);
+        assertTrue(bernard.compareTo(bernard) == 0);
+        assertTrue(bernard.compareTo(alice) > 0);
+    }
 }

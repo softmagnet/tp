@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -18,7 +17,8 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.ui.UiPart;
 
-
+// Solution below adapted from
+// https://github.com/AY1920S2-CS2103-W15-4/main/blob/master/src/main/java/clzzz/helper/ui/calendar/CalendarPanel.java
 /**
  * A UI for the Timetable Panel Tab.
  */
@@ -65,8 +65,6 @@ public class TimetablePanel extends UiPart<Region> {
         clearTimetable();
         if (tuitionClasses == null || tuitionClasses.isEmpty()) {
             logger.info("No class in uniqueClassList.");
-            Label label = new Label("You have no classes.");
-            timetable.add(label, 0, 0);
         } else {
             logger.info("Building timetable from uniqueClassList.");
             buildHeader(tuitionClasses);

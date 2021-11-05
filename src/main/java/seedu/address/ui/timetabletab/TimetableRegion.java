@@ -5,6 +5,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.ui.UiPart;
 
+// Solution below adapted from
+// https://github.com/AY1920S2-CS2103-W15-4/main/blob/master/src/main/java/clzzz/helper/ui/calendar/CalendarRegion.java
 /**
  * A UI for the timetable region.
  */

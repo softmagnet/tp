@@ -39,6 +39,9 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (args.contains("nok/")) {
             String[] splitArgs = args.split("nok/");
+            if (splitArgs.length != 2) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            }
             argsBeforeNok = splitArgs[0];
             argsAfterNok = splitArgs[1];
         }
