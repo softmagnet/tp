@@ -2,9 +2,6 @@ package seedu.address.ui.timetabletab;
 
 import java.time.LocalTime;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-
 /**
  * A UI for the header timing of the timetable.
  */
