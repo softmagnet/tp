@@ -171,6 +171,22 @@ Classes used by multiple components are in the `seedu.times.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### `add` and `edit` commands to include next-of-kin `nok`
+This was challenging because the current `Parser` is only able to parse contents _between_ tags, but not encompass other tags within recursively.  
+For example, `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3
+nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25` requires us to parse the tags before and after `nok/` _separately_, which is a challenging problem to think about at first.  
+
+We initially thought of a recursive implementation of the `Parser`, calling `parse` methods again on the two halves whenever we find an `/nok` tag, but 
+it proved to be too lofty and unneccesarily complicated. Moreover, using recursion in applications is not recommended due to the high potential 
+of unseen bugs.  
+
+Next, we thought of modifying the parser such that it always checks for the `/nok` tag (or any of the tags specified in the parameter) _first_, before parsing the other tags
+ in the normal way. However, this was again too large scale for a single command with the same parameter.  
+
+Unexpectedly, the solution that we came up with in the end was very simple. we just had to split the string by `/nok` and put both of the split 
+portions into the parser. Modifying the existing `parser` was not needed at all. we learnt that oftentimes for a small feature, we don't have
+ to go for the most extensible or "smart" solution, but the simplest to understand.
+
 ### Find commands
 
 The implementation of all search-related commands such as `findtag`, `findname`, `findclass` and `findclassname` uses a 
