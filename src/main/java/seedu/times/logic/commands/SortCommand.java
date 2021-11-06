@@ -1,14 +1,7 @@
 package seedu.times.logic.commands;
 
-import static seedu.times.model.Model.PREDICATE_SHOW_ALL_CLASS;
-import static seedu.times.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
-import java.util.ArrayList;
-
 import seedu.times.logic.commands.exceptions.CommandException;
 import seedu.times.model.Model;
-import seedu.times.model.person.Student;
-import seedu.times.model.tuitionclass.TuitionClass;
 import seedu.times.ui.TabName;
 
 public class SortCommand extends Command {
