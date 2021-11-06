@@ -218,12 +218,14 @@ The sequence diagram when a `findtag` command is executed is as follows:
 The rest of the find command works the same way but note that for `findclass` and `findclassname`, they are calling the
 `setPredicate` method of `filteredTuitionClass` instead.
 
-Furthermore, to fully understand the find command, we also have to understand how predicate is works. The predicates used
-that filters out students are typical java `Predicate`. It is important to know that for each find command, multiple
-keywords are allowed so we have to design predicates such that every keyword is checked against each student.
-To add a searchable attributes, one has to design and add a new predicate.
+#### Find command predicates
 
-
+Furthermore, to fully understand the find command, we also have to understand how predicate works. The predicates used
+that filters out students or classes are typical java `Predicate`. For each searchable attribute, a new class must be 
+created that implements `Predicate` with the right generic type (i.e. predicate class for filtering `Student` must
+implement `Predicate<Student`, and predicate class for filtering `TuitionClass` must implement `Predicate<TuitionClass`).
+Each custom predicate class contains a `List` of search strings that would be used to match against the tested items 
+in the search.
 
 ### Timetable feature
 The timetable feature is a feature which displays the user's classes in a visual timetable format.
