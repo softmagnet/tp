@@ -47,7 +47,7 @@ public class StudentClassTabCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code Student} with the given {@code Student} and index to display.
      */
     public StudentClassTabCard(Student student, int displayedIndex) {
         super(FXML);
