@@ -58,7 +58,7 @@ public class StudentCard extends UiPart<Region> {
     private Label nokEmail;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code Student} with the given {@code Student} and index to display.
      */
     public StudentCard(Student student, int displayedIndex) {
         super(FXML);
