@@ -13,7 +13,10 @@ Class TimetableRegion
 Class TimetableTuitionClassSlot
 Class TimetableHeaderTiming
 Class TimetableHeaderLabel
+}
 
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
 }
 
 Class "{abstract}\nUiPart" as UiPart
@@ -36,5 +39,7 @@ TimetableTuitionClassSlot --|> TimetableRegion
 
 TimetableRegion --|> UiPart
 TimetablePanel --|> UiPart
+
+TimetablePanel .right.> Model
 
 @enduml

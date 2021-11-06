@@ -1,6 +1,7 @@
 package seedu.times.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -134,4 +135,8 @@ public interface Model {
 
     /** Executes update cascade after change of student name for {@code StudentNameList}. */
     void updateClassStudentLists(Name newName, Name oldName);
+
+    void sortStudents(Comparator<? super Student> c);
+
+    void sortClasses(Comparator<? super TuitionClass> c);
 }

@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Past year projects: [Link](https://github.com/AY1920S2-CS2103-W15-4/main)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -86,7 +86,13 @@ The `UI` component,
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 #### Timetable UI
-<Stuart's part here>
+Adapted from [here](https://github.com/AY1920S2-CS2103-W15-4/main/tree/master/src/main/java/clzzz/helper/ui/calendar)
+
+![TimetableUi Class Diagram](images/TimetableDiagram.png)
+
+The TimetablePanel is made up of `TimetableDay`, `TimetableHeader`, `TimetableTuitionClassSlot` and `TimetableEmptySlot`.
+They represent the day panel on the left, the header at the top with the label and timings, the slots representing the `TuitionClass`es and the empty slots between `TuitionClass`es respectively.
+The TimetablePanel takes in an `ObservableList<TuitionClass>` to build the Timetable.
 
 #### ClassPanel UI
 ![Structure of ClassPanel](images/ClassPanelUiClassDiagram.png)  
@@ -231,14 +237,33 @@ in the search.
 The timetable feature is a feature which displays the user's classes in a visual timetable format.
 
 #### Implementation
-When the TimesTable starts, it uses the uniqueClassList to build the timetable UI in the timetable tab. It sorts the
-classes in order of class timing (earliest class first) and builds them iteratively. There is also a listener attached
-to the uniqueClassList which causes the timetable to rebuild itself whenever there are changes to the uniqueClassList, 
-such as when a new class is added or an existing class is deleted from the uniqueClassList.
+The class diagram for Timetable as shown in the [TimetableUI component](#Timetable UI) is replicated here for convenience.
+![Timetable Class Diagram](images/TimetableDiagram.png)
+The image below shows the respective parts of the `TimetablePanel`:
+* The green box represents the `TimetableDay`, and there are 7 `TimetableDay` parts to represent the 7 days of the week. 
+* The yellow box represents the `TimetableHeader`, with the box all the way at the left with the label "Time Slots" representing the `TimetableHeaderLabel`, and the others representing the `TimetableHeaderTiming`. There is always 1 `TimetableHeaderLabel` but can have many `TimetableHeaderTiming` parts depending on the earliest start time of the week and latest end time.
+* The purple box represents the `TimetableEmptySlot`.
+* The light blue box represents the `TimetableTuitionClassSlot`.
+![Timetable annotation](images/TimetableAnnotation.png)
 
-Additionally, due to the limited size of the app window, the timetable would adjust itself and starts everyday with the
-earliest class timing so that the timetable would not look cluttered. There is a time panel at the top to indicate what
-time are the slots at.
+`TimetablePanel` uses an `ObservableList<TuitionClass>` to build the Timetable UI in the timetable tab through the `build()` method in `TimetablePanel` which takes in an `ObservableList<TuitionClass>`.
+`TimetablePanel` builds the Timetable UI by sections, starting from the `TimetableHeader`s, followed by the `TimetableDay`s, and finally the `TimetableTuitionClassSlot`s and `TimetableEmptySlot`s simultaneously. 
+It sorts the classes in order of class timing (earliest class first) before building the `TimetableTuitionClassSlot`s and `TimetableEmptySlot`s. 
+
+A listener is attached to the `ObservableList<TuitionClass>` which updates the Timetable UI whenever there are changes to the `ObservableList<TuitionClass>`,
+such as when a new class is added, or an existing class is edited from the `ObservableList<TuitionClass>`.
+
+[comment]: <> (Due to the limited size of the application's window, the Timetable UI would adjust itself and starts the days of the Timetable UI with the)
+
+[comment]: <> (earliest start timing and ends with the latest end timing so that the timetable is not cluttered. There is a time panel at the top to indicate what)
+
+The activity diagrams below illustrate how the Timetable UI is built.
+
+![Timetable Overall Activity Diagram](images/BuildTimetableOverallDiagram.png)
+![TimetableHeader Activity Diagram](images/BuildTimetableHeaderActivityDiagram-Activity__Build_TimetableHeader.png)
+![TimetableDay Activity Diagram](images/BuildTimetableDayActivityDiagram-Activity__Build_TimetableDay.png)
+![TimetableTuitionClassSlot Activity Diagram](images/BuildTimetableTuitionClassSlotsActivityDiagram-Activity__Build_TimetableTuitionClassSlots.png)
+![Find earliest start hour and latest end hour Activity Diagram](images/FindEarliestAndLatestHourActivityDiagram-Activity__Find_earliest_start_hour_and_latest_end_hour.png)
 
 ### Adding a Student to a class
 When adding a student, a Class is automatically created if a class at the same timing doesn't already exist.

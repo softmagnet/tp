@@ -1,14 +1,7 @@
 package seedu.times.logic.commands;
 
-import static seedu.times.model.Model.PREDICATE_SHOW_ALL_CLASS;
-import static seedu.times.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
-import java.util.ArrayList;
-
 import seedu.times.logic.commands.exceptions.CommandException;
 import seedu.times.model.Model;
-import seedu.times.model.person.Student;
-import seedu.times.model.tuitionclass.TuitionClass;
 import seedu.times.ui.TabName;
 
 public class SortCommand extends Command {
@@ -49,39 +42,28 @@ public class SortCommand extends Command {
 
         // sort the StudentNameList;
         if (sortBy.equals(SORT_BY_NAME)) {
-            model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
-
-            ArrayList<Student> studentsToSort = new ArrayList<>(model.getFilteredStudentList());
 
             if (directionOfSort.equals(DIRECTION_OF_SORT_ASC)) {
-                studentsToSort.sort((student1, student2) ->
+                model.sortStudents((student1, student2) ->
                         student1.getName().toString().compareTo(student2.getName().toString()));
             } else {
-                studentsToSort.sort((student1, student2) ->
+                model.sortStudents((student1, student2) ->
                         student2.getName().toString().compareTo(student1.getName().toString()));
             }
-
-            model.setStudents(studentsToSort);
 
             updateView(TabName.STUDENTS);
 
             return new CommandResult(String.format(MESSAGE_SUCCESS, STUDENT_TAB_SORTED, sortBy, directionOfSort));
 
         } else if (sortBy.equals(SORT_BY_CLASS_TIMING)) {
-            model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
-
-            ArrayList<TuitionClass> classesToSort = new ArrayList<>(model.getFilteredTuitionClassList());
 
             if (directionOfSort.equals(DIRECTION_OF_SORT_ASC)) {
-                classesToSort.sort((class1, class2) ->
+                model.sortClasses((class1, class2) ->
                         class1.getClassTiming().compareTo(class2.getClassTiming()));
             } else {
-                classesToSort.sort((class1, class2) ->
+                model.sortClasses((class1, class2) ->
                         class2.getClassTiming().compareTo(class1.getClassTiming()));
             }
-
-
-            model.setClasses(classesToSort);
 
             updateView(TabName.CLASSES);
 
