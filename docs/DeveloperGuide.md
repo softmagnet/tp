@@ -258,15 +258,23 @@ Finally, the TuitionClass itself can be removed from the TimesTable's class list
 
 A diagram of the procedure is shown below:
 
-### A UniqueTuitionClassList in Model and by extension a "Classes" tab
-A student can attend multiple TuitionClass, so a List<JSONAdaptedTuitionClass> is used to store the classes this student
-attends, while each TuitionClass contains a List<Name> of all student who attends it.
-When a new Student is added to the TimesTable, the TuitionClass of the new Student created will be checked through
-the UniqueTuitionClassList for equality and overlapping, if the TuitionClasses are equal, the new student name will be
-added to the TuitionClass name list and the TuitionClass of the new student will be replaced by the TuitionClass with
-the updated name list, if they are overlapping but not equal, an exception will be thrown.
-This UniqueTuitionClassList consists of an ObservableArrayList which will then be used to display all unique 
-TuitionClasses that the user will be teaching in the GUI.
+### Adding Tuition Class
+To add a tuition class, the `addclass` command is used.
+The `AddClassCommandParser` parses the user input to obtain 4 parameters: `ClassName`, `ClassTiming`, `Rate` and `Location`. 
+The parser checks if the user has inputted valid value for these 4 parameter. These 4 parameters and a new empty 
+`StudentNameList` are then used to create a new `TuitionClass` to be passed into a new `AddClassCommand(TuitionClass)` 
+as an argument. This command is then executed and the new `TuitionClass` is added into the `Model` and into the 
+`UniqueClassList`, where further checks are done to ensure that there is no overlapping timing between the new 
+`TuitionClass` that is to be added and other already existing `TuitionClass`es in the list, as TimesTable is made for a
+single user and thus designed to not allow overlapping `TuitionClass`es
+
+The sequence diagram when a `AddClass` command is executed by the LogicManager is as follows:
+
+![Sequence diagram when AddClass command is executed in LogicManger](images/AddClassSequenceDiagram.png)
+
+The sequence diagram when a new `TuitionClass` is added to the `Model` is as follows
+
+![Sequnce diagram in model when class is added](images/AddClassModelSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
