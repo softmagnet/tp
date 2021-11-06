@@ -23,7 +23,7 @@ Class Student
 }
 
 package Logic <<Rectangle>> {
-Class HiddenLogic #FFFFFF
+Class "{abstract}\nCommand" as Command
 }
 
 package TimetableUi <<Rectangle>> {
@@ -65,7 +65,7 @@ StudentCard ..> Student
 UiManager -left-> Logic
 MainWindow -left-> Logic
 
-Logic -up-> CommandObserver :  Observes >
+Command -up-> CommandObserver :  Observes <
 
 StudentListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
