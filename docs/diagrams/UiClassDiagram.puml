@@ -18,19 +18,17 @@ Class StatusBarFooter
 Class CommandBox
 Enum TabName <<Enumeration>>
 
-package Model <<Rectangle>> {
-Class Student
-}
-
-package Logic <<Rectangle>> {
-Class "{abstract}\nCommand" as Command
-}
-
 package TimetableUi <<Rectangle>> {
-Class HiddenLogic #FFFFFF
 }
 
 package ClassPanelUi <<Rectangle>> {
+}
+}
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+package Logic <<Rectangle>> {
 Class HiddenLogic #FFFFFF
 }
 
@@ -39,7 +37,7 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
-MainWindow .up.|> CommandObserver
+MainWindow .right.|> CommandObserver
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" StudentListPanel
@@ -47,10 +45,9 @@ MainWindow *-down-> "1" TimetableUi
 MainWindow *-down-> "1" ClassPanelUi
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
+MainWindow -down-|> UiPart
 
 StudentListPanel -down-> "*" StudentCard
-
-MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
@@ -61,11 +58,11 @@ TimetableUi --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
-StudentCard ..> Student
-UiManager -left-> Logic
+StudentCard .right.> Model
+UiManager -right-> Logic
 MainWindow -left-> Logic
 
-Command -up-> CommandObserver :  Observes <
+Logic -right-> CommandObserver : Observes <
 
 StudentListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
@@ -74,6 +71,6 @@ ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
 
-MainWindow ..> TabName
-Logic ..> TabName
+MainWindow .right.> TabName
+Logic .right.> TabName
 @enduml
