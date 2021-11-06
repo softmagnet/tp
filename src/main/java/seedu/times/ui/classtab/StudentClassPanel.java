@@ -8,7 +8,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.times.commons.core.LogsCenter;
 import seedu.times.model.person.Student;
-import seedu.times.ui.StudentListViewCell;
 import seedu.times.ui.UiPart;
 
 public class StudentClassPanel extends UiPart<Region> {
