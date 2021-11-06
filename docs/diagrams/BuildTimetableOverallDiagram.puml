@@ -1,6 +1,5 @@
 @startuml
 start
-:Build Timetable Panel;
 
 :Clear Displayed Timetable;
 
