@@ -20,8 +20,8 @@ public class SelectClassCommandParser implements Parser<SelectClassCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectClassCommand.MESSAGE_USAGE));
         }
 
-        String[] splitArgs = args.split(" ");
-        if (splitArgs.length > 2) {
+        String[] splitArgs = trimmedArgs.split(" ");
+        if (splitArgs.length > 1) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectClassCommand.MESSAGE_USAGE));
         }
@@ -29,8 +29,8 @@ public class SelectClassCommandParser implements Parser<SelectClassCommand> {
         Index indexOfClassToView;
 
         try {
-            indexOfClassToView = ParserUtil.parseIndex(splitArgs[1]);
-        } catch (ParseException pe) {
+            indexOfClassToView = ParserUtil.parseIndex(splitArgs[0]);
+        } catch (ParseException | ArrayIndexOutOfBoundsException err) {
             throw new ParseException(String.format(MESSAGE_INVALID_CLASS_DISPLAYED_INDEX,
                     EditClassCommand.MESSAGE_USAGE));
         }
