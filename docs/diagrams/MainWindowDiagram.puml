@@ -5,7 +5,7 @@ skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
 
 
-
+'IGNORE THIS FILE FIRST
 package MainWindow <<Rectangle>>{
 Class "{abstract}\nUiPart" as UiPart
 Class MainWindow

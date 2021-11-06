@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
 
-package Timetable <<Rectangle>>{
+package TimetableUi <<Rectangle>>{
 Class TimetablePanel
 Class TimetableDay
 Class TimetableEmptySlot

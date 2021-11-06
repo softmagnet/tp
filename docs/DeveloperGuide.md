@@ -82,7 +82,22 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* observes the `Command` abstract class in the `Logic` component, because it needs to update when certain commands are run.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+#### Timetable UI
+<Stuart's part here>
+
+#### ClassPanel UI
+![Structure of ClassPanel](images/ClassPanelUiClassDiagram.png)  
+The ClassPanel is made up of a `TuitionClassPanel` and a `StudentClassPanel`.  
+They represent the left and right panels of the GUI respectively.
+`TuitionClassPanel` takes in both an `ObservableList<TuitionClass>` and an `ObservableList<Student>`, while
+`StudentClassPanel` takes in only a `ObservableList<Student>`.  
+`TuitionClassPanel` requires an `ObservableList<Student>` for the purpose of filtering the Student List based on the selected `TuitionClass`. 
+![img.png](images/ClassPanelImage.png)  
+`TuitionClassPanel` and `StudentClassPanel` both contain their respective `Card`s for each element in their respective `ObservableList`.   
+Note that `StudentClassTabCard` is different from the `StudentCard` in the `studentTab` package so we have less coupling and for future extensibility. 
 
 ### Logic component
 
