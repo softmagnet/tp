@@ -7,6 +7,7 @@ import seedu.times.logic.commands.Command;
 import seedu.times.logic.commands.CommandResult;
 import seedu.times.logic.commands.exceptions.CommandException;
 import seedu.times.model.Model;
+import seedu.times.model.tuitionclass.ClassTiming;
 import seedu.times.model.tuitionclass.predicates.ClassTimingContainsKeywordsPredicate;
 import seedu.times.ui.TabName;
 
@@ -19,6 +20,7 @@ public class FindClassCommand extends Command {
             + "Valid keywords are limited to:\n"
             + "    1) 3 letter abbreviation for day of the week\n"
             + "    2) time expressed in HH:MM-HH:MM format.\n"
+            + "(" + ClassTiming.MESSAGE_CONSTRAINTS + ")\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " Mon 11:30-12:30";
 
