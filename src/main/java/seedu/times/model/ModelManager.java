@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.times.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -188,6 +190,22 @@ public class ModelManager implements Model {
     @Override
     public void setStudents(List<Student> studentsList) {
         timesTable.setStudents(studentsList);
+    }
+
+    @Override
+    public void sortStudents(Comparator<? super Student> c) {
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        ArrayList<Student> studentsToSort = new ArrayList<>(getFilteredStudentList());
+        studentsToSort.sort(c);
+        setStudents(studentsToSort);
+    }
+
+    @Override
+    public void sortClasses(Comparator<? super TuitionClass> c) {
+        updateFilteredClassList(PREDICATE_SHOW_ALL_CLASS);
+        ArrayList<TuitionClass> classesToSort = new ArrayList<>(getFilteredTuitionClassList());
+        classesToSort.sort(c);
+        setClasses(classesToSort);
     }
 
     @Override

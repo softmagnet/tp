@@ -123,7 +123,6 @@ public class TimetablePanel extends UiPart<Region> {
         ArrayList<TuitionClass> sortedList = new ArrayList<>(tuitionClasses);
         sortedList.sort(Comparator.comparing(TuitionClass::getClassTiming));
 
-
         // build the timetable
         LocalTime previousTime = earliestHour;
         for (int i = 0; i < sortedList.size(); i++) {
