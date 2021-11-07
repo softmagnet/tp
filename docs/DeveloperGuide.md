@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/times/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/times/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,7 +69,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/times/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -83,7 +83,7 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * observes the `Command` abstract class in the `Logic` component, because it needs to update when certain commands are run.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
 
 #### Students UI
 ![StudentsUi Class Diagram](images/StudentsDiagram.png)
@@ -99,8 +99,8 @@ The TimetablePanel is made up of `TimetableDay`, `TimetableHeader`, `TimetableTu
 They represent the day panel on the left, the header at the top with the label and timings, the slots representing the `TuitionClass`es and the empty slots between `TuitionClass`es respectively.
 The TimetablePanel takes in an `ObservableList<TuitionClass>` to build the Timetable.
 
-#### ClassPanel UI
-![Structure of ClassPanel](images/ClassPanelUiClassDiagram.png)  
+#### Classes UI
+![Structure of ClassPanel](images/ClassPanelDiagram.png)  
 The ClassPanel is made up of a `TuitionClassPanel` and a `StudentClassPanel`.  
 They represent the left and right panels of the GUI respectively.
 `TuitionClassPanel` takes in both an `ObservableList<TuitionClass>` and an `ObservableList<Student>`, while
@@ -108,7 +108,7 @@ They represent the left and right panels of the GUI respectively.
 `TuitionClassPanel` requires an `ObservableList<Student>` for the purpose of filtering the Student List based on the selected `TuitionClass`. 
 ![img.png](images/ClassPanelImage.png)  
 `TuitionClassPanel` and `StudentClassPanel` both contain their respective `Card`s for each element in their respective `ObservableList`.   
-Note that `StudentClassTabCard` is different from the `StudentCard` in the `studentTab` package so we have less coupling and for future extensibility. 
+Note that `StudentClassTabCard` is different from the `StudentCard` in the `studenttab` package so we have less coupling and for future extensibility. 
 
 ### Logic component
 
@@ -116,7 +116,9 @@ Note that `StudentClassTabCard` is different from the `StudentCard` in the `stud
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+![Logic class diagram](images/LogicClassDiagram.png)
+
+[comment]: <> (<img src="images/LogicClassDiagram.png" width="550"/>)
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TimesTableParser` class to parse the user command.
@@ -161,7 +163,7 @@ to outsiders as an unmodifiable `ObservableList<TuitionClass>`.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
-The `Student` and `NOK` class (next-of-kin) extends the `Person` class. The student class's structure is as follows:
+The `Student` and `NOK` class (next-of-kin) extends the `Person` class. The `Student` class's structure is as follows:
 
 ![Structure of the UI Component](images/StudentModelClassDiagram.png)
 
@@ -192,10 +194,10 @@ The `Storage` component,
 * can save both TimesTable data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `TimesTableStorage` and `UserPrefStorage`, which means it can be treated as either one (if only 
   the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 * `JsonAdaptedStudent` are saved in a `List<JsonAdaptedStudent>` and `JsonAdaptedTuitionClass` are saved in a 
-  `ListJsonAdaptedTuitionClass>`
-* `JsonAdaptedTag`s are stored in `JsonAdaptedStudent` as a `List<JsonAdaptedTag>`
+  `List<JsonAdaptedTuitionClass>`.
+* `JsonAdaptedTag`s are stored in `JsonAdaptedStudent` as a `List<JsonAdaptedTag>`.
   
 
 ### Common classes
