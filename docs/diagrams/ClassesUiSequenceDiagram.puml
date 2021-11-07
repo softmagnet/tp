@@ -1,0 +1,96 @@
+@startuml
+!include style.puml
+
+
+box MainWindow MODEL_COLOR_T1
+participant ":MainWindow" as MainWindow MODEL_COLOR
+end box
+
+box ClassesUi MODEL_COLOR_T1
+participant ":ClassPanel" as ClassPanel MODEL_COLOR_T3
+participant ":StudentClassPanel" as StudentClassPanel MODEL_COLOR_T3
+participant ":TuitionClassPanel" as TuitionClassPanel MODEL_COLOR_T3
+participant ":StudentListClassTabViewCell" as StudentListClassTabViewCell MODEL_COLOR_T3
+participant ":StudentClassTabCard" as StudentClassTabCard MODEL_COLOR_T3
+participant ":TuitionClassListViewCell" as TuitionClassListViewCell MODEL_COLOR_T3
+participant ":TuitionClassCard" as TuitionClassCard MODEL_COLOR_T3
+participant ":FilteredStudentList" as FilteredStudentList MODEL_COLOR_T3
+participant "tuitionClassListView:\nObservableList<Student>" as tuitionClassListView MODEL_COLOR_T3
+end box
+
+[-> MainWindow : fillInnerParts()
+activate MainWindow
+
+create FilteredStudentList
+
+create ClassPanel
+MainWindow -> ClassPanel : new ClassPanel\n(List<Student>, List<TuitionClass>)
+activate ClassPanel
+
+create StudentClassPanel
+ClassPanel -> StudentClassPanel : new StudentClassPanel\n(studentList)
+activate StudentClassPanel
+
+loop MODEL_COLOR_T1 for every student
+create StudentListClassTabViewCell
+StudentClassPanel -> StudentListClassTabViewCell
+activate StudentListClassTabViewCell
+
+create StudentClassTabCard
+StudentListClassTabViewCell -> StudentClassTabCard
+activate StudentClassTabCard
+StudentClassTabCard --> StudentListClassTabViewCell
+deactivate StudentClassTabCard
+StudentListClassTabViewCell --> StudentClassPanel
+
+deactivate StudentListClassTabViewCell
+
+end
+
+StudentClassPanel --> ClassPanel
+deactivate StudentClassPanel
+
+create TuitionClassPanel
+ClassPanel -> TuitionClassPanel : new TuitionClassPanel\n(studentList, tuitionClassList)
+activate TuitionClassPanel
+loop MODEL_COLOR_T1 for every class
+
+create TuitionClassListViewCell
+TuitionClassPanel -> TuitionClassListViewCell
+activate TuitionClassListViewCell
+
+create TuitionClassCard
+TuitionClassListViewCell -> TuitionClassCard
+activate TuitionClassCard
+
+opt MODEL_COLOR_T1 when clicked
+TuitionClassCard -> TuitionClassCard : onMouseClick()
+activate TuitionClassCard
+TuitionClassCard -> TuitionClassCard : selectTuitionClass()
+activate TuitionClassCard
+TuitionClassCard -> FilteredStudentList : filtered(student -> ...)
+activate FilteredStudentList
+FilteredStudentList -> TuitionClassCard
+deactivate FilteredStudentList
+
+
+TuitionClassCard -> tuitionClassListView : setItems(newStudentList)
+activate tuitionClassListView
+tuitionClassListView --> TuitionClassCard
+deactivate tuitionClassListView
+deactivate TuitionClassCard
+deactivate TuitionClassCard
+end
+
+end
+
+TuitionClassCard --> TuitionClassListViewCell
+deactivate TuitionClassCard
+TuitionClassListViewCell --> TuitionClassPanel
+deactivate TuitionClassListViewCell
+TuitionClassPanel --> ClassPanel
+deactivate TuitionClassPanel
+ClassPanel --> MainWindow
+deactivate ClassPanel
+
+@enduml

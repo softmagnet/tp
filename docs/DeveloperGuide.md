@@ -241,7 +241,7 @@ The class panel feature allows one to see the user's classes and each class' cor
 The class diagram for Class Panel as shown in the [ClassesUI component](#classpanel-ui) is replicated here for convenience.  
 `TuitionClassPanel` and `StudentClassPanel` are both contained in their respective `StackPane` located below their respective `Label`s.  
 
-![img.png](images/ClassesUiSequenceDiagram.png)
+![Classes Ui Sequence Diagram.png](images/ClassesUiSequenceDiagram.png)
 
 1. The `MainWindow`'s `fillInnerParts` method creates a new `ClassPanel` using `ObservableList<Student>` and `ObservableList<TuitionClass>` using the methods in `Logic`.
 2. A `StudentClassPanel` and a `TuitionClassPanel` is created using the `ObservableList<Student>` and `ObservableList<TuitionClass>` passed into the `ClassPanel` by the `MainWindow` respectively.
