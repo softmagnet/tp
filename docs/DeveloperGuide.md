@@ -253,7 +253,7 @@ in the search.
 The timetable feature is a feature which displays the user's classes in a visual timetable format.
 
 #### Implementation
-The class diagram for Timetable as shown in the [TimetableUI component](#Timetable UI) is replicated here for convenience.
+The class diagram for Timetable as shown in the [TimetableUI component](#timetable-ui) is replicated here for convenience.
 ![Timetable Class Diagram](images/TimetableDiagram.png)
 The image below shows the respective parts of the `TimetablePanel`:
 * The green box represents the `TimetableDay`, and there are 7 `TimetableDay` parts to represent the 7 days of the week. 
@@ -290,7 +290,7 @@ The activity diagrams below illustrate how the Timetable UI is built.
 ![Find earliest start hour and latest end hour Activity Diagram](images/FindEarliestAndLatestHourActivityDiagram-Activity__Find_earliest_start_hour_and_latest_end_hour.png)
 
 ### View feature
-The `Students` tab, `Classses` tab and `Timetable` tab, are parts of the [`UI Component`](#UI component). 
+The `Students` tab, `Classses` tab and `Timetable` tab, are parts of the [`UI Component`](#ui-component). 
 Navigation between these tabs without the mouse is crucial for our application as the target audience are people who prefer keyboard to mouse or voice commands.
 
 The `view` feature is facilitated by the `ViewCommand`, which extends the abstract `Command` class. The `ViewCommand` sets the displayed tab to be the tab specified by the user. 
@@ -310,7 +310,7 @@ The `sort` feature allows sorting of the `Student`s and `TuitionClass`es. It is 
 
 The `sort` feature is facilitated by the `SortCommand`, which extends the abstract `Command` class.
 
-####Implementation
+#### Implementation
 The sequence diagram for the `sort` command is shown below.
 
 ![Sequence Diagram for sort command](images/SortSequenceDiagram.png)

@@ -12,7 +12,6 @@ import seedu.times.ui.UiPart;
 
 public class StudentClassPanel extends UiPart<Region> {
     private static final String FXML = "classTab/StudentClassListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(TuitionClassPanel.class);
 
     @FXML
     private ListView<Student> studentListView;

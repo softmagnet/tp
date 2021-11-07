@@ -13,7 +13,6 @@ import seedu.times.ui.UiPart;
 
 public class TuitionClassPanel extends UiPart<Region> {
     private static final String FXML = "classTab/TuitionClassListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(TuitionClassPanel.class);
 
     private final ObservableList<Student> studentList;
 
