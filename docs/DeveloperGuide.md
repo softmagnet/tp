@@ -314,6 +314,44 @@ uniquely identifies the class. Afterwards, an AddCommand is created with the `Cl
 it checks whether an existing class with the same timing exists and adds the student to the `Class`'s classList
 and if not, adds the student to the new class created.
 
+### Removing Student(s) from a Tuition Class
+#### Overview of command
+The `removefromclass` command follows a similar execution path as other commands. The user input is passed to 
+the `LogicManager`, which parses the input using the `TimesTableParser` and `RemoveFromClassCommandParser`.
+A `RemoveFromClassCommand` is then created with the class and student indices involved in the command.
+The command is then executed, interacting with the `Model`.
+
+An overview of how the `RemoveFromClassCommand` is created is shown by this sequence diagram:
+
+![RemoveFromClass Overview Sequence Diagram](images/RemoveFromClassOverviewDiagram.png)
+
+#### Challenges faced
+The challenging aspect in removing students from a tuition class is in figuring out which students to remove.
+
+The `RemoveFromClassCommandParser` parses the user input to obtain a list of indexes to be passed to the `RemoveFromClassCommand`
+As such, the `RemoveFromClassCommand` only has access to a list of indices. We can easily obtain the `TuitionClass` object by
+simply using the class index with the `getFilteredTuitionClassList()` command. On the other hand, the `TuitionClass` object only stores
+the `Name` of each `Student` in the `TuitionClass`. This was done as we use immutable objects throughout TimesTable. As such, if the user
+modifies any of the fields of a `Student` using the `edit` command, then we would have to reflect the change throughout all the tuition classes
+of the student. By only storing the `Name` of the `Student` in the `TuitionClass` object, then we only have to update all the `TuitionClass`
+objects if the user modifies the `Name` field of the `Student`. 
+
+However, this decision results in added complexity when removing students from tuition classes. This is due to the fact that the `Names`
+stored in the `TuitionClass` object are in the order in which the students were added, but the order of the students as displayed in the 
+GUI is dependent on the `sort` and `find` commands used by the user. As such, the indices entered by the user do not correspond with the
+actual `Names` stored in the `TuitionClass` object.
+
+To solve this problem, we have to obtain the list of students in the order displayed by the GUI. To obtain this list,
+we use the same method that the GUI uses to display the list in the first place. We use the `getFilteredStudentList()` method,
+then filter it to the students whose names are in the `TuitionClass` that we are concerned with. From here, we can now use the
+student indices entered by the user to obtain the `Names` of the corresponding `Students` in the filtered list. Then we can create
+a new `TuitionClass` object with an updated list of `Names` and replace the old `TuitionClass` with this new one.
+
+An overview of the process is shown below:
+
+![RemoveFromClass Internal Diagram](images/RemoveFromClassCommandSequenceDiagram.png)
+
+
 ### Deleting Tuition Class
 To delete a tuition class, the 'deleteclass' command is used.
 The DeleteCommandParser parses the user input to obtain the parameters, which is the class timing of the class to be

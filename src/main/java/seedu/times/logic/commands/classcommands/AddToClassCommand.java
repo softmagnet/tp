@@ -64,7 +64,8 @@ public class AddToClassCommand extends Command {
 
         //get names to be added
         List<Student> lastShownStudentList = model.getFilteredStudentList();
-        checkIndicesAreValid(lastShownStudentList);
+        List<TuitionClass> lastShownTuitionClassList = model.getFilteredTuitionClassList();
+        checkIndicesAreValid(lastShownStudentList, lastShownTuitionClassList);
         ArrayList<Name> namesToAdd = createNameList(studentIndices, lastShownStudentList);
 
         //get class to add to
@@ -109,22 +110,24 @@ public class AddToClassCommand extends Command {
         return nameList;
     }
 
-    private void checkIndicesAreValid(List<Student> lastShownStudentList)
+    private void checkIndicesAreValid(List<Student> lastShownStudentList, List<TuitionClass> lastShownTuitionClass)
             throws CommandException {
-        int size = lastShownStudentList.size();
+        int studentListSize = lastShownStudentList.size();
+        int classListSize = lastShownTuitionClass.size();
 
-        if (size == 0) {
+        if (studentListSize == 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        assert size > 0;
+        assert studentListSize > 0;
+        assert classListSize >= 0;
 
-        if (toEditClassIndex.getZeroBased() >= size) {
+        if (toEditClassIndex.getZeroBased() >= classListSize) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
         }
 
         for (Index index : studentIndices) {
-            if (index.getZeroBased() >= size) {
+            if (index.getZeroBased() >= studentListSize) {
                 throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
             }
         }
