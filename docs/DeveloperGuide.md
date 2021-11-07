@@ -262,7 +262,6 @@ The class diagram for the Class Ui feature as shown in the [ClassUi component](#
 `TuitionClassPanel` and `StudentClassPanel` are both contained in their respective `StackPane` located below their respective `Label`s.  
 
 ![Classes Ui Sequence Diagram.png](images/ClassesUiSequenceDiagram.png)
-
 1. The `MainWindow`'s `fillInnerParts` method creates a new `ClassPanel` using `ObservableList<Student>` and `ObservableList<TuitionClass>` using the methods in `Logic`.
 2. A `StudentClassPanel` and a `TuitionClassPanel` is created using the `ObservableList<Student>` and `ObservableList<TuitionClass>` passed into the `ClassPanel` by the `MainWindow` respectively.
 3. `StudentClassPanel` and `TuitionClassPanel` create their respective cells for each Student/Tuition class present.
@@ -483,7 +482,7 @@ The sequence diagram when a new `TuitionClass` is added to the `Model` is as fol
 * Education: NIE graduate.
 * Household Description: Sentosa Cove landed property with rich parents.
 
-**Value proposition**: </br>
+**Value proposition**: <br>
 A busy tutor who has a large number of students can find it extremely difficult to
 
 * manage and organize student information
@@ -499,7 +498,7 @@ This is where Timestable comes in. It improves two main areas:
   * delete
   * update
 
-By improving the data manipulation process, the tutor can organize student information more easily. </br>
+By improving the data manipulation process, the tutor can organize student information more easily. <br>
 By improving the querying process, the tutor can make scheduling less painstaking and time-consuming.
 
 
@@ -516,7 +515,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | User                                       | View my class timings for a specific contact (day and time)  |          Know which day will I be teaching this contact    |
 | `* * *`  | User                                       | Record parent contact of my students                         | Contact the student's parent in case of emergencies        |
 | `* * *`  | User                                       | Delete/archive my student's contacts and information         | I can declutter my contacts.                               |
-| `* * *`  | Experienced User                           | Add all contact details without any specifiers               | I can save time in creating new contacts                   |
 | `* * *`  | User                                       | Record locations of classes of each student                  | Knows where to go                                          |
 | `* `     | Careless User                              | Be notified if there was a clash in timing                   | I can have peace of mind                                   |
 | `* `     | User                                       | View schedule for a specific day                             | Can prepare for lesson and won't be absent                 |
@@ -529,10 +527,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons.
-2.  TimesTable shows a list of persons.
-3.  User requests to delete a specific person in the list.
-4.  TimesTable deletes the person.
+1.  User requests to list students.
+2.  TimesTable shows a list of students.
+3.  User requests to delete a specific student in the list.
+4.  TimesTable deletes the student.
 
     Use case ends.
 
@@ -569,7 +567,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
     
-* 1b. User keys in add command with valid format but invalid String format for certain field.
+* 1b. User keys in add command with valid format but invalid String format for certain fields.
 
     * 1b1. TimesTable shows an error message saying which field contains the invalid format.
 
@@ -792,7 +790,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 14. Should package everything into a single JAR file
 15. Product should not exceed 100 MB and documents should not exceed 15 MB/file
 16. Developer Guide and User Guide should be PDF-friendly
-*{More to be added}*
 
 ### Glossary
 
@@ -865,3 +862,24 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+clear - stuart
+add -bernard
+addclass - stuart
+delete - kevin
+deleteclass - zhenglin
+addtoclass - kevin
+removefromclass - zhenglin
+edit - zhiwei
+editclass - zhiwei
+sort - kevin
+findname -bernard
+findclass -bernard
+findclassname -stuart
+findtag -zhenglin
+view - zhenglin
+class - zhiwei
+list -ez - stuart
+listclass -ez - kevin
+help - dunnid
+exit - dunnid
