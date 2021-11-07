@@ -265,19 +265,48 @@ The activity diagrams below illustrate how the Timetable UI is built.
 ![TimetableTuitionClassSlot Activity Diagram](images/BuildTimetableTuitionClassSlotsActivityDiagram-Activity__Build_TimetableTuitionClassSlots.png)
 ![Find earliest start hour and latest end hour Activity Diagram](images/FindEarliestAndLatestHourActivityDiagram-Activity__Find_earliest_start_hour_and_latest_end_hour.png)
 
-### Adding a Student to a class
-When adding a student, a Class is automatically created if a class at the same timing doesn't already exist.
-The AddCommandParse parses the user input to obtain the classTiming (denoted by parameter `/ct`), and
-uniquely identifies the class. Afterwards, an AddCommand is created with the `Class` and `Student`, after which
-it checks whether an existing class with the same timing exists and adds the student to the `Class`'s classList
-and if not, adds the student to the new class created.
+### Adding Student(s) to a class feature
+Allows user to add any existing student into any single existing tuition class in order to keep track of which 
+students are being taught in which class.
+
+## Implementation
+To add Student(s) to a class, the `addtoclass` command is used. The user input is passed to
+the `LogicManager`, which parses the input using the `TimesTableParser` and `AddToClassCommandParser`.
+A `AddToClassCommand` is then created with the class and student indices involved in the command.
+The command is then executed, interacting with the `Model`.The `AddToClassCommandParser` parses the user input to obtain
+a list of indexes to be passed to the `AddToClassCommand`.
+
+An overview of how the `AddToClassCommand` is created is shown by this sequence diagram:
+
+![AddToClass Overview Sequence Diagram](images/AddToClassCreationSequenceDiagram.png)
+
+Since the `AddToClassCommand` only has access to a list of indices. We can obtain the `TuitionClass` object that is 
+receiving the student(s), by simply using the class index with the `getFilteredTuitionClassList()` command. An 
+`ArrayList<Name>` of students that are to be added into the tuition class is then extracted from 
+`getFilteredStudentList()`using the `createNameList`method. The `StudentNameList` of the tuition class that will be receiving the student(s) is extracted and placed into 
+a new `StudentNameList` along with the `ArrayList<Name>` of the student(s) to be added, creating a combined 
+`StudentNameList`. A new `TuitionClass` is then created based on the original tuition class with the new combined 
+`StudentNameList`. The original tuition class is then swapped out with the new tuition class in the `Model`.
+
+An overview of how the `AddToClassCommand` is executed is shown by this sequence diagram:
+
+![AddToClass Execution Sequence Diagram](images/AddToClassExecutionSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: 
+
+**Note about AddToClassCommand execution:**<br>
+
+* Note that details of construction of the new `TuitionClass` with the `updatedNameList` is left out due to lack of 
+  space.
+
+</div>
 
 ### Removing Student(s) from a Tuition Class
 #### Overview of command
 The `removefromclass` command follows a similar execution path as other commands. The user input is passed to 
 the `LogicManager`, which parses the input using the `TimesTableParser` and `RemoveFromClassCommandParser`.
 A `RemoveFromClassCommand` is then created with the class and student indices involved in the command.
-The command is then executed, interacting with the `Model`.
+The command is then executed, interacting with the `Model`. 
 
 An overview of how the `RemoveFromClassCommand` is created is shown by this sequence diagram:
 
