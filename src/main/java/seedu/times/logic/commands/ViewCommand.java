@@ -19,7 +19,7 @@ public class ViewCommand extends Command {
     private final TabName tabToView;
 
     /**
-     * Creates an ViewCommand to view the specified tab index.
+     * Creates a ViewCommand to view the specified tab index.
      */
     public ViewCommand(TabName tab) {
         this.tabToView = tab;

@@ -209,10 +209,6 @@ public class MainWindow extends UiPart<Stage> implements CommandObserver {
         primaryStage.hide();
     }
 
-    public StudentListPanel getStudentListPanel() {
-        return studentListPanel;
-    }
-
     @Override
     public void updateClass(Integer indexOfClassToSelect) {
         requireNonNull(indexOfClassToSelect);
@@ -237,6 +233,7 @@ public class MainWindow extends UiPart<Stage> implements CommandObserver {
     public void updateView(TabName tabToView) {
         requireNonNull(tabToView);
         tabPane.getSelectionModel().select(tabToView.getIndex());
+        logger.info("Switched to " + tabToView + " because of updateView()");
     }
 
 

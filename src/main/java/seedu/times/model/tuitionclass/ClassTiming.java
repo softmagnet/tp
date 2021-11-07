@@ -44,7 +44,7 @@ public class ClassTiming implements Comparable<ClassTiming> {
         value = formatClassTiming(classTiming);
         startTime = getStartTimeFromValue();
         endTime = getEndTimeFromValue();
-        day = parseDay(value);
+        day = parseDay();
     }
 
     /**
@@ -120,23 +120,22 @@ public class ClassTiming implements Comparable<ClassTiming> {
     }
 
     /**
-     * Sees if the classTiming object is after the LocalTime given.
+     * Sees if the ClassTiming's start time is after the LocalTime given.
      *
      * @param time LocalTime being compared to.
-     * @return true if ClassTiming is on a later day or has a start time later than time otherwise false.
+     * @return true if ClassTiming has a start time later than given time otherwise false.
      */
     public boolean isAfter(LocalTime time) {
         return this.getStartTime().isAfter(time);
     }
 
     /**
-     * Parses the class timing string to retrieve the day.
+     * Parses the class timing string to retrieve the day from the value.
      *
-     * @param ct ClassTiming string to be parsed.
-     * @return The Day of the ClassTiming string.
+     * @return The Day of the ClassTiming value.
      */
-    private String parseDay(String ct) {
-        String[] classTimingPart = ct.split(" ");
+    private String parseDay() {
+        String[] classTimingPart = this.value.split(" ");
         return classTimingPart[0];
     }
 
@@ -163,9 +162,11 @@ public class ClassTiming implements Comparable<ClassTiming> {
         String[] timePart = splitTiming(ct);
         String startTime = timePart[0];
         String startTimeMinutes = startTime.split(":")[1];
+
         if (!startTimeMinutes.equals("00") && !startTimeMinutes.equals("30")) {
             throw new ParseException("Invalid start time");
         }
+
         return LocalTime.parse(startTime, DateTimeFormatter.ofPattern("HH:mm"));
     }
 
@@ -180,9 +181,11 @@ public class ClassTiming implements Comparable<ClassTiming> {
         String[] timePart = splitTiming(ct);
         String endTime = timePart[1];
         String endTimeMinutes = endTime.split(":")[1];
+
         if (!endTimeMinutes.equals("00") && !endTimeMinutes.equals("30") && !endTime.equals("23:59")) {
             throw new ParseException("Invalid end time");
         }
+
         return LocalTime.parse(endTime, DateTimeFormatter.ofPattern("HH:mm"));
     }
 
