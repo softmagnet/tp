@@ -378,7 +378,9 @@ The sequence diagram for the second reference frame from above:
 
 
 ### Removing Student(s) from a Tuition Class
-#### Overview of command
+Allows the user to remove one or more students from a selected tuition class.
+
+#### Implementation
 The `removefromclass` command follows a similar execution path as other commands. The user input is passed to 
 the `LogicManager`, which parses the input using the `TimesTableParser` and `RemoveFromClassCommandParser`.
 A `RemoveFromClassCommand` is then created with the class and student indices involved in the command.

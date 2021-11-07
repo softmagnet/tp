@@ -3,8 +3,7 @@
 
 !include Style.puml
 
-box Logic LOGIC_COLOR_T2
-
+box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":RemoveFromClassCommand" as RemoveFromClassCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
@@ -20,6 +19,7 @@ end box
 LogicManager -> RemoveFromClassCommand: execute()
 activate RemoveFromClassCommand
 
+group sd Match Student and Class Indices to their objects. Create updated Name list.
 RemoveFromClassCommand -> Model: getFilteredTuitionClassList()
 activate Model
 Model -> tuitionClassList: Get class list
@@ -61,7 +61,7 @@ RemoveFromClassCommand --> RemoveFromClassCommand --: newNameList
 create newTuitionClass
 RemoveFromClassCommand -> newTuitionClass ++ :Create new tuition class with newNameList
 RemoveFromClassCommand <-- newTuitionClass -- : c2
-
+end
 
 RemoveFromClassCommand -> Model: setClass(c1, c2)
 activate Model
