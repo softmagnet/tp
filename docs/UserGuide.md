@@ -88,7 +88,7 @@ a class or student list)
   
 * For commands that narrow down the list of `students` (eg. FindName, FindTag, Sort by name), the displayed
   changes for students will be shown in both the `Student` tab as well as the `Class` tab.  
-  This means that when `students` are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag in the `Class` tab as well.  
+  This means that when `students` are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag` in the `Class` tab as well.  
   Likewise, when `students` are sorted by their names, they will be sorted in the `Class` tab as well.
 
 * For commands that narrow down the list of `classes` (eg. FindClass, FindClassName), 
@@ -165,6 +165,37 @@ addclass cn/Sec 4 E Maths ct/TUE 12:30-14:30 r/65 l/Block 123, Clementi Ave 6, #
 ```
 Adds a new class with name `Sec 4 E Maths`, with class timing `Tue 12:30-14:30`, with hourly rate of $`65`, at `Block 123, Clementi Ave 6, #14-41`.
 
+### Deleting a student : `delete`
+<hr>
+
+Deletes the specified student from the TimesTable.
+
+Format:
+```
+delete INDEX
+```
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd student in the TimesTable.
+* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+
+### Delete a class: `deleteclass`
+<hr>
+
+Deletes the specified class from the TimesTable.
+
+Format:
+```
+deleteclass INDEX
+```
+
+* Deletes the class at the specified `INDEX`.
+* The index refers to the index number shown in the displayed class list in the `classes` tab.
+
+Examples:
+* `listclass` followed by `deleteclass 2` deletes the 2nd class in the TimesTable.
 
 ### Adding student/students to a class: `addtoclass`
 <hr>
@@ -293,7 +324,7 @@ Examples:
 <div markdown="block" class="alert alert-info">
 For commands that narrow down the list of `students` (eg. FindName, FindTag, Sort by name), the displayed
   changes for students will be shown in both the `Student` tab as well as the `Class` tab.  
-This means that when `students` are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag in the `Class` tab as well.  
+This means that when `students` are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag` in the `Class` tab as well.  
 Likewise, when `students` are sorted by their names, they will be sorted in the `Class` tab as well.
   
 The `list` and `listclass` commands can be used to show the original lists of students and classes respectively. 
@@ -330,7 +361,7 @@ Examples:
 <div markdown="block" class="alert alert-info">
 For commands that narrow down the list of `students` (eg. FindName, FindTag, Sort by name), the displayed
   changes for students will be shown in both the `Student` tab as well as the `Class` tab.  
-This means that when `students` are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag in the `Class` tab as well.  
+This means that when `students` are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag` in the `Class` tab as well.  
 Likewise, when `students` are sorted by their names, they will be sorted in the `Class` tab as well.
 
 The `list` and `listclass` commands can be used to show the original lists of students and classes respectively.
@@ -400,17 +431,16 @@ Note that you have to run `list` to display all the students again.
 
 Format:
 ```
-findtag TAG, [MORE_TAGS]
+findtag KEYWORD, [MORE_KEYWORDS]
 ```
 
-* The search is case-insensitive. e.g `math` will match `Math`.
-* The keywords are separated by commas. e.g. `findtag math, physics` will find students
+* Keywords can partially match the tag, or the entire tag, e.g. `math` for all `A Math` and `C Math` tags, or `A Math` for the `A Math` tag.
+* Keywords are separated by commas. e.g. `findtag math, physics` will find students
   with tags containing `math` or `physics`.
-* Only the `TAG` is searched.
-* Partial matches will still be matched e.g. `math` will match `A Math`, `C Math`, and `Math`.
 * Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `findtag math, physics` will return students with the `Math` `TAG` but no `Physics` `TAG`,
   students with only the`Physics` `TAG` but no `Math` `TAG`, and students with both `TAG`s.
+* The search is case-insensitive. e.g `math` will match `Math`.
 
 Examples:
 * `findtag math` returns `Alex Yeoh` with the `A Math` `TAG` and `John Doe` with the `C Math` `TAG` in both `Students` and `Classes` tab.
@@ -420,7 +450,7 @@ Examples:
 <div markdown="block" class="alert alert-info">
 For commands that narrow down the list of `students` (eg. FindName, FindTag, Sort by name), the displayed
   changes for students will be shown in both the `Student` tab as well as the `Class` tab.  
-This means that when `students` are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag in the `Class` tab as well.  
+This means that when `students` are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag` in the `Class` tab as well.  
 Likewise, when `students` are sorted by their names, they will be sorted in the `Class` tab as well.
 
 The `list` and `listclass` commands can be used to show the original lists of students and classes respectively.
@@ -472,38 +502,6 @@ Format: `list`
 Shows a list of all classes in the Class tab.
 
 Format: `listclass`
-
-### Deleting a student : `delete`
-<hr>
-
-Deletes the specified student from the TimesTable.
-
-Format:
-```
-delete INDEX
-```
-* Deletes the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list.
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the TimesTable.
-* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
-
-### Delete a class: `deleteclass`
-<hr>
-
-Deletes the specified class from the TimesTable.
-
-Format:
-```
-deleteclass INDEX
-```
-
-* Deletes the class at the specified `INDEX`.
-* The index refers to the index number shown in the displayed class list in the `classes` tab.
-
-Examples:
-* `listclass` followed by `deleteclass 2` deletes the 2nd class in the TimesTable.
 
 ### Viewing help : `help`
 <hr>
@@ -560,6 +558,8 @@ Action | Format, Examples
 **Clear** | `clear`
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… nok/ n/NOK_NAME p/NOK_PHONE_NUMBER e/NOK_EMAIL a/NOK_ADDRESS` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com a/311, Clementi Ave 2, #02-25 `
 **Add class** | `addclass cn/CLASS NAME ct/CLASS_TIMING r/HOURLY_RATE l/LOCATION` <br> e.g., `addclass cn/Sec 4 A Maths ct/mon 11:30-13:30 r/70 l/Nex Tuition Center`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete class** | `deleteclass INDEX` <br> e.g., `deleteclass 2`
 **Add to class** | `addtoclass CLASS_INDEX STUDENT_INDEX…` <br> e.g., `addtoclass 1 1 2 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [nok/ [n/NOK_NAME] [p/NOK_PHONE] [e/NOK_EMAIL] [a/NOK_ADDRESS]]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Edit class** | `editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]` <br> e.g., `editclass 1 ct/wed 15:00-17:00`
@@ -568,13 +568,11 @@ Action | Format, Examples
 **Find name** | `findname NAME, [MORE_NAMES]` <br> e.g., `find Stuart`
 **Find class** | `findclass CLASS_TIMING…` <br> e.g., `findclass mon 11:00-12:00`
 **Find class name** | `findclassname CLASS_NAME…` <br> e.g., `findclassname math`
-**Find tag** | `findtag TAG, [MORE_TAGS]` <br> e.g., `findtag  math, physics`
+**Find tag** | `findtag KEYWORD, [MORE_KEYWORDS]` <br> e.g., `findtag  math, physics`
 **View** | `view TAB_TO_VIEW` <br> e.g., `view timetable`
 **Select class** | `class CLASS_INDEX` <br> e.g., `class 1`
 **List** | `list`
 **List class** | `listclass`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Delete class** | `deleteclass INDEX` <br> e.g., `deleteclass 2`
 **Help** | `help`
 **Exit** | `exit`
 
