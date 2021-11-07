@@ -32,10 +32,10 @@ Given below are my contributions to the project.
       * Pull requests: [\#104](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/104), [\#273](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/273)
 
 
-* **New Feature**: Updated the behaviour of the `findname` and `findtag` command to support partial matches
-  and to allow for multi-word searches 
-    * What it does: Changed the functionality of the two `find` commands for students to support more natural use cases.
-    * Justification: The different types of `find` commands needs different logic as what the user will want to do varies.
+* **New Feature**: Updated the behaviour of the `findname` and `findtag` command to support more natural use cases.
+    * What it does: Changed the functionality of the two `find` commands for students to support partial matches
+      and to allow for multi-word searches.
+      * Justification: The different types of `find` commands needs different logic as what the user will want to do varies.
       For name searches, users would often want to search for first name together with last name. As such, the command should treat
       the multi-word keyword as a single sequence. For the `findtag` command, users might search for just `math` and expect to find
       all tags that contain math. As such, partial matching is required.
@@ -61,6 +61,7 @@ Given below are my contributions to the project.
         * Added section for location field. ([\#37](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/37))
         * Updated behavior for find features. ([\#145](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/145))
         * Update UG and examples for findname and findtag. ([\#163](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/163))
+        * Added section for proposed feature of invoice generation. ([\#323](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/323))
     * Developer Guide:
         * Updated NFRs section to include relevant information. ([\#12](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/12))
         * Added implementation details of the `removefromclass` feature. Added UML diagrams for the command. ([\#82](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/82), [\#301](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/301))
