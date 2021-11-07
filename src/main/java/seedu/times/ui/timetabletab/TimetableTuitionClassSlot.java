@@ -4,7 +4,6 @@ import java.time.temporal.ChronoUnit;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import seedu.times.model.tuitionclass.ClassTiming;
 import seedu.times.model.tuitionclass.TuitionClass;
 
 // Solution below adapted from

@@ -146,8 +146,6 @@ public class ClassTiming implements Comparable<ClassTiming> {
      * @return A String array consisting of the start time at index 0 and end time at index 1.
      */
     private static String[] splitTiming(String ct) {
-        assert isValidClassTiming(ct);
-
         String[] ctSplit = ct.split(" ");
         String startEndTime = ctSplit[1];
         return startEndTime.split("-");
@@ -161,8 +159,6 @@ public class ClassTiming implements Comparable<ClassTiming> {
      * @throws ParseException if ct does not start at the hour or half hour mark.
      */
     private static LocalTime parseStartTime(String ct) throws ParseException {
-        assert isValidClassTiming(ct);
-
         String[] timePart = splitTiming(ct);
         String startTime = timePart[0];
         String startTimeMinutes = startTime.split(":")[1];
@@ -182,8 +178,6 @@ public class ClassTiming implements Comparable<ClassTiming> {
      * @throws ParseException if ct does not start at the hour or half hour mark.
      */
     private static LocalTime parseEndTime(String ct) throws ParseException {
-        assert isValidClassTiming(ct);
-
         String[] timePart = splitTiming(ct);
         String endTime = timePart[1];
         String endTimeMinutes = endTime.split(":")[1];

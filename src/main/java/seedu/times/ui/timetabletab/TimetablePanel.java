@@ -27,13 +27,13 @@ import seedu.times.ui.UiPart;
  */
 public class TimetablePanel extends UiPart<Region> {
     private static final String FXML = "timetableTab/TimetablePanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(TimetablePanel.class);
 
     private static final LocalTime DEFAULT_LATEST_HOUR = LocalTime.parse("18:00",
             DateTimeFormatter.ofPattern("HH:mm"));
     private static final LocalTime DEFAULT_EARLIEST_HOUR = LocalTime.parse("09:00",
             DateTimeFormatter.ofPattern("HH:mm"));
 
+    private final Logger logger = LogsCenter.getLogger(TimetablePanel.class);
 
     @FXML
     private ScrollPane scrollPane;

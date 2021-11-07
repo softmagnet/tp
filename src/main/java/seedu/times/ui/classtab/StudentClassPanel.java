@@ -1,12 +1,9 @@
 package seedu.times.ui.classtab;
 
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.times.commons.core.LogsCenter;
 import seedu.times.model.person.Student;
 import seedu.times.ui.UiPart;
 
