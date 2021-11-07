@@ -3,16 +3,21 @@ package seedu.times.logic.parser;
 import static seedu.times.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.times.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.times.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.times.logic.commands.CommandTestUtil.ADDRESS_DESC_NOK;
 import static seedu.times.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.times.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.times.logic.commands.CommandTestUtil.EMAIL_DESC_NOK;
 import static seedu.times.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.times.logic.commands.CommandTestUtil.INVALID_CLASSTIMING_DESC;
 import static seedu.times.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.times.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.times.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.times.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.times.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.times.logic.commands.CommandTestUtil.NAME_DESC_NOK;
 import static seedu.times.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.times.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.times.logic.commands.CommandTestUtil.PHONE_DESC_NOK;
 import static seedu.times.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.times.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.times.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
@@ -22,11 +27,16 @@ import static seedu.times.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.times.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.times.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.times.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.times.logic.commands.CommandTestUtil.VALID_PREFIX_NOK;
 import static seedu.times.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.times.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.times.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.times.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.times.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.times.model.tag.Tag.MAX_TAG_LENGTH;
+import static seedu.times.model.tag.Tag.MAX_TAG_NUMBER;
+import static seedu.times.model.tag.Tag.MESSAGE_CONSTRAINTS_TOO_LONG;
+import static seedu.times.model.tag.Tag.MESSAGE_CONSTRAINTS_TOO_MANY;
 import static seedu.times.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.times.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.times.testutil.TypicalIndexes.INDEX_THIRD;
@@ -104,6 +114,20 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + INVALID_CLASSTIMING_DESC
                          + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
+
+        // Too many tags
+        String userInput = "1";
+        for (int i = 0; i < MAX_TAG_NUMBER + 1; i++) {
+            userInput += TAG_DESC_FRIEND + i;
+        }
+        assertParseFailure(parser, userInput, MESSAGE_CONSTRAINTS_TOO_MANY);
+
+        // Tag too many characters
+        String invalidTag = " " + PREFIX_TAG;
+        for (int i = 0; i < MAX_TAG_LENGTH + 1; i++) {
+            invalidTag += "A";
+        }
+        assertParseFailure(parser, "1" + invalidTag, MESSAGE_CONSTRAINTS_TOO_LONG);
     }
 
     @Test
