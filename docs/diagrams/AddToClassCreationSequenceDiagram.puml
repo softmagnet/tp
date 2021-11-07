@@ -52,5 +52,4 @@ deactivate AddToClassCommand
 <-- LogicManager: result
 deactivate LogicManager
 
-
 @enduml

@@ -69,7 +69,8 @@ public class AddToClassCommand extends Command {
         ArrayList<Name> namesToAdd = createNameList(studentIndices, lastShownStudentList);
 
         //get class to add to
-        if (lastShownTuitionClassList.size() == 0 || toEditClassIndex.getOneBased() > lastShownTuitionClassList.size()) {
+        if (lastShownTuitionClassList.size() == 0
+                || toEditClassIndex.getOneBased() > lastShownTuitionClassList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
         }
         TuitionClass classToAddTo = lastShownTuitionClassList.get(toEditClassIndex.getZeroBased());
