@@ -319,9 +319,13 @@ The sort command sorts the `ObservableList<Student>` or the `ObservableList<Tuit
 After sorting, the Command sets the view to switch to their respective tabs, so that the user would be able to see the changes.
 
 ### Adding a Student to a class
+Adds an existing student into an existing tuition class.
+
 #### The parser
-`AddToClassCommand` command's parser `AddToClassCommandParser` works in similar way to all parsers and will not be further
-discussed here. The only thing to note is that the parser will only see zero and negative indices as invalid and not 
+`AddToClassCommand` command's parser `AddToClassCommandParser` works by parsing indexes in the user input and 
+generating a `List<Index>` whereby the first index will be for the `TuitionClass` receving the students and the rest 
+of the index being the `Student`s to be added into the `TuitionClass`. The only thing to note is that the parser 
+will only see zero and negative indices as invalid and not 
 out-of-range indices. This is because at the time of parsing, the model is not accessed to check if the indices are
 out-of-range. The reason for this design is to reduce dependency and keep to the single responsibility principle. The 
 job of the parser should be separated from checking in with the model.
@@ -392,14 +396,11 @@ An overview of the process is shown below:
 
 ### Deleting Tuition Class
 To delete a tuition class, the 'deleteclass' command is used.
-The DeleteCommandParser parses the user input to obtain the parameters, which is the class timing of the class to be
-deleted.
-Then, a DeleteCommand is created with the parsed class timing. When the DeleteCommand#execute() is run, the TimesTable
-is searched to find the tuition class to be deleted. If no classes matches the ClassTiming, an exception is thrown.
-Otherwise, the TuitionClass is obtained. The TuitionClass object stores a list of students in the class in the form
-of a list of names. From each name, the respective student is found and the TuitionClass is deleted from the student's
-internal class list.
-Finally, the TuitionClass itself can be removed from the TimesTable's class list.
+The DeleteCommandParser parses the user input to obtain the index of the class to be deleted.
+Then, a DeleteCommand is created with the index of the tuition class to be deleted. When the DeleteCommand#execute() is 
+run, the TimesTable is searched to find the tuition class to be deleted. That tuition class is then deleted from the 
+model.
+Finally, the GUI will switch over to the `classes` tab and the `Students` list in the `classes` tab will be hidden.
 
 A diagram of the procedure is shown below:
 
