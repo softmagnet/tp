@@ -15,10 +15,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("addclass cn/math ct/mon 12:00-13:00 r/50 l/tampines st 15, blk 62, #10-09")
+[-> LogicManager : execute("addclass cn/... ct/... r/.. l/...")
 activate LogicManager
 
-LogicManager -> TimesTableParser : parseCommand("addclass cn/math ct/mon 12:00-13:00 r/50 l/tampines st 15, blk 62, #10-09")
+LogicManager -> TimesTableParser : parseCommand("addclass cn/... ct/... r/.. l/...")
 activate TimesTableParser
 
 create AddClassCommandParser
@@ -28,7 +28,7 @@ activate AddClassCommandParser
 AddClassCommandParser --> TimesTableParser
 deactivate AddClassCommandParser
 
-TimesTableParser -> AddClassCommandParser : parse("cn/math ct/mon 12:00-13:00 r/50 l/tampines st 15, blk 62, #10-09")
+TimesTableParser -> AddClassCommandParser : parse("cn/... ct/... r/.. l/...")
 activate AddClassCommandParser
 
 create StudentNameList
@@ -66,8 +66,10 @@ activate AddClassCommand
 
 AddClassCommand -> Model : addTuitionClass(t)
 activate Model
+deactivate Model
 
-Model --> AddClassCommand
+AddClassCommand -> Model : updateView(TabName.CLASSES)
+activate Model
 deactivate Model
 
 create CommandResult

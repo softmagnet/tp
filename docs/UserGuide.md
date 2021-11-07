@@ -86,7 +86,7 @@ a class or student list)
   changes for students will be shown in both the `Students` tab as well as the `Classes` tab.  
   This means that when students are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag` in the `Classes` tab as well.  
   Likewise, when students are sorted by their names, they will be sorted in the `Classes` tab as well.
-  
+
 * The `list` and `listclass` commands can be used to show the original lists of students and classes respectively.
 
 * Class size will **not** be affected by filtering students (using FindName or FindTag).

@@ -99,8 +99,10 @@ The TimetablePanel is made up of `TimetableDay`, `TimetableHeader`, `TimetableTu
 They represent the day panel on the left, the header at the top with the label and timings, the slots representing the `TuitionClass`es and the empty slots between `TuitionClass`es respectively.
 The TimetablePanel takes in an `ObservableList<TuitionClass>` to build the Timetable.
 
+
 #### Classes UI
 ![Structure of ClassPanel](images/ClassPanelDiagram.png)  
+
 The ClassPanel is made up of a `TuitionClassPanel` and a `StudentClassPanel`.  
 They represent the left and right panels of the GUI respectively.
 `TuitionClassPanel` takes in both an `ObservableList<TuitionClass>` and an `ObservableList<Student>`, while
@@ -251,6 +253,24 @@ implement `Predicate<Student>`, and predicate class for filtering `TuitionClass`
 Each custom predicate class contains a `List` of search strings that would be used to match against the tested items 
 in the search.
 
+### Class Ui feature
+The class Ui feature allows one to see the user's classes and each class' corresponding students. 
+
+#### Implementation
+![Structure of Class Ui](images/ClassPanelDiagram.png)  
+The class diagram for the Class Ui feature as shown in the [ClassUi component](#classpanel-ui) is replicated here for convenience.  
+`TuitionClassPanel` and `StudentClassPanel` are both contained in their respective `StackPane` located below their respective `Label`s.  
+
+![Classes Ui Sequence Diagram.png](images/ClassesUiSequenceDiagram.png)
+
+1. The `MainWindow`'s `fillInnerParts` method creates a new `ClassPanel` using `ObservableList<Student>` and `ObservableList<TuitionClass>` using the methods in `Logic`.
+2. A `StudentClassPanel` and a `TuitionClassPanel` is created using the `ObservableList<Student>` and `ObservableList<TuitionClass>` passed into the `ClassPanel` by the `MainWindow` respectively.
+3. `StudentClassPanel` and `TuitionClassPanel` create their respective cells for each Student/Tuition class present.
+4. `setStudentClassList` for the `TuitionClassPanel` is run by taking in the `ListView<Student>` from the `StudentClassPanel`. This is to render the students in the `StudentClassPanel` in the `TuitionClassPanel` as well. 
+5. Afterwards, when a `TuitionClassCard` is double clicked, the `onMouseClick` method bound to the fxml file in `TuitionClassCard` is called, calling the `selectTuitionClass` method.
+6. The `filtered` method is then run on the `studentList` to return a `newStudentList` which is filtered by all the students belonging to the `tuitionClass`. 
+7. The `tuitionClassListView` is set to the `newStudentList` created and thus rendered.  
+
 ### Timetable feature
 The timetable feature is a feature which displays the user's classes in a visual timetable format.
 
@@ -321,11 +341,42 @@ The sort command sorts the `ObservableList<Student>` or the `ObservableList<Tuit
 After sorting, the Command sets the view to switch to their respective tabs, so that the user would be able to see the changes.
 
 ### Adding a Student to a class
-When adding a student, a Class is automatically created if a class at the same timing doesn't already exist.
-The AddCommandParse parses the user input to obtain the classTiming (denoted by parameter `/ct`), and
-uniquely identifies the class. Afterwards, an AddCommand is created with the `Class` and `Student`, after which
-it checks whether an existing class with the same timing exists and adds the student to the `Class`'s classList
-and if not, adds the student to the new class created.
+Adds an existing student into an existing tuition class.
+
+#### The parser
+`AddToClassCommand` command's parser `AddToClassCommandParser` works by parsing indexes in the user input and 
+generating a `List<Index>` whereby the first index will be for the `TuitionClass` receving the students and the rest 
+of the index being the `Student`s to be added into the `TuitionClass`. The only thing to note is that the parser 
+will only see zero and negative indices as invalid and not 
+out-of-range indices. This is because at the time of parsing, the model is not accessed to check if the indices are
+out-of-range. The reason for this design is to reduce dependency and keep to the single responsibility principle. The 
+job of the parser should be separated from checking in with the model.
+
+#### The command
+The `AddToClassCommand` command follows an index based format and the class contains the `Index` of the class to add
+the new students to and a `List` of `Index` of students to be added. The command's execution is composed of various 
+smaller steps. The steps are listed below:
+1. Check indices are not out-of-range
+2. Generate a list of `Name` to be added to the class
+3. Produce the new student `StudentNameList` based on the class's existing `StudentNameList` and the list of `Name` to
+be added
+4. Creating the right `EditClassDescriptor`
+5. Updating the `Model` with updated `TuitionClass`
+
+The following sequence diagram gives an overview of the execution:
+
+![AddToClass Sequence](images/AddToClassSequenceDiagram.png)
+
+The sequence diagram for the first reference frame from above:
+
+![AddToClass Sequence](images/AddToClassRef1.png)
+
+The sequence diagram for the second reference frame from above:
+
+![AddToClass Sequence](images/AddToClassRef2.png)
+  
+
+
 
 ### Removing Student(s) from a Tuition Class
 #### Overview of command
@@ -367,14 +418,11 @@ An overview of the process is shown below:
 
 ### Deleting Tuition Class
 To delete a tuition class, the 'deleteclass' command is used.
-The DeleteCommandParser parses the user input to obtain the parameters, which is the class timing of the class to be
-deleted.
-Then, a DeleteCommand is created with the parsed class timing. When the DeleteCommand#execute() is run, the TimesTable
-is searched to find the tuition class to be deleted. If no classes matches the ClassTiming, an exception is thrown.
-Otherwise, the TuitionClass is obtained. The TuitionClass object stores a list of students in the class in the form
-of a list of names. From each name, the respective student is found and the TuitionClass is deleted from the student's
-internal class list.
-Finally, the TuitionClass itself can be removed from the TimesTable's class list.
+The DeleteCommandParser parses the user input to obtain the index of the class to be deleted.
+Then, a DeleteCommand is created with the index of the tuition class to be deleted. When the DeleteCommand#execute() is 
+run, the TimesTable is searched to find the tuition class to be deleted. That tuition class is then deleted from the 
+model.
+Finally, the GUI will switch over to the `classes` tab and the `Students` list in the `classes` tab will be hidden.
 
 A diagram of the procedure is shown below:
 
