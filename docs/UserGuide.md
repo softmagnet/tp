@@ -120,6 +120,7 @@ add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… nok/ n/NOK_NAME p/NOK_PHO
 * The command does not allow adding duplicate students - as defined as the student having the same name, ignoring case.
 * `NAME` can have a maximum of 120 characters.
 * `PHONE_NUMBER` has to be between 3-25 numbers.
+* `TAG` can have a maximum of 15 characters per tag, with a maximum of 5 tags.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0).
@@ -270,6 +271,7 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [nok/ [n/NOK_N
       specifying any tags after it.
 * `NAME` can have a maximum of 120 characters.
 * `PHONE_NUMBER` has to be between 3-25 numbers.
+* `TAG` can have a maximum of 15 characters per tag, with a maximum of 5 tags.
 
 Examples (editing student information only):
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the `PHONE` and `EMAIL` of the 1st student to be `91234567` and `johndoe@example.com` respectively.
@@ -571,11 +573,26 @@ After a class, just input the time taught for that class and mark the attendance
 For each student present, TimesTable will take the hourly rate multiplied by the 
 session length for each person present to calculate the amount that each student has to pay.  
 
-The session length is useful when the class length goes beyond the intended length or when the class cuts short.  
+The session length field is useful when the class length goes beyond the intended length or when the class cuts short.  
 
-This information will then be consodidated in an invoice to be generated.
+This information will then be consolidated in an invoice to be generated.
 
-<bernard's section>
+When you want to generate a new invoice, simply use the 'createinvoice' command. Invoices will be generated for all 
+students of the selected class. These invoices will use the session attendances recorded since the last invoice, generating
+a table with the relevant information such as session date, session length, hourly rate, student name, and so on. You will
+also be able to set the due date for the invoice. 
+
+An example of the invoice generated is shown below.
+
+![InvoiceExample](images/InvoiceExample.png)
+
+With this invoice generation feature, you will easily be able to charge the correct amount to your clients
+and you would also not have to worry about providing evidence. TimesTable will take care of it for you.
+
+In addition to invoice generation, we are also working on an invoice management feature that will allow you to track
+the status of each invoice. You will be able to mark the invoices as paid, and archive them. TimesTable will also
+alert you once the due date for any invoice has passed. You can simply let TimesTable keep track of all payments for you.
+
 
 If there are any other proposed features, please submit an issue via our GitHub over [here](https://github.com/AY2122S1-CS2103T-F11-1/tp/issues) and we'll look into it!
 
