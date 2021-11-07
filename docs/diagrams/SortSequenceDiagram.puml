@@ -71,14 +71,14 @@ activate CommandResult
 CommandResult --> SortCommand
 deactivate CommandResult
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-CommandResult -[hidden]-> TimesTableParser
-destroy CommandResult
+'CommandResult -[hidden]-> TimesTableParser
+'destroy CommandResult
 
 SortCommand --> LogicManager : result
 deactivate SortCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-SortCommandParser -[hidden]-> TimesTableParser
-destroy SortCommand
+'SortCommandParser -[hidden]-> TimesTableParser
+'destroy SortCommand
 
 [<--LogicManager
 deactivate LogicManager

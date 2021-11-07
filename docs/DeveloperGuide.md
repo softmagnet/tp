@@ -283,7 +283,7 @@ The image below shows the respective parts of the `TimetablePanel`:
 * The light blue box represents the `TimetableTuitionClassSlot`.
 ![Timetable annotation](images/TimetableAnnotation.png)
 
-`TimetablePanel` uses an `ObservableList<TuitionClass>` to build the Timetable UI in the timetable tab through the `build()` method in `TimetablePanel` which takes in an `ObservableList<TuitionClass>`.
+`TimetablePanel` uses an `ObservableList<TuitionClass>` to build the Timetable UI in the timetable tab through `TimetablePanel#build()` which takes in an `ObservableList<TuitionClass>`.
 `TimetablePanel` builds the Timetable UI by sections, starting from the `TimetableHeader`s, followed by the `TimetableDay`s, and finally the `TimetableTuitionClassSlot`s and `TimetableEmptySlot`s simultaneously. 
 It sorts the classes in order of class timing (earliest class first) before building the `TimetableTuitionClassSlot`s and `TimetableEmptySlot`s. 
 
