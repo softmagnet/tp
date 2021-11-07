@@ -193,6 +193,29 @@ addtoclass 1 1 2 3
 Adds the 1st, 2nd and 3rd student in the displayed student list in the `students` tab into the 1st class in the
 displayed class list in the `classes` tab, `size` of the class will increase by 3.
 
+### Removing students from a class: `removefromclass`
+<hr>
+
+Removes a single or multiple students from an existing class.
+
+Format:
+```
+removefromclass CLASS_INDEX STUDENT_INDEX...
+```
+
+* Removes a non-zero number of existing students from an existing class.
+* `CLASS_INDEX` is the index number of the class in the displayed class list in the `classes` tab to have its students removed from.
+* `STUDENT_INDEX...` are the index number(s) of the students shown in the displayed student list of the class to remove from in the `classes` tab, who are
+  to be removed from the class.
+
+Example:
+```
+removefromclass 1 1 2 3
+```
+Removes the 1st, 2nd and 3rd student in the displayed student list of the 1st class in the `classes` tab, causing the
+`size` of 1st class to decrease by 3.
+
+
 ### Editing a student : `edit`
 <hr>
 
@@ -284,25 +307,14 @@ Class size will **not** be affected by filtering students (using FindName or Fin
 Finds students whose `NAME` contain any of the given keywords.  
 Note that you have to run `list` to display all the students again.
 
-<div markdown="block" class="alert alert-info">
-For commands that narrow down the list of `students` (eg. FindName, FindTag, Sort by name), the displayed
-  changes for students will be shown in both the `Student` tab as well as the `Class` tab.  
-This means that when `students` are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag in the `Class` tab as well.  
-Likewise, when `students` are sorted by their names, they will be sorted in the `Class` tab as well.
-
-The `list` and `listclass` commands can be used to show the original lists of students and classes respectively.
-
-Class size will **not** be affected by filtering students (using FindName or FindTag).
-</div>
-
 Format:
 ```
-findname KEYWORD, [MORE_KEYWORDS]
+findname NAME, [MORE_NAMES]
 ```
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`.
 * The keywords are split by commas. e.g. `findname alex lim, bernice yu`
-* Only the `NAME` is searched.
+* Only the student's `NAME` is searched.
 * Partial matches will still be matched e.g. `Han` will match `Hans`.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `findname alex lim, bernice yu` will return `Alex Lim`, `Bernice Yu`.
@@ -315,21 +327,33 @@ Examples:
 
   ![result for 'findname alex david'](images/findAlexDavidResult.png)
 
+<div markdown="block" class="alert alert-info">
+For commands that narrow down the list of `students` (eg. FindName, FindTag, Sort by name), the displayed
+  changes for students will be shown in both the `Student` tab as well as the `Class` tab.  
+This means that when `students` are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag in the `Class` tab as well.  
+Likewise, when `students` are sorted by their names, they will be sorted in the `Class` tab as well.
+
+The `list` and `listclass` commands can be used to show the original lists of students and classes respectively.
+
+Class size will **not** be affected by filtering students (using FindName or FindTag).
+</div>
+
 ### Locating class by class timing : `findclass`
 <hr>
 
 Finds a class whose `CLASS_TIMING` matches the given keyword.  
 Note that you have to run `listclass` to display all the classes again.
 
-Format: `findclass KEYWORD...`
+Format: `findclass CLASS_TIMING…`
 
 <!---todo fill in inner working--->
 
-* The valid keywords for this command are limited to the following types:
+* The valid keywords for `CLASS_TIMING` are limited to the following types:
     1. 3 letter abbreviation for day of the week e.g. `Mon`, `Tue`, etc.
     2. Time expressed in HH:MM-HH:MM format   e.g. `11:30-12:30`, `15:00-16:00`, etc.
-* Either a single keyword or two keywords of different types should be provided or no classes would be returned
-  because a single class can't happen at two different times.
+* Either a single keyword or two keywords of different types should be provided otherwise no classes would be returned.
+* Multiple keywords of the same type would not return any classes because the command finds classes which contain both timings, and 
+    it is currently not possible to have a class with two different timings (ie a class that occurs on both Monday and Tuesday or both `10:00-12:00` and `17:00-19:00`)
     * Important clarifications: In timestable, class refers to a single session of a type of class. E.g. A Physics class
       might have multiple sessions, but each session can only occur at one time.
 * If two keywords are entered, then the class returned would be the one that match all the keywords
@@ -340,7 +364,7 @@ Examples:
     * `findclass mon` returns all classes on Monday
     * `findclass 10:00-12:00` returns all classes scheduled for `10:00 to 12:00` no matter which day of the week it belongs
       to
-2. two keywords
+2. Two keywords
     * `findclass mon 11:00-12:00` returns the exact class on `Mon at 11:00-12:00`.
     * `findclass tue 11:00-12:00` returns the exact class on `Tue at 11:00-12:00`.
    
@@ -353,7 +377,7 @@ Note that you have to run `listclass` to display all the classes again.
 
 Format:
 ```
-findclassname KEYWORD...
+findclassname CLASS_NAME…
 ```
 <!---todo fill in inner working--->
 
@@ -376,7 +400,7 @@ Note that you have to run `list` to display all the students again.
 
 Format:
 ```
-findtag KEYWORD, [MORE_KEYWORDS]
+findtag TAG, [MORE_TAGS]
 ```
 
 * The search is case-insensitive. e.g `math` will match `Math`.
@@ -387,6 +411,12 @@ findtag KEYWORD, [MORE_KEYWORDS]
 * Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `findtag math, physics` will return students with the `Math` `TAG` but no `Physics` `TAG`,
   students with only the`Physics` `TAG` but no `Math` `TAG`, and students with both `TAG`s.
+
+Examples:
+* `findtag math` returns `Alex Yeoh` with the `A Math` `TAG` and `John Doe` with the `C Math` `TAG` in both `Students` and `Classes` tab.
+* `findtag math, physics` returns `Alex Yeoh` with the `A Math` and `Biology` `TAG`s in both `Students` and `Classes` tab.
+  <br>
+
 <div markdown="block" class="alert alert-info">
 For commands that narrow down the list of `students` (eg. FindName, FindTag, Sort by name), the displayed
   changes for students will be shown in both the `Student` tab as well as the `Class` tab.  
@@ -398,15 +428,10 @@ The `list` and `listclass` commands can be used to show the original lists of st
 Class size will **not** be affected by filtering students (using FindName or FindTag).
 </div>
 
-Examples:
-* `findtag math` returns `Alex Yeoh` with the `A Math` `TAG` and `John Doe` with the `C Math` `TAG` in both `Students` and `Classes` tab.
-* `findtag math, physics` returns `Alex Yeoh` with the `A Math` and `Biology` `TAG`s in both `Students` and `Classes` tab.
-  <br>
-
 ### Viewing of different tabs: `view`
 <hr>
 
-Views an existing tab in Timestable without the need to use the mouse to click.
+Views an existing tab in the TimesTable without the need to use the mouse to click.
 
 Format:
 ```
@@ -421,12 +446,15 @@ Examples:
 ### Selecting of classes: `class`
 <hr>
 
-Selects a class in the class tab and displays its students without the need to use the mouse to click.
+Selects a class in the class tab and displays its students without the need to use the mouse to double click the respective class.
 
 Format:
 ```
 class CLASS_INDEX   
 ```
+
+* Selected class will not be highlighted in the same way as when you click on a class using the mouse.
+* `CLASS_INDEX` must be an index of a class that exists in the displayed class list.
 
 Examples:
 * `class 1` selects the class with `CLASS_INDEX` of `1` and displays its students in the class tab.
@@ -445,29 +473,6 @@ Shows a list of all classes in the Class tab.
 
 Format: `listclass`
 
-### Removing students from a class: `removefromclass`
-<hr>
-
-Removes a single or multiple students from an existing class.
-
-Format:
-```
-removefromclass CLASS_INDEX STUDENT_INDEX...
-```
-
-* This command removes any number of existing students from an existing class.
-* `CLASS_INDEX` is the index number of the class in the displayed class list in the `classes` tab, which will be
-  removing the students.
-* `STUDENT_INDEX...` are the index number/s of the students shown in the displayed student list of the class to remove from in the `classes` tab, these students are
-  to be removed from the class.
-
-Example:
-```
-removefromclass 1 1 2 3
-```
-Removes the 1st, 2nd and 3rd student in the displayed student list of the 1st class in the `classes` tab with the 
-`size` decreasing by 3.
-
 ### Deleting a student : `delete`
 <hr>
 
@@ -479,7 +484,6 @@ delete INDEX
 ```
 * Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the TimesTable.
@@ -497,7 +501,6 @@ deleteclass INDEX
 
 * Deletes the class at the specified `INDEX`.
 * The index refers to the index number shown in the displayed class list in the `classes` tab.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `listclass` followed by `deleteclass 2` deletes the 2nd class in the TimesTable.
@@ -506,7 +509,6 @@ Examples:
 <hr>
 
 Shows a message explaining how to access the help page.
-
 ![help message](images/helpMessage.png)
 
 Format: `help`
@@ -521,7 +523,7 @@ Format: `exit`
 ### Saving the data
 <hr>
 
-Timestable data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Timestable data is saved in the hard disk automatically in the `data` folder present in the same directory as `timestable.jar` after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 <hr>
@@ -555,31 +557,26 @@ If your changes to the data file makes its format invalid, Timestable will disca
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Add class** | `addclass cn/CLASS NAME ct/CLASS_TIMING r/HOUELY_RATE l/LOCATION` <br> e.g., `addclass cn/Sec 4 A Maths ct/mon 11:30-13:30 r/70 l/Nex Tuition Center`
-**Add to class** | `addtoclass CLASS_INDEX STUDENT_INDEX...` <br> e.g., `addtoclass 1 1 2 3`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Delete class** | `deleteclass INDEX` <br> e.g., `deleteclass 2`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… nok/ n/NOK_NAME p/NOK_PHONE_NUMBER e/NOK_EMAIL a/NOK_ADDRESS` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com a/311, Clementi Ave 2, #02-25 `
+**Add class** | `addclass cn/CLASS NAME ct/CLASS_TIMING r/HOURLY_RATE l/LOCATION` <br> e.g., `addclass cn/Sec 4 A Maths ct/mon 11:30-13:30 r/70 l/Nex Tuition Center`
+**Add to class** | `addtoclass CLASS_INDEX STUDENT_INDEX…` <br> e.g., `addtoclass 1 1 2 3`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [nok/ [n/NOK_NAME] [p/NOK_PHONE] [e/NOK_EMAIL] [a/NOK_ADDRESS]]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Edit class** | `editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]` <br> e.g., `editclass 1 ct/wed 15:00-17:00`
-**Exit** | `exit`
-**Find name** | `findname KEYWORD [MORE_KEYWORDS]` <br> e.g., `find Stuart`
-**Find class** | `findclass CLASS_TIMING` <br> e.g., `findclass mon 11:00-12:00`
-**Find class name** | `findclassname KEYWORD` <br> e.g., `findclassname math`
-**Find tag** | `findtag KEYWORD, [MORE_KEYWORDS]` <br> e.g., `findtag  math, physics`
-**Help** | `help`
+**Remove from class** | `removefromclass CLASS_INDEX STUDENT_INDEX...` <br> e.g., `removefromclass 1 1 2 3`
+**Sort** | `sort PARAMETER_TO_SORT_BY DIRECTION_OF_SORT` <br> e.g., `sort name asc`
+**Find name** | `findname NAME, [MORE_NAMES]` <br> e.g., `find Stuart`
+**Find class** | `findclass CLASS_TIMING…` <br> e.g., `findclass mon 11:00-12:00`
+**Find class name** | `findclassname CLASS_NAME…` <br> e.g., `findclassname math`
+**Find tag** | `findtag TAG, [MORE_TAGS]` <br> e.g., `findtag  math, physics`
+**View** | `view TAB_TO_VIEW` <br> e.g., `view timetable`
+**Select class** | `class CLASS_INDEX` <br> e.g., `class 1`
 **List** | `list`
 **List class** | `listclass`
-**Remove from class** | `removefromclass CLASS_INDEX STUDENT_INDEX...` <br> e.g., `removefromclass 1 1 2 3`
-**Select class** | `class` <br> e.g., `class 1`
-**Sort** | `findclassname PARAMETER_TO_SORT_BY DIRECTION_OF_SORT` <br> e.g., `sort name asc`
-**View** | `view TAB_TO_VIEW` <br> e.g., `view timetable`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete class** | `deleteclass INDEX` <br> e.g., `deleteclass 2`
+**Help** | `help`
+**Exit** | `exit`
 
 ## Glossary
-- NOK: Next-of-kin. Refers to the student's guardian, parent or perhaps close friend to be contacted regarding admin matters like payment. 
-- Parameters: Inputs in a command that are before the `/`. 
-- Arguments: Inputs in a command after the `/`.  
-  e.g `n/NAME` (`/n` is the parameter for name, `NAME` is the argument),   
-  e.g `a/ADDRESS` (`/a` is the parameter for name, `ADDRESS` is the argument) etc.
-
+- NOK: Next-of-kin. Refers to the student's guardian, parent or perhaps close friend to be contacted regarding admin matters like payment.
