@@ -95,7 +95,7 @@ They represent the day panel on the left, the header at the top with the label a
 The TimetablePanel takes in an `ObservableList<TuitionClass>` to build the Timetable.
 
 #### ClassPanel UI
-![Structure of ClassPanel](images/ClassPanelUiClassDiagram.png)  
+![Structure of ClassPanelUi](images/ClassPanelUiClassDiagram.png)  
 The ClassPanel is made up of a `TuitionClassPanel` and a `StudentClassPanel`.  
 They represent the left and right panels of the GUI respectively.
 `TuitionClassPanel` takes in both an `ObservableList<TuitionClass>` and an `ObservableList<Student>`, while
@@ -233,12 +233,12 @@ implement `Predicate<Student`, and predicate class for filtering `TuitionClass` 
 Each custom predicate class contains a `List` of search strings that would be used to match against the tested items 
 in the search.
 
-### Class Panel feature
-The class panel feature allows one to see the user's classes and each class' corresponding students. 
+### Class Ui feature
+The class Ui feature allows one to see the user's classes and each class' corresponding students. 
 
 #### Implementation
-![Structure of ClassPanel](images/ClassPanelUiClassDiagram.png)  
-The class diagram for Class Panel as shown in the [ClassesUI component](#classpanel-ui) is replicated here for convenience.  
+![Structure of Class Ui](images/ClassPanelUiClassDiagram.png)  
+The class diagram for the Class Ui feature as shown in the [ClassUi component](#classpanel-ui) is replicated here for convenience.  
 `TuitionClassPanel` and `StudentClassPanel` are both contained in their respective `StackPane` located below their respective `Label`s.  
 
 ![Classes Ui Sequence Diagram.png](images/ClassesUiSequenceDiagram.png)
@@ -248,8 +248,8 @@ The class diagram for Class Panel as shown in the [ClassesUI component](#classpa
 3. `StudentClassPanel` and `TuitionClassPanel` create their respective cells for each Student/Tuition class present.
 4. `setStudentClassList` for the `TuitionClassPanel` is run by taking in the `ListView<Student>` from the `StudentClassPanel`. This is to render the students in the `StudentClassPanel` in the `TuitionClassPanel` as well. 
 5. Afterwards, when a `TuitionClassCard` is double clicked, the `onMouseClick` method bound to the fxml file in `TuitionClassCard` is called, calling the `selectTuitionClass` method.
-6. The `filtered` method is run on the `studentList` to return a `newStudentList` which is filtered with only all the students who belong to the `tuitionClass` 
-7. The `tuitionClassListView` is set to the `newStudentList` created and thus it is rendered.  
+6. The `filtered` method is then run on the `studentList` to return a `newStudentList` which is filtered by all the students belonging to the `tuitionClass`. 
+7. The `tuitionClassListView` is set to the `newStudentList` created and thus rendered.  
 
 ### Timetable feature
 The timetable feature is a feature which displays the user's classes in a visual timetable format.
