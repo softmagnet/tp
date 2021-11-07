@@ -106,7 +106,7 @@ The TimetablePanel takes in an `ObservableList<TuitionClass>` to build the Timet
 The ClassPanel is made up of a `TuitionClassPanel` and a `StudentClassPanel`.  
 They represent the left and right panels of the GUI respectively.
 `TuitionClassPanel` takes in both an `ObservableList<TuitionClass>` and an `ObservableList<Student>`, while
-`StudentClassPanel` takes in only a `ObservableList<Student>`.  
+`StudentClassPanel` takes in only an `ObservableList<Student>`.  
 `TuitionClassPanel` requires an `ObservableList<Student>` for the purpose of filtering the Student List based on the selected `TuitionClass`. 
 ![img.png](images/ClassPanelImage.png)  
 `TuitionClassPanel` and `StudentClassPanel` both contain their respective `Card`s for each element in their respective `ObservableList`.   
@@ -212,6 +212,96 @@ Classes used by multiple components are in the `seedu.times.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Class Ui feature
+The class Ui feature allows one to see the user's classes and each class' corresponding students.
+
+#### Implementation
+![Structure of Class Ui](images/ClassPanelDiagram.png)  
+The class diagram for the Class Ui feature as shown in the [ClassUi component](#classes-ui) is replicated here for convenience.  
+`TuitionClassPanel` and `StudentClassPanel` are both contained in their respective `StackPane` located below their respective `Label`s.
+
+![Classes Ui Sequence Diagram.png](images/ClassesUiSequenceDiagram.png)
+1. `MainWindow#fillInnerParts()` creates a new `ClassPanel` using the `ObservableList<Student>` and the `ObservableList<TuitionClass>` from `Logic`.
+2. A `StudentClassPanel` and a `TuitionClassPanel` is created using the `ObservableList<Student>` and `ObservableList<TuitionClass>` passed into `ClassPanel` by `MainWindow` respectively.
+3. `StudentClassPanel` and `TuitionClassPanel` create their respective cells for each Student/Tuition class present.
+4. `TuitionClassPanel#setStudentClassList()` is run by taking in the `ListView<Student>` from the `StudentClassPanel`. This is to render the students in the `StudentClassPanel` in the `TuitionClassPanel` as well.
+5. Afterwards, when a `TuitionClassCard` is double clicked, `TuitionClassCard#onMouseClick()` bound to the fxml file is called, calling `TuitionClassCard#selectTuitionClass()`.
+6. The `filtered` method is then run on the `studentList` to return a `newStudentList` which is filtered by all the students belonging to the `tuitionClass`.
+7. The `tuitionClassListView` is set to the `newStudentList` created and thus rendered.
+
+### Timetable feature
+The timetable feature is a feature which displays the user's classes in a visual timetable format.
+
+#### Implementation
+The class diagram for Timetable as shown in the [TimetableUI component](#timetable-ui) is replicated here for convenience.
+![Timetable Class Diagram](images/TimetableDiagram.png)
+The image below shows the respective parts of the `TimetablePanel`:
+* The green box represents the `TimetableDay`, and there are 7 `TimetableDay` parts to represent the 7 days of the week.
+* The yellow box represents the `TimetableHeader`, with the box all the way at the left with the label "Time Slots" representing the `TimetableHeaderLabel`, and the others representing the `TimetableHeaderTiming`. There is always 1 `TimetableHeaderLabel` but can have many `TimetableHeaderTiming` parts depending on the earliest start time of the week and latest end time.
+* The purple box represents the `TimetableEmptySlot`.
+* The light blue box represents the `TimetableTuitionClassSlot`.
+  ![Timetable annotation](images/TimetableAnnotation.png)
+
+
+
+[comment]: <> (Due to the limited size of the application's window, the Timetable UI would adjust itself and starts the days of the Timetable UI with the)
+
+[comment]: <> (earliest start timing and ends with the latest end timing so that the timetable is not cluttered. There is a time panel at the top to indicate what)
+
+The sequence diagrams below illustrate how the Timetable UI is built.
+
+![Timetable Overall Sequence Diagram](images/TimetableUiSequenceDiagram.png)
+
+![Timetable Header Sequence Diagram](images/TimetableUiHeaderSequenceDiagram.png)
+
+![Timetable Day Sequence Diagram](images/TimetableUiDaySequenceDiagram.png)
+
+![Timetable Slot Sequence Diagram](images/TimetableUiSlotSequenceDiagram.png)
+
+1. `MainWindow#fillInnerParts()` creates a new `TimetablePanel` using the `ObservableList<TuitionClass>` from `Logic`.
+2. `TimetablePanel#build()` is called in the constructor of `TimetablePanel` to build the Timetable Ui.
+3. `TimetablePanel#build()` starts building the Timetable Ui by first calling `TimetablePanel#buildHeader()` which takes in the `ObservableList<TuitionClass>`.
+4. Based on the `Timetable#buildHeader()` reference frame above, it builds the `TimetableHeaderLabel` first, followed by the `TimetableHeaderTiming`s, starting from the earliest start time of the `ObservableList<TuitionClass>` until the latest end time of the `ObservableList<TuitionClass>` in 30 minutes interval.
+5. After `TimetablePanel#buildHeader()` is called, it would call `TimetablePanel#buildDays()`, which builds 7 `TimetableDay` objects to represent the 7 days of the week.
+6. Finally, the `TimetablePanel#buildClasses()` is called, which takes in the same `ObservableList<TuitionClass>` as step 3. It iterates through the _sorted_ `ObservableList<TuitionClass>`, building a `TimetableTuitionClassSlot` for each of the `TuitionClass`, and placing `TimetableEmptySlot`s in between the `TimetableTuitionClassSlot`.
+7. A listener is attached to the `ObservableList<TuitionClass>` which updates the Timetable UI whenever there are changes to the `ObservableList<TuitionClass>`,
+   such as when a new `TuitionClass` is added, or an existing `TuitionClass` is edited from the `ObservableList<TuitionClass>`.
+
+[comment]: <> (![Timetable Overall Activity Diagram]&#40;images/BuildTimetableOverallDiagram.png&#41;)
+
+
+[comment]: <> (![TimetableHeader Activity Diagram]&#40;images/BuildTimetableHeaderActivityDiagram-Activity__Build_TimetableHeader.png&#41;)
+
+
+[comment]: <> (![TimetableDay Activity Diagram]&#40;images/BuildTimetableDayActivityDiagram-Activity__Build_TimetableDay.png&#41;)
+
+
+[comment]: <> (![TimetableTuitionClassSlot Activity Diagram]&#40;images/BuildTimetableTuitionClassSlotsActivityDiagram-Activity__Build_TimetableTuitionClassSlots.png&#41;)
+
+
+[comment]: <> (![Find earliest start hour and latest end hour Activity Diagram]&#40;images/FindEarliestAndLatestHourActivityDiagram-Activity__Find_earliest_start_hour_and_latest_end_hour.png&#41;)
+
+### Observer Pattern
+The Observer Pattern was facilitated by the `CommandObserver` who represents the `Observer`, who observes the abstract `Command` class.
+
+#### Implementation
+The class diagram below shows how we implemented the structure of the Observer Pattern.
+
+![Command Observer Pattern](images/CommandObserverPattern.png)
+
+The `MainWindow` from `UI` component implements both the `Ui` and `CommandObserver` interface as it plays the role of the `Ui` as well as a `CommandObserver`. The `MainWindow` observes the `Command` class, who calls `CommandObserver#updateView()`, `CommandObserver#updateClass()` and `CommandObserver#hideTuitionClassList()` depending on what Command `XYZCommand` is. 
+
+For eg, the `ViewComand` calls `CommandObserver#updateView()` to set the displayed tab of the `CommandObserver` to the tab specified. Additionally, the `AddToClassCommand` calls both `CommandObserver#updateClass()` and `CommandObserver#updateView()` to update the class details and updates the view to the `Classes` tab when we execute the `AddToClassCommand`.
+
+#### Design Considerations
+1. (Bad) After each command call, set a variable in the `CommandResult` to be the value of the Tab to change to, or a boolean value to see if we need to update the class. The `MainWindow` would then check the variables in `CommandResult` after each execution, and update the tab or class accordingly.
+    * This is a very bad and inefficient method as the `MainWindow` would have to constantly be checking the `CommandResult` after every `Command`.
+    * With the addition of new variables in `CommandResult`, it has the potential to introduce more bugs and make the code more unreadable. Additionally, other classes wouold also be able to access these variables accidentally, leading to unwanted consequences.
+    
+2. (Good) Follow the Observer Pattern, where we register the `MainWindow` as an `Observer` to observe the abstract `Command` class, and will only gets updated when necessary.
+    * This is a more efficient method as the `MainWindow` does not have to always check the `CommandResult` after each execution.
+    * No new variables are needed to be introduced into the `CommandResult`, keeping our code neater and less bug prone.
+
 ### `add` and `edit` commands to include next-of-kin `nok`
 This was challenging because the current `Parser` is only able to parse contents _between_ tags, but not encompass other tags within recursively.  
 For example, `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3
@@ -253,63 +343,6 @@ implement `Predicate<Student>`, and predicate class for filtering `TuitionClass`
 Each custom predicate class contains a `List` of search strings that would be used to match against the tested items 
 in the search.
 
-### Class Ui feature
-The class Ui feature allows one to see the user's classes and each class' corresponding students. 
-
-#### Implementation
-![Structure of Class Ui](images/ClassPanelDiagram.png)  
-The class diagram for the Class Ui feature as shown in the [ClassUi component](#classpanel-ui) is replicated here for convenience.  
-`TuitionClassPanel` and `StudentClassPanel` are both contained in their respective `StackPane` located below their respective `Label`s.  
-
-![Classes Ui Sequence Diagram.png](images/ClassesUiSequenceDiagram.png)
-1. The `MainWindow`'s `fillInnerParts` method creates a new `ClassPanel` using `ObservableList<Student>` and `ObservableList<TuitionClass>` using the methods in `Logic`.
-2. A `StudentClassPanel` and a `TuitionClassPanel` is created using the `ObservableList<Student>` and `ObservableList<TuitionClass>` passed into the `ClassPanel` by the `MainWindow` respectively.
-3. `StudentClassPanel` and `TuitionClassPanel` create their respective cells for each Student/Tuition class present.
-4. `setStudentClassList` for the `TuitionClassPanel` is run by taking in the `ListView<Student>` from the `StudentClassPanel`. This is to render the students in the `StudentClassPanel` in the `TuitionClassPanel` as well. 
-5. Afterwards, when a `TuitionClassCard` is double clicked, the `onMouseClick` method bound to the fxml file in `TuitionClassCard` is called, calling the `selectTuitionClass` method.
-6. The `filtered` method is then run on the `studentList` to return a `newStudentList` which is filtered by all the students belonging to the `tuitionClass`. 
-7. The `tuitionClassListView` is set to the `newStudentList` created and thus rendered.  
-
-### Timetable feature
-The timetable feature is a feature which displays the user's classes in a visual timetable format.
-
-#### Implementation
-The class diagram for Timetable as shown in the [TimetableUI component](#timetable-ui) is replicated here for convenience.
-![Timetable Class Diagram](images/TimetableDiagram.png)
-The image below shows the respective parts of the `TimetablePanel`:
-* The green box represents the `TimetableDay`, and there are 7 `TimetableDay` parts to represent the 7 days of the week. 
-* The yellow box represents the `TimetableHeader`, with the box all the way at the left with the label "Time Slots" representing the `TimetableHeaderLabel`, and the others representing the `TimetableHeaderTiming`. There is always 1 `TimetableHeaderLabel` but can have many `TimetableHeaderTiming` parts depending on the earliest start time of the week and latest end time.
-* The purple box represents the `TimetableEmptySlot`.
-* The light blue box represents the `TimetableTuitionClassSlot`.
-![Timetable annotation](images/TimetableAnnotation.png)
-
-`TimetablePanel` uses an `ObservableList<TuitionClass>` to build the Timetable UI in the timetable tab through `TimetablePanel#build()` which takes in an `ObservableList<TuitionClass>`.
-`TimetablePanel` builds the Timetable UI by sections, starting from the `TimetableHeader`s, followed by the `TimetableDay`s, and finally the `TimetableTuitionClassSlot`s and `TimetableEmptySlot`s simultaneously. 
-It sorts the classes in order of class timing (earliest class first) before building the `TimetableTuitionClassSlot`s and `TimetableEmptySlot`s. 
-
-A listener is attached to the `ObservableList<TuitionClass>` which updates the Timetable UI whenever there are changes to the `ObservableList<TuitionClass>`,
-such as when a new class is added, or an existing class is edited from the `ObservableList<TuitionClass>`.
-
-[comment]: <> (Due to the limited size of the application's window, the Timetable UI would adjust itself and starts the days of the Timetable UI with the)
-
-[comment]: <> (earliest start timing and ends with the latest end timing so that the timetable is not cluttered. There is a time panel at the top to indicate what)
-
-The activity diagrams below illustrate how the Timetable UI is built.
-
-![Timetable Overall Activity Diagram](images/BuildTimetableOverallDiagram.png)
-
-
-![TimetableHeader Activity Diagram](images/BuildTimetableHeaderActivityDiagram-Activity__Build_TimetableHeader.png)
-
-
-![TimetableDay Activity Diagram](images/BuildTimetableDayActivityDiagram-Activity__Build_TimetableDay.png)
-
-
-![TimetableTuitionClassSlot Activity Diagram](images/BuildTimetableTuitionClassSlotsActivityDiagram-Activity__Build_TimetableTuitionClassSlots.png)
-
-
-![Find earliest start hour and latest end hour Activity Diagram](images/FindEarliestAndLatestHourActivityDiagram-Activity__Find_earliest_start_hour_and_latest_end_hour.png)
-
 ### View feature
 The `Students` tab, `Classses` tab and `Timetable` tab, are parts of the [`UI Component`](#ui-component). 
 Navigation between these tabs without the mouse is crucial for our application as the target audience are people who prefer keyboard to mouse or voice commands.
@@ -338,6 +371,7 @@ The sequence diagram for the `sort` command is shown below.
 
 The sort command sorts the `ObservableList<Student>` or the `ObservableList<TuitionClass>` in the `Model` component, whose results gets immediately reflected in their respective `Students` tab or `Classes` Tab.
 After sorting, the Command sets the view to switch to their respective tabs, so that the user would be able to see the changes.
+
 
 ### Adding a Student to a class
 Adds an existing student into an existing tuition class.
@@ -519,16 +553,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
+| `* `     | Careless User                              | Be notified if there was a clash in timing                   | I can have peace of mind                                   |
+| `* `     | User                                       | View schedule for a specific day                             | Can prepare for lesson and won't be absent                 |
 | `* *`    | User                                       | Check if student has paid                                    | Keep track of who I need to remind                         |
-| `* * `   | User                                       | Save class rates                                             | Keep track of how much to charge each class                |
-| `* * `   | User                                       | Edit my student details                                      | Keep track of changes of my students                       |
+| `* *`    | User                                       | Save class rates                                             | Keep track of how much to charge each class                |
+| `* *`    | User                                       | Edit my student details                                      | Keep track of changes of my students                       |
+| `* *`    | Organised user                             | Sort my students and classes                                 | Arrange them the way I want to organise them               |
 | `* * *`  | Forgetful user                             | Save their contacts                                          | I can remember them                                        |
-| `* * *`  | User                                       | View my class timings for a specific contact (day and time)  |          Know which day will I be teaching this contact    |
+| `* * *`  | User                                       | View my class timings for a specific contact (day and time)  | Know which day will I be teaching this contact             |
 | `* * *`  | User                                       | Record parent contact of my students                         | Contact the student's parent in case of emergencies        |
 | `* * *`  | User                                       | Delete/archive my student's contacts and information         | I can declutter my contacts.                               |
 | `* * *`  | User                                       | Record locations of classes of each student                  | Knows where to go                                          |
-| `* `     | Careless User                              | Be notified if there was a clash in timing                   | I can have peace of mind                                   |
-| `* `     | User                                       | View schedule for a specific day                             | Can prepare for lesson and won't be absent                 |
 
 ### Use cases
 

@@ -612,7 +612,7 @@ Action | Format, Examples
 **Edit class** | `editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]` <br> e.g., `editclass 1 ct/wed 15:00-17:00`
 **Exit** | `exit`
 **Find name** | `findname NAME [, [NAME]...]` <br> e.g., `find Stuart`
-**Find class** | `findclass CLASS_TIMING` <br> e.g., `findclass mon 11:00-12:00`
+**Find class timing** | `findclass CLASS_TIMING` <br> e.g., `findclass mon 11:00-12:00`
 **Find class name** | `findclassname CLASS_NAME [, [CLASS_NAME]...]` <br> e.g., `findclassname math`
 **Find tag** | `findtag KEYWORD [, [KEYWORD]...]` <br> e.g., `findtag  math, physics`
 **Help** | `help`
@@ -620,7 +620,7 @@ Action | Format, Examples
 **List class** | `listclass`
 **Remove from class** | `removefromclass CLASS_INDEX STUDENT_INDEX...` <br> e.g., `removefromclass 1 1 2 3`
 **Sort** | `sort PARAMETER_TO_SORT_BY DIRECTION_OF_SORT` <br> e.g., `sort name asc`
-**Select class** | `class CLASS_INDEX` <br> e.g., `class 1`
+**Select class** | `class CLASS_INDEX` <br> e.g., `class 2`
 **View** | `view TAB_TO_VIEW` <br> e.g., `view timetable`
 
 
