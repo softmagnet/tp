@@ -396,14 +396,11 @@ An overview of the process is shown below:
 
 ### Deleting Tuition Class
 To delete a tuition class, the 'deleteclass' command is used.
-The DeleteCommandParser parses the user input to obtain the parameters, which is the class timing of the class to be
-deleted.
-Then, a DeleteCommand is created with the parsed class timing. When the DeleteCommand#execute() is run, the TimesTable
-is searched to find the tuition class to be deleted. If no classes matches the ClassTiming, an exception is thrown.
-Otherwise, the TuitionClass is obtained. The TuitionClass object stores a list of students in the class in the form
-of a list of names. From each name, the respective student is found and the TuitionClass is deleted from the student's
-internal class list.
-Finally, the TuitionClass itself can be removed from the TimesTable's class list.
+The DeleteCommandParser parses the user input to obtain the index of the class to be deleted.
+Then, a DeleteCommand is created with the index of the tuition class to be deleted. When the DeleteCommand#execute() is 
+run, the TimesTable is searched to find the tuition class to be deleted. That tuition class is then deleted from the 
+model.
+Finally, the GUI will switch over to the `classes` tab and the `Students` list in the `classes` tab will be hidden.
 
 A diagram of the procedure is shown below:
 
