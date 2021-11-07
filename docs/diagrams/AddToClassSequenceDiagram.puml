@@ -3,67 +3,39 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":TimesTableParser" as TimesTableParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":AddToClass" as AddToClass LOGIC_COLOR
+'participant ":EditClassDescriptor" as descripter LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
+participant ":ModelManager" as ModelManager MODEL_COLOR
+'participant "lastShownTuitionClassList:FilteredList" as FilteredClass MODEL_COLOR
 end box
 
-[-> LogicManager : execute("addtoclass 1 2 3")
+[-> LogicManager : execute("addtoclass 1 1")
 activate LogicManager
 
-LogicManager -> TimesTableParser : parseCommand("delete 1")
-activate TimesTableParser
+LogicManager -> AddToClass : execute()
+activate AddToClass
 
-create DeleteCommandParser
-TimesTableParser -> DeleteCommandParser
-activate DeleteCommandParser
+AddToClass -> ModelManager : getFilteredStudentList()
+AddToClass <-- ModelManager
+AddToClass -> ModelManager : getFilteredClassList()
+AddToClass <-- ModelManager
+AddToClass -> AddToClass : checkIndicesAreInRange()
+activate AddToClass
+deactivate
 
-DeleteCommandParser --> TimesTableParser
-deactivate DeleteCommandParser
+ref over AddToClass, ModelManager : generate updated StudentNameList
 
-TimesTableParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+ref over AddToClass, ModelManager : generate updated TuitionClass
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+AddToClass -> ModelManager : setClass(classToAdd, editedClass)
+AddToClass <-- ModelManager
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
-
-DeleteCommandParser --> TimesTableParser : d
-deactivate DeleteCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> TimesTableParser
-destroy DeleteCommandParser
-
-TimesTableParser --> LogicManager : d
-deactivate TimesTableParser
-
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
-
-DeleteCommand -> Model : deleteStudent(1)
-activate Model
-
-Model --> DeleteCommand
-deactivate Model
-
-create CommandResult
-DeleteCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> DeleteCommand
-deactivate CommandResult
-
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+return
 
 [<--LogicManager
 deactivate LogicManager
+
 @enduml

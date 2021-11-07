@@ -281,7 +281,8 @@ The activity diagrams below illustrate how the Timetable UI is built.
 `AddToClassCommand` command's parser `AddToClassCommandParser` works in similar way to all parsers and will not be further
 discussed here. The only thing to note is that the parser will only see zero and negative indices as invalid and not 
 out-of-range indices. This is because at the time of parsing, the model is not accessed to check if the indices are
-out-of-range.  
+out-of-range. The reason for this design is to reduce dependency and keep to the single responsibility principle. The 
+job of the parser should be separated from checking in with the model.
 
 #### The command
 The `AddToClassCommand` command follows an index based format and the class contains the `Index` of the class to add
@@ -294,8 +295,17 @@ be added
 4. Creating the right `EditClassDescriptor`
 5. Updating the `Model` with updated `TuitionClass`
 
-The detailed sequence diagram is as follows:
+The following sequence diagram gives an overview of the execution:
 
+![AddToClass Sequence](images/AddToClassSequenceDiagram.png)
+
+The sequence diagram for the first reference frame from above:
+
+![AddToClass Sequence](images/AddToClassRef1.png)
+
+The sequence diagram for the second reference frame from above:
+
+![AddToClass Sequence](images/AddToClassRef2.png)
   
 
 
