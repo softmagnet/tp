@@ -416,21 +416,32 @@ An overview of the process is shown below:
 
 
 ### Deleting Tuition Class
-To delete a tuition class, the 'deleteclass' command is used.
-The DeleteCommandParser parses the user input to obtain the index of the class to be deleted.
-Then, a DeleteCommand is created with the index of the tuition class to be deleted. When the DeleteCommand#execute() is 
-run, the TimesTable is searched to find the tuition class to be deleted. That tuition class is then deleted from the 
-model.
-Finally, the GUI will switch over to the `classes` tab and the `Students` list in the `classes` tab will be hidden.
+Deletes a tuition class from the `classes` list in the `Classes` tab, to delete a tuition class, the `deleteclass` 
+command is used.
+
+#### Implementation
+1. The DeleteCommandParser parses the user input to obtain the index of the class to be deleted.
+2. A DeleteCommand is created with the index of the tuition class to be deleted.
+3. The DeleteCommand#execute() is run, the TimesTable is searched to find the tuition class to be deleted.
+4. That tuition class is then deleted from the `Model` and the `UniqueClassList` by extension.
 
 A diagram of the procedure is shown below:
 
+![DeleteClass Sequence Diagram](images/DeleteClassSequenceDiagram.png)
+
+![DeleteClass Ref Sequence Diagram](images/DeleteClassRef1.png)
+
 ### Adding Tuition Class
-To add a tuition class, the `addclass` command is used.
-The `AddClassCommandParser` parses the user input to obtain 4 parameters: `ClassName`, `ClassTiming`, `Rate` and `Location`. 
-The parser checks if the user has inputted valid value for these 4 parameter. These 4 parameters and a new empty 
-`StudentNameList` are then used to create a new `TuitionClass` to be passed into a new `AddClassCommand(TuitionClass)` 
-as an argument. This command is then executed and the new `TuitionClass` is added into the `Model` and into the 
+Adds a new tuition class into the `classes` list in the `Classes` tab with all the relevant detail, to add a tuition 
+class, the `addclass` command is used.
+
+#### Implementation
+1. The `AddClassCommandParser` parses the user input to obtain 4 parameters: `ClassName`, `ClassTiming`, `Rate` and 
+`Location`. 
+2. The parser checks if the user has inputted valid value for these 4 parameter. 
+3. These 4 parameters and a new empty`StudentNameList` are then used to create a new `TuitionClass` to be passed into a new `AddClassCommand(TuitionClass)` 
+as an argument.
+4.This command is then executed and the new `TuitionClass` is added into the `Model` and into the 
 `UniqueClassList`, where further checks are done to ensure that there is no overlapping timing between the new 
 `TuitionClass` that is to be added and other already existing `TuitionClass`es in the list, as TimesTable is made for a
 single user and thus designed to not allow overlapping `TuitionClass`es
