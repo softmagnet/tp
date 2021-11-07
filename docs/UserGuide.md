@@ -236,8 +236,11 @@ removefromclass CLASS_INDEX STUDENT_INDEX...
 
 * Removes a non-zero number of existing students from an existing class.
 * `CLASS_INDEX` is the index number of the class in the displayed class list in the `classes` tab to have its students removed from.
-* `STUDENT_INDEX...` are the index number(s) of the students shown in the displayed student list of the class to remove from in the `classes` tab, who are
-  to be removed from the class.
+* `STUDENT_INDEX...` are the index number(s) of the students shown in the displayed student list of the class to remove 
+  from in the `classes` tab, who are to be removed from the class.
+* The student indices used are based on the view shown by the GUI and is hence affected by the `sort`, `findname` and `findtag`
+commands. i.e. Filtering a class of 10 students down to 2 students means that student indices 1 and 2 correspond to the 
+  2 students that can be seen on the list.
 
 Example:
 ```
