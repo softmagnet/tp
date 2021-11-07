@@ -319,9 +319,13 @@ The sort command sorts the `ObservableList<Student>` or the `ObservableList<Tuit
 After sorting, the Command sets the view to switch to their respective tabs, so that the user would be able to see the changes.
 
 ### Adding a Student to a class
+Adds an existing student into an existing tuition class.
+
 #### The parser
-`AddToClassCommand` command's parser `AddToClassCommandParser` works in similar way to all parsers and will not be further
-discussed here. The only thing to note is that the parser will only see zero and negative indices as invalid and not 
+`AddToClassCommand` command's parser `AddToClassCommandParser` works by parsing indexes in the user input and 
+generating a `List<Index>` whereby the first index will be for the `TuitionClass` receving the students and the rest 
+of the index being the `Student`s to be added into the `TuitionClass`. The only thing to note is that the parser 
+will only see zero and negative indices as invalid and not 
 out-of-range indices. This is because at the time of parsing, the model is not accessed to check if the indices are
 out-of-range. The reason for this design is to reduce dependency and keep to the single responsibility principle. The 
 job of the parser should be separated from checking in with the model.
