@@ -43,4 +43,18 @@ public class SelectClassCommand extends Command {
         return new CommandResult("Viewing class " + tuitionClass.toString(),
                 false, false);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof SelectClassCommand)) {
+            return false;
+        }
+
+        SelectClassCommand other = ((SelectClassCommand) o);
+        return other.targetIndex.equals(targetIndex);
+    }
 }
