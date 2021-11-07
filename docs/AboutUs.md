@@ -13,6 +13,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](https://github.com/bernardwan)]
 
+[[portfolio](team/bernardwan.md)]
+
 Personal email: bernardwan99@gmail.com<br/>
 School email: bernardwan@u.nus.edu
 
