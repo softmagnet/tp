@@ -161,11 +161,22 @@ to outsiders as an unmodifiable `ObservableList<TuitionClass>`.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
+The `Student` and `NOK` class (next-of-kin) extends the `Person` class. The student class's structure is as follows:
+
+![Structure of the UI Component](images/StudentModelClassDiagram.png)
+
+The structure of the `TuitionClass` class is as follows:
+
+![Structure of the UI Component](images/TuitionClassModelClassDiagram.png)
+
+
+
 <div markdown="span" class="alert alert-info">:information_source: 
 
 **Note about the model design:**<br>
 
 * Note that `StudentNameList` contains a `List<Name>`.
+
 * Note that the diagram omits the relationship that `Student` and `NOK` are subclasses of the abstract class `Person`.
 
 </div>
