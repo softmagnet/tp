@@ -5,7 +5,7 @@ title: TimesTable
 [![codecov](https://codecov.io/gh/AY2122S1-CS2103T-F11-1/tp/branch/master/graph/badge.svg?token=NNN2J2NDB2)](https://codecov.io/gh/AY2122S1-CS2103T-F11-1/tp)
 [![CI Status](https://github.com/AY2122S1-CS2103T-F11-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2122S1-CS2103T-F11-1/tp/actions)
 
-![Ui](images/Ui.png)
+![Ui](images/ClassList.png)
 
 **TimesTable is a desktop app for managing your tuition students and classes, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).**
 While it has a GUI, it can be controlled by typing in commands using the CLI.
