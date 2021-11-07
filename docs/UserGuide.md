@@ -120,6 +120,7 @@ add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… nok/ n/NOK_NAME p/NOK_PHO
 * The command does not allow adding duplicate students - as defined as the student having the same name, ignoring case.
 * `NAME` can have a maximum of 120 characters.
 * `PHONE_NUMBER` has to be between 3-25 numbers.
+* `TAG` can have a maximum of 15 characters per tag, with a maximum of 5 tags.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0).
@@ -270,6 +271,7 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [nok/ [n/NOK_N
       specifying any tags after it.
 * `NAME` can have a maximum of 120 characters.
 * `PHONE_NUMBER` has to be between 3-25 numbers.
+* `TAG` can have a maximum of 15 characters per tag, with a maximum of 5 tags.
 
 Examples (editing student information only):
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the `PHONE` and `EMAIL` of the 1st student to be `91234567` and `johndoe@example.com` respectively.
