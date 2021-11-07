@@ -266,11 +266,28 @@ The activity diagrams below illustrate how the Timetable UI is built.
 ![Find earliest start hour and latest end hour Activity Diagram](images/FindEarliestAndLatestHourActivityDiagram-Activity__Find_earliest_start_hour_and_latest_end_hour.png)
 
 ### Adding a Student to a class
-When adding a student, a Class is automatically created if a class at the same timing doesn't already exist.
-The AddCommandParse parses the user input to obtain the classTiming (denoted by parameter `/ct`), and
-uniquely identifies the class. Afterwards, an AddCommand is created with the `Class` and `Student`, after which
-it checks whether an existing class with the same timing exists and adds the student to the `Class`'s classList
-and if not, adds the student to the new class created.
+#### The parser
+`AddToClassCommand` command's parser `AddToClassCommandParser` works in similar way to all parsers and will not be further
+discussed here. The only thing to note is that the parser will only see zero and negative indices as invalid and not 
+out-of-range indices. This is because at the time of parsing, the model is not accessed to check if the indices are
+out-of-range.  
+
+#### The command
+The `AddToClassCommand` command follows an index based format and the class contains the `Index` of the class to add
+the new students to and a `List` of `Index` of students to be added. The command's execution is composed of various 
+smaller steps. The steps are listed below:
+1. Check indices are not out-of-range
+2. Generate a list of `Name` to be added to the class
+3. Produce the new student `StudentNameList` based on the class's existing `StudentNameList` and the list of `Name` to
+be added
+4. Creating the right `EditClassDescriptor`
+5. Updating the `Model` with updated `TuitionClass`
+
+The detailed sequence diagram is as follows:
+
+  
+
+
 
 ### Removing Student(s) from a Tuition Class
 #### Overview of command
