@@ -153,7 +153,7 @@ public class MainWindow extends UiPart<Stage> implements CommandObserver {
         timetablePanel = new TimetablePanel(logic.getFilteredTuitionClassList());
         timetablePanelPlaceholder.getChildren().add(timetablePanel.getRoot());
 
-        resultDisplay = new ResultDisplay();
+        resultDisplay =     new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTimesTableFilePath());

@@ -88,6 +88,7 @@ a class or student list)
   
 * For commands that narrow down the list of `students` (eg. FindName, FindTag, Sort by name), the displayed
   changes for students will be shown in both the `Student` tab as well as the `Class` tab.  
+
   This means that when `students` are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag` in the `Class` tab as well.  
   Likewise, when `students` are sorted by their names, they will be sorted in the `Class` tab as well.
 
@@ -324,6 +325,7 @@ Examples:
 <div markdown="block" class="alert alert-info">
 For commands that narrow down the list of `students` (eg. FindName, FindTag, Sort by name), the displayed
   changes for students will be shown in both the `Student` tab as well as the `Class` tab.  
+
 This means that when `students` are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag` in the `Class` tab as well.  
 Likewise, when `students` are sorted by their names, they will be sorted in the `Class` tab as well.
   
@@ -361,7 +363,9 @@ Examples:
 <div markdown="block" class="alert alert-info">
 For commands that narrow down the list of `students` (eg. FindName, FindTag, Sort by name), the displayed
   changes for students will be shown in both the `Student` tab as well as the `Class` tab.  
-This means that when `students` are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag` in the `Class` tab as well.  
+
+This means that when `students` are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag` in the `Class` tab as well.
+
 Likewise, when `students` are sorted by their names, they will be sorted in the `Class` tab as well.
 
 The `list` and `listclass` commands can be used to show the original lists of students and classes respectively.
@@ -450,6 +454,7 @@ Examples:
 <div markdown="block" class="alert alert-info">
 For commands that narrow down the list of `students` (eg. FindName, FindTag, Sort by name), the displayed
   changes for students will be shown in both the `Student` tab as well as the `Class` tab.  
+
 This means that when `students` are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag` in the `Class` tab as well.  
 Likewise, when `students` are sorted by their names, they will be sorted in the `Class` tab as well.
 

@@ -1,37 +1,96 @@
 @startuml
 !include style.puml
 
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
+
+box MainWindow MODEL_COLOR_T1
+participant ":MainWindow" as MainWindow MODEL_COLOR
 end box
 
-box TimesTable MODEL_COLOR_T2
-participant ":TimesTable" as TimesTable MODEL_COLOR_T3
-participant ":UniqueClassList" as UniqueClassList MODEL_COLOR_T3
-participant "internalList:ObservableArrayList" as ObservableArrayList MODEL_COLOR_T3
+box ClassesUi MODEL_COLOR_T1
+participant ":ClassPanel" as ClassPanel MODEL_COLOR_T3
+participant ":StudentClassPanel" as StudentClassPanel MODEL_COLOR_T3
+participant ":TuitionClassPanel" as TuitionClassPanel MODEL_COLOR_T3
+participant ":StudentListClassTabViewCell" as StudentListClassTabViewCell MODEL_COLOR_T3
+participant ":StudentClassTabCard" as StudentClassTabCard MODEL_COLOR_T3
+participant ":TuitionClassListViewCell" as TuitionClassListViewCell MODEL_COLOR_T3
+participant ":TuitionClassCard" as TuitionClassCard MODEL_COLOR_T3
+participant ":FilteredStudentList" as FilteredStudentList MODEL_COLOR_T3
+participant "tuitionClassListView:\nObservableList<Student>" as tuitionClassListView MODEL_COLOR_T3
 end box
 
+[-> MainWindow : fillInnerParts()
+activate MainWindow
 
-[-> Model : addTuitionClass(t)
-activate Model
+create FilteredStudentList
 
-Model -> TimesTable : addTuitionClass(t)
-activate TimesTable
+create ClassPanel
+MainWindow -> ClassPanel : new ClassPanel\n(List<Student>, List<TuitionClass>)
+activate ClassPanel
 
-TimesTable -> UniqueClassList : add(t)
-activate UniqueClassList
+create StudentClassPanel
+ClassPanel -> StudentClassPanel : new StudentClassPanel\n(studentList)
+activate StudentClassPanel
 
-UniqueClassList -> UniqueClassList : isValidTiming(t)
-activate UniqueClassList
+loop MODEL_COLOR_T1 for every student
+create StudentListClassTabViewCell
+StudentClassPanel -> StudentListClassTabViewCell
+activate StudentListClassTabViewCell
 
-UniqueClassList -> ObservableArrayList : add(t)
-activate ObservableArrayList
+create StudentClassTabCard
+StudentListClassTabViewCell -> StudentClassTabCard
+activate StudentClassTabCard
+StudentClassTabCard --> StudentListClassTabViewCell
+deactivate StudentClassTabCard
+StudentListClassTabViewCell --> StudentClassPanel
 
-deactivate ObservableArrayList
+deactivate StudentListClassTabViewCell
 
-deactivate UniqueClassList
+end
 
-deactivate UniqueClassList
+StudentClassPanel --> ClassPanel
+deactivate StudentClassPanel
 
-deactivate TimesTable
+create TuitionClassPanel
+ClassPanel -> TuitionClassPanel : new TuitionClassPanel\n(studentList, tuitionClassList)
+activate TuitionClassPanel
+loop MODEL_COLOR_T1 for every class
+
+create TuitionClassListViewCell
+TuitionClassPanel -> TuitionClassListViewCell
+activate TuitionClassListViewCell
+
+create TuitionClassCard
+TuitionClassListViewCell -> TuitionClassCard
+activate TuitionClassCard
+
+opt MODEL_COLOR_T1 when clicked
+TuitionClassCard -> TuitionClassCard : onMouseClick()
+activate TuitionClassCard
+TuitionClassCard -> TuitionClassCard : selectTuitionClass()
+activate TuitionClassCard
+TuitionClassCard -> FilteredStudentList : filtered(student -> ...)
+activate FilteredStudentList
+FilteredStudentList -> TuitionClassCard
+deactivate FilteredStudentList
+
+
+TuitionClassCard -> tuitionClassListView : setItems(newStudentList)
+activate tuitionClassListView
+tuitionClassListView --> TuitionClassCard
+deactivate tuitionClassListView
+deactivate TuitionClassCard
+deactivate TuitionClassCard
+end
+
+end
+
+TuitionClassCard --> TuitionClassListViewCell
+deactivate TuitionClassCard
+TuitionClassListViewCell --> TuitionClassPanel
+deactivate TuitionClassListViewCell
+TuitionClassPanel --> ClassPanel
+deactivate TuitionClassPanel
+ClassPanel --> MainWindow
+deactivate ClassPanel
+
 @enduml
