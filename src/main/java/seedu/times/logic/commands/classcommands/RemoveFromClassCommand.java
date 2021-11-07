@@ -63,10 +63,10 @@ public class RemoveFromClassCommand extends Command {
 
         //get names to be removed
         StudentNameList currentStudentNameList = classToRemoveFrom.getStudentList();
-        checkIndicesAreValid(studentIndicesToRemove, currentStudentNameList);
-        List<Student> filteredStudentList = model.getFilteredStudentList();
-        currentStudentNameList.sortListByList(filteredStudentList);
-        ArrayList<Name> namesToRemove = createNewNameList(studentIndicesToRemove, currentStudentNameList);
+        List<Student> filteredStudentList = model.getFilteredStudentList().filtered(student ->
+                classToRemoveFrom.containsStudent(student.getName()));
+        checkIndicesAreValid(studentIndicesToRemove, filteredStudentList);
+        ArrayList<Name> namesToRemove = createNewNameList(studentIndicesToRemove, filteredStudentList);
 
 
         //get updated student list
@@ -89,18 +89,18 @@ public class RemoveFromClassCommand extends Command {
         return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, editedClass));
     }
 
-    private ArrayList<Name> createNewNameList(List<Index> studentIndices, StudentNameList nameList) {
+    private ArrayList<Name> createNewNameList(List<Index> studentIndices, List<Student> studentList) {
         ArrayList<Name> newNameList = new ArrayList<>();
         studentIndices.stream().forEach(index -> {
-            Name name = nameList.get(index.getZeroBased());
+            Name name = studentList.get(index.getZeroBased()).getName();
             newNameList.add(name);
         });
         return newNameList;
     }
 
-    private void checkIndicesAreValid(List<Index> studentIndices, StudentNameList nameList)
+    private void checkIndicesAreValid(List<Index> studentIndices, List<Student> studentList)
             throws CommandException {
-        int size = nameList.size();
+        int size = studentList.size();
         for (Index index : studentIndices) {
             if (index.getZeroBased() >= size) {
                 throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
