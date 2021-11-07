@@ -4,13 +4,14 @@ skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
 
-package ClassPanelUi <<Rectangle>>{
+package ClassesUi <<Rectangle>>{
 Class ClassPanel
 Class StudentClassPanel
 Class StudentClassTabCard
 Class TuitionClassPanel
 Class TuitionClassCard
 }
+
 package Model <<Rectangle>> {
 Class Student
 Class TuitionClass

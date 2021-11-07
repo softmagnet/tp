@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StatusBarFooter` etc, and a TabPane consisting of `StudentsUi`, `ClassesUi` and `TimetableUi`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -84,6 +84,11 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * observes the `Command` abstract class in the `Logic` component, because it needs to update when certain commands are run.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+#### Students UI
+![StudentsUi Class Diagram](images/StudentsDiagram.png)
+
+The `StudentListPanel` is made up of `StudentCard`s, which displays information about the `Students`. The `StudentListPanel` takes in an `ObservableList<Student>`, which builds a `StudentCard` for each student.
 
 #### Timetable UI
 Adapted from [here](https://github.com/AY1920S2-CS2103-W15-4/main/tree/master/src/main/java/clzzz/helper/ui/calendar)
@@ -156,11 +161,22 @@ to outsiders as an unmodifiable `ObservableList<TuitionClass>`.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
+The `Student` and `NOK` class (next-of-kin) extends the `Person` class. The student class's structure is as follows:
+
+![Structure of the UI Component](images/StudentModelClassDiagram.png)
+
+The structure of the `TuitionClass` class is as follows:
+
+![Structure of the UI Component](images/TuitionClassModelClassDiagram.png)
+
+
+
 <div markdown="span" class="alert alert-info">:information_source: 
 
 **Note about the model design:**<br>
 
 * Note that `StudentNameList` contains a `List<Name>`.
+
 * Note that the diagram omits the relationship that `Student` and `NOK` are subclasses of the abstract class `Person`.
 
 </div>
@@ -229,7 +245,7 @@ The rest of the find command works the same way but note that for `findclass` an
 Furthermore, to fully understand the find command, we also have to understand how predicate works. The predicates used
 that filters out students or classes are typical java `Predicate`. For each searchable attribute, a new class must be 
 created that implements `Predicate` with the right generic type (i.e. predicate class for filtering `Student` must
-implement `Predicate<Student`, and predicate class for filtering `TuitionClass` must implement `Predicate<TuitionClass`).
+implement `Predicate<Student>`, and predicate class for filtering `TuitionClass` must implement `Predicate<TuitionClass>`).
 Each custom predicate class contains a `List` of search strings that would be used to match against the tested items 
 in the search.
 
@@ -255,7 +271,7 @@ The class diagram for the Class Ui feature as shown in the [ClassUi component](#
 The timetable feature is a feature which displays the user's classes in a visual timetable format.
 
 #### Implementation
-The class diagram for Timetable as shown in the [TimetableUI component](#Timetable UI) is replicated here for convenience.
+The class diagram for Timetable as shown in the [TimetableUI component](#timetable-ui) is replicated here for convenience.
 ![Timetable Class Diagram](images/TimetableDiagram.png)
 The image below shows the respective parts of the `TimetablePanel`:
 * The green box represents the `TimetableDay`, and there are 7 `TimetableDay` parts to represent the 7 days of the week. 
@@ -278,17 +294,81 @@ such as when a new class is added, or an existing class is edited from the `Obse
 The activity diagrams below illustrate how the Timetable UI is built.
 
 ![Timetable Overall Activity Diagram](images/BuildTimetableOverallDiagram.png)
+
+
 ![TimetableHeader Activity Diagram](images/BuildTimetableHeaderActivityDiagram-Activity__Build_TimetableHeader.png)
+
+
 ![TimetableDay Activity Diagram](images/BuildTimetableDayActivityDiagram-Activity__Build_TimetableDay.png)
+
+
 ![TimetableTuitionClassSlot Activity Diagram](images/BuildTimetableTuitionClassSlotsActivityDiagram-Activity__Build_TimetableTuitionClassSlots.png)
+
+
 ![Find earliest start hour and latest end hour Activity Diagram](images/FindEarliestAndLatestHourActivityDiagram-Activity__Find_earliest_start_hour_and_latest_end_hour.png)
 
+### View feature
+The `Students` tab, `Classses` tab and `Timetable` tab, are parts of the [`UI Component`](#ui-component). 
+Navigation between these tabs without the mouse is crucial for our application as the target audience are people who prefer keyboard to mouse or voice commands.
+
+The `view` feature is facilitated by the `ViewCommand`, which extends the abstract `Command` class. The `ViewCommand` sets the displayed tab to be the tab specified by the user. 
+
+#### Implementation
+The sequence diagram for the `view` command is shown below.
+
+![Sequence Diagram for view command](images/ViewSequenceDiagram.png)
+
+`TabName` is an enumeration which represents the three tabs (`Students`, `Classes`, and `Timetable`), and their respective tab index (0 for `Students`, 1 for `Classes` and 2 for `Timetable`).
+
+The `ViewCommand` calls the `CommandObserver#updateView(TabName)`, which updates the view of the `CommandObserver`s watching the `Command` abstract class to the `TabName` specified.
+In this case, the only `CommandObserver` is the `MainWindow`, thus it updates the view of the `MainWindow` to display the `TIMETABLE` Tab at index 2.
+
+### Sort feature
+The `sort` feature allows sorting of the `Student`s and `TuitionClass`es. It is able to sort it by `Student` name or `ClassTiming`, in ascending or descending order.
+
+The `sort` feature is facilitated by the `SortCommand`, which extends the abstract `Command` class.
+
+#### Implementation
+The sequence diagram for the `sort` command is shown below.
+
+![Sequence Diagram for sort command](images/SortSequenceDiagram.png)
+
+The sort command sorts the `ObservableList<Student>` or the `ObservableList<TuitionClass>` in the `Model` component, whose results gets immediately reflected in their respective `Students` tab or `Classes` Tab.
+After sorting, the Command sets the view to switch to their respective tabs, so that the user would be able to see the changes.
+
 ### Adding a Student to a class
-When adding a student, a Class is automatically created if a class at the same timing doesn't already exist.
-The AddCommandParse parses the user input to obtain the classTiming (denoted by parameter `/ct`), and
-uniquely identifies the class. Afterwards, an AddCommand is created with the `Class` and `Student`, after which
-it checks whether an existing class with the same timing exists and adds the student to the `Class`'s classList
-and if not, adds the student to the new class created.
+#### The parser
+`AddToClassCommand` command's parser `AddToClassCommandParser` works in similar way to all parsers and will not be further
+discussed here. The only thing to note is that the parser will only see zero and negative indices as invalid and not 
+out-of-range indices. This is because at the time of parsing, the model is not accessed to check if the indices are
+out-of-range. The reason for this design is to reduce dependency and keep to the single responsibility principle. The 
+job of the parser should be separated from checking in with the model.
+
+#### The command
+The `AddToClassCommand` command follows an index based format and the class contains the `Index` of the class to add
+the new students to and a `List` of `Index` of students to be added. The command's execution is composed of various 
+smaller steps. The steps are listed below:
+1. Check indices are not out-of-range
+2. Generate a list of `Name` to be added to the class
+3. Produce the new student `StudentNameList` based on the class's existing `StudentNameList` and the list of `Name` to
+be added
+4. Creating the right `EditClassDescriptor`
+5. Updating the `Model` with updated `TuitionClass`
+
+The following sequence diagram gives an overview of the execution:
+
+![AddToClass Sequence](images/AddToClassSequenceDiagram.png)
+
+The sequence diagram for the first reference frame from above:
+
+![AddToClass Sequence](images/AddToClassRef1.png)
+
+The sequence diagram for the second reference frame from above:
+
+![AddToClass Sequence](images/AddToClassRef2.png)
+  
+
+
 
 ### Removing Student(s) from a Tuition Class
 #### Overview of command
