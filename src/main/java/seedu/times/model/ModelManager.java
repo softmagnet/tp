@@ -115,7 +115,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPerson(Student student) {
+    public void addStudent(Student student) {
         timesTable.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
