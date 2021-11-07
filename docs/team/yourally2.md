@@ -56,22 +56,24 @@ It was challenging to consider the flow of data for components while ensuring th
   
 * **Enhancements to existing features**:
     * Refactor Person to Student and make Student and next-of-kin (NOK) inherit from Person (Pull Request [\#30](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/30))
-    * Wrote tests for `FindClassCommandParser` and `FindClassCommand` (Pull request [\#258](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/258)
+    * Wrote tests for `FindClassCommandParser` and `FindClassCommand` (Pull request [\#258](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/258))
+    * Wrote tests for `SelectClassCommand` and `SelectClassCommandParser` (Pull request [\#302](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/302))
     * Bug fixes for GUI, `class` command and `Student list` in `classes` tab (Pull request 
       [\#248](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/248),
       [\#243](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/243))
   
 * **Documentation**
   *User Guide:
-    * Fixed various documentation issues and touched up on UG [\#224](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/224)
-  * Developer Guide
-    * Added user stories [\#22](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/22)
-    * Adding a class [\#86](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/86)
+    * Fixed various documentation issues and touched up on UG [\#224](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/224), [\#303](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/303)
+    * Developer Guide
+      * Added UML for GUI and add implementation for `nok/` field [\#292](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/292), [\#291](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/291) 
+      * Added user stories [\#22](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/22)
+      * Adding a class [\#86](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/86)
   
 * **Community**
   * PRs reviewed (with non-trivial review comments): (Pull request,
     [\#256](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/256),
     [\#81](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/81),
-    [\#50](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/50),
+    [\#50](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/50)
   * Reported bugs for other teams during PE-D: [ped issues github](https://github.com/yourally2/ped/issues)
   
