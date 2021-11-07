@@ -36,10 +36,6 @@ public class AddToClassCommandParser implements Parser<AddToClassCommand> {
                 Index currentIndex = ParserUtil.parseIndex(str[i]);
                 indexArray.add(currentIndex);
             } catch (ParseException pe) {
-                //String errorMessage = i == CLASS_INDEX_POSITION
-                //        ? AddToClassCommand.INVALID_OR_MISSING_CLASS_INDEX
-                //        : MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
-                //throw new ParseException(errorMessage);
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         AddToClassCommand.MESSAGE_USAGE), pe);
             }
