@@ -18,7 +18,6 @@ import seedu.times.commons.core.Messages;
 import seedu.times.commons.core.index.Index;
 import seedu.times.commons.util.CollectionUtil;
 import seedu.times.logic.commands.exceptions.CommandException;
-import seedu.times.logic.parser.exceptions.ParseException;
 import seedu.times.model.Model;
 import seedu.times.model.person.Address;
 import seedu.times.model.person.Email;
