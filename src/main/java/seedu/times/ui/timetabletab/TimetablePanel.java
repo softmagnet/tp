@@ -27,11 +27,13 @@ import seedu.times.ui.UiPart;
  */
 public class TimetablePanel extends UiPart<Region> {
     private static final String FXML = "timetableTab/TimetablePanel.fxml";
+
+    private static final LocalTime DEFAULT_LATEST_HOUR = LocalTime.parse("18:00",
+            DateTimeFormatter.ofPattern("HH:mm"));
+    private static final LocalTime DEFAULT_EARLIEST_HOUR = LocalTime.parse("09:00",
+            DateTimeFormatter.ofPattern("HH:mm"));
+
     private final Logger logger = LogsCenter.getLogger(TimetablePanel.class);
-
-    private final LocalTime defaultLatestHour = LocalTime.parse("18:00", DateTimeFormatter.ofPattern("HH:mm"));
-    private final LocalTime defaultEarliestHour = LocalTime.parse("09:00", DateTimeFormatter.ofPattern("HH:mm"));
-
 
     @FXML
     private ScrollPane scrollPane;
@@ -52,7 +54,7 @@ public class TimetablePanel extends UiPart<Region> {
                 public void onChanged(Change<? extends TuitionClass> change) {
                     while (change.next()) {
                         build(tuitionClasses);
-                        logger.info("Change to uniqueClassList, rebuilding timetable.");
+                        logger.info("Changes made to uniqueClassList, rebuilding timetable.");
                     }
                 }
             });
@@ -66,6 +68,7 @@ public class TimetablePanel extends UiPart<Region> {
      */
     public void build(ObservableList<TuitionClass> tuitionClasses) {
         requireNonNull(tuitionClasses);
+
         clearTimetable();
         buildHeader(tuitionClasses);
         buildDays();
@@ -84,16 +87,17 @@ public class TimetablePanel extends UiPart<Region> {
      *                       latest end timing.
      */
     public void buildHeader(ObservableList<TuitionClass> tuitionClasses) {
-        assert tuitionClasses != null;
-        LocalTime earliestHour = tuitionClasses.size() == 0 ? defaultEarliestHour : getEarliestHour(tuitionClasses);
-        LocalTime latestHour = tuitionClasses.size() == 0 ? defaultLatestHour : getLatestHour(tuitionClasses);
+        requireNonNull(tuitionClasses);
+
+        LocalTime earliestHour = tuitionClasses.size() == 0 ? DEFAULT_EARLIEST_HOUR : getEarliestHour(tuitionClasses);
+        LocalTime latestHour = tuitionClasses.size() == 0 ? DEFAULT_LATEST_HOUR : getLatestHour(tuitionClasses);
 
         timetable.add(new TimetableHeaderLabel("Time Slots", TimetableDay.getWidth()).getRoot(),
                 0, 0, 50, 1);
 
         int columnIndex = TimetableDay.getWidth();
 
-        while (earliestHour.isBefore(latestHour) || earliestHour.isBefore(defaultLatestHour)) {
+        while (earliestHour.isBefore(latestHour) || earliestHour.isBefore(DEFAULT_LATEST_HOUR)) {
             if (earliestHour.equals(LocalTime.parse("23:30", DateTimeFormatter.ofPattern("HH:mm")))) {
                 timetable.add(new TimetableHeaderTiming(earliestHour, earliestHour.plusMinutes(29)).getRoot(),
                         columnIndex, 0, 15, 1);
@@ -115,7 +119,7 @@ public class TimetablePanel extends UiPart<Region> {
      * @param tuitionClasses List of tuition classes to retrieve the tuition class timings.
      */
     public void buildClasses(ObservableList<TuitionClass> tuitionClasses) {
-        assert tuitionClasses != null;
+        requireNonNull(tuitionClasses);
 
         LocalTime earliestHour = getEarliestHour(tuitionClasses);
 
@@ -128,9 +132,7 @@ public class TimetablePanel extends UiPart<Region> {
         for (int i = 0; i < sortedList.size(); i++) {
             TuitionClass currentTuitionClass = sortedList.get(i);
             if (currentTuitionClass.isAfter(previousTime)) {
-                addEmptySlot(previousTime, currentTuitionClass.getStartTime(),
-                        currentTuitionClass.getDayToInt(),
-                        getColumnIndex(earliestHour, previousTime));
+                addEmptySlot(previousTime, currentTuitionClass, getColumnIndex(earliestHour, previousTime));
             }
 
             addTuitionClassSlot(currentTuitionClass, earliestHour);
@@ -154,10 +156,11 @@ public class TimetablePanel extends UiPart<Region> {
         assert !tuitionClass.getStartTime().isBefore(earliestTime);
 
         TimetableTuitionClassSlot timetableTuitionClassSlot =
-                new TimetableTuitionClassSlot(tuitionClass.getClassNameString(),
-                        tuitionClass.getClassTiming());
+                new TimetableTuitionClassSlot(tuitionClass);
+
         int duration = getTimeDifference(tuitionClass.getStartTime(), tuitionClass.getEndTime());
         int columnIndex = getColumnIndex(earliestTime, tuitionClass.getStartTime());
+
         timetable.add(timetableTuitionClassSlot.getRoot(), columnIndex, tuitionClass.getDayToInt(),
                 duration, 1);
     }
@@ -177,16 +180,17 @@ public class TimetablePanel extends UiPart<Region> {
      * Creates an empty slot to be displayed on the timetable.
      *
      * @param startTime Start Time of the empty slot.
-     * @param endTime End Time of the empty slot.
-     * @param row Row to add the empty slot to.
+     * @param tuitionClass TuitionClass after the empty slot.
      * @param column Column to add the empty slot to.
      */
-    private void addEmptySlot(LocalTime startTime, LocalTime endTime, int row, int column) {
+    private void addEmptySlot(LocalTime startTime, TuitionClass tuitionClass, int column) {
+        LocalTime endTime = tuitionClass.getStartTime();
         assert startTime.isBefore(endTime);
 
         TimetableEmptySlot emptySlot = new TimetableEmptySlot(startTime, endTime);
         int duration = getTimeDifference(startTime, endTime);
-        timetable.add(emptySlot.getRoot(), column, row, duration, 1);
+
+        timetable.add(emptySlot.getRoot(), column, tuitionClass.getDayToInt(), duration, 1);
     }
 
     /**
@@ -213,13 +217,14 @@ public class TimetablePanel extends UiPart<Region> {
 
         LocalTime earliestTime = getEarliestTime(tuitionClasses);
 
-        if (earliestTime.isAfter(defaultEarliestHour)) {
-            return defaultEarliestHour;
+        if (earliestTime.isAfter(DEFAULT_EARLIEST_HOUR)) {
+            return DEFAULT_EARLIEST_HOUR;
         }
 
         String earliestTimeStr = earliestTime.toString();
         String earliestHourWithoutMinutes = earliestTimeStr.split(":")[0];
         String earliestHourStr = earliestHourWithoutMinutes + ":00";
+
         return LocalTime.parse(earliestHourStr, DateTimeFormatter.ofPattern("HH:mm"));
     }
 
@@ -249,18 +254,20 @@ public class TimetablePanel extends UiPart<Region> {
 
         LocalTime latestTime = getLatestTime(tuitionClasses);
 
-        if (latestTime.isBefore(defaultLatestHour)) {
-            return defaultLatestHour;
+        if (latestTime.isBefore(DEFAULT_LATEST_HOUR)) {
+            return DEFAULT_LATEST_HOUR;
         }
 
         String latestTimeStr = latestTime.toString();
         String latestHourMinutes = latestTimeStr.split(":")[1];
+
         if (latestHourMinutes.equals("00")) {
             return latestTime;
         } else {
             String latestHourWithoutMinutes = latestTimeStr.split(":")[0];
             String latestHourStr = latestHourWithoutMinutes + ":00";
             LocalTime latestHour = LocalTime.parse(latestHourStr, DateTimeFormatter.ofPattern("HH:mm"));
+
             return latestHour.equals(LocalTime.parse("23:00", DateTimeFormatter.ofPattern("HH:mm")))
                     ? latestHour.plusMinutes(59)
                     : latestHour.plusHours(1);

@@ -1,19 +1,15 @@
 package seedu.times.ui.classtab;
 
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.times.commons.core.LogsCenter;
 import seedu.times.model.person.Student;
 import seedu.times.model.tuitionclass.TuitionClass;
 import seedu.times.ui.UiPart;
 
 public class TuitionClassPanel extends UiPart<Region> {
     private static final String FXML = "classTab/TuitionClassListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(TuitionClassPanel.class);
 
     private final ObservableList<Student> studentList;
 

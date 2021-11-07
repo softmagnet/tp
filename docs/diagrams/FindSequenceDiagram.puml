@@ -12,6 +12,7 @@ participant "filteredStudent:FilteredList" as FilteredStudents MODEL_COLOR
 end box
 
 [-> LogicManager : execute("findtag maths")
+activate LogicManager
 
 LogicManager -> FindTagCommand : execute()
 activate FindTagCommand
@@ -25,5 +26,8 @@ activate FilteredStudents
 return
 return
 return
+
+[<--LogicManager
+deactivate LogicManager
 
 @enduml

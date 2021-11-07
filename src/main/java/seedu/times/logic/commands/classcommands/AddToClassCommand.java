@@ -58,27 +58,21 @@ public class AddToClassCommand extends Command {
         studentIndices = indexArray.subList(STUDENT_INDEX_STARTING_POSITION, indexArray.size());
     }
 
-    //TODO: need consider if class alr has that name
     @Override
     public CommandResult execute(Model model) throws CommandException {
 
-        //get names to be added
+        //check indices are not out-of-range
         List<Student> lastShownStudentList = model.getFilteredStudentList();
         List<TuitionClass> lastShownTuitionClassList = model.getFilteredTuitionClassList();
-        checkIndicesAreValid(lastShownStudentList, lastShownTuitionClassList);
-        ArrayList<Name> namesToAdd = createNameList(studentIndices, lastShownStudentList);
+        checkIndicesAreInRange(lastShownStudentList, lastShownTuitionClassList);
 
-        //get class to add to
-        if (lastShownTuitionClassList.size() == 0
-                || toEditClassIndex.getOneBased() > lastShownTuitionClassList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
-        }
+        //get names to be added and class to add to
+        ArrayList<Name> namesToAdd = createNameList(studentIndices, lastShownStudentList);
         TuitionClass classToAddTo = lastShownTuitionClassList.get(toEditClassIndex.getZeroBased());
 
         //get updated student list
         StudentNameList currentStudentNameList = classToAddTo.getStudentList();
         StudentNameList updatedStudentNameList = new StudentNameList();
-
         try {
             updatedStudentNameList.addAll(currentStudentNameList);
             updatedStudentNameList.addAll(namesToAdd);
@@ -110,7 +104,7 @@ public class AddToClassCommand extends Command {
         return nameList;
     }
 
-    private void checkIndicesAreValid(List<Student> lastShownStudentList, List<TuitionClass> lastShownTuitionClass)
+    private void checkIndicesAreInRange(List<Student> lastShownStudentList, List<TuitionClass> lastShownTuitionClass)
             throws CommandException {
         int studentListSize = lastShownStudentList.size();
         int classListSize = lastShownTuitionClass.size();

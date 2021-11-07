@@ -253,7 +253,7 @@ in the search.
 The timetable feature is a feature which displays the user's classes in a visual timetable format.
 
 #### Implementation
-The class diagram for Timetable as shown in the [TimetableUI component](#Timetable UI) is replicated here for convenience.
+The class diagram for Timetable as shown in the [TimetableUI component](#timetable-ui) is replicated here for convenience.
 ![Timetable Class Diagram](images/TimetableDiagram.png)
 The image below shows the respective parts of the `TimetablePanel`:
 * The green box represents the `TimetableDay`, and there are 7 `TimetableDay` parts to represent the 7 days of the week. 
@@ -290,7 +290,7 @@ The activity diagrams below illustrate how the Timetable UI is built.
 ![Find earliest start hour and latest end hour Activity Diagram](images/FindEarliestAndLatestHourActivityDiagram-Activity__Find_earliest_start_hour_and_latest_end_hour.png)
 
 ### View feature
-The `Students` tab, `Classses` tab and `Timetable` tab, are parts of the [`UI Component`](#UI component). 
+The `Students` tab, `Classses` tab and `Timetable` tab, are parts of the [`UI Component`](#ui-component). 
 Navigation between these tabs without the mouse is crucial for our application as the target audience are people who prefer keyboard to mouse or voice commands.
 
 The `view` feature is facilitated by the `ViewCommand`, which extends the abstract `Command` class. The `ViewCommand` sets the displayed tab to be the tab specified by the user. 
@@ -310,7 +310,7 @@ The `sort` feature allows sorting of the `Student`s and `TuitionClass`es. It is 
 
 The `sort` feature is facilitated by the `SortCommand`, which extends the abstract `Command` class.
 
-####Implementation
+#### Implementation
 The sequence diagram for the `sort` command is shown below.
 
 ![Sequence Diagram for sort command](images/SortSequenceDiagram.png)
@@ -319,46 +319,38 @@ The sort command sorts the `ObservableList<Student>` or the `ObservableList<Tuit
 After sorting, the Command sets the view to switch to their respective tabs, so that the user would be able to see the changes.
 
 ### Adding a Student to a class
-When adding a student, a Class is automatically created if a class at the same timing doesn't already exist.
-The AddCommandParse parses the user input to obtain the classTiming (denoted by parameter `/ct`), and
-uniquely identifies the class. Afterwards, an AddCommand is created with the `Class` and `Student`, after which
-it checks whether an existing class with the same timing exists and adds the student to the `Class`'s classList
-and if not, adds the student to the new class created.
-### Adding Student(s) to a class feature
-Allows user to add any existing student into any single existing tuition class in order to keep track of which 
-students are being taught in which class.
+#### The parser
+`AddToClassCommand` command's parser `AddToClassCommandParser` works in similar way to all parsers and will not be further
+discussed here. The only thing to note is that the parser will only see zero and negative indices as invalid and not 
+out-of-range indices. This is because at the time of parsing, the model is not accessed to check if the indices are
+out-of-range. The reason for this design is to reduce dependency and keep to the single responsibility principle. The 
+job of the parser should be separated from checking in with the model.
 
-## Implementation
-To add Student(s) to a class, the `addtoclass` command is used. The user input is passed to
-the `LogicManager`, which parses the input using the `TimesTableParser` and `AddToClassCommandParser`.
-A `AddToClassCommand` is then created with the class and student indices involved in the command.
-The command is then executed, interacting with the `Model`.The `AddToClassCommandParser` parses the user input to obtain
-a list of indexes to be passed to the `AddToClassCommand`.
+#### The command
+The `AddToClassCommand` command follows an index based format and the class contains the `Index` of the class to add
+the new students to and a `List` of `Index` of students to be added. The command's execution is composed of various 
+smaller steps. The steps are listed below:
+1. Check indices are not out-of-range
+2. Generate a list of `Name` to be added to the class
+3. Produce the new student `StudentNameList` based on the class's existing `StudentNameList` and the list of `Name` to
+be added
+4. Creating the right `EditClassDescriptor`
+5. Updating the `Model` with updated `TuitionClass`
 
-An overview of how the `AddToClassCommand` is created is shown by this sequence diagram:
+The following sequence diagram gives an overview of the execution:
 
-![AddToClass Overview Sequence Diagram](images/AddToClassCreationSequenceDiagram.png)
+![AddToClass Sequence](images/AddToClassSequenceDiagram.png)
 
-Since the `AddToClassCommand` only has access to a list of indices. We can obtain the `TuitionClass` object that is 
-receiving the student(s), by simply using the class index with the `getFilteredTuitionClassList()` command. An 
-`ArrayList<Name>` of students that are to be added into the tuition class is then extracted from 
-`getFilteredStudentList()`using the `createNameList`method. The `StudentNameList` of the tuition class that will be receiving the student(s) is extracted and placed into 
-a new `StudentNameList` along with the `ArrayList<Name>` of the student(s) to be added, creating a combined 
-`StudentNameList`. A new `TuitionClass` is then created based on the original tuition class with the new combined 
-`StudentNameList`. The original tuition class is then swapped out with the new tuition class in the `Model`.
+The sequence diagram for the first reference frame from above:
 
-An overview of how the `AddToClassCommand` is executed is shown by this sequence diagram:
+![AddToClass Sequence](images/AddToClassRef1.png)
 
-![AddToClass Execution Sequence Diagram](images/AddToClassExecutionSequenceDiagram.png)
+The sequence diagram for the second reference frame from above:
 
-<div markdown="span" class="alert alert-info">:information_source: 
+![AddToClass Sequence](images/AddToClassRef2.png)
+  
 
-**Note about AddToClassCommand execution:**<br>
 
-* Note that details of construction of the new `TuitionClass` with the `updatedNameList` is left out due to lack of 
-  space.
-
-</div>
 
 ### Removing Student(s) from a Tuition Class
 #### Overview of command

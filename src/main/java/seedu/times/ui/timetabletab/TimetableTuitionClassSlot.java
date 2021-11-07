@@ -4,7 +4,7 @@ import java.time.temporal.ChronoUnit;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import seedu.times.model.tuitionclass.ClassTiming;
+import seedu.times.model.tuitionclass.TuitionClass;
 
 // Solution below adapted from
 // https://github.com/AY1920S2-CS2103-W15-4/main/blob/master/src/main/java/clzzz/helper/ui/calendar/CalendarSlot.java
@@ -22,14 +22,13 @@ public class TimetableTuitionClassSlot extends TimetableRegion {
     private Label className;
 
     /**
-     * Creates a timetable tuition class slot on the timetable ui.
+     * Creates a timetable tuition class slot on the Timetable Ui.
      *
-     * @param tuitionClassName Tuition class name to be displayed on the slot.
-     * @param classTiming ClassTiming to be displayed on the slot.
+     * @param tuitionClass tuitionClass to be built into the Timetable Ui
      */
-    public TimetableTuitionClassSlot(String tuitionClassName, ClassTiming classTiming) {
-        super(FXML, classTiming.getStartTime().until(classTiming.getEndTime(), ChronoUnit.MINUTES));
-        className.setText(tuitionClassName);
-        time.setText(classTiming.getClassTiming());
+    public TimetableTuitionClassSlot(TuitionClass tuitionClass) {
+        super(FXML, tuitionClass.getStartTime().until(tuitionClass.getEndTime(), ChronoUnit.MINUTES));
+        className.setText(tuitionClass.getClassNameString());
+        time.setText(tuitionClass.getClassTiming().getClassTiming());
     }
 }
