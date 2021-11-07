@@ -13,6 +13,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](https://github.com/bernardwan)]
 
+[[portfolio](team/bernardwan.md)]
+
 Personal email: bernardwan99@gmail.com<br/>
 School email: bernardwan@u.nus.edu
 
@@ -26,6 +28,8 @@ Year 2 CS Student
 
 [[github](https://github.com/softmagnet)]
 
+[[portfolio](team/softmagnet.md)]
+
 Personal email: zhiwei3141@gmail.com<br/>
 School email: zhiwei_lin@u.nus.edu
 
@@ -37,6 +41,8 @@ Year 2 CS Student
 <img src="images/ongzl.png" width="200px">
 
 [[github](https://github.com/Ongzl)]
+
+[[portfolio](team/ongzl.md)]
 
 Personal email: ongzhenglin1999@gmail.com<br/>
 School email: ong.zhenglin@u.nus.edu
@@ -50,6 +56,8 @@ Year 2 CS Student
 
 [[github](https://github.com/yourally2)]
 
+[[portfolio](team/yourally2.md)]
+
 Personal email: kevinchua6@gmail.com<br/>
 School email: kevinchua@u.nus.edu
 
@@ -62,6 +70,8 @@ Year 2 CS Student
 <img src="images/s7u4rt99.png" width="200px">
 
 [[github](https://github.com/s7u4rt99)]
+
+[[portfolio](team/s7u4rt99.md)]
 
 Personal email: stuartlongchayboon@gmail.com<br/>
 School email: stuartlong@u.nus.edu
