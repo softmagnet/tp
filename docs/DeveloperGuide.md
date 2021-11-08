@@ -514,6 +514,8 @@ The sequence diagram when a `AddClass` command is executed by the LogicManager i
 
 ![Sequence diagram when AddClass command is executed in LogicManger](images/AddClassSequenceDiagram.png)
 
+![Reference fram of AddClass command](images/AddClassRef1.png)
+
 The sequence diagram when a new `TuitionClass` is added to the `Model` is as follows
 
 ![Sequnce diagram in model when class is added](images/AddClassModelSequenceDiagram.png)
