@@ -172,7 +172,7 @@ public class RemoveFromClassCommandTest {
         }
 
         @Override
-        public void addPerson(Student student) {
+        public void addStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 

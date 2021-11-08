@@ -61,14 +61,14 @@ activate CommandResult
 CommandResult --> ViewCommand
 deactivate CommandResult
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-CommandResult -[hidden]-> TimesTableParser
-destroy CommandResult
+'CommandResult -[hidden]-> TimesTableParser
+'destroy CommandResult
 
 ViewCommand --> LogicManager : result
 deactivate ViewCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-ViewCommand -[hidden]-> TimesTableParser
-destroy ViewCommand
+'ViewCommand -[hidden]-> TimesTableParser
+'destroy ViewCommand
 
 [<--LogicManager
 deactivate LogicManager

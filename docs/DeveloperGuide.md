@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S1-CS2103T-F11-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/times/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/times/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/times/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StatusBarFooter` etc, and a TabPane consisting of `StudentsUi`, `ClassesUi` and `TimetableUi`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/times/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-F11-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -83,7 +83,7 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * observes the `Command` abstract class in the `Logic` component, because it needs to update when certain commands are run.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
 
 #### Students UI
 ![StudentsUi Class Diagram](images/StudentsDiagram.png)
@@ -99,8 +99,10 @@ The TimetablePanel is made up of `TimetableDay`, `TimetableHeader`, `TimetableTu
 They represent the day panel on the left, the header at the top with the label and timings, the slots representing the `TuitionClass`es and the empty slots between `TuitionClass`es respectively.
 The TimetablePanel takes in an `ObservableList<TuitionClass>` to build the Timetable.
 
-#### ClassPanel UI
-![Structure of ClassPanelUi](images/ClassPanelUiClassDiagram.png)  
+
+#### Classes UI
+![Structure of ClassPanel](images/ClassPanelDiagram.png)  
+
 The ClassPanel is made up of a `TuitionClassPanel` and a `StudentClassPanel`.  
 They represent the left and right panels of the GUI respectively.
 `TuitionClassPanel` takes in both an `ObservableList<TuitionClass>` and an `ObservableList<Student>`, while
@@ -108,15 +110,17 @@ They represent the left and right panels of the GUI respectively.
 `TuitionClassPanel` requires an `ObservableList<Student>` for the purpose of filtering the Student List based on the selected `TuitionClass`. 
 ![img.png](images/ClassPanelImage.png)  
 `TuitionClassPanel` and `StudentClassPanel` both contain their respective `Card`s for each element in their respective `ObservableList`.   
-Note that `StudentClassTabCard` is different from the `StudentCard` in the `studentTab` package so we have less coupling and for future extensibility. 
+Note that `StudentClassTabCard` is different from the `StudentCard` in the `studenttab` package so we have less coupling and for future extensibility. 
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/times/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+![Logic class diagram](images/LogicClassDiagram.png)
+
+[comment]: <> (<img src="images/LogicClassDiagram.png" width="550"/>)
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TimesTableParser` class to parse the user command.
@@ -143,7 +147,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/times/model/Model.java)
 
 
 ![Structure of the UI Component](images/ModelClassDiagram.png)
@@ -161,7 +165,7 @@ to outsiders as an unmodifiable `ObservableList<TuitionClass>`.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
-The `Student` and `NOK` class (next-of-kin) extends the `Person` class. The student class's structure is as follows:
+The `Student` and `NOK` class (next-of-kin) extends the `Person` class. The `Student` class's structure is as follows:
 
 ![Structure of the UI Component](images/StudentModelClassDiagram.png)
 
@@ -184,7 +188,7 @@ The structure of the `TuitionClass` class is as follows:
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/times/storage/Storage.java)
 
 <img src="images/StorageClassDiagramWTuitionClass.png" width="550" />
 
@@ -192,10 +196,10 @@ The `Storage` component,
 * can save both TimesTable data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `TimesTableStorage` and `UserPrefStorage`, which means it can be treated as either one (if only 
   the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 * `JsonAdaptedStudent` are saved in a `List<JsonAdaptedStudent>` and `JsonAdaptedTuitionClass` are saved in a 
-  `ListJsonAdaptedTuitionClass>`
-* `JsonAdaptedTag`s are stored in `JsonAdaptedStudent` as a `List<JsonAdaptedTag>`
+  `List<JsonAdaptedTuitionClass>`.
+* `JsonAdaptedTag`s are stored in `JsonAdaptedStudent` as a `List<JsonAdaptedTag>`.
   
 
 ### Common classes
@@ -253,12 +257,11 @@ in the search.
 The class Ui feature allows one to see the user's classes and each class' corresponding students. 
 
 #### Implementation
-![Structure of Class Ui](images/ClassPanelUiClassDiagram.png)  
+![Structure of Class Ui](images/ClassPanelDiagram.png)  
 The class diagram for the Class Ui feature as shown in the [ClassUi component](#classpanel-ui) is replicated here for convenience.  
 `TuitionClassPanel` and `StudentClassPanel` are both contained in their respective `StackPane` located below their respective `Label`s.  
 
 ![Classes Ui Sequence Diagram.png](images/ClassesUiSequenceDiagram.png)
-
 1. The `MainWindow`'s `fillInnerParts` method creates a new `ClassPanel` using `ObservableList<Student>` and `ObservableList<TuitionClass>` using the methods in `Logic`.
 2. A `StudentClassPanel` and a `TuitionClassPanel` is created using the `ObservableList<Student>` and `ObservableList<TuitionClass>` passed into the `ClassPanel` by the `MainWindow` respectively.
 3. `StudentClassPanel` and `TuitionClassPanel` create their respective cells for each Student/Tuition class present.
@@ -280,7 +283,7 @@ The image below shows the respective parts of the `TimetablePanel`:
 * The light blue box represents the `TimetableTuitionClassSlot`.
 ![Timetable annotation](images/TimetableAnnotation.png)
 
-`TimetablePanel` uses an `ObservableList<TuitionClass>` to build the Timetable UI in the timetable tab through the `build()` method in `TimetablePanel` which takes in an `ObservableList<TuitionClass>`.
+`TimetablePanel` uses an `ObservableList<TuitionClass>` to build the Timetable UI in the timetable tab through `TimetablePanel#build()` which takes in an `ObservableList<TuitionClass>`.
 `TimetablePanel` builds the Timetable UI by sections, starting from the `TimetableHeader`s, followed by the `TimetableDay`s, and finally the `TimetableTuitionClassSlot`s and `TimetableEmptySlot`s simultaneously. 
 It sorts the classes in order of class timing (earliest class first) before building the `TimetableTuitionClassSlot`s and `TimetableEmptySlot`s. 
 
@@ -414,21 +417,32 @@ An overview of the process is shown below:
 
 
 ### Deleting Tuition Class
-To delete a tuition class, the 'deleteclass' command is used.
-The DeleteCommandParser parses the user input to obtain the index of the class to be deleted.
-Then, a DeleteCommand is created with the index of the tuition class to be deleted. When the DeleteCommand#execute() is 
-run, the TimesTable is searched to find the tuition class to be deleted. That tuition class is then deleted from the 
-model.
-Finally, the GUI will switch over to the `classes` tab and the `Students` list in the `classes` tab will be hidden.
+Deletes a tuition class from the `classes` list in the `Classes` tab, to delete a tuition class, the `deleteclass` 
+command is used.
+
+#### Implementation
+1. The DeleteCommandParser parses the user input to obtain the index of the class to be deleted.
+2. A DeleteCommand is created with the index of the tuition class to be deleted.
+3. The DeleteCommand#execute() is run, the TimesTable is searched to find the tuition class to be deleted.
+4. That tuition class is then deleted from the `Model` and the `UniqueClassList` by extension.
 
 A diagram of the procedure is shown below:
 
+![DeleteClass Sequence Diagram](images/DeleteClassSequenceDiagram.png)
+
+![DeleteClass Ref Sequence Diagram](images/DeleteClassRef1.png)
+
 ### Adding Tuition Class
-To add a tuition class, the `addclass` command is used.
-The `AddClassCommandParser` parses the user input to obtain 4 parameters: `ClassName`, `ClassTiming`, `Rate` and `Location`. 
-The parser checks if the user has inputted valid value for these 4 parameter. These 4 parameters and a new empty 
-`StudentNameList` are then used to create a new `TuitionClass` to be passed into a new `AddClassCommand(TuitionClass)` 
-as an argument. This command is then executed and the new `TuitionClass` is added into the `Model` and into the 
+Adds a new tuition class into the `classes` list in the `Classes` tab with all the relevant detail, to add a tuition 
+class, the `addclass` command is used.
+
+#### Implementation
+1. The `AddClassCommandParser` parses the user input to obtain 4 parameters: `ClassName`, `ClassTiming`, `Rate` and 
+`Location`. 
+2. The parser checks if the user has inputted valid value for these 4 parameter. 
+3. These 4 parameters and a new empty`StudentNameList` are then used to create a new `TuitionClass` to be passed into a new `AddClassCommand(TuitionClass)` 
+as an argument.
+4.This command is then executed and the new `TuitionClass` is added into the `Model` and into the 
 `UniqueClassList`, where further checks are done to ensure that there is no overlapping timing between the new 
 `TuitionClass` that is to be added and other already existing `TuitionClass`es in the list, as TimesTable is made for a
 single user and thus designed to not allow overlapping `TuitionClass`es
@@ -480,7 +494,7 @@ The sequence diagram when a new `TuitionClass` is added to the `Model` is as fol
 * Education: NIE graduate.
 * Household Description: Sentosa Cove landed property with rich parents.
 
-**Value proposition**: </br>
+**Value proposition**: <br>
 A busy tutor who has a large number of students can find it extremely difficult to
 
 * manage and organize student information
@@ -496,7 +510,7 @@ This is where Timestable comes in. It improves two main areas:
   * delete
   * update
 
-By improving the data manipulation process, the tutor can organize student information more easily. </br>
+By improving the data manipulation process, the tutor can organize student information more easily. <br>
 By improving the querying process, the tutor can make scheduling less painstaking and time-consuming.
 
 
@@ -513,7 +527,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | User                                       | View my class timings for a specific contact (day and time)  |          Know which day will I be teaching this contact    |
 | `* * *`  | User                                       | Record parent contact of my students                         | Contact the student's parent in case of emergencies        |
 | `* * *`  | User                                       | Delete/archive my student's contacts and information         | I can declutter my contacts.                               |
-| `* * *`  | Experienced User                           | Add all contact details without any specifiers               | I can save time in creating new contacts                   |
 | `* * *`  | User                                       | Record locations of classes of each student                  | Knows where to go                                          |
 | `* `     | Careless User                              | Be notified if there was a clash in timing                   | I can have peace of mind                                   |
 | `* `     | User                                       | View schedule for a specific day                             | Can prepare for lesson and won't be absent                 |
@@ -526,10 +539,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons.
-2.  TimesTable shows a list of persons.
-3.  User requests to delete a specific person in the list.
-4.  TimesTable deletes the person.
+1.  User requests to list students.
+2.  TimesTable shows a list of students.
+3.  User requests to delete a specific student in the list.
+4.  TimesTable deletes the student.
 
     Use case ends.
 
@@ -566,7 +579,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
     
-* 1b. User keys in add command with valid format but invalid String format for certain field.
+* 1b. User keys in add command with valid format but invalid String format for certain fields.
 
     * 1b1. TimesTable shows an error message saying which field contains the invalid format.
 
@@ -789,7 +802,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 14. Should package everything into a single JAR file
 15. Product should not exceed 100 MB and documents should not exceed 15 MB/file
 16. Developer Guide and User Guide should be PDF-friendly
-*{More to be added}*
 
 ### Glossary
 
@@ -862,3 +874,24 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+clear - stuart
+add -bernard
+addclass - stuart
+delete - kevin
+deleteclass - zhenglin
+addtoclass - kevin
+removefromclass - zhenglin
+edit - zhiwei
+editclass - zhiwei
+sort - kevin
+findname -bernard
+findclass -bernard
+findclassname -stuart
+findtag -zhenglin
+view - zhenglin
+class - zhiwei
+list -ez - stuart
+listclass -ez - kevin
+help - dunnid
+exit - dunnid

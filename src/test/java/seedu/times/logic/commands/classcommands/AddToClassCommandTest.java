@@ -87,7 +87,7 @@ public class AddToClassCommandTest {
     public void execute_addDuplicateStudentsToClass_failure() {
         Model model = new ModelManager(new TimesTable(), new UserPrefs());
 
-        model.addPerson(BENSON);
+        model.addStudent(BENSON);
         TuitionClass newClass = new TuitionClassBuilder(JC_CHEMISTRY).withStudentList(BENSON.getName().fullName)
                 .build();
         model.addTuitionClass(newClass);

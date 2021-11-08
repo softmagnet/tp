@@ -11,6 +11,12 @@ public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final int MAX_TAG_LENGTH = 15;
+    public static final int MAX_TAG_NUMBER = 5;
+    public static final String MESSAGE_CONSTRAINTS_TOO_LONG =
+            "Tags names should be at most " + MAX_TAG_LENGTH + " characters";
+    public static final String MESSAGE_CONSTRAINTS_TOO_MANY =
+            "A student should have at most " + MAX_TAG_NUMBER + " tags";
 
     public final String tagName;
 
