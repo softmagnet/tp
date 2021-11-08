@@ -202,6 +202,7 @@ deleteclass INDEX
 Examples:
 * `listclass` followed by `deleteclass 2` deletes the 2nd class in the TimesTable.
 
+<div style="page-break-after: always;"></div>
 ### Adding student/students to a class: `addtoclass`
 <hr>
 
