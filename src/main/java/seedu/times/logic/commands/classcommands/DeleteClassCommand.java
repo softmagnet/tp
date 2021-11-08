@@ -3,6 +3,8 @@ package seedu.times.logic.commands.classcommands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.times.commons.core.Messages;
 import seedu.times.commons.core.index.Index;
@@ -25,9 +27,12 @@ public class DeleteClassCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
+    private static Logger logger = Logger.getLogger("DeleteClassCommand");
+
     private final Index index;
 
     public DeleteClassCommand(Index index) {
+        assert index.getOneBased() > 0;
         this.index = index;
     }
 
@@ -37,6 +42,7 @@ public class DeleteClassCommand extends Command {
 
         List<TuitionClass> lastShownClassList = model.getFilteredTuitionClassList();
         if (index.getOneBased() > lastShownClassList.size()) {
+            logger.log(Level.INFO, "There are only " + lastShownClassList.size() + " classes");
             throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
         }
         TuitionClass tuitionClass = lastShownClassList.get(index.getZeroBased());
@@ -46,6 +52,7 @@ public class DeleteClassCommand extends Command {
         }
 
         model.deleteTuitionClass(tuitionClass);
+        logger.log(Level.INFO, "Class deleted");
 
         updateView(TabName.CLASSES);
 
