@@ -21,7 +21,7 @@ public class FindClassCommand extends Command {
             + "    1) 3 letter abbreviation for day of the week\n"
             + "    2) time expressed in HH:MM-HH:MM format.\n"
             + "(" + ClassTiming.MESSAGE_CONSTRAINTS + ")\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters: CLASS_TIMING\n"
             + "Example: " + COMMAND_WORD + " Mon 11:30-12:30";
 
     private final ClassTimingContainsKeywordsPredicate predicate;

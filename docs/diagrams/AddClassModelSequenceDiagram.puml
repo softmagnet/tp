@@ -19,6 +19,8 @@ activate UniqueClassList
 
 UniqueClassList -> UniqueClassList : isValidTiming(t)
 activate UniqueClassList
+UniqueClassList --> UniqueClassList
+deactivate UniqueClassList
 
 UniqueClassList -> ObservableArrayList : add(t)
 activate ObservableArrayList

@@ -120,6 +120,7 @@ add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… nok/ n/NOK_NAME p/NOK_PHO
 * The command does not allow adding duplicate students - as defined as the student having the same name, ignoring case.
 * `NAME` can have a maximum of 120 characters.
 * `PHONE_NUMBER` has to be between 3-25 numbers.
+* `TAG` can have a maximum of 15 characters per tag, with a maximum of 5 tags.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0).
@@ -270,6 +271,7 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [nok/ [n/NOK_N
       specifying any tags after it.
 * `NAME` can have a maximum of 120 characters.
 * `PHONE_NUMBER` has to be between 3-25 numbers.
+* `TAG` can have a maximum of 15 characters per tag, with a maximum of 5 tags.
 
 Examples (editing student information only):
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the `PHONE` and `EMAIL` of the 1st student to be `91234567` and `johndoe@example.com` respectively.
@@ -571,11 +573,26 @@ After a class, just input the time taught for that class and mark the attendance
 For each student present, TimesTable will take the hourly rate multiplied by the 
 session length for each person present to calculate the amount that each student has to pay.  
 
-The session length is useful when the class length goes beyond the intended length or when the class cuts short.  
+The session length field is useful when the class length goes beyond the intended length or when the class cuts short.  
 
-This information will then be consodidated in an invoice to be generated.
+This information will then be consolidated in an invoice to be generated.
 
-<bernard's section>
+When you want to generate a new invoice, simply use the 'createinvoice' command. Invoices will be generated for all 
+students of the selected class. These invoices will use the session attendances recorded since the last invoice, generating
+a table with the relevant information such as session date, session length, hourly rate, student name, and so on. You will
+also be able to set the due date for the invoice. 
+
+An example of the invoice generated is shown below.
+
+![InvoiceExample](images/InvoiceExample.png)
+
+With this invoice generation feature, you will easily be able to charge the correct amount to your clients
+and you would also not have to worry about providing evidence. TimesTable will take care of it for you.
+
+In addition to invoice generation, we are also working on an invoice management feature that will allow you to track
+the status of each invoice. You will be able to mark the invoices as paid, and archive them. TimesTable will also
+alert you once the due date for any invoice has passed. You can simply let TimesTable keep track of all payments for you.
+
 
 If there are any other proposed features, please submit an issue via our GitHub over [here](https://github.com/AY2122S1-CS2103T-F11-1/tp/issues) and we'll look into it!
 
@@ -585,26 +602,28 @@ If there are any other proposed features, please submit an issue via our GitHub 
 
 Action | Format, Examples
 --------|------------------
-**Clear** | `clear`
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… nok/ n/NOK_NAME p/NOK_PHONE_NUMBER e/NOK_EMAIL a/NOK_ADDRESS` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com a/311, Clementi Ave 2, #02-25 `
 **Add class** | `addclass cn/CLASS_NAME ct/CLASS_TIMING r/HOURLY_RATE l/LOCATION` <br> e.g., `addclass cn/Sec 4 A Maths ct/mon 11:30-13:30 r/70 l/Nex Tuition Center`
+**Add to class** | `addtoclass CLASS_INDEX STUDENT_INDEX…` <br> e.g., `addtoclass 1 1 2 3`
+**Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Delete class** | `deleteclass INDEX` <br> e.g., `deleteclass 2`
-**Add to class** | `addtoclass CLASS_INDEX STUDENT_INDEX…` <br> e.g., `addtoclass 1 1 2 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [nok/ [n/NOK_NAME] [p/NOK_PHONE] [e/NOK_EMAIL] [a/NOK_ADDRESS]]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Edit class** | `editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]` <br> e.g., `editclass 1 ct/wed 15:00-17:00`
-**Remove from class** | `removefromclass CLASS_INDEX STUDENT_INDEX...` <br> e.g., `removefromclass 1 1 2 3`
-**Sort** | `sort PARAMETER_TO_SORT_BY DIRECTION_OF_SORT` <br> e.g., `sort name asc`
+**Exit** | `exit`
 **Find name** | `findname NAME [, [NAME]...]` <br> e.g., `find Stuart`
-**Find class** | `findclass CLASS_TIMING` <br> e.g., `findclass mon 11:00-12:00`
+**Find class timing** | `findclass CLASS_TIMING` <br> e.g., `findclass mon 11:00-12:00`
 **Find class name** | `findclassname CLASS_NAME [, [CLASS_NAME]...]` <br> e.g., `findclassname math`
 **Find tag** | `findtag KEYWORD [, [KEYWORD]...]` <br> e.g., `findtag  math, physics`
-**View** | `view TAB_TO_VIEW` <br> e.g., `view timetable`
-**Select class** | `class CLASS_INDEX` <br> e.g., `class 1`
+**Help** | `help`
 **List** | `list`
 **List class** | `listclass`
-**Help** | `help`
-**Exit** | `exit`
+**Remove from class** | `removefromclass CLASS_INDEX STUDENT_INDEX...` <br> e.g., `removefromclass 1 1 2 3`
+**Sort** | `sort PARAMETER_TO_SORT_BY DIRECTION_OF_SORT` <br> e.g., `sort name asc`
+**Select class** | `class CLASS_INDEX` <br> e.g., `class 2`
+**View** | `view TAB_TO_VIEW` <br> e.g., `view timetable`
+
+
 
 ## Glossary
 - NOK: Next-of-kin. Refers to the student's guardian, parent or perhaps close friend to be contacted regarding admin matters like payment.

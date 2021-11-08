@@ -68,9 +68,7 @@ AddClassCommand -> Model : addTuitionClass(t)
 activate Model
 deactivate Model
 
-AddClassCommand -> Model : updateView(TabName.CLASSES)
-activate Model
-deactivate Model
+
 
 create CommandResult
 AddClassCommand -> CommandResult

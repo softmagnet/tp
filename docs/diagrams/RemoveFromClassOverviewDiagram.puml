@@ -33,6 +33,8 @@ RemoveFromClassCommandParser <-- RemoveFromClassCommand: c
 deactivate RemoveFromClassCommand
 TimesTableParser <-- RemoveFromClassCommandParser: c
 deactivate RemoveFromClassCommandParser
+RemoveFromClassCommandParser -[hidden]-> TimesTableParser
+destroy RemoveFromClassCommandParser
 LogicManager <-- TimesTableParser: c
 deactivate TimesTableParser
 
