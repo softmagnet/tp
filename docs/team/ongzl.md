@@ -71,7 +71,7 @@ Given below are my contributions to the project.
       [\#294](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/294),
       [\#295](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/295),
       [\#333](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/333))
-    * Added challenges faced in `AddClassCommand` [\#344](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/333)
+    * Added challenges faced in `AddClassCommand` [\#344](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/344)
     * Added documentation and sequence diagrams for `DeleteClassCommand` [\#320](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/320)
       [\#333](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/333),
       [\#339](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/339))     
