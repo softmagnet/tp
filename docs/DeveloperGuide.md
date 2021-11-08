@@ -522,6 +522,24 @@ The sequence diagram when a new `TuitionClass` is added to the `Model` is as fol
 
 ![Sequnce diagram in model when class is added](images/AddClassModelSequenceDiagram.png)
 
+#### Challenges faced
+
+The challenging aspect when adding a tuition class to the `UniqueClassList` was making sure that no overlapping 
+classes were added.
+
+Initially, the `equals()` method of `TuitionClass` was used to compare `TuitionClass`es, and `ClassTiming` was the 
+only comparator in the `equals()` method, but this proved problematic later on due to comparing `ClassTiming` 
+using only the `equals()` method and comparing `TuitionClass`es using only `ClassTiming`. We realized that classes 
+would still be added even though they overlap as they were not strictly equals and this method of comparison was 
+very naive.
+
+After some trial and error with quite a lot of developer's testing, we created a `isOverlapping()` in `TuitionClass` 
+that checks for overlaps which checks for any overlap where either class will be within the timeframe of one another,
+or where the start or end time of one class was within the timeframe of another. This made sure that we had a method 
+to check for any overlap between classes when adding new class to the `UniqueClassList`, ensuring that no new 
+classes would be added to the `UniqueClassList` when adding a tuition class to TimesTable. This check also served to 
+make sure that there would be no overlapping classes resulting from an `editclass` command.
+
 ---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
