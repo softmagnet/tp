@@ -70,8 +70,11 @@ Given below are my contributions to the project.
     * Added sequence diagrams and implementation detail for `AddClassCommand` and edited other UML diagrams (Pull request
       [\#294](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/294),
       [\#295](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/295),
-      [\#333](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/333))     
-    * Added documentation and sequence diagrams for `DeleteClassCommand` [\#320](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/320)
+      [\#333](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/333),
+      [\#339](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/339))     
+    * Added documentation and sequence diagrams for `DeleteClassCommand` (Pull request 
+      [\#320](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/320),
+      [\#333](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/333))
     * Added method for manual testing of `deleteclass`, `removefromclass`, `findtag` and `view` [\#332](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/332)
 * **Community**
   * PRs reviewed (with non-trivial review comments): (Pull request 
