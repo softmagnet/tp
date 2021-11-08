@@ -19,6 +19,9 @@ import seedu.times.model.tuitionclass.StudentNameList;
 import seedu.times.model.tuitionclass.TuitionClass;
 import seedu.times.ui.TabName;
 
+/**
+ * Removes students from a tuition class.
+ */
 public class RemoveFromClassCommand extends Command {
     public static final String COMMAND_WORD = "removefromclass";
 

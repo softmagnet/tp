@@ -6,6 +6,9 @@ import java.util.function.Predicate;
 import seedu.times.commons.util.StringUtil;
 import seedu.times.model.tuitionclass.TuitionClass;
 
+/**
+ * Tests that a {@code TuitionClass}'s {@code ClassTiming} matches any of the keywords given.
+ */
 public class ClassTimingContainsKeywordsPredicate implements Predicate<TuitionClass> {
 
     private final List<String> keywords;

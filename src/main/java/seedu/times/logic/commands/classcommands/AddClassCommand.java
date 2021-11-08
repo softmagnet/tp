@@ -15,6 +15,9 @@ import seedu.times.model.tuitionclass.TuitionClass;
 import seedu.times.model.tuitionclass.exceptions.OverlappingClassException;
 import seedu.times.ui.TabName;
 
+/**
+ * Adds a tuition class to Timestable.
+ */
 public class AddClassCommand extends Command {
 
     public static final String COMMAND_WORD = "addclass";

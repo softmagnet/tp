@@ -9,6 +9,9 @@ import seedu.times.logic.parser.Parser;
 import seedu.times.logic.parser.exceptions.ParseException;
 import seedu.times.model.tuitionclass.predicates.ClassNameContainsKeywordsPredicate;
 
+/**
+ * Parses input arguments and creates a new FindClassNameCommand object
+ */
 public class FindClassNameCommandParser implements Parser<FindClassNameCommand> {
 
     @Override

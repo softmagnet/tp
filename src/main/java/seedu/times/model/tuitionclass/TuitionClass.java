@@ -8,13 +8,12 @@ import java.util.Arrays;
 import seedu.times.model.person.Name;
 
 /**
- * Represents a tuition TuitionClass in the address book.
+ * Represents a {@code TuitionClass} in the Timestable.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class TuitionClass {
 
     private final ClassTiming classTiming;
-
     private final ClassName className;
     private final Location location;
     private final Rate rate;
@@ -161,13 +160,10 @@ public class TuitionClass {
                 && o.studentNameList.equals(getStudentList());
     }
 
-
     /**
      * Returns true if the class timing of the class to be checked overlaps with this class.
      */
     public boolean isOverlapping(TuitionClass toCheck) {
-        //return !(this.getClassTiming().isEarlier(toCheck.getClassTiming())
-        //        || toCheck.getClassTiming().isEarlier(this.getClassTiming()));
         if (this.equals(toCheck)) {
             return true;
         } else if (this.getClassTiming().isSameDay(toCheck.getClassTiming()) //on the same day
@@ -215,6 +211,9 @@ public class TuitionClass {
         return this.classTiming.getDayToInt();
     }
 
+    public void replaceStudentName(Name newName, Name oldName) {
+        studentNameList.replaceStudentName(newName, oldName);
+    }
 
     @Override
     public String toString() {
@@ -239,9 +238,5 @@ public class TuitionClass {
                 .append(" ");
 
         return builder.toString();
-    }
-
-    public void replaceStudentName(Name newName, Name oldName) {
-        studentNameList.replaceStudentName(newName, oldName);
     }
 }

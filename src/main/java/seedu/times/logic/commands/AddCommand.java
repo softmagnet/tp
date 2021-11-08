@@ -14,7 +14,7 @@ import seedu.times.model.person.Student;
 import seedu.times.ui.TabName;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to the Timestable.
  */
 public class AddCommand extends Command {
 

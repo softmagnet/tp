@@ -4,6 +4,9 @@ import seedu.times.logic.commands.exceptions.CommandException;
 import seedu.times.model.Model;
 import seedu.times.ui.TabName;
 
+/**
+ * Sorts either the students or tuition class in Timestable.
+ */
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts students/classes by specified"

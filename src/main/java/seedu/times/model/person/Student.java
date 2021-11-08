@@ -13,7 +13,7 @@ import seedu.times.model.tuitionclass.Location;
 import seedu.times.model.tuitionclass.Rate;
 
 /**
- * Represents a Student in the address book.
+ * Represents a Student in the Timestable.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student extends Person {

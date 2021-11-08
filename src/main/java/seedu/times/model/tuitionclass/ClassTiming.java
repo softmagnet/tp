@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import seedu.times.logic.parser.exceptions.ParseException;
 
 /**
- * Represents a Student's class timing in the address book.
+ * Represents a {@code TuitionClass}'s class timing in the Timestable.
  * Guarantees: immutable; is valid as declared in {@link #isValidClassTiming(String)}
  */
 public class ClassTiming implements Comparable<ClassTiming> {
