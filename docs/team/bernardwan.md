@@ -2,7 +2,6 @@
 layout: page
 title: Bernard Wan De Yuan's Project Portfolio Page
 ---
-
 ### Project: TimesTable
 
 TimesTable is a desktop address book plus planner application for tuition teachers to keep track of their students
@@ -12,8 +11,7 @@ and has about 17 kLoC.
 Given below are my contributions to the project.
 
 
-* **New Feature**: Added the `removefromclass` command to remove students from an existing class.
-    * What it does: Allows the user to remove one or more students from an existing tuition class.
+* **New Feature**: Added the `removefromclass` command to remove one or more students from an existing class.
     * Justification: A core feature as the user would likely need to move students around or simply remove students that have
       graduated or quit.
     * Highlights: The implementation of this command was especially challenging as the only information that the command has
@@ -27,7 +25,6 @@ Given below are my contributions to the project.
       
 
 * **New Feature**: Added the `deleteclass` command to delete existing tuition classes.
-    * What it does: Allows the user to delete a selected class from the application.
     * Justification: A core feature for the user to get rid of older classes that they have finished teaching.
     * Highlights: Deleting the entire class is much simpler than removing students from a class. The most challenging aspect
     would be to ensure that the index of the class to be deleted corresponds to the actual class list order displayed on the GUI
@@ -35,10 +32,10 @@ Given below are my contributions to the project.
       * Pull requests: [\#104](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/104), [\#273](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/273)
 
 
-* **New Feature**: Updated the behaviour of the `findname` and `findtag` command to support partial matches
-  and to allow for multi-word searches 
-    * What it does: Changed the functionality of the two `find` commands for students to support more natural use cases.
-    * Justification: The different types of `find` commands needs different logic as what the user will want to do varies.
+* **New Feature**: Updated the behaviour of the `findname` and `findtag` command to support more natural use cases.
+    * What it does: Changed the functionality of the two `find` commands for students to support partial matches
+      and to allow for multi-word searches.
+      * Justification: The different types of `find` commands needs different logic as what the user will want to do varies.
       For name searches, users would often want to search for first name together with last name. As such, the command should treat
       the multi-word keyword as a single sequence. For the `findtag` command, users might search for just `math` and expect to find
       all tags that contain math. As such, partial matching is required.
@@ -60,20 +57,18 @@ Given below are my contributions to the project.
 
 
 * **Documentation**:
-    
     * User Guide:
         * Added section for location field. ([\#37](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/37))
         * Updated behavior for find features. ([\#145](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/145))
         * Update UG and examples for findname and findtag. ([\#163](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/163))
+        * Added section for proposed feature of invoice generation. ([\#323](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/323))
     * Developer Guide:
         * Updated NFRs section to include relevant information. ([\#12](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/12))
         * Added implementation details of the `removefromclass` feature. Added UML diagrams for the command. ([\#82](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/82), [\#301](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/301))
 
 * **Contributions to team-based tasks**
     * Set up project website:
-        * Set up github pages
-        * Changed settings
-        * Changed names and links from AddressBook to TimesTable
+        * Set up github pages, changed settings, changed names and links from AddressBook to TimesTable
     * Landing Page ([\#133](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/133) , [\#306](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/306)):
         * Updated landing page to reflect TimesTable contents.
         * Added a section for each major feature.
@@ -82,9 +77,7 @@ Given below are my contributions to the project.
     * Project Demo for 1.3:
         * Recorded gifs and screenshots for different features
     * Helped maintained issue tracker:
-        * Created new issues
-        * Added milestones and assignees
-        * Closed relevant issues
+        * Created new issues, added milestones and assignees, closed relevant issues
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments):  [\#303](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/303)
