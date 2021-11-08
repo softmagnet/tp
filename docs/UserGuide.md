@@ -11,7 +11,7 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer, if you do not, you can download it from [here](https://www.oracle.com/java/technologies/downloads/#jdk17-linux).
@@ -48,7 +48,7 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -95,6 +95,7 @@ a class or student list)
 
 </div>
 
+<div style="page-break-after: always;"></div>
 ### Clearing all entries : `clear`
 <hr>
 
@@ -136,6 +137,10 @@ add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t
 add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/slow learner nok/ n/Karen e/karenSUper@gmail.com p/99994444 a/311, Clementi Ave 2, #02-25 
 `
 
+
+
+<div style="page-break-after: always;"></div>
+
 ### Adding a class: `addclass`
 <hr>
 
@@ -164,7 +169,7 @@ Tuition Center`.
 addclass cn/Sec 4 E Maths ct/TUE 12:30-14:30 r/65 l/Block 123, Clementi Ave 6, #14-41
 `
 Adds a new class with name `Sec 4 E Maths`, with class timing `Tue 12:30-14:30`, with hourly rate of $`65`, at `Block 123, Clementi Ave 6, #14-41`.
-
+<div style="page-break-after: always;"></div>
 ### Deleting a student : `delete`
 <hr>
 
@@ -247,7 +252,7 @@ removefromclass 1 1 2 3
 Removes the 1st, 2nd and 3rd student in the displayed student list of the 1st class in the `classes` tab, causing the
 `size` of 1st class to decrease by 3.
 
-
+<div style="page-break-after: always;"></div>
 ### Editing a student : `edit`
 <hr>
 
@@ -375,6 +380,7 @@ The `list` and `listclass` commands can be used to show the original lists of st
 Class size will **not** be affected by filtering students (using FindName or FindTag).
 </div>
 
+<div style="page-break-after: always;"></div>
 ### Locating class by class timing : `findclass`
 <hr>
 
@@ -502,6 +508,7 @@ class CLASS_INDEX
 Examples:
 * `class 1` selects the class with `CLASS_INDEX` of `1` and displays its students in the class tab.
 
+<div style="page-break-after: always;"></div>
 ### Listing all students : `list`
 <hr>
 
@@ -556,6 +563,7 @@ If your changes to the data file makes its format invalid, Timestable will disca
 **Q**: Are you going to add XXX feature? What features are you planning to add?<br>
 **A**: I'm glad you asked! We're currently planning to add the following features:
 
+<div style="page-break-after: always;"></div>
 ### Upcoming Features:
 
 #### Payment Management with Invoice
@@ -598,7 +606,7 @@ alert you once the due date for any invoice has passed. You can simply let Times
 If there are any other proposed features, please submit an issue via our GitHub over [here](https://github.com/AY2122S1-CS2103T-F11-1/tp/issues) and we'll look into it!
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## Command summary
 
 Action | Format, Examples
