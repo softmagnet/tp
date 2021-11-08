@@ -824,19 +824,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Adding a Student to a class
-1. Adding a student to a class that doesn't currently exist
-    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/70 ct/Mon 11:30-13:30 l/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
-       nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25 `
-       Expected: A class is created at 11:30-13:30 on Monday.
-       Details of the created `Student` and `Class` is shown in the status message.
-   List is updated to include the student in the `studentTab` and class is added to the `classTab`
 
-2. Adding a student to a class that currently exists
-    1. Test case: `add n/Johnny p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/70 ct/Mon 11:30-13:30 l/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
-       nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25 `
-       Expected: The student is added to the class that exists at 11:30-13:30 on Monday. No new class is created.
-       Details of the created `Student` and the `Class` he is added to is shown in the status message.
 
 ### Deleting a person
 
@@ -854,6 +842,53 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 3. _{ more test cases …​ }_
+
+### Deleting a tuition class
+
+1. Test case: Deleting a class successfully
+   
+    1. Prerequisites: Class to delete must be present.
+       1. Add class: addclass cn/Sec 4 A Maths ct/FRI 11:30-13:30 r/70 l/Nex Tuition Center
+       2. Note the classes in the class list.
+
+    2. Delete the class: `deleteclass INDEX`. `INDEX` is the index of the class shown in the class list. If there 
+       were no other classes present before, this would be 1. Otherwise, it would be the number shown at the top left corner of the class card.
+       (eg. `deleteclass 1`).
+   
+       Expected: `Class deleted: Class Timing: FRI 11:30-13:30 Class Name: Sec 4 A Maths Location: Nex Tuition 
+       Center Rate: 70`  message shown. Class no longer belongs in the class list noted in (ib).
+   
+2. Test case: Cannot delete a class that does not exist
+
+    1. Prerequisites: Class at the class index to be deleted must not exist.
+        1. Easiest way to ensure that this happens: run clear
+        2. Note that the class list is empty.
+
+    2. Delete the class at index 1: `deleteclass 1`. <br>
+       Expected: The class index provided is invalid message shown.
+       
+
+### Adding a Student to a class
+1. Adding a student to a class that doesn't currently exist
+    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/70 ct/Mon 11:30-13:30 l/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+       nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25 `
+       Expected: A class is created at 11:30-13:30 on Monday.
+       Details of the created `Student` and `Class` is shown in the status message.
+       List is updated to include the student in the `studentTab` and class is added to the `classTab`
+
+2. Adding a student to a class that currently exists
+    1. Test case: `add n/Johnny p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/70 ct/Mon 11:30-13:30 l/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+       nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25 `
+       Expected: The student is added to the class that exists at 11:30-13:30 on Monday. No new class is created.
+       Details of the created `Student` and the `Class` he is added to is shown in the status message.
+       
+
+### Removing Student(s) from a class
+1. Removing a student from a class that doesn't currently exist
+2. Removing a student from a class that has no student
+
+
+
 
 ## Saving data
 
