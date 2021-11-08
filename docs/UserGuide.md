@@ -408,8 +408,8 @@ Examples:
 3. Negative examples (Two or more keywords of the same type)
     * `findclass mon tue` returns nothing.
     * `findclass 09:00-10:30 11:00-12:00` returns nothing.
-   
 
+<div style="page-break-after: always;"></div>
 ### Locating class by class name: `findclassname`
 <hr>
 
@@ -485,6 +485,7 @@ view TAB_TO_VIEW
 Examples:
 * `view timetable` switches the displayed tab to be the `timetable` tab.
 
+<div style="page-break-after: always;"></div>
 ### Selecting of classes: `class`
 <hr>
 
@@ -530,6 +531,7 @@ Exits the program.
 
 Format: `exit`
 
+<div style="page-break-after: always;"></div>
 ### Saving the data
 <hr>
 
