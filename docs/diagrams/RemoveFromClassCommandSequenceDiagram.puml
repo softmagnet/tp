@@ -3,22 +3,23 @@
 
 !include Style.puml
 
-group sd Match Student and Class Indices to their objects. Create updated Name List
-box Logic LOGIC_COLOR_T1
 
+
+box Logic LOGIC_COLOR_T1
 participant "c:RemoveFromClassCommand" as RemoveFromClassCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant "classList:ObservableList<TuitionClass>" as tuitionClassList MODEL_COLOR
-participant "c1:TuitionClass" as TuitionClass MODEL_COLOR
+participant "classToRemoveFrom:TuitionClass" as TuitionClass MODEL_COLOR
 participant "studentList:ObservableList<Student>" as studentList MODEL_COLOR
-participant "c2:TuitionClass" as newTuitionClass MODEL_COLOR
+participant "editedClass:TuitionClass" as newTuitionClass MODEL_COLOR
 end box
 
 activate RemoveFromClassCommand
 
+group sd Match Student and Class Indices to their objects. Create updated Name list.
 RemoveFromClassCommand -> Model: getFilteredTuitionClassList()
 activate Model
 Model -> tuitionClassList: Get class list
@@ -59,6 +60,8 @@ RemoveFromClassCommand --> RemoveFromClassCommand --: newNameList
 
 create newTuitionClass
 RemoveFromClassCommand -> newTuitionClass ++ :Create new tuition class with newNameList
+
+
 RemoveFromClassCommand <-- newTuitionClass -- : editedClass
 
 end
