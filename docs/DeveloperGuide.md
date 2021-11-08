@@ -10,7 +10,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-- Past year projects: [Link](https://github.com/AY1920S2-CS2103-W15-4/main)
+- The [`Timetable`](#timetable-ui) feature was inspired by a similar feature in the past project of [Pet Store Helper](https://github.com/AY1920S2-CS2103-W15-4/main) ([DG](https://ay1920s2-cs2103-w15-4.github.io/main/DeveloperGuide.html#calendar-feature)).
+  The implementation of the components of the [`Timetable`](#timetable-ui) feature (`TimetableTuitionClassSlot`, `TimetableDay`, `TimetableRegion` and `TimetableEmptySlot`) has been adapted from them with maximum changes fit our app.
+  The implementation of how we [built and designed](#timetable-feature) ([TimetablePanel.java](https://github.com/AY2122S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/times/ui/timetabletab/TimetablePanel.java)) the entire Timetable Tab (layout, classes etc) is entirely new.
 
 ---
 
@@ -91,11 +93,11 @@ The `UI` component,
 
 ![StudentsUi Class Diagram](images/StudentsDiagram.png)
 
-The `StudentListPanel` is made up of `StudentCard`s, which displays information about the `Students`. The `StudentListPanel` takes in an `ObservableList<Student>`, which builds a `StudentCard` for each student.
+The `StudentListPanel` is made up of `StudentCard`s, which displays information about the `Student`s. The `StudentListPanel` takes in an `ObservableList<Student>`, which builds a `StudentCard` for each student.
 
 #### Timetable UI
 
-Adapted from [here](https://github.com/AY1920S2-CS2103-W15-4/main/tree/master/src/main/java/clzzz/helper/ui/calendar)
+Adapted from [here](https://github.com/AY1920S2-CS2103-W15-4/main/tree/master/src/main/java/clzzz/helper/ui/calendar). You can find more details in the [acknowledgements](#acknowledgements) section.
 
 ![TimetableUi Class Diagram](images/TimetableDiagram.png)
 
@@ -222,7 +224,7 @@ The class Ui feature allows one to see the user's classes and each class' corres
 #### Implementation
 
 ![Structure of Class Ui](images/ClassPanelDiagram.png)  
-The class diagram for the Class Ui feature as shown in the [ClassUi component](#classes-ui) is replicated here for convenience.  
+The class diagram for the Class Ui feature as shown in the [Classes Ui component](#classes-ui) is replicated here for convenience.  
 `TuitionClassPanel` and `StudentClassPanel` are both contained in their respective `StackPane` located below their respective `Label`s.
 
 ![Classes Ui Sequence Diagram.png](images/ClassesUiSequenceDiagram.png)
@@ -247,7 +249,7 @@ The image below shows the respective parts of the `TimetablePanel`:
 
 - The green box represents the `TimetableDay`, and there are 7 `TimetableDay` parts to represent the 7 days of the week.
 - The yellow box represents the `TimetableHeader`, with the box all the way at the left with the label "Time Slots" representing the `TimetableHeaderLabel`, and the others representing the `TimetableHeaderTiming`. There is always 1 `TimetableHeaderLabel` but can have many `TimetableHeaderTiming` parts depending on the earliest start time of the week and latest end time.
-- The purple box represents the `TimetableEmptySlot`.
+- The dark blue box represents the `TimetableEmptySlot`.
 - The light blue box represents the `TimetableTuitionClassSlot`.
   ![Timetable annotation](images/TimetableAnnotation.png)
 
@@ -270,9 +272,12 @@ The sequence diagrams below illustrate how the Timetable UI is built.
 3. `TimetablePanel#build()` starts building the Timetable Ui by first calling `TimetablePanel#buildHeader()` which takes in the `ObservableList<TuitionClass>`.
 4. Based on the `Timetable#buildHeader()` reference frame above, it builds the `TimetableHeaderLabel` first, followed by the `TimetableHeaderTiming`s, starting from the earliest start time of the `ObservableList<TuitionClass>` until the latest end time of the `ObservableList<TuitionClass>` in 30 minutes interval.
 5. After `TimetablePanel#buildHeader()` is called, it would call `TimetablePanel#buildDays()`, which builds 7 `TimetableDay` objects to represent the 7 days of the week.
-6. Finally, the `TimetablePanel#buildClasses()` is called, which takes in the same `ObservableList<TuitionClass>` as step 3. It iterates through the _sorted_ `ObservableList<TuitionClass>`, building a `TimetableTuitionClassSlot` for each of the `TuitionClass`, and placing `TimetableEmptySlot`s in between the `TimetableTuitionClassSlot`.
+6. Finally, the `TimetablePanel#buildClasses()` is called, which takes in the same `ObservableList<TuitionClass>` as step 3. It iterates through the _sorted_ `ObservableList<TuitionClass>`, building a `TimetableTuitionClassSlot` for each of the `TuitionClass`, and placing `TimetableEmptySlot`s in between the `TimetableTuitionClassSlot`s.
 7. A listener is attached to the `ObservableList<TuitionClass>` which updates the Timetable UI whenever there are changes to the `ObservableList<TuitionClass>`,
    such as when a new `TuitionClass` is added, or an existing `TuitionClass` is edited from the `ObservableList<TuitionClass>`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** This is just a high level explanation of how the Timetable UI is built, with the low level details being abstracted away.
+</div>
 
 [comment]: <> (![Timetable Overall Activity Diagram]&#40;images/BuildTimetableOverallDiagram.png&#41;)
 
@@ -286,7 +291,7 @@ The sequence diagrams below illustrate how the Timetable UI is built.
 
 ### Observer Pattern
 
-The Observer Pattern was facilitated by the `CommandObserver` who represents the `Observer`, who observes the abstract `Command` class.
+The Observer Pattern is facilitated by the `CommandObserver` who represents the `Observer`. It observes the abstract `Command` class.
 
 #### Implementation
 
@@ -300,10 +305,10 @@ For eg, the `ViewComand` calls `CommandObserver#updateView()` to set the display
 
 #### Design Considerations
 
-1. (Bad) After each command call, set a variable in the `CommandResult` to be the value of the Tab to change to, or a boolean value to see if we need to update the class. The `MainWindow` would then check the variables in `CommandResult` after each execution, and update the tab or class accordingly.
-   - This is a very bad and inefficient method as the `MainWindow` would have to constantly be checking the `CommandResult` after every `Command`.
-   - With the addition of new variables in `CommandResult`, it has the potential to introduce more bugs and make the code more unreadable. Additionally, other classes wouold also be able to access these variables accidentally, leading to unwanted consequences.
-2. (Good) Follow the Observer Pattern, where we register the `MainWindow` as an `Observer` to observe the abstract `Command` class, and will only gets updated when necessary.
+1. (Bad) After each command call, set a variable in the `CommandResult` to be the value of the Tab to change to, or a boolean value to see if we need to update the class. The `MainWindow` would then check the variables in `CommandResult` in `MainWindow#executeCommand()`, and updates the tab or class accordingly.
+   - This is a very bad and inefficient method as the `MainWindow` would have to constantly check the `CommandResult` after every `Command`.
+   - With the addition of new variables in `CommandResult`, it has the potential to introduce more bugs and make the code more unreadable. Additionally, other classes may also be able to access these variables accidentally, as they have to be `public` in order for `MainWindow` to access them, leading to unwanted consequences.
+2. (Good) Follow the Observer Pattern taught in CS2103T, where we register the `MainWindow` as a `CommandObserver` to observe the abstract `Command` class, and will only get updated when necessary.
    - This is a more efficient method as the `MainWindow` does not have to always check the `CommandResult` after each execution.
    - No new variables are needed to be introduced into the `CommandResult`, keeping our code neater and less bug prone.
 
@@ -416,7 +421,7 @@ The following sequence diagram gives an overview of the execution:
 
 The sequence diagram for the first reference frame from above:
 
-![AddToClass Sequence](images/AddToClassRef1.png)
+ ![AddToClass Sequence](images/AddToClassRef1.png)
 
 The sequence diagram for the second reference frame from above:
 
