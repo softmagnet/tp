@@ -836,19 +836,72 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Adding a Student to a class
-1. Adding a student to a class that doesn't currently exist
-    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/70 ct/Mon 11:30-13:30 l/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
-       nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25 `
-       Expected: A class is created at 11:30-13:30 on Monday.
-       Details of the created `Student` and `Class` is shown in the status message.
-   List is updated to include the student in the `studentTab` and class is added to the `classTab`
+### Adding a Student to a Class: `addtoclass`
+1. Test case 1: Add a student to a class successfully
+   1. Prerequisites: you don't have any students or classes. If you have at least _one_ student or class, you can skip adding a student / adding a class respectively.
+   2. Add a student to TimesTable: `add n/Student p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3
+      nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25`
+   3. Add a class to TimesTable: `addclass cn/Sec 4 A Maths ct/MON 11:30-13:30 r/70 l/Nex Tuition Center`
+   4. Add the student to the class: `addtoclass 1 1`  
+      Expected: `Successfully added students to class` message shown
+2. Test case 2: Cannot add to a class that does not exist
+   1. Prerequisites: you don't have any classes. If you have any, you can remove them using the `deleteclass INDEX` command or run `clear`.  
+   2. If you already have a student, you can skip this step.  
+      Add a student to TimesTable: `add n/Student p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3
+      nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25`
+   3. Add the student to non-existing class: `addtoclass 1 1`  
+      Expected: `The class index provided is invalid` message shown
+3. Test case 2: Cannot add to a student that does not exist to a class
+    1. Prerequisites: you don't have any students. If you have any, you can remove them using the `delete INDEX` command or run `clear`.
+    2. If you already have a class, you can skip this step.  
+       Add a class to TimesTable: `addclass cn/Sec 4 A Maths ct/MON 11:30-13:30 r/70 l/Nex Tuition Center`
+    3. Add non-existing student to the class: `addtoclass 1 1`  
+       Expected: `The student index provided is invalid` message shown
 
-2. Adding a student to a class that currently exists
-    1. Test case: `add n/Johnny p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/70 ct/Mon 11:30-13:30 l/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
-       nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25 `
-       Expected: The student is added to the class that exists at 11:30-13:30 on Monday. No new class is created.
-       Details of the created `Student` and the `Class` he is added to is shown in the status message.
+### Listing all classes: `listclass`
+1. Test case: All classes are listed and focus is moved to Class tab. All previous filtering is reset.
+   1. Prerequisites: Class to filter must be present. Steps to do this are below:
+      1. Add class: `addclass cn/Sec 4 A Maths ct/FRI 11:30-13:30 r/70 l/Nex Tuition Center`
+      2. Note the classes in the class list.
+   2. Filter classes: `findclassname hello`. No classes should be listed.
+   3. Go to students tab: `view students`
+   4. List classes: `listclass`
+   5. Expected: `Listed all classes` message shown. Tab is moved to Classes tab. Class list noted in (ib) is shown.
+
+### Deleting a student: `delete`
+1. Test case: Delete a student successfully
+    1. Prerequisites: Student to delete must be present. Steps to do this are below:
+       1. Add student: `add n/Student p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3
+          nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25`
+       2. Note the students in the student list.
+    2. Delete the student: `delete INDEX`. `INDEX` is the index of the student shown in the student list. If there were no other student present before, this would be 1. Otherwise, it would be the number shown at the top left corner of the student card.
+    3. Expected: `Deleted Person: Student; Phone: 98765432; Email: johnd@example.com; Address: 311, Clementi Ave 2, #02-25; Tags: [Chemistry][Sec 3]
+       Next-of-Kin: Jack Doe; Phone: 10987654; Email: jackd@example.com; Address: 311, Clementi Ave 2, #02-25` message shown. 
+   Class no longer belongs in the class list noted in (ia).
+1. Test case: Cannot delete a student that doesn't exist
+    1. Prerequisites: Student at the student index to be deleted must not exist.
+       1. Easiest way to ensure that this happens: run `clear`
+       2. Note that the student list is empty.
+    2. Delete the student at index 1: `deleteclass 1`.
+    3. Expected: `The student index provided is invalid` message shown.
+
+### Sorting classes and students: `sort`
+1. Test case 1: sort classes in ascending order
+   1. Prerequisites: Add more than 1 class in non-sorted order by timing. Steps to do this are below:
+       1. Add later class first: `addclass cn/Sec 4 A Maths ct/FRI 11:30-13:30 r/70 l/Nex Tuition Center`
+       2. Add earlier class second: `addclass cn/Sec 5 A Maths ct/FRI 10:30-11:30 r/70 l/Nex Tuition Center`
+       3. Note that 'Sec 4 A Maths' comes _before_ 'Sec 5 A Maths'
+   2. Sort classes: `sort timing asc`.
+   3. Expected: `Sorted classes based on timing in asc direction` message shown, 'Sec 5 A Maths' now comes _before_ 'Sec 4 A Maths' in the class list. 
+2. Test case 2: sort students in descending order
+   1. Prerequisites: Add more than 1 student in non-sorted order by name. Steps to do this are below:
+       1. Add earlier student first: `add n/Amber p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3
+          nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25 `
+       2. Add later student second: `add n/Zebra p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3
+          nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25 `
+       3. Note that 'Amber' comes _before_ 'Zebra'
+   2. Sort students: `sort name desc`.
+   3. Expected: `Sorted students based on name in desc direction` message shown, 'Zebra' now comes _before_ 'Amber' in the Student list.
 
 ### Deleting a person
 
