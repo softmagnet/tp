@@ -238,11 +238,8 @@ The Classes Tab feature allows one to see the user's classes and each class' cor
 #### Implementation
 
 ![Structure of Class Ui](images/ClassPanelDiagram.png)  
-<<<<<<< Updated upstream
-The class diagram for the Class Ui feature as shown in the [Classes Ui component](#classes-ui) is replicated here for convenience.  
-=======
+
 The class diagram for the Classes Tab feature as shown in the [Classes Ui component](#classes-ui) is replicated here for convenience.  
->>>>>>> Stashed changes
 `TuitionClassPanel` and `StudentClassPanel` are both contained in their respective `StackPane` located below their respective `Label`s.
 
 ![Classes Ui Sequence Diagram.png](images/ClassesUiSequenceDiagram.png)
@@ -1307,3 +1304,44 @@ testers are expected to do more *exploratory* testing.
    3. Go to `Students` tab: `view students`
    4. List `TuitionClass`es: `listclass`
    5. Expected: `Listed all classes` message shown and tab is moved to `Classes` tab. Class list noted in (ib) is shown.
+
+## Appendix: Effort
+
+The effort required to evolve `AB3` to `TimesTable` could be estimated to be approximately the effort required to create `AB3`. Our team have contributed roughly 15k lines of functional code, automated unit and integration testing, and documentation.
+
+### Addition of Tabs
+* `AB3` did not have any different tabs. There was only one page showing the `Person`'s contacts.
+* Addition of tabs was the start of the evolution from `AB3` into `TimesTable`.
+* By adding tabs, we could implement different UIs into each tab to give the user a better experience.
+* The effort to add tabs was not very high, as we only had to add an additional JavaFx control.
+* Building the contents of the Tabs was the difficult portion as we had to design the entire layout of the tabs by ourselves.
+
+### Addition of Timetable Tab
+* Adding the Timetable Tab was difficult,  as it was our first time building an interface like this.
+* However, we were inspired by [Pet Store Helper](#acknowledgements), and adapted some of their basic ui components for our application.
+* Despite, adapting some of their basic ui components, the effort to build the Timetable Tab was still high, as we implemented the [building process](#timetable-tab-feature) from scratch.
+* We had to account for many JavaFx issues, alignments and row and column spans to build the slots, which was relatively hard as it was something new to us.
+
+### Addition of Classes Tab
+* Adding the Classes Tab was difficult as we had to design an entire user interface from the ground up to both contain details of the `TuitionClass`es in TimesTable and details of the `Student`s in each class.
+* We faced exceptional difficulty when making sure that the details of the `TuitionClass`, such as size of the class, and the list of `Student`s in each class, was being updated when `Student`(s) were being added or removed from any particular class, or when any `Student`'s or `TuitionClass`'s details were being edited.
+* The very design of the Classes Tab itself also necessitates a lot of coupling, because the view in the `StudentClassPanel` depended on the view in the `ClassListPanel` as it changes based on what was clicked.
+
+### Addition of new fields
+* `AB3` initially had the `Name`, `Phone Number`, `Email`, `Address`, and `Tag` categories.
+*  For `TimesTable`, we added additional fields like `ClassTiming`, `ClassName`, `Rate`, `Location` and `Nok`.
+
+### Addition of Tuition Class
+* While AB3 only tracks persons, TimesTable also keeps track of Tuition Classes.
+* The addition of the `TuitionClass` required a great deal of effort as it brought a lot of problems at the start, such as `TuitionClass`es overlapping with one another when being added into the `UniqueClassList` that contained all `TuitionClass`es in TimesTable, creating a clash in class timing that was undesirable for our intended user's purpose. Another example is the problem of integrating `TuitionClass` and `Student` which is further discussed below.
+
+
+### Addition of Commands
+* TimesTable added many new commands: `addclass`, `deleteclass`, `addtoclass`, `removefromclass`, `editclass`, `findclass`, `findclassname`, `listclass`, `selectclass`, `findtag`, `sort` and `view`
+* In addition, the `add` and `edit` commands were modified with the addition of TimesTable's new Next-of-Kin field. The `find` command was also modified to allow for multi-word and partial matches.
+* Many of these commands required a lot of restructuring and addition of code. For instance, the class commands have to interact with both Tuition Classes and Students.
+
+### Integration of Classes and Students
+* Integration of classes and students was difficult because it required `TuitionClass`es to store references to the `Student`s. The simple solution would be to just store a list of `Student` in each `TuitionClass` and store a list of `TuitionClass` in each `Student`. However, we quickly found out that it was not the ideal design.This is because it would increase the overall level of dependencies in the project drastically mainly due to the fact that `TuitionClass` and `Student` are so tightly coupled together. It also decreased the overall testability due to high dependency.
+* Integration of classes and students was also cause storing and reading properly difficult due to their high degree of coupling and was very prone to error, resulting in a very large amounts of checks needed when reading from the data JSON file.
+* The design that we eventually implemented was to use a list of `Name`s instead which effectively reduced overall dependency and the number of bugs that we had. It also reduced the number of lines in our codebase by hundreds which is great since we were able to achieve the same desired result with less code.
