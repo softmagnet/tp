@@ -93,4 +93,7 @@ deactivate TuitionClassPanel
 ClassPanel --> MainWindow
 deactivate ClassPanel
 
+[<--MainWindow
+deactivate MainWindow
+
 @enduml
