@@ -31,6 +31,10 @@ public class DeleteClassCommand extends Command {
 
     private final Index index;
 
+    /**
+     * Create a DeleteClassCommand with the specified index.
+     * @param index The index of the class to be deleted.
+     */
     public DeleteClassCommand(Index index) {
         assert index.getOneBased() > 0;
         this.index = index;
