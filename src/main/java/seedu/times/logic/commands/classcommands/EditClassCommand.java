@@ -27,7 +27,9 @@ import seedu.times.model.tuitionclass.exceptions.DuplicateClassException;
 import seedu.times.model.tuitionclass.exceptions.OverlappingClassException;
 import seedu.times.ui.TabName;
 
-
+/**
+ * Edits a class in Timestable.
+ */
 public class EditClassCommand extends Command {
 
     public static final String COMMAND_WORD = "editclass";

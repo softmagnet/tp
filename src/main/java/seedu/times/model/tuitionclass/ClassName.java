@@ -6,7 +6,7 @@ import static seedu.times.commons.util.AppUtil.isWithinLength;
 import static seedu.times.model.util.Commons.MAX_CHAR_COUNT;
 
 /**
- * Represents the name given to a tuition class by a user
+ * Represents the name given to a {@code TuitionClass} by a user
  * Guarantees: immutable; is valid as declared in {@link #isValidClassName(String)}
  */
 public class ClassName {

@@ -10,6 +10,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
+
 - The [`Timetable`](#timetable-ui) feature was inspired by a similar feature in the past project of Pet Store Helper [here](https://github.com/AY1920S2-CS2103-W15-4/main). The implementation of the components of the [`Timetable`](#timetable-ui) feature (`TimetableTuitionClassSlot`, `TimetableDay`, `TimetableRegion` and `TimetableEmptySlot`) has been adapted from them with maximum changes to fit our app.
   The implementation of how we [built](#timetable-tab-feature) and designed ([TimetablePanel.java](https://github.com/AY2122S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/times/ui/timetabletab/TimetablePanel.java)) the entire Timetable Tab (layout, classes etc) is entirely new.
 
@@ -28,6 +29,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S1-CS2103T-F11-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Architecture
 
@@ -53,6 +56,8 @@ The rest of the App consists of four components.
 - [**`Model`**](#model-component): Holds the data of the App in memory.
 - [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
+<div style="page-break-after: always;"></div>
+
 **How the architecture components interact with each other**
 
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -64,11 +69,16 @@ Each of the four main components (also shown in the diagram above),
 - defines its _API_ in an `interface` with the same name as the Component.
 - implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
+<div style="page-break-after: always;"></div>
+
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
+<div style="page-break-after: always;"></div>
+
 The sections below give more details of each component.
+
 
 ### UI component
 
@@ -92,11 +102,9 @@ The `UI` component,
 
 ![StudentsUi Class Diagram](images/StudentsDiagram.png)
 
-<<<<<<< Updated upstream
-The `StudentListPanel` is made up of `StudentCard`s, which displays information about the `Student`s. The `StudentListPanel` takes in an `ObservableList<Student>`, which builds a `StudentCard` for each student.
-=======
 The `StudentListPanel` consists of `StudentCard`s, which displays information about the `Students`. The `StudentListPanel` takes in an `ObservableList<Student>`, which builds a `StudentCard` for each student.
->>>>>>> Stashed changes
+
+<div style="page-break-after: always;"></div>
 
 #### Timetable UI
 
@@ -107,6 +115,8 @@ Adapted from [here](https://github.com/AY1920S2-CS2103-W15-4/main/tree/master/sr
 The `TimetablePanel` is made up of `TimetableDay`, `TimetableHeader`, `TimetableTuitionClassSlot` and `TimetableEmptySlot`.
 They represent the day panel on the left, the header at the top with the label and timings, the slots representing the `TuitionClass`es and the empty slots between `TuitionClass`es respectively.
 The `TimetablePanel` takes in an `ObservableList<TuitionClass>` to build the Timetable.
+
+<div style="page-break-after: always;"></div>
 
 #### Classes UI
 
@@ -120,6 +130,8 @@ They represent the left and right panels of the GUI respectively.
 ![img.png](images/ClassPanelImage.png)  
 `TuitionClassPanel` and `StudentClassPanel` both contain their respective `Card`s for each element in their respective `ObservableList`.  
 Note that `StudentClassTabCard` is different from the `StudentCard` in the `studenttab` package so we have less coupling and for future extensibility.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -145,6 +157,8 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
@@ -156,6 +170,8 @@ How the parsing works:
   parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TimesTableParser` returns
   back as a `Command` object.
 - All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 
@@ -192,6 +208,8 @@ The `StudentNameList` contains a `List<Name>`, and the diagram omits the relatio
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/times/storage/Storage.java)
@@ -214,6 +232,8 @@ Classes used by multiple components are in the `seedu.times.commons` package.
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -225,11 +245,8 @@ The Classes Tab feature allows one to see the user's classes and each class' cor
 #### Implementation
 
 ![Structure of Class Ui](images/ClassPanelDiagram.png)  
-<<<<<<< Updated upstream
-The class diagram for the Class Ui feature as shown in the [Classes Ui component](#classes-ui) is replicated here for convenience.  
-=======
+
 The class diagram for the Classes Tab feature as shown in the [Classes Ui component](#classes-ui) is replicated here for convenience.  
->>>>>>> Stashed changes
 `TuitionClassPanel` and `StudentClassPanel` are both contained in their respective `StackPane` located below their respective `Label`s.
 
 ![Classes Ui Sequence Diagram.png](images/ClassesUiSequenceDiagram.png)
@@ -242,6 +259,8 @@ The class diagram for the Classes Tab feature as shown in the [Classes Ui compon
 6. The `filtered` method is then run on the `studentList` to return a `newStudentList` which is filtered by all the students belonging to the `tuitionClass`.
 7. The `tuitionClassListView` is set to the `newStudentList` created and thus rendered.
 
+<div style="page-break-after: always;"></div>
+
 ### Timetable Tab feature
 
 The Timetable Tab feature is a feature which displays the user's classes in a visual timetable format.
@@ -250,6 +269,8 @@ The Timetable Tab feature is a feature which displays the user's classes in a vi
 
 The class diagram for Timetable as shown in the [TimetableUI component](#timetable-ui) is replicated here for convenience.
 ![Timetable Class Diagram](images/TimetableDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 The image below shows the respective parts of the `TimetablePanel`:
 
@@ -263,27 +284,31 @@ The image below shows the respective parts of the `TimetablePanel`:
 [comment]: <> (Due to the limited size of the application's window, the Timetable UI would adjust itself and starts the days of the Timetable UI with the)
 
 [comment]: <> (earliest start timing and ends with the latest end timing so that the timetable is not cluttered. There is a time panel at the top to indicate what)
+<div style="page-break-after: always;"></div>
 
 The sequence diagrams below illustrate how the Timetable UI is built.
 
 ![Timetable Overall Sequence Diagram](images/TimetableUiSequenceDiagram.png)
 
-1. `MainWindow#fillInnerParts()` creates a new `TimetablePanel` using the `ObservableList<TuitionClass>` from `Logic`.
-2. `TimetablePanel#build()` is called in the constructor of `TimetablePanel` to build the Timetable Ui.
-3. `TimetablePanel#build()` starts building the Timetable Ui by first calling `TimetablePanel#buildHeader()` which takes in the `ObservableList<TuitionClass>`.
+1.`MainWindow#fillInnerParts()` creates a new `TimetablePanel` using the `ObservableList<TuitionClass>` from `Logic`.
+
+2.`TimetablePanel#build()` is called in the constructor of `TimetablePanel` to build the Timetable Ui.
+
+3.`TimetablePanel#build()` starts building the Timetable Ui by first calling `TimetablePanel#buildHeader()` which takes in the `ObservableList<TuitionClass>`.
 
     ![Timetable Header Sequence Diagram](images/TimetableUiHeaderSequenceDiagram.png)
 
-4. Based on the `Timetable#buildHeader()` reference frame above, it builds the `TimetableHeaderLabel` first, followed by the `TimetableHeaderTiming`s, starting from the earliest start time of the `ObservableList<TuitionClass>` until the latest end time of the `ObservableList<TuitionClass>` in 30 minutes interval.
+4.Based on the `Timetable#buildHeader()` reference frame above, it builds the `TimetableHeaderLabel` first, followed by the `TimetableHeaderTiming`s, starting from the earliest start time of the `ObservableList<TuitionClass>` until the latest end time of the `ObservableList<TuitionClass>` in 30 minutes interval.
 
     ![Timetable Day Sequence Diagram](images/TimetableUiDaySequenceDiagram.png)
 
-5. After `TimetablePanel#buildHeader()` is called, it would call `TimetablePanel#buildDays()`, which builds 7 `TimetableDay` objects to represent the 7 days of the week.
+5.After `TimetablePanel#buildHeader()` is called, it would call `TimetablePanel#buildDays()`, which builds 7 `TimetableDay` objects to represent the 7 days of the week.
 
     ![Timetable Slot Sequence Diagram](images/TimetableUiSlotSequenceDiagram.png)
 
-6. Finally, the `TimetablePanel#buildClasses()` is called, which takes in the same `ObservableList<TuitionClass>` as step 3. It iterates through the _sorted_ `ObservableList<TuitionClass>`, building a `TimetableTuitionClassSlot` for each of the `TuitionClass`, and placing `TimetableEmptySlot`s in between the `TimetableTuitionClassSlot`s.
-7. A listener is attached to the `ObservableList<TuitionClass>` which updates the Timetable UI whenever there are changes to the `ObservableList<TuitionClass>`,
+6.Finally, the `TimetablePanel#buildClasses()` is called, which takes in the same `ObservableList<TuitionClass>` as step 3. It iterates through the _sorted_ `ObservableList<TuitionClass>`, building a `TimetableTuitionClassSlot` for each of the `TuitionClass`, and placing `TimetableEmptySlot`s in between the `TimetableTuitionClassSlot`s.
+
+7.A listener is attached to the `ObservableList<TuitionClass>` which updates the Timetable UI whenever there are changes to the `ObservableList<TuitionClass>`,
    such as when a new `TuitionClass` is added, or an existing `TuitionClass` is edited in the `ObservableList<TuitionClass>`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** This is just a high level explanation of how the Timetable UI is built, with the low level details being abstracted away.
@@ -298,6 +323,8 @@ The sequence diagrams below illustrate how the Timetable UI is built.
 [comment]: <> (![TimetableTuitionClassSlot Activity Diagram]&#40;images/BuildTimetableTuitionClassSlotsActivityDiagram-Activity\_\_Build_TimetableTuitionClassSlots.png&#41;)
 
 [comment]: <> (![Find earliest start hour and latest end hour Activity Diagram]&#40;images/FindEarliestAndLatestHourActivityDiagram-Activity\_\_Find_earliest_start_hour_and_latest_end_hour.png&#41;)
+
+<div style="page-break-after: always;"></div>
 
 ### Observer Pattern
 
@@ -322,6 +349,8 @@ For eg, the `ViewComand` calls `CommandObserver#updateView()` to set the display
    - This is a more efficient method as the `MainWindow` does not have to always check the `CommandResult` after each execution.
    - No new variables are needed to be introduced into the `CommandResult`, keeping our code neater and less bug prone.
 
+<div style="page-break-after: always;"></div>
+
 ### `add` and `edit` commands to include next-of-kin `nok`
 
 
@@ -341,6 +370,8 @@ of unseen bugs.
 2. (Bad) We thought of modifying the parser such that it always checks for the `/nok` tag (or any of the tags specified in the parameter) _first_, before parsing the other tags
 in the normal way. However, this was again too large scale for a single command with the same parameter.
 
+
+<div style="page-break-after: always;"></div>
 
 ### Find commands
 
@@ -375,6 +406,8 @@ implement `Predicate<Student>`, and predicate class for filtering `TuitionClass`
 Each custom predicate class contains a `List` of search strings that would be used to match against the tested items
 in the search.
 
+<div style="page-break-after: always;"></div>
+
 ### View feature
 
 The `Students` tab, `Classes` tab and `Timetable` tab, are parts of the [`UI Component`](#ui-component).
@@ -393,6 +426,8 @@ In this case, the only `CommandObserver` is the `MainWindow`, thus it updates th
 
 `TabName` is an enumeration which represents the three tabs (`Students`, `Classes`, and `Timetable`), and their respective tab index (0 for `Students`, 1 for `Classes` and 2 for `Timetable`).
 
+<div style="page-break-after: always;"></div>
+
 ### Sort feature
 
 The `sort` feature allows sorting of the `Student`s and `TuitionClass`es. It is able to sort it by `Student` name or `ClassTiming`, in ascending or descending order.
@@ -407,6 +442,8 @@ The sequence diagram for the `sort` command is shown below.
 
 The `sort` command sorts the `ObservableList<Student>` or the `ObservableList<TuitionClass>` in the `Model` component, whose results gets immediately reflected in their respective `Students` tab or `Classes` Tab.
 After sorting, the `Command` sets the view to switch to their respective tabs, so that the user would be able to see the changes.
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a Student to a class
 
@@ -437,6 +474,8 @@ smaller steps. The steps are listed below:
 
 (Note that updating view action is omitted)
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram gives an overview of the execution:
 
 ![AddToClass Sequence](images/AddToClassSequenceDiagram.png)
@@ -448,6 +487,8 @@ The sequence diagram for the first reference frame from above:
 The sequence diagram for the second reference frame from above:
 
 ![AddToClass Sequence](images/AddToClassRef2.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Removing Student(s) from a Tuition Class
 Allows the user to remove one or more `Student`s from a selected `TuitionClass`.
@@ -461,6 +502,8 @@ The command is then executed, interacting with the `Model`.
 An overview of how the `RemoveFromClassCommand` is created is shown by this sequence diagram:
 
 ![RemoveFromClass Overview Sequence Diagram](images/RemoveFromClassOverviewDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Challenges faced
 
@@ -490,6 +533,8 @@ a new `TuitionClass` object with an updated list of `Name`s and replace the old 
 An overview of the process is shown below:
 
 ![RemoveFromClass Internal Diagram](images/RemoveFromClassCommandSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting Tuition Class
 
@@ -536,6 +581,26 @@ The sequence diagram when a new `TuitionClass` is added to the `Model` is as fol
 
 ![Sequnce diagram in model when class is added](images/AddClassModelSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
+#### Challenges faced
+
+The challenging aspect when adding a tuition class to the `UniqueClassList` was making sure that no overlapping 
+classes were added.
+
+Initially, the `equals()` method of `TuitionClass` was used to compare `TuitionClass`es, and `ClassTiming` was the 
+only comparator in the `equals()` method, but this proved problematic later on due to comparing `ClassTiming` 
+using only the `equals()` method and comparing `TuitionClass`es using only `ClassTiming`. We realized that classes 
+would still be added even though they overlap as they were not strictly equals and this method of comparison was 
+very naive.
+
+After some trial and error with quite a lot of developer's testing, we created a `isOverlapping()` in `TuitionClass` 
+that checks for overlaps which checks for any overlap where either class will be within the timeframe of one another,
+or where the start or end time of one class was within the timeframe of another. This made sure that we had a method 
+to check for any overlap between classes when adding new class to the `UniqueClassList`, ensuring that no new 
+classes would be added to the `UniqueClassList` when adding a tuition class to TimesTable. This check also served to 
+make sure that there would be no overlapping classes resulting from an `editclass` command.
+
 ---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -547,6 +612,8 @@ The sequence diagram when a new `TuitionClass` is added to the `Model` is as fol
 - [DevOps guide](DevOps.md)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -595,6 +662,8 @@ This is where Timestable comes in. It improves two main areas:
 By improving the data manipulation process, the tutor can organize student information more easily. <br>
 By improving the querying process, the tutor can make scheduling less painstaking and time-consuming.
 
+<div style="page-break-after: always;"></div>
+
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -612,6 +681,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | User           | Delete my student's contacts and information                | I can declutter my contacts.                        |
 | `* * *`  | User           | Record locations of classes                                 | Knows where to go                                   |
 | `* * *`  | User           | Find a student or class with a specific name                | Find details of a specific class or student quickly |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -882,6 +953,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -912,6 +985,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -936,8 +1011,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Clearing data: `clear`
 
 1. Test case: Clear all `Student`s and `TuitionClass`es in TimesTable.
@@ -954,6 +1027,7 @@ testers are expected to do more *exploratory* testing.
     2. Clear all data: `clear`
     3. Expected: `TimesTable has been cleared!` and all `Student`s and `TuitionClass`es are removed from TimesTable.
 
+
 ### Adding a Student: `add`
 1. Test case 1: Add a `Student` successfully
     1. Add a `Student` to TimesTable: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3
@@ -966,6 +1040,7 @@ testers are expected to do more *exploratory* testing.
     2. Add a `Student` with a clash in `NAME` with an existing `Student`: `add n/Alex Yeoh p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3
        nok/ n/Elise Yeoh p/10987654 e/eliseyeoh@gmail.com a/311, Clementi Ave 2, #02-25`
     3. Expected: `This person already exists in the address book` message shown.
+
 
 ### Adding a class: `addclass`
 
@@ -980,8 +1055,7 @@ testers are expected to do more *exploratory* testing.
         1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
     2. Add a `TuitionClass` with a clash in `CLASS_TIMING` with an existing `TuitionClass`: `addclass cn/CS2103T ct/MON 10:30-12:30 r/70 l/Nex Tuition Center`
     3. Expected: `The operation aborted because it will introduce a clash in class timing.` and the `TuitionClass` does not get added to the `Classes` Tab.
-
-
+    
 ### Deleting a student: `delete`
 
 1. Test case: Delete a student successfully
@@ -1120,7 +1194,7 @@ testers are expected to do more *exploratory* testing.
     3. Expected: `Sorted students based on name in desc direction` message shown, 'Zebra' now comes _before_ 'Amber' in the Student list.
 
 
-### Locating a class by name: `findname`
+### Locating a student by name: `findname`
 1. Test case: No students has a name that matches the search term used
     1. Prerequisites: TimesTable contain multiple students. Steps to do this are below:
         1. Delete `timestable.json` in the data file to start off with the sample data in TimesTable.
@@ -1140,7 +1214,7 @@ testers are expected to do more *exploratory* testing.
     3. Expected: `3 persons listed!` message shown and 3 students shown in `Students` tab, namely
        `Charlotte Oliveiro`, `David Li` and `Angelica Holcomb`.
 
-### Locating a class by name: `findclass`
+### Locating a class by class timing: `findclass`
 1. Test case: No `TuitionClass` matches the search term used.
     1. Prerequisite: TimesTable contains the sample `TuitionClass`es. Steps to do this are below:
         1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
@@ -1158,6 +1232,8 @@ testers are expected to do more *exploratory* testing.
         1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
     2. Find `TuitionClass`es with `CLASS_TIMING` of `MON` and `11:30-13:30`: `findclass mon 11:30-13:30`
     3. Expected: `1 classes listed!` and tab switched to `Classes` tab. The `Classes` Tab contains 1 `TuitionClass` with `CLASS_TIMING` of `MON` and `11:30-13:30`.
+
+<div style="page-break-after: always;"></div>
 
 ### Locating a class by name: `findclassname`
 
@@ -1250,3 +1326,46 @@ testers are expected to do more *exploratory* testing.
    3. Go to `Students` tab: `view students`
    4. List `TuitionClass`es: `listclass`
    5. Expected: `Listed all classes` message shown and tab is moved to `Classes` tab. Class list noted in (ib) is shown.
+
+<div style="page-break-after: always;"></div>
+
+## Appendix: Effort
+
+The effort required to evolve `AB3` to `TimesTable` could be estimated to be approximately the effort required to create `AB3`. Our team have contributed roughly 15k lines of functional code, automated unit and integration testing, and documentation.
+
+### Addition of Tabs
+* `AB3` did not have any different tabs. There was only one page showing the `Person`'s contacts.
+* Addition of tabs was the start of the evolution from `AB3` into `TimesTable`.
+* By adding tabs, we could implement different UIs into each tab to give the user a better experience.
+* The effort to add tabs was not very high, as we only had to add an additional JavaFx control.
+* Building the contents of the Tabs was the difficult portion as we had to design the entire layout of the tabs by ourselves.
+
+### Addition of Timetable Tab
+* Adding the Timetable Tab was difficult,  as it was our first time building an interface like this.
+* However, we were inspired by [Pet Store Helper](#acknowledgements), and adapted some of their basic ui components for our application.
+* Despite, adapting some of their basic ui components, the effort to build the Timetable Tab was still high, as we implemented the [building process](#timetable-tab-feature) from scratch.
+* We had to account for many JavaFx issues, alignments and row and column spans to build the slots, which was relatively hard as it was something new to us.
+
+### Addition of Classes Tab
+* Adding the Classes Tab was difficult as we had to design an entire user interface from the ground up to both contain details of the `TuitionClass`es in TimesTable and details of the `Student`s in each class.
+* We faced exceptional difficulty when making sure that the details of the `TuitionClass`, such as size of the class, and the list of `Student`s in each class, was being updated when `Student`(s) were being added or removed from any particular class, or when any `Student`'s or `TuitionClass`'s details were being edited.
+* The very design of the Classes Tab itself also necessitates a lot of coupling, because the view in the `StudentClassPanel` depended on the view in the `ClassListPanel` as it changes based on what was clicked.
+
+### Addition of new fields
+* `AB3` initially had the `Name`, `Phone Number`, `Email`, `Address`, and `Tag` categories.
+*  For `TimesTable`, we added additional fields like `ClassTiming`, `ClassName`, `Rate`, `Location` and `Nok`.
+
+### Addition of Tuition Class
+* While AB3 only tracks persons, TimesTable also keeps track of Tuition Classes.
+* The addition of the `TuitionClass` required a great deal of effort as it brought a lot of problems at the start, such as `TuitionClass`es overlapping with one another when being added into the `UniqueClassList` that contained all `TuitionClass`es in TimesTable, creating a clash in class timing that was undesirable for our intended user's purpose. Another example is the problem of integrating `TuitionClass` and `Student` which is further discussed below.
+
+
+### Addition of Commands
+* TimesTable added many new commands: `addclass`, `deleteclass`, `addtoclass`, `removefromclass`, `editclass`, `findclass`, `findclassname`, `listclass`, `selectclass`, `findtag`, `sort` and `view`
+* In addition, the `add` and `edit` commands were modified with the addition of TimesTable's new Next-of-Kin field. The `find` command was also modified to allow for multi-word and partial matches.
+* Many of these commands required a lot of restructuring and addition of code. For instance, the class commands have to interact with both Tuition Classes and Students.
+
+### Integration of Classes and Students
+* Integration of classes and students was difficult because it required `TuitionClass`es to store references to the `Student`s. The simple solution would be to just store a list of `Student` in each `TuitionClass` and store a list of `TuitionClass` in each `Student`. However, we quickly found out that it was not the ideal design.This is because it would increase the overall level of dependencies in the project drastically mainly due to the fact that `TuitionClass` and `Student` are so tightly coupled together. It also decreased the overall testability due to high dependency.
+* Integration of classes and students was also cause storing and reading properly difficult due to their high degree of coupling and was very prone to error, resulting in a very large amounts of checks needed when reading from the data JSON file.
+* The design that we eventually implemented was to use a list of `Name`s instead which effectively reduced overall dependency and the number of bugs that we had. It also reduced the number of lines in our codebase by hundreds which is great since we were able to achieve the same desired result with less code.

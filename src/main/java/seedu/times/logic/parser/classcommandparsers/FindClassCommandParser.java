@@ -9,6 +9,9 @@ import seedu.times.logic.parser.Parser;
 import seedu.times.logic.parser.exceptions.ParseException;
 import seedu.times.model.tuitionclass.predicates.ClassTimingContainsKeywordsPredicate;
 
+/**
+ * Parses input arguments and creates a new FindClassCommand object
+ */
 public class FindClassCommandParser implements Parser<FindClassCommand> {
 
     private static final String VALIDATION_REGEX_DAY = "(?i)(MON|TUE|WED|THU|FRI|SAT|SUN){1}";

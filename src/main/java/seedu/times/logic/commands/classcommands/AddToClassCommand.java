@@ -20,6 +20,9 @@ import seedu.times.model.tuitionclass.TuitionClass;
 import seedu.times.model.tuitionclass.exceptions.DuplicateStudentInClassException;
 import seedu.times.ui.TabName;
 
+/**
+ * Adds existing students to existing tuition class.
+ */
 public class AddToClassCommand extends Command {
 
     public static final String COMMAND_WORD = "addtoclass";

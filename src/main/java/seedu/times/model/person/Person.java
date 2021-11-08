@@ -5,7 +5,7 @@ import static seedu.times.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in the Timestable.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {

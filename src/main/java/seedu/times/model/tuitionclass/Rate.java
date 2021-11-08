@@ -5,7 +5,7 @@ import static seedu.times.commons.util.AppUtil.checkArgument;
 import static seedu.times.model.util.Commons.MAX_CHAR_COUNT;
 
 /**
- * Represents a Student's tuition rate in the address book.
+ * Represents a {@code TuitionClass}'s rate in the Timestable.
  */
 public class Rate {
 

@@ -7,7 +7,7 @@ title: Ong Zheng Lin's Project Portfolio Page
 
 TimesTable is a desktop class management application for tuition teachers to keep track of their students 
 and classes. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, 
-and has about 19 kLoC.
+and has about 25 kLoC.
 
 Given below are my contributions to the project.
 
@@ -70,6 +70,9 @@ Given below are my contributions to the project.
     * Added sequence diagrams and implementation detail for `AddClassCommand` and edited other UML diagrams (Pull request
       [\#294](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/294),
       [\#295](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/295),
+      [\#333](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/333))
+    * Added challenges faced in `AddClassCommand` [\#344](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/344)
+    * Added documentation and sequence diagrams for `DeleteClassCommand` [\#320](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/320)
       [\#333](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/333),
       [\#339](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/339))     
     * Added documentation and sequence diagrams for `DeleteClassCommand` (Pull request 

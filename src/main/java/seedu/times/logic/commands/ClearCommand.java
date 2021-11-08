@@ -6,7 +6,7 @@ import seedu.times.model.Model;
 import seedu.times.model.TimesTable;
 
 /**
- * Clears the address book.
+ * Clears the Timestable.
  */
 public class ClearCommand extends Command {
 

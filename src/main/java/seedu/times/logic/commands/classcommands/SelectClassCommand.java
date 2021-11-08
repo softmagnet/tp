@@ -11,6 +11,9 @@ import seedu.times.model.Model;
 import seedu.times.model.tuitionclass.TuitionClass;
 import seedu.times.ui.TabName;
 
+/**
+ * Selects the class to view its students.
+ */
 public class SelectClassCommand extends Command {
     public static final String COMMAND_WORD = "class";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Selects the appropriate class\n"

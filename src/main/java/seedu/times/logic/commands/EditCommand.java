@@ -29,7 +29,7 @@ import seedu.times.model.tag.Tag;
 import seedu.times.ui.TabName;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in the Timestable.
  */
 public class EditCommand extends Command {
 

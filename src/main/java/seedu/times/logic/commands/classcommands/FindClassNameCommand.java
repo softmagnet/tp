@@ -10,6 +10,9 @@ import seedu.times.model.Model;
 import seedu.times.model.tuitionclass.predicates.ClassNameContainsKeywordsPredicate;
 import seedu.times.ui.TabName;
 
+/**
+ * Finds a tuition class in Timestable by its class name.
+ */
 public class FindClassNameCommand extends Command {
 
     public static final String COMMAND_WORD = "findclassname";

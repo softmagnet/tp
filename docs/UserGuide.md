@@ -11,7 +11,7 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer, if you do not, you can download it from [here](https://www.oracle.com/java/technologies/downloads/#jdk17-linux).
@@ -48,7 +48,7 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -95,6 +95,7 @@ a class or student list)
 
 </div>
 
+<div style="page-break-after: always;"></div>
 ### Clearing all entries : `clear`
 <hr>
 
@@ -108,9 +109,7 @@ Format: `clear`
 Adds a student to the TimesTable.
 
 Format:
-```
-add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… nok/ n/NOK_NAME p/NOK_PHONE_NUMBER e/NOK_EMAIL a/NOK_ADDRESS
-```
+`add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… nok/ n/NOK_NAME p/NOK_PHONE_NUMBER e/NOK_EMAIL a/NOK_ADDRESS`
 
 * This is a command that requires next-of-kin (NOK) information.
 * This command is split into two segments (excluding command keyword). The first segment are the inputs before
@@ -128,13 +127,12 @@ A student can have any number of tags (including 0).
 
 Examples:
 
-```
-add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com a/311, Clementi Ave 2, #02-25 
-```
+`add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com a/311, Clementi Ave 2, #02-25`
 
-```
-add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/slow learner nok/ n/Karen e/karenSUper@gmail.com p/99994444 a/311, Clementi Ave 2, #02-25 
-```
+`add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/slow learner nok/ n/Karen e/karenSUper@gmail.com p/99994444 a/311, Clementi Ave 2, #02-25`
+
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a class: `addclass`
 <hr>
@@ -142,10 +140,7 @@ add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t
 Add a class to the TimesTable.
 
 Format:
-
-```
-addclass cn/CLASS_NAME ct/CLASS_TIMING r/HOURLY_RATE l/LOCATION
-```
+`addclass cn/CLASS_NAME ct/CLASS_TIMING r/HOURLY_RATE l/LOCATION`
 
 * This command adds a new class to keep track of all classes that the user is teaching.
 * `CLASS_TIMING` must be in the form `ct/DAY HH:MM-HH:MM`
@@ -154,26 +149,21 @@ addclass cn/CLASS_NAME ct/CLASS_TIMING r/HOURLY_RATE l/LOCATION
 * `RATE` must be less than $1,000,000/hr
 
 Examples:
-```
-addclass cn/CS2103T ct/MON 09:30-11:30 r/70 l/Nex Tuition Center
-```
+`addclass cn/CS2103T ct/MON 09:30-11:30 r/70 l/Nex Tuition Center`
 Adds a new class with name `CS2103T`, with class timing `MON 09:30-11:30`, with hourly rate of $`70`, at `Nex
 Tuition Center`.
 
-```
-addclass cn/Sec 4 E Maths ct/TUE 12:30-14:30 r/65 l/Block 123, Clementi Ave 6, #14-41
-```
+`addclass cn/Sec 4 E Maths ct/TUE 12:30-14:30 r/65 l/Block 123, Clementi Ave 6, #14-41`
 Adds a new class with name `Sec 4 E Maths`, with class timing `Tue 12:30-14:30`, with hourly rate of $`65`, at `Block 123, Clementi Ave 6, #14-41`.
 
+<div style="page-break-after: always;"></div>
 ### Deleting a student : `delete`
 <hr>
 
 Deletes the specified student from the TimesTable.
 
 Format:
-```
-delete INDEX
-```
+`delete INDEX`
 * Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list in the `Students` tab.
 
@@ -187,9 +177,7 @@ Examples:
 Deletes the specified class from the TimesTable.
 
 Format:
-```
-deleteclass INDEX
-```
+`deleteclass INDEX`
 
 * Deletes the class at the specified `INDEX`.
 * The index refers to the index number shown in the displayed class list in the `Classes` tab.
@@ -197,15 +185,14 @@ deleteclass INDEX
 Examples:
 * `listclass` followed by `deleteclass 2` deletes the 2nd class in the TimesTable.
 
+<div style="page-break-after: always;"></div>
 ### Adding student/students to a class: `addtoclass`
 <hr>
 
 Add a single or multiple students to an existing class.
 
 Format:
-```
-addtoclass CLASS_INDEX STUDENT_INDEX...
-```
+`addtoclass CLASS_INDEX STUDENT_INDEX...`
 
 * This command adds any number of existing students into an existing class.
 * `CLASS_INDEX` is the index number of the class in the displayed class list in the `Classes` tab, which will be
@@ -218,9 +205,7 @@ addtoclass CLASS_INDEX STUDENT_INDEX...
 * Size of the class will change to reflect the number of students in the class.
 
 Example:
-```
-addtoclass 1 1 2 3
-```
+`addtoclass 1 1 2 3`
 Adds the 1st, 2nd and 3rd student in the displayed student list in the `Students` tab into the 1st class in the
 displayed class list in the `Classes` tab, `size` of the class will increase by 3.
 
@@ -230,9 +215,7 @@ displayed class list in the `Classes` tab, `size` of the class will increase by 
 Removes a single or multiple students from an existing class.
 
 Format:
-```
-removefromclass CLASS_INDEX STUDENT_INDEX...
-```
+`removefromclass CLASS_INDEX STUDENT_INDEX...`
 
 * Removes a non-zero number of existing students from an existing class.
 * `CLASS_INDEX` is the index number of the class in the displayed class list in the `Classes` tab to have its students removed from.
@@ -241,23 +224,19 @@ removefromclass CLASS_INDEX STUDENT_INDEX...
 
 
 Example:
-```
-removefromclass 1 1 2 3
-```
+`removefromclass 1 1 2 3`
 Removes the 1st, 2nd and 3rd student in the displayed student list of the 1st class in the `classes` tab, causing the
 `size` of 1st class to decrease by 3.
 
-
+<div style="page-break-after: always;"></div>
 ### Editing a student : `edit`
 <hr>
 
 Edits an existing student in the TimesTable.
 
 Format:
-```
-edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [nok/ [n/NOK_NAME] [p/NOK_PHONE] [e/NOK_EMAIL] [a/NOK_ADDRESS]]
-
-```
+`edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [nok/ [n/NOK_NAME] [p/NOK_PHONE] [e/NOK_EMAIL] [a/NOK_ADDRESS]]`
+`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student
   list. The index **must be a positive integer** 1, 2, 3, …​
@@ -291,9 +270,7 @@ Examples (also editing nok information):
 Edits an existing class in the class list in the `classes` tab.
 
 Format:
-```
-editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]
-```
+`editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]`
 
 * Edits the class at the specified `INDEX`. The index refers to the index number shown in the displayed class
   list in the `classes` tab. 
@@ -314,9 +291,7 @@ Sorts the students based on their `NAME` in alphabetical order,
 or classes based on their `CLASS_TIMING`, in either ascending or descending order.
 
 Format:
-```
-sort PARAMETER_TO_SORT_BY DIRECTION_OF_SORT
-```
+`sort PARAMETER_TO_SORT_BY DIRECTION_OF_SORT`
 
 * `PARAMETER_TO_SORT_BY` can either be `name` or `timing` which sorts the students and classes respectively.
 * `DIRECTION_OF_SORT` can either be `asc` or `desc` to represent ascending and descending respectively.
@@ -345,9 +320,7 @@ Finds students whose `NAME` contain any of the given keywords.
 Note that if you want to display the entire list of students again, run `list`.
 
 Format:
-```
-findname NAME [, [NAME]...]
-```
+`findname NAME [, [NAME]...]`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`.
 * The search terms are split by commas. e.g. `findname alex lim, bernice yu`
@@ -375,6 +348,7 @@ The `list` and `listclass` commands can be used to show the original lists of st
 Class size will **not** be affected by filtering students (using FindName or FindTag).
 </div>
 
+<div style="page-break-after: always;"></div>
 ### Locating class by class timing : `findclass`
 <hr>
 
@@ -408,8 +382,8 @@ Examples:
 3. Negative examples (Two or more keywords of the same type)
     * `findclass mon tue` returns nothing.
     * `findclass 09:00-10:30 11:00-12:00` returns nothing.
-   
 
+<div style="page-break-after: always;"></div>
 ### Locating class by class name: `findclassname`
 <hr>
 
@@ -417,9 +391,7 @@ Finds a class whose class name matches the given keywords.
 Note that if you want to display the list of classes again, run `listclass`.
 
 Format:
-```
-findclassname CLASS_NAME [, [CLASS_NAME]...]
-```
+`findclassname CLASS_NAME [, [CLASS_NAME]...]`
 <!---todo fill in inner working--->
 
 * The search is case-insensitive `PHYSICS` will match 'physics'.
@@ -443,9 +415,7 @@ Finds students whose `TAG`s contain any of the given keywords.
 Note that if you want to display the entire list of students again, run `list`.
 
 Format:
-```
-findtag KEYWORD [, [KEYWORD]...]
-```
+`findtag KEYWORD [, [KEYWORD]...]`
 
 * Search terms can partially match the tag, or the entire tag, e.g. `math` for all `A Math` and `C Math` tags, or `A Math` for the `A Math` tag.
 * Search terms are separated by commas. e.g. `findtag math, physics` will find students
@@ -477,24 +447,21 @@ Class size will **not** be affected by filtering students (using FindName or Fin
 Views an existing tab in the TimesTable without the need to use the mouse to click.
 
 Format:
-```
-view TAB_TO_VIEW   
-```
+`view TAB_TO_VIEW`
 
 * `TAB_TO_VIEW` has to be an existing tab in Timestable (`students`, `classes`, `timetable`).
 
 Examples:
 * `view timetable` switches the displayed tab to be the `timetable` tab.
 
+<div style="page-break-after: always;"></div>
 ### Selecting of classes: `class`
 <hr>
 
 Selects a class in the class tab and displays its students without the need to use the mouse to double click the respective class.
 
 Format:
-```
-class CLASS_INDEX   
-```
+`class CLASS_INDEX`
 
 * Selected class will not be highlighted in the same way as when you click on a class using the mouse.
 * `CLASS_INDEX` must be an index of a class that exists in the displayed class list.
@@ -502,6 +469,7 @@ class CLASS_INDEX
 Examples:
 * `class 1` selects the class with `CLASS_INDEX` of `1` and displays its students in the class tab.
 
+<div style="page-break-after: always;"></div>
 ### Listing all students : `list`
 <hr>
 
@@ -531,6 +499,7 @@ Exits the program.
 
 Format: `exit`
 
+<div style="page-break-after: always;"></div>
 ### Saving the data
 <hr>
 
@@ -555,6 +524,7 @@ If your changes to the data file makes its format invalid, Timestable will disca
 **Q**: Are you going to add XXX feature? What features are you planning to add?<br>
 **A**: I'm glad you asked! We're currently planning to add the following features:
 
+<div style="page-break-after: always;"></div>
 ### Upcoming Features:
 
 #### Payment Management with Invoice
@@ -597,7 +567,7 @@ alert you once the due date for any invoice has passed. You can simply let Times
 If there are any other proposed features, please submit an issue via our GitHub over [here](https://github.com/AY2122S1-CS2103T-F11-1/tp/issues) and we'll look into it!
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## Command summary
 
 Action | Format, Examples

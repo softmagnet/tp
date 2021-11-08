@@ -6,6 +6,9 @@ import static seedu.times.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import seedu.times.logic.commands.SortCommand;
 import seedu.times.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new SortCommand object
+ */
 public class SortCommandParser implements Parser<SortCommand> {
 
     private final String[] validSortByKeywords = new String[]{"name", "timing"};

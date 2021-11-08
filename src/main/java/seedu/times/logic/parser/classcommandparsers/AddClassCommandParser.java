@@ -20,9 +20,10 @@ import seedu.times.model.tuitionclass.Rate;
 import seedu.times.model.tuitionclass.StudentNameList;
 import seedu.times.model.tuitionclass.TuitionClass;
 
+/**
+ * Parses input arguments and creates a new AddClassCommand object
+ */
 public class AddClassCommandParser implements Parser<AddClassCommand> {
-
-
     @Override
     public AddClassCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
