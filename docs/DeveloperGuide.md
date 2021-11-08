@@ -942,8 +942,6 @@ testers are expected to do more *exploratory* testing.
 ### Deleting a student: `delete`
 
 
-### Deleting a person
-
 1. Deleting a person while all persons are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
@@ -1022,25 +1020,11 @@ testers are expected to do more *exploratory* testing.
       3. Note that 'Amber' comes _before_ 'Zebra'
    2. Sort students: `sort name desc`.
    3. Expected: `Sorted students based on name in desc direction` message shown, 'Zebra' now comes _before_ 'Amber' in the Student list.
-
-### Deleting a person
+    
 
 ### Removing Student(s) from a class
 1. Removing a student from a class that doesn't currently exist
 2. Removing a student from a class that has no student
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   3. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-2. _{ more test cases …​ }_
 
 ## Saving data
 
