@@ -12,8 +12,7 @@ Given below are my contributions to the project.
 
 
 * **New Feature**: Added the `removefromclass` command to remove one or more students from an existing class.
-    * Justification: A core feature as the user would likely need to move students around or simply remove students that have
-      graduated or quit.
+    * Justification: A core feature to remove students that left.
     * Highlights: The implementation of this command was especially challenging as the only information that the command has
       are the student indices and the class index. These indices are based on the view displayed by the GUI, which is 
       affected by `sort` and `find` commands. Furthermore, only student names are stored in the `TuitionClass` object to reduce
