@@ -11,6 +11,9 @@ import seedu.times.model.tuitionclass.ClassTiming;
 import seedu.times.model.tuitionclass.predicates.ClassTimingContainsKeywordsPredicate;
 import seedu.times.ui.TabName;
 
+/**
+ * Finds a tuition class in Timestable by its class timing.
+ */
 public class FindClassCommand extends Command {
 
     public static final String COMMAND_WORD = "findclass";

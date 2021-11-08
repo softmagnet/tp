@@ -436,9 +436,9 @@ The sequence diagram for the second reference frame from above:
 ![AddToClass Sequence](images/AddToClassRef2.png)
 
 ### Removing Student(s) from a Tuition Class
+Allows the user to remove one or more students from a selected tuition class.
 
-#### Overview of command
-
+#### Implementation
 The `removefromclass` command follows a similar execution path as other commands. The user input is passed to
 the `LogicManager`, which parses the input using the `TimesTableParser` and `RemoveFromClassCommandParser`.
 A `RemoveFromClassCommand` is then created with the class and student indices involved in the command.
@@ -454,7 +454,9 @@ The challenging aspect in removing students from a tuition class is in figuring 
 
 The `RemoveFromClassCommandParser` parses the user input to obtain a list of indexes to be passed to the `RemoveFromClassCommand`
 As such, the `RemoveFromClassCommand` only has access to a list of indices. We can easily obtain the `TuitionClass` object by
-simply using the class index with the `getFilteredTuitionClassList()` command. On the other hand, the `TuitionClass` object only stores
+simply using the class index with `Model#getFilteredTuitionClassList()`. 
+
+On the other hand, the `TuitionClass` object only stores
 the `Name` of each `Student` in the `TuitionClass`. This was done as we use immutable objects throughout TimesTable. As such, if the user
 modifies any of the fields of a `Student` using the `edit` command, then we would have to reflect the change throughout all the tuition classes
 of the student. By only storing the `Name` of the `Student` in the `TuitionClass` object, then we only have to update all the `TuitionClass`
@@ -466,7 +468,7 @@ GUI is dependent on the `sort` and `find` commands used by the user. As such, th
 actual `Names` stored in the `TuitionClass` object.
 
 To solve this problem, we have to obtain the list of students in the order displayed by the GUI. To obtain this list,
-we use the same method that the GUI uses to display the list in the first place. We use the `getFilteredStudentList()` method,
+we use the same method that the GUI uses to display the list in the first place. We use `Model#getFilteredStudentList()`,
 then filter it to the students whose names are in the `TuitionClass` that we are concerned with. From here, we can now use the
 student indices entered by the user to obtain the `Names` of the corresponding `Students` in the filtered list. Then we can create
 a new `TuitionClass` object with an updated list of `Names` and replace the old `TuitionClass` with this new one.
@@ -514,9 +516,29 @@ The sequence diagram when a `AddClass` command is executed by the LogicManager i
 
 ![Sequence diagram when AddClass command is executed in LogicManger](images/AddClassSequenceDiagram.png)
 
+![Reference frame of AddClass command](images/AddClassRef1.png)
+
 The sequence diagram when a new `TuitionClass` is added to the `Model` is as follows
 
 ![Sequnce diagram in model when class is added](images/AddClassModelSequenceDiagram.png)
+
+#### Challenges faced
+
+The challenging aspect when adding a tuition class to the `UniqueClassList` was making sure that no overlapping 
+classes were added.
+
+Initially, the `equals()` method of `TuitionClass` was used to compare `TuitionClass`es, and `ClassTiming` was the 
+only comparator in the `equals()` method, but this proved problematic later on due to comparing `ClassTiming` 
+using only the `equals()` method and comparing `TuitionClass`es using only `ClassTiming`. We realized that classes 
+would still be added even though they overlap as they were not strictly equals and this method of comparison was 
+very naive.
+
+After some trial and error with quite a lot of developer's testing, we created a `isOverlapping()` in `TuitionClass` 
+that checks for overlaps which checks for any overlap where either class will be within the timeframe of one another,
+or where the start or end time of one class was within the timeframe of another. This made sure that we had a method 
+to check for any overlap between classes when adding new class to the `UniqueClassList`, ensuring that no new 
+classes would be added to the `UniqueClassList` when adding a tuition class to TimesTable. This check also served to 
+make sure that there would be no overlapping classes resulting from an `editclass` command.
 
 ---
 
@@ -920,6 +942,19 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a Student: `add`
+1. Test case 1: Add a `Student` successfully
+    1. Add a `Student` to TimesTable: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3
+       nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25`
+     2. Expected message: `New Student added: John Doe; Phone: 98765432; Email: johnd@example.com; Address: 311, Clementi Ave 2, #02-25; Tags: [Chemistry][Sec 3]
+       Next-of-Kin: Jack Doe; Phone: 10987654; Email: jackd@example.com; Address: 311, Clementi Ave 2, #02-25`
+2. Test case 2: Cannot add duplicate `Student`
+    1. Prerequisite: TimesTable contains the sample `Student`s. Steps to do this are below:
+        1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
+    2. Add a `Student` with a clash in `NAME` with an existing `Student`: `add n/Alex Yeoh p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3
+       nok/ n/Elise Yeoh p/10987654 e/eliseyeoh@gmail.com a/311, Clementi Ave 2, #02-25`
+    3. Expected: `This person already exists in the address book` message shown.
+    
 ### Adding a Student to a Class: `addtoclass`
 
 1. Test case 1: Add a `Student` to a `TuitionClass` successfully
@@ -1138,7 +1173,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a class: `addclass`
 
-1. Test case: Adding a `TuitionClass` successfully - no clash in `CLASS_TIMING` with exisiting `TuitionClass`es.
+1. Test case: Adding a `TuitionClass` successfully - no clash in `CLASS_TIMING` with existing `TuitionClass`es.
     1. Prerequisite: TimesTable does not have any `TuitionClass`es. If you have any `TuitionClass`, steps to remove them are below:
         1. (You may skip this if you do not have `TuitionClass`es) Delete a class: `deleteclass INDEX` for all `TuitionClass`es in TimesTable.
     2. Add a `TuitionClass`: `addclass cn/Sec 4 A Maths ct/MON 11:30-13:30 r/70 l/Nex Tuition Center`
@@ -1149,6 +1184,45 @@ testers are expected to do more *exploratory* testing.
         1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
     2. Add a `TuitionClass` with a clash in `CLASS_TIMING` with an existing `TuitionClass`: `addclass cn/CS2103T ct/MON 10:30-12:30 r/70 l/Nex Tuition Center`
     3. Expected: `The operation aborted because it will introduce a clash in class timing.` and the `TuitionClass` does not get added to the `Classes` Tab.
+
+### Locating a class by name: `findname`
+1. Test case: No students has a name that matches the search term used
+    1. Prerequisites: TimesTable contain multiple students. Steps to do this are below:
+        1. Delete `timestable.json` in the data file to start off with the sample data in TimesTable.
+    2. Find students using a name that currently do not exist: `findname Jennifer`.
+    3. Expected: `0 persons listed!` message shown and no students shown in `Students` tab.
+
+2. Test case: A student is found with name that matches search term.
+    1. Prerequisites: TimesTable contain multiple students. Steps to do this are below:
+        1. Delete `timestable.json` in the data file to start off with the sample data in TimesTable.
+    2. Find students using a single name that currently exists: `findname alex`.
+    3. Expected: `1 persons listed!` message shown and 2 students shown in `Students` tab, namely `Alex Yeoh` and
+       `David Li`.
+3. Test case: Multiple students have names that matches search term.
+    1. Prerequisites: TimesTable contain multiple students. Steps to do this are below:
+        1. Delete `timestable.json` in the data file to start off with the sample data in TimesTable.
+    2. Find students using part of a name that currently exists: `findname li`.
+    3. Expected: `3 persons listed!` message shown and 3 students shown in `Students` tab, namely
+       `Charlotte Oliveiro`, `David Li` and `Angelica Holcomb`.
+
+### Locating a class by name: `findclass`
+1. Test case: No `TuitionClass` matches the search term used.
+    1. Prerequisite: TimesTable contains the sample `TuitionClass`es. Steps to do this are below:
+        1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
+    2. Find `TuitionClass`es with `CLASS_TIMING` of `WED`: `findclass WED`
+    3. Expected: `0 classes listed!` and tab switched to `Classes` tab.
+
+2. Test case: `TuitionClass`es match the search term used.
+    1. Prerequisite: TimesTable contains the sample `TuitionClass`es. Steps to do this are below:
+        1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
+    2. Find `TuitionClass`es with `CLASS_TIMING` of 'MON': `findclass mon`
+    3. Expected: `2 classes listed!` and tab switched to `Classes` tab. The `Classes` Tab contains 2 `TuitionClass`es with `CLASS_TIMING` of `MON`.
+
+3. Test case: `TuitionClass`es match the multiple search terms used.
+    1. Prerequisite: TimesTable contains the sample `TuitionClass`es. Steps to do this are below:
+        1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
+    2. Find `TuitionClass`es with `CLASS_TIMING` of `MON` and `11:30-13:30`: `findclass mon 11:30-13:30`
+    3. Expected: `1 classes listed!` and tab switched to `Classes` tab. The `Classes` Tab contains 1 `TuitionClass` with `CLASS_TIMING` of `MON` and `11:30-13:30`.
 
 ### Locating a class by name: `findclassname`
 

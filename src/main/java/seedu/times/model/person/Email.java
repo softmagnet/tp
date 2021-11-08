@@ -6,7 +6,7 @@ import static seedu.times.commons.util.AppUtil.isWithinLength;
 import static seedu.times.model.util.Commons.MAX_CHAR_COUNT;
 
 /**
- * Represents a Person's email in the address book.
+ * Represents a Person's email in the Timestable.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {

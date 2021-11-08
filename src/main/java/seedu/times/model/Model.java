@@ -137,12 +137,12 @@ public interface Model {
     void updateClassStudentLists(Name newName, Name oldName);
 
     /**
-     * Sorts the students based on the comparator c.
+     * Sorts the {@code Student} according to comparator c.
      */
     void sortStudents(Comparator<? super Student> c);
 
     /**
-     * Sorts the classes based on the comparator c.
+     * Sorts the {@code TuitionClass} according to comparator c.
      */
     void sortClasses(Comparator<? super TuitionClass> c);
 }

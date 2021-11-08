@@ -5,7 +5,7 @@ import static seedu.times.commons.util.AppUtil.checkArgument;
 import static seedu.times.model.util.Commons.MAX_CHAR_COUNT;
 
 /**
- * Represents a Person's class location in the address book.
+ * Represents a {@code TuitionClass}'s class location in the Timestable.
  * Guarantees: immutable; is valid as declared in {@link #isValidLocation(String)}
  */
 public class Location {

@@ -12,8 +12,7 @@ Given below are my contributions to the project.
 
 
 * **New Feature**: Added the `removefromclass` command to remove one or more students from an existing class.
-    * Justification: A core feature as the user would likely need to move students around or simply remove students that have
-      graduated or quit.
+    * Justification: A core feature to remove students that left.
     * Highlights: The implementation of this command was especially challenging as the only information that the command has
       are the student indices and the class index. These indices are based on the view displayed by the GUI, which is 
       affected by `sort` and `find` commands. Furthermore, only student names are stored in the `TuitionClass` object to reduce
@@ -70,14 +69,11 @@ Given below are my contributions to the project.
     * Set up project website:
         * Set up github pages, changed settings, changed names and links from AddressBook to TimesTable
     * Landing Page ([\#133](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/133) , [\#306](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/306)):
-        * Updated landing page to reflect TimesTable contents.
-        * Added a section for each major feature.
-        * Added pictures for the different features. 
-        * Updated pictures to reflect new changes
+        * Updated landing page to reflect TimesTable contents, added a section for each major feature, added pictures.
     * Project Demo for 1.3:
-        * Recorded gifs and screenshots for different features
+        * Recorded gifs and screenshots for different features.
     * Helped maintained issue tracker:
-        * Created new issues, added milestones and assignees, closed relevant issues
+        * Created new issues, added milestones and assignees, closed relevant issues.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments):  [\#303](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/303)

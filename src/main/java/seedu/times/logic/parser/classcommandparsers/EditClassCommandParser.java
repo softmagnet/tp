@@ -16,6 +16,9 @@ import seedu.times.logic.parser.Parser;
 import seedu.times.logic.parser.ParserUtil;
 import seedu.times.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new EditClassCommand object
+ */
 public class EditClassCommandParser implements Parser<EditClassCommand> {
     @Override
     public EditClassCommand parse(String args) throws ParseException {
