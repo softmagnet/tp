@@ -46,7 +46,7 @@ public class DeleteClassCommand extends Command {
 
         List<TuitionClass> lastShownClassList = model.getFilteredTuitionClassList();
         if (index.getOneBased() > lastShownClassList.size()) {
-            logger.log(Level.INFO, "There are only " + lastShownClassList.size() + " classes");
+            logger.log(Level.INFO, "There are only " + lastShownClassList.size() + " classes displayed");
             throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
         }
         TuitionClass tuitionClass = lastShownClassList.get(index.getZeroBased());

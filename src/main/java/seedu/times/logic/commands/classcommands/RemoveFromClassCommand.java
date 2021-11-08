@@ -62,10 +62,10 @@ public class RemoveFromClassCommand extends Command {
         //get class to remove from
         List<TuitionClass> lastShownClassList = model.getFilteredTuitionClassList();
         if (lastShownClassList.size() == 0) {
-            logger.log(Level.INFO, "There are no classes");
+            logger.log(Level.INFO, "There are no classes displayed.");
             throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
         } else if (toEditClassIndex.getOneBased() > lastShownClassList.size()) {
-            logger.log(Level.INFO, "There are only " + lastShownClassList.size() + " classes");
+            logger.log(Level.INFO, "There are only " + lastShownClassList.size() + " classes displayed.");
             throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
         }
         TuitionClass classToRemoveFrom = lastShownClassList.get(toEditClassIndex.getZeroBased());
@@ -114,7 +114,7 @@ public class RemoveFromClassCommand extends Command {
         int size = studentList.size();
         for (Index index : studentIndices) {
             if (index.getZeroBased() >= size) {
-                logger.log(Level.INFO, "There are only " + size + " students.");
+                logger.log(Level.INFO, "There are only " + size + " students displayed.");
                 throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
             }
         }
