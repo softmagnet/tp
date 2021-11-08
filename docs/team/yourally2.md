@@ -40,7 +40,7 @@ Given below are my contributions to the project.
   
 * **Enhancements to existing features**:
     * Make Student and next-of-kin (NOK) inherit from Person to implement DRY principles (Pull Request [\#30](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/30))
-    * Limit length and number of tags to prevent GUI from covering other information and added tests (Pull Request[\#319](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/319))
+    * Limit length and number of tags to prevent GUI from covering other information and added tests (Pull Request [\#319](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/319))
     * Wrote tests for `FindClassCommandParser`, `FindClassCommand`, `SelectClassCommand` and `SelectClassCommandParser` (Pull Request [\#258](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/258) [\#302](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/302))
     * Bug fixes for GUI, `class` command, Student list in `classes` tab and `addtoclass` command (Pull Request 
       [\#248](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/248),
@@ -49,8 +49,8 @@ Given below are my contributions to the project.
   
 * **Documentation**
   * User Guide:
-    * Ensure entire UG flows well (Pull Request [\#224](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/224), [\#303](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/303))
-    * Added section for proposed feature of attendance marking in Payment Management feature. (Commit [1](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/319/commits/effd6fbe0d67a6ed821fa16581e7ed3fd3e9cd32))
+    * Ensured entire UG flowed well (Pull Request [\#224](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/224), [\#303](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/303))
+    * Added section for proposed feature of attendance marking in Payment Management feature. ([Commit](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/319/commits/effd6fbe0d67a6ed821fa16581e7ed3fd3e9cd32))
   * Developer Guide
     * Added UML class diagram, Sequence Diagram for Ui component and the ClassesUi component (Pull Request [\#291](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/291) [\#309](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/309))
     * Added noteworthy implementation details for `nok/` field (Pull Request [\#292](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/292), [\#291](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/291))
