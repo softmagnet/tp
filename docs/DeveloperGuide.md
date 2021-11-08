@@ -11,9 +11,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 
-- The [`Timetable`](#timetable-ui) feature was inspired by a similar feature in the past project of Pet Store Helper [here](https://github.com/AY1920S2-CS2103-W15-4/main).  
-
-  The implementation of the components of the [`Timetable`](#timetable-ui) feature (`TimetableTuitionClassSlot`, `TimetableDay`, `TimetableRegion` and `TimetableEmptySlot`) has been adapted from them with maximum changes to fit our app.
+- The [`Timetable`](#timetable-ui) feature was inspired by a similar feature in the past project of Pet Store Helper [here](https://github.com/AY1920S2-CS2103-W15-4/main). The implementation of the components of the [`Timetable`](#timetable-ui) feature (`TimetableTuitionClassSlot`, `TimetableDay`, `TimetableRegion` and `TimetableEmptySlot`) has been adapted from them with maximum changes to fit our app.
   The implementation of how we [built](#timetable-tab-feature) and designed ([TimetablePanel.java](https://github.com/AY2122S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/times/ui/timetabletab/TimetablePanel.java)) the entire Timetable Tab (layout, classes etc) is entirely new.
 
 ---
