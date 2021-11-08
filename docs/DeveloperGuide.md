@@ -270,6 +270,8 @@ The Timetable Tab feature is a feature which displays the user's classes in a vi
 The class diagram for Timetable as shown in the [TimetableUI component](#timetable-ui) is replicated here for convenience.
 ![Timetable Class Diagram](images/TimetableDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 The image below shows the respective parts of the `TimetablePanel`:
 
 ![Timetable annotation](images/TimetableAnnotation.png)
@@ -289,7 +291,9 @@ The sequence diagrams below illustrate how the Timetable UI is built.
 ![Timetable Overall Sequence Diagram](images/TimetableUiSequenceDiagram.png)
 
 1.`MainWindow#fillInnerParts()` creates a new `TimetablePanel` using the `ObservableList<TuitionClass>` from `Logic`.
+
 2.`TimetablePanel#build()` is called in the constructor of `TimetablePanel` to build the Timetable Ui.
+
 3.`TimetablePanel#build()` starts building the Timetable Ui by first calling `TimetablePanel#buildHeader()` which takes in the `ObservableList<TuitionClass>`.
 
 ![Timetable Header Sequence Diagram](images/TimetableUiHeaderSequenceDiagram.png)
@@ -303,6 +307,7 @@ The sequence diagrams below illustrate how the Timetable UI is built.
 ![Timetable Slot Sequence Diagram](images/TimetableUiSlotSequenceDiagram.png)
 
 6.Finally, the `TimetablePanel#buildClasses()` is called, which takes in the same `ObservableList<TuitionClass>` as step 3. It iterates through the _sorted_ `ObservableList<TuitionClass>`, building a `TimetableTuitionClassSlot` for each of the `TuitionClass`, and placing `TimetableEmptySlot`s in between the `TimetableTuitionClassSlot`s.
+
 7.A listener is attached to the `ObservableList<TuitionClass>` which updates the Timetable UI whenever there are changes to the `ObservableList<TuitionClass>`,
    such as when a new `TuitionClass` is added, or an existing `TuitionClass` is edited in the `ObservableList<TuitionClass>`.
 
@@ -497,6 +502,8 @@ The command is then executed, interacting with the `Model`.
 An overview of how the `RemoveFromClassCommand` is created is shown by this sequence diagram:
 
 ![RemoveFromClass Overview Sequence Diagram](images/RemoveFromClassOverviewDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Challenges faced
 
@@ -1185,7 +1192,7 @@ testers are expected to do more *exploratory* testing.
     3. Expected: `Sorted students based on name in desc direction` message shown, 'Zebra' now comes _before_ 'Amber' in the Student list.
 
 
-### Locating a class by name: `findname`
+### Locating a student by name: `findname`
 1. Test case: No students has a name that matches the search term used
     1. Prerequisites: TimesTable contain multiple students. Steps to do this are below:
         1. Delete `timestable.json` in the data file to start off with the sample data in TimesTable.
@@ -1205,7 +1212,7 @@ testers are expected to do more *exploratory* testing.
     3. Expected: `3 persons listed!` message shown and 3 students shown in `Students` tab, namely
        `Charlotte Oliveiro`, `David Li` and `Angelica Holcomb`.
 
-### Locating a class by name: `findclass`
+### Locating a class by class timing: `findclass`
 1. Test case: No `TuitionClass` matches the search term used.
     1. Prerequisite: TimesTable contains the sample `TuitionClass`es. Steps to do this are below:
         1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
@@ -1223,6 +1230,8 @@ testers are expected to do more *exploratory* testing.
         1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
     2. Find `TuitionClass`es with `CLASS_TIMING` of `MON` and `11:30-13:30`: `findclass mon 11:30-13:30`
     3. Expected: `1 classes listed!` and tab switched to `Classes` tab. The `Classes` Tab contains 1 `TuitionClass` with `CLASS_TIMING` of `MON` and `11:30-13:30`.
+
+<div style="page-break-after: always;"></div>
 
 ### Locating a class by name: `findclassname`
 
@@ -1315,6 +1324,8 @@ testers are expected to do more *exploratory* testing.
    3. Go to `Students` tab: `view students`
    4. List `TuitionClass`es: `listclass`
    5. Expected: `Listed all classes` message shown and tab is moved to `Classes` tab. Class list noted in (ib) is shown.
+
+<div style="page-break-after: always;"></div>
 
 ## Appendix: Effort
 

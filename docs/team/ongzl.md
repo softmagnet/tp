@@ -7,7 +7,7 @@ title: Ong Zheng Lin's Project Portfolio Page
 
 TimesTable is a desktop class management application for tuition teachers to keep track of their students 
 and classes. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, 
-and has about 24 kLoC.
+and has about 25 kLoC.
 
 Given below are my contributions to the project.
 
