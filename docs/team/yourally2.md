@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 
 * **New feature**: Added the GUI and related behaviour for the class tab
   * What it does: Allows the user to visually see which students belong to each respective class by double clicking on the class
-    or using a command which is described in another section. The user can see the size of the class which changes as the number
+    or using a command `class INDEX` which is described in another section. The user can see the size of the class which changes as the number
     of students in the class change.
   * Justification: The visual aspect allows the user to quickly tell which students belong to a class at a glance. It is also
     intuitive to use as double clicking on a class to see the students is very natural. This forms the backbone of the class feature
@@ -66,20 +66,20 @@ Given below are my contributions to the project.
   
 * **Documentation**
   * User Guide:
-    * Fixed various documentation issues and touched up on UG [\#224](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/224), [\#303](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/303)
+    * Fixed various documentation issues and touched up on UG (Pull Request [\#224](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/224), [\#303](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/303))
     * Added section for proposed feature of attendance marking in Payment Management feature. (Commit [1](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/319/commits/effd6fbe0d67a6ed821fa16581e7ed3fd3e9cd32))
   * Developer Guide
-    * Added UML class diagram for the updated Ui component and the ClassPanelUi component [\#291](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/291) 
-    * Added noteworthy implementation details for `nok/` field [\#292](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/292), [\#291](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/291)
-    * Added Sequence Diagram UML for ClassesUi feature [\#309](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/309)
-    * Added user stories [\#22](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/22)
-    * Adding a class [\#86](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/86)
+    * Added UML class diagram for the updated Ui component and the ClassPanelUi component (Pull Request [\#291](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/291) )
+    * Added noteworthy implementation details for `nok/` field (Pull Request [\#292](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/292), [\#291](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/291))
+    * Added Sequence Diagram UML for ClassesUi feature (Pull Request [\#309](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/309))
+    * Added user stories (Pull Request [\#22](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/22))
+    * Added manual testing for `addtoclass`, `listclass`, `delete`, `sort` commands (Pull Request [\#327](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/327))
+    * Added manual testing for adding a class before features were finalised (Pull Request [\#86](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/86))
   
 * **Community**
-  * PRs reviewed (with non-trivial review comments): (Pull request,
+  * PRs reviewed (with non-trivial review comments): (Pull request
     [\#256](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/256),
     [\#81](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/81),
     [\#50](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/50),
     [\#311](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/311)
   * Reported bugs for other teams during PE-D: [ped issues github](https://github.com/yourally2/ped/issues)
-  
