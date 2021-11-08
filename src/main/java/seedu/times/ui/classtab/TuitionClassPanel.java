@@ -8,6 +8,9 @@ import seedu.times.model.person.Student;
 import seedu.times.model.tuitionclass.TuitionClass;
 import seedu.times.ui.UiPart;
 
+/**
+ * Represents a Panel for the Tuition Class.
+ */
 public class TuitionClassPanel extends UiPart<Region> {
     private static final String FXML = "classTab/TuitionClassListPanel.fxml";
 
