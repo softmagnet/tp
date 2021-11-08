@@ -5,7 +5,7 @@ title: Kevin Chua's Project Portfolio Page
 
 ### Project: TimesTable
 
-TimesTable is a desktop address book plus planner application for tuition teachers to keep track of their students 
+TimesTable is a Class Management desktop application for tuition teachers to keep track of their students 
 and classes. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, 
 and has about 17 kLoC.
 
