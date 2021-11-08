@@ -330,6 +330,14 @@ to go for the most extensible or "smart" solution, but the simplest to understan
 
 ### Find commands
 
+The find commands are a common group of commands that allows users to quickly find `Student` or `TuitionClass`. They are:
+* `findname`
+* `findtag`
+* `findclass`
+* `findclassname`
+
+#### Implementation of the command
+
 The implementation of all search-related commands such as `findtag`, `findname`, `findclass` and `findclassname` uses a
 common approach of setting a predicate inside the corresponding `FilteredList` class. As mentioned above in `Model`
 section, the filtered list either contains an `ObservableList<Student>` or `ObservableList<TuitionClass>` that is bound to the
@@ -344,7 +352,7 @@ The sequence diagram when a `findtag` command is executed is as follows:
 The rest of the find command works the same way but note that for `findclass` and `findclassname`, they are calling the
 `setPredicate` method of `filteredTuitionClass` instead.
 
-#### Find command predicates
+#### Implementation of find predicates
 
 Furthermore, to fully understand the find command, we also have to understand how predicate works. The predicates used
 that filters out students or classes are typical java `Predicate`. For each searchable attribute, a new class must be
@@ -388,9 +396,9 @@ After sorting, the Command sets the view to switch to their respective tabs, so 
 
 ### Adding a Student to a class
 
-Adds an existing student into an existing tuition class.
+`AddToClass` command adds an existing student into an existing tuition class.
 
-#### The parser
+#### Implementation of the the parser
 
 `AddToClassCommand` command's parser `AddToClassCommandParser` works by parsing indexes in the user input and
 generating a `List<Index>` whereby the first index will be for the `TuitionClass` receving the students and the rest
@@ -400,7 +408,7 @@ out-of-range indices. This is because at the time of parsing, the model is not a
 out-of-range. The reason for this design is to reduce dependency and keep to the single responsibility principle. The
 job of the parser should be separated from checking in with the model.
 
-#### The command
+#### Implementation of the command
 
 The `AddToClassCommand` command follows an index based format and the class contains the `Index` of the class to add
 the new students to and a `List` of `Index` of students to be added. The command's execution is composed of various
@@ -1055,6 +1063,62 @@ testers are expected to do more *exploratory* testing.
 3. Test case: View `Timetable` tab, user is on `Classes` tab
     1. View `Timetable` tab: `view timetable`.
     2. Expected: `Successfully switched to TIMETABLE tab` and switched to `TimeTable` tab.
+
+### Editing a person
+
+1. Test case 1: Editing an existing student's own detail 
+   1. Prerequisites
+      1. Add student: `add n/John p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3 nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25`
+      2. Note the student and his or her index in the displayed list in the `Student` tab.
+   2. Edit the student (assuming the student's index is 1): `edit 1 n/updated student p/99993293 e/edited@gmail.com a/edited address t/`
+   3. Expected: All fields are changed according to `edit` command inputs and all tags are removed.
+2. Test case 2: Edit an existing student's NOK detail
+   1. Prerequisites: Same as above
+   2. Edit the student's NOK (assuming the student's index is 1): `edit 1 nok/ n/edited NOK name e/editedNOK@gmail.com a/edited address p/92393932`
+   3. Expected: All NOK fields are changed according to `edit` command inputs
+3. Negative test cases
+    1. Out of range
+        1. (assuming the student list does not have 100 students) enter `edit 100 n/edited name`
+        2. Expected: "The student index provided is invalid" is displayed
+    2. No fields provided
+        1. enter `edit 1`
+        2. Expected: "At least one field to edit must be provided." is displayed
+    3. invalid prefix provided
+        1. enter `edit 1 prefix/`
+        2. Expected: Invalid command format message is displayed
+
+### Editing a class
+
+1. Test case 1: Editing an existing class
+    1. Prerequisites
+       1. Add a class: `addclass cn/Sec 4 A Maths ct/MON 11:30-13:30 r/70 l/Nex Tuition Center`
+       2. Note the class and its index in the displayed list in the `Class` tab
+    2. Edit the class (assuming the class's index is 1): `editclass 1 cn/edited classname ct/MON 09:00-11:00 r/90 l/edited location`
+    3. Expected: All fields are changed according to `editclass` command's inputs
+2. Negative test cases: 
+   1. Out of range
+      1. (assuming the class list does not have 100 classes) enter `editclass 100 cn/edited class name`
+      2. Expected: "The class index provided is invalid" is displayed
+   2. No fields provided
+      1. enter `editclass 1`
+      2. Expected: "At least one field to editclass must be provided." is displayed
+   3. invalid prefix provided
+      1. enter `editclass 1 prefix/`
+      2. Expected: Invalid command format message is displayed
+
+### Selecting a class
+1. Test case 1: viewing an existing class
+   1. Prerequisites
+      1. Add a class: `addclass cn/Sec 4 A Maths ct/MON 11:30-13:30 r/70 l/Nex Tuition Center`
+      2. Note the class and its index in the displayed list in the `Class` tab
+      3. Adding students to the class (assuming the class's index is 1 and there are at least 2 students in Timestable): `addtoclass 1 1 2 `
+   2. view the class (assuming the class's index is 1): `class 1`
+   3. Expected: the students list in `Classes` tab is showing students belonging to that class
+2. Negative test cases:
+   1. Out of range
+      1. (assuming the class list does not have 100 classes) enter `class 100`
+      2. Expected: "The class index provided is invalid" is displayed
+
     
 ### Clearing data: `clear`
 
@@ -1116,6 +1180,7 @@ testers are expected to do more *exploratory* testing.
     4. List all `Student`s: `list`
     5. Expected: `Listed all students` message shown and tab is changed to the `Students` tab. The list of `Student`s should be the same as before filtering (Step 2).
     
+
 ## Saving data
 
 1. Dealing with missing/corrupted data files
