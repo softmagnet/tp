@@ -4,7 +4,7 @@
 !include Style.puml
 
 
-group sd Match Student and Class Indices to their objects. Create updated Name List
+
 box Logic LOGIC_COLOR_T1
 participant "c:RemoveFromClassCommand" as RemoveFromClassCommand LOGIC_COLOR
 end box
