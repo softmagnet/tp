@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.times.commons.core.Messages;
 import seedu.times.commons.core.index.Index;
@@ -33,6 +35,8 @@ public class RemoveFromClassCommand extends Command {
     public static final String NO_STUDENT_INDEX_PROVIDED_MESSAGE = "No student index is provided!";
     public static final String MESSAGE_REMOVE_SUCCESS = "Successfully removed students from class ";
 
+    private static Logger logger = Logger.getLogger("RemoveFromClassCommand");
+
     private final Index toEditClassIndex;
     private final List<Index> studentIndicesToRemove;
 
@@ -46,6 +50,7 @@ public class RemoveFromClassCommand extends Command {
 
         //the first index is the index of class in filtered class list that students would be removed from
         toEditClassIndex = indexArray.get(0);
+        assert toEditClassIndex.getOneBased() > 0;
 
         //the remaining indices are those of the students in filtered student list
         studentIndicesToRemove = indexArray.subList(1, indexArray.size());
@@ -56,7 +61,11 @@ public class RemoveFromClassCommand extends Command {
 
         //get class to remove from
         List<TuitionClass> lastShownClassList = model.getFilteredTuitionClassList();
-        if (lastShownClassList.size() == 0 || toEditClassIndex.getOneBased() > lastShownClassList.size()) {
+        if (lastShownClassList.size() == 0) {
+            logger.log(Level.INFO, "There are no classes displayed.");
+            throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
+        } else if (toEditClassIndex.getOneBased() > lastShownClassList.size()) {
+            logger.log(Level.INFO, "There are only " + lastShownClassList.size() + " classes displayed.");
             throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
         }
         TuitionClass classToRemoveFrom = lastShownClassList.get(toEditClassIndex.getZeroBased());
@@ -86,6 +95,8 @@ public class RemoveFromClassCommand extends Command {
         updateView(TabName.CLASSES);
         updateClass(toEditClassIndex.getZeroBased());
 
+        logger.log(Level.INFO, "Class name list updated.");
+
         return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, editedClass));
     }
 
@@ -103,9 +114,11 @@ public class RemoveFromClassCommand extends Command {
         int size = studentList.size();
         for (Index index : studentIndices) {
             if (index.getZeroBased() >= size) {
+                logger.log(Level.INFO, "There are only " + size + " students displayed.");
                 throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
             }
         }
+        logger.log(Level.INFO, "All indices are valid.");
     }
 
     @Override
