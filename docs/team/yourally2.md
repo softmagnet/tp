@@ -11,73 +11,54 @@ and has about 17 kLoC.
 
 Given below are my contributions to the project.
 
-* **New feature**: Added the GUI and related behaviour for the class tab
+* **New feature**: Added the GUI and related behaviour for the class tab (Pull Request: [\#103](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/103))
   * What it does: Allows the user to visually see which students belong to each respective class by double clicking on the class
-    or using a command `class INDEX` which is described in another section. The user can see the size of the class which changes as the number
-    of students in the class change.
-  * Justification: The visual aspect allows the user to quickly tell which students belong to a class at a glance. It is also
-    intuitive to use as double clicking on a class to see the students is very natural. This forms the backbone of the class feature
-    as all interactions with the class is done in this tab.
-  * Highlights: A deep understanding of how the GUI functioned together with the different recommended design patterns was required.
-    It was challenging to consider the flow of data for components while ensuring that the GUI turned out appealing.
-  * Pull Request: [\#103](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/103)
+    or using a command `class INDEX` which is described in another section.
+  * Justification: Visuals allows the user to quickly tell which students belong to a class at a glance. 
+  Forms the backbone of the class feature as all interactions with the class is done in this tab.
+  * Highlights: I gained a deep understanding of how the GUI functioned together with greater understanding of different design patterns.
 
-* **New feature**: Add `class` feature to view a specific class without double clicking
+* **New feature**: Add `class` feature to view a specific class without double clicking (Pull Request: [\#103](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/103))
   * What it does: It shows the students belonging to the specified class. Does the same thing as double clicking on a class.
-  * Justification: As Stuart mentioned, it is crucial because it follows the mindset of not touching the mouse or using voice commands.
-    It allows us to perform the same functionality without using a mouse, which is important.
-  * Highlights: It was challenging to modify the GUI using a command, so after discussing with Stuart we decided to follow the Observer pattern,
+  * Justification: It allows us to perform the same functionality without using a mouse, which is important.
+  * Highlights: It was challenging to modify the GUI using a command as it meant a lot of coupling, so after discussing with Stuart we decided to follow the Observer pattern,
     which proved to be very useful.
-  * Pull Request (same PR as GUI): [\#103](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/103)
 
-* **New feature**: Overloaded `edit` and set up base for overloading `add` command to allow user to add the next-of-kin (nok) of the Student.
+* **New feature**: Overloaded `edit` and set up base for overloading `add` command to allow user to add the next-of-kin (nok) of the Student. (Pull Requests: [\#26](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/26) [\#47](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/47))
   * What it does: Allows the user to add/edit a Student's nok with name, address, and location when adding/editing a Student.
-  * Justification:  This feature allows the user to quickly add and edit relevant details of an nok .
-   It greatly enhances the user experience to be able to see a Student's
-  Next-Of-Kin easily to contact them for payments or to report something about the Student.
   * Highlights: This enhancement went through several iterations as we initially implemented the
   `nok` command to specifically to add/edit an nok, but settled on overloading the `add` and `edit` command because it would
   be faster and less confusing to add an `nok` and the Student at once.
-  * Pull Requests: [\#26](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/26) [\#47](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/47)
  
-* **New feature**: Store next-of-kin (nok) information in a nested json
-    * What it does: Allows the saving of nok information
-    * Justification:  when the program is closed and reopened, the nok information is retained. This is important as all other information is retained after closing as well.
-    * Highlights: I decided to nest the json in a key `nok` instead of having fields like `nok_name`, `nok_phone` etc because it becomes clear to the user and developers what the fields are for.
-    * Pull Request: [\#65](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/65)
+* **New feature**: Store next-of-kin (nok) information in a nested json (Pull Request: [\#65](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/65))
+    * Highlights: I decided to nest the json in a key `nok` instead of having fields like `nok_name`, `nok_phone` etc so it is clearer what the fields are for. Nesting json objects proved to be more complex compared to strings.
 
-* **New feature**: Improved colours for the GUI overall
-    * What it does: Makes TimesTable more visually striking
-    * Justification: The visual aspect of apps is more important than we realise and can often decide whether a user wants to use our app or not.
-    * Highlights: Selecting the appropriate colour was more difficult than expected and finding the css to change was not easy.
-    * Pull Request: [\#217](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/217)
+* **New feature**: Improved colours for the GUI overall (Pull Request: [\#217](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/217))
+    * Highlights: Finding the right combination of colors that the entire team agreed on proved to be more difficult than expected and the colors went through several iterations before the team could decide on a color. In the process, finding the css for specific components to change was surprisingly harder than expected as the documentation for the css in javafx is often unclear.
 
 * **Code contributed**: [Reposense](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=yourally2&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=yourally2&tabRepo=AY2122S1-CS2103T-F11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
   
 * **Enhancements to existing features**:
-    * Refactor Person to Student and make Student and next-of-kin (NOK) inherit from Person (Pull Request [\#30](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/30))
-    * Limit length and number of tags to prevent GUI from covering other information and added tests for it (Pull Request[\#319](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/319))
-    * Wrote tests for `FindClassCommandParser` and `FindClassCommand` (Pull request [\#258](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/258))
-    * Wrote tests for `SelectClassCommand` and `SelectClassCommandParser` (Pull request [\#302](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/302))
-    * Bug fixes for GUI, `class` command and `Student list` in `classes` tab (Pull request 
+    * Make Student and next-of-kin (NOK) inherit from Person to implement DRY principles (Pull Request [\#30](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/30))
+    * Limit length and number of tags to prevent GUI from covering other information and added tests (Pull Request[\#319](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/319))
+    * Wrote tests for `FindClassCommandParser`, `FindClassCommand`, `SelectClassCommand` and `SelectClassCommandParser` (Pull Request [\#258](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/258) [\#302](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/302))
+    * Bug fixes for GUI, `class` command, Student list in `classes` tab and `addtoclass` command (Pull Request 
       [\#248](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/248),
-      [\#243](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/243))
-    * Bug fixes for `addtoclass` command where class index is checked against the number of students instead of number of classes (Pull Request [\#304](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/304))
+      [\#243](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/243),
+      [\#304](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/304))
   
 * **Documentation**
   * User Guide:
-    * Fixed various documentation issues and touched up on UG (Pull Request [\#224](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/224), [\#303](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/303))
+    * Ensure entire UG flows well (Pull Request [\#224](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/224), [\#303](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/303))
     * Added section for proposed feature of attendance marking in Payment Management feature. (Commit [1](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/319/commits/effd6fbe0d67a6ed821fa16581e7ed3fd3e9cd32))
   * Developer Guide
-    * Added UML class diagram for the updated Ui component and the ClassPanelUi component (Pull Request [\#291](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/291) )
+    * Added UML class diagram, Sequence Diagram for Ui component and the ClassesUi component (Pull Request [\#291](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/291) [\#309](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/309))
     * Added noteworthy implementation details for `nok/` field (Pull Request [\#292](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/292), [\#291](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/291))
-    * Added Sequence Diagram UML for ClassesUi feature (Pull Request [\#309](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/309))
+    * Added manual testing for `addtoclass`, `listclass`, `delete`, `sort` commands (Pull Request [\#327](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/327) [\#86](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/86))
     * Added user stories (Pull Request [\#22](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/22))
-    * Added manual testing for `addtoclass`, `listclass`, `delete`, `sort` commands (Pull Request [\#327](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/327))
-    * Added manual testing for adding a class before features were finalised (Pull Request [\#86](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/86))
   
 * **Community**
-  * PRs reviewed (with non-trivial review comments): (Pull request
+  * PRs reviewed (with non-trivial review comments): (Pull Request
     [\#256](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/256),
     [\#81](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/81),
     [\#50](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/50),
