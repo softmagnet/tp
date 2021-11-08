@@ -23,16 +23,16 @@ class JsonSerializableTimesTable {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_CLASS = "Class list contains duplicate class(es).";
 
-    private final List<JsonAdaptedStudent> students = new ArrayList<>();
+    private final List<JsonAdaptedStudent> persons = new ArrayList<>();
     private final List<JsonAdaptedTuitionClass> classes = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableTimesTable} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableTimesTable(@JsonProperty("persons") List<JsonAdaptedStudent> students,
+    public JsonSerializableTimesTable(@JsonProperty("persons") List<JsonAdaptedStudent> persons,
                                       @JsonProperty("classes") List<JsonAdaptedTuitionClass> classes) {
-        this.students.addAll(students);
+        this.persons.addAll(persons);
         this.classes.addAll(classes);
     }
 
@@ -42,7 +42,7 @@ class JsonSerializableTimesTable {
      * @param source future changes to this will not affect the created {@code JsonSerializableTimesTable}.
      */
     public JsonSerializableTimesTable(ReadOnlyTimesTable source) {
-        students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
+        persons.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
         classes.addAll(source.getTuitionClassList().stream().map(JsonAdaptedTuitionClass::new)
                 .collect(Collectors.toList()));
     }
@@ -55,7 +55,7 @@ class JsonSerializableTimesTable {
     public TimesTable toModelType() throws IllegalValueException {
         TimesTable timesTable = new TimesTable();
 
-        for (JsonAdaptedStudent jsonAdaptedStudent : students) {
+        for (JsonAdaptedStudent jsonAdaptedStudent : persons) {
             Student student = jsonAdaptedStudent.toModelType();
             if (timesTable.hasPerson(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
