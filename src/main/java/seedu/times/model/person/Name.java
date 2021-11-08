@@ -5,7 +5,7 @@ import static seedu.times.commons.util.AppUtil.checkArgument;
 import static seedu.times.commons.util.AppUtil.isWithinLength;
 
 /**
- * Represents a Person's name in the address book.
+ * Represents a Person's name in the Timestable.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name implements Comparable<Name> {

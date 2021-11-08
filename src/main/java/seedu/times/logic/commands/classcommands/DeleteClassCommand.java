@@ -15,6 +15,9 @@ import seedu.times.model.Model;
 import seedu.times.model.tuitionclass.TuitionClass;
 import seedu.times.ui.TabName;
 
+/**
+ * Deletes a class from Timestable.
+ */
 public class DeleteClassCommand extends Command {
     public static final String COMMAND_WORD = "deleteclass";
 

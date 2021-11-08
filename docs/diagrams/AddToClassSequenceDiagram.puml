@@ -24,6 +24,7 @@ AddToClass -> ModelManager : getFilteredClassList()
 AddToClass <-- ModelManager
 AddToClass -> AddToClass : checkIndicesAreInRange()
 activate AddToClass
+AddToClass --> AddToClass
 deactivate
 
 ref over AddToClass, ModelManager : generate updated StudentNameList

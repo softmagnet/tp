@@ -2,9 +2,9 @@
 !include style.puml
 
 
-box TimetableUi MODEL_COLOR_T1
-participant ":TimetablePanel" as TimetablePanel MODEL_COLOR_T3
-participant ":TimetableDay" as TimetableDay MODEL_COLOR_T3
+box TimetableUi UI_COLOR_T1
+participant ":TimetablePanel" as TimetablePanel UI_COLOR_T3
+participant ":TimetableDay" as TimetableDay UI_COLOR_T3
 end box
 
 

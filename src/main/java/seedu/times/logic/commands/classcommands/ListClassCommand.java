@@ -8,6 +8,9 @@ import seedu.times.logic.commands.CommandResult;
 import seedu.times.model.Model;
 import seedu.times.ui.TabName;
 
+/**
+ * Lists all tuition classes in the Timestable to the user.
+ */
 public class ListClassCommand extends Command {
 
     public static final String COMMAND_WORD = "listclass";

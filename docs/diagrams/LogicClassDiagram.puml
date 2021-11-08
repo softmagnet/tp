@@ -43,7 +43,7 @@ LogicManager --> Storage
 Storage --[hidden] Model
 Command .[hidden]up.> Storage
 Command .up.> Model
-Command .right.> UI : Observes <
+Command -right-> UI : Observes <
 XYZCommand .down.> UI
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
