@@ -70,14 +70,11 @@ Given below are my contributions to the project.
     * Set up project website:
         * Set up github pages, changed settings, changed names and links from AddressBook to TimesTable
     * Landing Page ([\#133](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/133) , [\#306](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/306)):
-        * Updated landing page to reflect TimesTable contents.
-        * Added a section for each major feature.
-        * Added pictures for the different features. 
-        * Updated pictures to reflect new changes
+        * Updated landing page to reflect TimesTable contents, added a section for each major feature, added pictures.
     * Project Demo for 1.3:
-        * Recorded gifs and screenshots for different features
+        * Recorded gifs and screenshots for different features.
     * Helped maintained issue tracker:
-        * Created new issues, added milestones and assignees, closed relevant issues
+        * Created new issues, added milestones and assignees, closed relevant issues.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments):  [\#303](https://github.com/AY2122S1-CS2103T-F11-1/tp/pull/303)
