@@ -17,7 +17,7 @@ activate LogicManager
 LogicManager -> FindTagCommand : execute()
 activate FindTagCommand
 
-FindTagCommand -> ModelManager : updateFilteredstudentList(predicate)
+FindTagCommand -> ModelManager : updateFilteredStudentList(predicate)
 activate ModelManager
 
 ModelManager -> FilteredStudents : setPredicate(predicate)
