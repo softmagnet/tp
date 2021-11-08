@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.times.commons.core.Messages;
 import seedu.times.commons.core.index.Index;
@@ -32,6 +34,8 @@ public class RemoveFromClassCommand extends Command {
 
     public static final String NO_STUDENT_INDEX_PROVIDED_MESSAGE = "No student index is provided!";
     public static final String MESSAGE_REMOVE_SUCCESS = "Successfully removed students from class ";
+
+    private static Logger logger = Logger.getLogger("RemoveFromClassCommand");
 
     private final Index toEditClassIndex;
     private final List<Index> studentIndicesToRemove;
@@ -85,6 +89,8 @@ public class RemoveFromClassCommand extends Command {
         // Switches the view to the class view and updates the class
         updateView(TabName.CLASSES);
         updateClass(toEditClassIndex.getZeroBased());
+
+        logger.log(Level.INFO, "Class name list updated.");
 
         return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, editedClass));
     }
