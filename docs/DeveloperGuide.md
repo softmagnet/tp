@@ -396,6 +396,8 @@ be added
 4. Creating the right `EditClassDescriptor`
 5. Updating the `Model` with updated `TuitionClass`
 
+(Note that updating view action is omitted)
+
 The following sequence diagram gives an overview of the execution:
 
 ![AddToClass Sequence](images/AddToClassSequenceDiagram.png)
@@ -408,7 +410,6 @@ The sequence diagram for the second reference frame from above:
 
 ![AddToClass Sequence](images/AddToClassRef2.png)
   
-
 
 
 ### Removing Student(s) from a Tuition Class

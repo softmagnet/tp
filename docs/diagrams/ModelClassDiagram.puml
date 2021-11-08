@@ -16,12 +16,18 @@ Class UserPrefs
 Class ReadOnlyUserPrefs
 
 Class UniqueStudentList
-Class Student
-
 Class UniqueClassList
-Class TuitionClass
+
+package TuitionClass <<Rectangle>> {
+}
+package Student <<Rectangle>> {
+}
+
+
 
 }
+
+
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
@@ -39,7 +45,7 @@ Timestable *--> "1" UniqueStudentList
 UniqueStudentList --> "~* all" Student
 
 Timestable *--> "1" UniqueClassList
-UniqueClassList --> "~* all" TuitionClass
+UniqueClassList -right-> "~* all" TuitionClass
 
 ModelManager -->"~* filtered" Student
 ModelManager -->"~* filtered" TuitionClass
