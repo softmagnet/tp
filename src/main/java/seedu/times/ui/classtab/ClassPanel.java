@@ -52,7 +52,7 @@ public class ClassPanel extends UiPart<Region> {
         tuitionClassListPlaceholder.getChildren().add(tuitionClassPanel.getRoot());
 
         // Set UI stuff
-        classLabel.setText("Your classes");
+        classLabel.setText("Your Classes");
         studentLabel.setText("Students");
 
         logger.info("ClassPanel tab opened");

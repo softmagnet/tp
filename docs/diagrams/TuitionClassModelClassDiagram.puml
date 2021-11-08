@@ -15,6 +15,9 @@ Class StudentNameList
 
 }
 
+Class HiddenOutside #FFFFFF
+HiddenOutside ...> " * all"TuitionClass
+HiddenOutside ...> " * filtered"TuitionClass
 
 TuitionClass *--> "1" ClassName
 TuitionClass *--> "1" ClassTiming

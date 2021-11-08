@@ -2,12 +2,12 @@
 !include style.puml
 
 
-box MainWindow MODEL_COLOR_T1
-participant ":MainWindow" as MainWindow MODEL_COLOR
+box MainWindow UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
 end box
 
-box TimetableUi MODEL_COLOR_T1
-participant ":TimetablePanel" as TimetablePanel MODEL_COLOR_T3
+box TimetableUi UI_COLOR_T1
+participant ":TimetablePanel" as TimetablePanel UI_COLOR_T3
 end box
 
 [-> MainWindow : fillInnerParts()
@@ -24,7 +24,7 @@ ref over TimetablePanel, TimetablePanel: buildHeader
 
 ref over TimetablePanel, TimetablePanel: buildDays
 
-opt MODEL_COLOR_T1 has classes
+opt UI_COLOR_T1 has classes
 ref over TimetablePanel, TimetablePanel: buildClasses
 
 end

@@ -2,10 +2,10 @@
 !include style.puml
 
 
-box TimetableUi MODEL_COLOR_T1
-participant ":TimetablePanel" as TimetablePanel MODEL_COLOR_T3
-participant ":TimetableHeaderLabel" as TimetableHeaderLabel MODEL_COLOR_T3
-participant ":TimetableHeaderTiming" as TimetableHeaderTiming MODEL_COLOR_T3
+box TimetableUi UI_COLOR_T1
+participant ":TimetablePanel" as TimetablePanel UI_COLOR_T3
+participant ":TimetableHeaderLabel" as TimetableHeaderLabel UI_COLOR_T3
+participant ":TimetableHeaderTiming" as TimetableHeaderTiming UI_COLOR_T3
 end box
 
 
