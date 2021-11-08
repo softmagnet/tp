@@ -30,6 +30,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
@@ -70,6 +72,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -122,6 +126,8 @@ They represent the left and right panels of the GUI respectively.
 `TuitionClassPanel` and `StudentClassPanel` both contain their respective `Card`s for each element in their respective `ObservableList`.  
 Note that `StudentClassTabCard` is different from the `StudentCard` in the `studenttab` package so we have less coupling and for future extensibility.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2122S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/times/logic/Logic.java)
@@ -158,6 +164,8 @@ How the parsing works:
   back as a `Command` object.
 - All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 
 **API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/times/model/Model.java)
@@ -193,6 +201,8 @@ The `StudentNameList` contains a `List<Name>`, and the diagram omits the relatio
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/times/storage/Storage.java)
@@ -214,6 +224,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.times.commons` package.
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -242,6 +254,8 @@ The class diagram for the Classes Tab feature as shown in the [Classes Ui compon
 5. Afterwards, when a `TuitionClassCard` is double clicked, `TuitionClassCard#onMouseClick()` bound to the fxml file is called, calling `TuitionClassCard#selectTuitionClass()`.
 6. The `filtered` method is then run on the `studentList` to return a `newStudentList` which is filtered by all the students belonging to the `tuitionClass`.
 7. The `tuitionClassListView` is set to the `newStudentList` created and thus rendered.
+
+<div style="page-break-after: always;"></div>
 
 ### Timetable Tab feature
 
@@ -300,6 +314,8 @@ The sequence diagrams below illustrate how the Timetable UI is built.
 
 [comment]: <> (![Find earliest start hour and latest end hour Activity Diagram]&#40;images/FindEarliestAndLatestHourActivityDiagram-Activity\_\_Find_earliest_start_hour_and_latest_end_hour.png&#41;)
 
+<div style="page-break-after: always;"></div>
+
 ### Observer Pattern
 
 The Observer Pattern is facilitated by the `CommandObserver` who represents the `Observer`. It observes the abstract `Command` class.
@@ -323,6 +339,8 @@ For eg, the `ViewComand` calls `CommandObserver#updateView()` to set the display
    - This is a more efficient method as the `MainWindow` does not have to always check the `CommandResult` after each execution.
    - No new variables are needed to be introduced into the `CommandResult`, keeping our code neater and less bug prone.
 
+<div style="page-break-after: always;"></div>
+
 ### `add` and `edit` commands to include next-of-kin `nok`
 
 
@@ -342,6 +360,8 @@ of unseen bugs.
 2. (Bad) We thought of modifying the parser such that it always checks for the `/nok` tag (or any of the tags specified in the parameter) _first_, before parsing the other tags
 in the normal way. However, this was again too large scale for a single command with the same parameter.
 
+
+<div style="page-break-after: always;"></div>
 
 ### Find commands
 
@@ -376,6 +396,8 @@ implement `Predicate<Student>`, and predicate class for filtering `TuitionClass`
 Each custom predicate class contains a `List` of search strings that would be used to match against the tested items
 in the search.
 
+<div style="page-break-after: always;"></div>
+
 ### View feature
 
 The `Students` tab, `Classes` tab and `Timetable` tab, are parts of the [`UI Component`](#ui-component).
@@ -394,6 +416,8 @@ In this case, the only `CommandObserver` is the `MainWindow`, thus it updates th
 
 `TabName` is an enumeration which represents the three tabs (`Students`, `Classes`, and `Timetable`), and their respective tab index (0 for `Students`, 1 for `Classes` and 2 for `Timetable`).
 
+<div style="page-break-after: always;"></div>
+
 ### Sort feature
 
 The `sort` feature allows sorting of the `Student`s and `TuitionClass`es. It is able to sort it by `Student` name or `ClassTiming`, in ascending or descending order.
@@ -408,6 +432,8 @@ The sequence diagram for the `sort` command is shown below.
 
 The `sort` command sorts the `ObservableList<Student>` or the `ObservableList<TuitionClass>` in the `Model` component, whose results gets immediately reflected in their respective `Students` tab or `Classes` Tab.
 After sorting, the `Command` sets the view to switch to their respective tabs, so that the user would be able to see the changes.
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a Student to a class
 
@@ -450,6 +476,8 @@ The sequence diagram for the second reference frame from above:
 
 ![AddToClass Sequence](images/AddToClassRef2.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Removing Student(s) from a Tuition Class
 Allows the user to remove one or more `Student`s from a selected `TuitionClass`.
 
@@ -491,6 +519,8 @@ a new `TuitionClass` object with an updated list of `Name`s and replace the old 
 An overview of the process is shown below:
 
 ![RemoveFromClass Internal Diagram](images/RemoveFromClassCommandSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting Tuition Class
 
@@ -556,6 +586,7 @@ classes would be added to the `UniqueClassList` when adding a tuition class to T
 make sure that there would be no overlapping classes resulting from an `editclass` command.
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -614,6 +645,8 @@ This is where Timestable comes in. It improves two main areas:
 By improving the data manipulation process, the tutor can organize student information more easily. <br>
 By improving the querying process, the tutor can make scheduling less painstaking and time-consuming.
 
+<div style="page-break-after: always;"></div>
+
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -631,6 +664,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | User           | Delete my student's contacts and information                | I can declutter my contacts.                        |
 | `* * *`  | User           | Record locations of classes                                 | Knows where to go                                   |
 | `* * *`  | User           | Find a student or class with a specific name                | Find details of a specific class or student quickly |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -901,6 +936,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -931,6 +968,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -955,8 +994,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Clearing data: `clear`
 
 1. Test case: Clear all `Student`s and `TuitionClass`es in TimesTable.
@@ -973,6 +1010,7 @@ testers are expected to do more *exploratory* testing.
     2. Clear all data: `clear`
     3. Expected: `TimesTable has been cleared!` and all `Student`s and `TuitionClass`es are removed from TimesTable.
 
+
 ### Adding a Student: `add`
 1. Test case 1: Add a `Student` successfully
     1. Add a `Student` to TimesTable: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3
@@ -985,6 +1023,7 @@ testers are expected to do more *exploratory* testing.
     2. Add a `Student` with a clash in `NAME` with an existing `Student`: `add n/Alex Yeoh p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3
        nok/ n/Elise Yeoh p/10987654 e/eliseyeoh@gmail.com a/311, Clementi Ave 2, #02-25`
     3. Expected: `This person already exists in the address book` message shown.
+
 
 ### Adding a class: `addclass`
 
@@ -999,8 +1038,7 @@ testers are expected to do more *exploratory* testing.
         1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
     2. Add a `TuitionClass` with a clash in `CLASS_TIMING` with an existing `TuitionClass`: `addclass cn/CS2103T ct/MON 10:30-12:30 r/70 l/Nex Tuition Center`
     3. Expected: `The operation aborted because it will introduce a clash in class timing.` and the `TuitionClass` does not get added to the `Classes` Tab.
-
-
+    
 ### Deleting a student: `delete`
 
 1. Test case: Delete a student successfully
