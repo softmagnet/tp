@@ -5,7 +5,7 @@ import static seedu.times.commons.util.AppUtil.checkArgument;
 import static seedu.times.model.util.Commons.MAX_CHAR_COUNT;
 
 /**
- * Represents a Person's address in the address book.
+ * Represents a Person's address in the Timestable.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {

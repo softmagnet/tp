@@ -8,7 +8,7 @@ import seedu.times.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.times.ui.TabName;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all persons in Timestable whose name contains any of the search terms.
  * Keyword matching is case insensitive.
  */
 public class FindNameCommand extends Command {

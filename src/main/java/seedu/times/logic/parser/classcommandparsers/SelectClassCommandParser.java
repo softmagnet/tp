@@ -10,6 +10,9 @@ import seedu.times.logic.parser.Parser;
 import seedu.times.logic.parser.ParserUtil;
 import seedu.times.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new SelectClassCommand object
+ */
 public class SelectClassCommandParser implements Parser<SelectClassCommand> {
 
     @Override

@@ -10,6 +10,9 @@ import seedu.times.model.person.Student;
 import seedu.times.model.tuitionclass.TuitionClass;
 import seedu.times.ui.UiPart;
 
+/**
+ * Represents a Tuition Card to be shown in the GUI.
+ */
 public class TuitionClassCard extends UiPart<Region> {
 
     private static final String FXML = "classTab/TuitionClassListCard.fxml";

@@ -136,7 +136,13 @@ public interface Model {
     /** Executes update cascade after change of student name for {@code StudentNameList}. */
     void updateClassStudentLists(Name newName, Name oldName);
 
+    /**
+     * Sorts the {@code Student} according to user input
+     */
     void sortStudents(Comparator<? super Student> c);
 
+    /**
+     * Sorts the {@code TuitionClass} according to user input
+     */
     void sortClasses(Comparator<? super TuitionClass> c);
 }

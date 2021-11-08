@@ -7,7 +7,7 @@ import seedu.times.model.Model;
 import seedu.times.ui.TabName;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in the Timestable to the user.
  */
 public class ListCommand extends Command {
 

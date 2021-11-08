@@ -7,6 +7,9 @@ import javafx.scene.layout.Region;
 import seedu.times.model.person.Student;
 import seedu.times.ui.UiPart;
 
+/**
+ * Represents a Panel for the Students in a Tuition Class.
+ */
 public class StudentClassPanel extends UiPart<Region> {
     private static final String FXML = "classTab/StudentClassListPanel.fxml";
 
