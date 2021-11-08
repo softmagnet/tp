@@ -1,21 +1,20 @@
 @startuml
 !include style.puml
 
-
+skinparam ParticipantPadding -2
 box MainWindow MODEL_COLOR_T1
 participant ":MainWindow" as MainWindow MODEL_COLOR
 end box
 
 box ClassesUi MODEL_COLOR_T1
 participant ":ClassPanel" as ClassPanel MODEL_COLOR_T3
-participant ":StudentClassPanel" as StudentClassPanel MODEL_COLOR_T3
-participant ":TuitionClassPanel" as TuitionClassPanel MODEL_COLOR_T3
-participant ":StudentListClassTabViewCell" as StudentListClassTabViewCell MODEL_COLOR_T3
-participant ":StudentClassTabCard" as StudentClassTabCard MODEL_COLOR_T3
-participant ":TuitionClassListViewCell" as TuitionClassListViewCell MODEL_COLOR_T3
-participant ":TuitionClassCard" as TuitionClassCard MODEL_COLOR_T3
-participant ":FilteredStudentList" as FilteredStudentList MODEL_COLOR_T3
-participant "tuitionClassListView:\nObservableList<Student>" as tuitionClassListView MODEL_COLOR_T3
+participant ":Student\nClassPanel" as StudentClassPanel MODEL_COLOR_T3
+participant ":Tuition\nClassPanel" as TuitionClassPanel MODEL_COLOR_T3
+participant ":StudentList\nClassTabViewCell" as StudentListClassTabViewCell MODEL_COLOR_T3
+participant ":Student\nClassTabCard" as StudentClassTabCard MODEL_COLOR_T3
+participant ":Tuition\nClassListViewCell" as TuitionClassListViewCell MODEL_COLOR_T3
+participant ":Tuition\nClassCard" as TuitionClassCard MODEL_COLOR_T3
+participant ":Filtered\nStudentList" as FilteredStudentList MODEL_COLOR_T3
 end box
 
 [-> MainWindow : fillInnerParts()
@@ -24,7 +23,7 @@ activate MainWindow
 create FilteredStudentList
 
 create ClassPanel
-MainWindow -> ClassPanel : new ClassPanel\n(List<Student>, List<TuitionClass>)
+MainWindow -> ClassPanel : new ClassPanel\n(List<Student>,\nList<TuitionClass>)
 activate ClassPanel
 
 create StudentClassPanel
@@ -74,10 +73,6 @@ FilteredStudentList -> TuitionClassCard
 deactivate FilteredStudentList
 
 
-TuitionClassCard -> tuitionClassListView : setItems(newStudentList)
-activate tuitionClassListView
-tuitionClassListView --> TuitionClassCard
-deactivate tuitionClassListView
 deactivate TuitionClassCard
 deactivate TuitionClassCard
 end

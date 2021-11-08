@@ -262,6 +262,7 @@ The class diagram for the Class Ui feature as shown in the [ClassUi component](#
 `TuitionClassPanel` and `StudentClassPanel` are both contained in their respective `StackPane` located below their respective `Label`s.  
 
 ![Classes Ui Sequence Diagram.png](images/ClassesUiSequenceDiagram.png)
+
 1. The `MainWindow`'s `fillInnerParts` method creates a new `ClassPanel` using `ObservableList<Student>` and `ObservableList<TuitionClass>` using the methods in `Logic`.
 2. A `StudentClassPanel` and a `TuitionClassPanel` is created using the `ObservableList<Student>` and `ObservableList<TuitionClass>` passed into the `ClassPanel` by the `MainWindow` respectively.
 3. `StudentClassPanel` and `TuitionClassPanel` create their respective cells for each Student/Tuition class present.
