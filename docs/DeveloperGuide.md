@@ -581,6 +581,8 @@ The sequence diagram when a new `TuitionClass` is added to the `Model` is as fol
 
 ![Sequnce diagram in model when class is added](images/AddClassModelSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Challenges faced
 
 The challenging aspect when adding a tuition class to the `UniqueClassList` was making sure that no overlapping 
