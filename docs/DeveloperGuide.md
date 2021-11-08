@@ -914,20 +914,20 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a Student to a Class: `addtoclass`
 
-1. Test case 1: Add a student to a class successfully
-   1. Prerequisites: you don't have any students or classes. If you have at least _one_ student or class, you can skip adding a student / adding a class respectively.
-   2. Add a student to TimesTable: `add n/Student p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3 nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25`
-   3. Add a class to TimesTable: `addclass cn/Sec 4 A Maths ct/MON 11:30-13:30 r/70 l/Nex Tuition Center`
-   4. Add the student to the class: `addtoclass 1 1`  
+1. Test case 1: Add a `Student` to a `TuitionClass` successfully
+   1. Prerequisites: You don't have any `Student`s or `TuitionClass`es. If you have at least _one_ `Student` or `TuitionClass`, you can skip adding a `Student` / `TuitionClass` respectively.
+   2. Add a `Student` to TimesTable: `add n/Student p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3 nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25`
+   3. Add a `TuitionClass` to TimesTable: `addclass cn/Sec 4 A Maths ct/MON 11:30-13:30 r/70 l/Nex Tuition Center`
+   4. Add the `Student` to the `TuitionClass`: `addtoclass 1 1`  
       Expected: `Successfully added students to class` message shown
 2. Test case 2: Cannot add to a class that does not exist
-   1. Prerequisites: you don't have any classes. If you have any, you can remove them using the `deleteclass INDEX` command or run `clear`.
+   1. Prerequisites: You don't have any classes. If you have any, you can remove them using the `deleteclass INDEX` command or run `clear`.
    2. If you already have a student, you can skip this step.  
       Add a student to TimesTable: `add n/Student p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3 nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25`
    3. Add the student to non-existing class: `addtoclass 1 1`  
       Expected: `The class index provided is invalid` message shown
 3. Test case 2: Cannot add to a student that does not exist to a class
-   1. Prerequisites: you don't have any students. If you have any, you can remove them using the `delete INDEX` command or run `clear`.
+   1. Prerequisites: You don't have any students. If you have any, you can remove them using the `delete INDEX` command or run `clear`.
    2. If you already have a class, you can skip this step.  
       Add a class to TimesTable: `addclass cn/Sec 4 A Maths ct/MON 11:30-13:30 r/70 l/Nex Tuition Center`
    3. Add non-existing student to the class: `addtoclass 1 1`  
@@ -935,14 +935,14 @@ testers are expected to do more *exploratory* testing.
 
 ### Listing all classes: `listclass`
 
-1. Test case: All classes are listed and focus is moved to Class tab. All previous filtering is reset.
-   1. Prerequisites: Class to filter must be present. Steps to do this are below:
-      1. Add class: `addclass cn/Sec 4 A Maths ct/FRI 11:30-13:30 r/70 l/Nex Tuition Center`
-      2. Note the classes in the class list.
-   2. Filter classes: `findclassname hello`. No classes should be listed.
-   3. Go to students tab: `view students`
-   4. List classes: `listclass`
-   5. Expected: `Listed all classes` message shown. Tab is moved to Classes tab. Class list noted in (ib) is shown.
+1. Test case: All `TuitionClass`es are listed and focus is moved to `Classes` tab. All previous filtering is reset.
+   1. Prerequisites: `TuitionClass` to filter must be present. Steps to do this are below:
+      1. Add `TuitionClass`: `addclass cn/Sec 4 A Maths ct/FRI 11:30-13:30 r/70 l/Nex Tuition Center`
+      2. Note the `TuitionClass`es in the class list.
+   2. Filter classes: `findclassname hello`. No `TuitionClass`es should be listed.
+   3. Go to `Students` tab: `view students`
+   4. List `TuitionClass`es: `listclass`
+   5. Expected: `Listed all classes` message shown and tab is moved to `Classes` tab. Class list noted in (ib) is shown.
 
 ### Deleting a student: `delete`
 
@@ -988,14 +988,14 @@ testers are expected to do more *exploratory* testing.
 
 ### Sorting classes and students: `sort`
 
-1. Test case: sort classes in ascending order
+1. Test case: Sort classes in ascending order.
    1. Prerequisites: Add more than 1 class in non-sorted order by timing. Steps to do this are below:
       1. Add later class first: `addclass cn/Sec 4 A Maths ct/FRI 11:30-13:30 r/70 l/Nex Tuition Center`
       2. Add earlier class second: `addclass cn/Sec 5 A Maths ct/FRI 10:30-11:30 r/70 l/Nex Tuition Center`
       3. Note that 'Sec 4 A Maths' comes _before_ 'Sec 5 A Maths'
    2. Sort classes: `sort timing asc`.
    3. Expected: `Sorted classes based on timing in asc direction` message shown, 'Sec 5 A Maths' now comes _before_ 'Sec 4 A Maths' in the class list.
-2. Test case: sort students in descending order
+2. Test case: Sort students in descending order.
    1. Prerequisites: Add more than 1 student in non-sorted order by name. Steps to do this are below:
       1. Add earlier student first: `add n/Amber p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3 nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25 `
       2. Add later student second: `add n/Zebra p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3 nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25 `
@@ -1006,14 +1006,14 @@ testers are expected to do more *exploratory* testing.
 
 ### Removing Student(s) from a class : `removefromclass`
 
-1. Test case: removing a student from a class that doesn't currently exist
+1. Test case: Removing a student from a class that doesn't currently exist
    1. Prerequisites: Class at the class index must not exist. Steps to do this are below:
        1. Run command `listclass` and note the index of the last class.
    2. Remove students from non-existing class at index (max index + 1): `removefromclass 5 1 2 3 `. <br>
       Where last class is at index 4  from (ib).
    3. Expected: `The class index provided is invalid` message shown.
     
-2. Test case: removing a student from a class that has no student
+2. Test case: Removing a student from a class that has no student
     1. Prerequisites: There must be a class with 0 students in it. Steps to do this are below:
         1. Clear TimesTable usiing: `clear`.
         2. Add a new class: `addclass cn/Sec 4 A Maths ct/FRI 11:30-13:30 r/70 l/Nex Tuition Center`.
@@ -1022,19 +1022,19 @@ testers are expected to do more *exploratory* testing.
     
 ### Finding Student(s) by tag : `findtag`
 
-1. Test case: No students have tags that matches the keyword used
+1. Test case: No students have tags that matches the search term used
    1. Prerequisites: TimesTable contain multiple students with differing tags. Steps to do this are below:
        1. Delete `timestable.json` in the data file to start off with the sample data in TimesTable.
    2. Find students using tag that currently do not exist: `findtag social studies`.
    3. Expected: `0 persons listed!` message shown and no students shown in `Students` tab.
     
-2. Test case: Students have tags that matches keyword(single)
+2. Test case: Students have tags that matches search term(single)
     1. Prerequisites: TimesTable contain multiple students with differing tags. Steps to do this are below:
         1. Delete `timestable.json` in the data file to start off with the sample data in TimesTable.
     2. Find students using a single tag that currently exists: `findtag a math`.
     3. Expected: `2 persons listed!` message shown and 2 students shown in `Students` tab, namely `Alex Yeoh` and 
        `David Li`.
-3. Test case: Students have tags that matches keyword(multiple)
+3. Test case: Students have tags that matches search terms(multiple)
     1. Prerequisites: TimesTable contain multiple students with differing tags. Steps to do this are below:
         1. Delete `timestable.json` in the data file to start off with the sample data in TimesTable.
     2. Find students using multiple tag that currently exists: `findtag a math, physic, sec 4`.
@@ -1043,19 +1043,79 @@ testers are expected to do more *exploratory* testing.
        
 ### Changing tabs: `view`
 
-1. Test case: view `Classes` tab, but command has a typo error
+1. Test case: View `Classes` tab, but command has a typo error
     1. View `Classes` tab with typo: `view clases`.
     2. Expected: `Invalid command format!This tab doesn't exists. You can only switch to students, timetable or 
        classes.` message show.
        
-2. Test case: view `Classes` tab, but user is already on `Classes` tab
+2. Test case: View `Classes` tab, but user is already on `Classes` tab
     1. View `Classes` tab: `view classes`.
     2. Expected: `Successfully switched to CLASSES tab` and remains on `Classes` tab.
     
-3. Test case: view `Timetable` tab, user is on `Classes` tab
+3. Test case: View `Timetable` tab, user is on `Classes` tab
     1. View `Timetable` tab: `view timetable`.
     2. Expected: `Successfully switched to TIMETABLE tab` and switched to `TimeTable` tab.
+    
+### Clearing data: `clear`
 
+1. Test case: Clear all `Student`s and `TuitionClass`es in TimesTable.
+    1. Prerequisite: TimesTable contains `Student`s and `TuitionClass`es. Steps to do this are below:
+        1. (You may skip this if you already have `Student`s) Add a student: `add n/Amber p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3 nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25`
+        2. (You may skip this if you already have `TuitionClass`es) Add a class: `addclass cn/Sec 4 A Maths ct/MON 11:30-13:30 r/70 l/Nex Tuition Center`
+    2. Clear all data: `clear`
+    3. Expected: `TimesTable has been cleared!` and all `Student`s and `TuitionClass`es are removed from TimesTable.
+
+2. Test case: Clear empty TimesTable.
+    1. Prerequisite: TimesTable does not contain `Student`s and `TuitionClass`es. Steps to do remove them are below:
+        1. (You may skip this if you do not have `Student`s) Delete a student: `delete INDEX` for all `Student`s in TimesTable.
+        2. (You may skip this if you do not have `TuitionClass`es) Delete a class: `deleteclass INDEX` for all `TuitionClass`es in TimesTable.
+    2. Clear all data: `clear`
+    3. Expected: `TimesTable has been cleared!` and all `Student`s and `TuitionClass`es are removed from TimesTable.
+
+### Adding a class: `addclass`
+
+1. Test case: Adding a `TuitionClass` successfully - no clash in `CLASS_TIMING` with exisiting `TuitionClass`es.
+    1. Prerequisite: TimesTable does not have any `TuitionClass`es. If you have any `TuitionClass`, steps to remove them are below:
+        1. (You may skip this if you do not have `TuitionClass`es) Delete a class: `deleteclass INDEX` for all `TuitionClass`es in TimesTable.
+    2. Add a `TuitionClass`: `addclass cn/Sec 4 A Maths ct/MON 11:30-13:30 r/70 l/Nex Tuition Center`
+    3. Expected: `New class added: Class Timing: MON 11:30-13:30  Class Name: Sec 4 A Maths Location: Nex Tuition Center Rate: 70` and switched to `Classes` Tab. The `Classes` Tab now shows the `TuitionClass` you added. The `Timetable` Tab also shows your `TuitionClass` on `MON 11:30-13:30`.
+
+2. Test case: Adding a `TuitionClass` unsuccessfully - clash in `CLASS_TIMING` with existing `TuitionClass`.
+    1. Prerequisite: TimesTable contains the sample `TuitionClass`es. Steps to do this are below:
+        1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
+    2. Add a `TuitionClass` with a clash in `CLASS_TIMING` with an existing `TuitionClass`: `addclass cn/CS2103T ct/MON 10:30-12:30 r/70 l/Nex Tuition Center`
+    3. Expected: `The operation aborted because it will introduce a clash in class timing.` and the `TuitionClass` does not get added to the `Classes` Tab.
+
+### Locating a class by name: `findclassname`
+
+1. Test case: No `TuitionClass` matches the search term used.
+    1. Prerequisite: TimesTable contains the sample `TuitionClass`es. Steps to do this are below:
+        1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
+    2. Find `TuitionClass`es with `CLASS_NAME` of `CS2103T`: `findclassname CS2103T`
+    3. Expected: `0 classes listed!` and tab switched to `Classes` tab.
+    
+2. Test case: `TuitionClass`es match the search term used.
+    1. Prerequisite: TimesTable contains the sample `TuitionClass`es. Steps to do this are below:
+        1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
+    2. Find `TuitionClass`es with `CLASS_NAME` of 'math': `findclassname math`
+    3. Expected: `7 classes listed!` and tab switched to `Classes` tab. The `TuitionClass`es shown in the `Classes` Tab contains 7 `TuitionClass`es with `CLASS_NAME` of `math` (case insensitive).
+    
+3. Test case: `TuitionClass`es match the multiple search terms used.
+    1. Prerequisite: TimesTable contains the sample `TuitionClass`es. Steps to do this are below:
+        1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
+    2. Find `TuitionClass`es with `CLASS_NAME` of `math` and `jc`: `findclassname math, jc`
+    3. Expected: `8 classes listed!` and tab switched to `Classes` tab. The `TuitionClass`es shown in the `Classes` Tab contains 8 `TuitionClass`es with `CLASS_NAME` of `math` or `jc` or both (case insensitive).
+
+### Listing all students: `list`
+
+1. Test case: All `Student`s are listed and focus is moved to the `Students` tab. All previous filtering is reset.
+    1. Prerequisite: `Student` filter must be present. Steps to do this are below:
+        1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
+    2. Filter `Student`s: `findname alex`. One `Student` with the name `Alex Yeoh` should be listed.
+    3. Go to `Classes` tab: `view classes`
+    4. List all `Student`s: `list`
+    5. Expected: `Listed all students` message shown and tab is changed to the `Students` tab. The list of `Student`s should be the same as before filtering (Step 2).
+    
 ## Saving data
 
 1. Dealing with missing/corrupted data files
