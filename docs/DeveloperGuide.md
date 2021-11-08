@@ -56,6 +56,8 @@ The rest of the App consists of four components.
 - [**`Model`**](#model-component): Holds the data of the App in memory.
 - [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
+<div style="page-break-after: always;"></div>
+
 **How the architecture components interact with each other**
 
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -67,13 +69,16 @@ Each of the four main components (also shown in the diagram above),
 - defines its _API_ in an `interface` with the same name as the Component.
 - implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
+<div style="page-break-after: always;"></div>
+
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
+<div style="page-break-after: always;"></div>
+
 The sections below give more details of each component.
 
-<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -97,11 +102,9 @@ The `UI` component,
 
 ![StudentsUi Class Diagram](images/StudentsDiagram.png)
 
-<<<<<<< Updated upstream
-The `StudentListPanel` is made up of `StudentCard`s, which displays information about the `Student`s. The `StudentListPanel` takes in an `ObservableList<Student>`, which builds a `StudentCard` for each student.
-=======
 The `StudentListPanel` consists of `StudentCard`s, which displays information about the `Students`. The `StudentListPanel` takes in an `ObservableList<Student>`, which builds a `StudentCard` for each student.
->>>>>>> Stashed changes
+
+<div style="page-break-after: always;"></div>
 
 #### Timetable UI
 
@@ -112,6 +115,8 @@ Adapted from [here](https://github.com/AY1920S2-CS2103-W15-4/main/tree/master/sr
 The `TimetablePanel` is made up of `TimetableDay`, `TimetableHeader`, `TimetableTuitionClassSlot` and `TimetableEmptySlot`.
 They represent the day panel on the left, the header at the top with the label and timings, the slots representing the `TuitionClass`es and the empty slots between `TuitionClass`es respectively.
 The `TimetablePanel` takes in an `ObservableList<TuitionClass>` to build the Timetable.
+
+<div style="page-break-after: always;"></div>
 
 #### Classes UI
 
@@ -151,6 +156,8 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -275,27 +282,28 @@ The image below shows the respective parts of the `TimetablePanel`:
 [comment]: <> (Due to the limited size of the application's window, the Timetable UI would adjust itself and starts the days of the Timetable UI with the)
 
 [comment]: <> (earliest start timing and ends with the latest end timing so that the timetable is not cluttered. There is a time panel at the top to indicate what)
+<div style="page-break-after: always;"></div>
 
 The sequence diagrams below illustrate how the Timetable UI is built.
 
 ![Timetable Overall Sequence Diagram](images/TimetableUiSequenceDiagram.png)
 
-1. `MainWindow#fillInnerParts()` creates a new `TimetablePanel` using the `ObservableList<TuitionClass>` from `Logic`.
-2. `TimetablePanel#build()` is called in the constructor of `TimetablePanel` to build the Timetable Ui.
-3. `TimetablePanel#build()` starts building the Timetable Ui by first calling `TimetablePanel#buildHeader()` which takes in the `ObservableList<TuitionClass>`.
+1.`MainWindow#fillInnerParts()` creates a new `TimetablePanel` using the `ObservableList<TuitionClass>` from `Logic`.
+2.`TimetablePanel#build()` is called in the constructor of `TimetablePanel` to build the Timetable Ui.
+3.`TimetablePanel#build()` starts building the Timetable Ui by first calling `TimetablePanel#buildHeader()` which takes in the `ObservableList<TuitionClass>`.
 
 ![Timetable Header Sequence Diagram](images/TimetableUiHeaderSequenceDiagram.png)
 
-4. Based on the `Timetable#buildHeader()` reference frame above, it builds the `TimetableHeaderLabel` first, followed by the `TimetableHeaderTiming`s, starting from the earliest start time of the `ObservableList<TuitionClass>` until the latest end time of the `ObservableList<TuitionClass>` in 30 minutes interval.
+4.Based on the `Timetable#buildHeader()` reference frame above, it builds the `TimetableHeaderLabel` first, followed by the `TimetableHeaderTiming`s, starting from the earliest start time of the `ObservableList<TuitionClass>` until the latest end time of the `ObservableList<TuitionClass>` in 30 minutes interval.
 
 ![Timetable Day Sequence Diagram](images/TimetableUiDaySequenceDiagram.png)
 
-5. After `TimetablePanel#buildHeader()` is called, it would call `TimetablePanel#buildDays()`, which builds 7 `TimetableDay` objects to represent the 7 days of the week.
+5.After `TimetablePanel#buildHeader()` is called, it would call `TimetablePanel#buildDays()`, which builds 7 `TimetableDay` objects to represent the 7 days of the week.
 
 ![Timetable Slot Sequence Diagram](images/TimetableUiSlotSequenceDiagram.png)
 
-6. Finally, the `TimetablePanel#buildClasses()` is called, which takes in the same `ObservableList<TuitionClass>` as step 3. It iterates through the _sorted_ `ObservableList<TuitionClass>`, building a `TimetableTuitionClassSlot` for each of the `TuitionClass`, and placing `TimetableEmptySlot`s in between the `TimetableTuitionClassSlot`s.
-7. A listener is attached to the `ObservableList<TuitionClass>` which updates the Timetable UI whenever there are changes to the `ObservableList<TuitionClass>`,
+6.Finally, the `TimetablePanel#buildClasses()` is called, which takes in the same `ObservableList<TuitionClass>` as step 3. It iterates through the _sorted_ `ObservableList<TuitionClass>`, building a `TimetableTuitionClassSlot` for each of the `TuitionClass`, and placing `TimetableEmptySlot`s in between the `TimetableTuitionClassSlot`s.
+7.A listener is attached to the `ObservableList<TuitionClass>` which updates the Timetable UI whenever there are changes to the `ObservableList<TuitionClass>`,
    such as when a new `TuitionClass` is added, or an existing `TuitionClass` is edited in the `ObservableList<TuitionClass>`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** This is just a high level explanation of how the Timetable UI is built, with the low level details being abstracted away.
@@ -461,6 +469,8 @@ smaller steps. The steps are listed below:
 
 (Note that updating view action is omitted)
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram gives an overview of the execution:
 
 ![AddToClass Sequence](images/AddToClassSequenceDiagram.png)
@@ -583,7 +593,6 @@ classes would be added to the `UniqueClassList` when adding a tuition class to T
 make sure that there would be no overlapping classes resulting from an `editclass` command.
 
 ---
-<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -594,6 +603,8 @@ make sure that there would be no overlapping classes resulting from an `editclas
 - [DevOps guide](DevOps.md)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
