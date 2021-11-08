@@ -5,8 +5,6 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TimesTableParser" as TimesTableParser LOGIC_COLOR
 participant ":AddClassCommandParser" as AddClassCommandParser LOGIC_COLOR
-participant "s:StudentNameList" as StudentNameList LOGIC_COLOR
-participant "t:TuitionClass" as TuitionClass LOGIC_COLOR
 participant "a:AddClassCommand" as AddClassCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -31,19 +29,7 @@ deactivate AddClassCommandParser
 TimesTableParser -> AddClassCommandParser : parse("cn/... ct/... r/.. l/...")
 activate AddClassCommandParser
 
-create StudentNameList
-AddClassCommandParser -> StudentNameList : StudentNameList()
-activate StudentNameList
-
-StudentNameList --> AddClassCommandParser : s
-deactivate StudentNameList
-
-create TuitionClass
-AddClassCommandParser -> TuitionClass : TuitionClass(className, classTiming, location, rate, s)
-activate TuitionClass
-
-TuitionClass --> AddClassCommandParser : t
-deactivate TuitionClass
+ref over AddClassCommandParser : generate StudentNameList and TuitionClass
 
 create AddClassCommand
 AddClassCommandParser -> AddClassCommand : AddClassCommand(t)
