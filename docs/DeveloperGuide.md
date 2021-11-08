@@ -1063,12 +1063,12 @@ testers are expected to do more *exploratory* testing.
 
 1. Test case 1: Editing an existing student's own detail 
    1. Prerequisites
-      2. Add student: `add n/John p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3 nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25`
-      3. Note the student and his or her index in the displayed list in the `Student` tab.
+      1. Add student: `add n/John p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3 nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25`
+      2. Note the student and his or her index in the displayed list in the `Student` tab.
    2. Edit the student (assuming the student's index is 1): `edit 1 n/updated student p/99993293 e/edited@gmail.com a/edited address t/`
    3. Expected: All fields are changed according to `edit` command inputs and all tags are removed.
 2. Test case 2: Edit an existing student's NOK detail
-   1. Prerequisites: same as above
+   1. Prerequisites: Same as above
    2. Edit the student's NOK (assuming the student's index is 1): `edit 1 nok/ n/edited NOK name e/editedNOK@gmail.com a/edited address p/92393932`
    3. Expected: All NOK fields are changed according to `edit` command inputs
 3. Negative test cases
