@@ -920,6 +920,19 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a Student: `add`
+1. Test case 1: Add a `Student` successfully
+    1. Add a `Student` to TimesTable: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3
+       nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25`
+     2. Expected message: `New Student added: John Doe; Phone: 98765432; Email: johnd@example.com; Address: 311, Clementi Ave 2, #02-25; Tags: [Chemistry][Sec 3]
+       Next-of-Kin: Jack Doe; Phone: 10987654; Email: jackd@example.com; Address: 311, Clementi Ave 2, #02-25`
+2. Test case 2: Cannot add duplicate `Student`
+    1. Prerequisite: TimesTable contains the sample `Student`s. Steps to do this are below:
+        1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
+    2. Add a `Student` with a clash in `NAME` with an existing `Student`: `add n/Alex Yeoh p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Chemistry t/Sec 3
+       nok/ n/Elise Yeoh p/10987654 e/eliseyeoh@gmail.com a/311, Clementi Ave 2, #02-25`
+    3. Expected: `This person already exists in the address book` message shown.
+    
 ### Adding a Student to a Class: `addtoclass`
 
 1. Test case 1: Add a `Student` to a `TuitionClass` successfully
@@ -1138,7 +1151,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a class: `addclass`
 
-1. Test case: Adding a `TuitionClass` successfully - no clash in `CLASS_TIMING` with exisiting `TuitionClass`es.
+1. Test case: Adding a `TuitionClass` successfully - no clash in `CLASS_TIMING` with existing `TuitionClass`es.
     1. Prerequisite: TimesTable does not have any `TuitionClass`es. If you have any `TuitionClass`, steps to remove them are below:
         1. (You may skip this if you do not have `TuitionClass`es) Delete a class: `deleteclass INDEX` for all `TuitionClass`es in TimesTable.
     2. Add a `TuitionClass`: `addclass cn/Sec 4 A Maths ct/MON 11:30-13:30 r/70 l/Nex Tuition Center`
@@ -1149,6 +1162,45 @@ testers are expected to do more *exploratory* testing.
         1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
     2. Add a `TuitionClass` with a clash in `CLASS_TIMING` with an existing `TuitionClass`: `addclass cn/CS2103T ct/MON 10:30-12:30 r/70 l/Nex Tuition Center`
     3. Expected: `The operation aborted because it will introduce a clash in class timing.` and the `TuitionClass` does not get added to the `Classes` Tab.
+
+### Locating a class by name: `findname`
+1. Test case: No students has a name that matches the search term used
+    1. Prerequisites: TimesTable contain multiple students. Steps to do this are below:
+        1. Delete `timestable.json` in the data file to start off with the sample data in TimesTable.
+    2. Find students using a name that currently do not exist: `findname Jennifer`.
+    3. Expected: `0 persons listed!` message shown and no students shown in `Students` tab.
+
+2. Test case: A student is found with name that matches search term.
+    1. Prerequisites: TimesTable contain multiple students. Steps to do this are below:
+        1. Delete `timestable.json` in the data file to start off with the sample data in TimesTable.
+    2. Find students using a single name that currently exists: `findname alex`.
+    3. Expected: `1 persons listed!` message shown and 2 students shown in `Students` tab, namely `Alex Yeoh` and
+       `David Li`.
+3. Test case: Multiple students have names that matches search term.
+    1. Prerequisites: TimesTable contain multiple students. Steps to do this are below:
+        1. Delete `timestable.json` in the data file to start off with the sample data in TimesTable.
+    2. Find students using part of a name that currently exists: `findname li`.
+    3. Expected: `3 persons listed!` message shown and 3 students shown in `Students` tab, namely
+       `Charlotte Oliveiro`, `David Li` and `Angelica Holcomb`.
+
+### Locating a class by name: `findclass`
+1. Test case: No `TuitionClass` matches the search term used.
+    1. Prerequisite: TimesTable contains the sample `TuitionClass`es. Steps to do this are below:
+        1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
+    2. Find `TuitionClass`es with `CLASS_TIMING` of `WED`: `findclass WED`
+    3. Expected: `0 classes listed!` and tab switched to `Classes` tab.
+
+2. Test case: `TuitionClass`es match the search term used.
+    1. Prerequisite: TimesTable contains the sample `TuitionClass`es. Steps to do this are below:
+        1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
+    2. Find `TuitionClass`es with `CLASS_TIMING` of 'MON': `findclass mon`
+    3. Expected: `2 classes listed!` and tab switched to `Classes` tab. The `Classes` Tab contains 2 `TuitionClass`es with `CLASS_TIMING` of `MON`.
+
+3. Test case: `TuitionClass`es match the multiple search terms used.
+    1. Prerequisite: TimesTable contains the sample `TuitionClass`es. Steps to do this are below:
+        1. Delete `timestable.json` in the data file to start of with the sample data in TimesTable.
+    2. Find `TuitionClass`es with `CLASS_TIMING` of `MON` and `11:30-13:30`: `findclass mon 11:30-13:30`
+    3. Expected: `1 classes listed!` and tab switched to `Classes` tab. The `Classes` Tab contains 1 `TuitionClass` with `CLASS_TIMING` of `MON` and `11:30-13:30`.
 
 ### Locating a class by name: `findclassname`
 
