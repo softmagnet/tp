@@ -678,8 +678,8 @@ Action | Format, Examples|
 **Add to class** | `addtoclass CLASS_INDEX STUDENT_INDEX…` <br> e.g., `addtoclass 1 1 2 3`|
 **Delete class** | `deleteclass INDEX` <br> e.g., `deleteclass 2`|
 **Edit class** | `editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]` <br> e.g., `editclass 1 ct/wed 15:00-17:00`|
-**Find class timing** | `findclass CLASS_TIMING` <br> e.g., `findclass mon 11:00-12:00`|
 **Find class name** | `findclassname CLASS_NAME [, [CLASS_NAME]...]` <br> e.g., `findclassname math`|
+**Find class timing** | `findclass CLASS_TIMING` <br> e.g., `findclass mon 11:00-12:00`|
 **List class** | `listclass`|
 **Remove from class** | `removefromclass CLASS_INDEX STUDENT_INDEX...` <br> e.g., `removefromclass 1 1 2 3`|
 **Select class** | `class CLASS_INDEX` <br> e.g., `class 2`|
