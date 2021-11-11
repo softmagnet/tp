@@ -38,12 +38,11 @@ jump to the [Quick Start](#Quick Start) section. For a full list of commands and
 1. Ensure you have Java `11` or above installed in your Computer, if you do not, you can download it from [here](https://www.oracle.com/java/technologies/downloads/#java11-windows).
 
 1. Download the latest `timestable.jar` from [here](https://github.com/AY2122S1-CS2103T-F11-1/tp/releases).
-
+   ![DownloadJar](images/DownloadJar.png)
 1. Copy the file to the folder you want to use as the _home folder_ for your TimesTable.
-
 1. For `Windows`, double-click the file to start the app.
    For `Mac`, you need to open `TimesTable` using terminal. You can right-click on the folder and click on New Terminal at Folder to bring up your terminal, and key in `java -jar timestable.jar`. Press Enter to launch the application.
-    ![MacStartUp](images/TimestableMacStartUp.png)   
+    ![MacStartUp](images/TimestableMacStartUp.png) 
 
 1. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample student data.<br>
    ![Ui](images/Ui.png)
