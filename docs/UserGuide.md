@@ -24,7 +24,7 @@ This guide will take you through the commands of **TimesTable** step by step. To
 jump to the [Quick Start](#Quick Start) section. For a full list of commands and detailed instructions on each one, head to the
 [Features](#features) section.
 
-
+## Table of Contents
 * Table of Contents
 {:toc}
 
@@ -32,7 +32,6 @@ jump to the [Quick Start](#Quick Start) section. For a full list of commands and
 <div style="page-break-after: always;"></div>
 
 ## Quick Start
-
 ### Set Up
 
 1. Ensure you have Java `11` or above installed in your Computer, if you do not, you can download it from [here](https://www.oracle.com/java/technologies/downloads/#java11-windows).
@@ -68,6 +67,22 @@ jump to the [Quick Start](#Quick Start) section. For a full list of commands and
 
 1. Refer to the [Features](#features) below for details of each command.
 
+
+## Reading this User Guide
+### General Symbols and Syntax
+Syntax | Definition
+--------|------------------
+`UPPER_CASE` | Words in `UPPER_CASE` are the inputs to be supplied by the user. <br> e.g. in `add n/NAME`, `NAME` is an input which can be used as `add n/John Doe`.
+
+
+
+### Glossary
+Term | Definition
+--------|------------------
+NOK | Next-of-kin. Refers to the student's guardian, parent or perhaps close friend to be contacted regarding admin matters like payment.
+PARAMETERS | The inputs before the `/` are known as _parameters_. <br>e.g `n/NAME` (`n/` is the parameter for name) <br>e.g `a/ADDRESS` (`a/` is the parameter for name).
+ARGUMENTS | The inputs after the `/` are known as _arguments_. <br> e.g `n/NAME` (`NAME` is the argument) <br> e.g `a/ADDRESS` (`ADDRESS` is the argument).
+INDEX | The number next to the Student/Class that shows its postion on the list.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 ## Features
