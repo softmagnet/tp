@@ -654,35 +654,35 @@ If there are any other proposed features, please submit an issue via our GitHub 
 ## Command summary
 
 ### Student Commands Summary
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… nok/ n/NOK_NAME p/NOK_PHONE_NUMBER e/NOK_EMAIL a/NOK_ADDRESS` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com a/311, Clementi Ave 2, #02-25 `
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [nok/ [n/NOK_NAME] [p/NOK_PHONE] [e/NOK_EMAIL] [a/NOK_ADDRESS]]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find name** | `findname NAME [, [NAME]...]` <br> e.g., `find Stuart`
-**Find tag** | `findtag KEYWORD [, [KEYWORD]...]` <br> e.g., `findtag  math, physics`
-**List** | `list`
-**Sort** | `sort PARAMETER_TO_SORT_BY DIRECTION_OF_SORT` <br> e.g., `sort name asc`
+Action | Format, Examples|
+--------|------------------|
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… nok/ n/NOK_NAME p/NOK_PHONE_NUMBER e/NOK_EMAIL a/NOK_ADDRESS` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com a/311, Clementi Ave 2, #02-25 `|
+**Delete** | `delete INDEX`<br> e.g., `delete 3`|
+**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [nok/ [n/NOK_NAME] [p/NOK_PHONE] [e/NOK_EMAIL] [a/NOK_ADDRESS]]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`|
+**Find name** | `findname NAME [, [NAME]...]` <br> e.g., `find Stuart`|
+**Find tag** | `findtag KEYWORD [, [KEYWORD]...]` <br> e.g., `findtag  math, physics`|
+**List** | `list`|
+**Sort** | `sort PARAMETER_TO_SORT_BY DIRECTION_OF_SORT` <br> e.g., `sort name asc`|
 
 ### Class Commands Summary
-Action | Format, Examples
---------|------------------
-**Add class** | `addclass cn/CLASS_NAME ct/CLASS_TIMING r/HOURLY_RATE l/LOCATION` <br> e.g., `addclass cn/Sec 4 A Maths ct/mon 11:30-13:30 r/70 l/Nex Tuition Center`
-**Add to class** | `addtoclass CLASS_INDEX STUDENT_INDEX…` <br> e.g., `addtoclass 1 1 2 3`
-**Delete class** | `deleteclass INDEX` <br> e.g., `deleteclass 2`
-**Edit class** | `editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]` <br> e.g., `editclass 1 ct/wed 15:00-17:00`
-**Find class timing** | `findclass CLASS_TIMING` <br> e.g., `findclass mon 11:00-12:00`
-**Find class name** | `findclassname CLASS_NAME [, [CLASS_NAME]...]` <br> e.g., `findclassname math`
-**List class** | `listclass`
-**Remove from class** | `removefromclass CLASS_INDEX STUDENT_INDEX...` <br> e.g., `removefromclass 1 1 2 3`
-**Select class** | `class CLASS_INDEX` <br> e.g., `class 2`
-**Sort** | `sort PARAMETER_TO_SORT_BY DIRECTION_OF_SORT` <br> e.g., `sort timing asc`
+Action | Format, Examples|
+--------|------------------|
+**Add class** | `addclass cn/CLASS_NAME ct/CLASS_TIMING r/HOURLY_RATE l/LOCATION` <br> e.g., `addclass cn/Sec 4 A Maths ct/mon 11:30-13:30 r/70 l/Nex Tuition Center`|
+**Add to class** | `addtoclass CLASS_INDEX STUDENT_INDEX…` <br> e.g., `addtoclass 1 1 2 3`|
+**Delete class** | `deleteclass INDEX` <br> e.g., `deleteclass 2`|
+**Edit class** | `editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]` <br> e.g., `editclass 1 ct/wed 15:00-17:00`|
+**Find class timing** | `findclass CLASS_TIMING` <br> e.g., `findclass mon 11:00-12:00`|
+**Find class name** | `findclassname CLASS_NAME [, [CLASS_NAME]...]` <br> e.g., `findclassname math`|
+**List class** | `listclass`|
+**Remove from class** | `removefromclass CLASS_INDEX STUDENT_INDEX...` <br> e.g., `removefromclass 1 1 2 3`|
+**Select class** | `class CLASS_INDEX` <br> e.g., `class 2`|
+**Sort** | `sort PARAMETER_TO_SORT_BY DIRECTION_OF_SORT` <br> e.g., `sort timing asc`|
 
 ### General Commands Summary
-Action | Format, Examples
---------|------------------
-**Clear** | `clear`
-**Exit** | `exit`
-**Help** | `help`
-**View** | `view TAB_TO_VIEW` <br> e.g., `view timetable`
+Action | Format, Examples|
+--------|------------------|
+**Clear** | `clear`|
+**Exit** | `exit`|
+**Help** | `help`|
+**View** | `view TAB_TO_VIEW` <br> e.g., `view timetable`|
 
