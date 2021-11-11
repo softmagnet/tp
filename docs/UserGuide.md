@@ -5,6 +5,8 @@ title: User Guide
 
 ![Logo](images/TimestableLogo.png)
 
+## Introduction
+
 TimesTable is a **desktop app for managing your tuition students and classes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TimesTable can get your class management tasks done faster than traditional GUI apps.
 
 * Table of Contents
@@ -14,14 +16,22 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
 <div style="page-break-after: always;"></div>
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer, if you do not, you can download it from [here](https://www.oracle.com/java/technologies/downloads/#jdk17-linux).
+### Set Up
+
+1. Ensure you have Java `11` or above installed in your Computer, if you do not, you can download it from [here](https://www.oracle.com/java/technologies/downloads/#java11-windows).
 
 1. Download the latest `timestable.jar` from [here](https://github.com/AY2122S1-CS2103T-F11-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your TimesTable.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample student data.<br>
+1. For `Windows`, double-click the file to start the app.
+   For `Mac`, you need to open `TimesTable` using terminal. You can right-click on the folder and click on New Terminal at Folder to bring up your terminal, and key in `java -jar timestable.jar`. Press Enter to launch the application.
+    ![MacStartUp](images/TimestableMacStartUp.png)   
+
+1. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample student data.<br>
    ![Ui](images/Ui.png)
+
+### Tutorial
 
 1. Type the command in the command box and press 'Enter' to execute it. e.g. typing **`help`** and pressing 'Enter' will open the help window.<br>
    Here are some example commands which you can use on our sample students data before using your own students data:
@@ -29,16 +39,10 @@ TimesTable is a **desktop app for managing your tuition students and classes, op
    * **`add `**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25` : Adds a contact named `John Doe` to the TimesTable.
 
    * **`delete `**`3` : Deletes the 3rd contact shown in the current list.
-   
-   * **`sort `**`name asc` : Sorts the students by their name in ascending alphabetic order.
     
    * **`addclass `**`cn/Sec 4 A Maths ct/FRI 11:30-13:30 r/70 l/Nex Tuition Center`: Adds a new class with name 'Sec 4 A Maths', with class timing MON 11.30-13:30, with hourly rate of $70, at Nex Tuition Center.
     
    * **`addtoclass `**`1 2 3`: Adds the 2nd and 3rd student in the student list in the `students` tab into the 1st class in the `classes` tab
-
-   * **`view `**`classes` : Changes the tab the user is on to the `classes` tab which displays all the classes.
-   
-   * **`view `**`timetable` : Changes the tab the user is on to the `timetable` tab which displays a timetable with all the classes. 
    
    * **`exit `** : Exits the app.
 
@@ -96,14 +100,22 @@ a class or student list)
 </div>
 
 <div style="page-break-after: always;"></div>
-### Clearing all entries : `clear`
+
+### Student commands
+
+### Class commands
+
+### General commands
+
+
+#### Clearing all entries : `clear`
 <hr>
 
 Clears all entries from the TimesTable.
 
 Format: `clear`
 
-### Adding a student: `add`
+#### Adding a student: `add`
 <hr>
 
 Adds a student to the TimesTable.
@@ -134,7 +146,7 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
-### Adding a class: `addclass`
+#### Adding a class: `addclass`
 <hr>
 
 Add a class to the TimesTable.
@@ -157,7 +169,8 @@ Tuition Center`.
 Adds a new class with name `Sec 4 E Maths`, with class timing `Tue 12:30-14:30`, with hourly rate of $`65`, at `Block 123, Clementi Ave 6, #14-41`.
 
 <div style="page-break-after: always;"></div>
-### Deleting a student : `delete`
+
+#### Deleting a student : `delete`
 <hr>
 
 Deletes the specified student from the TimesTable.
@@ -171,7 +184,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the TimesTable.
 * `findname Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-### Delete a class: `deleteclass`
+#### Delete a class: `deleteclass`
 <hr>
 
 Deletes the specified class from the TimesTable.
@@ -186,7 +199,8 @@ Examples:
 * `listclass` followed by `deleteclass 2` deletes the 2nd class in the TimesTable.
 
 <div style="page-break-after: always;"></div>
-### Adding student/students to a class: `addtoclass`
+
+#### Adding student/students to a class: `addtoclass`
 <hr>
 
 Add a single or multiple students to an existing class.
@@ -209,7 +223,7 @@ Example:
 Adds the 1st, 2nd and 3rd student in the displayed student list in the `Students` tab into the 1st class in the
 displayed class list in the `Classes` tab, `size` of the class will increase by 3.
 
-### Removing students from a class: `removefromclass`
+#### Removing students from a class: `removefromclass`
 <hr>
 
 Removes a single or multiple students from an existing class.
@@ -229,7 +243,8 @@ Removes the 1st, 2nd and 3rd student in the displayed student list of the 1st cl
 `size` of 1st class to decrease by 3.
 
 <div style="page-break-after: always;"></div>
-### Editing a student : `edit`
+
+#### Editing a student : `edit`
 <hr>
 
 Edits an existing student in the TimesTable.
@@ -264,7 +279,7 @@ Examples (also editing nok information):
 * `edit 3 a/Com2 nok/ p/98429239` Edits 3rd student's `ADDRESS` to be `Com2` while also editing
   NOK's `PHONE` to be `98429239`.
 
-### Editing a class: `editclass`
+#### Editing a class: `editclass`
 <hr>
 
 Edits an existing class in the class list in the `classes` tab.
@@ -284,7 +299,7 @@ Format:
 Examples:
 * `editclass 1 ct/wed 15:00-17:00` Edits the first class in the class list's `CLASS_TIMIMG` to be on Wednesday from 3pm to 5pm.
 
-### Sorting students and classes: `sort`
+#### Sorting students and classes: `sort`
 <hr>
 
 Sorts the students based on their `NAME` in alphabetical order, 
@@ -313,7 +328,7 @@ The `list` and `listclass` commands can be used to show the original lists of st
 Class size will **not** be affected by filtering students (using FindName or FindTag).
 </div>
 
-### Locating students by name: `findname`
+#### Locating students by name: `findname`
 <hr>
 
 Finds students whose `NAME` contain any of the given keywords.  
@@ -349,7 +364,8 @@ Class size will **not** be affected by filtering students (using FindName or Fin
 </div>
 
 <div style="page-break-after: always;"></div>
-### Locating class by class timing : `findclass`
+
+#### Locating class by class timing : `findclass`
 <hr>
 
 Finds a class whose `CLASS_TIMING` matches the given keyword.  
@@ -384,7 +400,8 @@ Examples:
     * `findclass 09:00-10:30 11:00-12:00` returns nothing.
 
 <div style="page-break-after: always;"></div>
-### Locating class by class name: `findclassname`
+
+#### Locating class by class name: `findclassname`
 <hr>
 
 Finds a class whose class name matches the given keywords.  
@@ -408,7 +425,7 @@ Examples:
 * `findclassname Sec, 4, maths` returns all the classes with `sec` or `4` or `maths` in the class name. Hence,
   class with name `sec 4 physics` and class with name `JC maths` would both be returned.
 
-### Locating students by tag: `findtag`
+#### Locating students by tag: `findtag`
 <hr>
 
 Finds students whose `TAG`s contain any of the given keywords.  
@@ -441,7 +458,7 @@ The `list` and `listclass` commands can be used to show the original lists of st
 Class size will **not** be affected by filtering students (using FindName or FindTag).
 </div>
 
-### Viewing of different tabs: `view`
+#### Viewing of different tabs: `view`
 <hr>
 
 Views an existing tab in the TimesTable without the need to use the mouse to click.
@@ -455,7 +472,8 @@ Examples:
 * `view timetable` switches the displayed tab to be the `timetable` tab.
 
 <div style="page-break-after: always;"></div>
-### Selecting of classes: `class`
+
+#### Selecting of classes: `class`
 <hr>
 
 Selects a class in the class tab and displays its students without the need to use the mouse to double click the respective class.
@@ -470,21 +488,22 @@ Examples:
 * `class 1` selects the class with `CLASS_INDEX` of `1` and displays its students in the class tab.
 
 <div style="page-break-after: always;"></div>
-### Listing all students : `list`
+
+#### Listing all students : `list`
 <hr>
 
 Shows a list of all students in the Students tab.
 
 Format: `list`
 
-### Listing all the classes: `listclass`
+#### Listing all the classes: `listclass`
 <hr>
 
 Shows a list of all classes in the Class tab.
 
 Format: `listclass`
 
-### Viewing help : `help`
+#### Viewing help : `help`
 <hr>
 
 Shows a message explaining how to access the help page.
@@ -492,7 +511,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Exiting the program : `exit`
+#### Exiting the program : `exit`
 <hr>
 
 Exits the program.
@@ -500,12 +519,13 @@ Exits the program.
 Format: `exit`
 
 <div style="page-break-after: always;"></div>
-### Saving the data
+
+#### Saving the data
 <hr>
 
 TimesTable data is saved in the hard disk automatically in the `data` folder present in the same directory as `timestable.jar` after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### Editing the data file
 <hr>
 
 TimesTable data are saved as a JSON file `[JAR file location]/data/timestable.json`. Advanced users are welcome to update data directly by editing that data file.
@@ -525,6 +545,7 @@ If your changes to the data file makes its format invalid, Timestable will disca
 **A**: I'm glad you asked! We're currently planning to add the following features:
 
 <div style="page-break-after: always;"></div>
+
 ### Upcoming Features:
 
 #### Payment Management with Invoice
@@ -568,8 +589,10 @@ If there are any other proposed features, please submit an issue via our GitHub 
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+
 ## Command summary
 
+### Student Commands Summary
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… nok/ n/NOK_NAME p/NOK_PHONE_NUMBER e/NOK_EMAIL a/NOK_ADDRESS` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com a/311, Clementi Ave 2, #02-25 `
@@ -593,7 +616,13 @@ Action | Format, Examples
 **Select class** | `class CLASS_INDEX` <br> e.g., `class 2`
 **View** | `view TAB_TO_VIEW` <br> e.g., `view timetable`
 
+### Class Commands Summary
+Action | Format, Examples
+--------|------------------
 
+### General Commands Summary
+Action | Format, Examples
+--------|------------------
 
 ## Glossary
 - NOK: Next-of-kin. Refers to the student's guardian, parent or perhaps close friend to be contacted regarding admin matters like payment.
