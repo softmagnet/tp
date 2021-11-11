@@ -7,14 +7,31 @@ title: User Guide
 
 ## Introduction
 
-TimesTable is a **desktop app for managing your tuition students and classes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TimesTable can get your class management tasks done faster than traditional GUI apps.
+**TimesTable** is a **tuition management** desktop app for tutors who prefer to use a Command Line Interface (CLI) over a
+Graphical User Interface (GUI). **TimesTable** allows you to manage and keep track of your tuition students and classes.
+The app stores basic information about your students and classes, such as `Name`, `Email`, `Address`, `Class Timing`, and more.
+You can add the students to classes to organise them. 
+
+**TimesTable** also automatically generates a TimeTable for you based on your created classes so you can visualise
+your schedule at a glance.
+
+**TimesTable** uses the CLI to enter commands, which means you control the application by typing in commands into the
+command box. Other GUI applications are controlled by clicking on buttons and boxes. 
+If you can type fast, TimesTable can get your class management tasks done faster than traditional GUI applications.
+Using the CLI allows you to control the application quickly while still having the visual benefits of a GUI.
+
+This guide will take you through the commands of **TimesTable** step by step. To get started with using **TimesTable**,
+jump to the [Quick Start](#Quick Start) section. For a full list of commands and detailed instructions on each one, head to the
+[Features](#features) section.
+
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
-## Quick start
+
+## Quick Start
 
 ### Set Up
 
