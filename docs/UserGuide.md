@@ -100,48 +100,8 @@ INDEX | The number next to the Student/Class that shows its postion on the list.
 <div style="page-break-after: always;"></div>
 ## Features
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the inputs to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is an input which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `listclass`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* For commands that require next-ok-kin (NOK) information, all inputs regarding NOK should be after `nok/` and all
-  inputs regarding the student should be before `nok/`. Timestable does not allow order swap!<br>
-  e.g. `n/John p/97833242 … /nok n/Harry p/87738383 …` `John` and `97833242` are information belonging to the student
-  and `John`'s NOK's name is `Harry` whose phone number is `87738383`.
-
-* For commands that require index (e.g. `editclass`, `addtoclass`, etc), zero, negative and out-of-range indices are 
-rejected with an error message. (Out of range means that the index entered is greater than the number of entries in
-a class or student list)
-  
-* For commands that alters the list of students (eg. `findname`, `findtag`, `sort name asc`), the displayed
-  changes for students will be shown in both the `Students` tab as well as the `Classes` tab.  
-  This means that when students are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag` in the `Classes` tab as well.  
-  Likewise, when students are sorted by their names, they will be sorted in the `Classes` tab as well.
-
-* The `list` and `listclass` commands can be used to show the original lists of students and classes respectively.
-
-* Class size will **not** be affected by filtering students (using FindName or FindTag).
-
-* All arguments can have a maximum of 85 characters except otherwise stated.
-
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -260,14 +220,17 @@ Examples:
 ![FindnNameCommandExample](images/UGCommandExamples/FindNameCommand.png)
 
 <div markdown="block" class="alert alert-info">
-For commands that alters the list of students (eg. `findname`, `findtag`, `sort name asc`), the displayed
+
+**:information_source: Note:**<br>
+
+* For commands that alters the list of students (eg. `findname`, `findtag`, `sort name asc`), the displayed
   changes for students will be shown in both the `Students` tab as well as the `Classes` tab.  
   This means that when students are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag` in the `Classes` tab as well.  
-  Likewise, when students are sorted by their names, they will be sorted in the `Classes` tab as well.
-
-The `list` and `listclass` commands can be used to show the original lists of students and classes respectively.
-
-Class size will **not** be affected by filtering students (using FindName or FindTag).
+  Likewise, when students are sorted by their names, they will be sorted in the `Classes` tab as well.  
+  
+* The `list` and `listclass` commands can be used to show the original lists of students and classes respectively.  
+  
+* Class size will **not** be affected by filtering students (using FindName or FindTag).
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -298,14 +261,17 @@ Examples:
 
 
 <div markdown="block" class="alert alert-info">
-For commands that alters the list of students (eg. `findname`, `findtag`, `sort name asc`), the displayed
+
+**:information_source: Note:**<br>
+
+* For commands that alters the list of students (eg. `findname`, `findtag`, `sort name asc`), the displayed
   changes for students will be shown in both the `Students` tab as well as the `Classes` tab.  
   This means that when students are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag` in the `Classes` tab as well.  
   Likewise, when students are sorted by their names, they will be sorted in the `Classes` tab as well.
 
-The `list` and `listclass` commands can be used to show the original lists of students and classes respectively.
+* The `list` and `listclass` commands can be used to show the original lists of students and classes respectively.
 
-Class size will **not** be affected by filtering students (using FindName or FindTag).
+* Class size will **not** be affected by filtering students (using FindName or FindTag).
 </div>
 
 #### Listing all students : `list`
@@ -551,14 +517,17 @@ Examples:
 ![SortCommandExample](images/UGCommandExamples/SortCommand.png)
 
 <div markdown="block" class="alert alert-info">
-For commands that alters the list of students (eg. `findname`, `findtag`, `sort name asc`), the displayed
+
+**:information_source: Note:**<br>
+
+* For commands that alters the list of students (eg. `findname`, `findtag`, `sort name asc`), the displayed
   changes for students will be shown in both the `Students` tab as well as the `Classes` tab.  
   This means that when students are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag` in the `Classes` tab as well.  
   Likewise, when students are sorted by their names, they will be sorted in the `Classes` tab as well.
-  
-The `list` and `listclass` commands can be used to show the original lists of students and classes respectively. 
 
-Class size will **not** be affected by filtering students (using FindName or FindTag).
+* The `list` and `listclass` commands can be used to show the original lists of students and classes respectively.
+
+* Class size will **not** be affected by filtering students (using FindName or FindTag).
 </div>
 
 #### Viewing of different tabs: `view`
