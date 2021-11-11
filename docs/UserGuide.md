@@ -21,7 +21,7 @@ If you can type fast, TimesTable can get your class management tasks done faster
 Using the CLI allows you to control the application quickly while still having the visual benefits of a GUI.
 
 This guide will take you through the commands of **TimesTable** step by step. To get started with using **TimesTable**,
-jump to the [Quick Start](#Quick Start) section. For a full list of commands and detailed instructions on each one, head to the
+jump to the [Quick Start](#quick-start) section. For a full list of commands and detailed instructions on each one, head to the
 [Features](#features) section.
 
 ## Table of Contents
@@ -91,7 +91,7 @@ Lastly, if you would like to fill in Timestable with your own students, simply u
 Syntax | Definition
 --------|------------------
 `UPPER_CASE` | Words in `UPPER_CASE` are the inputs to be supplied by the user. <br> e.g. in `add n/NAME`, `NAME` is an input which can be used as `add n/John Doe`.
-`a/` | Signifies a field. The user inputs the field after the signifier. Also known as a parameter. (see [Glossary](#Glossary))
+`a/` | Signifies a field. The user inputs the field after the signifier. Also known as a parameter. (see [Glossary](#glossary))
 `[a/UPPER_CASE]` | Items in square brackets refer to optional fields. <br> e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or just `n/John Doe`.
 `...` | Indicates that the preceding field can be used multiple times. <br> e.g. `[t/TAG]…​` can be used multiple times, such as`t/friend` or `t/friend t/family`.
 
