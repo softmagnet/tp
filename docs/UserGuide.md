@@ -120,18 +120,6 @@ a class or student list)
 
 ### Student commands
 
-### Class commands
-
-### General commands
-
-
-#### Clearing all entries : `clear`
-<hr>
-
-Clears all entries from the TimesTable.
-
-Format: `clear`
-
 #### Adding a student: `add`
 <hr>
 
@@ -159,107 +147,6 @@ Examples:
 `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com a/311, Clementi Ave 2, #02-25`
 
 `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/slow learner nok/ n/Karen e/karenSUper@gmail.com p/99994444 a/311, Clementi Ave 2, #02-25`
-
-
-<div style="page-break-after: always;"></div>
-
-#### Adding a class: `addclass`
-<hr>
-
-Add a class to the TimesTable.
-
-Format:
-`addclass cn/CLASS_NAME ct/CLASS_TIMING r/HOURLY_RATE l/LOCATION`
-
-* This command adds a new class to keep track of all classes that the user is teaching.
-* `CLASS_TIMING` must be in the form `ct/DAY HH:MM-HH:MM`
-* `DAY` is case insensitive.
-* `CLASS_TIMING` can only start and end at the hour mark or half hour mark, but can also end at 23:59 hours.
-* `RATE` must be less than $1,000,000/hr
-
-Examples:
-`addclass cn/CS2103T ct/MON 09:30-11:30 r/70 l/Nex Tuition Center`
-Adds a new class with name `CS2103T`, with class timing `MON 09:30-11:30`, with hourly rate of $`70`, at `Nex
-Tuition Center`.
-
-`addclass cn/Sec 4 E Maths ct/TUE 12:30-14:30 r/65 l/Block 123, Clementi Ave 6, #14-41`
-Adds a new class with name `Sec 4 E Maths`, with class timing `Tue 12:30-14:30`, with hourly rate of $`65`, at `Block 123, Clementi Ave 6, #14-41`.
-
-<div style="page-break-after: always;"></div>
-
-#### Deleting a student : `delete`
-<hr>
-
-Deletes the specified student from the TimesTable.
-
-Format:
-`delete INDEX`
-* Deletes the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list in the `Students` tab.
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the TimesTable.
-* `findname Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
-
-#### Delete a class: `deleteclass`
-<hr>
-
-Deletes the specified class from the TimesTable.
-
-Format:
-`deleteclass INDEX`
-
-* Deletes the class at the specified `INDEX`.
-* The index refers to the index number shown in the displayed class list in the `Classes` tab.
-
-Examples:
-* `listclass` followed by `deleteclass 2` deletes the 2nd class in the TimesTable.
-
-<div style="page-break-after: always;"></div>
-
-#### Adding student/students to a class: `addtoclass`
-<hr>
-
-Add a single or multiple students to an existing class.
-
-Format:
-`addtoclass CLASS_INDEX STUDENT_INDEX...`
-
-* This command adds any number of existing students into an existing class.
-* `CLASS_INDEX` is the index number of the class in the displayed class list in the `Classes` tab, which will be
-  receiving the new students.
-* `STUDENT_INDEX...` are the index number/s of the students shown in the displayed student list in the `Students` tab, these students are
-  to be added into the class.
-* Exactly one class index must be provided and at least one student index must be provided.
-* Students that already exist in the class can't be added to the same class.
-* If you enter duplicate student indices in one command, Timestable will only add the student once.
-* Size of the class will change to reflect the number of students in the class.
-
-Example:
-`addtoclass 1 1 2 3`
-Adds the 1st, 2nd and 3rd student in the displayed student list in the `Students` tab into the 1st class in the
-displayed class list in the `Classes` tab, `size` of the class will increase by 3.
-
-#### Removing students from a class: `removefromclass`
-<hr>
-
-Removes a single or multiple students from an existing class.
-
-Format:
-`removefromclass CLASS_INDEX STUDENT_INDEX...`
-
-* Removes a non-zero number of existing students from an existing class.
-* `CLASS_INDEX` is the index number of the class in the displayed class list in the `Classes` tab to have its students removed from.
-* `STUDENT_INDEX...` are the index number(s) of the students, shown in the displayed student list of the class to be removed from
-  in the `Classes` tab.
-
-
-Example:
-`removefromclass 1 1 2 3`
-Removes the 1st, 2nd and 3rd student in the displayed student list of the 1st class in the `classes` tab, causing the
-`size` of 1st class to decrease by 3.
-
-<div style="page-break-after: always;"></div>
 
 #### Editing a student : `edit`
 <hr>
@@ -296,54 +183,19 @@ Examples (also editing nok information):
 * `edit 3 a/Com2 nok/ p/98429239` Edits 3rd student's `ADDRESS` to be `Com2` while also editing
   NOK's `PHONE` to be `98429239`.
 
-#### Editing a class: `editclass`
+#### Deleting a student : `delete`
 <hr>
 
-Edits an existing class in the class list in the `classes` tab.
+Deletes the specified student from the TimesTable.
 
 Format:
-`editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]`
-
-* Edits the class at the specified `INDEX`. The index refers to the index number shown in the displayed class
-  list in the `classes` tab. 
-  * The index **must be a positive integer** 1, 2, 3, …​
-  * The index must belong to a class.
-* At least one of the optional fields must be provided.
-* `CLASS_TIMING` can only start and end at the hour mark or half hour mark, but can also end at 23:59 hours.
-* Edit commands that will create a clash of `CLASS_TIMING` with other classes is not accepted.
-* `RATE` must be less than $1,000,000/hr
+`delete INDEX`
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list in the `Students` tab.
 
 Examples:
-* `editclass 1 ct/wed 15:00-17:00` Edits the first class in the class list's `CLASS_TIMIMG` to be on Wednesday from 3pm to 5pm.
-
-#### Sorting students and classes: `sort`
-<hr>
-
-Sorts the students based on their `NAME` in alphabetical order, 
-or classes based on their `CLASS_TIMING`, in either ascending or descending order.
-
-Format:
-`sort PARAMETER_TO_SORT_BY DIRECTION_OF_SORT`
-
-* `PARAMETER_TO_SORT_BY` can either be `name` or `timing` which sorts the students and classes respectively.
-* `DIRECTION_OF_SORT` can either be `asc` or `desc` to represent ascending and descending respectively.
-
-Examples:
-* `sort name asc` sorts students alphabetically by their `NAME` in ascending order.
-* `sort name desc` sorts students alphabetically by their `NAME` in descending order.
-* `sort timing asc` sorts classes based on their `CLASS_TIMING` starting from the earliest in the week to the latest.
-* `sort timing desc` sorts classes based on their `CLASS_TIMING` starting from the latest in the week to the earliest.
-
-<div markdown="block" class="alert alert-info">
-For commands that alters the list of students (eg. `findname`, `findtag`, `sort name asc`), the displayed
-  changes for students will be shown in both the `Students` tab as well as the `Classes` tab.  
-  This means that when students are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag` in the `Classes` tab as well.  
-  Likewise, when students are sorted by their names, they will be sorted in the `Classes` tab as well.
-  
-The `list` and `listclass` commands can be used to show the original lists of students and classes respectively. 
-
-Class size will **not** be affected by filtering students (using FindName or FindTag).
-</div>
+* `list` followed by `delete 2` deletes the 2nd student in the TimesTable.
+* `findname Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
 #### Locating students by name: `findname`
 <hr>
@@ -361,7 +213,7 @@ Format:
 * Persons matching at least one search term will be returned (i.e. `OR` search).
   e.g. `findname alex lim, bernice yu` will return `Alex Lim`, `Bernice Yu`.
 * The entire search term is used for matching e.g. `findname Alex L` will match `Alex Lim`
-    but not `Alex Yu`
+  but not `Alex Yu`
 
 Examples:
 * `findname John` returns `john` and `John Doe` in both `Students` and `Classes` tab.
@@ -382,6 +234,136 @@ Class size will **not** be affected by filtering students (using FindName or Fin
 
 <div style="page-break-after: always;"></div>
 
+#### Locating students by tag: `findtag`
+<hr>
+
+Finds students whose `TAG`s contain any of the given keywords.  
+Note that if you want to display the entire list of students again, run `list`.
+
+Format:
+`findtag KEYWORD [, [KEYWORD]...]`
+
+* Search terms can partially match the tag, or the entire tag, e.g. `math` for all `A Math` and `C Math` tags, or `A Math` for the `A Math` tag.
+* Search terms are separated by commas. e.g. `findtag math, physics` will find students
+  with tags containing `math` or `physics`.
+* Students matching at least one search term will be returned (i.e. `OR` search).
+  e.g. `findtag math, physics` will return students with the `Math` `TAG` but no `Physics` `TAG`,
+  students with only the`Physics` `TAG` but no `Math` `TAG`, and students with both `TAG`s.
+* The search is case-insensitive. e.g `math` will match `Math`.
+
+Examples:
+* `findtag math` returns `Alex Yeoh` with the `A Math` `TAG` and `John Doe` with the `C Math` `TAG` in both `Students` and `Classes` tab.
+* `findtag math, physics` returns `Alex Yeoh` with the `A Math` and `Biology` `TAG`s in both `Students` and `Classes` tab.
+  <br>
+
+<div markdown="block" class="alert alert-info">
+For commands that alters the list of students (eg. `findname`, `findtag`, `sort name asc`), the displayed
+  changes for students will be shown in both the `Students` tab as well as the `Classes` tab.  
+  This means that when students are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag` in the `Classes` tab as well.  
+  Likewise, when students are sorted by their names, they will be sorted in the `Classes` tab as well.
+
+The `list` and `listclass` commands can be used to show the original lists of students and classes respectively.
+
+Class size will **not** be affected by filtering students (using FindName or FindTag).
+</div>
+
+#### Listing all students : `list`
+<hr>
+
+Shows a list of all students in the Students tab.
+
+Format: `list`
+
+### Class commands
+
+#### Adding a class: `addclass`
+<hr>
+
+Add a class to the TimesTable.
+
+Format:
+`addclass cn/CLASS_NAME ct/CLASS_TIMING r/HOURLY_RATE l/LOCATION`
+
+* This command adds a new class to keep track of all classes that the user is teaching.
+* `CLASS_TIMING` must be in the form `ct/DAY HH:MM-HH:MM`
+* `DAY` is case insensitive.
+* `CLASS_TIMING` can only start and end at the hour mark or half hour mark, but can also end at 23:59 hours.
+* `RATE` must be less than $1,000,000/hr
+
+Examples:
+`addclass cn/CS2103T ct/MON 09:30-11:30 r/70 l/Nex Tuition Center`
+Adds a new class with name `CS2103T`, with class timing `MON 09:30-11:30`, with hourly rate of $`70`, at `Nex
+Tuition Center`.
+
+`addclass cn/Sec 4 E Maths ct/TUE 12:30-14:30 r/65 l/Block 123, Clementi Ave 6, #14-41`
+Adds a new class with name `Sec 4 E Maths`, with class timing `Tue 12:30-14:30`, with hourly rate of $`65`, at `Block 123, Clementi Ave 6, #14-41`.
+
+<div style="page-break-after: always;"></div>
+
+#### Editing a class: `editclass`
+<hr>
+
+Edits an existing class in the class list in the `classes` tab.
+
+Format:
+`editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]`
+
+* Edits the class at the specified `INDEX`. The index refers to the index number shown in the displayed class
+  list in the `classes` tab.
+    * The index **must be a positive integer** 1, 2, 3, …​
+    * The index must belong to a class.
+* At least one of the optional fields must be provided.
+* `CLASS_TIMING` can only start and end at the hour mark or half hour mark, but can also end at 23:59 hours.
+* Edit commands that will create a clash of `CLASS_TIMING` with other classes is not accepted.
+* `RATE` must be less than $1,000,000/hr
+
+Examples:
+* `editclass 1 ct/wed 15:00-17:00` Edits the first class in the class list's `CLASS_TIMIMG` to be on Wednesday from 3pm to 5pm.
+
+#### Adding student/students to a class: `addtoclass`
+<hr>
+
+Add a single or multiple students to an existing class.
+
+Format:
+`addtoclass CLASS_INDEX STUDENT_INDEX...`
+
+* This command adds any number of existing students into an existing class.
+* `CLASS_INDEX` is the index number of the class in the displayed class list in the `Classes` tab, which will be
+  receiving the new students.
+* `STUDENT_INDEX...` are the index number/s of the students shown in the displayed student list in the `Students` tab, these students are
+  to be added into the class.
+* Exactly one class index must be provided and at least one student index must be provided.
+* Students that already exist in the class can't be added to the same class.
+* If you enter duplicate student indices in one command, Timestable will only add the student once.
+* Size of the class will change to reflect the number of students in the class.
+
+Example:
+`addtoclass 12 1 2 3`
+Adds the 1st, 2nd and 3rd student in the displayed student list in the `Students` tab into the 1st class in the
+displayed class list in the `Classes` tab, `size` of the class will increase by 3.
+
+#### Removing students from a class: `removefromclass`
+<hr>
+
+Removes a single or multiple students from an existing class.
+
+Format:
+`removefromclass CLASS_INDEX STUDENT_INDEX...`
+
+* Removes a non-zero number of existing students from an existing class.
+* `CLASS_INDEX` is the index number of the class in the displayed class list in the `Classes` tab to have its students removed from.
+* `STUDENT_INDEX...` are the index number(s) of the students, shown in the displayed student list of the class to be removed from
+  in the `Classes` tab.
+
+
+Example:
+`removefromclass 12 1 2 3`
+Removes the 1st, 2nd and 3rd student in the displayed student list of the 1st class in the `classes` tab, causing the
+`size` of 1st class to decrease by 3.
+
+<div style="page-break-after: always;"></div>
+
 #### Locating class by class timing : `findclass`
 <hr>
 
@@ -394,11 +376,11 @@ Format: `findclass CLASS_TIMING`
 
 * The valid keywords for `CLASS_TIMING` are limited to the following types:
     1. 3 letter abbreviation for day of the week e.g. `Mon`, `Tue`, etc.
-    2. Time expressed in HH:MM-HH:MM format   e.g. `11:30-12:30`, `15:00-16:00`, etc. 
+    2. Time expressed in HH:MM-HH:MM format   e.g. `11:30-12:30`, `15:00-16:00`, etc.
         * `CLASS_TIMING` can only start and end at the hour mark or half hour mark, but can also end at 23:59 hours.
 * Either a single keyword or two keywords of different types should be provided otherwise no classes would be returned.
-* Multiple keywords of the same type (eg Mon Tue) would not return any classes, because the command finds classes which contain both timings (Mon and Tue), and 
-    it is currently not possible to have a class with two different timings (ie a class that occurs on both Monday and Tuesday or both `10:00-12:00` and `17:00-19:00`)
+* Multiple keywords of the same type (eg Mon Tue) would not return any classes, because the command finds classes which contain both timings (Mon and Tue), and
+  it is currently not possible to have a class with two different timings (ie a class that occurs on both Monday and Tuesday or both `10:00-12:00` and `17:00-19:00`)
     * Important clarification: In TimesTable, class refers to a single slot per week in the timetable.
 * If two keywords are entered, then the class returned would be the one that match all the keywords
   (see example below).
@@ -436,41 +418,76 @@ Format:
   e.g. `findclassname sec 4 phy, jc math` will return `sec 4 physics`, `jc mathematics`.
 * The entire search term is used for matching e.g. `findclassname sec 4 phy` will match `sec 4 physics`
   but not `sec 4 maths`
-  
+
 Examples:
 * `findclassname math` returns all the classes with math in the class name.
 * `findclassname Sec, 4, maths` returns all the classes with `sec` or `4` or `maths` in the class name. Hence,
   class with name `sec 4 physics` and class with name `JC maths` would both be returned.
 
-#### Locating students by tag: `findtag`
+#### Listing all the classes: `listclass`
 <hr>
 
-Finds students whose `TAG`s contain any of the given keywords.  
-Note that if you want to display the entire list of students again, run `list`.
+Shows a list of all classes in the Class tab.
+
+Format: `listclass`
+
+#### Selecting of classes: `class`
+<hr>
+
+Selects a class in the class tab and displays its students without the need to use the mouse to double click the respective class.
 
 Format:
-`findtag KEYWORD [, [KEYWORD]...]`
+`class CLASS_INDEX`
 
-* Search terms can partially match the tag, or the entire tag, e.g. `math` for all `A Math` and `C Math` tags, or `A Math` for the `A Math` tag.
-* Search terms are separated by commas. e.g. `findtag math, physics` will find students
-  with tags containing `math` or `physics`.
-* Students matching at least one search term will be returned (i.e. `OR` search).
-  e.g. `findtag math, physics` will return students with the `Math` `TAG` but no `Physics` `TAG`,
-  students with only the`Physics` `TAG` but no `Math` `TAG`, and students with both `TAG`s.
-* The search is case-insensitive. e.g `math` will match `Math`.
+* Selected class will not be highlighted in the same way as when you click on a class using the mouse.
+* `CLASS_INDEX` must be an index of a class that exists in the displayed class list.
 
 Examples:
-* `findtag math` returns `Alex Yeoh` with the `A Math` `TAG` and `John Doe` with the `C Math` `TAG` in both `Students` and `Classes` tab.
-* `findtag math, physics` returns `Alex Yeoh` with the `A Math` and `Biology` `TAG`s in both `Students` and `Classes` tab.
-  <br>
+* `class 1` selects the class with `CLASS_INDEX` of `1` and displays its students in the class tab.
+
+#### Delete a class: `deleteclass`
+<hr>
+
+Deletes the specified class from the TimesTable.
+
+Format:
+`deleteclass INDEX`
+
+* Deletes the class at the specified `INDEX`.
+* The index refers to the index number shown in the displayed class list in the `Classes` tab.
+
+Examples:
+* `listclass` followed by `deleteclass 2` deletes the 2nd class in the TimesTable.
+
+<div style="page-break-after: always;"></div>
+
+### General commands
+
+#### Sorting students and classes: `sort`
+<hr>
+
+Sorts the students based on their `NAME` in alphabetical order, 
+or classes based on their `CLASS_TIMING`, in either ascending or descending order.
+
+Format:
+`sort PARAMETER_TO_SORT_BY DIRECTION_OF_SORT`
+
+* `PARAMETER_TO_SORT_BY` can either be `name` or `timing` which sorts the students and classes respectively.
+* `DIRECTION_OF_SORT` can either be `asc` or `desc` to represent ascending and descending respectively.
+
+Examples:
+* `sort name asc` sorts students alphabetically by their `NAME` in ascending order.
+* `sort name desc` sorts students alphabetically by their `NAME` in descending order.
+* `sort timing asc` sorts classes based on their `CLASS_TIMING` starting from the earliest in the week to the latest.
+* `sort timing desc` sorts classes based on their `CLASS_TIMING` starting from the latest in the week to the earliest.
 
 <div markdown="block" class="alert alert-info">
 For commands that alters the list of students (eg. `findname`, `findtag`, `sort name asc`), the displayed
   changes for students will be shown in both the `Students` tab as well as the `Classes` tab.  
   This means that when students are filtered by their `name` and `tag`, they will be filtered by their `name` and `tag` in the `Classes` tab as well.  
   Likewise, when students are sorted by their names, they will be sorted in the `Classes` tab as well.
-
-The `list` and `listclass` commands can be used to show the original lists of students and classes respectively.
+  
+The `list` and `listclass` commands can be used to show the original lists of students and classes respectively. 
 
 Class size will **not** be affected by filtering students (using FindName or FindTag).
 </div>
@@ -490,35 +507,15 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
-#### Selecting of classes: `class`
-<hr>
-
-Selects a class in the class tab and displays its students without the need to use the mouse to double click the respective class.
-
-Format:
-`class CLASS_INDEX`
-
-* Selected class will not be highlighted in the same way as when you click on a class using the mouse.
-* `CLASS_INDEX` must be an index of a class that exists in the displayed class list.
-
-Examples:
-* `class 1` selects the class with `CLASS_INDEX` of `1` and displays its students in the class tab.
-
 <div style="page-break-after: always;"></div>
 
-#### Listing all students : `list`
+#### Clearing all entries : `clear`
 <hr>
 
-Shows a list of all students in the Students tab.
+Clears all entries from the TimesTable.
 
-Format: `list`
+Format: `clear`
 
-#### Listing all the classes: `listclass`
-<hr>
-
-Shows a list of all classes in the Class tab.
-
-Format: `listclass`
 
 #### Viewing help : `help`
 <hr>
@@ -613,33 +610,34 @@ If there are any other proposed features, please submit an issue via our GitHub 
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… nok/ n/NOK_NAME p/NOK_PHONE_NUMBER e/NOK_EMAIL a/NOK_ADDRESS` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com a/311, Clementi Ave 2, #02-25 `
-**Add class** | `addclass cn/CLASS_NAME ct/CLASS_TIMING r/HOURLY_RATE l/LOCATION` <br> e.g., `addclass cn/Sec 4 A Maths ct/mon 11:30-13:30 r/70 l/Nex Tuition Center`
-**Add to class** | `addtoclass CLASS_INDEX STUDENT_INDEX…` <br> e.g., `addtoclass 1 1 2 3`
-**Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Delete class** | `deleteclass INDEX` <br> e.g., `deleteclass 2`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [nok/ [n/NOK_NAME] [p/NOK_PHONE] [e/NOK_EMAIL] [a/NOK_ADDRESS]]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Edit class** | `editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]` <br> e.g., `editclass 1 ct/wed 15:00-17:00`
-**Exit** | `exit`
 **Find name** | `findname NAME [, [NAME]...]` <br> e.g., `find Stuart`
-**Find class timing** | `findclass CLASS_TIMING` <br> e.g., `findclass mon 11:00-12:00`
-**Find class name** | `findclassname CLASS_NAME [, [CLASS_NAME]...]` <br> e.g., `findclassname math`
 **Find tag** | `findtag KEYWORD [, [KEYWORD]...]` <br> e.g., `findtag  math, physics`
-**Help** | `help`
 **List** | `list`
-**List class** | `listclass`
-**Remove from class** | `removefromclass CLASS_INDEX STUDENT_INDEX...` <br> e.g., `removefromclass 1 1 2 3`
 **Sort** | `sort PARAMETER_TO_SORT_BY DIRECTION_OF_SORT` <br> e.g., `sort name asc`
-**Select class** | `class CLASS_INDEX` <br> e.g., `class 2`
-**View** | `view TAB_TO_VIEW` <br> e.g., `view timetable`
 
 ### Class Commands Summary
 Action | Format, Examples
 --------|------------------
+**Add class** | `addclass cn/CLASS_NAME ct/CLASS_TIMING r/HOURLY_RATE l/LOCATION` <br> e.g., `addclass cn/Sec 4 A Maths ct/mon 11:30-13:30 r/70 l/Nex Tuition Center`
+**Add to class** | `addtoclass CLASS_INDEX STUDENT_INDEX…` <br> e.g., `addtoclass 1 1 2 3`
+**Delete class** | `deleteclass INDEX` <br> e.g., `deleteclass 2`
+**Edit class** | `editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]` <br> e.g., `editclass 1 ct/wed 15:00-17:00`
+**Find class timing** | `findclass CLASS_TIMING` <br> e.g., `findclass mon 11:00-12:00`
+**Find class name** | `findclassname CLASS_NAME [, [CLASS_NAME]...]` <br> e.g., `findclassname math`
+**List class** | `listclass`
+**Remove from class** | `removefromclass CLASS_INDEX STUDENT_INDEX...` <br> e.g., `removefromclass 1 1 2 3`
+**Select class** | `class CLASS_INDEX` <br> e.g., `class 2`
+**Sort** | `sort PARAMETER_TO_SORT_BY DIRECTION_OF_SORT` <br> e.g., `sort timing asc`
 
 ### General Commands Summary
 Action | Format, Examples
 --------|------------------
+**Clear** | `clear`
+**Exit** | `exit`
+**Help** | `help`
+**View** | `view TAB_TO_VIEW` <br> e.g., `view timetable`
 
 ## Glossary
 - NOK: Next-of-kin. Refers to the student's guardian, parent or perhaps close friend to be contacted regarding admin matters like payment.
