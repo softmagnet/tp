@@ -37,12 +37,11 @@ jump to the [Quick Start](#Quick Start) section. For a full list of commands and
 1. Ensure you have Java `11` or above installed in your Computer, if you do not, you can download it from [here](https://www.oracle.com/java/technologies/downloads/#java11-windows).
 
 1. Download the latest `timestable.jar` from [here](https://github.com/AY2122S1-CS2103T-F11-1/tp/releases).
-
+   ![DownloadJar](images/DownloadJar.png)
 1. Copy the file to the folder you want to use as the _home folder_ for your TimesTable.
-
 1. For `Windows`, double-click the file to start the app.
    For `Mac`, you need to open `TimesTable` using terminal. You can right-click on the folder and click on New Terminal at Folder to bring up your terminal, and key in `java -jar timestable.jar`. Press Enter to launch the application.
-    ![MacStartUp](images/TimestableMacStartUp.png)   
+    ![MacStartUp](images/TimestableMacStartUp.png) 
 
 1. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample student data.<br>
    ![Ui](images/Ui.png)
@@ -163,6 +162,8 @@ Examples:
 
 `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/slow learner nok/ n/Karen e/karenSUper@gmail.com p/99994444 a/311, Clementi Ave 2, #02-25`
 
+![AddCommandExample](images/UGCommandExamples/AddCommand.png)
+
 #### Editing a student : `edit`
 <hr>
 
@@ -193,10 +194,15 @@ Examples (editing student information only):
 * `edit 4 n/John Walker a/4 Petir Road #16-04 Singapore 657891` Edits the `NAME` and `ADDRESS` of the 4th person to be
   `John Walker` and `4 Petir Road #16-04 Singapore 657891` respectively.
 
+![EditCommandExample1](images/UGCommandExamples/EditCommand1.png)
+
 Examples (also editing nok information):
 * `edit 2 nok/ p/98429239` Edits 2nd student's NOK's `PHONE` to be `98429239`.
 * `edit 3 a/Com2 nok/ p/98429239` Edits 3rd student's `ADDRESS` to be `Com2` while also editing
   NOK's `PHONE` to be `98429239`.
+
+![EditCommandExample2](images/UGCommandExamples/EditCommand2.png)
+
 
 #### Deleting a student : `delete`
 <hr>
@@ -211,6 +217,9 @@ Format:
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the TimesTable.
 * `findname Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+
+![DeleteCommandExample](images/UGCommandExamples/DeleteCommand.png)
+
 
 #### Locating students by name: `findname`
 <hr>
@@ -234,7 +243,7 @@ Examples:
 * `findname John` returns `john` and `John Doe` in both `Students` and `Classes` tab.
 * `findname alex, david` returns `Alex Yeoh`, `David Li` in both `Students` and `Classes` tab.<br>
 
-  ![result for 'findname alex david'](images/findAlexDavidResult.png)
+![FindnNameCommandExample](images/UGCommandExamples/FindNameCommand.png)
 
 <div markdown="block" class="alert alert-info">
 For commands that alters the list of students (eg. `findname`, `findtag`, `sort name asc`), the displayed
@@ -271,6 +280,9 @@ Examples:
 * `findtag math, physics` returns `Alex Yeoh` with the `A Math` and `Biology` `TAG`s in both `Students` and `Classes` tab.
   <br>
 
+![FindTagCommandExample](images/UGCommandExamples/FindTagCommand.png)
+
+
 <div markdown="block" class="alert alert-info">
 For commands that alters the list of students (eg. `findname`, `findtag`, `sort name asc`), the displayed
   changes for students will be shown in both the `Students` tab as well as the `Classes` tab.  
@@ -288,6 +300,8 @@ Class size will **not** be affected by filtering students (using FindName or Fin
 Shows a list of all students in the Students tab.
 
 Format: `list`
+
+![ListCommandExample](images/UGCommandExamples/ListCommand.png)
 
 ### Class commands
 
@@ -313,6 +327,8 @@ Tuition Center`.
 `addclass cn/Sec 4 E Maths ct/TUE 12:30-14:30 r/65 l/Block 123, Clementi Ave 6, #14-41`
 Adds a new class with name `Sec 4 E Maths`, with class timing `Tue 12:30-14:30`, with hourly rate of $`65`, at `Block 123, Clementi Ave 6, #14-41`.
 
+![AddClassCommandExample](images/UGCommandExamples/AddClassCommand.png)
+
 <div style="page-break-after: always;"></div>
 
 #### Editing a class: `editclass`
@@ -334,6 +350,8 @@ Format:
 
 Examples:
 * `editclass 1 ct/wed 15:00-17:00` Edits the first class in the class list's `CLASS_TIMIMG` to be on Wednesday from 3pm to 5pm.
+  
+![EditClassCommandExample](images/UGCommandExamples/EditClassCommand.png)
 
 #### Adding student/students to a class: `addtoclass`
 <hr>
@@ -358,6 +376,9 @@ Example:
 Adds the 1st, 2nd and 3rd student in the displayed student list in the `Students` tab into the 1st class in the
 displayed class list in the `Classes` tab, `size` of the class will increase by 3.
 
+![AddToClassCommandExample](images/UGCommandExamples/AddToClassCommand.png)
+
+
 #### Removing students from a class: `removefromclass`
 <hr>
 
@@ -376,6 +397,8 @@ Example:
 `removefromclass 12 1 2 3`
 Removes the 1st, 2nd and 3rd student in the displayed student list of the 1st class in the `classes` tab, causing the
 `size` of 1st class to decrease by 3.
+
+![RemoveFromClassCommandExample](images/UGCommandExamples/RemoveFromClassCommand.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -403,15 +426,22 @@ Format: `findclass CLASS_TIMING`
 
 Examples:
 1. Single keyword
-    * `findclass mon` returns all classes on Monday
+    * `findclass mon` returns all classes on Monday.
     * `findclass 10:00-12:00` returns all classes scheduled for `10:00 to 12:00` no matter which day of the week it belongs
-      to
+      to.
+      ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand1.png)
+      
 2. Two keywords
-    * `findclass mon 11:00-12:00` returns the exact class on `Mon at 11:00-12:00`.
+    * `findclass mon 11:30-13:30` returns the exact class on `Mon at 11:30-13:30`.
     * `findclass tue 11:00-12:00` returns the exact class on `Tue at 11:00-12:00`.
+      ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand2.png)
+
+
 3. Negative examples (Two or more keywords of the same type)
     * `findclass mon tue` returns nothing.
     * `findclass 09:00-10:30 11:00-12:00` returns nothing.
+      ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand3.png)
+
 
 <div style="page-break-after: always;"></div>
 
@@ -438,6 +468,8 @@ Examples:
 * `findclassname math` returns all the classes with math in the class name.
 * `findclassname Sec, 4, maths` returns all the classes with `sec` or `4` or `maths` in the class name. Hence,
   class with name `sec 4 physics` and class with name `JC maths` would both be returned.
+  
+![FindClassNameCommandExample](images/UGCommandExamples/FindClassNameCommand.png)
 
 #### Listing all the classes: `listclass`
 <hr>
@@ -445,6 +477,8 @@ Examples:
 Shows a list of all classes in the Class tab.
 
 Format: `listclass`
+
+![ListClassCommandExample](images/UGCommandExamples/ListClassCommand.png)
 
 #### Selecting of classes: `class`
 <hr>
@@ -460,6 +494,8 @@ Format:
 Examples:
 * `class 1` selects the class with `CLASS_INDEX` of `1` and displays its students in the class tab.
 
+![SelectClassCommandExample](images/UGCommandExamples/ClassCommand.png)
+
 #### Delete a class: `deleteclass`
 <hr>
 
@@ -473,6 +509,8 @@ Format:
 
 Examples:
 * `listclass` followed by `deleteclass 2` deletes the 2nd class in the TimesTable.
+
+![DeleteClassCommandExample](images/UGCommandExamples/DeleteClassCommand.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -495,6 +533,8 @@ Examples:
 * `sort name desc` sorts students alphabetically by their `NAME` in descending order.
 * `sort timing asc` sorts classes based on their `CLASS_TIMING` starting from the earliest in the week to the latest.
 * `sort timing desc` sorts classes based on their `CLASS_TIMING` starting from the latest in the week to the earliest.
+
+![SortCommandExample](images/UGCommandExamples/SortCommand.png)
 
 <div markdown="block" class="alert alert-info">
 For commands that alters the list of students (eg. `findname`, `findtag`, `sort name asc`), the displayed
@@ -520,6 +560,8 @@ Format:
 Examples:
 * `view timetable` switches the displayed tab to be the `timetable` tab.
 
+![ViewCommandExample](images/UGCommandExamples/ViewCommand.png)
+
 <div style="page-break-after: always;"></div>
 
 <div style="page-break-after: always;"></div>
@@ -531,14 +573,16 @@ Clears all entries from the TimesTable.
 
 Format: `clear`
 
+![ClearCommandExample](images/UGCommandExamples/ClearCommand.png)
 
 #### Viewing help : `help`
 <hr>
 
 Shows a message explaining how to access the help page.
-![help message](images/helpMessage.png)
 
 Format: `help`
+
+![help message](images/UGCommandExamples/HelpCommand.png)
 
 #### Exiting the program : `exit`
 <hr>
