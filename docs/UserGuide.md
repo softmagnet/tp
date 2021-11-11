@@ -68,6 +68,8 @@ Again, press enter to add the class to our TimesTable.
 which shows you all the information about the Classes you are teaching.  
 ![TutorialImage4.png](images/UGCommandExamples/TutorialExample4.png)
 When we scroll down, you can see that 'Sec 4 A Maths' is added at the bottom.
+   
+
 5. See that blank space on the right? It is where all the students who are under that class go to.  
 I will now show you how to add students to a class! Here, we are using the [`addtoclass`](#adding-studentstudents-to-a-class-addtoclass) 
 command, which takes in the index of the class, followed by the indexes of the students.   
@@ -77,10 +79,10 @@ As shown, you can see the students that are added to the class. How cool is that
    
 6. Continuing on, let me introduce you to the Timetable tab! Here, we are using the [`view`](#viewing-of-different-tabs-view) command.    
 Type `view timetable` and press enter.
-   
-![TutorialImageFour.png](images/UGCommandExamples/ViewCommand.png)  
 
+![TutorialImage6.png](images/UGCommandExamples/TutorialExample6.png)
 Here, you can see all the classes that you are teaching in a nice, visual, weekly timetable format! On the first row which is Monday, you can see the 'Sec 4 A Math' class that you just added, with the correct timing.
+
 7. Now that you have experienced the core functionality, you are all ready to explore the other commands. 
 To delete, we have commands like `delete` and `deleteclass` for students and classes respectively, and even commands to `find` and `sort` classes and students when you have become more familiar with the app, just refer to the [Features](#features) below for details of each command.
 Lastly, if you would like to fill in Timestable with your own students, simply use the  **`clear`** command to delete all the sample students and classes.
@@ -103,7 +105,8 @@ Term | Definition
 NOK | Next-of-kin. Refers to the student's guardian, parent or perhaps close friend to be contacted regarding admin matters like payment.
 PARAMETERS | The inputs before the `/` are known as _parameters_. <br>e.g `n/NAME` (`n/` is the parameter for name) <br>e.g `a/ADDRESS` (`a/` is the parameter for name).
 INDEX | The number next to the Student/Class that shows its postion on the list.
---------------------------------------------------------------------------------------------------------------------
+
+
 <div style="page-break-after: always;"></div>
 ## Features
 
@@ -359,8 +362,8 @@ Format:
 * Size of the class will change to reflect the number of students in the class.
 
 Example:
-`addtoclass 12 1 2 3`
-Adds the 1st, 2nd and 3rd student in the displayed student list in the `Students` tab into the 1st class in the
+`addtoclass 13 1 2 3`
+Adds the 1st, 2nd and 3rd student in the displayed student list in the `Students` tab into the 13th class in the
 displayed class list in the `Classes` tab, `size` of the class will increase by 3.
 
 ![AddToClassCommandExample](images/UGCommandExamples/AddToClassCommand.png)
@@ -381,8 +384,8 @@ Format:
 
 
 Example:
-`removefromclass 12 1 2 3`
-Removes the 1st, 2nd and 3rd student in the displayed student list of the 1st class in the `classes` tab, causing the
+`removefromclass 13 1 2 3`
+Removes the 1st, 2nd and 3rd student in the displayed student list of the 13th class in the `classes` tab, causing the
 `size` of 1st class to decrease by 3.
 
 ![RemoveFromClassCommandExample](images/UGCommandExamples/RemoveFromClassCommand.png)
@@ -419,7 +422,7 @@ Examples:
       ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand1.png)
       
 2. Two keywords
-    * `findclass mon 11:30-13:30` returns the exact class on `Mon at 11:30-13:30`.
+    * `findclass mon 09:30-11:30` returns the exact class on `Mon at 09:30-11:30`.
     * `findclass tue 11:00-12:00` returns the exact class on `Tue at 11:00-12:00`.
       ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand2.png)
 
@@ -675,8 +678,8 @@ Action | Format, Examples|
 **Add to class** | `addtoclass CLASS_INDEX STUDENT_INDEX…` <br> e.g., `addtoclass 1 1 2 3`|
 **Delete class** | `deleteclass INDEX` <br> e.g., `deleteclass 2`|
 **Edit class** | `editclass 1 [cn/CLASS_NAME] [ct/CLASS_TIMING] [r/RATE] [l/LOCATION]` <br> e.g., `editclass 1 ct/wed 15:00-17:00`|
-**Find class timing** | `findclass CLASS_TIMING` <br> e.g., `findclass mon 11:00-12:00`|
 **Find class name** | `findclassname CLASS_NAME [, [CLASS_NAME]...]` <br> e.g., `findclassname math`|
+**Find class timing** | `findclass CLASS_TIMING` <br> e.g., `findclass mon 11:00-12:00`|
 **List class** | `listclass`|
 **Remove from class** | `removefromclass CLASS_INDEX STUDENT_INDEX...` <br> e.g., `removefromclass 1 1 2 3`|
 **Select class** | `class CLASS_INDEX` <br> e.g., `class 2`|
