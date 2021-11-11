@@ -49,32 +49,37 @@ jump to the [Quick Start](#Quick Start) section. For a full list of commands and
 ### Tutorial
 
 1. Before we begin, note that we are at the Students Tab, where we show all the students that you are teaching. Other tabs will be explained later.  
-![TutorialImage.png](images/TutorialImage.png)  
 2. To get started, lets add a student using the [`add`](#adding-a-student-add) command.
 First type `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 nok/ n/Jack Doe p/10987654 e/jackd@example.com a/311, Clementi Ave 2, #02-25` 
 into the command box to add 'John Doe' using the parameter `n/`, with his specified phone number using the `p/` parameter, and email using the `e/` parameter and so on (for more details refer to the [`add`](#adding-a-student-add) command). If you're wondering, the text after 
 `nok/` specifies all the information for his _next-of-kin_, and uses the similar parameters.
-![TutorialImageOne.png](images/TutorialImageOne.png)  
+![TutorialImage1.png](images/UGCommandExamples/TutorialExample1.png)  
 Press enter afterwards to execute the command which adds a student to our TimesTable.
-  
+![TutorialImage2.png](images/UGCommandExamples/TutorialExample2.png)
+
 3. Next, we can try creating a class! Similar to before, we run the [`addclass`](#adding-a-class-addclass) command.  
 Type `addclass cn/Sec 4 A Maths ct/FRI 11:30-13:30 r/70 l/Nex Tuition Center` into the command box.  
 We are adding a class 'Sec 4 A Maths' using the `cn/` parameter, at 11:30am to 1:30pm using the `ct/` parameter, together with the rate and the location.    
-![TutorialImageTwo.png](images/TutorialImageTwo.png)
+![TutorialImage3.png](images/UGCommandExamples/TutorialExample3.png)
 Again, press enter to add the class to our TimesTable.
+
+
 4. Oh! Notice that you have been transported to another tab. This is known as the Class Tab,   
 which shows you all the information about the Classes you are teaching.  
-![TutorialImageThree.png](images/TutorialImageThree.png)  
+![TutorialImage4.png](images/UGCommandExamples/TutorialExample4.png)
 When we scroll down, you can see that 'Sec 4 A Maths' is added at the bottom.
 5. See that blank space on the right? It is where all the students who are under that class go to.  
 I will now show you how to add students to a class! Here, we are using the [`addtoclass`](#adding-studentstudents-to-a-class-addtoclass) 
 command, which takes in the index of the class, followed by the indexes of the students.   
 Type `addtoclass 13 10` to add the student that you just added (in index 10) to the class that you just added (in index 13).  
 As shown, you can see the students that are added to the class. How cool is that?   
-![TutorialImageFive.png](images/TutorialImageFive.png)
+![TutorialImage5.png](images/UGCommandExamples/TutorialExample5.png)
+   
 6. Continuing on, let me introduce you to the Timetable tab! Here, we are using the [`view`](#viewing-of-different-tabs-view) command.    
 Type `view timetable` and press enter.
-![TutorialImageFour.png](images/TutorialImageFour.png)  
+   
+![TutorialImageFour.png](images/UGCommandExamples/ViewCommand.png)  
+
 Here, you can see all the classes that you are teaching in a nice, visual, weekly timetable format! On the first row which is Monday, you can see the 'Sec 4 A Math' class that you just added, with the correct timing.
 7. Now that you have experienced the core functionality, you are all ready to explore the other commands. 
 To delete, we have commands like `delete` and `deleteclass` for students and classes respectively, and even commands to `find` and `sort` classes and students when you have become more familiar with the app, just refer to the [Features](#features) below for details of each command.
