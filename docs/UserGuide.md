@@ -325,15 +325,17 @@ Format:
 * `RATE` must be less than $1,000,000/hr
 
 Examples:
-`addclass cn/CS2103T ct/MON 09:30-11:30 r/70 l/Nex Tuition Center`
+1. `addclass cn/CS2103T ct/MON 09:30-11:30 r/70 l/Nex Tuition Center`
 Adds a new class with name `CS2103T`, with class timing `MON 09:30-11:30`, with hourly rate of $`70`, at `Nex
 Tuition Center`.
 
-`addclass cn/Sec 4 E Maths ct/TUE 12:30-14:30 r/65 l/Block 123, Clementi Ave 6, #14-41`
+2. `addclass cn/Sec 4 E Maths ct/TUE 12:30-14:30 r/65 l/Block 123, Clementi Ave 6, #14-41`
 Adds a new class with name `Sec 4 E Maths`, with class timing `Tue 12:30-14:30`, with hourly rate of $`65`, at `Block 123, Clementi Ave 6, #14-41`.
 
 ![AddClassCommandExample](images/UGCommandExamples/AddClassCommand.png)
-
+<p align = "center">
+<b>Example 1:</b> Adding 2103T class
+</p>
 <div style="page-break-after: always;"></div>
 
 #### Editing a class: `editclass`
@@ -354,9 +356,13 @@ Format:
 * `RATE` must be less than $1,000,000/hr
 
 Examples:
-* `editclass 1 ct/wed 15:00-17:00` Edits the first class in the class list's `CLASS_TIMIMG` to be on Wednesday from 3pm to 5pm.
-  
+1. `editclass 1 ct/wed 15:00-17:00` Edits the first class in the class list's `CLASS_TIMIMG` to be on Wednesday from
+3pm to 5pm.
+
 ![EditClassCommandExample](images/UGCommandExamples/EditClassCommand.png)
+<p align = "center">
+<b>Example 1:</b> Editing class indexed 1
+</p>
 
 #### Adding student/students to a class: `addtoclass`
 <hr>
@@ -377,12 +383,14 @@ Format:
 * Size of the class will change to reflect the number of students in the class.
 
 Example:
-`addtoclass 13 1 2 3`
+1. `addtoclass 13 1 2 3`
 Adds the 1st, 2nd and 3rd student in the displayed student list in the `Students` tab into the 13th class in the
 displayed class list in the `Classes` tab, `size` of the class will increase by 3.
 
 ![AddToClassCommandExample](images/UGCommandExamples/AddToClassCommand.png)
-
+<p align = "center">
+<b>Example 1:</b> Adding students indexed 1, 2 and 3 to class indexed 13
+</p>
 
 #### Removing students from a class: `removefromclass`
 <hr>
@@ -399,11 +407,14 @@ Format:
 
 
 Example:
-`removefromclass 13 1 2 3`
+1. `removefromclass 13 1 2 3`
 Removes the 1st, 2nd and 3rd student in the displayed student list of the 13th class in the `classes` tab, causing the
 `size` of 1st class to decrease by 3.
 
 ![RemoveFromClassCommandExample](images/UGCommandExamples/RemoveFromClassCommand.png)
+<p align = "center">
+<b>Example 1:</b> Remove students indexed 1, 2 and 3 in class list from class indexed 13
+</p>
 
 <div style="page-break-after: always;"></div>
 
