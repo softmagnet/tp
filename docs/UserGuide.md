@@ -91,6 +91,7 @@ Lastly, if you would like to fill in Timestable with your own students, simply u
 
 ## Reading this User Guide
 ### General Symbols and Syntax
+
 Syntax | Definition
 --------|------------------
 `UPPER_CASE` | Words in `UPPER_CASE` are the inputs to be supplied by the user. <br> e.g. in `add n/NAME`, `NAME` is an input which can be used as `add n/John Doe`.
@@ -99,13 +100,14 @@ Syntax | Definition
 `...` | Indicates that the preceding field can be used multiple times. <br> e.g. `[t/TAG]…​` can be used multiple times, such as`t/friend` or `t/friend t/family`.
 
 ### Glossary
+
 Term | Definition
 --------|------------------
 NOK | Next-of-kin. Refers to the student's guardian, parent or perhaps close friend to be contacted regarding admin matters like payment.
 PARAMETERS | The inputs before the `/` are known as _parameters_. <br>e.g `n/NAME` (`n/` is the parameter for name). <br>e.g `a/ADDRESS` (`a/` is the parameter for name).
 INDEX | The number next to the Student/Class that shows its postion on the list.
 
---------------------------------------------------------------------------------------------------------------------
+<hr>
 
 <div style="page-break-after: always;"></div>
 ## Features
@@ -544,6 +546,7 @@ Examples:
 <p align = "center">
 <b>Example 1:</b> Sorts students in alphabetical order
 </p>
+
 
 <div markdown="block" class="alert alert-info">
 
