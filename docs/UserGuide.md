@@ -91,6 +91,7 @@ Lastly, if you would like to fill in Timestable with your own students, simply u
 
 ## Reading this User Guide
 ### General Symbols and Syntax
+
 Syntax | Definition
 --------|------------------
 `UPPER_CASE` | Words in `UPPER_CASE` are the inputs to be supplied by the user. <br> e.g. in `add n/NAME`, `NAME` is an input which can be used as `add n/John Doe`.
@@ -99,13 +100,14 @@ Syntax | Definition
 `...` | Indicates that the preceding field can be used multiple times. <br> e.g. `[t/TAG]…​` can be used multiple times, such as`t/friend` or `t/friend t/family`.
 
 ### Glossary
+
 Term | Definition
 --------|------------------
 NOK | Next-of-kin. Refers to the student's guardian, parent or perhaps close friend to be contacted regarding admin matters like payment.
 PARAMETERS | The inputs before the `/` are known as _parameters_. <br>e.g `n/NAME` (`n/` is the parameter for name). <br>e.g `a/ADDRESS` (`a/` is the parameter for name).
 INDEX | The number next to the Student/Class that shows its postion on the list.
 
---------------------------------------------------------------------------------------------------------------------
+<hr>
 
 <div style="page-break-after: always;"></div>
 ## Features
@@ -437,24 +439,27 @@ Examples:
     1.1. `findclass mon` returns all classes on Monday.  
     1.2. `findclass 10:00-12:00` returns all classes scheduled for `10:00 to 12:00` no matter which day of the week it belongs
       to.
-      | ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand1.png) |
-      | :--: |
-      | <b>Example 1.1: Finding all classes on Monday</b> |
+   
+| ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand1.png) |
+| :--: |
+| <b>Example 1.1: Finding all classes on Monday</b> |
 
 2. Two keywords  
     2.1 `findclass mon 11:30-13:30` returns the exact class on `Mon at 11:30-13:30`.  
     2.2 `findclass tue 11:00-12:00` returns the exact class on `Tue at 11:00-12:00`.
-      | ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand2.png) |
-      | :--: |
-      | <b>Example 2.1: Finding a class on Monday at 11:30-13:30</b> |
+   
+| ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand2.png) |
+| :--: |
+| <b>Example 2.1: Finding a class on Monday at 11:30-13:30</b> |
 
 
 3. Negative examples (Two or more keywords of the same type)  
     3.1 `findclass mon tue` returns nothing.  
     3.2 `findclass 09:00-10:30 11:00-12:00` returns nothing.
-      | ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand3.png) |
-      | :--: |
-      | <b>Example 3.1: `findclass` with two keywords of the same type</b> |
+   
+| ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand3.png) |
+| :--: |
+| <b>Example 3.1: `findclass` with two keywords of the same type</b> |
 
 
 <div style="page-break-after: always;"></div>
@@ -486,6 +491,8 @@ Examples:
 | ![FindClassNameCommandExample](images/UGCommandExamples/FindClassNameCommand.png) |
 | :--: |
 | <b>Example 1: Find classes with `math` in the class name</b> |
+
+
 #### Listing all the classes: `listclass`
 <hr>
 
@@ -554,6 +561,7 @@ Examples:
 <p align = "center">
 <b>Example 1:</b> Sorts students in alphabetical order
 </p>
+
 
 <div markdown="block" class="alert alert-info">
 
