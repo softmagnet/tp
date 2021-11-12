@@ -540,9 +540,10 @@ Examples:
 3. `sort timing asc` sorts classes based on their `CLASS_TIMING` starting from the earliest in the week to the latest.
 4. `sort timing desc` sorts classes based on their `CLASS_TIMING` starting from the latest in the week to the earliest.
 
-|![SortCommandExample](images/UGCommandExamples/SortCommand.png)|
-|:--:|
-| <b>Example 1:</b>`sort name asc`|
+![SortCommandExample](images/UGCommandExamples/SortCommand.png)
+<p align = "center">
+<b>Example 1:</b> Sorts students in alphabetical order
+</p>
 
 <div markdown="block" class="alert alert-info">
 
