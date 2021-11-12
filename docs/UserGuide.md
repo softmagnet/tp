@@ -91,19 +91,19 @@ Lastly, if you would like to fill in Timestable with your own students, simply u
 
 ## Reading this User Guide
 ### General Symbols and Syntax
-Syntax | Definition|
---------|------------------|
-`UPPER_CASE` | Words in `UPPER_CASE` are the inputs to be supplied by the user. <br> e.g. in `add n/NAME`, `NAME` is an input which can be used as `add n/John Doe`.|
-`a/` | Signifies a field. The user inputs the field after the signifier. Also known as a parameter. (see [Glossary](#Glossary))|
-`[a/UPPER_CASE]` | Items in square brackets refer to optional fields. <br> e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or just `n/John Doe`.|
-`...` | Indicates that the preceding field can be used multiple times. <br> e.g. `[t/TAG]…​` can be used multiple times, such as`t/friend` or `t/friend t/family`.|
+Syntax | Definition
+--------|------------------
+`UPPER_CASE` | Words in `UPPER_CASE` are the inputs to be supplied by the user. <br> e.g. in `add n/NAME`, `NAME` is an input which can be used as `add n/John Doe`.
+`a/` | Signifies a field. The user inputs the field after the signifier. Also known as a parameter. (see [Glossary](#Glossary))
+`[a/UPPER_CASE]` | Items in square brackets refer to optional fields. <br> e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or just `n/John Doe`.
+`...` | Indicates that the preceding field can be used multiple times. <br> e.g. `[t/TAG]…​` can be used multiple times, such as`t/friend` or `t/friend t/family`.
 
 ### Glossary
-Term | Definition|
---------|------------------|
-NOK | Next-of-kin. Refers to the student's guardian, parent or perhaps close friend to be contacted regarding admin matters like payment.|
-PARAMETERS | The inputs before the `/` are known as _parameters_. <br>e.g `n/NAME` (`n/` is the parameter for name). <br>e.g `a/ADDRESS` (`a/` is the parameter for name).|
-INDEX | The number next to the Student/Class that shows its postion on the list.|
+Term | Definition
+--------|------------------
+NOK | Next-of-kin. Refers to the student's guardian, parent or perhaps close friend to be contacted regarding admin matters like payment.
+PARAMETERS | The inputs before the `/` are known as _parameters_. <br>e.g `n/NAME` (`n/` is the parameter for name). <br>e.g `a/ADDRESS` (`a/` is the parameter for name).
+INDEX | The number next to the Student/Class that shows its postion on the list.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -150,7 +150,7 @@ Adds a student with `NAME` `John Doe`, `PHONE` `98765432`, `EMAIL` `johnd@exampl
 
 | ![AddCommandExample](images/UGCommandExamples/AddCommand.png) |
 | :--: |
-| <b>Example 1</b> | 
+| <b>Example 1:</b> Add John Doe | 
 
 
 #### Editing a student : `edit`
@@ -178,20 +178,25 @@ Format:
 * `TAG` can have a maximum of 15 characters per tag, with a maximum of 5 tags.
 
 Examples (editing student information only):
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the `PHONE` and `EMAIL` of the 1st student to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` Edits the `NAME` of the 2nd student to be `Betsy Crower` and clears all existing `TAG`s.
-* `edit 1 n/kevin p/12345678` Edits the `NAME` and `PHONE` of student 1 to become `kevin` and `12345678`.
-* `edit 4 n/John Walker a/4 Petir Road #16-04 Singapore 657891` Edits the `NAME` and `ADDRESS` of the 4th person to be
+1. `edit 1 p/91234567 e/johndoe@example.com` Edits the `PHONE` and `EMAIL` of the 1st student to be `91234567` and `johndoe@example.com` respectively.
+2. `edit 2 n/Betsy Crower t/` Edits the `NAME` of the 2nd student to be `Betsy Crower` and clears all existing `TAG`s.
+3. `edit 1 n/kevin p/12345678` Edits the `NAME` and `PHONE` of student 1 to become `kevin` and `12345678`.
+4. `edit 4 n/John Walker a/4 Petir Road #16-04 Singapore 657891` Edits the `NAME` and `ADDRESS` of the 4th person to be
   `John Walker` and `4 Petir Road #16-04 Singapore 657891` respectively.
 
-![EditCommandExample1](images/UGCommandExamples/EditCommand1.png)
+| ![EditCommandExample1](images/UGCommandExamples/EditCommand1.png) |
+| :--: |
+| <b>Example 1:</b> Edit Student 1 |
 
 Examples (also editing nok information):
-* `edit 2 nok/ p/98429239` Edits 2nd student's NOK's `PHONE` to be `98429239`.
-* `edit 3 a/Com2 nok/ p/98429239` Edits 3rd student's `ADDRESS` to be `Com2` while also editing
+1. `edit 2 nok/ p/98429239` Edits 2nd student's NOK's `PHONE` to be `98429239`.
+2. `edit 3 a/Com2 nok/ p/98429239` Edits 3rd student's `ADDRESS` to be `Com2` while also editing
   NOK's `PHONE` to be `98429239`.
 
-![EditCommandExample2](images/UGCommandExamples/EditCommand2.png)
+| ![EditCommandExample2](images/UGCommandExamples/EditCommand2.png) |
+| :--: |
+| <b>Example 1:</b> Edit Student 2 with next-of-kin information |
+
 
 #### Locating students by name: `findname`
 <hr>
@@ -212,10 +217,12 @@ Format:
   but not `Alex Yu`
 
 Examples:
-* `findname John` returns `john` and `John Doe` in both `Students` and `Classes` tab.
-* `findname alex, david` returns `Alex Yeoh`, `David Li` in both `Students` and `Classes` tab.<br>
+1. `findname John` returns `john` and `John Doe` in both `Students` and `Classes` tab.
+2. `findname alex, david` returns `Alex Yeoh`, `David Li` in both `Students` and `Classes` tab.<br>
 
-![FindnNameCommandExample](images/UGCommandExamples/FindNameCommand.png)
+| ![FindnNameCommandExample](images/UGCommandExamples/FindNameCommand.png) |
+| :--: |
+| <b>Example 1:</b> Finds Student with name John |
 
 <div markdown="block" class="alert alert-info">
 
@@ -251,11 +258,13 @@ Format:
 * The search is case-insensitive. e.g `math` will match `Math`.
 
 Examples:
-* `findtag math` returns `Alex Yeoh` with the `A Math` `TAG` and `John Doe` with the `C Math` `TAG` in both `Students` and `Classes` tab.
-* `findtag math, physics` returns `Alex Yeoh` with the `A Math` and `Biology` `TAG`s in both `Students` and `Classes` tab.
+1. `findtag math` returns `Alex Yeoh` with the `A Math` `TAG` and `John Doe` with the `C Math` `TAG` in both `Students` and `Classes` tab.
+2. `findtag math, physics` returns `Alex Yeoh` with the `A Math` and `Biology` `TAG`s in both `Students` and `Classes` tab.
   <br>
 
-![FindTagCommandExample](images/UGCommandExamples/FindTagCommand.png)
+| ![FindTagCommandExample](images/UGCommandExamples/FindTagCommand.png) |
+| :--: |
+| <b>Example 1:</b> Finds Students with tag math  |
 
 
 <div markdown="block" class="alert alert-info">
@@ -292,10 +301,12 @@ Format:
 * The index refers to the index number shown in the displayed student list in the `Students` tab.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the TimesTable.
-* `findname Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+1. `list` followed by `delete 2` deletes the 2nd student in the TimesTable.
+2. `findname Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-![DeleteCommandExample](images/UGCommandExamples/DeleteCommand.png)
+| ![DeleteCommandExample](images/UGCommandExamples/DeleteCommand.png) |
+| :--: |
+| <b>Example 1:</b> Deletes the 2nd student |
 
 ### Class commands
 
