@@ -20,7 +20,8 @@ command box. Other GUI applications are controlled by clicking on buttons and bo
 If you can type fast, TimesTable can get your class management tasks done faster than traditional GUI applications.
 Using the CLI allows you to control the application quickly while still having the visual benefits of a GUI.
 
-This guide will take you through the commands of **TimesTable** step by step. To get started with using **TimesTable**,
+This guide will take you through the commands of **TimesTable** step by step. For more information about how to use the
+guide, head to the [Reading this User Guide](#reading-this-user-guide) section. To get started with using **TimesTable**,
 jump to the [Quick Start](#quick-start) section. For a full list of commands and detailed instructions on each one, head to the
 [Features](#features) section.
 
