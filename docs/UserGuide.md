@@ -436,27 +436,27 @@ Examples:
     1.2. `findclass 10:00-12:00` returns all classes scheduled for `10:00 to 12:00` no matter which day of the week it belongs
       to.
    
-| ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand1.png) |
-| :--: |
-| <b>Example 1.1: Finding all classes on Monday</b> |
-
+![FindClassCommandExample](images/UGCommandExamples/FindClassCommand1.png)
+<p align = "center">
+<b>Example 1.1:</b> Finding all classes on Monday
+</p>
 2. Two keywords  
     2.1 `findclass mon 11:30-13:30` returns the exact class on `Mon at 11:30-13:30`.  
     2.2 `findclass tue 11:00-12:00` returns the exact class on `Tue at 11:00-12:00`.
    
-| ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand2.png) |
-| :--: |
-| <b>Example 2.1: Finding a class on Monday at 11:30-13:30</b> |
-
+![FindClassCommandExample](images/UGCommandExamples/FindClassCommand2.png)
+<p align = "center">
+<b>Example 2.1:</b> Finding a class on Monday at 11:30-13:30
+</p>
 
 3. Negative examples (Two or more keywords of the same type)  
     3.1 `findclass mon tue` returns nothing.  
     3.2 `findclass 09:00-10:30 11:00-12:00` returns nothing.
    
-| ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand3.png) |
-| :--: |
-| <b>Example 3.1: `findclass` with two keywords of the same type</b> |
-
+![FindClassCommandExample](images/UGCommandExamples/FindClassCommand3.png)
+<p align = "center">
+<b>Example 3.1:</b> `findclass` with two keywords of the same type
+</p>
 
 <div style="page-break-after: always;"></div>
 
@@ -468,7 +468,6 @@ Note that if you want to display the list of classes again, run `listclass`.
 
 Format:
 `findclassname CLASS_NAME [, [CLASS_NAME]...]`
-<!---todo fill in inner working--->
 
 * The search is case-insensitive `PHYSICS` will match 'physics'.
 * The search terms are split by commas. e.g. `findclassname sec 4 physics, jc math`
@@ -484,10 +483,10 @@ Examples:
 2. `findclassname Sec, 4, maths` returns all the classes with `sec` or `4` or `maths` in the class name. Hence,
   class with name `sec 4 physics` and class with name `JC maths` would both be returned.
   
-| ![FindClassNameCommandExample](images/UGCommandExamples/FindClassNameCommand.png) |
-| :--: |
-| <b>Example 1: Find classes with `math` in the class name</b> |
-
+![FindClassNameCommandExample](images/UGCommandExamples/FindClassNameCommand.png)
+<p align = "center">
+<b>Example 1:</b> Find classes with `math` in the class name
+</p>
 
 #### Listing all the classes: `listclass`
 <hr>
