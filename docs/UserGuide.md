@@ -616,6 +616,8 @@ Examples:
 * Class size will **not** be affected by filtering students (using FindName or FindTag).
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### Viewing of different tabs: `view`
 <hr>
 
