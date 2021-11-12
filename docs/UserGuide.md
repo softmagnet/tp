@@ -81,8 +81,7 @@ As shown, you can see the students that are added to the class. How cool is that
 6. Continuing on, let me introduce you to the Timetable tab! Here, we are using the [`view`](#viewing-of-different-tabs-view) command.
 Type `view timetable` and press enter.
    ![TutorialImageFour.png](images/UGCommandExamples/ViewCommand.png)
-
-![TutorialImage6.png](images/UGCommandExamples/TutorialExample6.png)
+   
 Here, you can see all the classes that you are teaching in a nice, visual, weekly timetable format! On the first row which is Monday, you can see the 'Sec 4 A Math' class that you just added, with the correct timing.
 
 7. Now that you have experienced the core functionality, you are all ready to explore the other commands. 
