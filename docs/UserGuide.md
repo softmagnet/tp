@@ -91,6 +91,7 @@ Lastly, if you would like to fill in Timestable with your own students, simply u
 
 ## Reading this User Guide
 ### General Symbols and Syntax
+
 Syntax | Definition
 --------|------------------
 `UPPER_CASE` | Words in `UPPER_CASE` are the inputs to be supplied by the user. <br> e.g. in `add n/NAME`, `NAME` is an input which can be used as `add n/John Doe`.
@@ -99,13 +100,14 @@ Syntax | Definition
 `...` | Indicates that the preceding field can be used multiple times. <br> e.g. `[t/TAG]…​` can be used multiple times, such as`t/friend` or `t/friend t/family`.
 
 ### Glossary
+
 Term | Definition
 --------|------------------
 NOK | Next-of-kin. Refers to the student's guardian, parent or perhaps close friend to be contacted regarding admin matters like payment.
 PARAMETERS | The inputs before the `/` are known as _parameters_. <br>e.g `n/NAME` (`n/` is the parameter for name). <br>e.g `a/ADDRESS` (`a/` is the parameter for name).
 INDEX | The number next to the Student/Class that shows its postion on the list.
 
---------------------------------------------------------------------------------------------------------------------
+<hr>
 
 <div style="page-break-after: always;"></div>
 ## Features
@@ -148,9 +150,10 @@ Adds a student with `NAME` `John Doe`, `PHONE` `98765432`, `EMAIL` `johnd@exampl
 2. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/slow learner nok/ n/Karen e/karenSUper@gmail.com p/99994444 a/311, Clementi Ave 2, #02-25`
  Adds a student with `NAME` `Betsy Crowe `, `PHONE` `1234567 `, `EMAIL` `betsycrowe@example.com`, `ADDRESS` `Newgate Prison `,  `TAG` `friend`, with next-of-kin with `NAME` `Karen`, `PHONE` `99994444 `, `EMAIL` `karenSUper@gmail.com `, `ADDRESS` `311, Clementi Ave 2, #02-25`
 
-| ![AddCommandExample](images/UGCommandExamples/AddCommand.png) |
-| :--: |
-| <b>Example 1:</b> Add John Doe | 
+ ![AddCommandExample](images/UGCommandExamples/AddCommand.png)
+<p align = "center">
+<b>Example 1:</b> Add John Doe 
+</p>
 
 
 #### Editing a student : `edit`
@@ -184,18 +187,20 @@ Examples (editing student information only):
 4. `edit 4 n/John Walker a/4 Petir Road #16-04 Singapore 657891` Edits the `NAME` and `ADDRESS` of the 4th person to be
   `John Walker` and `4 Petir Road #16-04 Singapore 657891` respectively.
 
-| ![EditCommandExample1](images/UGCommandExamples/EditCommand1.png) |
-| :--: |
-| <b>Example 1:</b> Edit Student 1 |
+![EditCommandExample1](images/UGCommandExamples/EditCommand1.png)
+<p align = "center">
+<b>Example 1:</b> Edit Student 1 
+</p>
 
 Examples (also editing nok information):
 1. `edit 2 nok/ p/98429239` Edits 2nd student's NOK's `PHONE` to be `98429239`.
 2. `edit 3 a/Com2 nok/ p/98429239` Edits 3rd student's `ADDRESS` to be `Com2` while also editing
   NOK's `PHONE` to be `98429239`.
 
-| ![EditCommandExample2](images/UGCommandExamples/EditCommand2.png) |
-| :--: |
-| <b>Example 1:</b> Edit Student 2 with next-of-kin information |
+![EditCommandExample2](images/UGCommandExamples/EditCommand2.png)
+<p align = "center">
+<b>Example 1:</b> Edit Student 2 with next-of-kin information
+</p>
 
 
 #### Locating students by name: `findname`
@@ -220,9 +225,10 @@ Examples:
 1. `findname John` returns `john` and `John Doe` in both `Students` and `Classes` tab.
 2. `findname alex, david` returns `Alex Yeoh`, `David Li` in both `Students` and `Classes` tab.<br>
 
-| ![FindnNameCommandExample](images/UGCommandExamples/FindNameCommand.png) |
-| :--: |
-| <b>Example 1:</b> Finds Student with name John |
+![FindnNameCommandExample](images/UGCommandExamples/FindNameCommand.png)
+<p align = "center">
+<b>Example 1:</b> Finds Student with name John
+</p>
 
 <div markdown="block" class="alert alert-info">
 
@@ -262,9 +268,10 @@ Examples:
 2. `findtag math, physics` returns `Alex Yeoh` with the `A Math` and `Biology` `TAG`s in both `Students` and `Classes` tab.
   <br>
 
-| ![FindTagCommandExample](images/UGCommandExamples/FindTagCommand.png) |
-| :--: |
-| <b>Example 1:</b> Finds Students with tag math  |
+![FindTagCommandExample](images/UGCommandExamples/FindTagCommand.png)
+<p align = "center">
+Example 1: Finds Students with tag math
+</p>
 
 
 <div markdown="block" class="alert alert-info">
@@ -304,9 +311,10 @@ Examples:
 1. `list` followed by `delete 2` deletes the 2nd student in the TimesTable.
 2. `findname Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-| ![DeleteCommandExample](images/UGCommandExamples/DeleteCommand.png) |
-| :--: |
-| <b>Example 1:</b> Deletes the 2nd student |
+![DeleteCommandExample](images/UGCommandExamples/DeleteCommand.png)
+<p align = "center">
+Example 1: Deletes the 2nd student 
+</p>
 
 ### Class commands
 
@@ -325,15 +333,17 @@ Format:
 * `RATE` must be less than $1,000,000/hr
 
 Examples:
-`addclass cn/CS2103T ct/MON 09:30-11:30 r/70 l/Nex Tuition Center`
+1. `addclass cn/CS2103T ct/MON 09:30-11:30 r/70 l/Nex Tuition Center`
 Adds a new class with name `CS2103T`, with class timing `MON 09:30-11:30`, with hourly rate of $`70`, at `Nex
 Tuition Center`.
 
-`addclass cn/Sec 4 E Maths ct/TUE 12:30-14:30 r/65 l/Block 123, Clementi Ave 6, #14-41`
+2. `addclass cn/Sec 4 E Maths ct/TUE 12:30-14:30 r/65 l/Block 123, Clementi Ave 6, #14-41`
 Adds a new class with name `Sec 4 E Maths`, with class timing `Tue 12:30-14:30`, with hourly rate of $`65`, at `Block 123, Clementi Ave 6, #14-41`.
 
 ![AddClassCommandExample](images/UGCommandExamples/AddClassCommand.png)
-
+<p align = "center">
+<b>Example 1:</b> Adding 2103T class
+</p>
 <div style="page-break-after: always;"></div>
 
 #### Editing a class: `editclass`
@@ -354,9 +364,13 @@ Format:
 * `RATE` must be less than $1,000,000/hr
 
 Examples:
-* `editclass 1 ct/wed 15:00-17:00` Edits the first class in the class list's `CLASS_TIMIMG` to be on Wednesday from 3pm to 5pm.
-  
+1. `editclass 1 ct/wed 15:00-17:00` Edits the first class in the class list's `CLASS_TIMIMG` to be on Wednesday from
+3pm to 5pm.
+
 ![EditClassCommandExample](images/UGCommandExamples/EditClassCommand.png)
+<p align = "center">
+<b>Example 1:</b> Editing class indexed 1
+</p>
 
 #### Adding student/students to a class: `addtoclass`
 <hr>
@@ -377,12 +391,14 @@ Format:
 * Size of the class will change to reflect the number of students in the class.
 
 Example:
-`addtoclass 13 1 2 3`
+1. `addtoclass 13 1 2 3`
 Adds the 1st, 2nd and 3rd student in the displayed student list in the `Students` tab into the 13th class in the
 displayed class list in the `Classes` tab, `size` of the class will increase by 3.
 
 ![AddToClassCommandExample](images/UGCommandExamples/AddToClassCommand.png)
-
+<p align = "center">
+<b>Example 1:</b> Adding students indexed 1, 2 and 3 to class indexed 13
+</p>
 
 #### Removing students from a class: `removefromclass`
 <hr>
@@ -399,11 +415,14 @@ Format:
 
 
 Example:
-`removefromclass 13 1 2 3`
+1. `removefromclass 13 1 2 3`
 Removes the 1st, 2nd and 3rd student in the displayed student list of the 13th class in the `classes` tab, causing the
 `size` of 1st class to decrease by 3.
 
 ![RemoveFromClassCommandExample](images/UGCommandExamples/RemoveFromClassCommand.png)
+<p align = "center">
+<b>Example 1:</b> Remove students indexed 1, 2 and 3 in class list from class indexed 13
+</p>
 
 <div style="page-break-after: always;"></div>
 
@@ -433,25 +452,28 @@ Examples:
     1.1. `findclass mon` returns all classes on Monday.  
     1.2. `findclass 10:00-12:00` returns all classes scheduled for `10:00 to 12:00` no matter which day of the week it belongs
       to.
-      | ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand1.png) |
-      | :--: |
-      | <b>Example 1.1: Finding all classes on Monday</b> |
-
+   
+![FindClassCommandExample](images/UGCommandExamples/FindClassCommand1.png)
+<p align = "center">
+<b>Example 1.1:</b> Finding all classes on Monday
+</p>
 2. Two keywords  
     2.1 `findclass mon 11:30-13:30` returns the exact class on `Mon at 11:30-13:30`.  
     2.2 `findclass tue 11:00-12:00` returns the exact class on `Tue at 11:00-12:00`.
-      | ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand2.png) |
-      | :--: |
-      | <b>Example 2.1: Finding a class on Monday at 11:30-13:30</b> |
-
+   
+![FindClassCommandExample](images/UGCommandExamples/FindClassCommand2.png)
+<p align = "center">
+<b>Example 2.1:</b> Finding a class on Monday at 11:30-13:30
+</p>
 
 3. Negative examples (Two or more keywords of the same type)  
     3.1 `findclass mon tue` returns nothing.  
     3.2 `findclass 09:00-10:30 11:00-12:00` returns nothing.
-      | ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand3.png) |
-      | :--: |
-      | <b>Example 3.1: `findclass` with two keywords of the same type</b> |
-
+   
+![FindClassCommandExample](images/UGCommandExamples/FindClassCommand3.png)
+<p align = "center">
+<b>Example 3.1:</b> `findclass` with two keywords of the same type
+</p>
 
 <div style="page-break-after: always;"></div>
 
@@ -463,7 +485,6 @@ Note that if you want to display the list of classes again, run `listclass`.
 
 Format:
 `findclassname CLASS_NAME [, [CLASS_NAME]...]`
-<!---todo fill in inner working--->
 
 * The search is case-insensitive `PHYSICS` will match 'physics'.
 * The search terms are split by commas. e.g. `findclassname sec 4 physics, jc math`
@@ -479,9 +500,11 @@ Examples:
 2. `findclassname Sec, 4, maths` returns all the classes with `sec` or `4` or `maths` in the class name. Hence,
   class with name `sec 4 physics` and class with name `JC maths` would both be returned.
   
-| ![FindClassNameCommandExample](images/UGCommandExamples/FindClassNameCommand.png) |
-| :--: |
-| <b>Example 1: Find classes with `math` in the class name</b> |
+![FindClassNameCommandExample](images/UGCommandExamples/FindClassNameCommand.png)
+<p align = "center">
+<b>Example 1:</b> Find classes with `math` in the class name
+</p>
+
 #### Listing all the classes: `listclass`
 <hr>
 
@@ -550,6 +573,7 @@ Examples:
 <p align = "center">
 <b>Example 1:</b> Sorts students in alphabetical order
 </p>
+
 
 <div markdown="block" class="alert alert-info">
 
