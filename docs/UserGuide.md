@@ -232,6 +232,8 @@ Format:
   e.g. `findname alex lim, bernice yu` will return `Alex Lim`, `Bernice Yu`.
 * The entire search term is used for matching e.g. `findname Alex L` will match `Alex Lim`
   but not `Alex Yu`
+  
+<div style="page-break-after: always;"></div>
 
 Examples:
 1. `findname John` returns `john` and `John Doe` in both `Students` and `Classes` tab.
@@ -382,6 +384,8 @@ Format:
 * Edit commands that will create a clash of `CLASS_TIMING` with other classes is not accepted.
 * `RATE` must be less than $1,000,000/hr
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 1. `editclass 1 ct/wed 15:00-17:00` Edits the first class in the class list's `CLASS_TIMIMG` to be on Wednesday from
 3pm to 5pm.
@@ -410,6 +414,8 @@ Format:
 * Students that already exist in the class can't be added to the same class.
 * If you enter duplicate student indices in one command, Timestable will only add the student once.
 * Size of the class will change to reflect the number of students in the class.
+
+<div style="page-break-after: always;"></div>
 
 Example:
 1. `addtoclass 13 1 2 3`
@@ -609,6 +615,8 @@ Examples:
 
 * Class size will **not** be affected by filtering students (using FindName or FindTag).
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### Viewing of different tabs: `view`
 <hr>
