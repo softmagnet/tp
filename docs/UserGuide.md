@@ -64,16 +64,11 @@ We are adding a class 'Sec 4 A Maths' using the `cn/` parameter, at 11:30am to 1
 Again, press enter to add the class to our TimesTable.
 
 
-4. Oh! Notice that you have been transported to another tab. This is known as the Class Tab,   
+4. Oh! Notice that you have been transported to another tab. This is known as the Classes Tab,   
 which shows you all the information about the Classes you are teaching.  
 ![TutorialImage4.png](images/UGCommandExamples/TutorialExample4.png)
-<<<<<<< HEAD
 When we scroll down, you can see that 'Sec 4 A Maths' is added at the bottom.  
 
-=======
-When we scroll down, you can see that 'Sec 4 A Maths' is added at the bottom.
-   
->>>>>>> b6efb58b49e023c061039ca3cdf668d60316e019
 
 5. See that blank space on the right? It is where all the students who are under that class go to.  
 I will now show you how to add students to a class! Here, we are using the [`addtoclass`](#adding-studentstudents-to-a-class-addtoclass) 
@@ -83,17 +78,12 @@ As shown, you can see the students that are added to the class. How cool is that
 ![TutorialImage5.png](images/UGCommandExamples/TutorialExample5.png)
    
 6. Continuing on, let me introduce you to the Timetable tab! Here, we are using the [`view`](#viewing-of-different-tabs-view) command.    
-<<<<<<< HEAD
-Type `view timetable` and press enter.  
-   ![TutorialImageFour.png](images/UGCommandExamples/ViewCommand.png)  
-=======
 Type `view timetable` and press enter.
-
 ![TutorialImage6.png](images/UGCommandExamples/TutorialExample6.png)
->>>>>>> b6efb58b49e023c061039ca3cdf668d60316e019
-Here, you can see all the classes that you are teaching in a nice, visual, weekly timetable format! On the first row which is Monday, you can see the 'Sec 4 A Math' class that you just added, with the correct timing.
+Here, you can see all the classes that you are teaching in a nice, visual, weekly timetable format! On the first row which is Monday, you can see the 'Sec 4 A Math' class that you just added, with the correct timing.  
+  
 
-7. Now that you have experienced the core functionality, you are all ready to explore the other commands. 
+7. Now that you have experienced the core functionality, you are all ready to explore the other commands.   
 To delete, we have commands like `delete` and `deleteclass` for students and classes respectively, and even commands to `find` and `sort` classes and students when you have become more familiar with the app, just refer to the [Features](#features) below for details of each command.
 Lastly, if you would like to fill in Timestable with your own students, simply use the  **`clear`** command to delete all the sample students and classes.
 
@@ -111,7 +101,7 @@ Syntax | Definition|
 Term | Definition|
 --------|------------------|
 NOK | Next-of-kin. Refers to the student's guardian, parent or perhaps close friend to be contacted regarding admin matters like payment.|
-PARAMETERS | The inputs before the `/` are known as _parameters_. <br>e.g `n/NAME` (`n/` is the parameter for name) <br>e.g `a/ADDRESS` (`a/` is the parameter for name).|
+PARAMETERS | The inputs before the `/` are known as _parameters_. <br>e.g `n/NAME` (`n/` is the parameter for name). <br>e.g `a/ADDRESS` (`a/` is the parameter for name).|
 INDEX | The number next to the Student/Class that shows its postion on the list.|
 
 --------------------------------------------------------------------------------------------------------------------
@@ -143,19 +133,24 @@ Format:
 * The command does not allow adding duplicate students - as defined as the student having the same name, ignoring case.
 * `NAME` can have a maximum of 120 characters.
 * `PHONE_NUMBER` has to be between 3-25 numbers.
-* `TAG` can have a maximum of 15 characters per tag, with a maximum of 5 tags.
+* `TAG` can have a maximum of 15 characters per tag.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A student can have any number of tags (including 0).
+A student can have 0 to 5 tags.
 </div>
 
 Examples:
 
-`add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com a/311, Clementi Ave 2, #02-25`
+1. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com a/311, Clementi Ave 2, #02-25`
+Adds a student with `NAME` `John Doe`, `PHONE` `98765432`, `EMAIL` `johnd@example.com`, `ADDRESS` `John street, block 123, #01-01`,  `TAG` `ALevels`, with next-of-kin with `NAME` `Mary Doe`, `PHONE` `93334848`, `EMAIL` `mary23@gmail.com`, `ADDRESS` `311, Clementi Ave 2, #02-25`
 
-`add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/slow learner nok/ n/Karen e/karenSUper@gmail.com p/99994444 a/311, Clementi Ave 2, #02-25`
+2. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/slow learner nok/ n/Karen e/karenSUper@gmail.com p/99994444 a/311, Clementi Ave 2, #02-25`
+ Adds a student with `NAME` `Betsy Crowe `, `PHONE` `1234567 `, `EMAIL` `betsycrowe@example.com`, `ADDRESS` `Newgate Prison `,  `TAG` `friend`, with next-of-kin with `NAME` `Karen`, `PHONE` `99994444 `, `EMAIL` `karenSUper@gmail.com `, `ADDRESS` `311, Clementi Ave 2, #02-25`
 
-![AddCommandExample](images/UGCommandExamples/AddCommand.png)
+| ![AddCommandExample](images/UGCommandExamples/AddCommand.png) |
+| :--: |
+| <b>Example 1</b> | 
+
 
 #### Editing a student : `edit`
 <hr>
@@ -172,6 +167,7 @@ Format:
 * An optional `nok/` (next-of-kin) field can be provided to edit the student's next-of-kin (NOK). All fields that come after `nok/`
   will be for the student's next-of-kin. (same rule from `add` command applies)
     * If `nok/` is provided, at least one of the optional fields belonging to NOK must be provided.
+    * Inputs in the first segment are about student information whereas inputs in the second segment are about NOK's information.
 * The order of input within its own segment is swappable, but the segments themselves are not.
 * When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
     * You can remove all the student's tags by typing `t/` without
@@ -471,7 +467,7 @@ Examples:
 #### Listing all the classes: `listclass`
 <hr>
 
-Shows a list of all classes in the Class tab.
+Shows a list of all classes in the Classes tab.
 
 Format: `listclass`
 
@@ -480,7 +476,7 @@ Format: `listclass`
 #### Selecting of classes: `class`
 <hr>
 
-Selects a class in the class tab and displays its students without the need to use the mouse to double click the respective class.
+Selects a class in the Classes tab and displays its students without the need to use the mouse to double click the respective class.
 
 Format:
 `class CLASS_INDEX`
@@ -489,7 +485,7 @@ Format:
 * `CLASS_INDEX` must be an index of a class that exists in the displayed class list.
 
 Examples:
-* `class 1` selects the class with `CLASS_INDEX` of `1` and displays its students in the class tab.
+* `class 1` selects the class with `CLASS_INDEX` of `1` and displays its students in the Classes tab.
 
 ![SelectClassCommandExample](images/UGCommandExamples/ClassCommand.png)
 
