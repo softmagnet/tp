@@ -73,7 +73,7 @@ We are adding a class 'Sec 4 A Maths' using the `cn/` parameter, at 11:30am to 1
 Again, press enter to add the class to our TimesTable.
    
 
-4. Oh! Notice that you have been transported to another tab. This is known as the Classes Tab,   
+4. Oh! Notice that you have been transported to another tab. This is known as the Classes Tab, 
 which shows you all the information about the Classes you are teaching.  
 ![TutorialImage4.png](images/UGCommandExamples/TutorialExample4.png)
 When we scroll down, you can see that 'Sec 4 A Maths' is added at the bottom.
