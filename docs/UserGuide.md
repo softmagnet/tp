@@ -150,9 +150,10 @@ Adds a student with `NAME` `John Doe`, `PHONE` `98765432`, `EMAIL` `johnd@exampl
 2. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/slow learner nok/ n/Karen e/karenSUper@gmail.com p/99994444 a/311, Clementi Ave 2, #02-25`
  Adds a student with `NAME` `Betsy Crowe `, `PHONE` `1234567 `, `EMAIL` `betsycrowe@example.com`, `ADDRESS` `Newgate Prison `,  `TAG` `friend`, with next-of-kin with `NAME` `Karen`, `PHONE` `99994444 `, `EMAIL` `karenSUper@gmail.com `, `ADDRESS` `311, Clementi Ave 2, #02-25`
 
-| ![AddCommandExample](images/UGCommandExamples/AddCommand.png) |
-| :--: |
-| <b>Example 1:</b> Add John Doe | 
+ ![AddCommandExample](images/UGCommandExamples/AddCommand.png)
+<p align = "center">
+<b>Example 1:</b> Add John Doe 
+</p>
 
 
 #### Editing a student : `edit`
@@ -186,18 +187,20 @@ Examples (editing student information only):
 4. `edit 4 n/John Walker a/4 Petir Road #16-04 Singapore 657891` Edits the `NAME` and `ADDRESS` of the 4th person to be
   `John Walker` and `4 Petir Road #16-04 Singapore 657891` respectively.
 
-| ![EditCommandExample1](images/UGCommandExamples/EditCommand1.png) |
-| :--: |
-| <b>Example 1:</b> Edit Student 1 |
+![EditCommandExample1](images/UGCommandExamples/EditCommand1.png)
+<p align = "center">
+<b>Example 1:</b> Edit Student 1 
+</p>
 
 Examples (also editing nok information):
 1. `edit 2 nok/ p/98429239` Edits 2nd student's NOK's `PHONE` to be `98429239`.
 2. `edit 3 a/Com2 nok/ p/98429239` Edits 3rd student's `ADDRESS` to be `Com2` while also editing
   NOK's `PHONE` to be `98429239`.
 
-| ![EditCommandExample2](images/UGCommandExamples/EditCommand2.png) |
-| :--: |
-| <b>Example 1:</b> Edit Student 2 with next-of-kin information |
+![EditCommandExample2](images/UGCommandExamples/EditCommand2.png)
+<p align = "center">
+<b>Example 1:</b> Edit Student 2 with next-of-kin information
+</p>
 
 
 #### Locating students by name: `findname`
@@ -222,9 +225,10 @@ Examples:
 1. `findname John` returns `john` and `John Doe` in both `Students` and `Classes` tab.
 2. `findname alex, david` returns `Alex Yeoh`, `David Li` in both `Students` and `Classes` tab.<br>
 
-| ![FindnNameCommandExample](images/UGCommandExamples/FindNameCommand.png) |
-| :--: |
-| <b>Example 1:</b> Finds Student with name John |
+![FindnNameCommandExample](images/UGCommandExamples/FindNameCommand.png)
+<p align = "center">
+<b>Example 1:</b> Finds Student with name John
+</p>
 
 <div markdown="block" class="alert alert-info">
 
@@ -264,9 +268,10 @@ Examples:
 2. `findtag math, physics` returns `Alex Yeoh` with the `A Math` and `Biology` `TAG`s in both `Students` and `Classes` tab.
   <br>
 
-| ![FindTagCommandExample](images/UGCommandExamples/FindTagCommand.png) |
-| :--: |
-| <b>Example 1:</b> Finds Students with tag math  |
+![FindTagCommandExample](images/UGCommandExamples/FindTagCommand.png)
+<p align = "center">
+Example 1: Finds Students with tag math
+</p>
 
 
 <div markdown="block" class="alert alert-info">
@@ -306,9 +311,10 @@ Examples:
 1. `list` followed by `delete 2` deletes the 2nd student in the TimesTable.
 2. `findname Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-| ![DeleteCommandExample](images/UGCommandExamples/DeleteCommand.png) |
-| :--: |
-| <b>Example 1:</b> Deletes the 2nd student |
+![DeleteCommandExample](images/UGCommandExamples/DeleteCommand.png)
+<p align = "center">
+Example 1: Deletes the 2nd student 
+</p>
 
 ### Class commands
 
