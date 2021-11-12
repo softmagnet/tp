@@ -404,7 +404,6 @@ Note that if you want to display the list of classes again, run `listclass`.
 
 Format: `findclass CLASS_TIMING`
 
-<!---todo fill in inner working--->
 
 * The valid keywords for `CLASS_TIMING` are limited to the following types:
     1. 3 letter abbreviation for day of the week e.g. `Mon`, `Tue`, etc.
@@ -419,22 +418,28 @@ Format: `findclass CLASS_TIMING`
 
 
 Examples:
-1. Single keyword
-    * `findclass mon` returns all classes on Monday.
-    * `findclass 10:00-12:00` returns all classes scheduled for `10:00 to 12:00` no matter which day of the week it belongs
+1. Single keyword  
+    1.1. `findclass mon` returns all classes on Monday.  
+    1.2. `findclass 10:00-12:00` returns all classes scheduled for `10:00 to 12:00` no matter which day of the week it belongs
       to.
-      ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand1.png)
-      
-2. Two keywords
-    * `findclass mon 09:30-11:30` returns the exact class on `Mon at 09:30-11:30`.
-    * `findclass tue 11:00-12:00` returns the exact class on `Tue at 11:00-12:00`.
-      ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand2.png)
+      | ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand1.png) |
+      | :--: |
+      | <b>Example 1.1</b> |
+
+2. Two keywords  
+    2.1 `findclass mon 11:30-13:30` returns the exact class on `Mon at 11:30-13:30`.  
+    2.2 `findclass tue 11:00-12:00` returns the exact class on `Tue at 11:00-12:00`.
+      | ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand2.png) |
+      | :--: |
+      | <b>Example 2.1</b> |
 
 
-3. Negative examples (Two or more keywords of the same type)
-    * `findclass mon tue` returns nothing.
-    * `findclass 09:00-10:30 11:00-12:00` returns nothing.
-      ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand3.png)
+3. Negative examples (Two or more keywords of the same type)  
+    3.1 `findclass mon tue` returns nothing.  
+    3.2 `findclass 09:00-10:30 11:00-12:00` returns nothing.
+      | ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand3.png) |
+      | :--: |
+      | <b>Example 1</b> |
 
 
 <div style="page-break-after: always;"></div>
@@ -459,12 +464,13 @@ Format:
   but not `sec 4 maths`
 
 Examples:
-* `findclassname math` returns all the classes with math in the class name.
-* `findclassname Sec, 4, maths` returns all the classes with `sec` or `4` or `maths` in the class name. Hence,
+1. `findclassname math` returns all the classes with math in the class name.
+2. `findclassname Sec, 4, maths` returns all the classes with `sec` or `4` or `maths` in the class name. Hence,
   class with name `sec 4 physics` and class with name `JC maths` would both be returned.
   
-![FindClassNameCommandExample](images/UGCommandExamples/FindClassNameCommand.png)
-
+| ![FindClassNameCommandExample](images/UGCommandExamples/FindClassNameCommand.png) |
+| :--: |
+| <b>Example 1</b> |
 #### Listing all the classes: `listclass`
 <hr>
 
