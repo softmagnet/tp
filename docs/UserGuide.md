@@ -146,10 +146,10 @@ A student can have 0 to 5 tags.
 
 Examples:
 
-1. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com a/311, Clementi Ave 2, #02-25`
+1. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com a/311, Clementi Ave 2, #02-25`  
 Adds a student with `NAME` `John Doe`, `PHONE` `98765432`, `EMAIL` `johnd@example.com`, `ADDRESS` `John street, block 123, #01-01`,  `TAG` `ALevels`, with next-of-kin with `NAME` `Mary Doe`, `PHONE` `93334848`, `EMAIL` `mary23@gmail.com`, `ADDRESS` `311, Clementi Ave 2, #02-25`
 
-2. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/slow learner nok/ n/Karen e/karenSUper@gmail.com p/99994444 a/311, Clementi Ave 2, #02-25`
+2. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/slow learner nok/ n/Karen e/karenSUper@gmail.com p/99994444 a/311, Clementi Ave 2, #02-25`  
  Adds a student with `NAME` `Betsy Crowe `, `PHONE` `1234567 `, `EMAIL` `betsycrowe@example.com`, `ADDRESS` `Newgate Prison `,  `TAG` `friend`, with next-of-kin with `NAME` `Karen`, `PHONE` `99994444 `, `EMAIL` `karenSUper@gmail.com `, `ADDRESS` `311, Clementi Ave 2, #02-25`
 
  ![AddCommandExample](images/UGCommandExamples/AddCommand.png)
@@ -449,10 +449,12 @@ Examples:
 1. Single keyword  
     1.1. `findclass mon` returns all classes on Monday.  
     1.2. `findclass 10:00-12:00` returns all classes scheduled for `10:00 to 12:00` no matter which day of the week it belongs
-      to.![FindClassCommandExample](images/UGCommandExamples/FindClassCommand1.png) <p align = "center"><b>Example 1.1:</b> Find all classes on Monday</p>  
+      to.![FindClassCommandExample](images/UGCommandExamples/FindClassCommand1.png) 
+      <p align = "center"><b>Example 1.1:</b> Find all classes on Monday</p>    
 2. Two keywords  
     2.1 `findclass mon 11:30-13:30` returns the exact class on `Mon at 11:30-13:30`.  
-    2.2 `findclass tue 11:00-12:00` returns the exact class on `Tue at 11:00-12:00`. ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand2.png) <p align = "center"><b>Example 2.1:</b> Find classes on Monday at 11:30-13:30</p>  
+    2.2 `findclass tue 11:00-12:00` returns the exact class on `Tue at 11:00-12:00`. ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand2.png) 
+      <p align = "center"><b>Example 2.1:</b> Find classes on Monday at 11:30-13:30</p>    
 3. Negative examples (Two or more keywords of the same type)  
     3.1 `findclass mon tue` returns nothing.  
     3.2 `findclass 09:00-10:30 11:00-12:00` returns nothing.
