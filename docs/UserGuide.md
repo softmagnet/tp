@@ -451,18 +451,10 @@ Examples:
 1. Single keyword  
     1.1. `findclass mon` returns all classes on Monday.  
     1.2. `findclass 10:00-12:00` returns all classes scheduled for `10:00 to 12:00` no matter which day of the week it belongs
-      to.![FindClassCommandExample](images/UGCommandExamples/FindClassCommand1.png)
-<p align = "center">
-<b>Example 1.1:</b> Find all classes on Monday
-</p>  
-
+      to.![FindClassCommandExample](images/UGCommandExamples/FindClassCommand1.png) <p align = "center"><b>Example 1.1:</b> Find all classes on Monday</p>  
 2. Two keywords  
     2.1 `findclass mon 11:30-13:30` returns the exact class on `Mon at 11:30-13:30`.  
-    2.2 `findclass tue 11:00-12:00` returns the exact class on `Tue at 11:00-12:00`. ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand2.png)   
-<p align = "center">
-<b>Example 2.1:</b> Find classes on Monday at 11:30-13:30
-</p>
- 
+    2.2 `findclass tue 11:00-12:00` returns the exact class on `Tue at 11:00-12:00`. ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand2.png) <p align = "center"><b>Example 2.1:</b> Find classes on Monday at 11:30-13:30</p>  
 3. Negative examples (Two or more keywords of the same type)  
     3.1 `findclass mon tue` returns nothing.  
     3.2 `findclass 09:00-10:30 11:00-12:00` returns nothing.
