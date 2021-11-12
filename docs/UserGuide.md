@@ -270,7 +270,7 @@ Examples:
 
 ![FindTagCommandExample](images/UGCommandExamples/FindTagCommand.png)
 <p align = "center">
-Example 1: Finds Students with tag math
+<b>Example 1:</b> Finds Students with tag math
 </p>
 
 
@@ -313,7 +313,7 @@ Examples:
 
 ![DeleteCommandExample](images/UGCommandExamples/DeleteCommand.png)
 <p align = "center">
-Example 1: Deletes the 2nd student 
+<b>Example 1:</b> Deletes the 2nd student 
 </p>
 
 ### Class commands
@@ -342,7 +342,7 @@ Adds a new class with name `Sec 4 E Maths`, with class timing `Tue 12:30-14:30`,
 
 ![AddClassCommandExample](images/UGCommandExamples/AddClassCommand.png)
 <p align = "center">
-<b>Example 1:</b> Adding 2103T class
+<b>Example 1:</b> Adding CS2103T class
 </p>
 <div style="page-break-after: always;"></div>
 
