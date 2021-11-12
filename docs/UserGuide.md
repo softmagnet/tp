@@ -92,8 +92,8 @@ Here, you can see all the classes that you are teaching in a nice, visual, weekl
   
 
 7. Now that you have experienced the core functionality, you are all ready to explore the other commands.   
-To delete, we have commands like `delete` and `deleteclass` for students and classes respectively, and even commands to `find` and `sort` classes and students when you have become more familiar with the app, just refer to the [Features](#features) below for details of each command.
-Lastly, if you would like to fill in Timestable with your own students, simply use the  **`clear`** command to delete all the sample students and classes.
+To delete, we have commands like [`delete`](#deleting-a-student--delete) and [`deleteclass`](#delete-a-class-deleteclass) for students and classes respectively, and even commands to [`find`](#locating-students-by-name-findname) and [`sort`](#sorting-students-and-classes-sort) classes and students when you have become more familiar with the app, just refer to the [Features](#features) below for details of each command.
+Lastly, if you would like to fill in Timestable with your own students, simply use the  `clear` command to delete all the sample students and classes.
 
 <div style="page-break-after: always;"></div>
 
