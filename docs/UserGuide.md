@@ -227,7 +227,7 @@ Examples:
 
 ![FindnNameCommandExample](images/UGCommandExamples/FindNameCommand.png)
 <p align = "center">
-<b>Example 1:</b> Finds Student with name John
+<b>Example 1:</b> Find Students with name John
 </p>
 
 <div markdown="block" class="alert alert-info">
@@ -270,7 +270,7 @@ Examples:
 
 ![FindTagCommandExample](images/UGCommandExamples/FindTagCommand.png)
 <p align = "center">
-<b>Example 1:</b> Finds Students with tag math
+<b>Example 1:</b> Find Students with tag math
 </p>
 
 
@@ -453,14 +453,14 @@ Examples:
     1.2. `findclass 10:00-12:00` returns all classes scheduled for `10:00 to 12:00` no matter which day of the week it belongs
       to.![FindClassCommandExample](images/UGCommandExamples/FindClassCommand1.png)
 <p align = "center">
-<b>Example 1.1:</b> Finding all classes on Monday
+<b>Example 1.1:</b> Find all classes on Monday
 </p>  
 
 2. Two keywords  
     2.1 `findclass mon 11:30-13:30` returns the exact class on `Mon at 11:30-13:30`.  
     2.2 `findclass tue 11:00-12:00` returns the exact class on `Tue at 11:00-12:00`. ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand2.png)   
 <p align = "center">
-<b>Example 2.1:</b> Finding a class on Monday at 11:30-13:30
+<b>Example 2.1:</b> Find classes on Monday at 11:30-13:30
 </p>
  
 3. Negative examples (Two or more keywords of the same type)  
@@ -469,7 +469,7 @@ Examples:
    
 ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand3.png)
 <p align = "center">
-<b>Example 3.1:</b> `findclass` with two keywords of the same type
+<b>Example 3.1:</b> Find classes with two keywords of the same type
 </p>
 
 <div style="page-break-after: always;"></div>
@@ -499,7 +499,7 @@ Examples:
   
 ![FindClassNameCommandExample](images/UGCommandExamples/FindClassNameCommand.png)
 <p align = "center">
-<b>Example 1:</b> Find classes with `math` in the class name
+<b>Example 1:</b> Find classes with math in the class name
 </p>
 
 #### Listing all the classes: `listclass`
