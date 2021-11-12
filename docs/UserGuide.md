@@ -461,10 +461,11 @@ Examples:
     3.1 `findclass mon tue` returns nothing.  
     3.2 `findclass 09:00-10:30 11:00-12:00` returns nothing.
    
-![FindClassCommandExample](images/UGCommandExamples/FindClassCommand3.png)
+![FindClassCommandExample](images/UGCommandExamples/FindClassCommand3.png)  
 <p align = "center">
 <b>Example 3.1:</b> Find classes with two keywords of the same type
-</p>
+</p>  
+
 
 <div style="page-break-after: always;"></div>
 
