@@ -188,21 +188,7 @@ Examples (also editing nok information):
 ![EditCommandExample2](images/UGCommandExamples/EditCommand2.png)
 
 
-#### Deleting a student : `delete`
-<hr>
 
-Deletes the specified student from the TimesTable.
-
-Format:
-`delete INDEX`
-* Deletes the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list in the `Students` tab.
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the TimesTable.
-* `findname Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
-
-![DeleteCommandExample](images/UGCommandExamples/DeleteCommand.png)
 
 
 #### Locating students by name: `findname`
@@ -292,6 +278,22 @@ Shows a list of all students in the Students tab.
 Format: `list`
 
 ![ListCommandExample](images/UGCommandExamples/ListCommand.png)
+
+#### Deleting a student : `delete`
+<hr>
+
+Deletes the specified student from the TimesTable.
+
+Format:
+`delete INDEX`
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list in the `Students` tab.
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd student in the TimesTable.
+* `findname Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+
+![DeleteCommandExample](images/UGCommandExamples/DeleteCommand.png)
 
 ### Class commands
 
