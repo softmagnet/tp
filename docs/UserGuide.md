@@ -68,13 +68,8 @@ Again, press enter to add the class to our TimesTable.
 4. Oh! Notice that you have been transported to another tab. This is known as the Class Tab,   
 which shows you all the information about the Classes you are teaching.  
 ![TutorialImage4.png](images/UGCommandExamples/TutorialExample4.png)
-<<<<<<< HEAD
 When we scroll down, you can see that 'Sec 4 A Maths' is added at the bottom.  
 
-=======
-When we scroll down, you can see that 'Sec 4 A Maths' is added at the bottom.
-   
->>>>>>> b6efb58b49e023c061039ca3cdf668d60316e019
 
 5. See that blank space on the right? It is where all the students who are under that class go to.  
 I will now show you how to add students to a class! Here, we are using the [`addtoclass`](#adding-studentstudents-to-a-class-addtoclass) 
@@ -83,15 +78,11 @@ Type `addtoclass 13 10` to add the student that you just added (in index 10) to 
 As shown, you can see the students that are added to the class. How cool is that?   
 ![TutorialImage5.png](images/UGCommandExamples/TutorialExample5.png)
    
-6. Continuing on, let me introduce you to the Timetable tab! Here, we are using the [`view`](#viewing-of-different-tabs-view) command.    
-<<<<<<< HEAD
-Type `view timetable` and press enter.  
-   ![TutorialImageFour.png](images/UGCommandExamples/ViewCommand.png)  
-=======
+6. Continuing on, let me introduce you to the Timetable tab! Here, we are using the [`view`](#viewing-of-different-tabs-view) command.
 Type `view timetable` and press enter.
+   ![TutorialImageFour.png](images/UGCommandExamples/ViewCommand.png)
 
 ![TutorialImage6.png](images/UGCommandExamples/TutorialExample6.png)
->>>>>>> b6efb58b49e023c061039ca3cdf668d60316e019
 Here, you can see all the classes that you are teaching in a nice, visual, weekly timetable format! On the first row which is Monday, you can see the 'Sec 4 A Math' class that you just added, with the correct timing.
 
 7. Now that you have experienced the core functionality, you are all ready to explore the other commands. 
