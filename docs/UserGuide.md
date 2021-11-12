@@ -73,7 +73,7 @@ We are adding a class 'Sec 4 A Maths' using the `cn/` parameter, at 11:30am to 1
 Again, press enter to add the class to our TimesTable.
    
 
-4. Oh! Notice that you have been transported to another tab. This is known as the Classes Tab,   
+4. Oh! Notice that you have been transported to another tab. This is known as the Classes Tab, 
 which shows you all the information about the Classes you are teaching.  
 ![TutorialImage4.png](images/UGCommandExamples/TutorialExample4.png)
 When we scroll down, you can see that 'Sec 4 A Maths' is added at the bottom.
@@ -92,8 +92,8 @@ Here, you can see all the classes that you are teaching in a nice, visual, weekl
   
 
 7. Now that you have experienced the core functionality, you are all ready to explore the other commands.   
-To delete, we have commands like `delete` and `deleteclass` for students and classes respectively, and even commands to `find` and `sort` classes and students when you have become more familiar with the app, just refer to the [Features](#features) below for details of each command.
-Lastly, if you would like to fill in Timestable with your own students, simply use the  **`clear`** command to delete all the sample students and classes.
+To delete, we have commands like [`delete`](#deleting-a-student--delete) and [`deleteclass`](#delete-a-class-deleteclass) for students and classes respectively, and even commands to [`find`](#locating-students-by-name-findname) and [`sort`](#sorting-students-and-classes-sort) classes and students when you have become more familiar with the app, just refer to the [Features](#features) below for details of each command.
+Lastly, if you would like to fill in Timestable with your own students, simply use the  `clear` command to delete all the sample students and classes.
 
 <div style="page-break-after: always;"></div>
 
@@ -232,6 +232,8 @@ Format:
   e.g. `findname alex lim, bernice yu` will return `Alex Lim`, `Bernice Yu`.
 * The entire search term is used for matching e.g. `findname Alex L` will match `Alex Lim`
   but not `Alex Yu`
+  
+<div style="page-break-after: always;"></div>
 
 Examples:
 1. `findname John` returns `john` and `John Doe` in both `Students` and `Classes` tab.
@@ -382,6 +384,8 @@ Format:
 * Edit commands that will create a clash of `CLASS_TIMING` with other classes is not accepted.
 * `RATE` must be less than $1,000,000/hr
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 1. `editclass 1 ct/wed 15:00-17:00` Edits the first class in the class list's `CLASS_TIMIMG` to be on Wednesday from
 3pm to 5pm.
@@ -410,6 +414,8 @@ Format:
 * Students that already exist in the class can't be added to the same class.
 * If you enter duplicate student indices in one command, Timestable will only add the student once.
 * Size of the class will change to reflect the number of students in the class.
+
+<div style="page-break-after: always;"></div>
 
 Example:
 1. `addtoclass 13 1 2 3`
@@ -609,6 +615,8 @@ Examples:
 
 * Class size will **not** be affected by filtering students (using FindName or FindTag).
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### Viewing of different tabs: `view`
 <hr>
