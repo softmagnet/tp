@@ -25,12 +25,13 @@ guide, head to the [Reading this User Guide](#reading-this-user-guide) section. 
 jump to the [Quick Start](#quick-start) section. For a full list of commands and detailed instructions on each one, head to the
 [Features](#features) section.
 
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## Quick Start
 ### Set Up
@@ -88,6 +89,7 @@ Here, you can see all the classes that you are teaching in a nice, visual, weekl
 To delete, we have commands like `delete` and `deleteclass` for students and classes respectively, and even commands to `find` and `sort` classes and students when you have become more familiar with the app, just refer to the [Features](#features) below for details of each command.
 Lastly, if you would like to fill in Timestable with your own students, simply use the  **`clear`** command to delete all the sample students and classes.
 
+<div style="page-break-after: always;"></div>
 
 ## Reading this User Guide
 ### General Symbols and Syntax
@@ -110,13 +112,13 @@ INDEX | The number next to the Student/Class that shows its postion on the list.
 <hr>
 
 <div style="page-break-after: always;"></div>
+
 ## Features
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 </div>
 
-<div style="page-break-after: always;"></div>
 
 ### Student commands
 
@@ -244,8 +246,6 @@ Examples:
 * Class size will **not** be affected by filtering students (using FindName or FindTag).
 </div>
 
-<div style="page-break-after: always;"></div>
-
 #### Locating students by tag: `findtag`
 <hr>
 
@@ -344,7 +344,6 @@ Adds a new class with name `Sec 4 E Maths`, with class timing `Tue 12:30-14:30`,
 <p align = "center">
 <b>Example 1:</b> Adding CS2103T class
 </p>
-<div style="page-break-after: always;"></div>
 
 #### Editing a class: `editclass`
 <hr>
@@ -424,7 +423,6 @@ Removes the 1st, 2nd and 3rd student in the displayed student list of the 13th c
 <b>Example 1:</b> Remove students indexed 1, 2 and 3 in class list from class indexed 13
 </p>
 
-<div style="page-break-after: always;"></div>
 
 #### Locating class by class timing : `findclass`
 <hr>
@@ -460,11 +458,10 @@ Examples:
     3.2 `findclass 09:00-10:30 11:00-12:00` returns nothing.
    
 ![FindClassCommandExample](images/UGCommandExamples/FindClassCommand3.png)
-<p align = "center">
-<b>Example 3.1:</b> Find classes with two keywords of the same type
-</p>
+    <p align = "center">
+    <b>Example 3.1:</b> Find classes with two keywords of the same type
+    </p>
 
-<div style="page-break-after: always;"></div>
 
 #### Locating class by class name: `findclassname`
 <hr>
@@ -535,7 +532,6 @@ Examples:
 
 ![DeleteClassCommandExample](images/UGCommandExamples/DeleteClassCommand.png)
 
-<div style="page-break-after: always;"></div>
 
 ### General commands
 
@@ -593,10 +589,6 @@ Examples:
 
 ![ViewCommandExample](images/UGCommandExamples/ViewCommand.png)
 
-<div style="page-break-after: always;"></div>
-
-<div style="page-break-after: always;"></div>
-
 #### Clearing all entries : `clear`
 <hr>
 
@@ -622,8 +614,6 @@ Exits the program.
 
 Format: `exit`
 
-<div style="page-break-after: always;"></div>
-
 #### Saving the data
 <hr>
 
@@ -648,7 +638,6 @@ If your changes to the data file makes its format invalid, Timestable will disca
 **Q**: Are you going to add XXX feature? What features are you planning to add?<br>
 **A**: I'm glad you asked! We're currently planning to add the following features:
 
-<div style="page-break-after: always;"></div>
 
 ### Upcoming Features:
 
@@ -708,6 +697,8 @@ Action | Format, Examples|
 **List** | `list`|
 **Sort** | `sort PARAMETER_TO_SORT_BY DIRECTION_OF_SORT` <br> e.g., `sort name asc`|
 
+<div style="page-break-after: always;"></div>
+
 ### Class Commands Summary
 
 Action | Format, Examples|
@@ -722,6 +713,8 @@ Action | Format, Examples|
 **Remove from class** | `removefromclass CLASS_INDEX STUDENT_INDEX...` <br> e.g., `removefromclass 1 1 2 3`|
 **Select class** | `class CLASS_INDEX` <br> e.g., `class 2`|
 **Sort** | `sort PARAMETER_TO_SORT_BY DIRECTION_OF_SORT` <br> e.g., `sort timing asc`|
+
+<div style="page-break-after: always;"></div>
 
 ### General Commands Summary
 
