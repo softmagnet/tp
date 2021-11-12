@@ -38,14 +38,17 @@ jump to the [Quick Start](#quick-start) section. For a full list of commands and
 
 1. Ensure you have Java `11` or above installed in your Computer, if you do not, you can download it from [here](https://www.oracle.com/java/technologies/downloads/#java11-windows).
 
-1. Download the latest `timestable.jar` from [here](https://github.com/AY2122S1-CS2103T-F11-1/tp/releases).
+2. Download the latest `timestable.jar` from [here](https://github.com/AY2122S1-CS2103T-F11-1/tp/releases).
    ![DownloadJar](images/DownloadJar.png)
-1. Copy the file to the folder you want to use as the _home folder_ for your TimesTable.
-1. For `Windows`, double-click the file to start the app.
+3. Copy the file to the folder you want to use as the _home folder_ for your TimesTable.
+   <div style="page-break-after: always;"></div>
+
+
+4. For `Windows`, double-click the file to start the app.
    For `Mac`, you need to open `TimesTable` using terminal. You can right-click on the folder and click on New Terminal at Folder to bring up your terminal, and key in `java -jar timestable.jar`. Press Enter to launch the application.
     ![MacStartUp](images/TimestableMacStartUp.png) 
 
-1. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample student data.<br>
+5. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample student data.<br>
    ![Ui](images/Ui.png)
 
 ### Tutorial
@@ -64,8 +67,7 @@ Type `addclass cn/Sec 4 A Maths ct/FRI 11:30-13:30 r/70 l/Nex Tuition Center` in
 We are adding a class 'Sec 4 A Maths' using the `cn/` parameter, at 11:30am to 1:30pm using the `ct/` parameter, together with the rate and the location.    
 ![TutorialImage3.png](images/UGCommandExamples/TutorialExample3.png)
 Again, press enter to add the class to our TimesTable.
-
-<div style="page-break-after: always;"></div>
+   
 
 4. Oh! Notice that you have been transported to another tab. This is known as the Classes Tab,   
 which shows you all the information about the Classes you are teaching.  
@@ -144,6 +146,8 @@ Format:
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have 0 to 5 tags.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Examples:
 
@@ -298,6 +302,8 @@ Format: `list`
 
 ![ListCommandExample](images/UGCommandExamples/ListCommand.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Deleting a student : `delete`
 <hr>
 
@@ -316,6 +322,8 @@ Examples:
 <p align = "center">
 <b>Example 1:</b> Deletes the 2nd student 
 </p>
+
+<div style="page-break-after: always;"></div>
 
 ### Class commands
 
@@ -460,11 +468,13 @@ Examples:
     3.1 `findclass mon tue` returns nothing.  
     3.2 `findclass 09:00-10:30 11:00-12:00` returns nothing.
    
-![FindClassCommandExample](images/UGCommandExamples/FindClassCommand3.png)
-    <p align = "center">
-    <b>Example 3.1:</b> Find classes with two keywords of the same type
-    </p>
+![FindClassCommandExample](images/UGCommandExamples/FindClassCommand3.png)  
+<p align = "center">
+<b>Example 3.1:</b> Find classes with two keywords of the same type
+</p>  
 
+
+<div style="page-break-after: always;"></div>
 
 #### Locating class by class name: `findclassname`
 <hr>
@@ -535,6 +545,7 @@ Examples:
 
 ![DeleteClassCommandExample](images/UGCommandExamples/DeleteClassCommand.png)
 
+<div style="page-break-after: always;"></div>
 
 ### General commands
 
@@ -641,6 +652,7 @@ If your changes to the data file makes its format invalid, Timestable will disca
 **Q**: Are you going to add XXX feature? What features are you planning to add?<br>
 **A**: I'm glad you asked! We're currently planning to add the following features:
 
+<div style="page-break-after: always;"></div>
 
 ### Upcoming Features:
 
