@@ -652,6 +652,7 @@ If your changes to the data file makes its format invalid, Timestable will disca
 **Q**: Are you going to add XXX feature? What features are you planning to add?<br>
 **A**: I'm glad you asked! We're currently planning to add the following features:
 
+<div style="page-break-after: always;"></div>
 
 ### Upcoming Features:
 
