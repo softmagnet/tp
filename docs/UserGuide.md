@@ -20,7 +20,8 @@ command box. Other GUI applications are controlled by clicking on buttons and bo
 If you can type fast, TimesTable can get your class management tasks done faster than traditional GUI applications.
 Using the CLI allows you to control the application quickly while still having the visual benefits of a GUI.
 
-This guide will take you through the commands of **TimesTable** step by step. To get started with using **TimesTable**,
+This guide will take you through the commands of **TimesTable** step by step. For more information about how to use the
+guide, head to the [Reading this User Guide](#reading-this-user-guide) section. To get started with using **TimesTable**,
 jump to the [Quick Start](#quick-start) section. For a full list of commands and detailed instructions on each one, head to the
 [Features](#features) section.
 
@@ -79,7 +80,7 @@ As shown, you can see the students that are added to the class. How cool is that
    
 6. Continuing on, let me introduce you to the Timetable tab! Here, we are using the [`view`](#viewing-of-different-tabs-view) command.    
 Type `view timetable` and press enter.
-![TutorialImage6.png](images/UGCommandExamples/TutorialExample6.png)
+![TutorialImage6.png](images/UGCommandExamples/TutorialExample6.png)  
 Here, you can see all the classes that you are teaching in a nice, visual, weekly timetable format! On the first row which is Monday, you can see the 'Sec 4 A Math' class that you just added, with the correct timing.  
   
 
