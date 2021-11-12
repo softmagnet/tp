@@ -268,9 +268,10 @@ Examples:
 2. `findtag math, physics` returns `Alex Yeoh` with the `A Math` and `Biology` `TAG`s in both `Students` and `Classes` tab.
   <br>
 
-| ![FindTagCommandExample](images/UGCommandExamples/FindTagCommand.png) |
-| :--: |
-| <b>Example 1:</b> Finds Students with tag math  |
+![FindTagCommandExample](images/UGCommandExamples/FindTagCommand.png)
+<p align = "center">
+Example 1: Finds Students with tag math
+</p>
 
 
 <div markdown="block" class="alert alert-info">
@@ -310,9 +311,10 @@ Examples:
 1. `list` followed by `delete 2` deletes the 2nd student in the TimesTable.
 2. `findname Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-| ![DeleteCommandExample](images/UGCommandExamples/DeleteCommand.png) |
-| :--: |
-| <b>Example 1:</b> Deletes the 2nd student |
+![DeleteCommandExample](images/UGCommandExamples/DeleteCommand.png)
+<p align = "center">
+Example 1: Deletes the 2nd student 
+</p>
 
 ### Class commands
 
