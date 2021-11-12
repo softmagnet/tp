@@ -68,8 +68,13 @@ Again, press enter to add the class to our TimesTable.
 4. Oh! Notice that you have been transported to another tab. This is known as the Class Tab,   
 which shows you all the information about the Classes you are teaching.  
 ![TutorialImage4.png](images/UGCommandExamples/TutorialExample4.png)
+<<<<<<< HEAD
+When we scroll down, you can see that 'Sec 4 A Maths' is added at the bottom.  
+
+=======
 When we scroll down, you can see that 'Sec 4 A Maths' is added at the bottom.
    
+>>>>>>> b6efb58b49e023c061039ca3cdf668d60316e019
 
 5. See that blank space on the right? It is where all the students who are under that class go to.  
 I will now show you how to add students to a class! Here, we are using the [`addtoclass`](#adding-studentstudents-to-a-class-addtoclass) 
@@ -79,9 +84,14 @@ As shown, you can see the students that are added to the class. How cool is that
 ![TutorialImage5.png](images/UGCommandExamples/TutorialExample5.png)
    
 6. Continuing on, let me introduce you to the Timetable tab! Here, we are using the [`view`](#viewing-of-different-tabs-view) command.    
+<<<<<<< HEAD
+Type `view timetable` and press enter.  
+   ![TutorialImageFour.png](images/UGCommandExamples/ViewCommand.png)  
+=======
 Type `view timetable` and press enter.
 
 ![TutorialImage6.png](images/UGCommandExamples/TutorialExample6.png)
+>>>>>>> b6efb58b49e023c061039ca3cdf668d60316e019
 Here, you can see all the classes that you are teaching in a nice, visual, weekly timetable format! On the first row which is Monday, you can see the 'Sec 4 A Math' class that you just added, with the correct timing.
 
 7. Now that you have experienced the core functionality, you are all ready to explore the other commands. 
@@ -91,22 +101,21 @@ Lastly, if you would like to fill in Timestable with your own students, simply u
 
 ## Reading this User Guide
 ### General Symbols and Syntax
-
-Syntax | Definition
---------|------------------
-`UPPER_CASE` | Words in `UPPER_CASE` are the inputs to be supplied by the user. <br> e.g. in `add n/NAME`, `NAME` is an input which can be used as `add n/John Doe`.
-`a/` | Signifies a field. The user inputs the field after the signifier. Also known as a parameter. (see [Glossary](#glossary))
-`[a/UPPER_CASE]` | Items in square brackets refer to optional fields. <br> e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or just `n/John Doe`.
-`...` | Indicates that the preceding field can be used multiple times. <br> e.g. `[t/TAG]…​` can be used multiple times, such as`t/friend` or `t/friend t/family`.
+Syntax | Definition|
+--------|------------------|
+`UPPER_CASE` | Words in `UPPER_CASE` are the inputs to be supplied by the user. <br> e.g. in `add n/NAME`, `NAME` is an input which can be used as `add n/John Doe`.|
+`a/` | Signifies a field. The user inputs the field after the signifier. Also known as a parameter. (see [Glossary](#Glossary))|
+`[a/UPPER_CASE]` | Items in square brackets refer to optional fields. <br> e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or just `n/John Doe`.|
+`...` | Indicates that the preceding field can be used multiple times. <br> e.g. `[t/TAG]…​` can be used multiple times, such as`t/friend` or `t/friend t/family`.|
 
 ### Glossary
+Term | Definition|
+--------|------------------|
+NOK | Next-of-kin. Refers to the student's guardian, parent or perhaps close friend to be contacted regarding admin matters like payment.|
+PARAMETERS | The inputs before the `/` are known as _parameters_. <br>e.g `n/NAME` (`n/` is the parameter for name) <br>e.g `a/ADDRESS` (`a/` is the parameter for name).|
+INDEX | The number next to the Student/Class that shows its postion on the list.|
 
-Term | Definition
---------|------------------
-NOK | Next-of-kin. Refers to the student's guardian, parent or perhaps close friend to be contacted regarding admin matters like payment.
-PARAMETERS | The inputs before the `/` are known as _parameters_. <br>e.g `n/NAME` (`n/` is the parameter for name) <br>e.g `a/ADDRESS` (`a/` is the parameter for name).
-INDEX | The number next to the Student/Class that shows its postion on the list.
-
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 ## Features
