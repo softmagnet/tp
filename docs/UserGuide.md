@@ -521,14 +521,17 @@ Format:
 
 * `PARAMETER_TO_SORT_BY` can either be `name` or `timing` which sorts the students and classes respectively.
 * `DIRECTION_OF_SORT` can either be `asc` or `desc` to represent ascending and descending respectively.
+* Sorting by `name` sorts the students in the Students tab and Classes tab but sorting by `timing` only sorts the classes in Classes tab but not the students in Students tab.
 
 Examples:
-* `sort name asc` sorts students alphabetically by their `NAME` in ascending order.
-* `sort name desc` sorts students alphabetically by their `NAME` in descending order.
-* `sort timing asc` sorts classes based on their `CLASS_TIMING` starting from the earliest in the week to the latest.
-* `sort timing desc` sorts classes based on their `CLASS_TIMING` starting from the latest in the week to the earliest.
+1. `sort name asc` sorts students alphabetically by their `NAME` in ascending order.
+2. `sort name desc` sorts students alphabetically by their `NAME` in descending order.
+3. `sort timing asc` sorts classes based on their `CLASS_TIMING` starting from the earliest in the week to the latest.
+4. `sort timing desc` sorts classes based on their `CLASS_TIMING` starting from the latest in the week to the earliest.
 
-![SortCommandExample](images/UGCommandExamples/SortCommand.png)
+|![SortCommandExample](images/UGCommandExamples/SortCommand.png)|
+|:--:|
+| <b>Example 1:</b>`sort name asc`|
 
 <div markdown="block" class="alert alert-info">
 
@@ -555,7 +558,7 @@ Format:
 * `TAB_TO_VIEW` has to be an existing tab in Timestable (`students`, `classes`, `timetable`).
 
 Examples:
-* `view timetable` switches the displayed tab to be the `timetable` tab.
+1. `view timetable` switches the displayed tab to be the `timetable` tab.
 
 ![ViewCommandExample](images/UGCommandExamples/ViewCommand.png)
 
