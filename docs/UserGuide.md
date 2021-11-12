@@ -165,6 +165,7 @@ Adds a student with `NAME` `John Doe`, `PHONE` `98765432`, `EMAIL` `johnd@exampl
 <b>Example 1:</b> Add John Doe 
 </p>
 
+<div style="page-break-after: always;"></div>
 
 #### Editing a student : `edit`
 <hr>
@@ -212,6 +213,7 @@ Examples (also editing nok information):
 <b>Example 1:</b> Edit Student 2 with next-of-kin information
 </p>
 
+<div style="page-break-after: always;"></div>
 
 #### Locating students by name: `findname`
 <hr>
@@ -254,6 +256,8 @@ Examples:
 * Class size will **not** be affected by filtering students (using FindName or FindTag).
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### Locating students by tag: `findtag`
 <hr>
 
@@ -295,6 +299,7 @@ Examples:
 
 * Class size will **not** be affected by filtering students (using FindName or FindTag).
 </div>
+<div style="page-break-after: always;"></div>
 
 #### Listing all students : `list`
 <hr>
@@ -306,6 +311,7 @@ Format: `list`
 ![ListCommandExample](images/UGCommandExamples/ListCommand.png)
 
 <div style="page-break-after: always;"></div>
+
 
 #### Deleting a student : `delete`
 <hr>
@@ -385,6 +391,8 @@ Examples:
 <b>Example 1:</b> Editing class indexed 1
 </p>
 
+<div style="page-break-after: always;"></div>
+
 #### Adding student/students to a class: `addtoclass`
 <hr>
 
@@ -413,6 +421,8 @@ displayed class list in the `Classes` tab, `size` of the class will increase by 
 <b>Example 1:</b> Adding students indexed 1, 2 and 3 to class indexed 13
 </p>
 
+<div style="page-break-after: always;"></div>
+
 #### Removing students from a class: `removefromclass`
 <hr>
 
@@ -437,6 +447,7 @@ Removes the 1st, 2nd and 3rd student in the displayed student list of the 13th c
 <b>Example 1:</b> Remove students indexed 1, 2 and 3 in class list from class indexed 13
 </p>
 
+<div style="page-break-after: always;"></div>
 
 #### Locating class by class timing : `findclass`
 <hr>
@@ -509,6 +520,8 @@ Examples:
 <b>Example 1:</b> Find classes with math in the class name
 </p>
 
+<div style="page-break-after: always;"></div>
+
 #### Listing all the classes: `listclass`
 <hr>
 
@@ -517,6 +530,8 @@ Shows a list of all classes in the Classes tab.
 Format: `listclass`
 
 ![ListClassCommandExample](images/UGCommandExamples/ListClassCommand.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Selecting of classes: `class`
 <hr>
@@ -533,6 +548,8 @@ Examples:
 * `class 1` selects the class with `CLASS_INDEX` of `1` and displays its students in the Classes tab.
 
 ![SelectClassCommandExample](images/UGCommandExamples/ClassCommand.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Delete a class: `deleteclass`
 <hr>
