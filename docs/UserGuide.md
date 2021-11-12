@@ -47,9 +47,13 @@ jump to the [Quick Start](#quick-start) section. For a full list of commands and
 4. For `Windows`, double-click the file to start the app.
    For `Mac`, you need to open `TimesTable` using terminal. You can right-click on the folder and click on New Terminal at Folder to bring up your terminal, and key in `java -jar timestable.jar`. Press Enter to launch the application.
     ![MacStartUp](images/TimestableMacStartUp.png) 
+   <div style="page-break-after: always;"></div>
+
 
 5. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample student data.<br>
    ![Ui](images/Ui.png)
+   
+<div style="page-break-after: always;"></div>
 
 ### Tutorial
 
@@ -72,8 +76,7 @@ Again, press enter to add the class to our TimesTable.
 4. Oh! Notice that you have been transported to another tab. This is known as the Classes Tab,   
 which shows you all the information about the Classes you are teaching.  
 ![TutorialImage4.png](images/UGCommandExamples/TutorialExample4.png)
-When we scroll down, you can see that 'Sec 4 A Maths' is added at the bottom.  
-
+When we scroll down, you can see that 'Sec 4 A Maths' is added at the bottom.
 
 5. See that blank space on the right? It is where all the students who are under that class go to.  
 I will now show you how to add students to a class! Here, we are using the [`addtoclass`](#adding-studentstudents-to-a-class-addtoclass) 
@@ -353,6 +356,8 @@ Adds a new class with name `Sec 4 E Maths`, with class timing `Tue 12:30-14:30`,
 <p align = "center">
 <b>Example 1:</b> Adding CS2103T class
 </p>
+
+<div style="page-break-after: always;"></div>
 
 #### Editing a class: `editclass`
 <hr>
