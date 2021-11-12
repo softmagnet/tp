@@ -187,10 +187,6 @@ Examples (also editing nok information):
 
 ![EditCommandExample2](images/UGCommandExamples/EditCommand2.png)
 
-
-
-
-
 #### Locating students by name: `findname`
 <hr>
 
