@@ -144,10 +144,10 @@ A student can have 0 to 5 tags.
 
 Examples:
 
-1. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com a/311, Clementi Ave 2, #02-25`
+1. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/ALevels nok/ n/Mary Doe p/93334848 e/mary23@gmail.com a/311, Clementi Ave 2, #02-25`  
 Adds a student with `NAME` `John Doe`, `PHONE` `98765432`, `EMAIL` `johnd@example.com`, `ADDRESS` `John street, block 123, #01-01`,  `TAG` `ALevels`, with next-of-kin with `NAME` `Mary Doe`, `PHONE` `93334848`, `EMAIL` `mary23@gmail.com`, `ADDRESS` `311, Clementi Ave 2, #02-25`
 
-2. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/slow learner nok/ n/Karen e/karenSUper@gmail.com p/99994444 a/311, Clementi Ave 2, #02-25`
+2. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/slow learner nok/ n/Karen e/karenSUper@gmail.com p/99994444 a/311, Clementi Ave 2, #02-25`  
  Adds a student with `NAME` `Betsy Crowe `, `PHONE` `1234567 `, `EMAIL` `betsycrowe@example.com`, `ADDRESS` `Newgate Prison `,  `TAG` `friend`, with next-of-kin with `NAME` `Karen`, `PHONE` `99994444 `, `EMAIL` `karenSUper@gmail.com `, `ADDRESS` `311, Clementi Ave 2, #02-25`
 
  ![AddCommandExample](images/UGCommandExamples/AddCommand.png)
